@@ -1,0 +1,366 @@
+/* =============================================
+   NAVBAR — Desktop, mobile, hamburguesa, dropdowns
+   SIN ÍCONOS en items de dropdown
+   ============================================= */
+
+/* ── Barra principal ── */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.navbar--scrolled {
+  box-shadow: 0 4px 24px rgba(0, 37, 77, 0.12);
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1536px;
+  margin: 0 auto;
+}
+
+/* ── Brand / Logo ── */
+.brand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--primary);
+}
+
+.brand--desktop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .brand--desktop {
+    display: block;
+  }
+}
+
+/* ── Links desktop ── */
+.nav-links {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--slate-600);
+}
+
+.nav-link.active {
+  color: var(--primary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--on-tertiary-container);
+  padding-bottom: 0.25rem;
+}
+
+.nav-link:hover {
+  color: var(--secondary);
+}
+
+/* ── Acciones (Mi ISeP) ── */
+.nav-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn-mail {
+  background-color: var(--secondary-container);
+  color: var(--on-secondary-container);
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.btn-mail:hover {
+  opacity: 0.9;
+  transform: scale(0.95);
+}
+
+.btn-isep {
+  background-color: var(--tertiary-container);
+  color: var(--on-tertiary-container);
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 10px 15px -3px rgba(0, 64, 88, 0.2);
+}
+
+.btn-isep:hover {
+  opacity: 0.9;
+  transform: scale(0.95);
+}
+
+/* ── Dropdown desktop ── */
+.nav-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-dropdown__trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: transparent;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--slate-600);
+  font-family: inherit;
+  padding: 0;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-dropdown__trigger:hover {
+  color: var(--secondary);
+}
+
+.nav-dropdown__trigger.active {
+  color: var(--primary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--on-tertiary-container);
+  padding-bottom: 0.25rem;
+}
+
+.dropdown-chevron {
+  display: flex;
+  align-items: center;
+  transition: transform 0.25s ease;
+  line-height: 1;
+}
+
+.dropdown-chevron .material-symbols-outlined {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.dropdown-chevron--open {
+  transform: rotate(180deg);
+}
+
+/* Panel — estado base: oculto */
+.dropdown-panel {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 230px;
+  background-color: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: 0.75rem;
+  box-shadow: 0 12px 40px rgba(0, 37, 77, 0.12);
+  padding: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 100;
+}
+
+/* Panel — estado abierto */
+.dropdown-panel--open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Items SIN íconos — solo texto */
+.dropdown-item {
+  display: block;
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  color: var(--on-surface);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--surface-container-low);
+  color: var(--secondary);
+}
+
+/* ── Hamburguesa — solo mobile ── */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: transparent;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+.hamburger__line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+  transform-origin: center;
+}
+
+/* Animacion: hamburguesa -> X */
+.hamburger--open .hamburger__line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger--open .hamburger__line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger--open .hamburger__line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Menu mobile desplegable ── */
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s ease,
+              padding 0.3s ease;
+  opacity: 0;
+  background-color: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--outline-variant);
+  padding: 0 1.5rem;
+}
+
+.mobile-menu--open {
+  max-height: 600px;
+  opacity: 1;
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+.mobile-link {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--slate-600);
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--outline-variant);
+  transition: color 0.2s ease, padding-left 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+.mobile-link:last-child {
+  border-bottom: none;
+}
+
+.mobile-link:hover {
+  color: var(--secondary);
+  padding-left: 0.5rem;
+}
+
+.mobile-link--active {
+  color: var(--primary);
+  font-weight: 700;
+  border-left: 3px solid var(--on-tertiary-container);
+  padding-left: 0.75rem;
+}
+
+/* ── Acordeon mobile ── */
+.mobile-accordion {
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.mobile-link--accordion {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  text-align: left;
+  font-family: inherit;
+  border-bottom: none !important;
+}
+
+.mobile-link--accordion-open {
+  color: var(--primary);
+}
+
+/* Submenu — estado base: oculto */
+.mobile-submenu {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+}
+
+/* Submenu — estado abierto */
+.mobile-submenu--open {
+  max-height: 300px;
+  opacity: 1;
+}
+
+/* Items submenu — mantienen el chevron_right */
+.mobile-sublink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0 0.65rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--slate-600);
+  border-bottom: 1px solid rgba(195, 198, 209, 0.4);
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.mobile-sublink:last-child {
+  border-bottom: none;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-sublink .material-symbols-outlined {
+  font-size: 1rem;
+  color: var(--on-tertiary-container);
+}
+
+.mobile-sublink:hover {
+  color: var(--secondary);
+  padding-left: 1.5rem;
+}
