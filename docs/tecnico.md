@@ -22,45 +22,49 @@
 
 ```
 src/
-├── main.jsx                 # Entry point + imports de CSS (orden: variables→base→componentes)
-├── App.jsx                  # Router principal + layout global
-├── assets/                  # Imágenes (escudos: EP, ES, EE, EI, EaD, ISeP)
+├── main.jsx                 # Entry point + imports de CSS
+├── App.jsx                  # Router principal + layout global (22 rutas)
+├── assets/                  # Imágenes (escudos: EP, ES, EE, EI, EaD, ISeP, webmail.svg)
 ├── components/
-│   ├── Navbar.jsx           # Navegación global (desktop + mobile) con buscador
-│   ├── Hero.jsx             # Banner principal con slider automático
-│   ├── SearchBox.jsx        # Buscador funcional con resultados dinámicos
+│   ├── Navbar.jsx           # Navegación global con escudo ISeP responsive
+│   ├── Hero.jsx             # Banner principal con slider automático (3 slides Unsplash)
+│   ├── SearchBox.jsx        # Buscador global con resultados agrupados por tipo
 │   ├── News.jsx             # Sección noticias del Home
-│   ├── Apps.jsx             # Aplicaciones institucionales
+│   ├── Apps.jsx             # Aplicaciones institucionales (Mi ISeP, SIGEDI, Webmail)
 │   ├── Schools.jsx          # Cuadrícula de escuelas (cada una con su escudo)
-│   ├── CTA.jsx              # Llamado a la acción (inscripciones)
-│   ├── Footer.jsx           # Pie de página global (5 bloques)
+│   ├── CTA.jsx              # Llamado a la acción con countdown
+│   ├── Footer.jsx           # Pie de página global + botón "Ir Arriba"
 │   ├── EscuelaTemplate.jsx  # Plantilla reutilizable de escuela
-│   └── FloatWhatsApp.jsx    # Botón flotante de WhatsApp
+│   ├── FloatWhatsApp.jsx    # Botón flotante de WhatsApp
+│   ├── Breadcrumb.jsx       # Navegación de migas de pan
+│   ├── Countdown.jsx        # Cuenta regresiva hasta fecha objetivo
+│   ├── Contadores.jsx       # Estadísticas animadas (IntersectionObserver)
+│   ├── Testimonios.jsx      # Carrusel de testimonios de egresados
+│   └── Placeholder.jsx      # Componente reutilizable para páginas "Próximamente"
 ├── data/
-│   ├── institucional.js     # Datos mock: escuelas, carreras, cursos, convocatorias, FAQ
-│   └── buscador.js          # Índice de búsqueda para el buscador funcional
+│   ├── institucional.js     # Datos mock: escuelas, carreras, cursos, convocatorias, FAQ (12 preguntas)
+│   └── buscador.js          # Índice de búsqueda (58 entradas) + función buscarAgrupado()
 ├── pages/
-│   ├── Home.jsx
-│   ├── Noticias.jsx
-│   ├── Institucional/       # ElISeP, Autoridades, Organizacion, Resoluciones,
-│   │                        # SedesContacto, OfertaEducativa (dinámica), Carrera
-│   ├── Escuelas/            # Policia, Superior, Especialidades, Investigaciones,
-│   │                        # EducacionDistancia (todas usan EscuelaTemplate)
-│   ├── Ingreso/             # Convocatorias, ProximasConvocatorias, Requisitos,
-│   │                        # Proceso, Faq
+│   ├── Home.jsx             # Landing completa (7 secciones)
+│   ├── Noticias.jsx         # Filtro por categoría + share + paginación
+│   ├── Institucional/       # ElISeP, Autoridades, Organizacion, Resoluciones (descargable),
+│   │                        # SedesContacto (Google Maps), OfertaEducativa (dinámica), Carrera (grid hits)
+│   ├── Escuelas/            # 5 escuelas usando EscuelaTemplate
+│   ├── Ingreso/             # Convocatorias (landing dedicada), ProximasConvocatorias, Requisitos,
+│   │                        # Proceso, Faq (12 preguntas)
 │   └── Secretaria/          # Titulos, Biblioteca, Cursos (dinámico)
 └── styles/
     ├── variables.css        # Design tokens (incl. gradiente)
-    ├── base.css             # Reset, tipografía, utilidades, .btn-cta, fondo global
-    ├── navbar.css           # Navegación + estilos del buscador
+    ├── base.css             # Reset, tipografía, fondo global (grilla 32px)
+    ├── navbar.css           # Navegación + buscador agrupado + hamburger
     ├── hero.css             # Hero slider + overlays + .page-hero
     ├── news.css             # Noticias (Home)
     ├── noticias.css         # Página /noticias
-    ├── schools-cta.css      # Escuelas + CTA
+    ├── schools-cta.css      # Escuelas + CTA con countdown
     ├── apps.css             # Aplicaciones + WhatsApp
-    ├── oferta.css           # Vistas dinámicas: cards, filtros, acordeón, plantilla escuela
-    ├── footer.css           # Footer
-    └── responsive.css       # Ajustes globales mobile-first
+    ├── oferta.css           # Cards, chips, filtros, acordeón, .escuela-seccion
+    ├── footer.css           # Footer 3 columnas + bottom
+    └── responsive.css       # Ajustes mobile-first
 ```
 
 ---
@@ -81,35 +85,26 @@ src/
 | `--surface-container-low` | `#f1f3ff` | Fondo sección |
 | `--gradient-primary` | `linear-gradient(90deg, #227bd1, #17be95)` | **Gradiente institucional** |
 | `--gradient-glow` | `0 6px 18px #1bb4c373` | Sombra brillo |
-| `--gradient-hover-lift` | `translateY(-1px)` | Elevación hover |
 | `--color-start` | `#227bd1` | Inicio gradiente |
 | `--color-end` | `#17be95` | Fin gradiente |
 
 ### 3.2 Gradiente institucional (uniforme)
 
 El sistema de gradiente se centraliza en `--gradient-primary` y se aplica a:
+- Botones, interactive/activos, hover de navegación, hover de cards, overlays de imagen.
 
-- **Botones:** `.btn-cta`, `.btn-cta-light`, `.btn-isep`, `.btn-download`.
-- **Interactive/activos:** `.filtro-btn--active`, `.pag-num--active`, `.oferta-tab--active`.
-- **Hover de navegación:** `.nav-link:hover`, `.nav-dropdown__trigger:hover`, `.dropdown-item:hover` (fondo gradiente + texto blanco + glow).
-- **Hover de cards:** `.school-card:hover`, `.app-card:hover`, `.card:hover`, `.mini-card:hover`, `.hcard:hover` (sombra + borde gradiente).
-- **Overlays de imagen:** se combina el gradiente con un **scrim oscuro** (navy) para garantizar el contraste del texto.
+### 3.3 Chips coloreados por tipo (data-type)
 
-### 3.3 Overlays y contraste
-
-Para que el texto blanco se lea sobre imágenes brillantes, los overlays combinan dos capas:
-
-```
-background:
-  linear-gradient(to right, rgba(0,21,43,0.88), ...),   ← scrim oscuro (legibilidad)
-  var(--gradient-primary);                                ← gradiente institucional (paleta)
-```
-
-- `.hero-overlay` → textura oscura a la izquierda (donde vive el texto).
-- `.np-img-overlay` → para la noticia principal.
-- `.hcard-overlay` → para tarjetas de historial.
-- `.page-hero` → hero de páginas interiores (placeholders y vistas implementadas) con scrim oscuro.
-- `.escuela-hero` → banner de cada escuela.
+| data-type | Color de fondo | Uso |
+|---|---|---|
+| `escuela` | `rgba(34,123,209,0.12)` | Escuela |
+| `duracion` | `rgba(148,163,184,0.12)` | Duración |
+| `modalidad` | `rgba(124,58,237,0.12)` | Modalidad |
+| `tipo` | `rgba(180,83,9,0.12)` | Tipo de curso |
+| `periodo` | `rgba(23,190,149,0.12)` | Período |
+| `estado` | `rgba(148,163,184,0.12)` | Estado |
+| `fecha` | `rgba(34,123,209,0.12)` | Fecha |
+| `paso` | `rgba(23,190,149,0.12)` | Paso del proceso |
 
 ---
 
@@ -120,113 +115,93 @@ background:
 | Breakpoint | Ancho | Comportamiento |
 |---|---|---|
 | Móvil | `< 768px` | Menú hamburguesa, grids de 1 columna, botones full-width |
-| Tablet | `768px – 1023px` | Nav desktop, grids de 2 columnas |
+| Tablet | `768px – 1023px` | Nav desktop con escudo ISeP, grids de 2 columnas |
 | Desktop | `≥ 1024px` | Grids de 3-4+ columnas, layout completo |
 
-### 4.2 Principios aplicados (responsive.css)
-
-- **Tipografía fluida** con `clamp()` (p. ej. `hero-title`).
-- **Hero con `100svh`** + `min-height` y `max-height` para no exceder en pantallas grandes.
-- **Paddings y títulos reducidos** en móvil (`≤ 640px`).
-- **Botones CTA full-width** en móvil para objetivo táctil (`≤ 480px`).
-- **Grids nativos CSS** (`repeat(auto/1fr/2/4)`) que colapsan de forma natural.
-
-### 4.3 Nav en móvil
-
-- Hamburger visible solo en móvil; menú desplegable con acordeones.
-- **Mi ISeP siempre visible** (`.btn-isep` con `white-space: nowrap` y padding compacto).
-- **Logo ISeP visible y enlazable** en móvil y desktop (vuelve a `/`).
-- Dropdowns desktop con panel `top: calc(100% + 1.25rem)` (separado del header).
+### 4.2 Nav responsive
+- Brand en desktop: escudo ISeP + texto
+- Brand en tablet (768-1023px): solo escudo
+- Brand en mobile (<768px): solo texto
 
 ---
 
-## 5. Rutas (App.jsx)
+## 5. Componentes nuevos
 
-Todas las rutas se declaran en `App.jsx` dentro de `<BrowserRouter>`. El `Navbar`, `Footer` y `FloatWhatsApp` son globales (se renderizan en todas las páginas).
+### 5.1 Breadcrumb (`src/components/Breadcrumb.jsx`)
+- Navegación de migas de pan con ícono home
+- Fondo `#f8fafc` con borde `#eef2f7`
+- Links en color `--primary`, último elemento en negrita
 
-```jsx
-<BrowserRouter>
-  <Navbar />
-  <Routes>{/* ... rutas ... */}</Routes>
-  <Footer />
-  <FloatWhatsApp />
-</BrowserRouter>
-```
+### 5.2 Countdown (`src/components/Countdown.jsx`)
+- Cuenta regresiva hasta fecha ISO
+- Bloques con fondo semitransparente + backdrop-filter
+- Expired: muestra "¡Las inscripciones están abiertas!"
 
-Rutas registradas: Home, Noticias, 6 Institucional, 5 Escuelas, 5 Ingreso y 3 Secretaría (20 rutas totales).
+### 5.3 Contadores (`src/components/Contadores.jsx`)
+- 4 estadísticas: Docentes (2200+), Cadetes (1100+), Personal (800+), Aulas (500+)
+- Animación de conteo con `IntersectionObserver` (easing cúbico)
+- Hover con elevación
+
+### 5.4 Testimonios (`src/components/Testimonios.jsx`)
+- Carrusel de 3 testimonios con foto, nombre, promoción y texto
+- Navegación por flechas y dots
+
+### 5.5 Placeholder (`src/components/Placeholder.jsx`)
+- Componente reutilizable para páginas "Próximamente"
+- Muestra: badge, título, descripción, lista de features próximas
 
 ---
 
 ## 6. Datos (mock)
 
-Los datos de la sección académica son **simulados** y viven en `src/data/institucional.js`. En una etapa futura se reemplazarán por consultas a un backend.
+### 6.1 institucional.js
 
 | Export | Contenido |
 |---|---|
-| `escuelas` | 5 escuelas (id, nombre, logo, presentación, información de contacto). |
-| `carreras` | Carreras con escuela, descripción, duración, modalidad, requisitos y documentos. |
-| `cursos` | Cursos con tipo, información, período, estado (actual/próximo/finalizado) y escuela. |
-| `convocatorias` | Convocatorias con estado (vigente/próxima), tipo, fecha y escuela. |
-| `preguntasFrecuentes` | Preguntas y respuestas para el ingreso (FAQ). |
-| `escuelaPorId` / `carrerasDeEscuela` / `cursosDeEscuela` | Helpers de búsqueda. |
+| `escuelas` | 5 escuelas con id, nombre, logo, presentación, información |
+| `carreras` | 4 carreras con inscripciones (abiertas/próximamente/cerradas), fechaInscripcion |
+| `cursos` | 6+ cursos con tipo, período, estado y escuela |
+| `convocatorias` | Convocatorias con estado (vigente/próxima), tipo, fecha |
+| `preguntasFrecuentes` | 12 preguntas y respuestas para el ingreso |
+| `escuelaPorId` / `carrerasDeEscuela` / `cursosDeEscuela` | Helpers |
 
-Los escudos institucionales se importan desde `src/assets/` (escudo_EP, ES, EE, EI, EaD, ISeP).
+### 6.2 buscador.js
 
----
+| Function | Descripción |
+|---|---|
+| `buscar(query, max)` | Busca en el índice, devuelve resultados ordenados por relevancia |
+| `buscarAgrupado(query, maxPorGrupo)` | Busca y agrupa por tipo (Escuela, Carrera, Curso, etc.) |
 
-## 7. Plantilla de escuela (EscuelaTemplate)
-
-`src/components/EscuelaTemplate.jsx` recibe `escuelaId` y renderiza:
-Logo, Presentación, Información, Carreras, Cursos actuales (con acceso a Mi ISeP), Noticias y Contacto.
-Las 5 páginas de `/escuelas/*` son wrappers que delegan en esta plantilla.
-
----
-
-## 8. Buscador funcional
-
-### 8.1 Índice de búsqueda (`src/data/buscador.js`)
-
-El buscador usa un índice pre-compilado que incluye:
-- **Escuelas** (5 entradas)
-- **Carreras** (4 entradas)
-- **Cursos** (6 entradas)
-- **Convocatorias** (3 entradas)
-- **Páginas institucionales** (12 entradas)
-
-Cada entrada tiene: `id`, `title`, `subtitle`, `categoria`, `tipo`, `ruta` y `keywords`.
-
-### 8.2 Componente SearchBox (`src/components/SearchBox.jsx`)
-
-- **Búsqueda en tiempo real:** usa `useMemo` para calcular resultados cuando cambia el query.
-- **Algoritmo:** scoring por tokens (split del query), con bonus si el título contiene el token.
-- **Máximo 8 resultados** por búsqueda.
-- **Navegación por teclado:** ArrowUp/ArrowDown/Enter/Escape.
-- **Cierre automático:** al hacer clic fuera del componente.
+**Índice:** 58 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 11 noticias + 11 resoluciones + 12 páginas)
 
 ---
 
-## 9. Hero slider
+## 7. Búsqueda global
 
-### 9.1 Componente Hero (`src/components/Hero.jsx`)
+### 7.1 Índice de búsqueda (`src/data/buscador.js`)
 
-- **3 slides** con imagen, badge, título y descripción.
-- **Automático:** cambia cada 6 segundos (`INTERVAL = 6000`).
-- **Pausa:** al pasar el cursor (`onMouseEnter`).
-- **Navegación:** flechas izquierda/derecha + indicadores (dots).
-- **Transiciones:** fade suave entre slides (`opacity 1s ease-in-out`).
+Incluye: escuelas, carreras, cursos, convocatorias, noticias, normativa y páginas institucionales.
 
-### 9.2 Estilos (`src/styles/hero.css`)
+### 7.2 Componente SearchBox (`src/components/SearchBox.jsx`)
 
-- `.hero-bg` → imagen de fondo con `opacity: 0` por defecto.
-- `.hero-bg--active` → `opacity: 1` para el slide activo.
-- `.hero-arrow` → flechas de navegación con backdrop-filter.
-- `.hero-dot` → indicadores (dots) en la parte inferior.
+- **Resultados agrupados por tipo:** header con ícono + label por grupo
+- **Scoring:** +3 título, +2 tipo, +1 keyword
+- **Navegación por teclado:** ArrowUp/ArrowDown/Enter/Escape
+- **Contador de resultados** y hints de teclado
 
 ---
 
-## 10. Fondo decorativo global
+## 8. Hero slider
 
-El fondo de toda la web se aplica en `body` (base.css):
+- **3 slides** con fotos Unsplash (stock policial/educación)
+- **Automático:** cada 6 segundos
+- **Pausa:** al pasar el cursor
+- **Navegación:** flechas + dots
+- **Altura:** `100svh` con `align-items: center` (centrado vertical)
+
+---
+
+## 9. Fondo decorativo global
 
 ```css
 background-attachment: fixed;
@@ -238,7 +213,17 @@ background-image:
   radial-gradient(circle at 90% 80%, #00c3964d 0, #0000 45%);
 ```
 
-Crea un patrón sutil con líneas blancas y gradientes radiales cian/verde sobre un fondo base `#bcd8db`.
+---
+
+## 10. Build stats
+
+| Archivo | Tamaño |
+|---|---|
+| `index.html` | 0.72 kB |
+| `index.css` | 38.58 kB (gzip: 7.56 kB) |
+| `index.js` | 370.56 kB (gzip: 108.57 kB) |
+| Módulos | 81 |
+| Build time | ~7-10s |
 
 ---
 

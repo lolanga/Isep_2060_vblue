@@ -3,8 +3,6 @@ import Breadcrumb from "../components/Breadcrumb";
 
 const CATEGORIAS = ["Todas", "Institucional", "Academica", "Escuelas", "Eventos", "Convenios"];
 
-const ESCUELAS = ["Todas", "Policía", "Criminalística", "Educación a Distancia", "Especialidades", "Investigaciones"];
-
 const NOTICIAS = [
   {
     id: 1,
@@ -165,13 +163,11 @@ function ShareButton({ noticia }) {
 
 export default function Noticias() {
   const [categoriaActiva, setCategoriaActiva] = useState("Todas");
-  const [escuelaFiltro, setEscuelaFiltro] = useState("Todas");
   const [pagina, setPagina] = useState(1);
 
   const filtradas = NOTICIAS.filter(
     (n) =>
-      (categoriaActiva === "Todas" || n.categoria === categoriaActiva) &&
-      (escuelaFiltro === "Todas" || n.escuela === escuelaFiltro)
+      (categoriaActiva === "Todas" || n.categoria === categoriaActiva)
   );
 
   const principal = filtradas[0] || null;
@@ -183,11 +179,6 @@ export default function Noticias() {
 
   const cambiarCategoria = (cat) => {
     setCategoriaActiva(cat);
-    setPagina(1);
-  };
-
-  const cambiarEscuela = (esc) => {
-    setEscuelaFiltro(esc);
     setPagina(1);
   };
 
@@ -228,17 +219,6 @@ export default function Noticias() {
               onClick={() => cambiarCategoria(cat)}
             >
               {cat}
-            </button>
-          ))}
-          <div style={{ width: "1px", background: "rgba(255,255,255,0.3)", margin: "0 0.5rem" }} />
-          {ESCUELAS.map((esc) => (
-            <button
-              key={esc}
-              type="button"
-              className={`filtro-btn${escuelaFiltro === esc ? " filtro-btn--active" : ""}`}
-              onClick={() => cambiarEscuela(esc)}
-            >
-              {esc}
             </button>
           ))}
         </div>

@@ -24,7 +24,7 @@ export default function Requisitos() {
         </div>
       </section>
 
-      <div className="container-max oferta-section">
+      <div className="container-max oferta-section" style={{ padding: "2rem" }}>
         <div className="grid-2">
           <div className="card">
             <h3 className="card__title">Requisitos generales</h3>

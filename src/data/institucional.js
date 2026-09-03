@@ -273,6 +273,38 @@ export const preguntasFrecuentes = [
     pregunta: "¿La modalidad a distancia tiene cursada presencial?",
     respuesta: "La modalidad a distancia es mayormente remota, con encuentros tutoriales opcionales.",
   },
+  {
+    pregunta: "¿Cuánto dura el proceso de inscripción completo?",
+    respuesta: "El proceso completo, desde la pre-inscripción hasta la confirmación del ingreso, puede tomar entre 3 y 6 meses dependiendo de la convocatoria y la escuela.",
+  },
+  {
+    pregunta: "¿Puedo inscribirme en más de una convocatoria?",
+    respuesta: "Sí, podés postularse a distintas convocatorias siempre que cumplan con los requisitos de cada una. Sin embargo, solo podés ser aceptado en una.",
+  },
+  {
+    pregunta: "¿Qué pasa si no apruebo las evaluaciones?",
+    respuesta: "Si no alcanzás el puntaje mínimo, podés presentarte nuevamente en la próxima convocatoria. No hay penalización por reintentar.",
+  },
+  {
+    pregunta: "¿Hay costo de inscripción?",
+    respuesta: "La inscripción es gratuita para todas las convocatorias del ISeP. Ningún candidato debe abonar por el proceso de selección.",
+  },
+  {
+    pregunta: "¿Qué documentación debo presentar?",
+    respuesta: "DNI vigente, partida de nacimiento, certificado de estudios secundarios completos, antecedentes penales y penitenciarios, y certificado médico. Algunas convocatorias pueden requerir documentación adicional.",
+  },
+  {
+    pregunta: "¿Puedo cursar si soy de otra provincia?",
+    respuesta: "Sí, el ISeP acepta postulantes de todo el país. Deben cumplir con los mismos requisitos que los candidatos santafesinos.",
+  },
+  {
+    pregunta: "¿Qué es Mi ISeP?",
+    respuesta: "Mi ISeP es la plataforma digital institucional donde se gestionan inscripciones, seguimiento de trámites, acceso a materiales de estudio y comunicación con la institución.",
+  },
+  {
+    pregunta: "¿Ofrecen becas o ayudas económicas?",
+    respuesta: "El ISeP ofrece un programa de becas parciales para personal policial en actividad. Consultá la sección de convocatorias para más información sobre las condiciones.",
+  },
 ];
 
 // Helper: devolver una escuela por id

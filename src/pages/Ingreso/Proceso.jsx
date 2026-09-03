@@ -26,7 +26,7 @@ export default function Proceso() {
         </div>
       </section>
 
-      <div className="container-max oferta-section">
+      <div className="container-max oferta-section" style={{ padding: "2rem" }}>
         <div className="grid-2">
           {pasos.map((paso, i) => (
             <div className="card" key={i}>

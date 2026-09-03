@@ -40,7 +40,7 @@ export default function OfertaEducativa() {
         </div>
       </section>
 
-      <div className="container-max oferta-section">
+      <div className="container-max oferta-section" style={{ padding: "2rem" }}>
         {/* Pestañas */}
         <div className="oferta-tabs">
           {tabs.map((t) => (

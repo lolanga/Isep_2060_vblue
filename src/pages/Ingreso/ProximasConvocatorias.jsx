@@ -23,7 +23,7 @@ export default function ProximasConvocatorias() {
         </div>
       </section>
 
-      <div className="container-max oferta-section">
+      <div className="container-max oferta-section" style={{ padding: "2rem" }}>
         <div className="grid-2">
           {proximas.map((cv) => {
             const escuela = escuelaPorId(cv.escuela);

@@ -19,7 +19,7 @@ El sitio es 100% responsive: se adapta correctamente a dispositivos móviles, ta
 
 | Audiencia | Necesidad principal | Contenido relevante |
 |---|---|---|
-| **Postulantes** (ciudadanos que quieren ingresar) | Conocer requisitos, convocatorias, proceso y FAQ | Ingreso (5 páginas) |
+| **Postulantes** (ciudadanos que quieren ingresar) | Conocer requisitos, convocatorias, proceso y FAQ | Ingreso (5 páginas) + Landing Convocatorias |
 | **Personal en actividad** | Trámites, correo, sistemas internos | Mi ISeP, SIGEDI, Webmail |
 | **Público general** | Información institucional y actualidad | Institucional, Últimas noticias |
 | **Profesionales de la educación** | Oferta académica y cursos | Formación, Carreras, Cursos |
@@ -61,11 +61,11 @@ El sitio es 100% responsive: se adapta correctamente a dispositivos móviles, ta
 |---|---|---|
 | `/` | Home (landing) | Implementada |
 | `/noticias` | Listado de noticias con filtro y paginación | Implementada |
-| `/institucional/el-isep` | El ISeP | Placeholder |
-| `/institucional/autoridades` | Autoridades | Placeholder |
-| `/institucional/organizacion` | Organización | Placeholder |
-| `/institucional/resoluciones` | Normativa y Resoluciones | Placeholder |
-| `/institucional/sedes-contacto` | Sedes y Contacto | Placeholder |
+| `/institucional/el-isep` | El ISeP | Placeholder (con "Próximamente") |
+| `/institucional/autoridades` | Autoridades | Placeholder (con "Próximamente") |
+| `/institucional/organizacion` | Organización | Placeholder (con "Próximamente") |
+| `/institucional/resoluciones` | Normativa y Resoluciones | Implementada (descargable) |
+| `/institucional/sedes-contacto` | Sedes y Contacto | Implementada (con Google Maps) |
 | `/institucional/oferta-educativa` | Oferta Académica (dinámica: Carreras/Cursos/Convocatorias) | Implementada |
 | `/institucional/carreras` | Carreras (vista general de la oferta) | Implementada |
 | `/escuelas/policia` | Escuela de Policía | Implementada (plantilla) |
@@ -73,16 +73,14 @@ El sitio es 100% responsive: se adapta correctamente a dispositivos móviles, ta
 | `/escuelas/especialidades` | Escuela de Especialidades | Implementada (plantilla) |
 | `/escuelas/investigaciones` | Escuela de Investigaciones | Implementada (plantilla) |
 | `/escuelas/educacion-a-distancia` | Educación a Distancia | Implementada (plantilla) |
-| `/ingreso/convocatorias` | Convocatorias vigentes | Implementada |
+| `/ingreso/convocatorias` | Landing Convocatorias (countdown, requisitos, pasos) | Implementada |
 | `/ingreso/proximas-convocatorias` | Próximas convocatorias | Implementada |
 | `/ingreso/requisitos` | Requisitos | Implementada |
 | `/ingreso/proceso` | Proceso de ingreso | Implementada |
-| `/ingreso/faq` | Preguntas frecuentes | Implementada |
-| `/secretaria/titulos` | Títulos y Certificaciones | Placeholder |
-| `/secretaria/biblioteca` | Biblioteca Virtual | Placeholder |
+| `/ingreso/faq` | Preguntas frecuentes (12 preguntas) | Implementada |
+| `/secretaria/titulos` | Títulos y Certificaciones | Placeholder (con "Próximamente") |
+| `/secretaria/biblioteca` | Biblioteca Virtual | Placeholder (con "Próximamente") |
 | `/secretaria/cursos` | Cursos (vista general con filtros) | Implementada |
-
-> **Nota:** Las rutas marcadas como *Placeholder* muestran un banner y el mensaje "Contenido en construcción". Las rutas de la sección Formación, Escuelas e Ingreso están implementadas con datos simulados (mock).
 
 ---
 
@@ -90,11 +88,13 @@ El sitio es 100% responsive: se adapta correctamente a dispositivos móviles, ta
 
 La página de inicio (`/`) está compuesta por las siguientes secciones, en orden:
 
-1. **Hero Slider** — Banner principal con slider automático (3 slides), transiciones suaves, flechas de navegación y indicadores (dots). Se pausa al pasar el cursor. Formato: imagen + overlay + badge + título + CTA.
-2. **Últimas Noticias** — Noticia destacada (izquierda), lista lateral de noticias del día y bloque "Calendario Académico" con botón de descarga.
-3. **Aplicaciones Institucionales** — Accesos para el personal: Mi ISeP, SIGEDI y Webmail.
-4. **Nuestras Escuelas** — Cuadrícula de las 4 escuelas con su **escudo institucional** (data-driven).
-5. **CTA Inscripciones** — Bloque de llamado a la acción con botones de pre-inscripción.
+1. **Hero Slider** — Banner principal con slider automático (3 slides), transiciones suaves, flechas de navegación y indicadores (dots).
+2. **Aplicaciones Institucionales** — Accesos para el personal: Mi ISeP, SIGEDI y Webmail.
+3. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
+4. **CTA Inscripciones** — Bloque con countdown hasta cierre de inscripciones + botones de pre-inscripción.
+5. **Últimas Noticias** — Noticia destacada +侧侧边栏 de noticias recientes.
+6. **Nuestras Escuelas** — Cuadrícula de las 5 escuelas con su escudo institucional.
+7. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
 
 ### 4.1 Hero Slider
 
@@ -106,11 +106,11 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 
 ### 4.2 Página de Noticias (`/noticias`)
 
-- **Filtro por categorías:** Todas, Institucional, Académica, Escuelas, Eventos, Convenios (filtro sticky al hacer scroll).
+- **Filtro por categorías:** Todas, Institucional, Académica, Escuelas, Eventos, Convenios.
+- **Botón compartir:** cada noticia tiene un icono de compartir que copia el enlace al portapapeles.
 - **Noticia principal:** muestra la última publicación con imagen, fecha, título y extracto.
 - **Historial de noticias:** grid de tarjetas con paginación (10 por página).
-- **Estados vacíos:** si no hay noticias en la categoría, muestra mensaje acorde.
-- La categoría activa se resalta con el gradiente institucional.
+- **Breadcrumb** para navegación.
 
 ---
 
@@ -122,21 +122,25 @@ Vista **dinámica** alimentada desde `src/data/institucional.js`. Organizada en 
 
 | Pestaña | Contenido |
 |---|---|
-| **Carreras** | Cards con nombre, descripción, escuela, duración y modalidad. Enlace "Ver todas las carreras". |
+| **Carreras** | Cards con nombre, descripción, escuela, duración y modalidad. |
 | **Cursos** | Cards con nombre, tipo, información y período + botón "Acceso a Mi ISeP". |
 | **Convocatorias** | Cards con estado (Vigente/Próxima), escuela y fecha. |
 
 ### 5.2 Carreras (`/institucional/carreras`)
 
-Vista general de la oferta académica. Cada carrera muestra:
-- Nombre, Escuela, Descripción, **Duración**, **Modalidad**, **Requisitos** y **Documentos relacionados**.
+Vista general con **grid de tarjetas mejoradas**:
+- Header coloreado según la escuela
+- Chips de duración, modalidad y escuela
+- **Estado de inscripción** (abiertas / próximamente / cerradas) con indicador de color
+- Fecha de inscripción
+- Botón "Ver detalle"
+- Hover animado (elevación)
 
 ### 5.3 Cursos (`/secretaria/cursos`)
 
 - **Filtros por:** Escuela, Tipo y Estado.
 - Agrupados en: **Cursos Actuales**, **Próximos Cursos** y **Historial (Finalizados)**.
 - Cada curso es un **acordeón/desplegable** con: Nombre, Tipo, Información breve, Período y botón **"Acceso a Mi ISeP"**.
-- El botón de acceso dirige a *Mi ISeP → curso correspondiente*.
 
 ### 5.4 Páginas de escuela (plantilla común)
 
@@ -153,21 +157,64 @@ Las 5 escuelas (`/escuelas/*`) usan una **plantilla reutilizable** (`EscuelaTemp
 
 ## 6. Ingreso
 
-Cinco páginas para el postulante:
+### 6.1 Landing de Convocatorias (`/ingreso/convocatorias`)
+
+Página dedicada con:
+- **Hero con gradiente** y countdown hasta cierre de inscripciones
+- **Cards de convocatorias vigentes** con escuela, tipo, fecha y botón "Inscribirme"
+- **Requisitos generales** en grid de 2 columnas (6 items)
+- **Proceso en 5 pasos** con números circulares y descripción
+- **CTA final** con gradiente y botón de pre-inscripción
+
+### 6.2 Otras páginas de ingreso
 
 | Página | Descripción |
 |---|---|
-| **Convocatorias vigentes** | Inscripciones abiertas en este momento. |
 | **Próximas convocatorias** | Aperturas anunciadas para ciclos siguientes. |
 | **Requisitos** | Condiciones generales y documentación necesaria. |
-| **Proceso de ingreso** | Pasos: registro en Mi ISeP → inscripción → documentación → evaluaciones → confirmación. |
-| **Preguntas frecuentes** | Acordeón con respuestas sobre el ingreso. |
+| **Proceso de ingreso** | Pasos: registro → inscripción → documentación → evaluaciones → confirmación. |
+| **Preguntas frecuentes** | 12 preguntas en acordeón con respuestas sobre el ingreso. |
 
 ---
 
-## 7. Aplicaciones institucionales (acceso personal)
+## 7. Búsqueda global
 
-Sección "Aplicaciones Institucionales" en el cuerpo de la Home (después de Noticias) para el **personal que trabaja en el ISeP**:
+### 7.1 Buscador funcional
+
+- **Ubicación:** en la barra de navegación, al lado del botón "Mi ISeP".
+- **Índice:** 58 entradas (escuelas, carreras, cursos, convocatorias, 11 noticias, 11 resoluciones/normativa, páginas institucionales).
+- **Resultados agrupados por tipo:** Escuelas → Carreras → Cursos → Convocatorias → Noticias → Normativa → Páginas.
+- **Navegación por teclado:** flechas arriba/abajo, Enter para seleccionar, Escape para cerrar.
+- **Contador de resultados** y hints de teclado al fondo.
+- **Sin resultados:** muestra sugerencias de términos.
+
+---
+
+## 8. Normativa y Resoluciones (`/institucional/resoluciones`)
+
+Página con documentos oficiales descargables:
+- **Filtros por año** (Todos, 2025, 2024, 2023, 2022)
+- **Filtros por tipo** (Resolución, Convenio, Plan Estratégico, Estatuto)
+- Cada documento muestra: título, tipo, fecha, tamaño y botón **Descargar**
+- **Breadcrumb** para navegación
+
+---
+
+## 9. Sedes y Contacto (`/institucional/sedes-contacto`)
+
+Página con 2 sedes del ISeP:
+- **Sede Central – Rosario** (Av. Pellegrini 1850)
+- **Sede Santa Fe – Capital** (Bulevar España 2120)
+
+Cada sede incluye:
+- Dirección, teléfono, email y horario
+- **Mapa de Google Maps** embebido
+
+---
+
+## 10. Aplicaciones institucionales (acceso personal)
+
+Sección "Aplicaciones Institucionales" en el home para el **personal que trabaja en el ISeP**:
 
 | App | URL | Destino |
 |---|---|---|
@@ -180,52 +227,75 @@ Sección "Aplicaciones Institucionales" en el cuerpo de la Home (después de Not
 
 ---
 
-## 8. Accesos flotantes y redes
+## 11. Accesos flotantes y redes
 
-### 8.1 Botón flotante de WhatsApp
+### 11.1 Botón flotante de WhatsApp
 - Siempre visible en la esquina inferior derecha (desktop y móvil).
-- Abre conversación en WhatsApp en pestaña nueva (número placeholder configurable).
-- Usa el gradiente institucional y el glow definido en el sistema de diseño.
+- Abre conversación en WhatsApp en pestaña nueva.
 
-### 8.2 Buscador funcional
-- **Ubicación:** en la barra de navegación, al lado del botón "Mi ISeP".
-- **Ícono de búsqueda:** al hacer clic, se abre el campo de búsqueda.
-- **Búsqueda en tiempo real:** indexa escuelas, carreras, cursos, convocatorias y páginas institucionales.
-- **Resultados dinámicos:** muestra hasta 8 resultados con ícono, título, subtítulo y categoría.
-- **Navegación por teclado:** flechas arriba/abajo, Enter para seleccionar, Escape para cerrar.
-- **Cierre automático:** al hacer clic fuera del buscador.
+### 11.2 Botón "Ir Arriba"
+- Botón flotante con SVG de flecha hacia arriba en la esquina inferior derecha.
+- Scroll suave al inicio de la página.
+- Gradiente institucional.
 
-### 8.3 Íconos en navegación
-- **Menú principal:** cada sección (Institucional, Formación, Ingreso, Últimas noticias) tiene un ícono de Material Symbols.
-- **Dropdowns:** los items muestran íconos que refuerzan el significado (ej: "El ISeP" → info, "Autoridades" → group, etc.).
-- **Menú móvil:** los acordeones también muestran íconos para mayor claridad.
-
-### 8.4 Redes sociales (Footer)
-- Facebook, YouTube, Instagram y **TikTok**.
+### 11.3 Redes sociales (Footer)
+- Facebook, YouTube, Instagram y TikTok.
 - Cada ícono es un enlace que abre la red en pestaña nueva.
 
-### 8.3 Footer (rediseñado)
+### 11.4 Footer
 - **Identidad institucional:** marca, descripción y redes sociales.
-- **Accesos principales:** Institucional, Formación, Ingreso y Últimas noticias (enlaces enrutados).
 - **Contacto:** teléfonos y correos.
 - **Sedes:** Leandro N. Alem 2050 (Santa Fe) y RN11 km 482 (Recreo).
-- **Enlaces institucionales:** privacidad, términos, mapa del sitio, transparencia y normativa.
 - **Créditos de desarrollo:** "Departamento Desarrollo, Tecnología e Innovación" + fecha dinámica.
 
 ---
 
-## 9. Requisitos funcionales obligatorios
+## 12. Breadcrumb (migas de pan)
 
-1. **Responsive obligatorio:** toda la web debe visualizarse y operarse correctamente en móvil, tablet y desktop (ver docs técnicos, sección Responsive).
-2. **Contraste legible:** el texto sobre imágenes siempre debe leerse (los overlays combinan gradiente institucional + scrim oscuro).
-3. **Mi ISeP siempre visible:** el botón de acceso al portal personal no puede desaparecer en móvil.
-4. **Logo ISeP enlazable:** el logo del navbar es visible en móvil y desktop y vuelve al inicio (`/`).
-5. **Consistencia visual:** todos los botones, cards y elementos activos usan el mismo sistema de gradiente y glow.
-6. **Fondo decorativo global:** la web usa un fondo decorativo con `background-attachment: fixed`, color base `#bcd8db` y gradientes radiales/lineales que crean un patrón sutil.
+Componente de navegación que muestra la ruta actual en páginas interiores:
+- Fondo gris claro con borde sutil
+- Ícono de home enlazable
+- Separadores "/" entre elementos
+- Último elemento en negrita (página actual)
 
 ---
 
-## 10. Disponibilidad
+## 13. Contadores (estadísticas)
+
+Sección en el home con 4 estadísticas animadas:
+- **Docentes:** 2200+
+- **Cadetes activos:** 1100+
+- **Personal formándose:** 800+
+- **Aulas virtuales:** 500+
+
+- Animación de conteo al hacer scroll (IntersectionObserver)
+- Hover con elevación
+- Íconos de Material Symbols
+
+---
+
+## 14. Testimonios
+
+Carrusel de testimonios de egresados en el home:
+- 3 testimonios con foto, nombre, promoción y texto
+- Navegación por flechas y dots
+- Auto-avance (cada 5 segundos)
+
+---
+
+## 15. Requisitos funcionales obligatorios
+
+1. **Responsive obligatorio:** toda la web debe visualizarse y operarse correctamente en móvil, tablet y desktop.
+2. **Contraste legible:** el texto sobre imágenes siempre debe leerse (overlays con gradiente + scrim).
+3. **Mi ISeP siempre visible:** el botón de acceso al portal personal no puede desaparecer en móvil.
+4. **Logo ISeP enlazable:** el logo del navbar es visible en móvil y desktop y vuelve al inicio (`/`).
+5. **Consistencia visual:** todos los botones, cards y elementos activos usan el mismo sistema de gradiente y glow.
+6. **Fondo decorativo global:** fondo con `background-attachment: fixed`, color base `#bcd8db` y gradientes radiales/lineales.
+7. **Favicon:** escudo ISeP como favicon en `public/favicon.png`.
+
+---
+
+## 16. Disponibilidad
 
 - **Ejecución local:** `npm install` → `npm run dev` (Vite, por defecto en `http://localhost:5173`).
 - **Build de producción:** `npm run build` → `npm run preview`.
