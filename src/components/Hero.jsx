@@ -22,7 +22,7 @@ const SLIDES = [
     title: "Formando líderes en ",
     highlight: "Seguridad Pública",
     description: "Cinco escuelas especializadas para la formación policial integral.",
-    img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1600&h=700&fit=crop",
+    img: "https://images.unsplash.com/photo-1632999878340-2c7995da9d8a?w=1600&h=700&fit=crop",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const SLIDES = [
     title: "Carreras y cursos de ",
     highlight: "alto nivel",
     description: "Desde la formación inicial hasta la educación a distancia.",
-    img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600&h=700&fit=crop",
+    img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1600&h=700&fit=crop",
   },
 ];
 
