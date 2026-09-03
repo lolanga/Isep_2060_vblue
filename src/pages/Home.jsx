@@ -1,6 +1,7 @@
 // Página principal (Home)
 import Hero from "../components/Hero";
 import News from "../components/News";
+import Apps from "../components/Apps";
 import Schools from "../components/Schools";
 import CTA from "../components/cta";
 
@@ -11,6 +12,7 @@ export default function Home() {
     <>
       <Hero />
       <News />
+      <Apps />
       <Schools />
       <CTA />
 

@@ -205,6 +205,31 @@
   color: var(--secondary);
 }
 
+/* Grupo (submenú dentro del panel) */
+.dropdown-group {
+  padding: 0.25rem 0 0.5rem;
+}
+
+.dropdown-group + .dropdown-group,
+.dropdown-group + .dropdown-item {
+  border-top: 1px solid var(--outline-variant);
+  padding-top: 0.5rem;
+}
+
+.dropdown-group__label {
+  display: block;
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--slate-400);
+}
+
+.dropdown-item--sub {
+  padding-left: 1.75rem;
+}
+
 /* ── Hamburguesa — solo mobile ── */
 .hamburger {
   display: flex;
@@ -358,6 +383,17 @@
 .mobile-sublink .material-symbols-outlined {
   font-size: 1rem;
   color: var(--on-tertiary-container);
+}
+
+/* Grupo en acordeón mobile */
+.mobile-group__label {
+  display: block;
+  padding: 0.75rem 0 0.35rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--slate-400);
 }
 
 .mobile-sublink:hover {

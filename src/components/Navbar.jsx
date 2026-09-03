@@ -3,7 +3,7 @@
  * 
  * Features:
  * - Sticky en todas las páginas
- * - Dropdowns desktop para: Institucional, Escuelas, Postulantes, Secretaría
+ * - Dropdowns desktop: Institucional, Formación (con submenú Escuelas), Ingreso
  * - Menú hamburguesa mobile con acordeones
  * - Links con react-router-dom (navegación SPA sin recargar)
  */
@@ -13,30 +13,32 @@ import { Link, useLocation } from "react-router-dom";
 
 // ── Datos de menús desplegables ──
 const institucional = [
-  { label: "Objetivos",         href: "/institucional/objetivos" },
-  { label: "Oferta Educativa",  href: "/institucional/oferta-educativa" },
-  { label: "Autoridades",       href: "/institucional/autoridades" },
-  { label: "Carrera",           href: "/institucional/carrera" },
-  { label: "Resoluciones",      href: "/institucional/resoluciones" },
+  { label: "El ISeP",            href: "/institucional/el-isep" },
+  { label: "Autoridades",        href: "/institucional/autoridades" },
+  { label: "Organización",       href: "/institucional/organizacion" },
+  { label: "Sedes y Contacto",   href: "/institucional/sedes-contacto" },
 ];
 
-const schools = [
-  { label: "Escuela de Policia",         href: "/escuelas/policia" },
-  { label: "Escuela Superior",           href: "/escuelas/superior" },
-  { label: "Escuela de Especialidades",  href: "/escuelas/especialidades" },
-  { label: "Escuela de Investigaciones", href: "/escuelas/investigaciones" },
+const escuelas = [
+  { label: "Escuela de Policía",          href: "/escuelas/policia" },
+  { label: "Escuela de Especialidades",   href: "/escuelas/especialidades" },
+  { label: "Escuela de Investigaciones",  href: "/escuelas/investigaciones" },
+  { label: "Escuela Superior",            href: "/escuelas/superior" },
+  { label: "Educación a Distancia",       href: "/escuelas/educacion-a-distancia" },
 ];
 
-const postulantes = [
-  { label: "Ingresos",      href: "/postulantes/ingresos" },
-  { label: "Inscripciones", href: "/postulantes/inscripciones" },
-  { label: "Procesos",      href: "/postulantes/procesos" },
+// Formación: item con submenú (Escuelas) o link directo
+const formacion = [
+  { label: "Oferta Académica", href: "/institucional/oferta-educativa", type: "link" },
+  { label: "Escuelas",         submenu: escuelas,                       type: "submenu" },
+  { label: "Carreras",         href: "/institucional/carrera",          type: "link" },
+  { label: "Cursos",           href: "/secretaria/cursos",              type: "link" },
 ];
 
-const secretaria = [
-  { label: "Titulos",    href: "/secretaria/titulos" },
-  { label: "Biblioteca", href: "/secretaria/biblioteca" },
-  { label: "Cursos",     href: "/secretaria/cursos" },
+const ingreso = [
+  { label: "Convocatorias",                href: "/ingreso/convocatorias" },
+  { label: "Inscripciones",                href: "/ingreso/inscripciones" },
+  { label: "Información para postulantes", href: "/ingreso/informacion" },
 ];
 
 /**
@@ -58,16 +60,32 @@ function DesktopDropdown({ label, items, isOpen, onToggle, onClose, dropRef }) {
 
       {/* Panel desplegable */}
       <div className={`dropdown-panel${isOpen ? " dropdown-panel--open" : ""}`}>
-        {items.map((item) => (
-          <Link
-            key={item.label}
-            className="dropdown-item"
-            to={item.href}
-            onClick={onClose}
-          >
-            {item.label}
-          </Link>
-        ))}
+        {items.map((item) =>
+          item.type === "submenu" ? (
+            <div className="dropdown-group" key={item.label}>
+              <span className="dropdown-group__label">{item.label}</span>
+              {item.submenu.map((sub) => (
+                <Link
+                  key={sub.label}
+                  className="dropdown-item dropdown-item--sub"
+                  to={sub.href}
+                  onClick={onClose}
+                >
+                  {sub.label}
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <Link
+              key={item.label}
+              className="dropdown-item"
+              to={item.href}
+              onClick={onClose}
+            >
+              {item.label}
+            </Link>
+          )
+        )}
       </div>
     </div>
   );
@@ -92,17 +110,34 @@ function MobileAccordion({ label, items, isOpen, onToggle, onCloseAll }) {
 
       {/* Submenu desplegable */}
       <div className={`mobile-submenu${isOpen ? " mobile-submenu--open" : ""}`}>
-        {items.map((item) => (
-          <Link
-            key={item.label}
-            className="mobile-sublink"
-            to={item.href}
-            onClick={onCloseAll}
-          >
-            <span className="material-symbols-outlined">chevron_right</span>
-            {item.label}
-          </Link>
-        ))}
+        {items.map((item) =>
+          item.type === "submenu" ? (
+            <div key={item.label}>
+              <span className="mobile-group__label">{item.label}</span>
+              {item.submenu.map((sub) => (
+                <Link
+                  key={sub.label}
+                  className="mobile-sublink"
+                  to={sub.href}
+                  onClick={onCloseAll}
+                >
+                  <span className="material-symbols-outlined">chevron_right</span>
+                  {sub.label}
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <Link
+              key={item.label}
+              className="mobile-sublink"
+              to={item.href}
+              onClick={onCloseAll}
+            >
+              <span className="material-symbols-outlined">chevron_right</span>
+              {item.label}
+            </Link>
+          )
+        )}
       </div>
     </div>
   );
@@ -112,32 +147,26 @@ function MobileAccordion({ label, items, isOpen, onToggle, onCloseAll }) {
  * Componente principal: Navbar
  */
 export default function Navbar() {
-  // ── Estado local ──
-  const [menuOpen,    setMenuOpen]    = useState(false);  // Menú mobile abierto/cerrado
-  const [scrolled,    setScrolled]    = useState(false);  // Sombra al hacer scroll
-  const [openDesktop, setOpenDesktop] = useState(null);   // Qué dropdown está abierto en desktop
-  const [openMobile,  setOpenMobile]  = useState(null);   // Qué acordeón está abierto en mobile
+  const [menuOpen,    setMenuOpen]    = useState(false);
+  const [scrolled,    setScrolled]    = useState(false);
+  const [openDesktop, setOpenDesktop] = useState(null);
+  const [openMobile,  setOpenMobile]  = useState(null);
 
-  // ── Refs para detectar clicks fuera ──
   const refInstitucional = useRef(null);
-  const refSchools       = useRef(null);
-  const refPostulantes   = useRef(null);
-  const refSecretaria    = useRef(null);
+  const refFormacion     = useRef(null);
+  const refIngreso       = useRef(null);
 
-  // ── Hook para detectar ruta activa ──
   const location = useLocation();
 
-  // ── Efecto: sombra al hacer scroll ──
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ── Efecto: cerrar dropdown desktop al hacer click fuera ──
   useEffect(() => {
     const handleClickOutside = (e) => {
-      const refs = [refInstitucional, refSchools, refPostulantes, refSecretaria];
+      const refs = [refInstitucional, refFormacion, refIngreso];
       const clickedInside = refs.some((r) => r.current && r.current.contains(e.target));
       if (!clickedInside) setOpenDesktop(null);
     };
@@ -145,7 +174,6 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // ── Efecto: cerrar menú mobile al hacer click fuera ──
   useEffect(() => {
     if (!menuOpen) return;
     const handleClose = () => { setMenuOpen(false); setOpenMobile(null); };
@@ -153,7 +181,6 @@ export default function Navbar() {
     return () => document.removeEventListener("click", handleClose);
   }, [menuOpen]);
 
-  // ── Handlers ──
   const toggleDesktop = (key) => setOpenDesktop((prev) => (prev === key ? null : key));
   const toggleMobile  = (key) => setOpenMobile((prev) => (prev === key ? null : key));
   const closeAll      = () => { setMenuOpen(false); setOpenMobile(null); };
@@ -169,14 +196,6 @@ export default function Navbar() {
 
         {/* ── LINKS DESKTOP ── */}
         <div className="nav-links">
-          {/* Inicio */}
-          <Link
-            className={`nav-link${location.pathname === "/" ? " active" : ""}`}
-            to="/"
-          >
-            Inicio
-          </Link>
-
           {/* Institucional (dropdown) */}
           <DesktopDropdown
             label="Institucional"
@@ -187,53 +206,46 @@ export default function Navbar() {
             dropRef={refInstitucional}
           />
 
-          {/* Escuelas (dropdown) */}
+          {/* Formación (dropdown con submenú Escuelas) */}
           <DesktopDropdown
-            label="Escuelas"
-            items={schools}
-            isOpen={openDesktop === "schools"}
-            onToggle={() => toggleDesktop("schools")}
+            label="Formación"
+            items={formacion}
+            isOpen={openDesktop === "formacion"}
+            onToggle={() => toggleDesktop("formacion")}
             onClose={() => setOpenDesktop(null)}
-            dropRef={refSchools}
+            dropRef={refFormacion}
           />
 
-          {/* Postulantes (dropdown) */}
+          {/* Ingreso (dropdown) */}
           <DesktopDropdown
-            label="Postulantes"
-            items={postulantes}
-            isOpen={openDesktop === "postulantes"}
-            onToggle={() => toggleDesktop("postulantes")}
+            label="Ingreso"
+            items={ingreso}
+            isOpen={openDesktop === "ingreso"}
+            onToggle={() => toggleDesktop("ingreso")}
             onClose={() => setOpenDesktop(null)}
-            dropRef={refPostulantes}
+            dropRef={refIngreso}
           />
 
-          {/* Secretaría Académica (dropdown) */}
-          <DesktopDropdown
-            label="Secretaria Academica"
-            items={secretaria}
-            isOpen={openDesktop === "secretaria"}
-            onToggle={() => toggleDesktop("secretaria")}
-            onClose={() => setOpenDesktop(null)}
-            dropRef={refSecretaria}
-          />
-
-          {/* Noticias */}
+          {/* Últimas noticias */}
           <Link
             className={`nav-link${location.pathname === "/noticias" ? " active" : ""}`}
             to="/noticias"
           >
-            Noticias
+            Últimas noticias
           </Link>
         </div>
 
         {/* ── ACCIONES (Mi ISeP + hamburguesa) ── */}
         <div className="nav-actions">
-          {/* Botón Mi ISeP */}
-          <button type="button" className="btn-isep">
+          <a
+            href="https://mi.isepsantafe.edu.ar/"
+            className="btn-isep"
+            target="_blank"
+            rel="noreferrer"
+          >
             Mi ISeP
-          </button>
+          </a>
 
-          {/* Botón hamburguesa — solo mobile */}
           <button
             type="button"
             className={`hamburger${menuOpen ? " hamburger--open" : ""}`}
@@ -253,15 +265,6 @@ export default function Navbar() {
         className={`mobile-menu${menuOpen ? " mobile-menu--open" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Inicio */}
-        <Link
-          className={`mobile-link${location.pathname === "/" ? " mobile-link--active" : ""}`}
-          to="/"
-          onClick={closeAll}
-        >
-          Inicio
-        </Link>
-
         {/* Institucional (acordeón) */}
         <MobileAccordion
           label="Institucional"
@@ -271,40 +274,31 @@ export default function Navbar() {
           onCloseAll={closeAll}
         />
 
-        {/* Escuelas (acordeón) */}
+        {/* Formación (acordeón) */}
         <MobileAccordion
-          label="Escuelas"
-          items={schools}
-          isOpen={openMobile === "schools"}
-          onToggle={() => toggleMobile("schools")}
+          label="Formación"
+          items={formacion}
+          isOpen={openMobile === "formacion"}
+          onToggle={() => toggleMobile("formacion")}
           onCloseAll={closeAll}
         />
 
-        {/* Postulantes (acordeón) */}
+        {/* Ingreso (acordeón) */}
         <MobileAccordion
-          label="Postulantes"
-          items={postulantes}
-          isOpen={openMobile === "postulantes"}
-          onToggle={() => toggleMobile("postulantes")}
+          label="Ingreso"
+          items={ingreso}
+          isOpen={openMobile === "ingreso"}
+          onToggle={() => toggleMobile("ingreso")}
           onCloseAll={closeAll}
         />
 
-        {/* Secretaría Académica (acordeón) */}
-        <MobileAccordion
-          label="Secretaria Academica"
-          items={secretaria}
-          isOpen={openMobile === "secretaria"}
-          onToggle={() => toggleMobile("secretaria")}
-          onCloseAll={closeAll}
-        />
-
-        {/* Noticias */}
+        {/* Últimas noticias */}
         <Link
           className={`mobile-link${location.pathname === "/noticias" ? " mobile-link--active" : ""}`}
           to="/noticias"
           onClick={closeAll}
         >
-          Noticias
+          Últimas noticias
         </Link>
       </div>
     </nav>

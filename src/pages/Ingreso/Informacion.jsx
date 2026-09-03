@@ -1,13 +1,12 @@
 /**
- * pages/Postulantes/Titulos.jsx
+ * pages/Ingreso/Informacion.jsx
  * 
  * Placeholder temporal — reemplazar con contenido real
  */
 
-export default function Titulos() {
+export default function InformacionPostulantes() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      {/* Hero similar al de Noticias */}
       <section style={{
         position: "relative",
         height: "420px",
@@ -24,20 +23,19 @@ export default function Titulos() {
           padding: "0 2rem",
           width: "100%"
         }}>
-          <span className="badge">Institucional</span>
+          <span className="badge">Ingreso</span>
           <h1 className="hero-title">
-            Nuestros <span>Titulos</span>
+            Información para <span>Postulantes</span>
           </h1>
           <p className="hero-description">
-            Titulos y certificaciones que ofrecemos a nuestros estudiantes al completar sus estudios
+            Todo lo que necesitás saber para formar parte del ISeP
           </p>
         </div>
       </section>
 
-      {/* Contenido temporal */}
       <div className="container-max" style={{ padding: "4rem 2rem" }}>
         <p style={{ color: "var(--slate-500)", textAlign: "center" }}>
-          Contenido en construcción — Reemplazar con información institucional real
+          Contenido en construcción — Próximamente
         </p>
       </div>
     </main>

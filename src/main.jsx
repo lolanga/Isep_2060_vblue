@@ -10,6 +10,7 @@ import "./styles/navbar.css";
 import "./styles/hero.css";
 import "./styles/news.css";
 import "./styles/schools-cta.css";
+import "./styles/apps.css";
 import "./styles/footer.css";
 import "./styles/noticias.css";
 

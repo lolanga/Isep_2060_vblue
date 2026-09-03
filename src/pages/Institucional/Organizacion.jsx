@@ -1,13 +1,12 @@
 /**
- * pages/Postulantes/Inscripciones.jsx
+ * pages/Institucional/Organizacion.jsx
  * 
  * Placeholder temporal — reemplazar con contenido real
  */
 
-export default function Inscripciones() {
+export default function Organizacion() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      {/* Hero similar al de Noticias */}
       <section style={{
         position: "relative",
         height: "420px",
@@ -26,18 +25,17 @@ export default function Inscripciones() {
         }}>
           <span className="badge">Institucional</span>
           <h1 className="hero-title">
-            Nuestras <span>Inscripciones</span>
+            Nuestra <span>Organización</span>
           </h1>
           <p className="hero-description">
-            La información y los pasos para inscribirte en nuestros programas educativos
+            Estructura organizativa del Instituto de Seguridad Pública
           </p>
         </div>
       </section>
 
-      {/* Contenido temporal */}
       <div className="container-max" style={{ padding: "4rem 2rem" }}>
         <p style={{ color: "var(--slate-500)", textAlign: "center" }}>
-          Contenido en construcción — Reemplazar con información institucional real
+          Contenido en construcción — Próximamente
         </p>
       </div>
     </main>

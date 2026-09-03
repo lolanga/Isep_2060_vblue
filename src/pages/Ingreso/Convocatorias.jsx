@@ -1,13 +1,12 @@
 /**
- * pages/Institucional/Objetivos.jsx
+ * pages/Ingreso/Convocatorias.jsx
  * 
  * Placeholder temporal — reemplazar con contenido real
  */
 
-export default function Objetivos() {
+export default function Convocatorias() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      {/* Hero similar al de Noticias */}
       <section style={{
         position: "relative",
         height: "420px",
@@ -24,20 +23,19 @@ export default function Objetivos() {
           padding: "0 2rem",
           width: "100%"
         }}>
-          <span className="badge">Institucional</span>
+          <span className="badge">Ingreso</span>
           <h1 className="hero-title">
-            Nuestros <span>Objetivos</span>
+            <span>Convocatorias</span>
           </h1>
           <p className="hero-description">
-            Los principios y metas que guían nuestra labor educativa
+            Procesos de selección y convocatorias abiertas
           </p>
         </div>
       </section>
 
-      {/* Contenido temporal */}
       <div className="container-max" style={{ padding: "4rem 2rem" }}>
         <p style={{ color: "var(--slate-500)", textAlign: "center" }}>
-          Contenido en construcción — Reemplazar con información institucional real
+          Contenido en construcción — Próximamente
         </p>
       </div>
     </main>

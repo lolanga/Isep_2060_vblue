@@ -15,25 +15,28 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Noticias from "./pages/Noticias";
 
-// ── Páginas Institucional ──
-import Objetivos from "./pages/Institucional/Objetivos";
-import OfertaEducativa from "./pages/Institucional/OfertaEducativa";
+// ── Institucional ──
+import ElIseP from "./pages/Institucional/ElIseP";
 import Autoridades from "./pages/Institucional/Autoridades";
+import Organizacion from "./pages/Institucional/Organizacion";
+import SedesContacto from "./pages/Institucional/SedesContacto";
+import OfertaEducativa from "./pages/Institucional/OfertaEducativa";
 import Carrera from "./pages/Institucional/Carrera";
 import Resoluciones from "./pages/Institucional/Resoluciones";
 
-// ── Páginas Escuelas (minisitios) ──
+// ── Escuelas ──
 import EscuelaPolicia from "./pages/Escuelas/Policia.jsx";
 import EscuelaSuperior from "./pages/Escuelas/Superior";
 import EscuelaEspecialidades from "./pages/Escuelas/Especialidades";
 import EscuelaInvestigaciones from "./pages/Escuelas/Investigaciones";
+import EducacionDistancia from "./pages/Escuelas/EducacionDistancia";
 
-// ── Páginas Postulantes ──
-import Ingresos from "./pages/Postulantes/Ingresos";
-import Inscripciones from "./pages/Postulantes/Inscripciones.jsx";
-import Procesos from "./pages/Postulantes/Procesos";
+// ── Ingreso ──
+import Convocatorias from "./pages/Ingreso/Convocatorias";
+import InscripcionesIngreso from "./pages/Ingreso/Inscripciones";
+import InformacionPostulantes from "./pages/Ingreso/Informacion";
 
-// ── Páginas Secretaría Académica ──
+// ── Secretaría Académica ──
 import Titulos from "./pages/Secretaria/Titulos";
 import Biblioteca from "./pages/Secretaria/Biblioteca";
 import Cursos from "./pages/Secretaria/Cursos";
@@ -41,42 +44,42 @@ import Cursos from "./pages/Secretaria/Cursos";
 function App() {
   return (
     <BrowserRouter>
-      {/* Navbar sticky — visible en todas las páginas */}
       <Navbar />
 
-      {/* Rutas de la aplicación */}
       <Routes>
-        {/* ── Home ── */}
+        {/* Home */}
         <Route path="/" element={<Home />} />
 
-        {/* ── Noticias ── */}
+        {/* Noticias */}
         <Route path="/noticias" element={<Noticias />} />
 
-        {/* ── Institucional ── */}
-        <Route path="/institucional/objetivos" element={<Objetivos />} />
-        <Route path="/institucional/oferta-educativa" element={<OfertaEducativa />} />
+        {/* Institucional */}
+        <Route path="/institucional/el-isep" element={<ElIseP />} />
         <Route path="/institucional/autoridades" element={<Autoridades />} />
+        <Route path="/institucional/organizacion" element={<Organizacion />} />
+        <Route path="/institucional/sedes-contacto" element={<SedesContacto />} />
+        <Route path="/institucional/oferta-educativa" element={<OfertaEducativa />} />
         <Route path="/institucional/carrera" element={<Carrera />} />
         <Route path="/institucional/resoluciones" element={<Resoluciones />} />
 
-        {/* ── Escuelas (minisitios independientes) ── */}
+        {/* Escuelas */}
         <Route path="/escuelas/policia" element={<EscuelaPolicia />} />
         <Route path="/escuelas/superior" element={<EscuelaSuperior />} />
         <Route path="/escuelas/especialidades" element={<EscuelaEspecialidades />} />
         <Route path="/escuelas/investigaciones" element={<EscuelaInvestigaciones />} />
+        <Route path="/escuelas/educacion-a-distancia" element={<EducacionDistancia />} />
 
-        {/* ── Postulantes ── */}
-        <Route path="/postulantes/ingresos" element={<Ingresos />} />
-        <Route path="/postulantes/inscripciones" element={<Inscripciones />} />
-        <Route path="/postulantes/procesos" element={<Procesos />} />
+        {/* Ingreso */}
+        <Route path="/ingreso/convocatorias" element={<Convocatorias />} />
+        <Route path="/ingreso/inscripciones" element={<InscripcionesIngreso />} />
+        <Route path="/ingreso/informacion" element={<InformacionPostulantes />} />
 
-        {/* ── Secretaría Académica ── */}
+        {/* Secretaría Académica */}
         <Route path="/secretaria/titulos" element={<Titulos />} />
         <Route path="/secretaria/biblioteca" element={<Biblioteca />} />
         <Route path="/secretaria/cursos" element={<Cursos />} />
       </Routes>
 
-      {/* Footer — visible en todas las páginas */}
       <Footer />
     </BrowserRouter>
   );

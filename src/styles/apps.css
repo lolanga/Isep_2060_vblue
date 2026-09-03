@@ -1,0 +1,113 @@
+/* =============================================
+   APPS — Aplicaciones institucionales (Apps.jsx)
+   ============================================= */
+
+.apps-section {
+  padding: 6rem 0;
+  background-color: var(--surface-container-low);
+}
+
+.apps-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.apps-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.apps-subtitle {
+  font-size: 1.125rem;
+  color: var(--on-surface-variant);
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .apps-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: none;
+  }
+}
+
+.app-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: var(--surface);
+  border: 1px solid var(--outline-variant);
+  border-radius: 0.75rem;
+  padding: 2.5rem 2rem;
+  transition: all 0.3s ease;
+}
+
+.app-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 37, 77, 0.12);
+  border-color: var(--secondary);
+}
+
+.app-icon {
+  width: 4rem;
+  height: 4rem;
+  background-color: var(--primary);
+  color: var(--on-tertiary-container);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.app-card:hover .app-icon {
+  transform: scale(1.1);
+}
+
+.app-icon .material-symbols-outlined {
+  font-size: 2rem;
+}
+
+.app-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.app-desc {
+  color: var(--on-surface-variant);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.app-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--secondary);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.app-link .material-symbols-outlined {
+  font-size: 0.875rem;
+  transition: transform 0.3s ease;
+}
+
+.app-card:hover .app-link .material-symbols-outlined {
+  transform: translateX(4px);
+}

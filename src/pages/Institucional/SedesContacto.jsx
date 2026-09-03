@@ -1,13 +1,12 @@
 /**
- * pages/Postulantes/Ingresos.jsx
+ * pages/Institucional/SedesContacto.jsx
  * 
  * Placeholder temporal — reemplazar con contenido real
  */
 
-export default function Ingresos() {
+export default function SedesContacto() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      {/* Hero similar al de Noticias */}
       <section style={{
         position: "relative",
         height: "420px",
@@ -26,18 +25,17 @@ export default function Ingresos() {
         }}>
           <span className="badge">Institucional</span>
           <h1 className="hero-title">
-            Información <span>de Ingreso</span>
+            <span>Sedes</span> y Contacto
           </h1>
           <p className="hero-description">
-            Informacion sobre los requisitos y procedimientos para ingresar a nuestros programas educativos
+            Ubicación de nuestras sedes y canales de comunicación
           </p>
         </div>
       </section>
 
-      {/* Contenido temporal */}
       <div className="container-max" style={{ padding: "4rem 2rem" }}>
         <p style={{ color: "var(--slate-500)", textAlign: "center" }}>
-          Contenido en construcción — Reemplazar con información institucional real
+          Contenido en construcción — Próximamente
         </p>
       </div>
     </main>

@@ -1,13 +1,12 @@
 /**
- * pages/Postulantes/Procesos.jsx
+ * pages/Institucional/ElIseP.jsx
  * 
  * Placeholder temporal — reemplazar con contenido real
  */
 
-export default function Procesos() {
+export default function ElIseP() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      {/* Hero similar al de Noticias */}
       <section style={{
         position: "relative",
         height: "420px",
@@ -26,18 +25,17 @@ export default function Procesos() {
         }}>
           <span className="badge">Institucional</span>
           <h1 className="hero-title">
-            Nuestros <span>Procesos</span>
+            El <span>ISeP</span>
           </h1>
           <p className="hero-description">
-            Los procesos y procedimientos que seguimos para garantizar una experiencia educativa de calidad a nuestros estudiantes
+            Conocé nuestra institución, misión y valores
           </p>
         </div>
       </section>
 
-      {/* Contenido temporal */}
       <div className="container-max" style={{ padding: "4rem 2rem" }}>
         <p style={{ color: "var(--slate-500)", textAlign: "center" }}>
-          Contenido en construcción — Reemplazar con información institucional real
+          Contenido en construcción — Próximamente
         </p>
       </div>
     </main>
