@@ -10,22 +10,8 @@ export default function Biblioteca() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
       {/* Hero similar al de Noticias */}
-      <section style={{
-        position: "relative",
-        height: "420px",
-        display: "flex",
-        alignItems: "center",
-        overflow: "hidden",
-        background: "var(--gradient-primary)"
-      }}>
-        <div style={{ 
-          position: "relative", 
-          zIndex: 10, 
-          maxWidth: "1280px", 
-          margin: "0 auto", 
-          padding: "0 2rem",
-          width: "100%"
-        }}>
+      <section className="page-hero">
+        <div className="page-hero__inner">
           <span className="badge">Institucional</span>
           <h1 className="hero-title">
             Nuestra <span>Biblioteca</span>

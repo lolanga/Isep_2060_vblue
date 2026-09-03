@@ -48,6 +48,41 @@
     var(--gradient-primary);
 }
 
+/* ── Hero de páginas interiores (placeholder en construcción)
+     Gradiente institucional + scrim oscuro para legibilidad ── */
+.page-hero {
+  position: relative;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(0, 21, 43, 0.9), rgba(0, 37, 77, 0.55) 60%),
+    var(--gradient-primary);
+  color: var(--white);
+}
+
+@media (max-width: 640px) {
+  .page-hero {
+    height: 340px;
+  }
+}
+
+.page-hero__inner {
+  position: relative;
+  z-index: 10;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .page-hero__inner {
+    padding: 0 1.25rem;
+  }
+}
+
 .hero-content {
   position: relative;
   z-index: 10;

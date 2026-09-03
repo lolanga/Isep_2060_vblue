@@ -43,13 +43,28 @@ export default function Footer() {
             </li>
 
             <li>
+              <span className="material-symbols-outlined">location_on</span>
+              <span>RN11, km 482, Recreo, Santa Fe</span>
+            </li>
+
+            <li>
               <span className="material-symbols-outlined">call</span>
               <span>+54 342 457-9000</span>
             </li>
 
             <li>
+              <span className="material-symbols-outlined">call</span>
+              <span>+54 000 000-0000</span>
+            </li>
+
+            <li>
               <span className="material-symbols-outlined">mail</span>
               <span>contacto@isepsantafe.edu.ar</span>
+            </li>
+
+            <li>
+              <span className="material-symbols-outlined">mail</span>
+              <span>correo@isepsantafe.edu.ar</span>
             </li>
           </ul>
         </div>
@@ -80,7 +95,7 @@ export default function Footer() {
       {/* Bottom */}
       <div className="footer-bottom">
         <span className="copyright">
-          © 2024 INSTITUTO DE SEGURIDAD PÚBLICA DE SANTA FE
+          © {new Date().getFullYear()} INSTITUTO DE SEGURIDAD PÚBLICA DE SANTA FE
         </span>
 
         <div className="footer-legal">
@@ -89,6 +104,14 @@ export default function Footer() {
             <span className="material-symbols-outlined">account_balance</span>
           </div>
         </div>
+      </div>
+
+      {/* Créditos de desarrollo */}
+      <div className="footer-dev">
+        <span>Departamento Desarrollo, Tecnología e Innovación</span>
+        <span className="footer-dev__date">
+          {new Date().toLocaleDateString("es-AR", { day: "2-digit", month: "long", year: "numeric" })}
+        </span>
       </div>
 
     </footer>

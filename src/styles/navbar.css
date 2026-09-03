@@ -29,19 +29,21 @@
 
 /* ── Brand / Logo ── */
 .brand {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 800;
   letter-spacing: -0.05em;
   color: var(--primary);
+  white-space: nowrap;
 }
 
 .brand--desktop {
-  display: none;
+  display: block;
 }
 
-@media (min-width: 768px) {
-  .brand--desktop {
-    display: block;
+/* En móvil el logo se mantiene visible y compacto */
+@media (max-width: 767px) {
+  .brand {
+    font-size: 1rem;
   }
 }
 

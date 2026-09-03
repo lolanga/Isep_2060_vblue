@@ -189,8 +189,8 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? " navbar--scrolled" : ""}`}>
       <div className="navbar-content">
 
-        {/* ── LOGO — solo visible en desktop ── */}
-        <Link to="/" className="brand brand--desktop">
+        {/* ── LOGO — siempre visible (desktop y móvil), linkeable al inicio ── */}
+        <Link to="/" className="brand brand--desktop" aria-label="ISeP Santa Fe — Inicio">
           ISeP Santa Fe
         </Link>
 
