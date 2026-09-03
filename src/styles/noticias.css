@@ -79,9 +79,10 @@
 }
 
 .filtro-btn--active {
-  background-color: var(--primary);
+  background: var(--gradient-primary);
   color: var(--white);
-  border-color: var(--primary);
+  border-color: transparent;
+  box-shadow: var(--gradient-glow);
 }
 
 /* ── Body de la pagina ── */
@@ -155,7 +156,8 @@
 .np-img-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, var(--primary), rgba(0, 37, 77, 0.75), transparent);
+  background: var(--gradient-primary);
+  opacity: 0.85;
 }
 
 .np-img-text {
@@ -256,7 +258,8 @@
 
 .hcard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 37, 77, 0.12);
+  box-shadow: var(--gradient-glow), 0 16px 40px rgba(0, 37, 77, 0.12);
+  border-color: var(--color-start);
 }
 
 .hcard-img-wrap {
@@ -279,7 +282,8 @@
 .hcard-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 37, 77, 0.55), transparent 60%);
+  background: var(--gradient-primary);
+  opacity: 0.7;
 }
 
 .hcard-cat {
@@ -377,9 +381,10 @@
 }
 
 .pag-num--active {
-  background-color: var(--primary);
-  border-color: var(--primary);
+  background: var(--gradient-primary);
+  border-color: transparent;
   color: var(--white);
+  box-shadow: var(--gradient-glow);
 }
 
 /* ── Estado vacio (sin resultados) ── */

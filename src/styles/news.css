@@ -65,7 +65,8 @@
 }
 
 .card:hover {
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--gradient-glow), 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-start);
 }
 
 .card-img-container {
@@ -161,7 +162,8 @@
 }
 
 .mini-card:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--gradient-glow), 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-start);
 }
 
 .mini-img {
@@ -242,16 +244,19 @@
 }
 
 .btn-download {
-  background-color: var(--white);
-  color: var(--primary);
+  background: var(--gradient-primary);
+  color: var(--white);
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   font-weight: 700;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  box-shadow: var(--gradient-glow);
+  transform: var(--gradient-hover-lift);
 }
 
 .btn-download:hover {
-  background-color: var(--on-tertiary-container);
+  filter: brightness(1.1);
+  transform: translateY(-2px);
 }

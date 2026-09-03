@@ -28,7 +28,8 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, var(--primary), rgba(0, 37, 77, 0.8), transparent);
+  background: var(--gradient-primary);
+  opacity: 0.85;
 }
 
 .hero-content {

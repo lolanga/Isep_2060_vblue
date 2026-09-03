@@ -35,8 +35,8 @@
 
 .school-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 25px 50px -12px rgba(0, 37, 77, 0.05);
-  border-color: rgba(195, 198, 209, 0.2);
+  box-shadow: var(--gradient-glow), 0 25px 50px -12px rgba(0, 37, 77, 0.05);
+  border-color: var(--color-start);
 }
 
 .school-icon {
@@ -155,12 +155,18 @@
 }
 
 .btn-cta-light {
-  background-color: var(--on-tertiary-container);
-  color: var(--primary);
+  background: var(--gradient-primary);
+  color: var(--white);
   font-weight: 700;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--gradient-glow);
+  transform: var(--gradient-hover-lift);
+}
+
+.btn-cta-light:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
 }
 
 .btn-cta-outline {

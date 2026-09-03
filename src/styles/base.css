@@ -83,19 +83,21 @@ button {
 
 /* ── Botones compartidos ── */
 .btn-cta {
-  background-color: var(--on-tertiary-container);
-  color: var(--primary);
+  background: var(--gradient-primary);
+  color: var(--white);
   font-weight: 700;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 177, 237, 0.2);
+  box-shadow: var(--gradient-glow);
+  transform: var(--gradient-hover-lift);
 }
 
 .btn-cta:hover {
   filter: brightness(1.1);
+  transform: translateY(-2px);
 }
 
 .btn-cta .material-symbols-outlined {

@@ -14,7 +14,7 @@ export default function Especialidades () {
         display: "flex",
         alignItems: "center",
         overflow: "hidden",
-        background: "linear-gradient(135deg, var(--primary), var(--secondary))"
+        background: "var(--gradient-primary)"
       }}>
         <div style={{ 
           position: "relative", 

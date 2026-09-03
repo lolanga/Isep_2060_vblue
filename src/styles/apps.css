@@ -53,21 +53,22 @@
 
 .app-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 25px 50px -12px rgba(0, 37, 77, 0.12);
-  border-color: var(--secondary);
+  box-shadow: var(--gradient-glow), 0 25px 50px -12px rgba(0, 37, 77, 0.12);
+  border-color: var(--color-start);
 }
 
 .app-icon {
   width: 4rem;
   height: 4rem;
-  background-color: var(--primary);
-  color: var(--on-tertiary-container);
+  background: var(--gradient-primary);
+  color: var(--white);
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
   transition: transform 0.3s ease;
+  box-shadow: var(--gradient-glow);
 }
 
 .app-card:hover .app-icon {
