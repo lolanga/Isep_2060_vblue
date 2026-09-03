@@ -115,7 +115,7 @@ export default function EscuelaTemplate({ escuelaId }) {
                   <h3 className="card__title" style={{ fontSize: "1.1rem" }}>{curso.nombre}</h3>
                   <p className="card__desc">{curso.informacion}</p>
                   <div className="card__meta">
-                    <span className="card__chip">
+                    <span className="card__chip" data-type="tipo">
                       <span className="material-symbols-outlined">category</span>
                       {curso.tipo}
                     </span>

@@ -66,15 +66,15 @@ export default function OfertaEducativa() {
                     <h3 className="card__title">{c.nombre}</h3>
                     <p className="card__desc">{c.descripcion}</p>
                     <div className="card__meta">
-                      <span className="card__chip">
+                      <span className="card__chip" data-type="escuela">
                         <span className="material-symbols-outlined">school</span>
                         {escuela ? escuela.nombre : "ISeP"}
                       </span>
-                      <span className="card__chip">
+                      <span className="card__chip" data-type="duracion">
                         <span className="material-symbols-outlined">schedule</span>
                         {c.duracion}
                       </span>
-                      <span className="card__chip">
+                      <span className="card__chip" data-type="modalidad">
                         <span className="material-symbols-outlined">desktop_windows</span>
                         {c.modalidad}
                       </span>
@@ -101,11 +101,11 @@ export default function OfertaEducativa() {
                   <h3 className="card__title" style={{ fontSize: "1.1rem" }}>{c.nombre}</h3>
                   <p className="card__desc">{c.informacion}</p>
                   <div className="card__meta">
-                    <span className="card__chip">
+                    <span className="card__chip" data-type="tipo">
                       <span className="material-symbols-outlined">category</span>
                       {c.tipo}
                     </span>
-                    <span className="card__chip">
+                    <span className="card__chip" data-type="periodo">
                       <span className="material-symbols-outlined">calendar_today</span>
                       {c.periodo}
                     </span>
@@ -138,15 +138,15 @@ export default function OfertaEducativa() {
                     <h3 className="card__title" style={{ fontSize: "1.1rem" }}>{cv.nombre}</h3>
                     <p className="card__desc">{cv.descripcion}</p>
                     <div className="card__meta">
-                      <span className="card__chip">
+                      <span className="card__chip" data-type="estado">
                         <span className="material-symbols-outlined">flag</span>
                         {estado}
                       </span>
-                      <span className="card__chip">
+                      <span className="card__chip" data-type="escuela">
                         <span className="material-symbols-outlined">school</span>
                         {escuela ? escuela.nombre : "ISeP"}
                       </span>
-                      <span className="card__chip">
+                      <span className="card__chip" data-type="fecha">
                         <span className="material-symbols-outlined">schedule</span>
                         {cv.fecha}
                       </span>

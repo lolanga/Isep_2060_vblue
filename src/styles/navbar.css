@@ -177,7 +177,7 @@
   top: calc(100% + 1.25rem);
   left: 50%;
   transform: translateX(-50%) translateY(-6px);
-  min-width: 230px;
+  width: max-content;
   background-color: var(--surface-container-lowest);
   border: 1px solid var(--outline-variant);
   border-radius: 0.75rem;
@@ -206,6 +206,7 @@
   color: var(--on-surface);
   font-size: 0.875rem;
   font-weight: 500;
+  white-space: nowrap;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
@@ -234,10 +235,12 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--slate-400);
+  white-space: nowrap;
 }
 
 .dropdown-item--sub {
   padding-left: 1.75rem;
+  white-space: nowrap;
 }
 
 /* ── Hamburguesa — solo mobile ── */

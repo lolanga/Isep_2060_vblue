@@ -32,6 +32,7 @@ export default function Proceso() {
             <div className="card" key={i}>
               <span
                 className="card__chip"
+                data-type="paso"
                 style={{ width: "fit-content", fontSize: "1rem" }}
               >
                 Paso {i + 1}

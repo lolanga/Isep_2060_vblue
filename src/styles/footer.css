@@ -3,17 +3,13 @@
    ============================================= */
 
 footer {
-  background-attachment: fixed;
-  background-color: #bcd8db;
-  background-image:
-    linear-gradient(90deg, #ffffff40 1px, #0000 0),
-    linear-gradient(180deg, #ffffff40 1px, #0000 0),
-    radial-gradient(circle at 10% 20%, #208caf59 0, #0000 45%),
-    radial-gradient(circle at 90% 80%, #00c3964d 0, #0000 45%);
+  background-color: #00254d;
+  background-image: none;
   font-family: "Plus Jakarta Sans", Roboto, sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 2rem 2rem 1.5rem;
+  color: #c8d6e0;
 }
 
 /* ── Contenedor de una sola fila (desktop) ── */
@@ -46,13 +42,13 @@ footer {
 .footer-brand h4 {
   font-size: 1rem;
   font-weight: 800;
-  color: #00254d;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
 .footer-brand p {
   font-size: 0.78rem;
-  color: #3f5770;
+  color: #a0b4c0;
   line-height: 1.5;
   text-transform: none;
   letter-spacing: normal;
@@ -68,7 +64,7 @@ footer {
 }
 
 .social-link {
-  color: #204d5a;
+  color: #a0b4c0;
   transition: color 0.3s ease;
 }
 
@@ -84,7 +80,7 @@ footer {
 
 /* ── Columnas ── */
 .footer-col h5 {
-  color: #00254d;
+  color: #ffffff;
   font-weight: 700;
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
@@ -103,11 +99,11 @@ footer {
   gap: 0.5rem;
   margin-bottom: 0.4rem;
   font-size: 0.75rem;
-  color: #3f5770;
+  color: #a0b4c0;
 }
 
 .contact-list .material-symbols-outlined {
-  color: #0284c7;
+  color: #17be95;
   font-size: 1rem;
 }
 
@@ -116,12 +112,12 @@ footer {
 }
 
 .footer-links a {
-  color: #3f5770;
+  color: #a0b4c0;
   font-size: 0.75rem;
 }
 
 .footer-links a:hover {
-  color: #0284c7;
+  color: #17be95;
 }
 
 /* ── Bottom bar ── */
@@ -129,7 +125,7 @@ footer {
   max-width: 1280px;
   margin: 1.5rem auto 0;
   padding-top: 1rem;
-  border-top: 1px solid rgba(0, 37, 77, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -145,7 +141,7 @@ footer {
 
 .copyright {
   font-size: 10px;
-  color: #3f5770;
+  color: #8a9eaa;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -157,7 +153,7 @@ footer {
 }
 
 .legal-text {
-  color: #4b6478;
+  color: #8a9eaa;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -167,7 +163,7 @@ footer {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background-color: rgba(0, 37, 77, 0.15);
+  background-color: rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -175,7 +171,7 @@ footer {
 
 .legal-icon .material-symbols-outlined {
   font-size: 0.75rem;
-  color: #204d5a;
+  color: #c8d6e0;
 }
 
 /* ── Créditos de desarrollo ── */
@@ -183,7 +179,7 @@ footer {
   max-width: 1280px;
   margin: 1.25rem auto 0;
   padding-top: 0.75rem;
-  border-top: 1px solid rgba(0, 37, 77, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -191,7 +187,7 @@ footer {
   gap: 0.25rem;
   text-align: center;
   font-size: 0.7rem;
-  color: #3f5770;
+  color: #8a9eaa;
 }
 
 @media (min-width: 640px) {
@@ -202,7 +198,7 @@ footer {
 }
 
 .footer-dev__date {
-  color: #4b6478;
+  color: #a0b4c0;
   font-size: 0.7rem;
   text-transform: capitalize;
 }

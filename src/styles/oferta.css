@@ -122,10 +122,52 @@
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .card__chip .material-symbols-outlined {
   font-size: 1rem;
+}
+
+/* ── Chips coloreados por tipo ── */
+.card__chip[data-type="escuela"] {
+  background: rgba(0, 85, 201, 0.1);
+  color: #0055c9;
+}
+
+.card__chip[data-type="duracion"] {
+  background: rgba(0, 128, 168, 0.1);
+  color: #0080a8;
+}
+
+.card__chip[data-type="modalidad"] {
+  background: rgba(23, 190, 149, 0.12);
+  color: #0d7a5e;
+}
+
+.card__chip[data-type="tipo"] {
+  background: rgba(99, 102, 241, 0.1);
+  color: #4f46e5;
+}
+
+.card__chip[data-type="periodo"] {
+  background: rgba(16, 185, 129, 0.1);
+  color: #047857;
+}
+
+.card__chip[data-type="estado"] {
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+}
+
+.card__chip[data-type="fecha"] {
+  background: rgba(245, 158, 11, 0.1);
+  color: #b45309;
+}
+
+.card__chip[data-type="paso"] {
+  background: var(--gradient-primary);
+  color: var(--white);
 }
 
 /* ── Lista de requisitos / documentos ── */
