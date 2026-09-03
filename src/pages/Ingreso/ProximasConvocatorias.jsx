@@ -1,13 +1,13 @@
 /**
- * pages/Ingreso/Convocatorias.jsx
- * Convocatorias vigentes — Ingreso
+ * pages/Ingreso/ProximasConvocatorias.jsx
+ * Próximas convocatorias — Ingreso
  */
 
 import { Link } from "react-router-dom";
 import { convocatorias, escuelaPorId } from "../../data/institucional";
 
-export default function Convocatorias() {
-  const vigentes = convocatorias.filter((c) => c.estado === "vigente");
+export default function ProximasConvocatorias() {
+  const proximas = convocatorias.filter((c) => c.estado === "proxima");
 
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
@@ -15,17 +15,17 @@ export default function Convocatorias() {
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>
           <h1 className="hero-title">
-            Convocatorias <span>Vigentes</span>
+            Próximas <span>Convocatorias</span>
           </h1>
           <p className="hero-description">
-            Inscripciones abiertas en este momento
+            Aperturas anunciadas para los próximos ciclos
           </p>
         </div>
       </section>
 
       <div className="container-max oferta-section">
         <div className="grid-2">
-          {vigentes.map((cv) => {
+          {proximas.map((cv) => {
             const escuela = escuelaPorId(cv.escuela);
             return (
               <div className="card" key={cv.id}>
@@ -33,32 +33,35 @@ export default function Convocatorias() {
                 <p className="card__desc">{cv.descripcion}</p>
                 <div className="card__meta">
                   <span className="card__chip">
-                    <span className="material-symbols-outlined">flag</span>
-                    Vigente
+                    <span className="material-symbols-outlined">schedule</span>
+                    Próxima
                   </span>
                   <span className="card__chip">
                     <span className="material-symbols-outlined">school</span>
                     {escuela ? escuela.nombre : "ISeP"}
                   </span>
                   <span className="card__chip">
-                    <span className="material-symbols-outlined">schedule</span>
+                    <span className="material-symbols-outlined">event</span>
                     {cv.fecha}
                   </span>
                 </div>
-                <Link to="/ingreso/proceso" className="read-more">
-                  Conocer el proceso
-                  <span className="material-symbols-outlined">arrow_forward</span>
-                </Link>
               </div>
             );
           })}
         </div>
 
-        {vigentes.length === 0 && (
+        {proximas.length === 0 && (
           <p style={{ textAlign: "center", color: "var(--slate-500)", padding: "3rem 0" }}>
-            No hay convocatorias vigentes en este momento.
+            No hay convocatorias anunciadas por el momento.
           </p>
         )}
+
+        <div style={{ textAlign: "center", marginTop: "2rem" }}>
+          <Link to="/ingreso/convocatorias" className="read-more" style={{ justifyContent: "center" }}>
+            Ver convocatorias vigentes
+            <span className="material-symbols-outlined">arrow_forward</span>
+          </Link>
+        </div>
       </div>
     </main>
   );

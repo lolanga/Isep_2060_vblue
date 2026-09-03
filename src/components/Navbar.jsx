@@ -37,9 +37,11 @@ const formacion = [
 ];
 
 const ingreso = [
-  { label: "Convocatorias",                href: "/ingreso/convocatorias" },
-  { label: "Inscripciones",                href: "/ingreso/inscripciones" },
-  { label: "Información para postulantes", href: "/ingreso/informacion" },
+  { label: "Convocatorias vigentes",  href: "/ingreso/convocatorias" },
+  { label: "Próximas convocatorias",  href: "/ingreso/proximas-convocatorias" },
+  { label: "Requisitos",              href: "/ingreso/requisitos" },
+  { label: "Proceso de ingreso",      href: "/ingreso/proceso" },
+  { label: "Preguntas frecuentes",    href: "/ingreso/faq" },
 ];
 
 /**

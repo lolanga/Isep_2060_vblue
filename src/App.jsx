@@ -34,8 +34,10 @@ import EducacionDistancia from "./pages/Escuelas/EducacionDistancia";
 
 // ── Ingreso ──
 import Convocatorias from "./pages/Ingreso/Convocatorias";
-import InscripcionesIngreso from "./pages/Ingreso/Inscripciones";
-import InformacionPostulantes from "./pages/Ingreso/Informacion";
+import ProximasConvocatorias from "./pages/Ingreso/ProximasConvocatorias";
+import Requisitos from "./pages/Ingreso/Requisitos";
+import Proceso from "./pages/Ingreso/Proceso";
+import Faq from "./pages/Ingreso/Faq";
 
 // ── Secretaría Académica ──
 import Titulos from "./pages/Secretaria/Titulos";
@@ -60,7 +62,7 @@ function App() {
         <Route path="/institucional/organizacion" element={<Organizacion />} />
         <Route path="/institucional/sedes-contacto" element={<SedesContacto />} />
         <Route path="/institucional/oferta-educativa" element={<OfertaEducativa />} />
-        <Route path="/institucional/carrera" element={<Carrera />} />
+        <Route path="/institucional/carreras" element={<Carrera />} />
         <Route path="/institucional/resoluciones" element={<Resoluciones />} />
 
         {/* Escuelas */}
@@ -72,8 +74,10 @@ function App() {
 
         {/* Ingreso */}
         <Route path="/ingreso/convocatorias" element={<Convocatorias />} />
-        <Route path="/ingreso/inscripciones" element={<InscripcionesIngreso />} />
-        <Route path="/ingreso/informacion" element={<InformacionPostulantes />} />
+        <Route path="/ingreso/proximas-convocatorias" element={<ProximasConvocatorias />} />
+        <Route path="/ingreso/requisitos" element={<Requisitos />} />
+        <Route path="/ingreso/proceso" element={<Proceso />} />
+        <Route path="/ingreso/faq" element={<Faq />} />
 
         {/* Secretaría Académica */}
         <Route path="/secretaria/titulos" element={<Titulos />} />
