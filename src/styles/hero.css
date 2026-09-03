@@ -138,3 +138,100 @@
   margin-bottom: 2.5rem;
   line-height: 1.6;
 }
+
+/* ── Slider Hero ── */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-bg--active {
+  opacity: 1;
+}
+
+/* Flechas de navegación */
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  color: white;
+}
+
+.hero-arrow:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.hero-arrow .material-symbols-outlined {
+  font-size: 1.5rem;
+}
+
+.hero-arrow--left {
+  left: 1.5rem;
+}
+
+.hero-arrow--right {
+  right: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .hero-arrow {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .hero-arrow--left {
+    left: 0.75rem;
+  }
+
+  .hero-arrow--right {
+    right: 0.75rem;
+  }
+}
+
+/* Indicadores (dots) */
+.hero-dots {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.hero-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.hero-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.hero-dot--active {
+  background: var(--on-tertiary-container, #00b1ed);
+  border-color: var(--on-tertiary-container, #00b1ed);
+  transform: scale(1.2);
+}

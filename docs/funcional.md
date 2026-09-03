@@ -90,13 +90,21 @@ El sitio es 100% responsive: se adapta correctamente a dispositivos móviles, ta
 
 La página de inicio (`/`) está compuesta por las siguientes secciones, en orden:
 
-1. **Hero** — Banner principal con imagen, badge, título y botón CTA.
+1. **Hero Slider** — Banner principal con slider automático (3 slides), transiciones suaves, flechas de navegación y indicadores (dots). Se pausa al pasar el cursor. Formato: imagen + overlay + badge + título + CTA.
 2. **Últimas Noticias** — Noticia destacada (izquierda), lista lateral de noticias del día y bloque "Calendario Académico" con botón de descarga.
 3. **Aplicaciones Institucionales** — Accesos para el personal: Mi ISeP, SIGEDI y Webmail.
 4. **Nuestras Escuelas** — Cuadrícula de las 4 escuelas con su **escudo institucional** (data-driven).
 5. **CTA Inscripciones** — Bloque de llamado a la acción con botones de pre-inscripción.
 
-### 4.1 Página de Noticias (`/noticias`)
+### 4.1 Hero Slider
+
+- **Slides:** 3 slides con imagen, badge, título y descripción.
+- **Automático:** cambia cada 6 segundos.
+- **Pausa:** al pasar el cursor sobre el hero.
+- **Navegación:** flechas izquierda/derecha + indicadores (dots) en la parte inferior.
+- **Transiciones:** fade suave entre slides (1s ease-in-out).
+
+### 4.2 Página de Noticias (`/noticias`)
 
 - **Filtro por categorías:** Todas, Institucional, Académica, Escuelas, Eventos, Convenios (filtro sticky al hacer scroll).
 - **Noticia principal:** muestra la última publicación con imagen, fecha, título y extracto.
@@ -179,7 +187,20 @@ Sección "Aplicaciones Institucionales" en el cuerpo de la Home (después de Not
 - Abre conversación en WhatsApp en pestaña nueva (número placeholder configurable).
 - Usa el gradiente institucional y el glow definido en el sistema de diseño.
 
-### 8.2 Redes sociales (Footer)
+### 8.2 Buscador funcional
+- **Ubicación:** en la barra de navegación, al lado del botón "Mi ISeP".
+- **Ícono de búsqueda:** al hacer clic, se abre el campo de búsqueda.
+- **Búsqueda en tiempo real:** indexa escuelas, carreras, cursos, convocatorias y páginas institucionales.
+- **Resultados dinámicos:** muestra hasta 8 resultados con ícono, título, subtítulo y categoría.
+- **Navegación por teclado:** flechas arriba/abajo, Enter para seleccionar, Escape para cerrar.
+- **Cierre automático:** al hacer clic fuera del buscador.
+
+### 8.3 Íconos en navegación
+- **Menú principal:** cada sección (Institucional, Formación, Ingreso, Últimas noticias) tiene un ícono de Material Symbols.
+- **Dropdowns:** los items muestran íconos que refuerzan el significado (ej: "El ISeP" → info, "Autoridades" → group, etc.).
+- **Menú móvil:** los acordeones también muestran íconos para mayor claridad.
+
+### 8.4 Redes sociales (Footer)
 - Facebook, YouTube, Instagram y **TikTok**.
 - Cada ícono es un enlace que abre la red en pestaña nueva.
 
@@ -200,6 +221,7 @@ Sección "Aplicaciones Institucionales" en el cuerpo de la Home (después de Not
 3. **Mi ISeP siempre visible:** el botón de acceso al portal personal no puede desaparecer en móvil.
 4. **Logo ISeP enlazable:** el logo del navbar es visible en móvil y desktop y vuelve al inicio (`/`).
 5. **Consistencia visual:** todos los botones, cards y elementos activos usan el mismo sistema de gradiente y glow.
+6. **Fondo decorativo global:** la web usa un fondo decorativo con `background-attachment: fixed`, color base `#bcd8db` y gradientes radiales/lineales que crean un patrón sutil.
 
 ---
 

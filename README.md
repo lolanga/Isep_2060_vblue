@@ -22,13 +22,23 @@ SPA con **React 19 + Vite 8 + React Router 7** y **100% responsive**.
 ```
 src/
 ├── main.jsx, App.jsx
-├── components/   Navbar, Hero, News, Apps, Schools, CTA, Footer,
-│                 EscuelaTemplate, FloatWhatsApp
+├── components/   Navbar (con buscador), Hero (slider automático), SearchBox,
+│                 News, Apps, Schools, CTA, Footer, EscuelaTemplate, FloatWhatsApp
 ├── data/         institucional.js (escuelas, carreras, cursos, convocatorias, FAQ)
+│                 buscador.js (índice de búsqueda)
 ├── pages/        Home, Noticias, Institucional, Escuelas, Ingreso, Secretaria
-└── styles/       variables, base, navbar, hero, news, noticias, schools-cta,
-                  apps, oferta, footer, responsive
+└── styles/       variables, base (fondo global), navbar (buscador), hero (slider),
+                  news, noticias, schools-cta, apps, oferta, footer, responsive
 ```
+
+## Funcionalidades principales
+
+- **Hero Slider:** banner automático con 3 slides, transiciones suaves, flechas y dots.
+- **Buscador funcional:** indexa escuelas, carreras, cursos, convocatorias y páginas institucionales. Resultados dinámicos con navegación por teclado.
+- **Íconos en navegación:** cada sección del menú tiene un ícono de Material Symbols.
+- **Fondo decorativo global:** patrón sutil con `background-attachment: fixed`, color base `#bcd8db` y gradientes radiales/lineales.
+- **Escudos institucionales:** cada tarjeta de escuela muestra su escudo.
+- **Plantilla de escuela reutilizable:** las 5 escuelas usan `EscuelaTemplate`.
 
 ## Sistema de diseño
 
@@ -49,7 +59,7 @@ npm run lint    # eslint
 
 ## Páginas
 
-- `/` — Home (Hero, Noticias, Aplicaciones, Escuelas, CTA)
+- `/` — Home (Hero Slider, Noticias, Aplicaciones, Escuelas, CTA)
 - `/noticias` — listado con filtro y paginación
 - `/institucional/*` — secciones institucionales (El ISeP, Autoridades, Organización, Normativa y Resoluciones, Sedes y Contacto)
 - `/institucional/oferta-educativa` — Oferta Académica dinámica (Carreras / Cursos / Convocatorias)

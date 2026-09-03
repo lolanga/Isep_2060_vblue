@@ -19,6 +19,18 @@ La barra de navegación superior (que permanece fija al hacer scroll) organiza t
 
 **En celular/tablet:** tocá el botón ☰ (hamburguesa) para abrir el menú completo, con acordeones para cada sección. El logo del sitio y el botón **Mi ISeP** permanecen visibles.
 
+### 1.1 Íconos en la navegación
+
+Cada sección del menú tiene un ícono que refuerza su significado:
+- **Institucional** → ícono de "account_balance" (edificio institucional)
+- **Formación** → ícono de "school" (escuela)
+- **Ingreso** → ícono de "login" (ingreso)
+- **Últimas noticias** → ícono de "newspaper" (periódico)
+
+### 1.2 Buscador
+
+Al lado del botón "Mi ISeP" hay un **ícono de búsqueda** (lupa). Al hacer clic se abre un campo de búsqueda donde podés escribir lo que buscás (escuelas, carreras, cursos, etc.). Los resultados aparecen automáticamente mientras escribís.
+
 ---
 
 ## 2. Volver al inicio
@@ -32,6 +44,21 @@ El logo **"ISeP Santa Fe"** (arriba a la izquierda, visible en móvil y desktop)
 El botón **"Mi ISeP"** está siempre visible en la barra superior, tanto en escritorio como en celular. Al hacer clic te lleva al portal personal de trámites (`mi.isepsantafe.edu.ar`) en una pestaña nueva.
 
 > ☝️ **Importante:** este botón no desaparece en dispositivos móviles — es el acceso principal del personal.
+
+---
+
+## 4. Hero (página de inicio)
+
+La página de inicio tiene un **slider automático** que muestra 3 slides diferentes:
+
+1. **Slide 1:** "Formación Profesional para la Seguridad Pública"
+2. **Slide 2:** "Formando líderes en Seguridad Pública"
+3. **Slide 3:** "Carreras y cursos de alto nivel"
+
+**Cómo funciona:**
+- **Cambio automático:** cada 6 segundos cambia al siguiente slide.
+- **Pausa:** cuando pasás el cursor sobre el hero, el slider se pausa.
+- **Navegación manual:** podés usar las **flechas** izquierda/derecha o los **dots** (puntos) en la parte inferior para ir a un slide específico.
 
 ---
 
@@ -109,6 +136,8 @@ En el pie de página encontrás:
 - **Enlaces institucionales** (privacidad, términos, mapa del sitio, transparencia, normativa).
 - **Créditos de desarrollo** con la fecha de publicación.
 
+El footer tiene un **fondo decorativo** que se integra con el fondo general de la web (patrón sutil con líneas y gradientes).
+
 ---
 
 ## 10. Problemas comunes y soluciones
@@ -120,3 +149,5 @@ En el pie de página encontrás:
 | El texto sobre una imagen no se lee | El sistema de overlays mantiene contraste automático; si tenés un problema puntual, reportalo |
 | No abre una aplicación (SIGEDI/Webmail) | Verificá tu conexión y credenciales del sistema externo |
 | Quiero volver al inicio | Tocá el logo "ISeP Santa Fe" arriba a la izquierda |
+| No funciona el buscador | Escribí al menos 3 caracteres; los resultados aparecen automáticamente |
+| El slider del hero no cambia | Pasá el cursor sobre el hero para pausarlo; usá las flechas o dots para navegar manualmente |

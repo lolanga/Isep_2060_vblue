@@ -88,12 +88,21 @@
 
     <h2>4. Funcionalidades implementadas (Home)</h2>
     <ol>
-      <li><strong>Hero</strong> — banner principal con badge, título y CTA.</li>
+      <li><strong>Hero Slider</strong> — banner principal con slider automático (3 slides), transiciones suaves, flechas de navegación y indicadores (dots). Se pausa al pasar el cursor.</li>
       <li><strong>Últimas Noticias</strong> — destacada + lateral + Calendario Académico.</li>
       <li><strong>Aplicaciones Institucionales</strong> — Mi ISeP, SIGEDI, Webmail.</li>
       <li><strong>Nuestras Escuelas</strong> — 4 escuelas, cada una con su escudo institucional.</li>
       <li><strong>CTA Inscripciones</strong> — llamado a la acción.</li>
     </ol>
+
+    <h3>Hero Slider</h3>
+    <ul>
+      <li><strong>Slides:</strong> 3 slides con imagen, badge, título y descripción.</li>
+      <li><strong>Automático:</strong> cambia cada 6 segundos.</li>
+      <li><strong>Pausa:</strong> al pasar el cursor sobre el hero.</li>
+      <li><strong>Navegación:</strong> flechas izquierda/derecha + indicadores (dots) en la parte inferior.</li>
+      <li><strong>Transiciones:</strong> fade suave entre slides (1s ease-in-out).</li>
+    </ul>
 
     <h3>Página de Noticias (<code>/noticias</code>)</h3>
     <ul>
@@ -137,8 +146,10 @@
     <h2>8. Accesos flotantes, redes y footer</h2>
     <ul>
       <li><strong>WhatsApp flotante</strong> siempre visible (esquina inferior derecha).</li>
+      <li><strong>Buscador funcional:</strong> en la barra de navegación, al lado del botón "Mi ISeP". Indexa escuelas, carreras, cursos, convocatorias y páginas institucionales. Resultados dinámicos con ícono, título, subtítulo y categoría.</li>
+      <li><strong>Íconos en navegación:</strong> cada sección del menú tiene un ícono de Material Symbols (Institucional → account_balance, Formación → school, Ingreso → login, Últimas noticias → newspaper).</li>
       <li><strong>Redes:</strong> Facebook, YouTube, Instagram y TikTok.</li>
-      <li><strong>Footer rediseñado:</strong> Identidad institucional · Accesos principales · Contacto · Sedes (Alem 2050 y RN11 km 482 Recreo) · Enlaces institucionales.</li>
+      <li><strong>Footer rediseñado:</strong> Identidad institucional · Accesos principales · Contacto · Sedes (Alem 2050 y RN11 km 482 Recreo) · Enlaces institucionales. Fondo decorativo que se integra con el fondo general.</li>
       <li><strong>Créditos:</strong> "Departamento Desarrollo, Tecnología e Innovación" + fecha dinámica.</li>
     </ul>
 
@@ -149,6 +160,7 @@
       <li>Mi ISeP siempre visible.</li>
       <li>Logo ISeP enlazable que vuelve al inicio (<code>/</code>).</li>
       <li>Consistencia visual del sistema de gradiente y glow.</li>
+      <li>Fondo decorativo global: <code>background-attachment: fixed</code>, color base <code>#bcd8db</code> y gradientes radiales/lineales.</li>
     </ol>
 
     <h2>10. Disponibilidad</h2>

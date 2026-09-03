@@ -63,8 +63,10 @@
 ├── App.jsx                 # Router principal + layout global
 ├── assets/                 # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
-│   ├── Navbar.jsx          # Navegación global (desktop + mobile)
-│   ├── Hero.jsx, News.jsx  # Hero y noticias (Home)
+│   ├── Navbar.jsx          # Navegación global (desktop + mobile) con buscador
+│   ├── Hero.jsx            # Banner principal con slider automático
+│   ├── SearchBox.jsx       # Buscador funcional con resultados dinámicos
+│   ├── News.jsx            # Noticias (Home)
 │   ├── Apps.jsx            # Aplicaciones institucionales
 │   ├── Schools.jsx         # Cuadrícula de escuelas (con escudos)
 │   ├── CTA.jsx             # Llamado a la acción
@@ -72,7 +74,8 @@
 │   ├── EscuelaTemplate.jsx # Plantilla reutilizable de escuela
 │   └── FloatWhatsApp.jsx   # Botón flotante de WhatsApp
 ├── data/
-│   └── institucional.js    # Datos mock: escuelas/carreras/cursos/convocatorias/FAQ
+│   ├── institucional.js    # Datos mock: escuelas/carreras/cursos/convocatorias/FAQ
+│   └── buscador.js         # Índice de búsqueda para el buscador funcional
 ├── pages/
 │   ├── Home.jsx, Noticias.jsx
 │   ├── Institucional/      # ElISeP, Autoridades, Organizacion, Resoluciones,
@@ -82,9 +85,9 @@
 │   └── Secretaria/         # Titulos, Biblioteca, Cursos
 └── styles/
     ├── variables.css       # Tokens + gradiente institucional
-    ├── base.css            # Reset, tipografía, .btn-cta
-    ├── navbar.css          # Navegación
-    ├── hero.css            # Hero + overlays + .page-hero
+    ├── base.css            # Reset, tipografía, .btn-cta, fondo global
+    ├── navbar.css          # Navegación + estilos del buscador
+    ├── hero.css            # Hero slider + overlays + .page-hero
     ├── news.css, noticias.css, schools-cta.css, apps.css
     ├── oferta.css          # Vistas dinámicas (cards, filtros, acordeón, escuela)
     ├── footer.css          # Footer
@@ -139,7 +142,47 @@
     <h2>7. Plantilla de escuela</h2>
     <p><code>EscuelaTemplate.jsx</code> recibe <code>escuelaId</code> y renderiza Logo, Presentación, Información, Carreras, Cursos actuales (acceso a Mi ISeP), Noticias y Contacto. Las 5 páginas de <code>/escuelas/*</code> son wrappers.</p>
 
-    <h2>8. Comandos</h2>
+    <h2>8. Buscador funcional</h2>
+    <h3>Índice de búsqueda (<code>src/data/buscador.js</code>)</h3>
+    <p>Índice pre-compilado con 30 entradas: escuelas (5), carreras (4), cursos (6), convocatorias (3) y páginas institucionales (12). Cada entrada tiene: <code>id</code>, <code>title</code>, <code>subtitle</code>, <code>categoria</code>, <code>tipo</code>, <code>ruta</code> y <code>keywords</code>.</p>
+    <h3>Componente SearchBox (<code>src/components/SearchBox.jsx</code>)</h3>
+    <ul>
+      <li>Búsqueda en tiempo real con <code>useMemo</code>.</li>
+      <li>Algoritmo de scoring por tokens con bonus si el título contiene el token.</li>
+      <li>Máximo 8 resultados por búsqueda.</li>
+      <li>Navegación por teclado: ArrowUp/ArrowDown/Enter/Escape.</li>
+      <li>Cierre automático al hacer clic fuera del componente.</li>
+    </ul>
+
+    <h2>9. Hero slider</h2>
+    <h3>Componente Hero (<code>src/components/Hero.jsx</code>)</h3>
+    <ul>
+      <li>3 slides con imagen, badge, título y descripción.</li>
+      <li>Automático: cambia cada 6 segundos (<code>INTERVAL = 6000</code>).</li>
+      <li>Pausa al pasar el cursor (<code>onMouseEnter</code>).</li>
+      <li>Navegación: flechas izquierda/derecha + indicadores (dots).</li>
+      <li>Transiciones: fade suave entre slides (<code>opacity 1s ease-in-out</code>).</li>
+    </ul>
+    <h3>Estilos (<code>src/styles/hero.css</code>)</h3>
+    <ul>
+      <li><code>.hero-bg</code> → imagen de fondo con <code>opacity: 0</code> por defecto.</li>
+      <li><code>.hero-bg--active</code> → <code>opacity: 1</code> para el slide activo.</li>
+      <li><code>.hero-arrow</code> → flechas de navegación con backdrop-filter.</li>
+      <li><code>.hero-dot</code> → indicadores (dots) en la parte inferior.</li>
+    </ul>
+
+    <h2>10. Fondo decorativo global</h2>
+    <p>El fondo de toda la web se aplica en <code>body</code> (base.css):</p>
+    <pre>background-attachment: fixed;
+background-color: #bcd8db;
+background-image:
+  linear-gradient(90deg, #ffffff40 1px, #0000 0),
+  linear-gradient(180deg, #ffffff40 1px, #0000 0),
+  radial-gradient(circle at 10% 20%, #208caf59 0, #0000 45%),
+  radial-gradient(circle at 90% 80%, #00c3964d 0, #0000 45%);</pre>
+    <p>Crea un patrón sutil con líneas blancas y gradientes radiales cian/verde sobre un fondo base <code>#bcd8db</code>.</p>
+
+    <h2>11. Comandos</h2>
     <table>
       <tr><th>Comando</th><th>Descripción</th></tr>
       <tr><td><code>npm install</code></td><td>Instala dependencias</td></tr>

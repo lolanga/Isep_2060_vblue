@@ -12,7 +12,13 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--surface);
+  background-attachment: fixed;
+  background-color: #bcd8db;
+  background-image:
+    linear-gradient(90deg, #ffffff40 1px, #0000 0),
+    linear-gradient(180deg, #ffffff40 1px, #0000 0),
+    radial-gradient(circle at 10% 20%, #208caf59 0, #0000 45%),
+    radial-gradient(circle at 90% 80%, #00c3964d 0, #0000 45%);
   color: var(--on-surface);
   line-height: 1.5;
 }

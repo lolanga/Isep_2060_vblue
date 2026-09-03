@@ -26,8 +26,9 @@ src/
 ├── App.jsx                  # Router principal + layout global
 ├── assets/                  # Imágenes (escudos: EP, ES, EE, EI, EaD, ISeP)
 ├── components/
-│   ├── Navbar.jsx           # Navegación global (desktop + mobile)
-│   ├── Hero.jsx             # Banner principal
+│   ├── Navbar.jsx           # Navegación global (desktop + mobile) con buscador
+│   ├── Hero.jsx             # Banner principal con slider automático
+│   ├── SearchBox.jsx        # Buscador funcional con resultados dinámicos
 │   ├── News.jsx             # Sección noticias del Home
 │   ├── Apps.jsx             # Aplicaciones institucionales
 │   ├── Schools.jsx          # Cuadrícula de escuelas (cada una con su escudo)
@@ -36,7 +37,8 @@ src/
 │   ├── EscuelaTemplate.jsx  # Plantilla reutilizable de escuela
 │   └── FloatWhatsApp.jsx    # Botón flotante de WhatsApp
 ├── data/
-│   └── institucional.js     # Datos mock: escuelas, carreras, cursos, convocatorias, FAQ
+│   ├── institucional.js     # Datos mock: escuelas, carreras, cursos, convocatorias, FAQ
+│   └── buscador.js          # Índice de búsqueda para el buscador funcional
 ├── pages/
 │   ├── Home.jsx
 │   ├── Noticias.jsx
@@ -49,9 +51,9 @@ src/
 │   └── Secretaria/          # Titulos, Biblioteca, Cursos (dinámico)
 └── styles/
     ├── variables.css        # Design tokens (incl. gradiente)
-    ├── base.css             # Reset, tipografía, utilidades, .btn-cta
-    ├── navbar.css           # Navegación
-    ├── hero.css             # Hero + overlays + .page-hero
+    ├── base.css             # Reset, tipografía, utilidades, .btn-cta, fondo global
+    ├── navbar.css           # Navegación + estilos del buscador
+    ├── hero.css             # Hero slider + overlays + .page-hero
     ├── news.css             # Noticias (Home)
     ├── noticias.css         # Página /noticias
     ├── schools-cta.css      # Escuelas + CTA
@@ -180,7 +182,67 @@ Las 5 páginas de `/escuelas/*` son wrappers que delegan en esta plantilla.
 
 ---
 
-## 8. Comandos
+## 8. Buscador funcional
+
+### 8.1 Índice de búsqueda (`src/data/buscador.js`)
+
+El buscador usa un índice pre-compilado que incluye:
+- **Escuelas** (5 entradas)
+- **Carreras** (4 entradas)
+- **Cursos** (6 entradas)
+- **Convocatorias** (3 entradas)
+- **Páginas institucionales** (12 entradas)
+
+Cada entrada tiene: `id`, `title`, `subtitle`, `categoria`, `tipo`, `ruta` y `keywords`.
+
+### 8.2 Componente SearchBox (`src/components/SearchBox.jsx`)
+
+- **Búsqueda en tiempo real:** usa `useMemo` para calcular resultados cuando cambia el query.
+- **Algoritmo:** scoring por tokens (split del query), con bonus si el título contiene el token.
+- **Máximo 8 resultados** por búsqueda.
+- **Navegación por teclado:** ArrowUp/ArrowDown/Enter/Escape.
+- **Cierre automático:** al hacer clic fuera del componente.
+
+---
+
+## 9. Hero slider
+
+### 9.1 Componente Hero (`src/components/Hero.jsx`)
+
+- **3 slides** con imagen, badge, título y descripción.
+- **Automático:** cambia cada 6 segundos (`INTERVAL = 6000`).
+- **Pausa:** al pasar el cursor (`onMouseEnter`).
+- **Navegación:** flechas izquierda/derecha + indicadores (dots).
+- **Transiciones:** fade suave entre slides (`opacity 1s ease-in-out`).
+
+### 9.2 Estilos (`src/styles/hero.css`)
+
+- `.hero-bg` → imagen de fondo con `opacity: 0` por defecto.
+- `.hero-bg--active` → `opacity: 1` para el slide activo.
+- `.hero-arrow` → flechas de navegación con backdrop-filter.
+- `.hero-dot` → indicadores (dots) en la parte inferior.
+
+---
+
+## 10. Fondo decorativo global
+
+El fondo de toda la web se aplica en `body` (base.css):
+
+```css
+background-attachment: fixed;
+background-color: #bcd8db;
+background-image:
+  linear-gradient(90deg, #ffffff40 1px, #0000 0),
+  linear-gradient(180deg, #ffffff40 1px, #0000 0),
+  radial-gradient(circle at 10% 20%, #208caf59 0, #0000 45%),
+  radial-gradient(circle at 90% 80%, #00c3964d 0, #0000 45%);
+```
+
+Crea un patrón sutil con líneas blancas y gradientes radiales cian/verde sobre un fondo base `#bcd8db`.
+
+---
+
+## 11. Comandos
 
 | Comando | Descripción |
 |---|---|
