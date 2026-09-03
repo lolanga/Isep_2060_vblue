@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // ── Layout global ──
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import FloatWhatsApp from "./components/FloatWhatsApp";
 
 // ── Páginas ──
 import Home from "./pages/Home";
@@ -81,6 +82,9 @@ function App() {
       </Routes>
 
       <Footer />
+
+      {/* Botón flotante WhatsApp — siempre visible */}
+      <FloatWhatsApp />
     </BrowserRouter>
   );
 }

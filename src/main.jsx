@@ -13,6 +13,7 @@ import "./styles/schools-cta.css";
 import "./styles/apps.css";
 import "./styles/footer.css";
 import "./styles/noticias.css";
+import "./styles/responsive.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

@@ -156,8 +156,15 @@
 .np-img-overlay {
   position: absolute;
   inset: 0;
-  background: var(--gradient-primary);
-  opacity: 0.85;
+  background:
+    linear-gradient(
+      to left,
+      var(--primary),
+      rgba(0, 37, 77, 0.6) 40%,
+      rgba(23, 190, 149, 0.2) 100%
+    ),
+    var(--gradient-primary);
+  opacity: 0.92;
 }
 
 .np-img-text {
@@ -282,8 +289,10 @@
 .hcard-overlay {
   position: absolute;
   inset: 0;
-  background: var(--gradient-primary);
-  opacity: 0.7;
+  background:
+    linear-gradient(to top, rgba(0, 21, 43, 0.85), rgba(0, 37, 77, 0.35) 55%, rgba(23, 190, 149, 0.2)),
+    var(--gradient-primary);
+  opacity: 0.85;
 }
 
 .hcard-cat {

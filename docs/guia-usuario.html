@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guía de Usuario — ISeP Santa Fe</title>
+  <style>
+    :root {
+      --primary: #00254d;
+      --secondary: #0055c9;
+      --grad-1: #227bd1;
+      --grad-2: #17be95;
+      --text: #1f2937;
+      --border: #e5e7eb;
+      --bg: #f9f9ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; padding-bottom: 3rem; }
+    header { background: linear-gradient(90deg, var(--grad-1), var(--grad-2)); color: #fff; padding: 3rem 2rem; text-align: center; }
+    header h1 { font-size: 1.8rem; margin-bottom: .4rem; }
+    main { max-width: 780px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+    h2 { color: var(--primary); font-size: 1.35rem; margin: 2.5rem 0 1rem; padding-bottom: .4rem; border-bottom: 2px solid var(--grad-1); }
+    h3 { color: var(--secondary); font-size: 1.05rem; margin: 1.4rem 0 .5rem; }
+    p, li { margin-bottom: .6rem; }
+    ul, ol { padding-left: 1.4rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .9rem; }
+    th, td { border: 1px solid var(--border); padding: .6rem .75rem; text-align: left; }
+    th { background: var(--primary); color: #fff; }
+    tr:nth-child(even) td { background: #fff; }
+    code { background: #eef2ff; color: var(--primary); padding: .1rem .35rem; border-radius: 4px; font-size: .85rem; }
+    .tip { background: #fff; border-left: 4px solid var(--grad-2); padding: .8rem 1rem; border-radius: 0 6px 6px 0; margin: 1rem 0; }
+    @media (max-width: 560px) {
+      header h1 { font-size: 1.35rem; }
+      main { padding: 1.5rem 1rem; }
+      table { font-size: .8rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Guía de Usuario</h1>
+    <p>Sitio Web ISeP Santa Fe</p>
+  </header>
+
+  <main>
+    <h2>1. Cómo navegar</h2>
+    <p>La barra superior (fija) organiza todo el contenido en 3 menús desplegables y un enlace directo:</p>
+    <table>
+      <tr><th>Menú</th><th>Contenido</th></tr>
+      <tr><td>Institucional</td><td>El ISeP, Autoridades, Organización, Sedes y Contacto</td></tr>
+      <tr><td>Formación</td><td>Oferta Académica, Escuelas (5), Carreras, Cursos</td></tr>
+      <tr><td>Ingreso</td><td>Convocatorias, Inscripciones, Información para postulantes</td></tr>
+      <tr><td>Últimas noticias</td><td>Acceso directo al listado</td></tr>
+    </table>
+    <p><strong>Escritorio:</strong> pasá el cursor sobre un menú. Dentro de <em>Formación → Escuelas</em> hay un submenú.</p>
+    <p><strong>Celular/tablet:</strong> tocá el botón ☰ para abrir el menú con acordeones.</p>
+
+    <h2>2. Portal personal (Mi ISeP)</h2>
+    <p>El botón <strong>Mi ISeP</strong> está siempre visible en la barra superior, desktop y móvil. Abre <code>mi.isepsantafe.edu.ar</code> en pestaña nueva.</p>
+    <div class="tip">☝️ Este botón no desaparece en móvil: es el acceso principal del personal.</div>
+
+    <h2>3. Aplicaciones institucionales</h2>
+    <p>En la página de inicio, bajo las noticias:</p>
+    <table>
+      <tr><th>Aplicación</th><th>Para qué</th></tr>
+      <tr><td><strong>Mi ISeP</strong></td><td>Trámites y consultas personales</td></tr>
+      <tr><td><strong>SIGEDI</strong></td><td>Sistema de Gestión Educativa</td></tr>
+      <tr><td><strong>Webmail</strong></td><td>Correo institucional</td></tr>
+    </table>
+
+    <h2>4. Noticias</h2>
+    <p><strong>Inicio:</strong> noticia destacada, lista lateral y Calendario Académico con descarga de PDF.</p>
+    <p><strong>Últimas noticias:</strong> filtro por categorías, noticia principal y tarjetas con paginación (10 por página).</p>
+
+    <h2>5. WhatsApp</h2>
+    <p>Botón verde flotante en la esquina inferior derecha, visible en todas las páginas. Hacé clic para contactar a la institución.</p>
+
+    <h2>6. Footer (redes y contacto)</h2>
+    <p>Redes: Facebook, YouTube, Instagram y <strong>TikTok</strong>. Contacto: dirección, teléfono y correo. Además: mapa de ubicación, privacidad, términos, mapa del sitio y transparencia.</p>
+
+    <h2>7. Problemas comunes</h2>
+    <table>
+      <tr><th>Problema</th><th>Solución</th></tr>
+      <tr><td>No veo el menú en celular</td><td>Buscá el ícono ☰ arriba a la derecha</td></tr>
+      <tr><td>No encuentro Mi ISeP</td><td>Está siempre en la barra superior</td></tr>
+      <tr><td>No abre SIGEDI/Webmail</td><td>Verificá conexión y credenciales del sistema externo</td></tr>
+    </table>
+  </main>
+</body>
+</html>

@@ -1,0 +1,108 @@
+/* =============================================
+   RESPONSIVE — Ajustes globales mobile-first
+   Se importa al final para refinar el resto
+   ============================================= */
+
+/* ── Contenedor general mas compacto en pantallas chicas ── */
+@media (max-width: 640px) {
+  .container-max {
+    padding: 0 1.25rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .text-center {
+    margin-bottom: 3rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .view-all {
+    font-size: 0.9rem;
+  }
+}
+
+/* ── Secciones: reducir padding vertical en móvil ── */
+@media (max-width: 640px) {
+  .news-section,
+  .apps-section,
+  .schools-section {
+    padding: 4rem 0;
+  }
+
+  .cta-section {
+    padding: 3.5rem 0;
+  }
+}
+
+/* ── CTAs y botones: ancho completo táctil en móvil ── */
+@media (max-width: 480px) {
+  .btn-cta,
+  .btn-cta-light {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cta-buttons {
+    width: 100%;
+  }
+
+  .cta-buttons .btn-cta-light,
+  .cta-buttons .btn-cta-outline {
+    width: 100%;
+  }
+}
+
+/* ── Hero interno de páginas placeholder ── */
+@media (max-width: 640px) {
+  .badge {
+    font-size: 0.65rem;
+  }
+}
+
+/* ── Noticias: cards apiladas y texto legible ── */
+@media (max-width: 640px) {
+  .np-img-wrap {
+    height: 380px;
+  }
+
+  .np-img-text {
+    padding: 1.5rem;
+  }
+
+  .np-titulo {
+    font-size: 1.5rem;
+  }
+
+  .hcard-img-wrap {
+    height: 160px;
+  }
+}
+
+/* ── Paginación: compacta en móvil ── */
+@media (max-width: 640px) {
+  .paginacion {
+    gap: 0.5rem;
+  }
+
+  .pag-nums {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* ── Reducir scroll ligado a navbar sticky en móvil ── */
+@media (max-width: 767px) {
+  .noticias-filtro {
+    padding: 0.75rem 0;
+  }
+}

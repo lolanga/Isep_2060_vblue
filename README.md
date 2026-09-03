@@ -1,18 +1,54 @@
-# React + Vite
+# ISeP Santa Fe — Sitio Web Institucional
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sitio web institucional del **Instituto de Seguridad Pública de Santa Fe**, construido como
+SPA con **React 19 + Vite 8 + React Router 7** y **100% responsive**.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React ^19.2.4 · Vite ^8.0.8 · react-router-dom ^7.13.2
+- Google Material Symbols, lucide-react, react-icons
+- ESLint + babel-plugin-react-compiler
 
-## React Compiler
+## Documentación
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+| Documento | Markdown | HTML |
+|---|---|---|
+| Especificaciones funcionales | [funcional.md](docs/funcional.md) | [funcional.html](docs/funcional.html) |
+| Especificaciones técnicas | [tecnico.md](docs/tecnico.md) | [tecnico.html](docs/tecnico.html) |
+| Guía de usuario | [guia-usuario.md](docs/guia-usuario.md) | [guia-usuario.html](docs/guia-usuario.html) |
 
-Note: This will impact Vite dev & build performances.
+## Estructura
 
-## Expanding the ESLint configuration
+```
+src/
+├── main.jsx, App.jsx
+├── components/   Navbar, Hero, News, Apps, Schools, CTA, Footer, FloatWhatsApp
+├── data/         escuelas, cursos, noticias
+├── pages/        Home, Noticias, Institucional, Escuelas, Ingreso, Secretaria
+└── styles/       variables, base, navbar, hero, news, noticias,
+                  schools-cta, apps, footer, responsive
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Sistema de diseño
+
+El gradiente institucional se centraliza en `--gradient-primary`
+(`linear-gradient(90deg, #227bd1, #17be95)`) en `styles/variables.css` y se aplica de forma
+uniforme a botones, cards, hover de navegación y overlays (combinado con scrim oscuro para
+garantizar contraste legible del texto).
+
+## Comandos
+
+```bash
+npm install     # instalar dependencias
+npm run dev     # servidor de desarrollo (puerto 5173)
+npm run build   # build de producción
+npm run preview # previsualizar build
+npm run lint    # eslint
+```
+
+## Páginas
+
+- `/` — Home (Hero, Noticias, Aplicaciones, Escuelas, CTA)
+- `/noticias` — listado con filtro y paginación
+- `/institucional/*`, `/escuelas/*`, `/ingreso/*`, `/secretaria/*` — páginas internas
+  (algunas en estado placeholder "Próximamente")

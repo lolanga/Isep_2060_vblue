@@ -63,6 +63,8 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--slate-600);
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.5rem;
 }
 
 .nav-link.active {
@@ -73,7 +75,9 @@
 }
 
 .nav-link:hover {
-  color: var(--secondary);
+  background: var(--gradient-primary);
+  color: var(--white);
+  box-shadow: var(--gradient-glow);
 }
 
 /* ── Acciones (Mi ISeP) ── */
@@ -130,14 +134,17 @@
   font-weight: 500;
   color: var(--slate-600);
   font-family: inherit;
-  padding: 0;
+  padding: 0.55rem 0.9rem;
   line-height: 1;
   cursor: pointer;
-  transition: color 0.3s ease;
+  border-radius: 0.5rem;
+  transition: color 0.3s ease, background 0.3s ease;
 }
 
 .nav-dropdown__trigger:hover {
-  color: var(--secondary);
+  background: var(--gradient-primary);
+  color: var(--white);
+  box-shadow: var(--gradient-glow);
 }
 
 .nav-dropdown__trigger.active {
@@ -166,7 +173,7 @@
 /* Panel — estado base: oculto */
 .dropdown-panel {
   position: absolute;
-  top: calc(100% + 0.75rem);
+  top: calc(100% + 1.25rem);
   left: 50%;
   transform: translateX(-50%) translateY(-6px);
   min-width: 230px;
@@ -202,8 +209,9 @@
 }
 
 .dropdown-item:hover {
-  background-color: var(--surface-container-low);
-  color: var(--secondary);
+  background: var(--gradient-primary);
+  color: var(--white);
+  box-shadow: var(--gradient-glow);
 }
 
 /* Grupo (submenú dentro del panel) */
@@ -248,6 +256,24 @@
 @media (min-width: 768px) {
   .hamburger {
     display: none;
+  }
+}
+
+/* ── Responsive móvil: Mi ISeP siempre visible y compacto ── */
+@media (max-width: 767px) {
+  .navbar-content {
+    padding: 0.75rem 1rem;
+  }
+
+  .btn-isep {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .nav-actions {
+    gap: 0.5rem;
+    margin-left: auto;
   }
 }
 

@@ -5,11 +5,19 @@
 
 .hero {
   position: relative;
-  height: 870px;
+  height: 100svh;
+  min-height: 560px;
+  max-height: 870px;
   display: flex;
   align-items: center;
   overflow: hidden;
   margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 520px;
+  }
 }
 
 .hero-bg {
@@ -24,12 +32,20 @@
   object-fit: cover;
 }
 
-/* Overlay compartido — tambien usado en noticias-hero */
+/* Overlay compartido — tambien usado en noticias-hero
+   Mantiene la paleta (navy + gradiente) y garantiza legibilidad del texto */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: var(--gradient-primary);
-  opacity: 0.85;
+  background:
+    linear-gradient(
+      to right,
+      rgba(0, 21, 43, 0.88),
+      rgba(0, 37, 77, 0.72) 45%,
+      rgba(0, 37, 77, 0.35) 75%,
+      rgba(35, 123, 209, 0.25)
+    ),
+    var(--gradient-primary);
 }
 
 .hero-content {
@@ -62,7 +78,7 @@
 
 /* Titulos — compartidos con noticias */
 .hero-title {
-  font-size: 3rem;
+  font-size: clamp(2rem, 6vw, 4.5rem);
   font-weight: 900;
   color: var(--white);
   line-height: 1.1;
@@ -81,7 +97,7 @@
 }
 
 .hero-description {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: rgba(213, 227, 255, 0.9);
   font-weight: 300;
   margin-bottom: 2.5rem;
