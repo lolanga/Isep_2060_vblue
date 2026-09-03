@@ -35,15 +35,15 @@ export default function Carrera() {
                 <p className="card__desc">{carrera.descripcion}</p>
 
                 <div className="card__meta">
-                  <span className="card__chip">
+                  <span className="card__chip" data-type="escuela">
                     <span className="material-symbols-outlined">school</span>
                     {escuela ? escuela.nombre : "ISeP"}
                   </span>
-                  <span className="card__chip">
+                  <span className="card__chip" data-type="duracion">
                     <span className="material-symbols-outlined">schedule</span>
                     {carrera.duracion}
                   </span>
-                  <span className="card__chip">
+                  <span className="card__chip" data-type="modalidad">
                     <span className="material-symbols-outlined">desktop_windows</span>
                     {carrera.modalidad}
                   </span>

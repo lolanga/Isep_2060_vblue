@@ -32,15 +32,15 @@ export default function Convocatorias() {
                 <h3 className="card__title" style={{ fontSize: "1.1rem" }}>{cv.nombre}</h3>
                 <p className="card__desc">{cv.descripcion}</p>
                 <div className="card__meta">
-                  <span className="card__chip">
+                  <span className="card__chip" data-type="estado">
                     <span className="material-symbols-outlined">flag</span>
                     Vigente
                   </span>
-                  <span className="card__chip">
+                  <span className="card__chip" data-type="escuela">
                     <span className="material-symbols-outlined">school</span>
                     {escuela ? escuela.nombre : "ISeP"}
                   </span>
-                  <span className="card__chip">
+                  <span className="card__chip" data-type="fecha">
                     <span className="material-symbols-outlined">schedule</span>
                     {cv.fecha}
                   </span>

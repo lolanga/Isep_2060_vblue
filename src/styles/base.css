@@ -19,6 +19,7 @@ body {
     linear-gradient(180deg, #ffffff40 1px, #0000 0),
     radial-gradient(circle at 10% 20%, #208caf59 0, #0000 45%),
     radial-gradient(circle at 90% 80%, #00c3964d 0, #0000 45%);
+  background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%;
   color: var(--on-surface);
   line-height: 1.5;
 }
