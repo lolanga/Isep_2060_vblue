@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <footer>
 
       <div className="footer-grid">
 
-        {/* Marca */}
+        {/* Identidad institucional */}
         <div className="footer-brand">
           <h4>ISeP Santa Fe</h4>
 
@@ -13,9 +15,8 @@ export default function Footer() {
             Desde el Reclutamiento hasta el retiro.
           </p>
 
-            <p>
-              Buscanos en nuestras redes
-            </p>
+          <p className="footer-brand__follow">Seguinos en nuestras redes</p>
+
           <div className="social-links">
             <a className="social-link" href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
               <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -32,21 +33,23 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Accesos principales */}
+        <div className="footer-col">
+          <h5>Accesos principales</h5>
+
+          <ul className="footer-links">
+            <li><Link to="/institucional/el-isep">Institucional</Link></li>
+            <li><Link to="/institucional/oferta-educativa">Formación</Link></li>
+            <li><Link to="/ingreso/convocatorias">Ingreso</Link></li>
+            <li><Link to="/noticias">Últimas noticias</Link></li>
+          </ul>
+        </div>
+
         {/* Contacto */}
         <div className="footer-col">
           <h5>Contacto</h5>
 
           <ul className="contact-list">
-            <li>
-              <span className="material-symbols-outlined">location_on</span>
-              <span>Leandro N. Alem 2050, Santa Fe</span>
-            </li>
-
-            <li>
-              <span className="material-symbols-outlined">location_on</span>
-              <span>RN11, km 482, Recreo, Santa Fe</span>
-            </li>
-
             <li>
               <span className="material-symbols-outlined">call</span>
               <span>+54 342 457-9000</span>
@@ -69,25 +72,34 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Navegación */}
+        {/* Sedes */}
         <div className="footer-col">
-          <h5>Navegación</h5>
+          <h5>Sedes</h5>
+
+          <ul className="contact-list">
+            <li>
+              <span className="material-symbols-outlined">location_on</span>
+              <span>Leandro N. Alem 2050, Santa Fe</span>
+            </li>
+
+            <li>
+              <span className="material-symbols-outlined">location_on</span>
+              <span>RN11, km 482, Recreo, Santa Fe</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Enlaces institucionales */}
+        <div className="footer-col">
+          <h5>Enlaces institucionales</h5>
 
           <ul className="footer-links">
             <li><a href="#">Privacidad</a></li>
             <li><a href="#">Términos y condiciones</a></li>
             <li><a href="#">Mapa del sitio</a></li>
             <li><a href="#">Transparencia</a></li>
+            <li><a href="#">Normativa y Resoluciones</a></li>
           </ul>
-        </div>
-
-        {/* Mapa */}
-        <div className="footer-col">
-          <h5>Mapa de Ubicación</h5>
-
-          <div className="map-box">
-            <img src="https://picsum.photos/300/150" alt="mapa" />
-          </div>
         </div>
 
       </div>

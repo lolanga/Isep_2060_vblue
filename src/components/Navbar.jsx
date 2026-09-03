@@ -13,26 +13,27 @@ import { Link, useLocation } from "react-router-dom";
 
 // ── Datos de menús desplegables ──
 const institucional = [
-  { label: "El ISeP",            href: "/institucional/el-isep" },
-  { label: "Autoridades",        href: "/institucional/autoridades" },
-  { label: "Organización",       href: "/institucional/organizacion" },
-  { label: "Sedes y Contacto",   href: "/institucional/sedes-contacto" },
+  { label: "El ISeP",                 href: "/institucional/el-isep" },
+  { label: "Autoridades",             href: "/institucional/autoridades" },
+  { label: "Organización",            href: "/institucional/organizacion" },
+  { label: "Normativa y Resoluciones", href: "/institucional/resoluciones" },
+  { label: "Sedes y Contacto",        href: "/institucional/sedes-contacto" },
 ];
 
 const escuelas = [
   { label: "Escuela de Policía",          href: "/escuelas/policia" },
   { label: "Escuela de Especialidades",   href: "/escuelas/especialidades" },
-  { label: "Escuela de Investigaciones",  href: "/escuelas/investigaciones" },
   { label: "Escuela Superior",            href: "/escuelas/superior" },
+  { label: "Escuela de Investigaciones",  href: "/escuelas/investigaciones" },
   { label: "Educación a Distancia",       href: "/escuelas/educacion-a-distancia" },
 ];
 
 // Formación: item con submenú (Escuelas) o link directo
 const formacion = [
-  { label: "Oferta Académica", href: "/institucional/oferta-educativa", type: "link" },
-  { label: "Escuelas",         submenu: escuelas,                       type: "submenu" },
-  { label: "Carreras",         href: "/institucional/carrera",          type: "link" },
-  { label: "Cursos",           href: "/secretaria/cursos",              type: "link" },
+  { label: "Oferta Académica",       href: "/institucional/oferta-educativa", type: "link" },
+  { label: "Escuelas",               submenu: escuelas,                       type: "submenu" },
+  { label: "Títulos y Certificaciones", href: "/secretaria/titulos",          type: "link" },
+  { label: "Biblioteca Virtual",     href: "/secretaria/biblioteca",          type: "link" },
 ];
 
 const ingreso = [

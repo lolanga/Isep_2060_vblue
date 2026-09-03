@@ -18,7 +18,14 @@ footer {
 
 @media (min-width: 768px) {
   .footer-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 2fr repeat(4, 1fr);
+    gap: 2.5rem;
   }
 }
 
@@ -36,7 +43,10 @@ footer {
   text-transform: capitalize;
   letter-spacing: 0.1em;
   line-height: 1.6;
-  margin-bottom: 2rem;
+}
+
+.footer-brand__follow {
+  margin-bottom: 1.5rem;
 }
 
 /* ── Redes sociales ── */
