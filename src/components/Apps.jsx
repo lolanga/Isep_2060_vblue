@@ -3,27 +3,36 @@
  * Accesos rápidos: Mi ISeP, SIGEDI y Webmail
  */
 
+import escudoIsep from "../assets/escudo_ISeP.png";
+
+const WebmailIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="32" height="32">
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </svg>
+);
+
 const apps = [
   {
     name: "Mi ISeP",
     description: "Trámites y consultas personales",
     url: "https://mi.isepsantafe.edu.ar/",
     external: true,
-    icon: "account_circle",
+    img: escudoIsep,
   },
   {
     name: "SIGEDI",
     description: "Sistema de Gestión Educativa",
     url: "https://gestion.isepsantafe.edu.ar",
     external: true,
-    icon: "table_chart",
+    img: escudoIsep,
   },
   {
     name: "Webmail",
     description: "Correo institucional",
     url: "https://webmail.isepsantafe.net.ar",
     external: true,
-    icon: "mail",
+    svg: true,
   },
 ];
 
@@ -48,7 +57,13 @@ export default function Apps() {
               rel="noreferrer"
             >
               <div className="app-icon">
-                <span className="material-symbols-outlined">{app.icon}</span>
+                {app.img ? (
+                  <img src={app.img} alt={app.name} className="app-icon__img" />
+                ) : app.svg ? (
+                  <WebmailIcon />
+                ) : (
+                  <span className="material-symbols-outlined">{app.icon}</span>
+                )}
               </div>
               <h3 className="app-name">{app.name}</h3>
               <p className="app-desc">{app.description}</p>
