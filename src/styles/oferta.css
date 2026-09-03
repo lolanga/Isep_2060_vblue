@@ -413,6 +413,9 @@
 
 .escuela-seccion {
   padding: 4rem 0;
+  background: radial-gradient(circle at 13% 14%, rgba(39, 185, 220, .16), transparent 28%),
+    radial-gradient(circle at 85% 82%, rgba(54, 213, 138, .14), transparent 31%),
+    linear-gradient(145deg, #edf8fd, #f8fcfe 48%, #eefcf7);
 }
 
 .escuela-seccion + .escuela-seccion {
