@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer>
 
-      <div className="footer-grid">
+      <div className="footer-grid footer-grid--3">
 
         {/* Identidad institucional */}
         <div className="footer-brand">
@@ -33,18 +33,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Accesos principales */}
-        <div className="footer-col">
-          <h5>Accesos principales</h5>
-
-          <ul className="footer-links">
-            <li><Link to="/institucional/el-isep">Institucional</Link></li>
-            <li><Link to="/institucional/oferta-educativa">Formación</Link></li>
-            <li><Link to="/ingreso/convocatorias">Ingreso</Link></li>
-            <li><Link to="/noticias">Últimas noticias</Link></li>
-          </ul>
-        </div>
-
         {/* Contacto */}
         <div className="footer-col">
           <h5>Contacto</h5>
@@ -56,18 +44,8 @@ export default function Footer() {
             </li>
 
             <li>
-              <span className="material-symbols-outlined">call</span>
-              <span>+54 000 000-0000</span>
-            </li>
-
-            <li>
               <span className="material-symbols-outlined">mail</span>
               <span>contacto@isepsantafe.edu.ar</span>
-            </li>
-
-            <li>
-              <span className="material-symbols-outlined">mail</span>
-              <span>correo@isepsantafe.edu.ar</span>
             </li>
           </ul>
         </div>
@@ -89,40 +67,12 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Enlaces institucionales */}
-        <div className="footer-col">
-          <h5>Enlaces institucionales</h5>
-
-          <ul className="footer-links">
-            <li><a href="#">Privacidad</a></li>
-            <li><a href="#">Términos y condiciones</a></li>
-            <li><a href="#">Mapa del sitio</a></li>
-            <li><a href="#">Transparencia</a></li>
-            <li><a href="#">Normativa y Resoluciones</a></li>
-          </ul>
-        </div>
-
       </div>
 
-      {/* Bottom */}
+      {/* Bottom — todo en una línea */}
       <div className="footer-bottom">
         <span className="copyright">
-          © {new Date().getFullYear()} INSTITUTO DE SEGURIDAD PÚBLICA DE SANTA FE
-        </span>
-
-        <div className="footer-legal">
-          <span className="legal-text">PROVINCIA DE SANTA FE</span>
-          <div className="legal-icon">
-            <span className="material-symbols-outlined">account_balance</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Créditos de desarrollo */}
-      <div className="footer-dev">
-        <span>Departamento Desarrollo, Tecnología e Innovación</span>
-        <span className="footer-dev__date">
-          {new Date().toLocaleDateString("es-AR", { day: "2-digit", month: "long", year: "numeric" })}
+          © {new Date().getFullYear()} Instituto de Seguridad Pública de Santa Fe — Departamento Desarrollo, Tecnología e Innovación — {new Date().toLocaleDateString("es-AR", { day: "2-digit", month: "long", year: "numeric" })}
         </span>
       </div>
 

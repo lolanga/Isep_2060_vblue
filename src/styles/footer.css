@@ -36,6 +36,10 @@ footer {
     row-gap: 0;
     align-items: start;
   }
+
+  .footer-grid--3 {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
 }
 
 /* ── Identidad ── */
@@ -127,74 +131,15 @@ footer {
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-@media (min-width: 640px) {
-  .footer-bottom {
-    flex-direction: row;
-  }
+  justify-content: center;
+  text-align: center;
 }
 
 .copyright {
-  font-size: 10px;
-  color: #8a9eaa;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.footer-legal {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.legal-text {
-  color: #8a9eaa;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-}
-
-.legal-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.legal-icon .material-symbols-outlined {
-  font-size: 0.75rem;
-  color: #c8d6e0;
-}
-
-/* ── Créditos de desarrollo ── */
-.footer-dev {
-  max-width: 1280px;
-  margin: 1.25rem auto 0;
-  padding-top: 0.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.25rem;
-  text-align: center;
   font-size: 0.7rem;
   color: #8a9eaa;
-}
-
-@media (min-width: 640px) {
-  .footer-dev {
-    flex-direction: row;
-    text-align: left;
-  }
+  letter-spacing: 0.05em;
 }
 
 .footer-dev__date {
