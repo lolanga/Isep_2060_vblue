@@ -14,7 +14,7 @@ const SLIDES = [
     title: "Formación Profesional para la ",
     highlight: "Seguridad Pública",
     description: "Excelencia en la capacitación policial de Santa Fe.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAvaEOIMJGf0iuo77SwPXyeq58RisrCodJnHO_A5nWqC_u_d9qc1rmMIycEyPeU3tdW3_Sl9Z94S6MXFiyZxsWA4Rd0SoysiNuKJAzrbmf017_9ELCtLt5vtCVpluTIfKP93bJcuVWK5O9833CIrd8TcQ4eN0TWUVFgYpH6RHxNbux1DYMSMnSiXyywcDLLiP1zis5BTU5GO_3bSxg8lCzNK9T7gaXG7QSlj8XgKoos7-MuLTQJGzuorDGMaskd6viS06b4TT5cFyE",
+    img: "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1600&h=700&fit=crop",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const SLIDES = [
     title: "Formando líderes en ",
     highlight: "Seguridad Pública",
     description: "Cinco escuelas especializadas para la formación policial integral.",
-    img: "https://picsum.photos/seed/isep-escuelas/1600/600",
+    img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1600&h=700&fit=crop",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const SLIDES = [
     title: "Carreras y cursos de ",
     highlight: "alto nivel",
     description: "Desde la formación inicial hasta la educación a distancia.",
-    img: "https://picsum.photos/seed/isep-oferta/1600/600",
+    img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600&h=700&fit=crop",
   },
 ];
 
