@@ -1,29 +1,20 @@
-/**
- * pages/Institucional/ElIseP.jsx
- * 
- * Placeholder temporal — reemplazar con contenido real
- */
+import Placeholder from "../../components/Placeholder";
+
+const FEATURES = [
+  "Historia y trayectoria del Instituto",
+  "Misión, visión y valores institucionales",
+  "Cifras clave de la formación policial",
+  "Sedes y sedes históricas",
+];
 
 export default function ElIseP() {
   return (
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <section className="page-hero">
-        <div className="page-hero__inner">
-          <span className="badge">Institucional</span>
-          <h1 className="hero-title">
-            El <span>ISeP</span>
-          </h1>
-          <p className="hero-description">
-            Conocé nuestra institución, misión y valores
-          </p>
-        </div>
-      </section>
-
-      <div className="container-max" style={{ padding: "4rem 2rem" }}>
-        <p style={{ color: "var(--slate-500)", textAlign: "center" }}>
-          Contenido en construcción — Próximamente
-        </p>
-      </div>
-    </main>
+    <Placeholder
+      badge="Institucional"
+      title="El"
+      highlight="ISeP"
+      description="Conocé nuestra institución, misión y valores"
+      features={FEATURES}
+    />
   );
 }

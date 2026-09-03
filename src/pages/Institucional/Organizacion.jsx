@@ -1,29 +1,20 @@
-/**
- * pages/Institucional/Organizacion.jsx
- * 
- * Placeholder temporal — reemplazar con contenido real
- */
+import Placeholder from "../../components/Placeholder";
+
+const FEATURES = [
+  "Organigrama institucional interactivo",
+  "Dirección General y areas dependientes",
+  "Vicerrectorados y secretarías",
+  "Relaciones interinstitucionales",
+];
 
 export default function Organizacion() {
   return (
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <section className="page-hero">
-        <div className="page-hero__inner">
-          <span className="badge">Institucional</span>
-          <h1 className="hero-title">
-            Nuestra <span>Organización</span>
-          </h1>
-          <p className="hero-description">
-            Estructura organizativa del Instituto de Seguridad Pública
-          </p>
-        </div>
-      </section>
-
-      <div className="container-max" style={{ padding: "4rem 2rem" }}>
-        <p style={{ color: "var(--slate-500)", textAlign: "center" }}>
-          Contenido en construcción — Próximamente
-        </p>
-      </div>
-    </main>
+    <Placeholder
+      badge="Institucional"
+      title="Nuestra"
+      highlight="Organización"
+      description="Estructura organizativa del Instituto de Seguridad Pública"
+      features={FEATURES}
+    />
   );
 }

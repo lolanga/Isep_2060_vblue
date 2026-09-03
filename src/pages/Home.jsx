@@ -4,7 +4,7 @@ import Apps from "../components/Apps";
 import CTA from "../components/CTA";
 import News from "../components/News";
 import Schools from "../components/Schools";
-
+import Testimonios from "../components/Testimonios";
 
 // Home ahora contiene landing completa
 export default function Home() {
@@ -15,6 +15,7 @@ export default function Home() {
       <CTA />
       <News />
       <Schools />
+      <Testimonios />
     </>
   );
 }

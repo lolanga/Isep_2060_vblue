@@ -101,6 +101,8 @@ export const carreras = [
       "Formación integral de base para el personal policial, con eje en la seguridad pública, los derechos humanos y la práctica profesional.",
     duracion: "2 años",
     modalidad: "Presencial",
+    inscripciones: "abiertas",
+    fechaInscripcion: "Hasta 30/09/2025",
     requisitos: [
       "Ser argentino nativo o naturalizado",
       "Edad entre 18 y 30 años",
@@ -117,6 +119,8 @@ export const carreras = [
       "Carrera superior orientada a la gestión, planificación y dirección de la seguridad pública en el ámbito provincial.",
     duracion: "4 años",
     modalidad: "Semipresencial",
+    inscripciones: "proximamente",
+    fechaInscripcion: "Desde 01/03/2026",
     requisitos: [
       "Ser miembro del ISeP o recomendar ingreso institucional",
       "Estudios secundarios completos",
@@ -132,6 +136,8 @@ export const carreras = [
       "Formación técnica especializada en procedimientos de investigación criminal y análisis de evidencia.",
     duracion: "3 años",
     modalidad: "Presencial",
+    inscripciones: "cerradas",
+    fechaInscripcion: null,
     requisitos: [
       "Ser personal de la fuerza en actividad",
       "Estudios secundarios completos",
@@ -147,6 +153,8 @@ export const carreras = [
       "Capacitación técnica enfocada en el control y la prevención de la siniestralidad vial.",
     duracion: "6 meses",
     modalidad: "Presencial",
+    inscripciones: "abiertas",
+    fechaInscripcion: "Hasta 15/08/2025",
     requisitos: [
       "Ser personal policial en actividad",
       "Estudios secundarios completos",

@@ -1,31 +1,20 @@
-/**
- * pages/Institucional/Autoridades.jsx
- * 
- * Placeholder temporal — reemplazar con contenido real
- */
+import Placeholder from "../../components/Placeholder";
+
+const FEATURES = [
+  "Director General del ISeP",
+  "Vicerrector de Formación",
+  "Directores de cada Escuela",
+  "Cargos y contactos oficiales",
+];
 
 export default function Autoridades() {
   return (
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      {/* Hero similar al de Noticias */}
-      <section className="page-hero">
-        <div className="page-hero__inner">
-          <span className="badge">Institucional</span>
-          <h1 className="hero-title">
-            Nuestras <span>Autoridades</span>
-          </h1>
-          <p className="hero-description">
-            Los responsables de la dirección que guían nuestra labor educativa
-          </p>
-        </div>
-      </section>
-
-      {/* Contenido temporal */}
-      <div className="container-max" style={{ padding: "4rem 2rem" }}>
-        <p style={{ color: "var(--slate-500)", textAlign: "center" }}>
-          Contenido en construcción — Reemplazar con información institucional real
-        </p>
-      </div>
-    </main>
+    <Placeholder
+      badge="Institucional"
+      title="Nuestras"
+      highlight="Autoridades"
+      description="Los responsables de la dirección que guían nuestra labor educativa"
+      features={FEATURES}
+    />
   );
 }
