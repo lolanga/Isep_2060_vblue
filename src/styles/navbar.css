@@ -33,16 +33,40 @@
   letter-spacing: -0.05em;
   color: var(--primary);
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand__escudo {
+  height: 2rem;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand__text {
+  display: inline;
 }
 
 .brand--desktop {
-  display: block;
+  display: flex;
 }
 
-/* En móvil el logo se mantiene visible y compacto */
+/* Tablet: solo escudo, sin texto */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .brand__text {
+    display: none;
+  }
+}
+
+/* Móvil: solo texto, sin escudo */
 @media (max-width: 767px) {
   .brand {
     font-size: 1rem;
+  }
+
+  .brand__escudo {
+    display: none;
   }
 }
 
@@ -255,6 +279,8 @@
   border: none;
   padding: 0.25rem;
   cursor: pointer;
+  position: relative;
+  z-index: 60;
 }
 
 @media (min-width: 768px) {
@@ -284,8 +310,8 @@
 .hamburger__line {
   display: block;
   width: 100%;
-  height: 2px;
-  background-color: var(--primary);
+  height: 2.5px;
+  background-color: #1e293b;
   border-radius: 2px;
   transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
   transform-origin: center;

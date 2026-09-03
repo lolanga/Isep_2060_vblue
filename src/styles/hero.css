@@ -240,7 +240,7 @@
 /* Indicadores (dots) */
 .hero-dots {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
@@ -250,7 +250,7 @@
 
 @media (max-width: 640px) {
   .hero-dots {
-    bottom: 1.25rem;
+    bottom: 1rem;
     gap: 0.5rem;
   }
 }

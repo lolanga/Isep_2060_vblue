@@ -100,9 +100,19 @@
 
 .cta-section {
   padding: 5rem 0;
-  background-color: var(--primary);
+  background: var(--gradient-primary);
   position: relative;
   overflow: hidden;
+}
+
+.cta-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.12) 0, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(0,0,0,0.08) 0, transparent 50%);
+  pointer-events: none;
 }
 
 .cta-flex {
