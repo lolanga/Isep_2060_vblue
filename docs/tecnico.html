@@ -16,118 +16,137 @@
       --bg: #f9f9ff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Consolas', 'Menlo', 'Courier New', monospace; color: var(--text); background: var(--bg); line-height: 1.6; padding-bottom: 3rem; }
-    header { background: var(--primary); color: #fff; padding: 3rem 2rem; text-align: center; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; padding-bottom: 3rem; }
+    header { background: linear-gradient(90deg, var(--grad-1), var(--grad-2)); color: #fff; padding: 3rem 2rem; text-align: center; }
     header h1 { font-size: 1.9rem; margin-bottom: .5rem; }
-    header p { opacity: .85; font-size: .9rem; }
-    main { max-width: 880px; margin: 0 auto; padding: 2.5rem 1.5rem; }
-    h2 { color: var(--primary); font-size: 1.35rem; margin: 2.5rem 0 1rem; padding-bottom: .4rem; border-bottom: 2px solid var(--grad-1); }
-    h3 { color: var(--secondary); font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+    header p { opacity: .9; font-size: .95rem; }
+    main { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+    h2 { color: var(--primary); font-size: 1.4rem; margin: 2.5rem 0 1rem; padding-bottom: .4rem; border-bottom: 2px solid var(--grad-1); }
+    h3 { color: var(--secondary); font-size: 1.1rem; margin: 1.5rem 0 .5rem; }
     p, li { margin-bottom: .5rem; }
     ul, ol { padding-left: 1.4rem; margin-bottom: 1rem; }
-    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .82rem; }
-    th, td { border: 1px solid var(--border); padding: .5rem .65rem; text-align: left; vertical-align: top; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .9rem; }
+    th, td { border: 1px solid var(--border); padding: .55rem .7rem; text-align: left; }
     th { background: var(--primary); color: #fff; }
     tr:nth-child(even) td { background: #fff; }
-    code { background: #eef2ff; color: var(--primary); padding: .1rem .35rem; border-radius: 4px; font-size: .82rem; }
-    pre { background: var(--primary); color: #dbeafe; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: .8rem; margin: 1rem 0; }
-    pre code { background: transparent; color: inherit; padding: 0; }
-    .token-list { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
-    .token { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--grad-1); padding: .5rem .7rem; border-radius: 6px; font-size: .78rem; }
-    @media (max-width: 640px) {
-      header h1 { font-size: 1.3rem; }
+    code { background: #eef2ff; color: var(--primary); padding: .1rem .35rem; border-radius: 4px; font-size: .85rem; }
+    pre { background: #0f172a; color: #e2e8f0; padding: 1rem 1.2rem; border-radius: 8px; overflow-x: auto; font-size: .82rem; margin: 1rem 0; }
+    .note { background: #fff; border-left: 4px solid var(--grad-1); padding: .8rem 1rem; border-radius: 0 6px 6px 0; margin: 1rem 0; }
+    @media (max-width: 560px) {
+      header h1 { font-size: 1.4rem; }
       main { padding: 1.5rem 1rem; }
-      .token-list { grid-template-columns: 1fr; }
-      table { font-size: .7rem; }
+      table { font-size: .78rem; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Especificaciones Técnicas</h1>
-    <p>React 19 · Vite 8 · React Router 7 — ISeP Santa Fe</p>
+    <p>Sitio Web ISeP Santa Fe — React 19 + Vite 8 + React Router 7</p>
   </header>
 
   <main>
-    <h2>1. Stack</h2>
+    <h2>1. Stack tecnológico</h2>
     <table>
       <tr><th>Capa</th><th>Tecnología</th><th>Versión</th></tr>
       <tr><td>Framework</td><td>React</td><td>^19.2.4</td></tr>
       <tr><td>Build</td><td>Vite</td><td>^8.0.8</td></tr>
       <tr><td>Router</td><td>react-router-dom</td><td>^7.13.2</td></tr>
-      <tr><td>Íconos</td><td>Material Symbols / lucide / react-icons</td><td>—</td></tr>
+      <tr><td>Íconos</td><td>Material Symbols, lucide-react, react-icons</td><td>—</td></tr>
+      <tr><td>Compilador</td><td>babel-plugin-react-compiler</td><td>^1.0.0</td></tr>
       <tr><td>Lint</td><td>ESLint</td><td>^9.39.4</td></tr>
     </table>
 
     <h2>2. Estructura de directorios</h2>
-    <pre><code>src/
-├── main.jsx            # Entry + imports CSS
-├── App.jsx             # Router + layout global
+    <pre>src/
+├── main.jsx                # Entry point + imports de CSS
+├── App.jsx                 # Router principal + layout global
+├── assets/                 # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
-│   ├── Navbar.jsx      ├── Hero.jsx     ├── News.jsx
-│   ├── Apps.jsx        ├── Schools.jsx  ├── CTA.jsx
-│   ├── Footer.jsx      └── FloatWhatsApp.jsx
-├── data/               # escuelas.js, cursos.js, noticias.js
-├── pages/              # Home, Noticias, Institucional/, Escuelas/, Ingreso/, Secretaria/
+│   ├── Navbar.jsx          # Navegación global (desktop + mobile)
+│   ├── Hero.jsx, News.jsx  # Hero y noticias (Home)
+│   ├── Apps.jsx            # Aplicaciones institucionales
+│   ├── Schools.jsx         # Cuadrícula de escuelas (con escudos)
+│   ├── CTA.jsx             # Llamado a la acción
+│   ├── Footer.jsx          # Footer global (5 bloques)
+│   ├── EscuelaTemplate.jsx # Plantilla reutilizable de escuela
+│   └── FloatWhatsApp.jsx   # Botón flotante de WhatsApp
+├── data/
+│   └── institucional.js    # Datos mock: escuelas/carreras/cursos/convocatorias/FAQ
+├── pages/
+│   ├── Home.jsx, Noticias.jsx
+│   ├── Institucional/      # ElISeP, Autoridades, Organizacion, Resoluciones,
+│   │                       # SedesContacto, OfertaEducativa, Carrera
+│   ├── Escuelas/           # 5 páginas (usan EscuelaTemplate)
+│   ├── Ingreso/            # Convocatorias, ProximasConvocatorias, Requisitos, Proceso, Faq
+│   └── Secretaria/         # Titulos, Biblioteca, Cursos
 └── styles/
-    ├── variables.css   # Design tokens (gradiente central)
-    ├── base.css        # Reset, utilidades, .btn-cta
-    ├── navbar.css      ├── hero.css     ├── news.css
-    ├── noticias.css    ├── schools-cta.css
-    ├── apps.css        ├── footer.css
-    └── responsive.css  # Ajustes mobile-first</code></pre>
+    ├── variables.css       # Tokens + gradiente institucional
+    ├── base.css            # Reset, tipografía, .btn-cta
+    ├── navbar.css          # Navegación
+    ├── hero.css            # Hero + overlays + .page-hero
+    ├── news.css, noticias.css, schools-cta.css, apps.css
+    ├── oferta.css          # Vistas dinámicas (cards, filtros, acordeón, escuela)
+    ├── footer.css          # Footer
+    └── responsive.css      # Mobile-first</pre>
 
     <h2>3. Sistema de diseño</h2>
-    <h3>Tokens clave</h3>
-    <div class="token-list">
-      <div class="token"><code>--primary</code> #00254d</div>
-      <div class="token"><code>--secondary</code> #0055c9</div>
-      <div class="token"><code>--gradient-primary</code> linear-gradient(90deg, #227bd1, #17be95)</div>
-      <div class="token"><code>--gradient-glow</code> 0 6px 18px #1bb4c373</div>
-      <div class="token"><code>--gradient-hover-lift</code> translateY(-1px)</div>
-      <div class="token"><code>--color-start</code> #227bd1 / <code>--color-end</code> #17be95</div>
-    </div>
+    <h3>Tokens clave (variables.css)</h3>
+    <table>
+      <tr><th>Token</th><th>Valor</th><th>Uso</th></tr>
+      <tr><td><code>--primary</code></td><td>#00254d</td><td>Navy (marca)</td></tr>
+      <tr><td><code>--gradient-primary</code></td><td>linear-gradient(90deg,#227bd1,#17be95)</td><td>Gradiente institucional</td></tr>
+      <tr><td><code>--gradient-glow</code></td><td>0 6px 18px #1bb4c373</td><td>Brillo</td></tr>
+      <tr><td><code>--gradient-hover-lift</code></td><td>translateY(-1px)</td><td>Elevación hover</td></tr>
+      <tr><td><code>--color-start / --color-end</code></td><td>#227bd1 / #17be95</td><td>Extremos del gradiente</td></tr>
+    </table>
 
-    <h3>Gradiente institucional (uniforme)</h3>
-    <p>Centralizado en <code>--gradient-primary</code>. Se aplica a:</p>
-    <ul>
-      <li><strong>Botones:</strong> btn-cta, btn-cta-light, btn-isep, btn-download.</li>
-      <li><strong>Activos:</strong> filtro-btn--active, pag-num--active.</li>
-      <li><strong>Hover nav:</strong> nav-link, dropdown trigger, dropdown-item (fondo + texto blanco + glow).</li>
-      <li><strong>Hover cards:</strong> school, app, card, mini-card, hcard (sombra + borde).</li>
-      <li><strong>Overlays:</strong> gradiente + scrim oscuro para contraste.</li>
-    </ul>
+    <h3>Gradiente (uniforme)</h3>
+    <p>Centralizado en <code>--gradient-primary</code>, aplicado a botones (<code>.btn-cta</code>), activos (<code>.oferta-tab--active</code>, <code>.filtro-btn--active</code>), hovers de navegación y cards, y a los overlays de imagen combinado con scrim oscuro.</p>
 
-    <h3>Overlay con contraste</h3>
-    <pre><code>background:
-  linear-gradient(to right, rgba(0,21,43,0.88), rgba(0,37,77,0.72) 45%, ...),
-  var(--gradient-primary);</code></pre>
+    <h3>Overlays y contraste</h3>
+    <pre>background:
+  linear-gradient(to right, rgba(0,21,43,0.88), …),  ← scrim oscuro
+  var(--gradient-primary);                           ← gradiente institucional</pre>
+    <p>Clases: <code>.hero-overlay</code>, <code>.np-img-overlay</code>, <code>.hcard-overlay</code>, <code>.page-hero</code> (interiores) y <code>.escuela-hero</code>.</p>
 
-    <h2>4. Responsive</h2>
+    <h2>4. Responsive (obligatorio)</h2>
     <table>
       <tr><th>Breakpoint</th><th>Ancho</th><th>Comportamiento</th></tr>
-      <tr><td>Móvil</td><td>&lt; 768px</td><td>Menú hamburguesa, 1 columna, botones full-width</td></tr>
-      <tr><td>Tablet</td><td>768–1023px</td><td>Nav desktop, 2 columnas</td></tr>
-      <tr><td>Desktop</td><td>≥ 1024px</td><td>3-4+ columnas, layout completo</td></tr>
+      <tr><td>Móvil</td><td>&lt; 768px</td><td>Hamburguesa, grids de 1 columna</td></tr>
+      <tr><td>Tablet</td><td>768–1023px</td><td>Nav desktop, grids de 2 columnas</td></tr>
+      <tr><td>Desktop</td><td>≥ 1024px</td><td>Grids de 3-4+ columnas</td></tr>
     </table>
-    <p><strong>Principios:</strong> tipografía fluida con <code>clamp()</code>, hero con <code>100svh</code>, grids CSS nativos, paddings/títulos reducidos en móvil, Mi ISeP siempre visible.</p>
+    <ul>
+      <li>Tipografía fluida con <code>clamp()</code>; hero con <code>100svh</code>.</li>
+      <li>Botones CTA full-width en móvil (≤480px).</li>
+      <li>En móvil: logo enlazable + <strong>Mi ISeP siempre visible</strong>.</li>
+      <li>Dropdowns desktop con panel <code>top: calc(100% + 1.25rem)</code>.</li>
+    </ul>
 
-    <h2>5. Rutas principales</h2>
-    <pre><code>&lt;BrowserRouter&gt;
+    <h2>5. Rutas (App.jsx)</h2>
+    <pre>&lt;BrowserRouter&gt;
   &lt;Navbar /&gt;
-  &lt;Routes&gt; {/* 20 rutas */} &lt;/Routes&gt;
+  &lt;Routes&gt;{/* 20 rutas */}&lt;/Routes&gt;
   &lt;Footer /&gt;
   &lt;FloatWhatsApp /&gt;
-&lt;/BrowserRouter&gt;</code></pre>
+&lt;/BrowserRouter&gt;</pre>
+    <p>Navbar, Footer y FloatWhatsApp son globales. 20 rutas: Home, Noticias, 6 Institucional, 5 Escuelas, 5 Ingreso, 3 Secretaría.</p>
 
-    <h2>6. Comandos</h2>
+    <h2>6. Datos (mock)</h2>
+    <p>Datos simulados en <code>src/data/institucional.js</code>: <code>escuelas</code>, <code>carreras</code>, <code>cursos</code>, <code>convocatorias</code>, <code>preguntasFrecuentes</code> y helpers (<code>escuelaPorId</code>, <code>carrerasDeEscuela</code>, <code>cursosDeEscuela</code>). Escudos en <code>src/assets/</code>. En el futuro se reemplazarán por un backend.</p>
+
+    <h2>7. Plantilla de escuela</h2>
+    <p><code>EscuelaTemplate.jsx</code> recibe <code>escuelaId</code> y renderiza Logo, Presentación, Información, Carreras, Cursos actuales (acceso a Mi ISeP), Noticias y Contacto. Las 5 páginas de <code>/escuelas/*</code> son wrappers.</p>
+
+    <h2>8. Comandos</h2>
     <table>
       <tr><th>Comando</th><th>Descripción</th></tr>
-      <tr><td>npm install</td><td>Instala dependencias</td></tr>
-      <tr><td>npm run dev</td><td>Servidor de desarrollo</td></tr>
-      <tr><td>npm run build</td><td>Build de producción</td></tr>
-      <tr><td>npm run preview</td><td>Previsualiza el build</td></tr>
-      <tr><td>npm run lint</td><td>ESLint</td></tr>
+      <tr><td><code>npm install</code></td><td>Instala dependencias</td></tr>
+      <tr><td><code>npm run dev</code></td><td>Servidor de desarrollo (puerto 5173)</td></tr>
+      <tr><td><code>npm run build</code></td><td>Build de producción</td></tr>
+      <tr><td><code>npm run preview</code></td><td>Previsualiza el build</td></tr>
+      <tr><td><code>npm run lint</code></td><td>ESLint</td></tr>
     </table>
   </main>
 </body>

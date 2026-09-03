@@ -22,11 +22,12 @@ SPA con **React 19 + Vite 8 + React Router 7** y **100% responsive**.
 ```
 src/
 ├── main.jsx, App.jsx
-├── components/   Navbar, Hero, News, Apps, Schools, CTA, Footer, FloatWhatsApp
-├── data/         escuelas, cursos, noticias
+├── components/   Navbar, Hero, News, Apps, Schools, CTA, Footer,
+│                 EscuelaTemplate, FloatWhatsApp
+├── data/         institucional.js (escuelas, carreras, cursos, convocatorias, FAQ)
 ├── pages/        Home, Noticias, Institucional, Escuelas, Ingreso, Secretaria
-└── styles/       variables, base, navbar, hero, news, noticias,
-                  schools-cta, apps, footer, responsive
+└── styles/       variables, base, navbar, hero, news, noticias, schools-cta,
+                  apps, oferta, footer, responsive
 ```
 
 ## Sistema de diseño
@@ -50,5 +51,10 @@ npm run lint    # eslint
 
 - `/` — Home (Hero, Noticias, Aplicaciones, Escuelas, CTA)
 - `/noticias` — listado con filtro y paginación
-- `/institucional/*`, `/escuelas/*`, `/ingreso/*`, `/secretaria/*` — páginas internas
-  (algunas en estado placeholder "Próximamente")
+- `/institucional/*` — secciones institucionales (El ISeP, Autoridades, Organización, Normativa y Resoluciones, Sedes y Contacto)
+- `/institucional/oferta-educativa` — Oferta Académica dinámica (Carreras / Cursos / Convocatorias)
+- `/institucional/carreras` — vista general de carreras
+- `/escuelas/*` — 5 páginas de escuela con plantilla común (Logo, Presentación, Información, Carreras, Cursos, Noticias, Contacto)
+- `/ingreso/*` — Convocatorias vigentes, Próximas, Requisitos, Proceso y Preguntas frecuentes
+- `/secretaria/cursos` — Cursos con filtros por Escuela / Tipo / Estado y acceso a Mi ISeP
+- `/secretaria/titulos`, `/secretaria/biblioteca` — en estado placeholder

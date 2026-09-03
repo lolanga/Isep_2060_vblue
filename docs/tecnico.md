@@ -22,38 +22,41 @@
 
 ```
 src/
-├── main.jsx                 # Entry point + imports de CSS
+├── main.jsx                 # Entry point + imports de CSS (orden: variables→base→componentes)
 ├── App.jsx                  # Router principal + layout global
-├── assets/                  # Imágenes (escudos, logos)
+├── assets/                  # Imágenes (escudos: EP, ES, EE, EI, EaD, ISeP)
 ├── components/
 │   ├── Navbar.jsx           # Navegación global (desktop + mobile)
 │   ├── Hero.jsx             # Banner principal
 │   ├── News.jsx             # Sección noticias del Home
 │   ├── Apps.jsx             # Aplicaciones institucionales
-│   ├── Schools.jsx          # Cuadrícula de escuelas
+│   ├── Schools.jsx          # Cuadrícula de escuelas (cada una con su escudo)
 │   ├── CTA.jsx              # Llamado a la acción (inscripciones)
-│   ├── Footer.jsx           # Pie de página global
+│   ├── Footer.jsx           # Pie de página global (5 bloques)
+│   ├── EscuelaTemplate.jsx  # Plantilla reutilizable de escuela
 │   └── FloatWhatsApp.jsx    # Botón flotante de WhatsApp
 ├── data/
-│   ├── escuelas.js          # Metadatos de escuelas (sin consumir aún)
-│   ├── cursos.js            # Cursos (sin consumir aún)
-│   └── noticias.js          # (vacío — datos hardcodeados en Noticias.jsx)
+│   └── institucional.js     # Datos mock: escuelas, carreras, cursos, convocatorias, FAQ
 ├── pages/
 │   ├── Home.jsx
 │   ├── Noticias.jsx
-│   ├── Institucional/       # 7 páginas (1 implementada, resto placeholder)
-│   ├── Escuelas/            # 5 páginas (placeholder)
-│   ├── Ingreso/             # 3 páginas (placeholder)
-│   └── Secretaria/          # 3 páginas (placeholder)
+│   ├── Institucional/       # ElISeP, Autoridades, Organizacion, Resoluciones,
+│   │                        # SedesContacto, OfertaEducativa (dinámica), Carrera
+│   ├── Escuelas/            # Policia, Superior, Especialidades, Investigaciones,
+│   │                        # EducacionDistancia (todas usan EscuelaTemplate)
+│   ├── Ingreso/             # Convocatorias, ProximasConvocatorias, Requisitos,
+│   │                        # Proceso, Faq
+│   └── Secretaria/          # Titulos, Biblioteca, Cursos (dinámico)
 └── styles/
     ├── variables.css        # Design tokens (incl. gradiente)
     ├── base.css             # Reset, tipografía, utilidades, .btn-cta
     ├── navbar.css           # Navegación
-    ├── hero.css             # Hero + overlays
+    ├── hero.css             # Hero + overlays + .page-hero
     ├── news.css             # Noticias (Home)
     ├── noticias.css         # Página /noticias
     ├── schools-cta.css      # Escuelas + CTA
     ├── apps.css             # Aplicaciones + WhatsApp
+    ├── oferta.css           # Vistas dinámicas: cards, filtros, acordeón, plantilla escuela
     ├── footer.css           # Footer
     └── responsive.css       # Ajustes globales mobile-first
 ```
@@ -85,7 +88,7 @@ src/
 El sistema de gradiente se centraliza en `--gradient-primary` y se aplica a:
 
 - **Botones:** `.btn-cta`, `.btn-cta-light`, `.btn-isep`, `.btn-download`.
-- **Interactive/activos:** `.filtro-btn--active`, `.pag-num--active`.
+- **Interactive/activos:** `.filtro-btn--active`, `.pag-num--active`, `.oferta-tab--active`.
 - **Hover de navegación:** `.nav-link:hover`, `.nav-dropdown__trigger:hover`, `.dropdown-item:hover` (fondo gradiente + texto blanco + glow).
 - **Hover de cards:** `.school-card:hover`, `.app-card:hover`, `.card:hover`, `.mini-card:hover`, `.hcard:hover` (sombra + borde gradiente).
 - **Overlays de imagen:** se combina el gradiente con un **scrim oscuro** (navy) para garantizar el contraste del texto.
@@ -103,6 +106,8 @@ background:
 - `.hero-overlay` → textura oscura a la izquierda (donde vive el texto).
 - `.np-img-overlay` → para la noticia principal.
 - `.hcard-overlay` → para tarjetas de historial.
+- `.page-hero` → hero de páginas interiores (placeholders y vistas implementadas) con scrim oscuro.
+- `.escuela-hero` → banner de cada escuela.
 
 ---
 
@@ -128,6 +133,7 @@ background:
 
 - Hamburger visible solo en móvil; menú desplegable con acordeones.
 - **Mi ISeP siempre visible** (`.btn-isep` con `white-space: nowrap` y padding compacto).
+- **Logo ISeP visible y enlazable** en móvil y desktop (vuelve a `/`).
 - Dropdowns desktop con panel `top: calc(100% + 1.25rem)` (separado del header).
 
 ---
@@ -139,26 +145,47 @@ Todas las rutas se declaran en `App.jsx` dentro de `<BrowserRouter>`. El `Navbar
 ```jsx
 <BrowserRouter>
   <Navbar />
-  <Routes>{/* ... 20 rutas ... */}</Routes>
+  <Routes>{/* ... rutas ... */}</Routes>
   <Footer />
   <FloatWhatsApp />
 </BrowserRouter>
 ```
 
+Rutas registradas: Home, Noticias, 6 Institucional, 5 Escuelas, 5 Ingreso y 3 Secretaría (20 rutas totales).
+
 ---
 
-## 6. Comandos
+## 6. Datos (mock)
+
+Los datos de la sección académica son **simulados** y viven en `src/data/institucional.js`. En una etapa futura se reemplazarán por consultas a un backend.
+
+| Export | Contenido |
+|---|---|
+| `escuelas` | 5 escuelas (id, nombre, logo, presentación, información de contacto). |
+| `carreras` | Carreras con escuela, descripción, duración, modalidad, requisitos y documentos. |
+| `cursos` | Cursos con tipo, información, período, estado (actual/próximo/finalizado) y escuela. |
+| `convocatorias` | Convocatorias con estado (vigente/próxima), tipo, fecha y escuela. |
+| `preguntasFrecuentes` | Preguntas y respuestas para el ingreso (FAQ). |
+| `escuelaPorId` / `carrerasDeEscuela` / `cursosDeEscuela` | Helpers de búsqueda. |
+
+Los escudos institucionales se importan desde `src/assets/` (escudo_EP, ES, EE, EI, EaD, ISeP).
+
+---
+
+## 7. Plantilla de escuela (EscuelaTemplate)
+
+`src/components/EscuelaTemplate.jsx` recibe `escuelaId` y renderiza:
+Logo, Presentación, Información, Carreras, Cursos actuales (con acceso a Mi ISeP), Noticias y Contacto.
+Las 5 páginas de `/escuelas/*` son wrappers que delegan en esta plantilla.
+
+---
+
+## 8. Comandos
 
 | Comando | Descripción |
 |---|---|
 | `npm install` | Instala dependencias |
-| `npm run dev` | Servidor de desarrollo (Vite) |
+| `npm run dev` | Servidor de desarrollo (Vite, puerto 5173) |
 | `npm run build` | Build de producción |
 | `npm run preview` | Previsualiza el build |
 | `npm run lint` | Ejecuta ESLint |
-
----
-
-## 7. Diseño de datos
-
-Los archivos de datos (`data/escuelas.js`, `data/cursos.js`) contienen modelos ricos pero **aún no son consumidos** por los componentes. Los datos de noticias están hardcodeados en `pages/Noticias.jsx`. El archivo `data/noticias.js` está vacío.
