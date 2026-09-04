@@ -92,17 +92,18 @@ export const escuelas = [
 ];
 
 // ── Carreras ─────────────────────────────────────────────────────────────
+// Fuentes: isepsantafe.edu.ar/index.php/institucional/oferta-educativa
 export const carreras = [
   {
     id: 1,
-    nombre: "Profesionalización Policial",
+    nombre: "Auxiliar en Seguridad",
     escuela: "policia",
     descripcion:
-      "Formación integral de base para el personal policial, con eje en la seguridad pública, los derechos humanos y la práctica profesional.",
-    duracion: "2 años",
+      "Capacitación en la prevención de delitos y la protección de la vida y los bienes de las personas, en el marco de respeto a los derechos humanos. Carrera de nivel terciario con reconocimiento oficial.",
+    duracion: "Variable",
     modalidad: "Presencial",
     inscripciones: "abiertas",
-    fechaInscripcion: "Hasta 30/09/2025",
+    fechaInscripcion: "Según convocatoria",
     requisitos: [
       "Ser argentino nativo o naturalizado",
       "Edad entre 18 y 30 años",
@@ -113,53 +114,53 @@ export const carreras = [
   },
   {
     id: 2,
-    nombre: "Licenciatura en Seguridad Pública",
-    escuela: "superior",
+    nombre: "Técnico Superior en Seguridad Pública y Ciudadana con orientación Policial",
+    escuela: "policia",
     descripcion:
-      "Carrera superior orientada a la gestión, planificación y dirección de la seguridad pública en el ámbito provincial.",
-    duracion: "4 años",
-    modalidad: "Semipresencial",
+      "Especialización para la dirección y administración institucional, y la conducción de recursos humanos. Forma profesionales con capacidad para trabajar en ambientes interdisciplinarios y multiculturales.",
+    duracion: "3 años",
+    modalidad: "Presencial",
     inscripciones: "proximamente",
-    fechaInscripcion: "Desde 01/03/2026",
+    fechaInscripcion: "Según convocatoria",
     requisitos: [
-      "Ser miembro del ISeP o recomendar ingreso institucional",
+      "Ser argentino nativo o naturalizado",
+      "Edad entre 18 y 30 años",
       "Estudios secundarios completos",
-      "Aptitud psicofísica",
+      "Apto médico y psicofísico",
     ],
-    documentos: ["DNI", "Certificado de estudios", "Constancia institucional"],
+    documentos: ["DNI", "Partida de nacimiento", "Certificado de estudios", "Antecedentes penales"],
   },
   {
     id: 3,
-    nombre: "Tecnicatura en Investigación Criminal",
-    escuela: "investigaciones",
+    nombre: "Cursos de Perfeccionamiento",
+    escuela: "superior",
     descripcion:
-      "Formación técnica especializada en procedimientos de investigación criminal y análisis de evidencia.",
-    duracion: "3 años",
+      "El I.Se.P. organiza periódicamente jornadas y seminarios destinados a todo el personal policial de distintas jerarquías y agrupamientos. Cursos de capacitación permanente.",
+    duracion: "Variable",
     modalidad: "Presencial",
-    inscripciones: "cerradas",
-    fechaInscripcion: null,
+    inscripciones: "proximamente",
+    fechaInscripcion: "Según convocatoria",
     requisitos: [
-      "Ser personal de la fuerza en actividad",
-      "Estudios secundarios completos",
-      "Aptitud psicofísica",
+      "Personal policial en actividad",
+      "Según el curso específico",
     ],
-    documentos: ["DNI", "Certificado de estudios", "Constancia de pertenencia"],
+    documentos: ["DNI", "Constancia institucional"],
   },
   {
     id: 4,
-    nombre: "Curso de Especialización en Seguridad Vial",
-    escuela: "especialidades",
+    nombre: "Acceso a Títulos de Grado (Convenios con Universidades)",
+    escuela: "superior",
     descripcion:
-      "Capacitación técnica enfocada en el control y la prevención de la siniestralidad vial.",
-    duracion: "6 meses",
-    modalidad: "Presencial",
-    inscripciones: "abiertas",
-    fechaInscripcion: "Hasta 15/08/2025",
+      "Se realizan convenios con universidades para posibilitar el acceso a títulos de grado para el personal policial que egresa del ISeP.",
+    duracion: "Variable",
+    modalidad: "Semipresencial",
+    inscripciones: "proximamente",
+    fechaInscripcion: "Según convenio",
     requisitos: [
-      "Ser personal policial en actividad",
-      "Estudios secundarios completos",
+      "Egresado del ISeP",
+      "Según el convenio universitario vigente",
     ],
-    documentos: ["DNI", "Certificado de estudios"],
+    documentos: ["DNI", "Título del ISeP", "Constancia de egreso"],
   },
 ];
 

@@ -98,7 +98,7 @@ Carrusel de 3 egresados con flechas y dots.
 ## 6. Formación
 
 ### 6.1 Oferta Académica
-Vista dinámica con 3 pestañas: Carreras, Cursos, Convocatorias.
+Grid de las 4 escuelas del ISeP con presentación real, Carreras (Auxiliar en Seguridad, Técnico Superior), Cursos y Convocatorias.
 
 ### 6.2 Carreras
 Tarjetas con header coloreado por escuela, chips, estado de inscripción y hover animado.
@@ -130,7 +130,7 @@ Landing con **proceso de selección de la Escuela de Policía Ciclo 2027–2028*
 Aperturas para próximos ciclos.
 
 ### 7.3 Requisitos
-Condiciones y documentación.
+10 requisitos reales del sitio (ser argentino, 18-30 años, título secundario, aptitud psicofísica, etc.) + documentación requerida + formularios obligatorios.
 
 ### 7.4 Proceso de ingreso
 Pasos detallados.
@@ -172,17 +172,20 @@ En páginas interiores: **Inicio** / Sección / Página actual. Clic en cualquie
 ---
 
 ## 10. Normativa y Resoluciones
-11 documentos oficiales descargables. Filtros por año y tipo. Chips coloreados.
+17 documentos oficiales descargables. Filtros por año y tipo. Chips coloreados.
 
 ---
 
 ## 11. Biblioteca Virtual
-12 recursos bibliográficos reales del ISeP. Filtros por tipo (Manual, Publicación, Protocolo, Resolución). Chips coloreados.
+21 artículos reales del ISeP con links de descarga directa a PDFs. Filtros por categoría: Normativa, Protocolos, Formación, Institucional.
+
+## 11.1 Títulos y Certificaciones
+Consulta de certificados por DNI, proceso de 3 pasos para solicitar títulos, links de descarga de títulos, contacto y sedes.
 
 ---
 
 ## 12. Sedes y Contacto
-2 sedes con Google Maps embebido, dirección, teléfono, email y horario.
+2 sedes con Google Maps embebido: D.Z.S – Rosario (Leandro N. Alem 2050, tel 341-4728526) y DZCN – Recreo (RN11, km 482, tel 342-4815570). Canales de contacto y tarjetas de redes sociales.
 
 ---
 

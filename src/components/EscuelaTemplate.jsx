@@ -16,7 +16,7 @@ import {
   cursosDeEscuela,
 } from "../data/institucional";
 
-const MI_ISEP = "https://miisep.edu.ar";
+const MI_ISEP = "https://mi.isepsantafe.edu.ar";
 
 export default function EscuelaTemplate({ escuelaId }) {
   const escuela = escuelaPorId(escuelaId);

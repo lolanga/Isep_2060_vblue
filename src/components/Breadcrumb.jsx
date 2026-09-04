@@ -17,7 +17,7 @@ export default function Breadcrumb({ items }) {
       color: "#64748b",
       flexWrap: "wrap",
       padding: "0.75rem 1rem",
-      marginTop: "1rem",
+      marginTop: "2rem",
       background: "#f8fafc",
       borderRadius: "0.5rem",
       border: "1px solid #eef2f7",

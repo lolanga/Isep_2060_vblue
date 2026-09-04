@@ -1,8 +1,8 @@
 /**
  * pages/Institucional/Carrera.jsx
  *
- * Vista general de la oferta académica (carreras).
- * Grid de hits con fecha de inscripción, estado, y links rápidos.
+ * Detalle de carreras del ISeP.
+ * Fuente: isepsantafe.edu.ar/index.php/institucional/oferta-educativa
  */
 
 import { Link } from "react-router-dom";
@@ -34,10 +34,18 @@ export default function Carrera() {
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
-            { label: "Formación" },
+            { label: "Institucional", to: "/institucional/oferta-educativa" },
             { label: "Carreras" },
           ]}
         />
+
+        {/* ── Presentación general ── */}
+        <section style={{ background: "#f8fafc", borderRadius: "0.75rem", padding: "1.25rem", border: "1px solid #eef2f7", marginBottom: "2rem" }}>
+          <p style={{ fontSize: "0.9rem", color: "#475569", lineHeight: 1.6 }}>
+            El I.Se.P. ofrece carreras de nivel terciario con reconocimiento oficial.
+            Además, se realizan jornadas, seminarios y convenios con universidades para posibilitar el acceso a títulos de grado.
+          </p>
+        </section>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 320px), 1fr))", gap: "1.25rem", marginTop: "2rem" }}>
           {carreras.map((carrera) => {

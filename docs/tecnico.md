@@ -27,7 +27,7 @@ src/
 ├── assets/                  # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
 │   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger
-│   ├── Hero.jsx             # Slider 3 slides Unsplash
+│   ├── Hero.jsx             # Slider 3 slides picsum.photos
 │   ├── SearchBox.jsx        # Buscador global agrupado
 │   ├── News.jsx             # Sección noticias Home (datos reales + links)
 │   ├── Apps.jsx             # 4 apps institucionales
@@ -46,8 +46,8 @@ src/
 ├── data/
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, FAQ
 │   ├── noticias.js          # 11 noticias (compartido)
-│   ├── normativa.js         # 11 resoluciones (compartido)
-│   └── buscador.js          # 58 entradas + buscar() + buscarAgrupado()
+│   ├── normativa.js         # 17 resoluciones (compartido)
+│   └── buscador.js          # 64+ entradas + buscar() + buscarAgrupado()
 ├── pages/
 │   ├── Home.jsx             # 7 secciones
 │   ├── Noticias.jsx         # Filtro + paginación + links a detalle
@@ -57,7 +57,7 @@ src/
 │   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
 │   ├── Ingreso/             # Convocatorias (contenido real), ProximasConvocatorias,
 │   │                        # Requisitos, Proceso, Faq (12 preguntas)
-│   └── Secretaria/          # Titulos, Biblioteca (12 recursos), Cursos
+│   └── Secretaria/          # Titulos (contenido real), Biblioteca (21 artículos), Cursos
 └── styles/
     ├── variables.css        # Design tokens + gradiente
     ├── base.css             # Reset, tipografía, fondo global, .chip, .page-main
@@ -140,6 +140,7 @@ src/
 
 ### 5.1 Breadcrumb (`Breadcrumb.jsx`)
 - Fondo `#f8fafc`, borde `#eef2f7`
+- Margen superior: 2rem
 - Links color `--primary`, último en negrita
 
 ### 5.2 Countdown (`Countdown.jsx`)
@@ -168,7 +169,7 @@ src/
 | Export | Contenido |
 |---|---|
 | `escuelas` | 5 escuelas con datos oficiales + emails de contacto |
-| `carreras` | 4 carreras con inscripciones/fechaInscripcion |
+| `carreras` | 4 carreras con datos oficiales del sitio |
 | `cursos` | 6+ cursos con tipo, período, estado |
 | `convocatorias` | Convocatorias con estado, tipo, fecha |
 | `preguntasFrecuentes` | 12 preguntas y respuestas |
@@ -180,11 +181,11 @@ src/
 
 ### 6.3 normativa.js
 
-11 resoluciones con: id, titulo, tipo, fecha, tamano, url.
+17 resoluciones con: id, titulo, tipo, fecha, tamano, url.
 
 ### 6.4 buscador.js
 
-58 entradas agrupadas por tipo. Funciones: `buscar()`, `buscarAgrupado()`.
+64+ entradas agrupadas por tipo. Funciones: `buscar()`, `buscarAgrupado()`.
 
 ---
 
@@ -200,7 +201,7 @@ src/
 
 ## 8. Hero slider
 
-- 3 slides Unsplash, automático (6s), pausa en hover
+- 3 slides picsum.photos, automático (6s), pausa en hover
 - Flechas + dots, altura `100svh`
 
 ---
@@ -211,10 +212,10 @@ src/
 background-attachment: fixed;
 background-color: #bcd8db;
 background-image:
-  linear-gradient(90deg, #ffffff40 1px, #0000 0),
-  linear-gradient(180deg, #ffffff40 1px, #0000 0),
-  radial-gradient(circle at 10% 20%, #208caf59 0, #0000 45%),
-  radial-gradient(circle at 90% 80%, #00c3964d 0, #0000 45%);
+  /* linear-gradient(90deg, #ffffff40 1px, #0000 0),
+  linear-gradient(180deg, #ffffff40 1px, #0000 0), */
+  radial-gradient(circle at 10% 20%, #208caf15 0, #0000 45%),
+  radial-gradient(circle at 90% 80%, #00c39612 0, #0000 45%);
 ```
 
 ---
@@ -224,8 +225,8 @@ background-image:
 | Archivo | Tamaño |
 |---|---|
 | `index.html` | 0.72 kB |
-| `index.css` | 37.58 kB (gzip: 7.45 kB) |
-| `index.js` | 392.67 kB (gzip: 114.80 kB) |
+| `index.css` | 37.23 kB (gzip: 7.45 kB) |
+| `index.js` | 445 kB (gzip: 114.80 kB) |
 | Módulos | 86 |
 | Build time | ~6-10s |
 

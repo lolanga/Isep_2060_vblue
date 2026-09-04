@@ -64,7 +64,7 @@
 ├── assets/                  # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
 │   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger
-│   ├── Hero.jsx             # Slider 3 slides Unsplash
+│   ├── Hero.jsx             # Slider 3 slides picsum.photos
 │   ├── SearchBox.jsx        # Buscador global agrupado
 │   ├── News.jsx             # Sección noticias Home (datos reales + links)
 │   ├── Apps.jsx             # 4 apps institucionales
@@ -74,7 +74,7 @@
 │   ├── EscuelaTemplate.jsx  # Plantilla reutilizable de escuela
 │   ├── FloatWhatsApp.jsx    # WhatsApp flotante (z-60)
 │   ├── ScrollToTop.jsx      # Botón ir arriba (z-70, tras 400px)
-│   ├── Breadcrumb.jsx       # Migas de pan con home icon
+│   ├── Breadcrumb.jsx       # Migas de pan con home icon (Margen superior: 2rem)
 │   ├── Countdown.jsx        # Cuenta regresiva
 │   ├── Contadores.jsx       # Estadísticas animadas
 │   ├── Testimonios.jsx      # Carrusel testimonios
@@ -83,8 +83,8 @@
 ├── data/
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, FAQ
 │   ├── noticias.js          # 11 noticias (compartido)
-│   ├── normativa.js         # 11 resoluciones (compartido)
-│   └── buscador.js          # 58 entradas + buscar() + buscarAgrupado()
+│   ├── normativa.js         # 17 resoluciones (compartido)
+│   └── buscador.js          # 64+ entradas + buscar() + buscarAgrupado()
 ├── pages/
 │   ├── Home.jsx             # 7 secciones
 │   ├── Noticias.jsx         # Filtro + paginación + links a detalle
@@ -94,7 +94,7 @@
 │   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
 │   ├── Ingreso/             # Convocatorias (contenido real), ProximasConvocatorias,
 │   │                        # Requisitos, Proceso, Faq (12 preguntas)
-│   └── Secretaria/          # Titulos, Biblioteca (12 recursos), Cursos
+│   └── Secretaria/          # Titulos (contenido real), Biblioteca (21 artículos), Cursos
 └── styles/
     ├── variables.css        # Design tokens + gradiente
     ├── base.css             # Reset, tipografía, fondo global, .chip, .page-main
@@ -188,10 +188,10 @@
     <p>11 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img.</p>
 
     <h3>normativa.js</h3>
-    <p>11 resoluciones con: id, titulo, tipo, fecha, tamano, url.</p>
+    <p>17 resoluciones con: id, titulo, tipo, fecha, tamano, url.</p>
 
     <h3>buscador.js</h3>
-    <p>58 entradas agrupadas por tipo. Funciones: <code>buscar()</code>, <code>buscarAgrupado()</code>.</p>
+    <p>64+ entradas agrupadas por tipo. Funciones: <code>buscar()</code>, <code>buscarAgrupado()</code>.</p>
 
     <h2>7. Buscador funcional</h2>
     <h3>SearchBox (<code>src/components/SearchBox.jsx</code>)</h3>
@@ -205,7 +205,7 @@
 
     <h2>8. Hero slider</h2>
     <ul>
-      <li>3 slides Unsplash, automático (6s), pausa en hover.</li>
+      <li>3 slides picsum.photos, automático (6s), pausa en hover.</li>
       <li>Flechas + dots, altura <code>100svh</code>.</li>
       <li>Transiciones: fade suave (1s ease-in-out).</li>
     </ul>
@@ -214,10 +214,10 @@
     <pre>background-attachment: fixed;
 background-color: #bcd8db;
 background-image:
-  linear-gradient(90deg, #ffffff40 1px, #0000 0),
-  linear-gradient(180deg, #ffffff40 1px, #0000 0),
-  radial-gradient(circle at 10% 20%, #208caf59 0, #0000 45%),
-  radial-gradient(circle at 90% 80%, #00c3964d 0, #0000 45%);</pre>
+  /* linear-gradient(90deg, #ffffff40 1px, #0000 0), */
+  /* linear-gradient(180deg, #ffffff40 1px, #0000 0), */
+  radial-gradient(circle at 10% 20%, #208caf15 0, #0000 45%),
+  radial-gradient(circle at 90% 80%, #00c39612 0, #0000 45%);</pre>
 
     <h2>10. Build stats</h2>
     <table>
@@ -268,7 +268,7 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
                                         ▼
                                   NoticiaDetalle.jsx
                                   ├── Hero (imagen + overlay)
-                                  ├── Breadcrumb
+                                  ├── Breadcrumb (Margen superior: 2rem)
                                   ├── ShareButton
                                   ├── Contenido
                                   ├── Noticias relacionadas

@@ -11,7 +11,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { cursos, escuelas } from "../../data/institucional";
 
-const MI_ISEP = "https://miisep.edu.ar";
+const MI_ISEP = "https://mi.isepsantafe.edu.ar";
 
 function EstadoBadge({ estado }) {
   const map = {

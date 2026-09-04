@@ -61,10 +61,10 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/` | Home (7 secciones) | Implementada |
 | `/noticias` | Listado de noticias con filtro, paginación y detalle | Implementada |
 | `/noticias/:id` | Detalle de noticia individual (contenido, relacionadas) | Implementada |
-| `/institucional/el-isep` | El ISeP | Placeholder |
-| `/institucional/autoridades` | Autoridades | Placeholder |
+| `/institucional/el-isep` | El ISeP | Implementada |
+| `/institucional/autoridades` | Autoridades | Implementada |
 | `/institucional/organizacion` | Organización | Placeholder |
-| `/institucional/resoluciones` | Normativa y Resoluciones (11 documentos descargables) | Implementada |
+| `/institucional/resoluciones` | Normativa y Resoluciones (17 documentos descargables) | Implementada |
 | `/institucional/sedes-contacto` | Sedes y Contacto (Google Maps embebido) | Implementada |
 | `/institucional/oferta-educativa` | Oferta Académica (dinámica: Carreras/Cursos/Convocatorias) | Implementada |
 | `/institucional/carreras` | Carreras (grid hits con estado inscripción) | Implementada |
@@ -78,8 +78,8 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/ingreso/requisitos` | Requisitos | Implementada |
 | `/ingreso/proceso` | Proceso de ingreso | Implementada |
 | `/ingreso/faq` | Preguntas frecuentes (12 preguntas) | Implementada |
-| `/secretaria/titulos` | Títulos y Certificaciones | Placeholder |
-| `/secretaria/biblioteca` | Biblioteca Virtual (12 recursos reales) | Implementada |
+| `/secretaria/titulos` | Títulos y Certificaciones | Implementada |
+| `/secretaria/biblioteca` | Biblioteca Virtual (21 recursos bibliográficos reales del ISeP) | Implementada |
 | `/secretaria/cursos` | Cursos (dinámico con filtros) | Implementada |
 
 ---
@@ -88,7 +88,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 
 La página de inicio (`/`) está compuesta por las siguientes secciones, en orden:
 
-1. **Hero Slider** — Banner principal con slider automático (3 slides Unsplash), transiciones suaves, flechas de navegación y indicadores (dots).
+1. **Hero Slider** — Banner principal con slider automático (3 slides con imagen de picsum.photos), transiciones suaves, flechas de navegación y indicadores (dots).
 2. **Aplicaciones Institucionales** — 4 accesos: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail.
 3. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
 4. **CTA Inscripciones** — Bloque con countdown + botones.
@@ -194,7 +194,7 @@ Grid de tarjetas mejoradas:
 | Página | Contenido |
 |---|---|
 | **Próximas convocatorias** | Aperturas anunciadas |
-| **Requisitos** | Condiciones y documentación |
+| **Requisitos** | 10 requisitos reales del sitio + documentación + formularios obligatorios |
 | **Proceso de ingreso** | Pasos detallados |
 | **Preguntas frecuentes** | 12 preguntas en acordeón |
 
@@ -213,8 +213,8 @@ Grid de tarjetas mejoradas:
 
 ## 8. Normativa y Resoluciones (`/institucional/resoluciones`)
 
-- **11 documentos** oficiales descargables
-- **Filtros por año** (Todos, 2025, 2024, 2023, 2022)
+- **17 documentos** oficiales descargables
+- **Filtros por año** (Todos, 2026, 2025, 2024, 2023, 2022)
 - **Filtros por tipo** (Resolución, Convenio, Plan Estratégico, Estatuto)
 - Chips coloreados por tipo, botón Descargar, Breadcrumb
 
@@ -222,18 +222,29 @@ Grid de tarjetas mejoradas:
 
 ## 9. Biblioteca Virtual (`/secretaria/biblioteca`)
 
-- **12 recursos bibliográficos** reales del ISeP
-- Filtros por tipo: Manual, Publicación, Protocolo, Resolución
+- **21 artículos reales del ISeP** con categorías: Normativa, Protocolos, Formación, Institucional
 - Chips coloreados por tipo
-- Botón de descarga por recurso
+- Botón de descarga por recurso (enlaces directos a PDFs de isepsantafe.edu.ar)
+
+---
+
+## 9.1 Títulos y Certificaciones (`/secretaria/titulos`)
+
+- **Consulta de Certificados** — Formulario de búsqueda por DNI con feedback visual
+- **Títulos y Registros** — Proceso de 3 pasos (verificar título, escanear documentos, formulario online)
+- **Links externos:** santafe.gov.ar (verificar título), Google Forms (formulario de solicitud)
+- **Títulos para retirar** — 2 links de descarga (formato nuevo y anterior) de Google Drive
+- **Contacto:** Sección Títulos y Registros, tel 0341-4728526, correo titulosisep@isepsantafe.edu.ar
+- **Sedes:** Rosario y Recreo con direcciones
 
 ---
 
 ## 10. Sedes y Contacto (`/institucional/sedes-contacto`)
 
 2 sedes con **Google Maps embebido**:
-- **D.Z.S – Rosario:** Leandro N. Alem 2050
-- **DZCN – Recreo:** RN11, km 482
+- **D.Z.S – Rosario:** Leandro N. Alem 2050, tel 341-4728526
+- **DZCN – Recreo:** RN11, km 482, tel 342-4815570
+- Canales de contacto y redes sociales
 
 ---
 
@@ -276,7 +287,7 @@ Sección "Aplicaciones Institucionales" en el home (4 apps):
 ## 13. Breadcrumb
 
 Componente `Breadcrumb.jsx`:
-- Fondo `#f8fafc`, borde `#eef2f7`
+- Fondo `#f8fafc`, borde `#eef2f7`, margen superior 2rem respecto al contenido
 - Ícono home enlazable, separadores "/"
 - Último elemento en negrita
 

@@ -33,10 +33,10 @@ src/
 
 ## Funcionalidades principales
 
-- **Hero Slider:** banner automático con 3 slides, transiciones suaves, flechas y dots.
-- **Buscador funcional:** indexa escuelas, carreras, cursos, convocatorias y páginas institucionales. Resultados dinámicos con navegación por teclado.
+- **Hero Slider:** banner automático con 3 slides (picsum.photos), transiciones suaves, flechas y dots.
+- **Buscador funcional:** indexa escuelas, carreras, cursos, convocatorias, noticias, normativa y páginas institucionales. Resultados dinámicos con navegación por teclado.
 - **Íconos en navegación:** cada sección del menú tiene un ícono de Material Symbols.
-- **Fondo decorativo global:** patrón sutil con `background-attachment: fixed`, color base `#bcd8db` y gradientes radiales/lineales.
+- **Fondo decorativo global:** patrón sutil con `background-attachment: fixed`, color base `#bcd8db` y gradientes radiales tenues.
 - **Escudos institucionales:** cada tarjeta de escuela muestra su escudo.
 - **Plantilla de escuela reutilizable:** las 5 escuelas usan `EscuelaTemplate`.
 
@@ -61,10 +61,11 @@ npm run lint    # eslint
 
 - `/` — Home (Hero Slider, Noticias, Aplicaciones, Escuelas, CTA)
 - `/noticias` — listado con filtro y paginación
-- `/institucional/*` — secciones institucionales (El ISeP, Autoridades, Organización, Normativa y Resoluciones, Sedes y Contacto)
-- `/institucional/oferta-educativa` — Oferta Académica dinámica (Carreras / Cursos / Convocatorias)
-- `/institucional/carreras` — vista general de carreras
+- `/institucional/*` — El ISeP, Autoridades, Organización, Normativa y Resoluciones (17 docs), Sedes y Contacto (redes sociales)
+- `/institucional/oferta-educativa` — Oferta Académica (4 escuelas, carreras reales, cursos, convocatorias)
+- `/institucional/carreras` — vista general de carreras con datos oficiales
 - `/escuelas/*` — 5 páginas de escuela con plantilla común (Logo, Presentación, Información, Carreras, Cursos, Noticias, Contacto)
-- `/ingreso/*` — Convocatorias vigentes, Próximas, Requisitos, Proceso y Preguntas frecuentes
+- `/ingreso/*` — Convocatorias vigentes (contenido real Esc. Policía 2027–2028), Próximas, Requisitos (10 items), Proceso y Preguntas frecuentes
+- `/secretaria/titulos` — Títulos y Certificaciones (consulta por DNI, proceso 3 pasos, descargas)
+- `/secretaria/biblioteca` — Biblioteca Virtual (21 artículos reales con links PDF)
 - `/secretaria/cursos` — Cursos con filtros por Escuela / Tipo / Estado y acceso a Mi ISeP
-- `/secretaria/titulos`, `/secretaria/biblioteca` — en estado placeholder

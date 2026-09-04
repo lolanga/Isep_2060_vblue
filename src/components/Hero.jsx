@@ -14,7 +14,7 @@ const SLIDES = [
     title: "Formación Profesional para la ",
     highlight: "Seguridad Pública",
     description: "Excelencia en la capacitación policial de Santa Fe.",
-    img: "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1600&h=700&fit=crop",
+    img: "https://picsum.photos/seed/isep-formacion/1600/700",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const SLIDES = [
     title: "Formando líderes en ",
     highlight: "Seguridad Pública",
     description: "Cinco escuelas especializadas para la formación policial integral.",
-    img: "https://images.unsplash.com/photo-1632999878340-2c7995da9d8a?w=1600&h=700&fit=crop",
+    img: "https://picsum.photos/seed/isep-escuelas/1600/700",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const SLIDES = [
     title: "Carreras y cursos de ",
     highlight: "alto nivel",
     description: "Desde la formación inicial hasta la educación a distancia.",
-    img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1600&h=700&fit=crop",
+    img: "https://picsum.photos/seed/isep-oferta/1600/700",
   },
 ];
 
@@ -68,7 +68,11 @@ export default function Hero() {
           key={s.id}
           className={`hero-bg${i === current ? " hero-bg--active" : ""}`}
         >
-          <img src={s.img} alt={s.title + s.highlight} />
+          <img
+            src={s.img}
+            alt={s.title + s.highlight}
+            onError={(e) => { e.target.style.display = "none"; }}
+          />
           <div className="hero-overlay"></div>
         </div>
       ))}
