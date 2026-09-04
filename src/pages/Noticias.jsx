@@ -93,6 +93,24 @@ export default function Noticias() {
                 <div className="np-img-wrap">
                   <img src={principal.img} alt={principal.titulo} />
                   <div className="np-img-overlay"></div>
+                  {principal.adjuntos && principal.adjuntos.length > 0 && (
+                    <span style={{
+                      position: "absolute",
+                      top: "1rem",
+                      right: "1rem",
+                      background: "rgba(255,255,255,0.9)",
+                      borderRadius: "50%",
+                      width: "36px",
+                      height: "36px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+                      zIndex: 3
+                    }}>
+                      <span className="material-symbols-outlined" style={{ fontSize: "20px", color: "var(--primary)" }}>attach_file</span>
+                    </span>
+                  )}
                   <div className="np-img-text">
                     <span className="np-fecha">{principal.fecha}</span>
                     <h2 className="np-titulo">{principal.titulo}</h2>
@@ -125,6 +143,23 @@ export default function Noticias() {
                       <span className={`hcard-cat badge-categoria badge-categoria--${n.categoria.toLowerCase()}`}>
                         {n.categoria.toUpperCase()}
                       </span>
+                      {n.adjuntos && n.adjuntos.length > 0 && (
+                        <span style={{
+                          position: "absolute",
+                          top: "0.75rem",
+                          right: "0.75rem",
+                          background: "rgba(255,255,255,0.9)",
+                          borderRadius: "50%",
+                          width: "28px",
+                          height: "28px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          boxShadow: "0 2px 6px rgba(0,0,0,0.15)"
+                        }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: "16px", color: "var(--primary)" }}>attach_file</span>
+                        </span>
+                      )}
                     </div>
                     <div className="hcard-body">
                       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>

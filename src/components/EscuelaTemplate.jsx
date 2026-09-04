@@ -174,6 +174,18 @@ export default function EscuelaTemplate({ escuelaId }) {
                     }}>
                       {n.categoria}
                     </span>
+                    {n.adjuntos && n.adjuntos.length > 0 && (
+                      <span style={{
+                        position: "absolute", top: "0.5rem", right: "0.5rem",
+                        background: "rgba(255,255,255,0.9)",
+                        borderRadius: "50%",
+                        width: "24px", height: "24px",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        boxShadow: "0 1px 4px rgba(0,0,0,0.15)"
+                      }}>
+                        <span className="material-symbols-outlined" style={{ fontSize: "14px", color: "var(--primary)" }}>attach_file</span>
+                      </span>
+                    )}
                   </div>
                   <div style={{ padding: "1rem" }}>
                     <h3 className="card__title" style={{ fontSize: "0.9rem", marginBottom: "0.4rem", lineHeight: 1.3 }}>{n.titulo}</h3>
