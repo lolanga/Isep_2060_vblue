@@ -341,6 +341,7 @@ Cada noticia se define en `src/data/noticias.js` con la siguiente estructura:
   fechaCorta: "24 MAY",        // Formato corto (para cards)
   excerpt: "Extracto breve de la noticia...",
   img: "/img/noticias/imagen.jpg",  // URL de imagen (local o externa)
+  escuelas: ["policia"],            // (opcional) IDs de escuelas asociadas
   adjuntos: [                          // (opcional) documentos adjuntos
     { nombre: "Nombre del archivo.pdf", url: "/docs/archivo.pdf" },
   ],
@@ -350,6 +351,7 @@ Cada noticia se define en `src/data/noticias.js` con la siguiente estructura:
 
 > **Campo `contenido`:** si se define, se usa como cuerpo de la noticia en el detalle. Si no se define, se genera un texto genérico a partir del título y excerpt. Separar párrafos con doble salto de línea (`\n\n`).
 > **Campo `adjuntos`:** lista de archivos para descargar (PDF, Excel, JPG, PNG, etc.). Colocar archivos en `public/docs/`.
+> **Campo `escuelas`:** array con IDs de escuelas (`policia`, `superior`, `especialidades`, `investigaciones`, `ead`). Si se define, la noticia aparece en las páginas de esas escuelas.
 
 ### 18.2 Pasos para publicar una noticia nueva
 

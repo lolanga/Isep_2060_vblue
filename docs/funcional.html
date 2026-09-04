@@ -258,10 +258,12 @@
   adjuntos: [
     { nombre: "Resolución 123.pdf", url: "/docs/resolucion-123.pdf" }
   ],
+  escuelas: ["policia", "superior", "especialidades", "investigaciones", "ead"],
   contenido: `Primer párrafo.\n\nSegundo párrafo.`
 }</pre>
     <div class="note"><strong>Campo <code>contenido</code>:</strong> si se define, se usa como cuerpo de la noticia en el detalle. Si no se define, se genera un texto genérico a partir del título y excerpt.</div>
     <div class="note"><strong>Campo <code>adjuntos</code>:</strong> array opcional de objetos <code>{ nombre, url }</code>. Cada adjunto se renderiza como botón de descarga en el detalle de la noticia. El campo <code>nombre</code> es el texto visible del botón y <code>url</code> es la ruta relativa (desde <code>public/</code>) o URL absoluta del archivo.</div>
+    <div class="note"><strong>Campo <code>escuelas</code>:</strong> array de IDs de escuelas asociadas a la noticia. Valores válidos: <code>"policia"</code>, <code>"superior"</code>, <code>"especialidades"</code>, <code>"investigaciones"</code>, <code>"ead"</code>. Las noticias se filtran automáticamente en las páginas de escuela según este campo.</div>
 
     <h3>18.2 Pasos para publicar</h3>
     <ol>
@@ -274,7 +276,7 @@
         900×500 px (16:9), JPG/PNG, &lt;200 KB.</li>
       <li><strong>Definir categoría:</strong> Institucional | Académica | Escuelas | Eventos | Convenios.</li>
       <li><strong>Colocar archivos adjuntos en <code>public/docs/</code>:</strong> colocar los archivos (PDF, DOC, etc.) que se quieran adjuntar a la noticia en la carpeta <code>public/docs/</code>. Si no hay adjuntos, omitir este paso.</li>
-      <li><strong>Agregar en <code>src/data/noticias.js</code>:</strong> nuevo objeto al array con id único. Ejemplo:
+      <li><strong>Agregar en <code>src/data/noticias.js</code>:</strong> nuevo objeto al array con id único y campo <code>escuelas</code> para asociar la noticia a escuelas específicas. Ejemplo:
         <pre>{
   id: 14,
   titulo: "Título descriptivo",
@@ -286,6 +288,7 @@
   adjuntos: [
     { nombre: "Resolución adjunta.pdf", url: "/docs/resolucion.pdf" }
   ],
+  escuelas: ["policia"],
   contenido: `Primer párrafo del cuerpo.
 
 Segundo párrafo con más detalle.`,
@@ -309,7 +312,7 @@ Segundo párrafo con más detalle.`,
       <tr><td>1</td><td>Imagen</td><td>Preparar 900×500 px</td></tr>
       <tr><td>2</td><td>—</td><td>Definir categoría</td></tr>
       <tr><td>3</td><td><code>public/docs/</code></td><td>Colocar archivos adjuntos (si aplica)</td></tr>
-      <tr><td>4</td><td><code>noticias.js</code></td><td>Agregar objeto al array (con campo <code>adjuntos</code> si aplica)</td></tr>
+      <tr><td>4</td><td><code>noticias.js</code></td><td>Agregar objeto al array (con campos <code>adjuntos</code> y <code>escuelas</code> si aplica)</td></tr>
       <tr><td>5</td><td><code>buscador.js</code></td><td>Automático (importa de noticias.js)</td></tr>
       <tr><td>6</td><td><code>npm run dev</code></td><td>Verificar visualmente</td></tr>
       <tr><td>7</td><td><code>npm run build</code></td><td>Confirmar build limpio</td></tr>

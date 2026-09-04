@@ -257,6 +257,7 @@ interface Noticia {
   fechaCorta: string;    // "3 SEP"
   excerpt: string;       // Extracto (1-2 oraciones)
   img: string;           // URL de imagen (900×500 px)
+  escuelas?: string[];   // (Opcional) IDs: "policia" | "superior" | "especialidades" | "investigaciones" | "ead"
   adjuntos?: {           // (Opcional) documentos adjuntos
     nombre: string;      // Nombre para mostrar
     url: string;         // Ruta relativa: /docs/archivo.pdf

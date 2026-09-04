@@ -15,6 +15,7 @@ import {
   carrerasDeEscuela,
   cursosDeEscuela,
 } from "../data/institucional";
+import { noticias } from "../data/noticias";
 
 const MI_ISEP = "https://mi.isepsantafe.edu.ar";
 
@@ -25,6 +26,10 @@ export default function EscuelaTemplate({ escuelaId }) {
   const carreras = carrerasDeEscuela(escuelaId);
   const cursos = cursosDeEscuela(escuelaId).filter((c) => c.estado !== "finalizado");
   const info = escuela.informacion;
+
+  const noticiasEscuela = noticias
+    .filter((n) => n.escuelas && n.escuelas.includes(escuelaId))
+    .slice(0, 3);
 
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
@@ -145,9 +150,50 @@ export default function EscuelaTemplate({ escuelaId }) {
             <span className="material-symbols-outlined">newspaper</span>
             Noticias
           </h2>
-          <p style={{ color: "var(--slate-500)" }}>
-            Noticias y novedades de la {escuela.nombre} próximamente.
-          </p>
+          {noticiasEscuela.length > 0 ? (
+            <div className="grid-2" style={{ gap: "1.25rem" }}>
+              {noticiasEscuela.map((n) => (
+                <Link
+                  key={n.id}
+                  to={`/noticias/${n.id}`}
+                  className="card"
+                  style={{ textDecoration: "none", overflow: "hidden" }}
+                >
+                  <div style={{ position: "relative", height: "160px", overflow: "hidden", borderRadius: "0.5rem", marginBottom: "1rem" }}>
+                    <img
+                      src={n.img}
+                      alt={n.titulo}
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      onError={(e) => { e.target.style.background = "var(--primary-light)"; e.target.style.display = "block"; }}
+                    />
+                    <span style={{
+                      position: "absolute", top: "0.5rem", left: "0.5rem",
+                      background: "var(--primary)", color: "#fff",
+                      padding: "0.2rem 0.6rem", borderRadius: "1rem",
+                      fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase"
+                    }}>
+                      {n.categoria}
+                    </span>
+                  </div>
+                  <h3 className="card__title" style={{ fontSize: "1rem", marginBottom: "0.5rem" }}>{n.titulo}</h3>
+                  <p className="card__desc" style={{ fontSize: "0.85rem", marginBottom: "0.5rem" }}>{n.excerpt}</p>
+                  <span style={{ fontSize: "0.78rem", color: "var(--slate-400)", marginTop: "auto" }}>{n.fechaCorta}</span>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p style={{ color: "var(--slate-500)" }}>
+              No hay noticias publicadas para esta escuela.
+            </p>
+          )}
+          {noticiasEscuela.length > 0 && (
+            <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
+              <Link to="/noticias" className="btn-ghost" style={{ fontSize: "0.9rem" }}>
+                Ver todas las noticias
+                <span className="material-symbols-outlined" style={{ fontSize: "1rem" }}>arrow_forward</span>
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 

@@ -185,7 +185,7 @@
     </table>
 
     <h3>noticias.js</h3>
-    <p>11 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img.</p>
+    <p>11 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img, adjuntos, escuelas.</p>
 
     <h3>normativa.js</h3>
     <p>17 resoluciones con: id, titulo, tipo, fecha, tamano, url.</p>
@@ -251,13 +251,14 @@ background-image:
   excerpt: string;
   img: string;           // 900×500 px
   adjuntos?: { nombre: string; url: string; }[];
+  escuelas?: ("policia" | "superior" | "especialidades" | "investigaciones" | "ead")[];
   contenido?: string;
 }</pre>
     <h3>Archivos a modificar</h3>
     <table>
       <tr><th>Archivo</th><th>Acción</th></tr>
       <tr><td><code>public/docs/</code></td><td>Colocar archivos adjuntos (PDF, DOC, etc.)</td></tr>
-      <tr><td><code>src/data/noticias.js</code></td><td>Agregar objeto al array <code>noticias</code> con campo <code>adjuntos</code></td></tr>
+      <tr><td><code>src/data/noticias.js</code></td><td>Agregar objeto al array <code>noticias</code> con campos <code>adjuntos</code> y <code>escuelas</code></td></tr>
       <tr><td><code>src/data/buscador.js</code></td><td>Automático (importa de noticias.js)</td></tr>
     </table>
     <h3>Imagen alusiva</h3>
