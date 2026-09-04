@@ -13,11 +13,15 @@ export default function Home() {
     <>
       <Hero />
       <Apps />
-      <Contadores />
+      <div className="hide-mobile">
+        <Contadores />
+      </div>
       <CTA />
       <News />
       <Schools />
-      <Testimonios />
+      <div className="hide-mobile">
+        <Testimonios />
+      </div>
     </>
   );
 }

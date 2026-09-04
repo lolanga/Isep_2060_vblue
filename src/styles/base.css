@@ -128,3 +128,14 @@ button {
   color: var(--primary);
   font-weight: 700;
 }
+
+/* ── Utilidades responsive ── */
+.hide-mobile {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
