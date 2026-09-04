@@ -414,3 +414,103 @@
   font-size: 1rem;
   font-weight: 500;
 }
+
+/* ── Contenido HTML de noticia ── */
+.noticia-contenido h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--slate-900);
+  margin: 2rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #eef2f7;
+}
+
+.noticia-contenido h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--slate-800);
+  margin: 1.5rem 0 0.75rem;
+}
+
+.noticia-contenido p {
+  margin-bottom: 1.25rem;
+}
+
+.noticia-contenido ul,
+.noticia-contenido ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.noticia-contenido li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.noticia-contenido strong {
+  color: var(--slate-900);
+  font-weight: 600;
+}
+
+.noticia-contenido a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.noticia-contenido a:hover {
+  color: var(--color-start);
+}
+
+.noticia-contenido .btn-inscripcion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.noticia-contenido .btn-inscripcion:hover {
+  background: var(--color-start);
+  transform: translateY(-1px);
+}
+
+.noticia-contenido blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: #f8fafc;
+  border-left: 4px solid var(--primary);
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+  color: var(--slate-600);
+}
+
+.noticia-contenido img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.noticia-contenido .info-box {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(0, 37, 77, 0.04), rgba(23, 190, 149, 0.04));
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+}
+
+.noticia-contenido .info-box strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}

@@ -349,7 +349,7 @@ Cada noticia se define en `src/data/noticias.js` con la siguiente estructura:
 }
 ```
 
-> **Campo `contenido`:** si se define, se usa como cuerpo de la noticia en el detalle. Si no se define, se genera un texto genérico a partir del título y excerpt. Separar párrafos con doble salto de línea (`\n\n`).
+> **Campo `contenido`:** soporta HTML (h2, h3, p, ul/ol, li, strong, a, img, blockquote, .btn-inscripcion, .info-box). Si el contenido empieza con `<`, se renderiza como HTML. Si no, se trata como texto plano con párrafos separados por `\n\n`.
 > **Campo `adjuntos`:** lista de archivos para descargar (PDF, Excel, JPG, PNG, etc.). Colocar archivos en `public/docs/`.
 > **Campo `escuelas`:** array con IDs de escuelas (`policia`, `superior`, `especialidades`, `investigaciones`, `ead`). Si se define, la noticia aparece en las páginas de esas escuelas. En `/noticias` se muestran todas las noticias sin importar este campo.
 

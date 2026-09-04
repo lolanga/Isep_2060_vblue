@@ -262,7 +262,7 @@ interface Noticia {
     nombre: string;      // Nombre para mostrar
     url: string;         // Ruta relativa: /docs/archivo.pdf
   }[];
-  contenido?: string;    // (Opcional) contenido completo para detalle
+  contenido?: string;    // (Opcional) HTML o texto plano (\n\n para párrafos)
 }
 ```
 

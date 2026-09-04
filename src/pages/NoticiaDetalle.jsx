@@ -117,17 +117,21 @@ export default function NoticiaDetalle() {
             {noticia.excerpt}
           </p>
 
-          <div style={{
-            fontSize: "0.95rem",
-            color: "#475569",
-            lineHeight: 1.8,
-          }}>
-            {(noticia.contenido || CONTENIDO_EJEMPLO(noticia.titulo, noticia.excerpt))
-              .split("\n\n")
-              .map((parrafo, i) => (
-                <p key={i} style={{ marginBottom: "1.25rem" }}>{parrafo}</p>
-              ))}
-          </div>
+          <div
+            className="noticia-contenido"
+            style={{
+              fontSize: "0.95rem",
+              color: "#475569",
+              lineHeight: 1.8,
+            }}
+            dangerouslySetInnerHTML={{
+              __html: noticia.contenido
+                ? (noticia.contenido.trim().startsWith("<")
+                    ? noticia.contenido
+                    : noticia.contenido.split("\n\n").map(p => `<p>${p}</p>`).join(""))
+                : CONTENIDO_EJEMPLO(noticia.titulo, noticia.excerpt).split("\n\n").map(p => `<p>${p}</p>`).join("")
+            }}
+          />
         </article>
 
         {/* Documentos adjuntos */}
