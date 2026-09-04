@@ -270,14 +270,16 @@ interface Noticia {
 | Archivo | Acción |
 |---|---|
 | `src/data/noticias.js` | Agregar objeto al array `noticias` |
-| `src/data/buscador.js` | Agregar entrada tipo "Noticia" al array |
-| `src/pages/NoticiaDetalle.jsx` | (Opcional) Personalizar contenido si se usa campo `contenido` |
+| `src/data/buscador.js` | Automático (importa de noticias.js) |
 
 ### 12.3 Imagen alusiva
 
+**Opción A (recomendada):** Imagen local en `public/img/noticias/`
+**Opción B:** URL externa
+**Opción C:** Placeholder: `https://picsum.photos/seed/{nombre}/900/500`
+
 - **Dimensiones:** 900×500 px (ratio 16:9)
 - **Formato:** JPG/PNG, <200 KB
-- **Placeholder:** `https://picsum.photos/seed/{nombre}/900/500`
 
 ### 12.4 Distribución de componentes
 

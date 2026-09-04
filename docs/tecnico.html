@@ -256,10 +256,16 @@ background-image:
     <h3>Archivos a modificar</h3>
     <table>
       <tr><th>Archivo</th><th>Acción</th></tr>
-      <tr><td><code>src/data/noticias.js</code></td><td>Agregar objeto al array</td></tr>
-      <tr><td><code>src/data/buscador.js</code></td><td>Agregar entrada tipo "Noticia"</td></tr>
-      <tr><td><code>src/pages/NoticiaDetalle.jsx</code></td><td>(Opcional) Personalizar contenido</td></tr>
+      <tr><td><code>src/data/noticias.js</code></td><td>Agregar objeto al array <code>noticias</code></td></tr>
+      <tr><td><code>src/data/buscador.js</code></td><td>Automático (importa de noticias.js)</td></tr>
     </table>
+    <h3>Imagen alusiva</h3>
+    <ul>
+      <li><strong>Opción A (recomendada):</strong> Imagen local en <code>public/img/noticias/</code></li>
+      <li><strong>Opción B:</strong> URL externa</li>
+      <li><strong>Opción C:</strong> Placeholder: <code>https://picsum.photos/seed/{nombre}/900/500</code></li>
+    </ul>
+    <p><strong>Dimensiones:</strong> 900×500 px (ratio 16:9). <strong>Formato:</strong> JPG/PNG, &lt;200 KB.</p>
     <h3>Diagrama de componentes</h3>
     <pre>Noticias.jsx ──── noticias[] ──── Link a /noticias/:id
                                         │

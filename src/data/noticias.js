@@ -5,6 +5,33 @@
 
 export const noticias = [
   {
+    id: 13,
+    titulo: "ISeP lanza nuevo programa de formación en Seguridad Comunitaria",
+    categoria: "Academica",
+    fecha: "4 DE SEPTIEMBRE, 2026",
+    fechaCorta: "4 SEP",
+    excerpt: "El Instituto de Seguridad Pública presenta una nueva carrera de formación orientada a la seguridad comunitaria con enfoque en derechos humanos.",
+    img: "/img/noticias/formacion-seguridad.png",
+    contenido: `El Instituto de Seguridad Pública de la Provincia de Santa Fe anuncia el lanzamiento del Programa de Formación en Seguridad Comunitaria, una nueva iniciativa académica diseñada para responder a las demandas contemporáneas de la seguridad pública.
+
+Este programa, que comenzará sus actividades en el primer semestre de 2027, está dirigido a personal policial en actividad y aspirantes que deseen especializarse en el abordaje comunitario de la seguridad.
+
+El contenido curricular incluye módulos sobre mediación comunitaria, resolución pacífica de conflictos, trabajo colaborativo con organizaciones barriales y técnicas de inteligencia comunitaria. Todo ello en el marco del respeto a los derechos humanos y las garantías constitucionales.
+
+"La seguridad pública del siglo XXI requiere profesionales preparados para trabajar con la comunidad, no solo para la comunidad", señaló la dirección del ISeP al presentar el programa.
+
+Los interesados podrán inscribirse a través de MI ISEP a partir del 1 de diciembre de 2026. Para más información, comunicarse al correo prensaydifusion@isepsantafe.edu.ar.`,
+  },
+  {
+    id: 12,
+    titulo: "noticia de prueba",
+    categoria: "Institucional",
+    fecha: "04 de septiembre, 2026",
+    fechaCorta: "04 SEP",
+    excerpt: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    img: "https://picsum.photos/seed/n1/900/500",
+  },
+  {
     id: 1,
     titulo: "Nueva citacion y notificacion para egresados",
     categoria: "Institucional",

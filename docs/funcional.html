@@ -254,16 +254,37 @@
   fecha: "3 DE SEPTIEMBRE, 2026",
   fechaCorta: "3 SEP",
   excerpt: "Extracto breve...",
-  img: "https://picsum.photos/seed/n12/900/500"
+  img: "https://picsum.photos/seed/n12/900/500",
+  contenido: `Primer párrafo.\n\nSegundo párrafo.`
 }</pre>
+    <div class="note"><strong>Campo <code>contenido</code>:</strong> si se define, se usa como cuerpo de la noticia en el detalle. Si no se define, se genera un texto genérico a partir del título y excerpt.</div>
 
     <h3>18.2 Pasos para publicar</h3>
     <ol>
-      <li><strong>Preparar imagen alusiva:</strong> 900×500 px (16:9), JPG/PNG, &lt;200 KB.</li>
+      <li><strong>Preparar imagen alusiva</strong> (3 opciones):
+        <ul>
+          <li><strong>Opción A (recomendada):</strong> Imagen local en <code>public/img/noticias/</code></li>
+          <li><strong>Opción B:</strong> URL externa</li>
+          <li><strong>Opción C:</strong> Placeholder con picsum.photos — <code>https://picsum.photos/seed/mi-noticia/900/500</code></li>
+        </ul>
+        900×500 px (16:9), JPG/PNG, &lt;200 KB.</li>
       <li><strong>Definir categoría:</strong> Institucional | Académica | Escuelas | Eventos | Convenios.</li>
-      <li><strong>Agregar en <code>src/data/noticias.js</code>:</strong> nuevo objeto al array con id único.</li>
-      <li><strong>Agregar en <code>src/data/buscador.js</code>:</strong> entrada tipo "Noticia" para que aparezca en búsquedas.</li>
-      <li><strong>Probar:</strong> <code>npm run dev</code>, verificar en home, /noticias y detalle.</li>
+      <li><strong>Agregar en <code>src/data/noticias.js</code>:</strong> nuevo objeto al array con id único. Ejemplo:
+        <pre>{
+  id: 14,
+  titulo: "Título descriptivo",
+  categoria: "Institucional",
+  fecha: "4 DE SEPTIEMBRE, 2026",
+  fechaCorta: "4 SEP",
+  excerpt: "Extracto de 1 a 2 oraciones.",
+  img: "/img/noticias/mi-imagen.jpg",
+  contenido: `Primer párrafo del cuerpo.
+
+Segundo párrafo con más detalle.`,
+}</pre>
+      </li>
+      <li><strong>Verificar el buscador:</strong> <code>src/data/buscador.js</code> importa directamente de <code>noticias.js</code>, por lo que la noticia aparecerá automáticamente en las búsquedas. No es necesario agregar nada manualmente.</li>
+      <li><strong>Probar:</strong> <code>npm run dev</code>, verificar en home, /noticias y detalle. Al hacer clic en la card, se abre el detalle con imagen, contenido (campo <code>contenido</code> si existe, o texto generado) y noticias relacionadas.</li>
       <li><strong>Confirmar:</strong> <code>npm run build</code> + <code>npm run lint</code>.</li>
     </ol>
 

@@ -122,7 +122,7 @@ export default function NoticiaDetalle() {
             color: "#475569",
             lineHeight: 1.8,
           }}>
-            {CONTENIDO_EJEMPLO(noticia.titulo, noticia.excerpt)
+            {(noticia.contenido || CONTENIDO_EJEMPLO(noticia.titulo, noticia.excerpt))
               .split("\n\n")
               .map((parrafo, i) => (
                 <p key={i} style={{ marginBottom: "1.25rem" }}>{parrafo}</p>

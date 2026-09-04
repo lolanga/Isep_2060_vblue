@@ -340,20 +340,36 @@ Cada noticia se define en `src/data/noticias.js` con la siguiente estructura:
   fecha: "24 DE MAYO, 2025",   // Formato largo
   fechaCorta: "24 MAY",        // Formato corto (para cards)
   excerpt: "Extracto breve de la noticia...",
-  img: "https://picsum.photos/seed/n1/900/500",  // URL de imagen alusiva
-  contenido: "..."              // (opcional) contenido completo para detalle
+  img: "/img/noticias/imagen.jpg",  // URL de imagen (local o externa)
+  contenido: "Primer párraco.\n\nSegundo párrafo.",  // (opcional) cuerpo completo
 }
 ```
+
+> **Campo `contenido`:** si se define, se usa como cuerpo de la noticia en el detalle. Si no se define, se genera un texto genérico a partir del título y excerpt. Separar párrafos con doble salto de línea (`\n\n`).
 
 ### 18.2 Pasos para publicar una noticia nueva
 
 #### Paso 1: Preparar la imagen alusiva
-- **Dimensiones recomendadas:** 900×500 px (relación 16:9) para la imagen principal.
-- **Formato:** JPG o PNG, peso máximo recomendado 200 KB.
-- **Alternativa:** usar un servicio como `picsum.photos` con seed para imagen placeholder:
-  ```
-  https://picsum.photos/seed/mi-noticia/900/500
-  ```
+
+**Opción A: Imagen local (recomendada)**
+1. Crear la carpeta `public/img/noticias/` si no existe
+2. Copiar ahí la imagen (ej: `formacion-seguridad.jpg`)
+3. Referenciarla en `noticias.js`:
+   ```javascript
+   img: "/img/noticias/formacion-seguridad.jpg",
+   ```
+
+**Opción B: URL externa**
+```javascript
+img: "https://isepsantafe.edu.ar/images/noticias/mi-noticia.jpg",
+```
+
+**Opción C: Placeholder (picsum.photos)**
+```javascript
+img: "https://picsum.photos/seed/mi-noticia/900/500",
+```
+
+**Especificaciones:** 900×500 px (ratio 16:9), JPG/PNG, máximo 200 KB.
 
 #### Paso 2: Definir la categoría
 Categorías disponibles:
@@ -371,43 +387,36 @@ Abrir el archivo `src/data/noticias.js` y agregar un nuevo objeto al array `noti
 
 ```javascript
 {
-  id: 12,  // Siguiente ID disponible (actualmente hay 11)
+  id: 14,  // Siguiente ID disponible
   titulo: "Título descriptivo de la noticia",
   categoria: "Institucional",
-  fecha: "3 DE SEPTIEMBRE, 2026",
-  fechaCorta: "3 SEP",
-  excerpt: "Extracto de 1 a 2 oraciones que resuma el contenido principal de la noticia.",
-  img: "https://picsum.photos/seed/n12/900/500",
+  fecha: "4 DE SEPTIEMBRE, 2026",
+  fechaCorta: "4 SEP",
+  excerpt: "Extracto de 1 a 2 oraciones que resuma el contenido principal.",
+  img: "/img/noticias/mi-imagen.jpg",
+  contenido: `Primer párrafo del cuerpo de la noticia.
+
+Segundo párrafo con más detalle.
+
+Tercer párrafo con información adicional.`,
 }
 ```
 
-> **Importante:** el `id` debe ser único. Verificar el último ID existente antes de agregar.
+> **Importante:** el `id` debe ser único. Verificar el último ID existente antes de agregar. El campo `contenido` usa backticks y se separan párrafos con `\n\n`.
 
-#### Paso 4: Verificar que aparezca en el buscador
+#### Paso 4: Verificar el buscador
 
-El archivo `src/data/buscador.js` también debe actualizarse para que la noticia aparezca en las búsquedas:
+El archivo `src/data/buscador.js` importa directamente de `noticias.js`, por lo que la noticia aparecerá automáticamente en las búsquedas. No es necesario agregar nada manualmente.
 
-```javascript
-// En el array noticias de buscador.js, agregar:
-{
-  tipo: "Noticia",
-  titulo: "Título descriptivo de la noticia",
-  ruta: "/noticias/12",  // Usar el ID asignado
-  keywords: "palabra1 palabra2 palabra3",
-}
-```
+#### Paso 5: Verificar el contenido
 
-#### Paso 5: Verificar el contenido de ejemplo
-
-Al hacer clic en "Leer nota completa" o en una card de noticia, se abre `/noticias/:id` con:
+Al hacer clic en una card de noticia, se abre `/noticias/:id` con:
 - Hero de imagen con overlay gradiente
-- Badged de categoría y fecha
+- Badge de categoría y fecha
 - Extracto destacado con borde izquierdo
-- Cuerpo de texto de ejemplo (generado automáticamente)
+- **Cuerpo de la noticia** (campo `contenido` si existe, o texto generado)
 - Noticias relacionadas (misma categoría)
 - Breadcrumb y botón de volver
-
-> **Nota:** el contenido del cuerpo se genera automáticamente a partir del título y extracto. Para contenido personalizado, se puede agregar un campo `contenido` al objeto de la noticia y modificar `NoticiaDetalle.jsx` para usarlo.
 
 #### Paso 6: Probar visualmente
 
