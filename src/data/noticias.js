@@ -33,35 +33,47 @@
 
 export const noticias = [
   {
-    id: 1,
-    titulo: "Noticia de ejemplo con formato HTML",
-    categoria: "Institucional",
-    fecha: "4 DE SEPTIEMBRE, 2026",
-    fechaCorta: "4 SEP",
-    excerpt: "Esta es una noticia de ejemplo que muestra el formato HTML disponible para las noticias del ISeP.",
-    img: "",
-    escuelas: [],
-    contenido: `<h2>🎯 Formato disponible</h2>
-<p>Las noticias ahora soportan <strong>HTML</strong> en el campo contenido. Esto permite crear noticias con estructura豐富a:</p>
+  id: 1,
+  titulo: "Jornada Extracurricular: Jornada de Siniestros Viales — Sedes Rosario, Recreo y Reconquista",
+  categoria: "Academica",
+  fecha: "28 DE AGOSTO, 2026",
+  fechaCorta: "28 AGO",
+  excerpt: "La Escuela de Investigaciones informa que se encuentra abierta la inscripción...",
+  img: "/img/noticias/siniestros-viales.png",
+  escuelas: ["investigaciones"],
+  adjuntos: [],
+  contenido: `
+    <p><strong>Modalidad presencial · Jornada única</strong></p>
+    <p>La <strong>Escuela de Investigaciones</strong> informa...</p>
 
-<h3>Listas</h3>
-<ul>
-  <li><strong>Títulos:</strong> h2 para secciones, h3 para subsecciones</li>
-  <li><strong>Negritas:</strong> para textos importantes</li>
-  <li><strong>Enlaces:</strong> para URLs y documentos</li>
-  <li><strong>Botones:</strong> clase .btn-inscripcion para llamados a la acción</li>
-</ul>
+    <h2>🎯 Objetivo de la jornada</h2>
+    <p>Este espacio de formación tiene como objetivo...</p>
 
-<h3>Ejemplo de inscripción</h3>
-<p>Las inscripciones están abiertas hasta el <strong>30 de septiembre de 2026</strong>.</p>
-<a href="https://forms.google.com/" class="btn-inscripcion" target="_blank">🔗 INSCRIBIRSE</a>
+    <h2>📍 Sede Recreo</h2>
+    <ul>
+      <li><strong>📅 Día de cursado:</strong> Viernes 04/09/2026</li>
+      <li><strong>🕘 Horario:</strong> 08:30 a 12:00 hs</li>
+      <li><strong>⏰ Presentación:</strong> 15 min antes</li>
+      <li><strong>👮 Vestimenta:</strong> Uniformados</li>
+      <li><strong>👥 Destinatarios:</strong> Escalafón Seguridad</li>
+    </ul>
+    <div class="info-box">
+      <strong>📝 Inscripción del 28/08 al 02/09/2026</strong>
+    </div>
+    <a href="https://forms.google.com/..." class="btn-inscripcion" target="_blank">
+      🔗 INSCRIBIRSE — SEDE RECREO
+    </a>
 
-<h3>Cita destacada</h3>
-<blockquote>"La seguridad pública del siglo XXI requiere profesionales preparados para trabajar con la comunidad."</blockquote>
+    <h2>📍 Sede Rosario</h2>
+    ... (mismo formato)
 
-<div class="info-box">
-  <strong>📧 Contacto</strong>
-  Para más información, comunicarse al correo prensaydifusion@isepsantafe.edu.ar
-</div>`,
-  },
+    <h2>📍 Sede Reconquista</h2>
+    ... (mismo formato)
+
+    <h2>📧 Confirmación de vacante</h2>
+    <p>La asignación será informada por correo...</p>
+    <blockquote>SOLO PODRÁ PRESENTARSE QUIEN HAYA RECIBIDO DICHO CORREO...</blockquote>
+    <p>🪪 El personal deberá asistir con credencial policial.</p>
+  `
+},
 ];
