@@ -16,6 +16,7 @@ import ScrollToTop from "./components/ScrollToTop";
 // ── Páginas ──
 import Home from "./pages/Home";
 import Noticias from "./pages/Noticias";
+import NoticiaDetalle from "./pages/NoticiaDetalle";
 
 // ── Institucional ──
 import ElIseP from "./pages/Institucional/ElIseP";
@@ -56,6 +57,7 @@ function App() {
 
         {/* Noticias */}
         <Route path="/noticias" element={<Noticias />} />
+        <Route path="/noticias/:id" element={<NoticiaDetalle />} />
 
         {/* Institucional */}
         <Route path="/institucional/el-isep" element={<ElIseP />} />

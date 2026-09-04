@@ -6,7 +6,7 @@
 
 ## 1. Cómo navegar por el sitio
 
-La barra de navegación superior (que permanece fija al hacer scroll) organiza todo el contenido en 3 menús desplegables más un enlace directo:
+La barra de navegación superior (fija al hacer scroll) organiza todo en 3 menús desplegables + enlace directo:
 
 | Menú | Qué contiene |
 |---|---|
@@ -15,21 +15,22 @@ La barra de navegación superior (que permanece fija al hacer scroll) organiza t
 | **Ingreso** | Convocatorias vigentes, Próximas convocatorias, Requisitos, Proceso de ingreso, Preguntas frecuentes |
 | **Últimas noticias** | Acceso directo al listado de noticias |
 
-**En escritorio:** pasa el cursor sobre un menú para desplegarlo. Dentro de *Formación → Escuelas* hay un submenú con las 5 escuelas.
+**En escritorio:** pasá el cursor sobre un menú para desplegarlo. Dentro de *Formación → Escuelas* hay submenú con escudos.
 
-**En celular/tablet:** tocá el botón ☰ (hamburguesa) para abrir el menú completo, con acordeones para cada sección. El logo del sitio y el botón **Mi ISeP** permanecen visibles.
+**En celular/tablet:** tocá ☰ (hamburguesa) para abrir el menú completo con acordeones. Logo y botón **Mi ISeP** siempre visibles.
 
 ### 1.1 Íconos en la navegación
 
-Cada sección del menú tiene un ícono que refuerza su significado:
-- **Institucional** → ícono de "account_balance" (edificio institucional)
-- **Formación** → ícono de "school" (escuela)
-- **Ingreso** → ícono de "login" (ingreso)
-- **Últimas noticias** → ícono de "newspaper" (periódico)
+| Sección | Ícono |
+|---|---|
+| Institucional | account_balance |
+| Formación | school |
+| Ingreso | login |
+| Últimas noticias | newspaper |
 
 ### 1.2 Buscador global
 
-Al lado del botón "Mi ISeP" hay un **ícono de búsqueda** (lupa). Al hacer clic se abre un campo de búsqueda con resultados **agrupados por tipo**:
+Al lado del botón "Mi ISeP" hay un **ícono de lupa**. Al hacer clic se abre un campo con resultados **agrupados por tipo**:
 
 | Grupo | Qué incluye |
 |---|---|
@@ -39,195 +40,186 @@ Al lado del botón "Mi ISeP" hay un **ícono de búsqueda** (lupa). Al hacer cli
 | **Convocatorias** | Inscripciones abiertas y próximas |
 | **Noticias** | Noticias institucionales |
 | **Normativa** | Resoluciones, convenios, estatutos |
-| **Páginas** | Accesos directos a secciones del sitio |
+| **Páginas** | Accesos directos a secciones |
 
 **Atajos de teclado:**
-- ↑↓ para navegar entre resultados
-- **Enter** para seleccionar el primer resultado o el resaltado
-- **Esc** para cerrar el buscador
+- ↑↓ para navegar
+- **Enter** para seleccionar
+- **Esc** para cerrar
 
 ---
 
 ## 2. Volver al inicio
 
-El logo **"ISeP Santa Fe"** (arriba a la izquierda, visible en móvil y desktop) es un enlace que te devuelve a la página principal en cualquier momento.
+El logo **"ISeP Santa Fe"** (arriba a la izquierda) es un enlace que te devuelve a `/`.
 
 ---
 
-## 3. Acceso rápido al portal personal (Mi ISeP)
+## 3. Acceso rápido (Mi ISeP)
 
-El botón **"Mi ISeP"** está siempre visible en la barra superior, tanto en escritorio como en celular. Al hacer clic te lleva al portal personal de trámites (`mi.isepsantafe.edu.ar`) en una pestaña nueva.
-
-> ☝️ **Importante:** este botón no desaparece en dispositivos móviles — es el acceso principal del personal.
+El botón **"Mi ISeP"** siempre visible en la barra superior. Lleva a `mi.isepsantafe.edu.ar` en pestaña nueva.
 
 ---
 
 ## 4. Hero (página de inicio)
 
-La página de inicio tiene un **slider automático** que muestra 3 slides diferentes:
+**Slider automático** con 3 slides:
+1. "Formación Profesional para la Seguridad Pública"
+2. "Formando líderes en Seguridad Pública"
+3. "Carreras y cursos de alto nivel"
 
-1. **Slide 1:** "Formación Profesional para la Seguridad Pública"
-2. **Slide 2:** "Formando líderes en Seguridad Pública"
-3. **Slide 3:** "Carreras y cursos de alto nivel"
-
-**Cómo funciona:**
-- **Cambio automático:** cada 6 segundos cambia al siguiente slide.
-- **Pausa:** cuando pasás el cursor sobre el hero, el slider se pausa.
-- **Navegación manual:** podés usar las **flechas** izquierda/derecha o los **dots** (puntos) en la parte inferior para ir a un slide específico.
+- Cambio cada 6 segundos, pausa al hover
+- Flechas + dots para navegación manual
 
 ---
 
-## 5. Secciones de la página de inicio
+## 5. Secciones del Home
 
 ### 5.1 Aplicaciones Institucionales
-Tres accesos rápidos a plataformas digitales:
-- **Mi ISeP** → Portal de trámites personales
-- **SIGEDI** → Sistema de Gestión Educativa
-- **Webmail** → Correo institucional
+4 accesos: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail.
 
-### 5.2 Contadores (El ISeP en cifras)
-Estadísticas animadas de la institución:
-- Docentes: 2200+
-- Cadetes activos: 1100+
-- Personal formándose: 800+
-- Aulas virtuales: 500+
+### 5.2 Contadores
+Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.
 
 ### 5.3 Convocatorias (CTA)
-Sección con **cuenta regresiva** hasta el cierre de inscripciones. Incluye botones de pre-inscripción y ver requisitos.
+Cuenta regresiva + botones de inscripción.
 
 ### 5.4 Últimas Noticias
-Las noticias más recientes en formato tarjeta destacada +侧侧边栏.
+Noticia destacada + sidebar. **Cada noticia lleva a su página de detalle** (`/noticias/:id`). El enlace "Ver todas las noticias" lleva a `/noticias`.
 
 ### 5.5 Nuestras Escuelas
-Accesos directos a las 5 escuelas del ISeP.
+Accesos directos a las 5 escuelas con escudos.
 
 ### 5.6 Testimonios
-Carrusel de testimonios de egresados con flechas y puntos de navegación.
+Carrusel de 3 egresados con flechas y dots.
 
 ---
 
-## 6. Formación (oferta académica)
+## 6. Formación
 
 ### 6.1 Oferta Académica
-Vista dinámica con **tres pestañas**: *Carreras*, *Cursos* y *Convocatorias*. Elegí la pestaña para ver lo que te interesa.
+Vista dinámica con 3 pestañas: Carreras, Cursos, Convocatorias.
 
 ### 6.2 Carreras
-Cada carrera se muestra como una tarjeta con:
-- **Header coloreado** según la escuela
-- **Chips** de duración, modalidad y escuela
-- **Estado de inscripción** (abiertas / próximamente / cerradas) con fecha
-- **Botón "Ver detalle"** para más información
+Tarjetas con header coloreado por escuela, chips, estado de inscripción y hover animado.
 
-### 6.3 Cursos (`Formación → Escuelas` o la vista de cursos)
-- **Filtros** por Escuela, Tipo y Estado para encontrar lo que buscás.
-- Cada curso es un **acordeón**: tocá el título para desplegar su información (tipo, período y escuelas).
-- El botón **"Acceso a Mi ISeP"** te lleva al curso correspondiente dentro del portal.
+### 6.3 Cursos
+Filtros por Escuela, Tipo y Estado. Acordeón desplegable + botón "Acceso a Mi ISeP".
 
-### 6.4 Páginas de cada escuela
-Cada escuela muestra su **escudo**, **presentación**, **información** (categoría, duración, modalidad, sede), **carreras**, **cursos actuales** y **contacto**.
+### 6.4 Páginas de escuela
+Cada escuela: escudo, presentación (datos oficiales), información, carreras, cursos, contacto con email institucional.
 
 ---
 
 ## 7. Ingreso (postulantes)
 
-### 7.1 Convocatorias (landing dedicada)
-Página completa con:
-- **Hero con countdown** hasta el cierre de inscripciones
-- **Cards de convocatorias vigentes** con escuela, tipo, fecha y botón de inscripción
-- **Requisitos generales** en grid de 2 columnas
-- **Proceso en 5 pasos** con números circulares
-- **CTA final** con gradiente
+### 7.1 Convocatorias — Contenido real
+Landing con **proceso de selección de la Escuela de Policía Ciclo 2027–2028**:
+- Alerta de presentación (09:00 hs, tolerancia 20 min)
+- Documentación requerida (título + DNI)
+- Vestimenta y elementos
+- Cómo inscribirte en MI ISEP (4 pasos)
+- Formularios obligatorios (4 DJ)
+- Edad requerida (18-30 años)
+- Etapas del proceso (4 etapas)
+- Requisitos (10 items)
+- Consultas: prensaydifusion@isepsantafe.edu.ar
+- Link al listado de presentación (PDF)
 
 ### 7.2 Próximas convocatorias
-Aperturas anunciadas para los próximos ciclos.
+Aperturas para próximos ciclos.
 
 ### 7.3 Requisitos
-Requisitos generales y documentación necesaria para postularse.
+Condiciones y documentación.
 
 ### 7.4 Proceso de ingreso
-Pasos detallados: registro → inscripción → documentación → evaluaciones → confirmación.
+Pasos detallados.
 
 ### 7.5 Preguntas frecuentes
-12 preguntas organizadas en acordeón. Tocá cada pregunta para ver la respuesta.
+12 preguntas en acordeón.
 
 ---
 
-## 8. Breadcrumb (migas de pan)
+## 8. Breadcrumb
 
-En las páginas interiores aparece una **barra de navegación** que muestra la ruta actual:
-- **Inicio** / Sección / Página actual
-- Hacé clic en "Inicio" o en cualquier sección para volver rápidamente
+En páginas interiores: **Inicio** / Sección / Página actual. Clic en cualquier nivel para volver.
 
 ---
 
 ## 9. Noticias
 
 ### En la página de inicio
-- **Noticia destacada** (tarjeta grande) = la más reciente.
-- **Barra lateral** = resúmenes de otras noticias.
-- **Calendario Académico** = bloque con botón para descargar el PDF.
+- **Noticia destacada** (tarjeta grande) = la más reciente → lleva a `/noticias/:id`.
+- **Sidebar** = 3 mini-cards → llevan a `/noticias/:id`.
+- **"Ver todas las noticias"** → lleva a `/noticias`.
 
-### En la página "Últimas noticias"
-- Usá el **filtro por categorías** (Todas, Institucional, Académica, Escuelas, Eventos, Convenios) para ver solo lo que te interesa.
-- Cada noticia tiene un **botón de compartir** (icono de compartir) que copia el enlace al portapapeles.
-- La **noticia principal** es la más reciente de la categoría seleccionada.
-- Las noticias anteriores se muestran en tarjetas con **paginación** (10 por página).
+### En la página "Últimas noticias" (`/noticias`)
+- **Filtro por categorías** con padding (separado del borde).
+- **Botón compartir** (icono ↗) copia enlace al portapapeles.
+- **Noticia principal** → lleva a `/noticias/:id`.
+- **Historial** con tarjetas → llevan a `/noticias/:id`.
+- **Paginación** (10 por página).
+
+### Detalle de noticia (`/noticias/:id`)
+- **Hero de imagen** con overlay gradiente.
+- **Badged de categoría** y fecha.
+- **Extracto** destacado con borde izquierdo.
+- **Contenido completo** de la noticia.
+- **Noticias relacionadas** (misma categoría).
+- **ShareButton** para compartir.
+- **Botón "Volver a noticias"**.
 
 ---
 
 ## 10. Normativa y Resoluciones
-
-Página con **documentos oficiales descargables**:
-- **Filtros por año** (Todos, 2025, 2024, 2023, 2022)
-- **Filtros por tipo** (Resolución, Convenio, Plan Estratégico, Estatuto)
-- Cada documento muestra: título, tipo, fecha, tamaño y botón **Descargar**
+11 documentos oficiales descargables. Filtros por año y tipo. Chips coloreados.
 
 ---
 
-## 11. Sedes y Contacto
-
-Página con **dos sedes** del ISeP:
-- **Sede Central – Rosario** (Av. Pellegrini 1850)
-- **Sede Santa Fe – Capital** (Bulevar España 2120)
-
-Cada sede incluye:
-- Dirección, teléfono, email y horario
-- **Mapa de Google Maps** embebido
+## 11. Biblioteca Virtual
+12 recursos bibliográficos reales del ISeP. Filtros por tipo (Manual, Publicación, Protocolo, Resolución). Chips coloreados.
 
 ---
 
-## 12. WhatsApp (contacto directo)
-
-En la esquina inferior derecha hay un **botón verde flotante de WhatsApp**, visible en todas las páginas y en todos los dispositivos. Hacé clic para abrir una conversación con la institución.
-
----
-
-## 13. Ir arriba (scroll to top)
-
-En la esquina inferior derecha hay un **botón flotante con una flecha hacia arriba**. Hacé clic para volver suavemente al inicio de la página.
+## 12. Sedes y Contacto
+2 sedes con Google Maps embebido, dirección, teléfono, email y horario.
 
 ---
 
-## 14. Redes sociales y contacto (Footer)
-
-En el pie de página encontrás:
-- **Identidad institucional** y redes (Facebook, YouTube, Instagram y TikTok).
-- **Contacto** (teléfonos y correos).
-- **Sedes** (Alem 2050 Santa Fe y RN11 km 482 Recreo).
-- **Créditos de desarrollo** con la fecha de publicación.
+## 13. WhatsApp
+Botón verde flotante, siempre visible. Abre conversación en `wa.me`.
 
 ---
 
-## 15. Problemas comunes y soluciones
+## 14. Ir arriba (ScrollToTop)
+Botón flotante con flecha. Aparece tras 400px de scroll. Click → scroll suave al inicio.
+
+---
+
+## 15. Redes sociales (Footer)
+| Red | Enlace |
+|---|---|
+| Facebook | facebook.com/isepsantafe/ |
+| YouTube | youtube.com/c/InstitutodeSeguridadPúblicaDeSantaFe |
+| Instagram | instagram.com/isepsantafe |
+| TikTok | tiktok.com/@isepsantafe |
+
+Footer: identidad, contacto, sedes y créditos de desarrollo.
+
+---
+
+## 16. Problemas comunes
 
 | Problema | Solución |
 |---|---|
-| El menú no se ve en celular | Tocá el ícono ☰ (hamburguesa) arriba a la derecha |
-| No encuentro el botón Mi ISeP | Está siempre en la barra superior, junto al menú |
-| El texto sobre una imagen no se lee | El sistema de overlays mantiene contraste automático; si tenés un problema puntual, reportalo |
-| No abre una aplicación (SIGEDI/Webmail) | Verificá tu conexión y credenciales del sistema externo |
-| Quiero volver al inicio | Tocá el logo "ISeP Santa Fe" arriba a la izquierda, o el botón de flecha arriba abajo a la derecha |
-| No funciona el buscador | Escribí al menos 1 caracter; los resultados aparecen agrupados por tipo |
-| El slider del hero no cambia | Pasá el cursor sobre el hero para pausarlo; usá las flechas o dots para navegar manualmente |
-| Quiero compartir una noticia | Hacé clic en el icono de compartir (↗) en cada tarjeta de noticia |
-| Quiero descargar una resolución | Andá a Institucional → Resoluciones, filtrá por año o tipo, y hacé clic en "Descargar" |
+| El menú no se ve en celular | Tocá ☰ arriba a la derecha |
+| No encuentro Mi ISeP | Siempre en la barra superior |
+| No se lee texto sobre imagen | Overlays con contraste automático |
+| No abre SIGEDI/Webmail | Verificá conexión y credenciales |
+| Quiero volver al inicio | Logo arriba a la izquierda o flecha ↑ abajo a la derecha |
+| No funciona el buscador | Escribí al menos 1 carácter |
+| El slider no cambia | Pausá con hover, usá flechas o dots |
+| Quiero compartir una noticia | Clic en ↗ en cada tarjeta |
+| Quiero descargar una resolución | Institucional → Resoluciones, filtrá y descendá |
+| Una noticia no se abre | Verificá que la URL sea `/noticias/{id}` con id válido |
+| No hay noticias en una categoría | La categoría puede no tener publicaciones aún |
