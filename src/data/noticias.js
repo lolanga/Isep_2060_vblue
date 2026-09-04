@@ -12,7 +12,7 @@ export const noticias = [
     fechaCorta: "4 SEP",
     excerpt: "El Instituto de Seguridad Pública presenta una nueva carrera de formación orientada a la seguridad comunitaria con enfoque en derechos humanos.",
     img: "/img/noticias/formacion-seguridad.png",
-    escuelas: ["policia", "superior"],
+    escuelas: ["policia"],
     adjuntos: [
       { nombre: "Resolución 123/2026 - Programa de Seguridad Comunitaria", url: "/docs/resolucion-123-2026.pdf" },
       { nombre: "Formulario de inscripción", url: "/docs/formulario-inscripcion.pdf" },
@@ -45,7 +45,7 @@ Los interesados podrán inscribirse a través de MI ISEP a partir del 1 de dicie
     fechaCorta: "24 MAY",
     excerpt: "Se informa a los egresados de la cohorte 2022-2023 sobre el cronograma de notificaciones y entrega de certificaciones finales del ciclo lectivo.",
     img: "https://picsum.photos/seed/n1/900/500",
-    escuelas: ["policia", "superior", "especialidades", "investigaciones", "ead"],
+    escuelas: ["policia"],
   },
   {
     id: 2,
@@ -65,7 +65,7 @@ Los interesados podrán inscribirse a través de MI ISEP a partir del 1 de dicie
     fechaCorta: "15 MAY",
     excerpt: "El ISeP firmo un convenio de colaboracion academica con la UNL para el desarrollo conjunto de programas de formacion policial.",
     img: "https://picsum.photos/seed/n3/900/500",
-    escuelas: ["policia", "superior", "especialidades", "investigaciones", "ead"],
+    escuelas: ["superior", "investigaciones"],
   },
   {
     id: 4,
@@ -105,7 +105,7 @@ Los interesados podrán inscribirse a través de MI ISEP a partir del 1 de dicie
     fechaCorta: "20 ABR",
     excerpt: "El ISeP informa la apertura del periodo de inscripciones para todas las escuelas del instituto a partir del 1 de mayo.",
     img: "https://picsum.photos/seed/n7/900/500",
-    escuelas: ["policia", "superior", "especialidades", "investigaciones", "ead"],
+    escuelas: ["policia"],
   },
   {
     id: 8,
@@ -115,7 +115,7 @@ Los interesados podrán inscribirse a través de MI ISEP a partir del 1 de dicie
     fechaCorta: "14 ABR",
     excerpt: "Santa Fe fue sede del torneo interprovincial de atletismo que reunio a representantes de fuerzas de seguridad de todo el pais.",
     img: "https://picsum.photos/seed/n8/900/500",
-    escuelas: ["policia", "superior", "especialidades", "investigaciones"],
+    escuelas: ["policia", "especialidades"],
   },
   {
     id: 9,
@@ -135,7 +135,7 @@ Los interesados podrán inscribirse a través de MI ISEP a partir del 1 de dicie
     fechaCorta: "2 ABR",
     excerpt: "El ministro de Seguridad provincial recorrio las instalaciones del ISeP y anuncio nuevas inversiones en infraestructura educativa.",
     img: "https://picsum.photos/seed/n10/900/500",
-    escuelas: ["policia", "superior", "especialidades", "investigaciones", "ead"],
+    escuelas: ["ead"],
   },
   {
     id: 11,
