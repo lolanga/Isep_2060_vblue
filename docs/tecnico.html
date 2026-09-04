@@ -59,120 +59,158 @@
 
     <h2>2. Estructura de directorios</h2>
     <pre>src/
-├── main.jsx                # Entry point + imports de CSS
-├── App.jsx                 # Router principal + layout global
-├── assets/                 # Escudos (EP, ES, EE, EI, EaD, ISeP)
+├── main.jsx                 # Entry point + imports CSS
+├── App.jsx                  # Router principal (24 rutas)
+├── assets/                  # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
-│   ├── Navbar.jsx          # Navegación global (desktop + mobile) con buscador
-│   ├── Hero.jsx            # Banner principal con slider automático
-│   ├── SearchBox.jsx       # Buscador funcional con resultados dinámicos
-│   ├── News.jsx            # Noticias (Home)
-│   ├── Apps.jsx            # Aplicaciones institucionales
-│   ├── Schools.jsx         # Cuadrícula de escuelas (con escudos)
-│   ├── CTA.jsx             # Llamado a la acción
-│   ├── Footer.jsx          # Footer global (5 bloques)
-│   ├── EscuelaTemplate.jsx # Plantilla reutilizable de escuela
-│   └── FloatWhatsApp.jsx   # Botón flotante de WhatsApp
+│   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger
+│   ├── Hero.jsx             # Slider 3 slides Unsplash
+│   ├── SearchBox.jsx        # Buscador global agrupado
+│   ├── News.jsx             # Sección noticias Home (datos reales + links)
+│   ├── Apps.jsx             # 4 apps institucionales
+│   ├── Schools.jsx          # Grid de escuelas con escudos
+│   ├── CTA.jsx              # Llamado a la acción con countdown
+│   ├── Footer.jsx           # Footer 3 columnas + redes sociales
+│   ├── EscuelaTemplate.jsx  # Plantilla reutilizable de escuela
+│   ├── FloatWhatsApp.jsx    # WhatsApp flotante (z-60)
+│   ├── ScrollToTop.jsx      # Botón ir arriba (z-70, tras 400px)
+│   ├── Breadcrumb.jsx       # Migas de pan con home icon
+│   ├── Countdown.jsx        # Cuenta regresiva
+│   ├── Contadores.jsx       # Estadísticas animadas
+│   ├── Testimonios.jsx      # Carrusel testimonios
+│   ├── ShareButton.jsx      # Compartir noticia (Web Share API / clipboard)
+│   └── Placeholder.jsx      # Páginas "Próximamente"
 ├── data/
-│   ├── institucional.js    # Datos mock: escuelas/carreras/cursos/convocatorias/FAQ
-│   └── buscador.js         # Índice de búsqueda para el buscador funcional
+│   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, FAQ
+│   ├── noticias.js          # 11 noticias (compartido)
+│   ├── normativa.js         # 11 resoluciones (compartido)
+│   └── buscador.js          # 58 entradas + buscar() + buscarAgrupado()
 ├── pages/
-│   ├── Home.jsx, Noticias.jsx
-│   ├── Institucional/      # ElISeP, Autoridades, Organizacion, Resoluciones,
-│   │                       # SedesContacto, OfertaEducativa, Carrera
-│   ├── Escuelas/           # 5 páginas (usan EscuelaTemplate)
-│   ├── Ingreso/            # Convocatorias, ProximasConvocatorias, Requisitos, Proceso, Faq
-│   └── Secretaria/         # Titulos, Biblioteca, Cursos
+│   ├── Home.jsx             # 7 secciones
+│   ├── Noticias.jsx         # Filtro + paginación + links a detalle
+│   ├── NoticiaDetalle.jsx   # Detalle de noticia individual
+│   ├── Institucional/       # ElISeP, Autoridades, Organizacion, Resoluciones,
+│   │                        # SedesContacto (Maps), OfertaEducativa, Carrera
+│   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
+│   ├── Ingreso/             # Convocatorias (contenido real), ProximasConvocatorias,
+│   │                        # Requisitos, Proceso, Faq (12 preguntas)
+│   └── Secretaria/          # Titulos, Biblioteca (12 recursos), Cursos
 └── styles/
-    ├── variables.css       # Tokens + gradiente institucional
-    ├── base.css            # Reset, tipografía, .btn-cta, fondo global
-    ├── navbar.css          # Navegación + estilos del buscador
-    ├── hero.css            # Hero slider + overlays + .page-hero
-    ├── news.css, noticias.css, schools-cta.css, apps.css
-    ├── oferta.css          # Vistas dinámicas (cards, filtros, acordeón, escuela)
-    ├── footer.css          # Footer
-    └── responsive.css      # Mobile-first</pre>
+    ├── variables.css        # Design tokens + gradiente
+    ├── base.css             # Reset, tipografía, fondo global, .chip, .page-main
+    ├── navbar.css           # Navbar + buscador + hamburger
+    ├── hero.css             # Hero slider + overlays + .page-hero
+    ├── news.css             # Noticias Home
+    ├── noticias.css         # Página /noticias
+    ├── schools-cta.css      # Escuelas + CTA
+    ├── apps.css             # Apps + WhatsApp
+    ├── oferta.css           # Cards, chips, filtros, acordeón
+    ├── footer.css           # Footer 3 columnas + bottom
+    └── responsive.css       # Mobile-first</pre>
 
     <h2>3. Sistema de diseño</h2>
-    <h3>Tokens clave (variables.css)</h3>
+    <h3>Tokens de color (variables.css)</h3>
     <table>
       <tr><th>Token</th><th>Valor</th><th>Uso</th></tr>
-      <tr><td><code>--primary</code></td><td>#00254d</td><td>Navy (marca)</td></tr>
+      <tr><td><code>--primary</code></td><td>#00254d</td><td>Navy oscuro (marca)</td></tr>
+      <tr><td><code>--primary-container</code></td><td>#003b73</td><td>Contenedor primary</td></tr>
+      <tr><td><code>--secondary</code></td><td>#0055c9</td><td>Azul medio</td></tr>
+      <tr><td><code>--secondary-container</code></td><td>#036cfb</td><td>Azul vivo</td></tr>
+      <tr><td><code>--tertiary-container</code></td><td>#004058</td><td>Teal oscuro</td></tr>
+      <tr><td><code>--on-tertiary-container</code></td><td>#00b1ed</td><td>Cyan acento</td></tr>
+      <tr><td><code>--surface</code></td><td>#f9f9ff</td><td>Fondo de página</td></tr>
       <tr><td><code>--gradient-primary</code></td><td>linear-gradient(90deg,#227bd1,#17be95)</td><td>Gradiente institucional</td></tr>
-      <tr><td><code>--gradient-glow</code></td><td>0 6px 18px #1bb4c373</td><td>Brillo</td></tr>
-      <tr><td><code>--gradient-hover-lift</code></td><td>translateY(-1px)</td><td>Elevación hover</td></tr>
+      <tr><td><code>--gradient-glow</code></td><td>0 6px 18px #1bb4c373</td><td>Sombra brillo</td></tr>
       <tr><td><code>--color-start / --color-end</code></td><td>#227bd1 / #17be95</td><td>Extremos del gradiente</td></tr>
     </table>
 
-    <h3>Gradiente (uniforme)</h3>
-    <p>Centralizado en <code>--gradient-primary</code>, aplicado a botones (<code>.btn-cta</code>), activos (<code>.oferta-tab--active</code>, <code>.filtro-btn--active</code>), hovers de navegación y cards, y a los overlays de imagen combinado con scrim oscuro.</p>
+    <h3>Chips coloreados por tipo (data-type)</h3>
+    <table>
+      <tr><th>data-type</th><th>Color</th><th>Uso</th></tr>
+      <tr><td><code>escuela</code></td><td>rgba(34,123,209,0.12)</td><td>Escuela</td></tr>
+      <tr><td><code>duracion</code></td><td>rgba(148,163,184,0.12)</td><td>Duración</td></tr>
+      <tr><td><code>modalidad</code></td><td>rgba(124,58,237,0.12)</td><td>Modalidad</td></tr>
+      <tr><td><code>tipo</code></td><td>rgba(180,83,9,0.12)</td><td>Tipo de curso</td></tr>
+      <tr><td><code>periodo</code></td><td>rgba(23,190,149,0.12)</td><td>Período</td></tr>
+      <tr><td><code>estado</code></td><td>rgba(148,163,184,0.12)</td><td>Estado</td></tr>
+      <tr><td><code>fecha</code></td><td>rgba(34,123,209,0.12)</td><td>Fecha</td></tr>
+      <tr><td><code>paso</code></td><td>rgba(23,190,149,0.12)</td><td>Paso del proceso</td></tr>
+    </table>
 
-    <h3>Overlays y contraste</h3>
-    <pre>background:
-  linear-gradient(to right, rgba(0,21,43,0.88), …),  ← scrim oscuro
-  var(--gradient-primary);                           ← gradiente institucional</pre>
-    <p>Clases: <code>.hero-overlay</code>, <code>.np-img-overlay</code>, <code>.hcard-overlay</code>, <code>.page-hero</code> (interiores) y <code>.escuela-hero</code>.</p>
+    <h3>Badge-categorías (noticias)</h3>
+    <table>
+      <tr><th>Clase</th><th>Uso</th></tr>
+      <tr><td><code>badge-categoria--highlight</code></td><td>"ÚLTIMA PUBLICACIÓN" (fondo gradiente)</td></tr>
+      <tr><td><code>badge-categoria--institucional</code></td><td>Noticias institucionales</td></tr>
+      <tr><td><code>badge-categoria--academica</code></td><td>Noticias académicas</td></tr>
+      <tr><td><code>badge-categoria--escuelas</code></td><td>Noticias de escuelas</td></tr>
+      <tr><td><code>badge-categoria--eventos</code></td><td>Eventos</td></tr>
+      <tr><td><code>badge-categoria--convenios</code></td><td>Convenios</td></tr>
+    </table>
 
-    <h2>4. Responsive (obligatorio)</h2>
+    <h2>4. Responsive</h2>
     <table>
       <tr><th>Breakpoint</th><th>Ancho</th><th>Comportamiento</th></tr>
-      <tr><td>Móvil</td><td>&lt; 768px</td><td>Hamburguesa, grids de 1 columna</td></tr>
-      <tr><td>Tablet</td><td>768–1023px</td><td>Nav desktop, grids de 2 columnas</td></tr>
-      <tr><td>Desktop</td><td>≥ 1024px</td><td>Grids de 3-4+ columnas</td></tr>
+      <tr><td>Móvil</td><td>&lt; 768px</td><td>Hamburger, grids 1 columna, botones full-width</td></tr>
+      <tr><td>Tablet</td><td>768–1023px</td><td>Nav desktop con escudo, grids 2 columnas</td></tr>
+      <tr><td>Desktop</td><td>≥ 1024px</td><td>Grids 3-4+ columnas, layout completo</td></tr>
     </table>
     <ul>
-      <li>Tipografía fluida con <code>clamp()</code>; hero con <code>100svh</code>.</li>
+      <li>Brand desktop: escudo + texto. Tablet: solo escudo. Mobile: solo texto.</li>
+      <li>Dropdowns desktop: <code>top: calc(100% + 1.25rem)</code>.</li>
       <li>Botones CTA full-width en móvil (≤480px).</li>
-      <li>En móvil: logo enlazable + <strong>Mi ISeP siempre visible</strong>.</li>
-      <li>Dropdowns desktop con panel <code>top: calc(100% + 1.25rem)</code>.</li>
+      <li>Mi ISeP siempre visible en móvil.</li>
     </ul>
 
     <h2>5. Rutas (App.jsx)</h2>
     <pre>&lt;BrowserRouter&gt;
   &lt;Navbar /&gt;
-  &lt;Routes&gt;{/* 20 rutas */}&lt;/Routes&gt;
+  &lt;Routes&gt;{/* 24 rutas */}&lt;/Routes&gt;
   &lt;Footer /&gt;
   &lt;FloatWhatsApp /&gt;
+  &lt;ScrollToTop /&gt;
 &lt;/BrowserRouter&gt;</pre>
-    <p>Navbar, Footer y FloatWhatsApp son globales. 20 rutas: Home, Noticias, 6 Institucional, 5 Escuelas, 5 Ingreso, 3 Secretaría.</p>
+    <p>Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. 24 rutas: Home, Noticias, NoticiaDetalle, 6 Institucional, 5 Escuelas, 5 Ingreso, 3 Secretaría.</p>
 
     <h2>6. Datos (mock)</h2>
-    <p>Datos simulados en <code>src/data/institucional.js</code>: <code>escuelas</code>, <code>carreras</code>, <code>cursos</code>, <code>convocatorias</code>, <code>preguntasFrecuentes</code> y helpers (<code>escuelaPorId</code>, <code>carrerasDeEscuela</code>, <code>cursosDeEscuela</code>). Escudos en <code>src/assets/</code>. En el futuro se reemplazarán por un backend.</p>
+    <h3>institucional.js</h3>
+    <table>
+      <tr><th>Export</th><th>Contenido</th></tr>
+      <tr><td><code>escuelas</code></td><td>5 escuelas con datos oficiales + emails de contacto</td></tr>
+      <tr><td><code>carreras</code></td><td>4 carreras con inscripciones/fechaInscripcion</td></tr>
+      <tr><td><code>cursos</code></td><td>6+ cursos con tipo, período, estado</td></tr>
+      <tr><td><code>convocatorias</code></td><td>Convocatorias con estado, tipo, fecha</td></tr>
+      <tr><td><code>preguntasFrecuentes</code></td><td>12 preguntas y respuestas</td></tr>
+      <tr><td><code>escuelaPorId</code> / helpers</td><td>Funciones auxiliares</td></tr>
+    </table>
 
-    <h2>7. Plantilla de escuela</h2>
-    <p><code>EscuelaTemplate.jsx</code> recibe <code>escuelaId</code> y renderiza Logo, Presentación, Información, Carreras, Cursos actuales (acceso a Mi ISeP), Noticias y Contacto. Las 5 páginas de <code>/escuelas/*</code> son wrappers.</p>
+    <h3>noticias.js</h3>
+    <p>11 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img.</p>
 
-    <h2>8. Buscador funcional</h2>
-    <h3>Índice de búsqueda (<code>src/data/buscador.js</code>)</h3>
-    <p>Índice pre-compilado con 30 entradas: escuelas (5), carreras (4), cursos (6), convocatorias (3) y páginas institucionales (12). Cada entrada tiene: <code>id</code>, <code>title</code>, <code>subtitle</code>, <code>categoria</code>, <code>tipo</code>, <code>ruta</code> y <code>keywords</code>.</p>
-    <h3>Componente SearchBox (<code>src/components/SearchBox.jsx</code>)</h3>
+    <h3>normativa.js</h3>
+    <p>11 resoluciones con: id, titulo, tipo, fecha, tamano, url.</p>
+
+    <h3>buscador.js</h3>
+    <p>58 entradas agrupadas por tipo. Funciones: <code>buscar()</code>, <code>buscarAgrupado()</code>.</p>
+
+    <h2>7. Buscador funcional</h2>
+    <h3>SearchBox (<code>src/components/SearchBox.jsx</code>)</h3>
     <ul>
-      <li>Búsqueda en tiempo real con <code>useMemo</code>.</li>
-      <li>Algoritmo de scoring por tokens con bonus si el título contiene el token.</li>
-      <li>Máximo 8 resultados por búsqueda.</li>
-      <li>Navegación por teclado: ArrowUp/ArrowDown/Enter/Escape.</li>
-      <li>Cierre automático al hacer clic fuera del componente.</li>
+      <li>Resultados agrupados por tipo (headers con ícono + label).</li>
+      <li>Scoring: +3 título, +2 tipo, +1 keyword.</li>
+      <li>Navegación: ArrowUp/ArrowDown/Enter/Escape.</li>
+      <li>Enter en campo → abre primer resultado.</li>
+      <li>Cierre automático al hacer clic fuera.</li>
     </ul>
 
-    <h2>9. Hero slider</h2>
-    <h3>Componente Hero (<code>src/components/Hero.jsx</code>)</h3>
+    <h2>8. Hero slider</h2>
     <ul>
-      <li>3 slides con imagen, badge, título y descripción.</li>
-      <li>Automático: cambia cada 6 segundos (<code>INTERVAL = 6000</code>).</li>
-      <li>Pausa al pasar el cursor (<code>onMouseEnter</code>).</li>
-      <li>Navegación: flechas izquierda/derecha + indicadores (dots).</li>
-      <li>Transiciones: fade suave entre slides (<code>opacity 1s ease-in-out</code>).</li>
-    </ul>
-    <h3>Estilos (<code>src/styles/hero.css</code>)</h3>
-    <ul>
-      <li><code>.hero-bg</code> → imagen de fondo con <code>opacity: 0</code> por defecto.</li>
-      <li><code>.hero-bg--active</code> → <code>opacity: 1</code> para el slide activo.</li>
-      <li><code>.hero-arrow</code> → flechas de navegación con backdrop-filter.</li>
-      <li><code>.hero-dot</code> → indicadores (dots) en la parte inferior.</li>
+      <li>3 slides Unsplash, automático (6s), pausa en hover.</li>
+      <li>Flechas + dots, altura <code>100svh</code>.</li>
+      <li>Transiciones: fade suave (1s ease-in-out).</li>
     </ul>
 
-    <h2>10. Fondo decorativo global</h2>
-    <p>El fondo de toda la web se aplica en <code>body</code> (base.css):</p>
+    <h2>9. Fondo decorativo global</h2>
     <pre>background-attachment: fixed;
 background-color: #bcd8db;
 background-image:
@@ -180,7 +218,16 @@ background-image:
   linear-gradient(180deg, #ffffff40 1px, #0000 0),
   radial-gradient(circle at 10% 20%, #208caf59 0, #0000 45%),
   radial-gradient(circle at 90% 80%, #00c3964d 0, #0000 45%);</pre>
-    <p>Crea un patrón sutil con líneas blancas y gradientes radiales cian/verde sobre un fondo base <code>#bcd8db</code>.</p>
+
+    <h2>10. Build stats</h2>
+    <table>
+      <tr><th>Archivo</th><th>Tamaño</th></tr>
+      <tr><td><code>index.html</code></td><td>0.72 kB</td></tr>
+      <tr><td><code>index.css</code></td><td>37.58 kB (gzip: 7.45 kB)</td></tr>
+      <tr><td><code>index.js</code></td><td>392.67 kB (gzip: 114.80 kB)</td></tr>
+      <tr><td>Módulos</td><td>86</td></tr>
+      <tr><td>Build time</td><td>~6-10s</td></tr>
+    </table>
 
     <h2>11. Comandos</h2>
     <table>
@@ -189,8 +236,43 @@ background-image:
       <tr><td><code>npm run dev</code></td><td>Servidor de desarrollo (puerto 5173)</td></tr>
       <tr><td><code>npm run build</code></td><td>Build de producción</td></tr>
       <tr><td><code>npm run preview</code></td><td>Previsualiza el build</td></tr>
-      <tr><td><code>npm run lint</code></td><td>ESLint</td></tr>
+      <tr><td><code>npm run lint</code></td><td>Ejecuta ESLint</td></tr>
     </table>
+
+    <h2>12. Publicación de noticias — Especificación técnica</h2>
+    <h3>Estructura de datos</h3>
+    <pre>interface Noticia {
+  id: number;            // Único, incremental
+  titulo: string;
+  categoria: "Institucional" | "Academica" | "Escuelas"
+           | "Eventos" | "Convenios";
+  fecha: string;         // "3 DE SEPTIEMBRE, 2026"
+  fechaCorta: string;    // "3 SEP"
+  excerpt: string;
+  img: string;           // 900×500 px
+  adjuntos?: { nombre: string; url: string; }[];
+  contenido?: string;
+}</pre>
+    <h3>Archivos a modificar</h3>
+    <table>
+      <tr><th>Archivo</th><th>Acción</th></tr>
+      <tr><td><code>src/data/noticias.js</code></td><td>Agregar objeto al array</td></tr>
+      <tr><td><code>src/data/buscador.js</code></td><td>Agregar entrada tipo "Noticia"</td></tr>
+      <tr><td><code>src/pages/NoticiaDetalle.jsx</code></td><td>(Opcional) Personalizar contenido</td></tr>
+    </table>
+    <h3>Diagrama de componentes</h3>
+    <pre>Noticias.jsx ──── noticias[] ──── Link a /noticias/:id
+                                        │
+News.jsx ────────── noticias[0..3] ──── Link a /noticias/:id
+                                        │
+                                        ▼
+                                  NoticiaDetalle.jsx
+                                  ├── Hero (imagen + overlay)
+                                  ├── Breadcrumb
+                                  ├── ShareButton
+                                  ├── Contenido
+                                  ├── Noticias relacionadas
+                                  └── Botón volver</pre>
   </main>
 </body>
 </html>

@@ -50,121 +50,240 @@
 
   <main>
     <h2>1. Visión general</h2>
-    <p>Sitio web institucional del <strong>Instituto de Seguridad Pública (ISeP) de la Provincia de Santa Fe</strong>, construido como SPA con React 19 + Vite + React Router. Es <strong>100% responsive</strong> (móvil, tablet, escritorio).</p>
+    <p>Sitio web institucional del <strong>Instituto de Seguridad Pública (ISeP) de la Provincia de Santa Fe</strong>. SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, tablet, desktop).</p>
 
     <h2>2. Audiencias</h2>
     <table>
-      <tr><th>Audiencia</th><th>Necesidad</th><th>Contenido relevante</th></tr>
-      <tr><td>Postulantes</td><td>Requisitos, convocatorias, proceso, FAQ</td><td>Ingreso (5 páginas)</td></tr>
-      <tr><td>Personal en actividad</td><td>Trámites, correo, sistemas</td><td>Mi ISeP, SIGEDI, Webmail</td></tr>
-      <tr><td>Público general</td><td>Información institucional y actualidad</td><td>Institucional, Noticias</td></tr>
-      <tr><td>Profesionales de la educación</td><td>Oferta académica y cursos</td><td>Formación, Carreras, Cursos</td></tr>
+      <tr><th>Audiencia</th><th>Necesidad principal</th><th>Contenido relevante</th></tr>
+      <tr><td><strong>Postulantes</strong></td><td>Requisitos, convocatorias, proceso y FAQ</td><td>Ingreso (5 páginas) + Landing Convocatorias con contenido real</td></tr>
+      <tr><td><strong>Personal en actividad</strong></td><td>Trámites, correo, sistemas internos</td><td>Mi ISeP, SIGEDI, Gestión Cadetes, Webmail</td></tr>
+      <tr><td><strong>Público general</strong></td><td>Información institucional y actualidad</td><td>Institucional, Noticias (con detalle), Biblioteca</td></tr>
+      <tr><td><strong>Profesionales de la educación</strong></td><td>Oferta académica y cursos</td><td>Formación, Carreras, Cursos</td></tr>
     </table>
 
     <h2>3. Mapa de navegación</h2>
     <table>
       <tr><th>Menú</th><th>Ítems</th></tr>
-      <tr><td><strong>Institucional</strong></td><td>El ISeP · Autoridades · Organización · <strong>Normativa y Resoluciones</strong> · Sedes y Contacto</td></tr>
-      <tr><td><strong>Formación</strong></td><td>Oferta Académica · Escuelas (submenú: Policía, Especialidades, Superior, Investigaciones, Educación a Distancia) · <strong>Títulos y Certificaciones</strong> · <strong>Biblioteca Virtual</strong></td></tr>
+      <tr><td><strong>Institucional</strong></td><td>El ISeP · Autoridades · Organización · Normativa y Resoluciones · Sedes y Contacto</td></tr>
+      <tr><td><strong>Formación</strong></td><td>Oferta Académica · Escuelas (submenú: Policía, Especialidades, Superior, Investigaciones, EaD) · Títulos y Certificaciones · Biblioteca Virtual</td></tr>
       <tr><td><strong>Ingreso</strong></td><td>Convocatorias vigentes · Próximas convocatorias · Requisitos · Proceso de ingreso · Preguntas frecuentes</td></tr>
       <tr><td><strong>Últimas noticias</strong></td><td>Link directo a <code>/noticias</code></td></tr>
+      <tr><td><strong>Mi ISeP</strong></td><td>Botón siempre visible (desktop y móvil)</td></tr>
     </table>
 
     <h3>Rutas existentes</h3>
     <table>
       <tr><th>Ruta</th><th>Página</th><th>Estado</th></tr>
-      <tr><td><code>/</code></td><td>Home (landing)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/noticias</code></td><td>Listado de noticias</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/institucional/el-isep</code> … <code>/sedes-contacto</code></td><td>Secciones institucionales</td><td><span class="badge soon">Placeholder</span></td></tr>
-      <tr><td><code>/institucional/resoluciones</code></td><td>Normativa y Resoluciones</td><td><span class="badge soon">Placeholder</span></td></tr>
+      <tr><td><code>/</code></td><td>Home (7 secciones)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/noticias</code></td><td>Listado de noticias con filtro, paginación</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/noticias/:id</code></td><td>Detalle de noticia individual</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/institucional/el-isep</code></td><td>El ISeP</td><td><span class="badge soon">Placeholder</span></td></tr>
+      <tr><td><code>/institucional/autoridades</code></td><td>Autoridades</td><td><span class="badge soon">Placeholder</span></td></tr>
+      <tr><td><code>/institucional/organizacion</code></td><td>Organización</td><td><span class="badge soon">Placeholder</span></td></tr>
+      <tr><td><code>/institucional/resoluciones</code></td><td>Normativa y Resoluciones (11 docs)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/institucional/sedes-contacto</code></td><td>Sedes y Contacto (Google Maps)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/oferta-educativa</code></td><td>Oferta Académica (dinámica)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/institucional/carreras</code></td><td>Carreras (vista general)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/escuelas/*</code> (5)</td><td>Páginas de escuela (plantilla)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/ingreso/*</code> (5)</td><td>Convocatorias, Próximas, Requisitos, Proceso, FAQ</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/secretaria/cursos</code></td><td>Cursos (vista general con filtros)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/secretaria/titulos</code>, <code>/secretaria/biblioteca</code></td><td>Títulos · Biblioteca</td><td><span class="badge soon">Placeholder</span></td></tr>
+      <tr><td><code>/institucional/carreras</code></td><td>Carreras (grid hits)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/escuelas/policia</code></td><td>Escuela de Policía (datos oficiales)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/escuelas/superior</code></td><td>Escuela Superior (datos oficiales)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/escuelas/especialidades</code></td><td>Escuela de Especialidades (datos oficiales)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/escuelas/investigaciones</code></td><td>Escuela de Investigaciones (datos oficiales)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/escuelas/educacion-a-distancia</code></td><td>Educación a Distancia</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/ingreso/convocatorias</code></td><td>Landing Convocatorias (contenido real)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/ingreso/proximas-convocatorias</code></td><td>Próximas convocatorias</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/ingreso/requisitos</code></td><td>Requisitos</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/ingreso/proceso</code></td><td>Proceso de ingreso</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/ingreso/faq</code></td><td>Preguntas frecuentes (12)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/secretaria/titulos</code></td><td>Títulos y Certificaciones</td><td><span class="badge soon">Placeholder</span></td></tr>
+      <tr><td><code>/secretaria/biblioteca</code></td><td>Biblioteca Virtual (12 recursos)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/secretaria/cursos</code></td><td>Cursos (dinámico)</td><td><span class="badge ok">Implementada</span></td></tr>
     </table>
-    <div class="note">Las rutas <em>Placeholder</em> muestran un banner y "Contenido en construcción". Las de Formación, Escuelas e Ingreso están implementadas con datos simulados (mock).</div>
 
     <h2>4. Funcionalidades implementadas (Home)</h2>
     <ol>
-      <li><strong>Hero Slider</strong> — banner principal con slider automático (3 slides), transiciones suaves, flechas de navegación y indicadores (dots). Se pausa al pasar el cursor.</li>
-      <li><strong>Últimas Noticias</strong> — destacada + lateral + Calendario Académico.</li>
-      <li><strong>Aplicaciones Institucionales</strong> — Mi ISeP, SIGEDI, Webmail.</li>
-      <li><strong>Nuestras Escuelas</strong> — 4 escuelas, cada una con su escudo institucional.</li>
-      <li><strong>CTA Inscripciones</strong> — llamado a la acción.</li>
+      <li><strong>Hero Slider</strong> — Banner principal con slider automático (3 slides Unsplash), transiciones suaves, flechas y dots.</li>
+      <li><strong>Aplicaciones Institucionales</strong> — 4 accesos: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail.</li>
+      <li><strong>Contadores</strong> — Estadísticas animadas: Docentes (2200+), Cadetes (1100+), Personal (800+), Aulas (500+).</li>
+      <li><strong>CTA Inscripciones</strong> — Countdown + botones de inscripción.</li>
+      <li><strong>Últimas Noticias</strong> — Noticia destacada + sidebar con <strong>links a contenido de ejemplo</strong>.</li>
+      <li><strong>Nuestras Escuelas</strong> — Grid de las 5 escuelas con escudos.</li>
+      <li><strong>Testimonios</strong> — Carrusel de 3 egresados con flechas y dots.</li>
     </ol>
 
-    <h3>Hero Slider</h3>
+    <h3>Sección Noticias del Home</h3>
     <ul>
-      <li><strong>Slides:</strong> 3 slides con imagen, badge, título y descripción.</li>
-      <li><strong>Automático:</strong> cambia cada 6 segundos.</li>
-      <li><strong>Pausa:</strong> al pasar el cursor sobre el hero.</li>
-      <li><strong>Navegación:</strong> flechas izquierda/derecha + indicadores (dots) en la parte inferior.</li>
-      <li><strong>Transiciones:</strong> fade suave entre slides (1s ease-in-out).</li>
+      <li>Noticia destacada con <strong>link a <code>/noticias/:id</code></strong>.</li>
+      <li>Sidebar de 3 mini-cards con <strong>links a <code>/noticias/:id</code></strong>.</li>
+      <li><strong>"Ver todas las noticias"</strong> apunta a <code>/noticias</code>.</li>
+      <li>Bloque de Calendario Académico (promo).</li>
+      <li>Alimentado desde <code>src/data/noticias.js</code>.</li>
     </ul>
 
     <h3>Página de Noticias (<code>/noticias</code>)</h3>
     <ul>
-      <li>Filtro por categorías (sticky), noticia principal, historial con paginación (10 pág.), estados vacíos. Categoría activa con gradiente.</li>
+      <li><strong>Filtro por categorías:</strong> Todas, Institucional, Académica, Escuelas, Eventos, Convenios.</li>
+      <li><strong>Padding en filtros:</strong> separados del borde con <code>padding: 0 2rem</code>.</li>
+      <li><strong>Botón compartir:</strong> cada noticia tiene ShareButton (Web Share API o clipboard).</li>
+      <li><strong>Noticia principal:</strong> última publicación → <strong>link a <code>/noticias/:id</code></strong>.</li>
+      <li><strong>Historial:</strong> grid de tarjetas con <strong>links a <code>/noticias/:id</code></strong> y paginación (10 por página).</li>
+      <li><strong>Breadcrumb</strong> para navegación.</li>
+    </ul>
+
+    <h3>Detalle de Noticia (<code>/noticias/:id</code>)</h3>
+    <ul>
+      <li><strong>Hero de imagen</strong> con overlay gradiente y badged de categoría.</li>
+      <li><strong>Breadcrumb:</strong> Inicio → Noticias → Título.</li>
+      <li><strong>Contenido completo:</strong> excerpt destacado + cuerpo de texto.</li>
+      <li><strong>ShareButton</strong> para compartir.</li>
+      <li><strong>Noticias relacionadas</strong> (misma categoría, max 3).</li>
+      <li><strong>Botón "Volver a noticias"</strong>.</li>
+      <li><strong>Estado 404:</strong> si el ID no existe, muestra mensaje y enlace.</li>
     </ul>
 
     <h2>5. Formación</h2>
     <h3>Oferta Académica</h3>
-    <p>Vista dinámica en pestañas desde datos mock: <strong>Carreras</strong>, <strong>Cursos</strong> y <strong>Convocatorias</strong>.</p>
-    <h3>Carreras (<code>/institucional/carreras</code>)</h3>
-    <p>Cada carrera muestra: Nombre, Escuela, Descripción, Duración, Modalidad, Requisitos y Documentos relacionados.</p>
-    <h3>Cursos (<code>/secretaria/cursos</code>)</h3>
+    <p>Vista dinámica en pestañas: <strong>Carreras</strong>, <strong>Cursos</strong> y <strong>Convocatorias</strong>.</p>
+    <h3>Carreras</h3>
+    <p>Grid de tarjetas con header coloreado por escuela, chips, estado de inscripción (abiertas/próximamente/cerradas), fecha y hover animado.</p>
+    <h3>Cursos</h3>
     <ul>
       <li>Filtros por Escuela, Tipo y Estado.</li>
-      <li>Agrupados en Actuales, Próximos e Historial (finalizados).</li>
-      <li>Cada curso es un acordeón con Nombre, Tipo, Información, Período y botón "Acceso a Mi ISeP".</li>
+      <li>Acordeón desplegable + botón "Acceso a Mi ISeP".</li>
     </ul>
-    <h3>Páginas de escuela (plantilla común)</h3>
-    <ul>
-      <li><strong>Logo</strong> (escudo), <strong>Presentación</strong>, <strong>Información</strong> (categoría, duración, modalidad, sede), <strong>Carreras</strong>, <strong>Cursos actuales</strong> (acceso a Mi ISeP), <strong>Noticias</strong> y <strong>Contacto</strong>. Aplicada a las 5 escuelas.</li>
-    </ul>
+    <h3>Páginas de escuela (plantilla)</h3>
+    <p>5 escuelas con datos oficiales (presentación, email de contacto, sede): Policía, Superior, Especialidades, Investigaciones, EaD.</p>
 
     <h2>6. Ingreso</h2>
-    <table>
-      <tr><th>Página</th><th>Descripción</th></tr>
-      <tr><td>Convocatorias vigentes</td><td>Inscripciones abiertas en este momento.</td></tr>
-      <tr><td>Próximas convocatorias</td><td>Aperturas anunciadas para ciclos siguientes.</td></tr>
-      <tr><td>Requisitos</td><td>Condiciones generales y documentación.</td></tr>
-      <tr><td>Proceso de ingreso</td><td>Pasos: registro → inscripción → documentación → evaluaciones → confirmación.</td></tr>
-      <tr><td>Preguntas frecuentes</td><td>Acordeón con respuestas.</td></tr>
-    </table>
-
-    <h2>7. Aplicaciones institucionales</h2>
-    <table>
-      <tr><th>App</th><th>URL</th><th>Destino</th></tr>
-      <tr><td>Mi ISeP</td><td><code>mi.isepsantafe.edu.ar</code></td><td>Portal de trámites</td></tr>
-      <tr><td>SIGEDI</td><td><code>gestion.isepsantafe.edu.ar</code></td><td>Gestión Educativa</td></tr>
-      <tr><td>Webmail</td><td><code>webmail.isepsantafe.net.ar</code></td><td>Correo institucional</td></tr>
-    </table>
-
-    <h2>8. Accesos flotantes, redes y footer</h2>
+    <h3>Landing de Convocatorias (contenido real)</h3>
+    <p>Proceso de selección — Escuela de Policía — Ciclo 2027–2028:</p>
     <ul>
-      <li><strong>WhatsApp flotante</strong> siempre visible (esquina inferior derecha).</li>
-      <li><strong>Buscador funcional:</strong> en la barra de navegación, al lado del botón "Mi ISeP". Indexa escuelas, carreras, cursos, convocatorias y páginas institucionales. Resultados dinámicos con ícono, título, subtítulo y categoría.</li>
-      <li><strong>Íconos en navegación:</strong> cada sección del menú tiene un ícono de Material Symbols (Institucional → account_balance, Formación → school, Ingreso → login, Últimas noticias → newspaper).</li>
-      <li><strong>Redes:</strong> Facebook, YouTube, Instagram y TikTok.</li>
-      <li><strong>Footer rediseñado:</strong> Identidad institucional · Accesos principales · Contacto · Sedes (Alem 2050 y RN11 km 482 Recreo) · Enlaces institucionales. Fondo decorativo que se integra con el fondo general.</li>
-      <li><strong>Créditos:</strong> "Departamento Desarrollo, Tecnología e Innovación" + fecha dinámica.</li>
+      <li>Hero con countdown y enlace a MI ISEP</li>
+      <li>Alerta de presentación (09:00 hs, tolerancia 20 min)</li>
+      <li>Documentación (título + DNI), vestimenta, elementos</li>
+      <li>Cómo inscribirte en MI ISEP (4 pasos)</li>
+      <li>Formularios obligatorios (4 DJ)</li>
+      <li>Edad requerida (18-30 años al 02/02/2027)</li>
+      <li>Etapas del proceso (4 etapas)</li>
+      <li>Requisitos (10 items)</li>
+      <li>Consultas: prensaydifusion@isepsantafe.edu.ar</li>
+      <li>Link al listado de presentación (PDF)</li>
     </ul>
 
-    <h2>9. Requisitos funcionales obligatorios</h2>
+    <h3>Otras páginas de ingreso</h3>
+    <table>
+      <tr><th>Página</th><th>Contenido</th></tr>
+      <tr><td>Próximas convocatorias</td><td>Aperturas anunciadas</td></tr>
+      <tr><td>Requisitos</td><td>Condiciones y documentación</td></tr>
+      <tr><td>Proceso de ingreso</td><td>Pasos detallados</td></tr>
+      <tr><td>Preguntas frecuentes</td><td>12 preguntas en acordeón</td></tr>
+    </table>
+
+    <h2>7. Búsqueda global</h2>
+    <ul>
+      <li><strong>Ubicación:</strong> ícono de lupa en el navbar, al lado de "Mi ISeP".</li>
+      <li><strong>Índice:</strong> 58 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 11 noticias + 11 normativa + 12 páginas + 6 Misceláneas).</li>
+      <li><strong>Resultados agrupados por tipo.</strong></li>
+      <li><strong>Navegación por teclado:</strong> ↑↓, Enter, Escape.</li>
+      <li><strong>Enter</strong> en el campo abre el primer resultado.</li>
+    </ul>
+
+    <h2>8. Normativa y Resoluciones</h2>
+    <p>11 documentos oficiales descargables. Filtros por año y tipo. Chips coloreados por tipo.</p>
+
+    <h2>9. Biblioteca Virtual</h2>
+    <p>12 recursos bibliográficos reales del ISeP. Filtros por tipo (Manual, Publicación, Protocolo, Resolución). Chips coloreados.</p>
+
+    <h2>10. Sedes y Contacto</h2>
+    <p>2 sedes con Google Maps embebido: D.Z.S – Rosario (Alem 2050) y DZCN – Recreo (RN11 km 482).</p>
+
+    <h2>11. Aplicaciones institucionales</h2>
+    <table>
+      <tr><th>App</th><th>URL</th><th>Destino</th></tr>
+      <tr><td>Mi ISeP</td><td><code>mi.isepsantafe.edu.ar</code></td><td>Portal personal</td></tr>
+      <tr><td>SIGEDI</td><td><code>gestion.isepsantafe.edu.ar</code></td><td>Gestión Educativa</td></tr>
+      <tr><td>Gestión Cadetes</td><td><code>cadetes.isepsantafe.edu.ar</code></td><td>Control de asistencia</td></tr>
+      <tr><td>Webmail</td><td><code>webmail.isepsantafe.edu.ar</code></td><td>Correo institucional</td></tr>
+    </table>
+
+    <h2>12. Accesos flotantes y redes</h2>
+    <h3>WhatsApp</h3>
+    <p>Botón flotante verde, siempre visible (z-index 60). Enlace a <code>wa.me/5490000000000</code>.</p>
+    <h3>ScrollToTop</h3>
+    <p>Botón flotante con SVG flecha (z-index 70). Visible tras 400px de scroll, <code>bottom: 5.5rem</code>. Scroll suave al inicio.</p>
+    <h3>Redes sociales (Footer)</h3>
+    <table>
+      <tr><th>Red</th><th>Enlace</th></tr>
+      <tr><td>Facebook</td><td><code>facebook.com/isepsantafe/</code></td></tr>
+      <tr><td>YouTube</td><td><code>youtube.com/c/InstitutodeSeguridadPúblicaDeSantaFe</code></td></tr>
+      <tr><td>Instagram</td><td><code>instagram.com/isepsantafe</code></td></tr>
+      <tr><td>TikTok</td><td><code>tiktok.com/@isepsantafe</code></td></tr>
+    </table>
+    <h3>Footer</h3>
+    <p>Fondo sólido <code>#00254d</code>, grid 3 columnas. Bottom 1 línea: "Departamento Desarrollo, Tecnología e Innovación" + fecha dinámica.</p>
+
+    <h2>13. Breadcrumb</h2>
+    <p>Fondo <code>#f8fafc</code>, borde <code>#eef2f7</code>. Ícono home enlazable, separadores "/". Último elemento en negrita.</p>
+
+    <h2>14. Contadores</h2>
+    <p>4 estadísticas animadas con IntersectionObserver: Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.</p>
+
+    <h2>15. Testimonios</h2>
+    <p>Carrusel de 3 egresados con foto, nombre, promoción y texto. Flechas y dots.</p>
+
+    <h2>16. Requisitos funcionales</h2>
     <ol>
       <li>Responsive obligatorio (móvil, tablet, desktop).</li>
-      <li>Contraste legible del texto sobre imágenes (overlays con scrim oscuro).</li>
+      <li>Contraste legible (overlays + scrim).</li>
       <li>Mi ISeP siempre visible.</li>
-      <li>Logo ISeP enlazable que vuelve al inicio (<code>/</code>).</li>
-      <li>Consistencia visual del sistema de gradiente y glow.</li>
-      <li>Fondo decorativo global: <code>background-attachment: fixed</code>, color base <code>#bcd8db</code> y gradientes radiales/lineales.</li>
+      <li>Logo ISeP enlazable al inicio.</li>
+      <li>Consistencia visual (gradiente, glow).</li>
+      <li>Fondo decorativo global (<code>background-attachment: fixed</code>).</li>
+      <li>Favicon: escudo ISeP.</li>
     </ol>
 
-    <h2>10. Disponibilidad</h2>
-    <p><code>npm install</code> → <code>npm run dev</code> (http://localhost:5173). Build: <code>npm run build</code> → <code>npm run preview</code>. Lint: <code>npm run lint</code>.</p>
+    <h2>17. Disponibilidad</h2>
+    <p><code>npm install</code> → <code>npm run dev</code> (localhost:5173). Build: <code>npm run build</code> → <code>npm run preview</code>. Lint: <code>npm run lint</code>.</p>
+
+    <h2>18. Publicación de noticias — Guía paso a paso</h2>
+
+    <h3>18.1 Estructura de datos</h3>
+    <pre>{
+  id: 12,
+  titulo: "Título de la noticia",
+  categoria: "Institucional",
+  fecha: "3 DE SEPTIEMBRE, 2026",
+  fechaCorta: "3 SEP",
+  excerpt: "Extracto breve...",
+  img: "https://picsum.photos/seed/n12/900/500"
+}</pre>
+
+    <h3>18.2 Pasos para publicar</h3>
+    <ol>
+      <li><strong>Preparar imagen alusiva:</strong> 900×500 px (16:9), JPG/PNG, &lt;200 KB.</li>
+      <li><strong>Definir categoría:</strong> Institucional | Académica | Escuelas | Eventos | Convenios.</li>
+      <li><strong>Agregar en <code>src/data/noticias.js</code>:</strong> nuevo objeto al array con id único.</li>
+      <li><strong>Agregar en <code>src/data/buscador.js</code>:</strong> entrada tipo "Noticia" para que aparezca en búsquedas.</li>
+      <li><strong>Probar:</strong> <code>npm run dev</code>, verificar en home, /noticias y detalle.</li>
+      <li><strong>Confirmar:</strong> <code>npm run build</code> + <code>npm run lint</code>.</li>
+    </ol>
+
+    <h3>18.3 Documentos adjuntos y links</h3>
+    <ol>
+      <li>Subir documento a <code>public/docs/</code> o usar URL externa.</li>
+      <li>Agregar campo <code>adjuntos</code> al objeto: <code>[{ nombre, url }]</code>.</li>
+      <li>Modificar <code>NoticiaDetalle.jsx</code> para renderizar la sección de adjuntos.</li>
+    </ol>
+
+    <h3>18.4 Resumen del flujo</h3>
+    <table>
+      <tr><th>Paso</th><th>Archivo</th><th>Acción</th></tr>
+      <tr><td>1</td><td>Imagen</td><td>Preparar 900×500 px</td></tr>
+      <tr><td>2</td><td>—</td><td>Definir categoría</td></tr>
+      <tr><td>3</td><td><code>noticias.js</code></td><td>Agregar objeto al array</td></tr>
+      <tr><td>4</td><td><code>buscador.js</code></td><td>Agregar entrada de búsqueda</td></tr>
+      <tr><td>5</td><td><code>npm run dev</code></td><td>Verificar visualmente</td></tr>
+      <tr><td>6</td><td><code>npm run build</code></td><td>Confirmar build limpio</td></tr>
+    </table>
   </main>
 </body>
 </html>
