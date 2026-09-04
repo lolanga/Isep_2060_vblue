@@ -7,38 +7,10 @@
  */
 
 import { escuelas, carreras, cursos, convocatorias } from "./institucional";
+import { noticias } from "./noticias";
+import { resoluciones } from "./normativa";
 
-// ── Noticias (mock) ──
-const NOTICIAS = [
-  { id: 1, titulo: "Nueva citacion y notificacion para egresados", categoria: "Institucional", excerpt: "Cronograma de notificaciones y entrega de certificaciones finales." },
-  { id: 2, titulo: "Capacitacion en Primeros Auxilios Tacticos", categoria: "Academica", excerpt: "Jornada intensiva de primeros auxilios tacticos." },
-  { id: 3, titulo: "Convenio Marco con la Universidad Nacional del Litoral", categoria: "Convenios", excerpt: "Convenio de colaboracion academica con la UNL." },
-  { id: 4, titulo: "Ciclo de Conferencias sobre Derecho Procesal Penal", categoria: "Academica", excerpt: "Conferencias con jueces y fiscales sobre el nuevo Codigo Procesal Penal." },
-  { id: 5, titulo: "Egreso de la promocion 2025 de la Escuela de Policia", categoria: "Escuelas", excerpt: "Ceremonia solemne con 240 nuevos oficiales." },
-  { id: 6, titulo: "Jornada de actualizacion en criminalistica", categoria: "Escuelas", excerpt: "Actualizacion en tecnicas de criminalistica con especialistas internacionales." },
-  { id: 7, titulo: "Apertura de inscripciones para el ciclo lectivo 2025", categoria: "Institucional", excerpt: "Apertura del periodo de inscripciones para todas las escuelas." },
-  { id: 8, titulo: "Evento deportivo interprovincial de fuerzas de seguridad", categoria: "Eventos", excerpt: "Torneo interprovincial de atletismo." },
-  { id: 9, titulo: "Nuevo laboratorio de informatica forense", categoria: "Academica", excerpt: "Laboratorio equipado con tecnologia de ultima generacion." },
-  { id: 10, titulo: "Visita de autoridades del Ministerio de Seguridad", categoria: "Institucional", excerpt: "Nuevas inversiones en infraestructura educativa." },
-  { id: 11, titulo: "Programa de becas para personal policial en actividad", categoria: "Academica", excerpt: "Becas parciales para formacion academica." },
-];
-
-// ── Resoluciones / Normativa (mock) ──
-const RESOLUCIONES = [
-  { id: 1, titulo: "Resolución General Nº 001/2025 – Plan anual de actividades", tipo: "Resolución", anio: "2025" },
-  { id: 2, titulo: "Resolución General Nº 002/2025 – Designación de autoridades", tipo: "Resolución", anio: "2025" },
-  { id: 3, titulo: "Convenio Marco con la Universidad Nacional del Litoral", tipo: "Convenio", anio: "2025" },
-  { id: 4, titulo: "Plan Estratégico Institucional 2024-2027", tipo: "Plan Estratégico", anio: "2024" },
-  { id: 5, titulo: "Resolución General Nº 010/2024 – Reglamento de evaluación", tipo: "Resolución", anio: "2024" },
-  { id: 6, titulo: "Resolución General Nº 015/2024 – Conformación de consejos escolares", tipo: "Resolución", anio: "2024" },
-  { id: 7, titulo: "Estatuto del Instituto de Seguridad Pública", tipo: "Estatuto", anio: "2023" },
-  { id: 8, titulo: "Resolución General Nº 020/2023 – Carga horaria docente", tipo: "Resolución", anio: "2023" },
-  { id: 9, titulo: "Convenio de cooperación con la Policía de la Provincia", tipo: "Convenio", anio: "2023" },
-  { id: 10, titulo: "Resolución General Nº 005/2022 – Planificación estratégica", tipo: "Resolución", anio: "2022" },
-  { id: 11, titulo: "Convenio con el Ministerio de Seguridad de la Nación", tipo: "Convenio", anio: "2022" },
-];
-
-export const INDICE_BUSQUEDA = [
+const INDICE_BUSQUEDA = [
   // ── Escuelas ──
   ...escuelas.map((e) => ({
     id: `escuela-${e.id}`,
@@ -93,7 +65,7 @@ export const INDICE_BUSQUEDA = [
   }),
 
   // ── Noticias ──
-  ...NOTICIAS.map((n) => ({
+  ...noticias.map((n) => ({
     id: `noticia-${n.id}`,
     title: n.titulo,
     subtitle: `${n.categoria} · Noticia`,
@@ -104,7 +76,7 @@ export const INDICE_BUSQUEDA = [
   })),
 
   // ── Normativa / Resoluciones ──
-  ...RESOLUCIONES.map((r) => ({
+  ...resoluciones.map((r) => ({
     id: `resolucion-${r.id}`,
     title: r.titulo,
     subtitle: `${r.tipo} · ${r.anio}`,

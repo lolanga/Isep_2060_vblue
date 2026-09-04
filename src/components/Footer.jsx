@@ -1,51 +1,3 @@
-import { Link } from "react-router-dom";
-
-function ScrollToTop() {
-  return (
-    <button
-      type="button"
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      aria-label="Ir arriba"
-      style={{
-        position: "fixed",
-        bottom: "1.5rem",
-        right: "1.5rem",
-        width: "2.75rem",
-        height: "2.75rem",
-        borderRadius: "50%",
-        background: "var(--gradient-primary)",
-        border: "none",
-        cursor: "pointer",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
-        zIndex: 40,
-        transition: "transform 0.2s, box-shadow 0.2s",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "translateY(-2px)";
-        e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.25)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "translateY(0)";
-        e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.18)";
-      }}
-    >
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <path d="M12 4L4 12H8V20H16V12H20L12 4Z" fill="#fff" />
-      </svg>
-    </button>
-  );
-}
-
 export default function Footer() {
   return (
     <footer>
@@ -121,8 +73,6 @@ export default function Footer() {
           © {new Date().getFullYear()} Instituto de Seguridad Pública de Santa Fe — Departamento Desarrollo, Tecnología e Innovación — {new Date().toLocaleDateString("es-AR", { day: "2-digit", month: "long", year: "numeric" })}
         </span>
       </div>
-
-      <ScrollToTop />
 
     </footer>
   );

@@ -111,19 +111,6 @@ footer {
   font-size: 1rem;
 }
 
-.footer-links li {
-  margin-bottom: 0.4rem;
-}
-
-.footer-links a {
-  color: #a0b4c0;
-  font-size: 0.75rem;
-}
-
-.footer-links a:hover {
-  color: #17be95;
-}
-
 /* ── Bottom bar ── */
 .footer-bottom {
   max-width: 1280px;
@@ -140,10 +127,4 @@ footer {
   font-size: 0.7rem;
   color: #8a9eaa;
   letter-spacing: 0.05em;
-}
-
-.footer-dev__date {
-  color: #a0b4c0;
-  font-size: 0.7rem;
-  text-transform: capitalize;
 }

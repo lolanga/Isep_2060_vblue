@@ -112,20 +112,6 @@
   align-items: center;
 }
 
-.btn-mail {
-  background-color: var(--secondary-container);
-  color: var(--on-secondary-container);
-  padding: 0.5rem 1.25rem;
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.btn-mail:hover {
-  opacity: 0.9;
-  transform: scale(0.95);
-}
-
 .btn-isep {
   background: var(--gradient-primary);
   color: var(--white);
@@ -578,11 +564,6 @@
   border-top: 1px solid #f1f5f9;
 }
 
-.search-result__icon {
-  font-size: 1.25rem;
-  flex-shrink: 0;
-}
-
 .search-result__info {
   flex: 1;
   display: flex;
@@ -603,14 +584,6 @@
 .search-result__sub {
   font-size: 0.75rem;
   color: var(--slate-500, #64748b);
-}
-
-.search-result__cat {
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  flex-shrink: 0;
 }
 
 /* Botón de búsqueda en navbar */

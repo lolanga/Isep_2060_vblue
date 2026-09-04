@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatWhatsApp from "./components/FloatWhatsApp";
+import ScrollToTop from "./components/ScrollToTop";
 
 // ── Páginas ──
 import Home from "./pages/Home";
@@ -89,6 +90,9 @@ function App() {
 
       {/* Botón flotante WhatsApp — siempre visible */}
       <FloatWhatsApp />
+
+      {/* Botón ir arriba — aparece al hacer scroll */}
+      <ScrollToTop />
     </BrowserRouter>
   );
 }

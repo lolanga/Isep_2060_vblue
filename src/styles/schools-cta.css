@@ -73,26 +73,6 @@
   margin-bottom: 1.5rem;
 }
 
-.school-link {
-  display: inline-flex;
-  align-items: center;
-  color: var(--secondary);
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.school-link .material-symbols-outlined {
-  font-size: 0.875rem;
-  margin-left: 0.25rem;
-  transition: transform 0.3s ease;
-}
-
-.school-card:hover .school-link .material-symbols-outlined {
-  transform: translateX(4px);
-}
-
 
 /* =============================================
    CTA — Bloque inscripciones (CTA.jsx)
