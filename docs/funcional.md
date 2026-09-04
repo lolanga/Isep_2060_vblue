@@ -146,6 +146,8 @@ Vista dinámica con pestañas:
 | **Cursos** | Cards con nombre, tipo, período + botón "Acceso a Mi ISeP" |
 | **Convocatorias** | Cards con estado (Vigente/Próxima), escuela y fecha |
 
+Las tarjetas de escuelas en Oferta Educativa muestran **imágenes de escudos** (no cajas de color con abreviaciones).
+
 ### 5.2 Carreras (`/institucional/carreras`)
 
 Grid de tarjetas mejoradas:
@@ -164,11 +166,13 @@ Grid de tarjetas mejoradas:
 ### 5.4 Páginas de escuela (plantilla `EscuelaTemplate`)
 
 5 escuelas con datos oficiales (presentación, email de contacto, sede):
-- **Policía:** formación inicial Ley 12.333, email `escueladepolicia@isepsantafe.edu.ar`
+- **Policía:** formación inicial Ley 12.333, email `escueladepolicia@isepsantafe.edu.ar` — **única que muestra la sección "Carreras"**
 - **Superior:** perfeccionamiento Dirección/Supervisión, email `divestudio-essp@santafe.gov.ar`
 - **Especialidades:** perfeccionamiento Coordinación/Ejecución, email `escueladeespecialidades@isepsantafe.edu.ar`
 - **Investigaciones:** análisis criminal e investigación, email `escueladeinvestigacion@isepsantafe.edu.ar`
 - **EaD:** educación a distancia
+
+> **Nota:** Solo la Escuela de Policía incluye la sección "Carreras". Las demás escuelas (Superior, Especialidades, Investigaciones y EaD) no muestran esta sección.
 
 ---
 

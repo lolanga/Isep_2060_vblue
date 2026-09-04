@@ -98,7 +98,7 @@ Carrusel de 3 egresados con flechas y dots.
 ## 6. Formación
 
 ### 6.1 Oferta Académica
-Grid de las 4 escuelas del ISeP con presentación real, Carreras (Auxiliar en Seguridad, Técnico Superior), Cursos y Convocatorias.
+Grid de las 5 escuelas del ISeP con presentación real y **escudos**. Carreras, Cursos y Convocatorias.
 
 ### 6.2 Carreras
 Tarjetas con header coloreado por escuela, chips, estado de inscripción y hover animado.
@@ -107,7 +107,9 @@ Tarjetas con header coloreado por escuela, chips, estado de inscripción y hover
 Filtros por Escuela, Tipo y Estado. Acordeón desplegable + botón "Acceso a Mi ISeP".
 
 ### 6.4 Páginas de escuela
-Cada escuela: escudo, presentación (datos oficiales), información, carreras, cursos, contacto con email institucional.
+Cada escuela: escudo, presentación (datos oficiales), información, contacto con email institucional.
+
+> **Nota:** Solo la Escuela de Policía incluye la sección "Carreras". Las demás escuelas (Superior, Especialidades, Investigaciones y EaD) no muestran esta sección.
 
 ---
 

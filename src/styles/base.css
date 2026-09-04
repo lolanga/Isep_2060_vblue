@@ -36,19 +36,10 @@ button {
 }
 
 /* ── Layout ── */
-.page-main {
-  padding-top: var(--navbar-height);
-  min-height: 100vh;
-}
-
 .container-max {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 2rem;
-}
-
-.container-padded {
-  padding: 2rem;
 }
 
 .text-center {

@@ -76,34 +76,36 @@ export default function EscuelaTemplate({ escuelaId }) {
         </div>
       </section>
 
-      {/* Carreras */}
-      <section className="escuela-seccion">
-        <div className="container-max">
-          <h2 className="escuela-seccion__title">
-            <span className="material-symbols-outlined">menu_book</span>
-            Carreras
-          </h2>
+      {/* Carreras — solo Escuela de Policía */}
+      {escuelaId === "policia" && (
+        <section className="escuela-seccion">
+          <div className="container-max">
+            <h2 className="escuela-seccion__title">
+              <span className="material-symbols-outlined">menu_book</span>
+              Carreras
+            </h2>
 
-          {carreras.length > 0 ? (
-            <ul className="escuela-list">
-              {carreras.map((c) => (
-                <li key={c.id}>
-                  <Link to="/institucional/carreras" style={{ color: "var(--color-start)" }}>
-                    {c.nombre}
-                  </Link>
-                  <p style={{ fontSize: "0.85rem", color: "var(--slate-500)", marginTop: "0.25rem" }}>
-                    {c.modalidad} · {c.duracion}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p style={{ color: "var(--slate-500)" }}>
-              Esta escuela define sus carreras según convocatoria. Consultá la oferta académica.
-            </p>
-          )}
-        </div>
-      </section>
+            {carreras.length > 0 ? (
+              <ul className="escuela-list">
+                {carreras.map((c) => (
+                  <li key={c.id}>
+                    <Link to="/institucional/carreras" style={{ color: "var(--color-start)" }}>
+                      {c.nombre}
+                    </Link>
+                    <p style={{ fontSize: "0.85rem", color: "var(--slate-500)", marginTop: "0.25rem" }}>
+                      {c.modalidad} · {c.duracion}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p style={{ color: "var(--slate-500)" }}>
+                Esta escuela define sus carreras según convocatoria. Consultá la oferta académica.
+              </p>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Cursos actuales */}
       <section className="escuela-seccion">
@@ -203,7 +205,16 @@ export default function EscuelaTemplate({ escuelaId }) {
           )}
           {noticiasEscuela.length > 0 && (
             <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
-              <Link to="/noticias" className="btn-ghost" style={{ fontSize: "0.9rem" }}>
+              <Link to="/noticias" style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                fontSize: "0.9rem",
+                fontWeight: 600,
+                color: "var(--primary)",
+                textDecoration: "none",
+                transition: "color 0.2s"
+              }}>
                 Ver todas las noticias
                 <span className="material-symbols-outlined" style={{ fontSize: "1rem" }}>arrow_forward</span>
               </Link>

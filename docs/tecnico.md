@@ -60,7 +60,7 @@ src/
 │   └── Secretaria/          # Titulos (contenido real), Biblioteca (21 artículos), Cursos
 └── styles/
     ├── variables.css        # Design tokens + gradiente
-    ├── base.css             # Reset, tipografía, fondo global, .chip, .page-main
+    ├── base.css             # Reset, tipografía, fondo global, .chip
     ├── navbar.css           # Navbar + buscador + hamburger
     ├── hero.css             # Hero slider + overlays + .page-hero
     ├── news.css             # Noticias Home

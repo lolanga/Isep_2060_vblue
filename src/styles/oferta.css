@@ -171,28 +171,6 @@
   color: var(--white);
 }
 
-/* ── Lista de requisitos / documentos ── */
-.check-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.check-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  color: var(--slate-600, #475569);
-  font-size: 0.9rem;
-}
-
-.check-list .material-symbols-outlined {
-  color: var(--color-end, #17be95);
-  font-size: 1.1rem;
-  flex-shrink: 0;
-}
-
 /* ── Filtros de cursos ── */
 .cursos-filters {
   display: flex;

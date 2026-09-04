@@ -30,9 +30,8 @@ export default function Cursos() {
 
   // Obtener tipos y escuelas únicos disponibles
   const tipos = [...new Set(cursos.map((c) => c.tipo))].sort();
-  const escuelaNombre = (id) => escuelaPorIdNombre(id);
 
-  const escuelaPorIdNombre = (id) => {
+  const escuelaNombre = (id) => {
     const e = escuelas.find((x) => x.id === id);
     return e ? e.nombre : id;
   };

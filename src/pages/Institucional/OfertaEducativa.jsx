@@ -8,16 +8,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
-import { carreras, cursos, convocatorias, escuelaPorId } from "../../data/institucional";
+import { carreras, cursos, convocatorias, escuelaPorId, escuelas } from "../../data/institucional";
 
 const MI_ISEP = "https://mi.isepsantafe.edu.ar";
 
-const escuelasISeP = [
-  { id: "policia", nombre: "Escuela de Policía", abrev: "EP", color: "var(--blue)" },
-  { id: "especialidades", nombre: "Escuela de Especialidades en Seguridad", abrev: "EE", color: "#7c3aed" },
-  { id: "superior", nombre: "Escuela Superior de Seguridad Pública", abrev: "ES", color: "var(--secondary)" },
-  { id: "investigaciones", nombre: "Escuela de Investigaciones", abrev: "EI", color: "var(--primary)" },
-];
+const escuelasFiltradas = escuelas.filter((e) => e.id !== "ead");
 
 export default function OfertaEducativa() {
   const [tab, setTab] = useState("carreras");
@@ -54,7 +49,7 @@ export default function OfertaEducativa() {
         {/* ── Escuelas del ISeP ── */}
         <section style={{ marginBottom: "2.5rem" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 180px), 1fr))", gap: "1rem", marginTop: "1.5rem" }}>
-            {escuelasISeP.map((e) => (
+            {escuelasFiltradas.map((e) => (
               <Link
                 key={e.id}
                 to={`/escuelas/${e.id}`}
@@ -62,37 +57,28 @@ export default function OfertaEducativa() {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  gap: "0.5rem",
-                  padding: "1.25rem 0.75rem",
+                  gap: "0.75rem",
+                  padding: "1.5rem 0.75rem",
                   background: "#fff",
                   borderRadius: "0.75rem",
                   border: "1px solid #eef2f7",
                   textDecoration: "none",
                   transition: "box-shadow 0.2s, transform 0.2s",
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = "0 4px 12px rgba(15,23,42,0.1)";
-                  e.currentTarget.style.transform = "translateY(-2px)";
+                onMouseEnter={(ev) => {
+                  ev.currentTarget.style.boxShadow = "0 4px 12px rgba(15,23,42,0.1)";
+                  ev.currentTarget.style.transform = "translateY(-2px)";
                 }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "none";
-                  e.currentTarget.style.transform = "translateY(0)";
+                onMouseLeave={(ev) => {
+                  ev.currentTarget.style.boxShadow = "none";
+                  ev.currentTarget.style.transform = "translateY(0)";
                 }}
               >
-                <div style={{
-                  width: "3.5rem",
-                  height: "3.5rem",
-                  borderRadius: "0.75rem",
-                  background: e.color || "var(--primary)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#fff",
-                  fontWeight: 800,
-                  fontSize: "0.85rem",
-                }}>
-                  {e.abrev}
-                </div>
+                <img
+                  src={e.logo}
+                  alt={`Escudo ${e.nombre}`}
+                  style={{ width: "4rem", height: "4rem", objectFit: "contain" }}
+                />
                 <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--slate-900)", textAlign: "center", lineHeight: 1.3 }}>
                   {e.nombre}
                 </span>

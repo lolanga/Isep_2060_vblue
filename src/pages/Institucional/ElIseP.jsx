@@ -8,23 +8,6 @@
 import Breadcrumb from "../../components/Breadcrumb";
 import escudoIsep from "../../assets/escudo_ISeP.png";
 
-const SEDES = [
-  {
-    id: 1,
-    nombre: "D.Z.S — Rosario",
-    direccion: "Leandro N. Alem 2050, S2000FMH Rosario, Santa Fe",
-    telefono: "341-4728526",
-    icon: "location_on",
-  },
-  {
-    id: 2,
-    nombre: "DZCN — Recreo",
-    direccion: "Ruta 11 km 482, Recreo, Santa Fe",
-    telefono: "342-4815570",
-    icon: "location_on",
-  },
-];
-
 export default function ElIseP() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
