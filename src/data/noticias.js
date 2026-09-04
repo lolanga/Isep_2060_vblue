@@ -1,150 +1,34 @@
 /**
  * data/noticias.js
  * Datos compartidos de noticias (used by Noticias.jsx, buscador.js y EscuelaTemplate.jsx)
+ *
+ * Formato de una noticia:
+ * {
+ *   id: number,            // Único, incremental
+ *   titulo: string,        // Título de la noticia
+ *   categoria: string,     // Institucional | Academica | Escuelas | Eventos | Convenios
+ *   fecha: string,         // "4 DE SEPTIEMBRE, 2026" (formato largo)
+ *   fechaCorta: string,    // "4 SEP" (formato corto)
+ *   excerpt: string,       // Extracto (1-2 oraciones)
+ *   img: string,           // URL de imagen (local o externa)
+ *   escuelas: string[],    // (opcional) IDs: policia, superior, especialidades, investigaciones, ead
+ *   adjuntos: object[],    // (opcional) [{ nombre: string, url: string }]
+ *   contenido: string,     // (opcional) cuerpo completo (separar párrafos con \n\n)
+ * }
+ *
+ * Imágenes: colocar en public/img/noticias/ y usar /img/noticias/archivo.jpg
+ * Adjuntos: colocar en public/docs/ y usar /docs/archivo.pdf
  */
 
 export const noticias = [
   {
-    id: 13,
-    titulo: "ISeP lanza nuevo programa de formación en Seguridad Comunitaria",
-    categoria: "Academica",
+    id: 1,
+    titulo: "Noticia de ejemplo",
+    categoria: "Institucional",
     fecha: "4 DE SEPTIEMBRE, 2026",
     fechaCorta: "4 SEP",
-    excerpt: "El Instituto de Seguridad Pública presenta una nueva carrera de formación orientada a la seguridad comunitaria con enfoque en derechos humanos.",
-    img: "/img/noticias/formacion-seguridad.png",
-    escuelas: ["policia"],
-    adjuntos: [
-      { nombre: "Resolución 123/2026 - Programa de Seguridad Comunitaria", url: "/docs/resolucion-123-2026.pdf" },
-      { nombre: "Formulario de inscripción", url: "/docs/formulario-inscripcion.pdf" },
-    ],
-    contenido: `El Instituto de Seguridad Pública de la Provincia de Santa Fe anuncia el lanzamiento del Programa de Formación en Seguridad Comunitaria, una nueva iniciativa académica diseñada para responder a las demandas contemporáneas de la seguridad pública.
-
-Este programa, que comenzará sus actividades en el primer semestre de 2027, está dirigido a personal policial en actividad y aspirantes que deseen especializarse en el abordaje comunitario de la seguridad.
-
-El contenido curricular incluye módulos sobre mediación comunitaria, resolución pacífica de conflictos, trabajo colaborativo con organizaciones barriales y técnicas de inteligencia comunitaria. Todo ello en el marco del respeto a los derechos humanos y las garantías constitucionales.
-
-"La seguridad pública del siglo XXI requiere profesionales preparados para trabajar con la comunidad, no solo para la comunidad", señaló la dirección del ISeP al presentar el programa.
-
-Los interesados podrán inscribirse a través de MI ISEP a partir del 1 de diciembre de 2026. Para más información, comunicarse al correo prensaydifusion@isepsantafe.edu.ar.`,
-  },
-  {
-    id: 12,
-    titulo: "noticia de prueba",
-    categoria: "Institucional",
-    fecha: "04 de septiembre, 2026",
-    fechaCorta: "04 SEP",
-    excerpt: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    img: "https://picsum.photos/seed/n1/900/500",
+    excerpt: "Esta es una noticia de ejemplo. Editá el archivo src/data/noticias.js para agregar tus propias noticias.",
+    img: "",
     escuelas: [],
-  },
-  {
-    id: 1,
-    titulo: "Nueva citacion y notificacion para egresados",
-    categoria: "Institucional",
-    fecha: "24 DE MAYO, 2025",
-    fechaCorta: "24 MAY",
-    excerpt: "Se informa a los egresados de la cohorte 2022-2023 sobre el cronograma de notificaciones y entrega de certificaciones finales del ciclo lectivo.",
-    img: "https://picsum.photos/seed/n1/900/500",
-    escuelas: ["policia"],
-  },
-  {
-    id: 2,
-    titulo: "Capacitacion en Primeros Auxilios Tacticos",
-    categoria: "Academica",
-    fecha: "18 DE MAYO, 2025",
-    fechaCorta: "18 MAY",
-    excerpt: "El personal docente y alumnos de la Escuela de Especialidades participaron de una jornada intensiva de primeros auxilios tacticos.",
-    img: "https://picsum.photos/seed/n2/900/500",
-    escuelas: ["especialidades"],
-  },
-  {
-    id: 3,
-    titulo: "Convenio Marco con la Universidad Nacional del Litoral",
-    categoria: "Convenios",
-    fecha: "15 DE MAYO, 2025",
-    fechaCorta: "15 MAY",
-    excerpt: "El ISeP firmo un convenio de colaboracion academica con la UNL para el desarrollo conjunto de programas de formacion policial.",
-    img: "https://picsum.photos/seed/n3/900/500",
-    escuelas: ["superior", "investigaciones"],
-  },
-  {
-    id: 4,
-    titulo: "Ciclo de Conferencias sobre Derecho Procesal Penal",
-    categoria: "Academica",
-    fecha: "10 DE MAYO, 2025",
-    fechaCorta: "10 MAY",
-    excerpt: "La Escuela Superior organizo un ciclo de conferencias con jueces y fiscales de la provincia sobre el nuevo Codigo Procesal Penal.",
-    img: "https://picsum.photos/seed/n4/900/500",
-    escuelas: ["superior"],
-  },
-  {
-    id: 5,
-    titulo: "Egreso de la promocion 2025 de la Escuela de Policia",
-    categoria: "Escuelas",
-    fecha: "5 DE MAYO, 2025",
-    fechaCorta: "5 MAY",
-    excerpt: "Con una ceremonia solemne en el predio del ISeP, egresaron 240 nuevos oficiales de la Escuela de Policia de Santa Fe.",
-    img: "https://picsum.photos/seed/n5/900/500",
-    escuelas: ["policia"],
-  },
-  {
-    id: 6,
-    titulo: "Jornada de actualizacion en criminalistica",
-    categoria: "Escuelas",
-    fecha: "28 ABR, 2025",
-    fechaCorta: "28 ABR",
-    excerpt: "La Escuela de Investigaciones organizo una jornada de actualizacion en tecnicas de criminalistica con especialistas internacionales.",
-    img: "https://picsum.photos/seed/n6/900/500",
-    escuelas: ["investigaciones"],
-  },
-  {
-    id: 7,
-    titulo: "Apertura de inscripciones para el ciclo lectivo 2025",
-    categoria: "Institucional",
-    fecha: "20 ABR, 2025",
-    fechaCorta: "20 ABR",
-    excerpt: "El ISeP informa la apertura del periodo de inscripciones para todas las escuelas del instituto a partir del 1 de mayo.",
-    img: "https://picsum.photos/seed/n7/900/500",
-    escuelas: ["policia"],
-  },
-  {
-    id: 8,
-    titulo: "Evento deportivo interprovincial de fuerzas de seguridad",
-    categoria: "Eventos",
-    fecha: "14 ABR, 2025",
-    fechaCorta: "14 ABR",
-    excerpt: "Santa Fe fue sede del torneo interprovincial de atletismo que reunio a representantes de fuerzas de seguridad de todo el pais.",
-    img: "https://picsum.photos/seed/n8/900/500",
-    escuelas: ["policia", "especialidades"],
-  },
-  {
-    id: 9,
-    titulo: "Nuevo laboratorio de informatica forense",
-    categoria: "Academica",
-    fecha: "8 ABR, 2025",
-    fechaCorta: "8 ABR",
-    excerpt: "Se inauguro el laboratorio de informatica forense en la sede central del ISeP, equipado con tecnologia de ultima generacion.",
-    img: "https://picsum.photos/seed/n9/900/500",
-    escuelas: ["investigaciones"],
-  },
-  {
-    id: 10,
-    titulo: "Visita de autoridades del Ministerio de Seguridad",
-    categoria: "Institucional",
-    fecha: "2 ABR, 2025",
-    fechaCorta: "2 ABR",
-    excerpt: "El ministro de Seguridad provincial recorrio las instalaciones del ISeP y anuncio nuevas inversiones en infraestructura educativa.",
-    img: "https://picsum.photos/seed/n10/900/500",
-    escuelas: ["ead"],
-  },
-  {
-    id: 11,
-    titulo: "Programa de becas para personal policial en actividad",
-    categoria: "Academica",
-    fecha: "25 MAR, 2025",
-    fechaCorta: "25 MAR",
-    excerpt: "El ISeP lanza un programa de becas parciales para el personal policial en actividad que desee continuar su formacion academica.",
-    img: "https://picsum.photos/seed/n11/900/500",
-    escuelas: ["policia"],
   },
 ];

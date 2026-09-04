@@ -170,7 +170,8 @@ export default function EscuelaTemplate({ escuelaId }) {
                       position: "absolute", top: "0.5rem", left: "0.5rem",
                       background: "var(--primary)", color: "#fff",
                       padding: "0.15rem 0.5rem", borderRadius: "1rem",
-                      fontSize: "0.65rem", fontWeight: 700, textTransform: "uppercase"
+                      fontSize: "0.65rem", fontWeight: 700, textTransform: "uppercase",
+                      zIndex: 2
                     }}>
                       {n.categoria}
                     </span>
