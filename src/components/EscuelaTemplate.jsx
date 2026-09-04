@@ -151,15 +151,15 @@ export default function EscuelaTemplate({ escuelaId }) {
             Noticias
           </h2>
           {noticiasEscuela.length > 0 ? (
-            <div className="grid-2" style={{ gap: "1.25rem" }}>
+            <div className="grid-3">
               {noticiasEscuela.map((n) => (
                 <Link
                   key={n.id}
                   to={`/noticias/${n.id}`}
                   className="card"
-                  style={{ textDecoration: "none", overflow: "hidden" }}
+                  style={{ textDecoration: "none", overflow: "hidden", padding: "0" }}
                 >
-                  <div style={{ position: "relative", height: "160px", overflow: "hidden", borderRadius: "0.5rem", marginBottom: "1rem" }}>
+                  <div style={{ position: "relative", height: "140px", overflow: "hidden" }}>
                     <img
                       src={n.img}
                       alt={n.titulo}
@@ -169,15 +169,17 @@ export default function EscuelaTemplate({ escuelaId }) {
                     <span style={{
                       position: "absolute", top: "0.5rem", left: "0.5rem",
                       background: "var(--primary)", color: "#fff",
-                      padding: "0.2rem 0.6rem", borderRadius: "1rem",
-                      fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase"
+                      padding: "0.15rem 0.5rem", borderRadius: "1rem",
+                      fontSize: "0.65rem", fontWeight: 700, textTransform: "uppercase"
                     }}>
                       {n.categoria}
                     </span>
                   </div>
-                  <h3 className="card__title" style={{ fontSize: "1rem", marginBottom: "0.5rem" }}>{n.titulo}</h3>
-                  <p className="card__desc" style={{ fontSize: "0.85rem", marginBottom: "0.5rem" }}>{n.excerpt}</p>
-                  <span style={{ fontSize: "0.78rem", color: "var(--slate-400)", marginTop: "auto" }}>{n.fechaCorta}</span>
+                  <div style={{ padding: "1rem" }}>
+                    <h3 className="card__title" style={{ fontSize: "0.9rem", marginBottom: "0.4rem", lineHeight: 1.3 }}>{n.titulo}</h3>
+                    <p className="card__desc" style={{ fontSize: "0.8rem", marginBottom: "0.4rem", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{n.excerpt}</p>
+                    <span style={{ fontSize: "0.72rem", color: "var(--slate-400)" }}>{n.fechaCorta}</span>
+                  </div>
                 </Link>
               ))}
             </div>
