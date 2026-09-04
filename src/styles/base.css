@@ -13,11 +13,7 @@
 body {
   font-family: 'Inter', sans-serif;
   background-attachment: fixed;
-  background-color: #bcd8db;
-  background-image:
-    radial-gradient(circle at 10% 20%, #208caf15 0, #0000 45%),
-    radial-gradient(circle at 90% 80%, #00c39612 0, #0000 45%);
-  background-size: 100% 100%, 100% 100%;
+  background: linear-gradient(180deg, #edf4f4, #f5f8f8 220px, #f7f8fa);
   color: var(--on-surface);
   line-height: 1.5;
 }
