@@ -341,11 +341,15 @@ Cada noticia se define en `src/data/noticias.js` con la siguiente estructura:
   fechaCorta: "24 MAY",        // Formato corto (para cards)
   excerpt: "Extracto breve de la noticia...",
   img: "/img/noticias/imagen.jpg",  // URL de imagen (local o externa)
+  adjuntos: [                          // (opcional) documentos adjuntos
+    { nombre: "Nombre del archivo.pdf", url: "/docs/archivo.pdf" },
+  ],
   contenido: "Primer párraco.\n\nSegundo párrafo.",  // (opcional) cuerpo completo
 }
 ```
 
 > **Campo `contenido`:** si se define, se usa como cuerpo de la noticia en el detalle. Si no se define, se genera un texto genérico a partir del título y excerpt. Separar párrafos con doble salto de línea (`\n\n`).
+> **Campo `adjuntos`:** lista de archivos para descargar (PDF, Excel, JPG, PNG, etc.). Colocar archivos en `public/docs/`.
 
 ### 18.2 Pasos para publicar una noticia nueva
 
@@ -381,7 +385,19 @@ Categorías disponibles:
 | `Eventos` | Eventos deportivos, ceremonias, actos |
 | `Convenios` | Convenios con otras instituciones |
 
-#### Paso 3: Agregar el registro en `src/data/noticias.js`
+#### Paso 3: Agregar archivos adjuntos (opcional)
+
+Si la noticia tiene documentos para descargar (PDF, Excel, etc.):
+
+1. Copiar los archivos a `public/docs/`
+2. Agregar el campo `adjuntos` al objeto de la noticia:
+   ```javascript
+   adjuntos: [
+     { nombre: "Nombre para mostrar.pdf", url: "/docs/archivo.pdf" },
+   ],
+   ```
+
+#### Paso 4: Agregar el registro en `src/data/noticias.js`
 
 Abrir el archivo `src/data/noticias.js` y agregar un nuevo objeto al array `noticias`:
 
@@ -394,6 +410,9 @@ Abrir el archivo `src/data/noticias.js` y agregar un nuevo objeto al array `noti
   fechaCorta: "4 SEP",
   excerpt: "Extracto de 1 a 2 oraciones que resuma el contenido principal.",
   img: "/img/noticias/mi-imagen.jpg",
+  adjuntos: [
+    { nombre: "Documento.pdf", url: "/docs/documento.pdf" },
+  ],
   contenido: `Primer párrafo del cuerpo de la noticia.
 
 Segundo párrafo con más detalle.
@@ -402,19 +421,20 @@ Tercer párrafo con información adicional.`,
 }
 ```
 
-> **Importante:** el `id` debe ser único. Verificar el último ID existente antes de agregar. El campo `contenido` usa backticks y se separan párrafos con `\n\n`.
+> **Importante:** el `id` debe ser único. Verificar el último ID existente antes de agregar. El campo `contenido` usa backticks y se separan párrafos con `\n\n`. Los `adjuntos` son opcionales.
 
-#### Paso 4: Verificar el buscador
+#### Paso 5: Verificar el buscador
 
 El archivo `src/data/buscador.js` importa directamente de `noticias.js`, por lo que la noticia aparecerá automáticamente en las búsquedas. No es necesario agregar nada manualmente.
 
-#### Paso 5: Verificar el contenido
+#### Paso 6: Verificar el contenido
 
 Al hacer clic en una card de noticia, se abre `/noticias/:id` con:
 - Hero de imagen con overlay gradiente
 - Badge de categoría y fecha
 - Extracto destacado con borde izquierdo
 - **Cuerpo de la noticia** (campo `contenido` si existe, o texto generado)
+- **Documentos adjuntos** con botones de descarga (si existen `adjuntos`)
 - Noticias relacionadas (misma categoría)
 - Breadcrumb y botón de volver
 

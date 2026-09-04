@@ -71,7 +71,7 @@ const INDICE_BUSQUEDA = [
     subtitle: `${n.categoria} · Noticia`,
     categoria: "Noticias",
     tipo: "Noticia",
-    ruta: "/noticias",
+    ruta: `/noticias/${n.id}`,
     keywords: [n.titulo, n.categoria, n.excerpt],
   })),
 

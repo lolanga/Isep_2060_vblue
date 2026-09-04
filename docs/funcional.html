@@ -255,9 +255,13 @@
   fechaCorta: "3 SEP",
   excerpt: "Extracto breve...",
   img: "https://picsum.photos/seed/n12/900/500",
+  adjuntos: [
+    { nombre: "Resolución 123.pdf", url: "/docs/resolucion-123.pdf" }
+  ],
   contenido: `Primer párrafo.\n\nSegundo párrafo.`
 }</pre>
     <div class="note"><strong>Campo <code>contenido</code>:</strong> si se define, se usa como cuerpo de la noticia en el detalle. Si no se define, se genera un texto genérico a partir del título y excerpt.</div>
+    <div class="note"><strong>Campo <code>adjuntos</code>:</strong> array opcional de objetos <code>{ nombre, url }</code>. Cada adjunto se renderiza como botón de descarga en el detalle de la noticia. El campo <code>nombre</code> es el texto visible del botón y <code>url</code> es la ruta relativa (desde <code>public/</code>) o URL absoluta del archivo.</div>
 
     <h3>18.2 Pasos para publicar</h3>
     <ol>
@@ -269,6 +273,7 @@
         </ul>
         900×500 px (16:9), JPG/PNG, &lt;200 KB.</li>
       <li><strong>Definir categoría:</strong> Institucional | Académica | Escuelas | Eventos | Convenios.</li>
+      <li><strong>Colocar archivos adjuntos en <code>public/docs/</code>:</strong> colocar los archivos (PDF, DOC, etc.) que se quieran adjuntar a la noticia en la carpeta <code>public/docs/</code>. Si no hay adjuntos, omitir este paso.</li>
       <li><strong>Agregar en <code>src/data/noticias.js</code>:</strong> nuevo objeto al array con id único. Ejemplo:
         <pre>{
   id: 14,
@@ -278,13 +283,16 @@
   fechaCorta: "4 SEP",
   excerpt: "Extracto de 1 a 2 oraciones.",
   img: "/img/noticias/mi-imagen.jpg",
+  adjuntos: [
+    { nombre: "Resolución adjunta.pdf", url: "/docs/resolucion.pdf" }
+  ],
   contenido: `Primer párrafo del cuerpo.
 
 Segundo párrafo con más detalle.`,
 }</pre>
       </li>
       <li><strong>Verificar el buscador:</strong> <code>src/data/buscador.js</code> importa directamente de <code>noticias.js</code>, por lo que la noticia aparecerá automáticamente en las búsquedas. No es necesario agregar nada manualmente.</li>
-      <li><strong>Probar:</strong> <code>npm run dev</code>, verificar en home, /noticias y detalle. Al hacer clic en la card, se abre el detalle con imagen, contenido (campo <code>contenido</code> si existe, o texto generado) y noticias relacionadas.</li>
+      <li><strong>Probar:</strong> <code>npm run dev</code>, verificar en home, /noticias y detalle. Al hacer clic en la card, se abre el detalle con imagen, contenido (campo <code>contenido</code> si existe, o texto generado), botones de descarga de adjuntos y noticias relacionadas.</li>
       <li><strong>Confirmar:</strong> <code>npm run build</code> + <code>npm run lint</code>.</li>
     </ol>
 
@@ -300,10 +308,11 @@ Segundo párrafo con más detalle.`,
       <tr><th>Paso</th><th>Archivo</th><th>Acción</th></tr>
       <tr><td>1</td><td>Imagen</td><td>Preparar 900×500 px</td></tr>
       <tr><td>2</td><td>—</td><td>Definir categoría</td></tr>
-      <tr><td>3</td><td><code>noticias.js</code></td><td>Agregar objeto al array</td></tr>
-      <tr><td>4</td><td><code>buscador.js</code></td><td>Agregar entrada de búsqueda</td></tr>
-      <tr><td>5</td><td><code>npm run dev</code></td><td>Verificar visualmente</td></tr>
-      <tr><td>6</td><td><code>npm run build</code></td><td>Confirmar build limpio</td></tr>
+      <tr><td>3</td><td><code>public/docs/</code></td><td>Colocar archivos adjuntos (si aplica)</td></tr>
+      <tr><td>4</td><td><code>noticias.js</code></td><td>Agregar objeto al array (con campo <code>adjuntos</code> si aplica)</td></tr>
+      <tr><td>5</td><td><code>buscador.js</code></td><td>Automático (importa de noticias.js)</td></tr>
+      <tr><td>6</td><td><code>npm run dev</code></td><td>Verificar visualmente</td></tr>
+      <tr><td>7</td><td><code>npm run build</code></td><td>Confirmar build limpio</td></tr>
     </table>
   </main>
 </body>

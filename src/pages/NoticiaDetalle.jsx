@@ -130,6 +130,46 @@ export default function NoticiaDetalle() {
           </div>
         </article>
 
+        {/* Documentos adjuntos */}
+        {noticia.adjuntos && noticia.adjuntos.length > 0 && (
+          <section style={{ marginTop: "2rem", padding: "1.25rem", background: "#f8fafc", borderRadius: "0.75rem", border: "1px solid #eef2f7" }}>
+            <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span className="material-symbols-outlined" style={{ color: "var(--primary)", fontSize: "1.2rem" }}>attach_file</span>
+              Documentos adjuntos
+            </h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              {noticia.adjuntos.map((adj, i) => (
+                <a
+                  key={i}
+                  href={adj.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    padding: "0.6rem 0.85rem",
+                    background: "#fff",
+                    borderRadius: "0.5rem",
+                    border: "1px solid #e2e8f0",
+                    textDecoration: "none",
+                    fontSize: "0.88rem",
+                    color: "var(--primary)",
+                    fontWeight: 600,
+                    transition: "box-shadow 0.2s",
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "none"; }}
+                >
+                  <span className="material-symbols-outlined" style={{ fontSize: "1rem" }}>description</span>
+                  {adj.nombre}
+                  <span className="material-symbols-outlined" style={{ fontSize: "0.9rem", color: "#94a3b8", marginLeft: "auto" }}>open_in_new</span>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Noticias relacionadas */}
         {relacionadas.length > 0 && (
           <section style={{ marginTop: "3rem", borderTop: "1px solid #eef2f7", paddingTop: "2rem" }}>

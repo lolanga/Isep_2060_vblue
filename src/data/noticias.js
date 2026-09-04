@@ -12,6 +12,10 @@ export const noticias = [
     fechaCorta: "4 SEP",
     excerpt: "El Instituto de Seguridad Pública presenta una nueva carrera de formación orientada a la seguridad comunitaria con enfoque en derechos humanos.",
     img: "/img/noticias/formacion-seguridad.png",
+    adjuntos: [
+      { nombre: "Resolución 123/2026 - Programa de Seguridad Comunitaria", url: "/docs/resolucion-123-2026.pdf" },
+      { nombre: "Formulario de inscripción", url: "/docs/formulario-inscripcion.pdf" },
+    ],
     contenido: `El Instituto de Seguridad Pública de la Provincia de Santa Fe anuncia el lanzamiento del Programa de Formación en Seguridad Comunitaria, una nueva iniciativa académica diseñada para responder a las demandas contemporáneas de la seguridad pública.
 
 Este programa, que comenzará sus actividades en el primer semestre de 2027, está dirigido a personal policial en actividad y aspirantes que deseen especializarse en el abordaje comunitario de la seguridad.

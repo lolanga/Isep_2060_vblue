@@ -258,8 +258,8 @@ interface Noticia {
   excerpt: string;       // Extracto (1-2 oraciones)
   img: string;           // URL de imagen (900×500 px)
   adjuntos?: {           // (Opcional) documentos adjuntos
-    nombre: string;
-    url: string;
+    nombre: string;      // Nombre para mostrar
+    url: string;         // Ruta relativa: /docs/archivo.pdf
   }[];
   contenido?: string;    // (Opcional) contenido completo para detalle
 }
@@ -271,6 +271,7 @@ interface Noticia {
 |---|---|
 | `src/data/noticias.js` | Agregar objeto al array `noticias` |
 | `src/data/buscador.js` | Automático (importa de noticias.js) |
+| `public/docs/` | Colocar archivos adjuntos (PDF, Excel, JPG, PNG) |
 
 ### 12.3 Imagen alusiva
 
@@ -280,6 +281,12 @@ interface Noticia {
 
 - **Dimensiones:** 900×500 px (ratio 16:9)
 - **Formato:** JPG/PNG, <200 KB
+
+### 12.4 Documentos adjuntos
+
+- **Carpeta:** `public/docs/`
+- **Formatos:** PDF, Excel, JPG, PNG, etc.
+- **Render:** `NoticiaDetalle.jsx` muestra botones de descarga
 
 ### 12.4 Distribución de componentes
 

@@ -256,7 +256,8 @@ background-image:
     <h3>Archivos a modificar</h3>
     <table>
       <tr><th>Archivo</th><th>Acción</th></tr>
-      <tr><td><code>src/data/noticias.js</code></td><td>Agregar objeto al array <code>noticias</code></td></tr>
+      <tr><td><code>public/docs/</code></td><td>Colocar archivos adjuntos (PDF, DOC, etc.)</td></tr>
+      <tr><td><code>src/data/noticias.js</code></td><td>Agregar objeto al array <code>noticias</code> con campo <code>adjuntos</code></td></tr>
       <tr><td><code>src/data/buscador.js</code></td><td>Automático (importa de noticias.js)</td></tr>
     </table>
     <h3>Imagen alusiva</h3>
@@ -266,6 +267,14 @@ background-image:
       <li><strong>Opción C:</strong> Placeholder: <code>https://picsum.photos/seed/{nombre}/900/500</code></li>
     </ul>
     <p><strong>Dimensiones:</strong> 900×500 px (ratio 16:9). <strong>Formato:</strong> JPG/PNG, &lt;200 KB.</p>
+    <h3>Documentos adjuntos</h3>
+    <ul>
+      <li>Los archivos adjuntos se almacenan en <code>public/docs/</code>.</li>
+      <li>Cada noticia puede incluir un array opcional <code>adjuntos</code> con objetos <code>{ nombre, url }</code>.</li>
+      <li><code>nombre</code>: texto visible del botón de descarga (ej: "Resolución 123.pdf").</li>
+      <li><code>url</code>: ruta relativa desde <code>public/</code> (ej: <code>/docs/resolucion-123.pdf</code>) o URL absoluta.</li>
+      <li>El componente <code>NoticiaDetalle.jsx</code> renderiza botones de descarga para cada adjunto.</li>
+    </ul>
     <h3>Diagrama de componentes</h3>
     <pre>Noticias.jsx ──── noticias[] ──── Link a /noticias/:id
                                         │
