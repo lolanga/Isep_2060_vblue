@@ -15,11 +15,9 @@ body {
   background-attachment: fixed;
   background-color: #bcd8db;
   background-image:
-    /* linear-gradient(90deg, #ffffff40 1px, #0000 0),
-    linear-gradient(180deg, #ffffff40 1px, #0000 0), */
     radial-gradient(circle at 10% 20%, #208caf15 0, #0000 45%),
     radial-gradient(circle at 90% 80%, #00c39612 0, #0000 45%);
-  background-size: /* 32px 32px, 32px 32px, */ 100% 100%, 100% 100%;
+  background-size: 100% 100%, 100% 100%;
   color: var(--on-surface);
   line-height: 1.5;
 }

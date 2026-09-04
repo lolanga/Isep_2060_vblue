@@ -34,7 +34,7 @@
 export const noticias = [
   {
   id: 1,
-  titulo: "Jornada Extracurricular: Jornada de Siniestros Viales — Sedes Rosario, Recreo y Reconquista",
+  titulo: "Jornada Extracurricular: Siniestros Viales — Sedes Rosario, Recreo y Reconquista",
   categoria: "Academica",
   fecha: "28 DE AGOSTO, 2026",
   fechaCorta: "28 AGO",
@@ -65,10 +65,34 @@ export const noticias = [
     </a>
 
     <h2>📍 Sede Rosario</h2>
-    ... (mismo formato)
+    <ul>
+      <li><strong>📅 Día de cursado:</strong> Viernes 11/09/2026</li>
+      <li><strong>🕘 Horario:</strong> 09:00 a 12:00 hs</li>
+      <li><strong>⏰ Presentación:</strong> 15 min antes</li>
+      <li><strong>👮 Vestimenta:</strong> Uniformados</li>
+      <li><strong>👥 Destinatarios:</strong> Escalafón Seguridad</li>
+    </ul>
+    <div class="info-box">
+      <strong>📝 Inscripción del 28/08 al 02/09/2026</strong>
+    </div>
+    <a href="https://forms.google.com/..." class="btn-inscripcion" target="_blank">
+      🔗 INSCRIBIRSE — SEDE ROSARIO
+    </a>
 
     <h2>📍 Sede Reconquista</h2>
-    ... (mismo formato)
+    <ul>
+      <li><strong>📅 Día de cursado:</strong> Miércoles 09/09/2026</li>
+      <li><strong>🕘 Horario:</strong> 9:00 a 12:00 hs</li>
+      <li><strong>⏰ Presentación:</strong> 15 min antes</li>
+      <li><strong>👮 Vestimenta:</strong> Uniformados</li>
+      <li><strong>👥 Destinatarios:</strong> Escalafón Seguridad</li>
+    </ul>
+    <div class="info-box">
+      <strong>📝 Inscripción del 28/08 al 02/09/2026</strong>
+    </div>
+    <a href="https://forms.google.com/..." class="btn-inscripcion" target="_blank">
+      🔗 INSCRIBIRSE - SEDE RECONQUISTA
+    </a>
 
     <h2>📧 Confirmación de vacante</h2>
     <p>La asignación será informada por correo...</p>
