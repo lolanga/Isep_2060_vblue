@@ -165,9 +165,15 @@ En páginas interiores: **Inicio** / Sección / Página actual. Clic en cualquie
 - **Badged de categoría** y fecha.
 - **Extracto** destacado con borde izquierdo.
 - **Contenido completo** de la noticia.
+- **Documentos adjuntos** con botones de descarga (si existen).
 - **Noticias relacionadas** (misma categoría).
 - **ShareButton** para compartir.
 - **Botón "Volver a noticias"**.
+
+### Noticias por escuela
+- Cada página de escuela (`/escuelas/:id`) muestra hasta 3 noticias filtradas.
+- Se usan las noticias que tienen el campo `escuelas` con el ID de esa escuela.
+- En `/noticias` se muestran TODAS las noticias sin filtrar por escuela.
 
 ---
 

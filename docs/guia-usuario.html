@@ -172,10 +172,17 @@
       <li><strong>Badged de categoría</strong> y fecha.</li>
       <li><strong>Extracto</strong> destacado con borde izquierdo.</li>
       <li><strong>Contenido completo</strong> de la noticia.</li>
-      <li><strong>Botones de descarga de adjuntos</strong> (si la noticia incluye documentos adjuntos, se muestran como botones descargables).</li>
+      <li><strong>Documentos adjuntos</strong> con botones de descarga (si existen).</li>
       <li><strong>Noticias relacionadas</strong> (misma categoría).</li>
       <li><strong>ShareButton</strong> para compartir.</li>
       <li><strong>Botón "Volver a noticias"</strong>.</li>
+    </ul>
+
+    <h3>Noticias por escuela</h3>
+    <ul>
+      <li>Cada página de escuela (<code>/escuelas/:id</code>) muestra hasta 3 noticias filtradas.</li>
+      <li>Se usan las noticias que tienen el campo <code>escuelas</code> con el ID de esa escuela.</li>
+      <li>En <code>/noticias</code> se muestran TODAS las noticias sin filtrar por escuela.</li>
     </ul>
 
     <h2>10. Normativa y Resoluciones</h2>
