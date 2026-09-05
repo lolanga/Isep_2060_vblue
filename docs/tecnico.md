@@ -24,20 +24,20 @@
 ```
 src/
 ├── main.jsx                 # Entry point + imports CSS
-├── App.jsx                  # Router principal (24 rutas)
+├── App.jsx                  # Router principal (26 rutas)
 ├── assets/                  # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
 │   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger
 │   ├── Hero.jsx             # Slider 3 slides picsum.photos
-│   ├── SearchBox.jsx        # Buscador global agrupado
+│   ├── SearchBox.jsx        # Buscador global agrupado (con debounce 300ms)
 │   ├── News.jsx             # Sección noticias Home (datos reales + links)
 │   ├── Apps.jsx             # 4 apps institucionales
-│   ├── Schools.jsx          # Grid de escuelas con escudos
+│   ├── Schools.jsx          # Grid de escuelas con escudos (enlaces a /escuelas/:id)
 │   ├── CTA.jsx              # Llamado a la acción con countdown
 │   ├── Footer.jsx           # Footer 3 columnas + redes sociales
 │   ├── EscuelaTemplate.jsx  # Plantilla reutilizable de escuela
 │   ├── FloatWhatsApp.jsx    # WhatsApp flotante (z-60)
-│   ├── ScrollToTop.jsx      # Botón ir arriba (z-70, tras 400px)
+│   ├── ScrollToTop.jsx      # Botón ir arriba (z-70, bottom-left en móvil)
 │   ├── Breadcrumb.jsx       # Migas de pan con home icon
 │   ├── Countdown.jsx        # Cuenta regresiva
 │   ├── Contadores.jsx       # Estadísticas animadas
@@ -51,15 +51,15 @@ src/
 │   ├── normativa.js         # 17 resoluciones (compartido)
 │   └── buscador.js          # 48 entradas + buscar() + buscarAgrupado()
 ├── pages/
-│   ├── Home.jsx             # 7 secciones
-│   ├── Noticias.jsx         # Filtro + paginación + links a detalle
+│   ├── Home.jsx             # 7 secciones + Trámites en Línea
+│   ├── Noticias.jsx         # Filtro + paginación + filtro por escuela + links a detalle
 │   ├── NoticiaDetalle.jsx   # Detalle de noticia individual
 │   ├── Institucional/       # ElISeP, Autoridades, Organizacion, Resoluciones,
-│   │                        # SedesContacto (Maps), OfertaEducativa, Carrera
+│   │                        # SedesContacto (Maps), OfertaEducativa, Carrera, Galeria
 │   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
 │   ├── Ingreso/             # Convocatorias (contenido real), ProximasConvocatorias,
 │   │                        # Requisitos, Proceso, Faq (12 preguntas)
-│   └── Secretaria/          # Titulos (contenido real), Biblioteca (22 artículos), Cursos
+│   └── Secretaria/          # Titulos, Biblioteca (22 artículos), Cursos (lazy loaded)
 └── styles/
     ├── variables.css        # Design tokens + gradiente
     ├── base.css             # Reset, tipografía, fondo global, .chip
@@ -71,6 +71,7 @@ src/
     ├── apps.css             # Apps + WhatsApp
     ├── oferta.css           # Cards, chips, filtros, acordeón
     ├── footer.css           # Footer 3 columnas + bottom
+    ├── galeria.css          # Galería de fotos (grid, lightbox)
     └── responsive.css       # Mobile-first
 ```
 
@@ -198,6 +199,7 @@ src/
 - Scoring: +3 título, +2 tipo, +1 keyword
 - Navegación: ArrowUp/ArrowDown/Enter/Escape
 - Enter en campo → abre primer resultado
+- **Debounce** de 300ms para evitar búsquedas excesivas
 
 ---
 
@@ -229,7 +231,7 @@ background-image:
 | `index.html` | 2.09 kB |
 | `index.css` | 76.62 kB (gzip: 13.62 kB) |
 | `index.js` | 212.65 kB (gzip: 66.43 kB) |
-| Módulos | 90 |
+| Módulos | 96 |
 | Lazy chunks | Rutas bajo demanda (React.lazy) |
 | Build time | ~0.8-1s |
 
@@ -317,7 +319,8 @@ public/img/
 ├── hero/              ← Slider principal (3 slides, 1600×700)
 ├── noticias/          ← Fotos de noticias (900×500)
 ├── testimonios/       ← Avatares de egresados (120×120)
-└── banners/           ← Banners de páginas (1600×600)
+├── banners/           ← Banners de páginas (1600×600)
+└── galeria/           ← Fotos de la galería (varios tamaños)
 ```
 
 #### Formatos y optimización
@@ -367,7 +370,7 @@ Clases de placeholder disponibles en `pages.css`:
 ## 13. Mejoras de Calidad
 
 ### 13.1 Lazy Loading
-Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. El usuario solo descarga el JS de las páginas que visita, mejorando el tiempo de carga inicial.
+Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. El usuario solo descarga el JS de las páginas que visita, mejorando el tiempo de carga inicial. Actualmente hay 96 módulos, con las páginas de Secretaría (Títulos, Biblioteca, Cursos) también bajo carga lazy.
 
 ### 13.2 Testing
 Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. 18 tests en 3 archivos:
@@ -392,7 +395,7 @@ CI automatizado con GitHub Actions que ejecuta en cada push:
 
 ### 13.4 SEO
 - **JSON-LD:** Structured data con `EducationalOrganization`, `NewsArticle`, `BreadcrumbList`
-- **Meta tags dinámicos:** título, descripción e imagen por página (Open Graph)
+- **Meta tags dinámicos:** título, descripción, imagen, tipo, locale por página (Open Graph + Twitter Card)
 - **sitemap.xml:** mapa del sitio para motores de búsqueda
 
 ### 13.4.1 Configuración Centralizada
@@ -489,7 +492,7 @@ Google Analytics 4 (`gtag.js`):
 | `index.html` | 2.09 kB |
 | `index.css` | 76.62 kB (gzip: 13.62 kB) |
 | `index.js` | 212.65 kB (gzip: 66.43 kB) |
-| Módulos | 90 |
+| Módulos | 96 |
 | Build time | ~0.8-1s |
 
 ---

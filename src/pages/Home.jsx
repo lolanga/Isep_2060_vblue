@@ -7,6 +7,7 @@
  */
 import Hero from "../components/Hero";
 import Apps from "../components/Apps";
+import Tramites from "../components/Tramites";
 import Contadores from "../components/Contadores";
 import CTA from "../components/CTA";
 import News from "../components/News";
@@ -21,6 +22,7 @@ export default function Home() {
       <SEO />
       <Hero />
       <Apps />
+      <Tramites />
       <div className="hide-mobile">
         <Contadores />
       </div>

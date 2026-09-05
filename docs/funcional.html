@@ -84,6 +84,7 @@
       <tr><td><code>/institucional/sedes-contacto</code></td><td>Sedes y Contacto (Google Maps)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/oferta-educativa</code></td><td>Oferta Académica (dinámica)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/carreras</code></td><td>Carreras (grid hits)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/institucional/galeria</code></td><td>Galería de Fotos (categorías, filtros, lightbox)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/escuelas/policia</code></td><td>Escuela de Policía (datos oficiales)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/escuelas/superior</code></td><td>Escuela Superior (datos oficiales)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/escuelas/especialidades</code></td><td>Escuela de Especialidades (datos oficiales)</td><td><span class="badge ok">Implementada</span></td></tr>
@@ -97,6 +98,7 @@
       <tr><td><code>/secretaria/titulos</code></td><td>Títulos y Certificaciones</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/secretaria/biblioteca</code></td><td>Biblioteca Virtual (22 recursos)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/secretaria/cursos</code></td><td>Cursos (dinámico)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/mapa-del-sitio</code></td><td>Mapa del Sitio (guía visual de todas las rutas)</td><td><span class="badge ok">Implementada</span></td></tr>
     </table>
 
     <h2>4. Funcionalidades implementadas (Home)</h2>
@@ -104,9 +106,9 @@
       <li><strong>Hero Slider</strong> — Banner principal con slider automático (3 slides con placeholderspicsum.photos, ver Guía §17 para reemplazar con fotos reales), transiciones suaves, flechas y dots.</li>
       <li><strong>Aplicaciones Institucionales</strong> — 4 accesos: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail.</li>
       <li><strong>Contadores</strong> — Estadísticas animadas: Docentes (2200+), Cadetes (1100+), Personal (800+), Aulas (500+).</li>
-      <li><strong>CTA Inscripciones</strong> — Countdown configurable (fecha en <code>src/components/CTA.jsx</code>, variable <code>FECHA_CIERRE</code>) + botones de inscripción.</li>
+      <li><strong>CTA Inscripciones</strong> — Countdown configurable (fecha en <code>src/components/CTA.jsx</code>, variable <code>FECHA_CIERRE</code>) + botones de inscripción. El botón principal ahora lleva a <code>/institucional/oferta-educativa</code>.</li>
       <li><strong>Últimas Noticias</strong> — Noticia destacada + sidebar con <strong>links a contenido de ejemplo</strong>.</li>
-      <li><strong>Nuestras Escuelas</strong> — Grid de las 5 escuelas con escudos.</li>
+      <li><strong>Nuestras Escuelas</strong> — Grid de las 5 escuelas con escudos. Las tarjetas son enlaces clickeables a <code>/escuelas/:id</code>.</li>
       <li><strong>Testimonios</strong> — Carrusel de 3 egresados con flechas y dots.</li>
     </ol>
 
@@ -115,6 +117,7 @@
       <li>Noticia destacada con <strong>link a <code>/noticias/:id</code></strong>.</li>
       <li>Sidebar de 3 mini-cards con <strong>links a <code>/noticias/:id</code></strong>.</li>
       <li><strong>"Ver todas las noticias"</strong> apunta a <code>/noticias</code>.</li>
+      <li><strong>ShareButton</strong> en cada card de noticia para compartir directamente.</li>
       <li>Bloque de Calendario Académico (promo).</li>
       <li>Alimentado desde <code>src/data/noticias.js</code>.</li>
       <li><strong>Imágenes opcionales:</strong> si un registro tiene <code>img: null</code>, se muestra un placeholder con ícono en lugar de la imagen. Esto permite publicar noticias sin foto alusiva.</li>
@@ -123,6 +126,7 @@
     <h3>Página de Noticias (<code>/noticias</code>)</h3>
     <ul>
       <li><strong>Filtro por categorías:</strong> Todas, Institucional, Académica, Escuelas, Eventos, Convenios.</li>
+      <li><strong>Filtro por escuela:</strong> permite filtrar noticias por escuela asociada (Policía, Superior, Especialidades, Investigaciones, EaD).</li>
       <li><strong>Padding en filtros:</strong> separados del borde con <code>padding: 0 2rem</code>.</li>
       <li><strong>Botón compartir:</strong> cada noticia tiene ShareButton (Web Share API o clipboard).</li>
       <li><strong>Noticia principal:</strong> última publicación → <strong>link a <code>/noticias/:id</code></strong>.</li>
@@ -139,6 +143,31 @@
       <li><strong>Noticias relacionadas</strong> (misma categoría, max 3).</li>
       <li><strong>Botón "Volver a noticias"</strong>.</li>
       <li><strong>Estado 404:</strong> si el ID no existe, muestra mensaje y enlace.</li>
+    </ul>
+
+    <h3>Trámites en Línea (Home)</h3>
+    <p>Sección en la página de inicio que presenta las 4 aplicaciones institucionales del ISeP:</p>
+    <table>
+      <tr><th>App</th><th>Descripción</th><th>Audiencia</th></tr>
+      <tr><td>Mi ISeP</td><td>Acceso a aulas virtuales, material de cursado, notas y asistencia</td><td>Docentes, personal policial cursante y postulantes inscriptos</td></tr>
+      <tr><td>SIGEDI</td><td>Sistema de gestión de expedientes internos</td><td>Solo personal interno del ISeP</td></tr>
+      <tr><td>Gestión Cadetes</td><td>Control y notificaciones del cursado</td><td>Cadetes de 1° y 2° año</td></tr>
+      <tr><td>Webmail</td><td>Correo electrónico institucional</td><td>Todo el personal del ISeP</td></tr>
+    </table>
+    <ul>
+      <li>Se muestra como tarjetas en la página de inicio, debajo del Hero.</li>
+      <li>Cada tarjeta tiene un enlace directo al sistema correspondiente.</li>
+      <li>Las URLs están centralizadas en <code>src/data/config.js</code>.</li>
+    </ul>
+
+    <h3>Galería de Fotos (<code>/institucional/galeria</code>)</h3>
+    <p>Página dedicada para mostrar imágenes del ISeP:</p>
+    <ul>
+      <li><strong>Grid de fotos</strong> con diseño responsive (1-4 columnas según dispositivo).</li>
+      <li><strong>Filtros por categoría</strong> para organizar las fotos.</li>
+      <li><strong>Lightbox</strong> al hacer clic en una imagen (visualización ampliada con navegación).</li>
+      <li><strong>Imágenes almacenadas</strong> en <code>public/img/galeria/</code>.</li>
+      <li><strong>Diseño adaptable</strong> que se ajusta a diferentes tamaños de pantalla.</li>
     </ul>
 
     <h2>5. Formación</h2>
@@ -211,7 +240,7 @@
     <h3>WhatsApp</h3>
     <p>Botón flotante verde, siempre visible (z-index 60). Enlace a <code>wa.me/5493424579000</code> (tel: +54 342 457-9000).</p>
     <h3>ScrollToTop</h3>
-    <p>Botón flotante con SVG flecha (z-index 70). Visible tras 400px de scroll, <code>bottom: 5.5rem</code>. Scroll suave al inicio.</p>
+    <p>Botón flotante con SVG flecha (z-index 70). Visible tras 400px de scroll, <code>bottom: 5.5rem</code>. En móvil, se posiciona en la esquina inferior izquierda para no superponerse con el botón de WhatsApp. Scroll suave al inicio.</p>
     <h3>Redes sociales (Footer)</h3>
     <table>
       <tr><th>Red</th><th>Enlace</th></tr>
@@ -347,8 +376,8 @@ Segundo párrafo con más detalle.`,
     <table>
       <tr><th>Tipo</th><th>Página</th><th>Contenido</th></tr>
       <tr><td><code>EducationalOrganization</code></td><td>Home (<code>/</code>)</td><td>Datos del ISeP: nombre, dirección, redes sociales, logo</td></tr>
-      <tr><td><code>NewsArticle</code></td><td>Detalle de noticia (<code>/noticias/:id</code>)</td><td>Título, autor, fecha, imagen, excerpt</td></tr>
-      <tr><td><code>BreadcrumbList</code></td><td>Todas las páginas</td><td>Ruta de navegación jerárquica</td></tr>
+      <tr><td><code>NewsArticle</code></td><td>Detalle de noticia (<code>/noticias/:id</code>)</td><td>Título, autor, fecha, imagen, excerpt (rich results para Google)</td></tr>
+      <tr><td><code>BreadcrumbList</code></td><td>12 páginas con Breadcrumb</td><td>Ruta de navegación jerárquica</td></tr>
     </table>
     <p>Se renderizan como <code>&lt;script type="application/ld+json"&gt;</code> inline en cada componente de página. Validar con Google Rich Results Test.</p>
 
@@ -362,6 +391,8 @@ Segundo párrafo con más detalle.`,
       <tr><td><code>&lt;meta property="og:description"&gt;</code></td><td>Descripción para redes sociales</td></tr>
       <tr><td><code>&lt;meta property="og:image"&gt;</code></td><td>Imagen representativa</td></tr>
       <tr><td><code>&lt;meta property="og:type"&gt;</code></td><td>website / article</td></tr>
+      <tr><td><code>&lt;meta property="og:locale"&gt;</code></td><td>es_AR</td></tr>
+      <tr><td><code>&lt;meta name="twitter:card"&gt;</code></td><td>summary_large_image</td></tr>
     </table>
     <p>Se actualizan dinámicamente con <code>useEffect</code> al cambiar de ruta.</p>
 
@@ -393,7 +424,7 @@ Segundo párrafo con más detalle.`,
     <h3>19.6 Accesibilidad</h3>
     <table>
       <tr><th>Característica</th><th>Descripción</th></tr>
-      <tr><td><code>SkipToContent</code></td><td>Enlace invisible al inicio que aparece con Tab, salta al contenido principal</td></tr>
+      <tr><td><code>SkipToContent</code></td><td>Enlace invisible al inicio que aparece con Tab, salta al contenido principal (id="main-content" en todos los elementos main)</td></tr>
       <tr><td><code>focus-visible</code></td><td>Indicadores de foco visibles solo con navegación por teclado (no en clics)</td></tr>
       <tr><td><code>sr-only</code></td><td>Contenido exclusivo para lectores de pantalla (ej: labels de botones)</td></tr>
       <tr><td><code>skeleton-pulse</code></td><td>Placeholder animado mientras cargan datos (mejora percepción de rendimiento)</td></tr>

@@ -48,7 +48,7 @@
     <table>
       <tr><th>Menú</th><th>Qué contiene</th></tr>
       <tr><td><strong>Institucional</strong></td><td>El ISeP, Autoridades, Organización, Normativa y Resoluciones, Sedes y Contacto</td></tr>
-      <tr><td><strong>Formación</strong></td><td>Oferta Académica, Escuelas (5), Títulos y Certificaciones, Biblioteca Virtual</td></tr>
+      <tr><td><strong>Formación</strong></td><td>Oferta Académica, Escuelas (5), Cursos, Títulos y Certificaciones, Biblioteca Virtual</td></tr>
       <tr><td><strong>Ingreso</strong></td><td>Convocatorias vigentes, Próximas convocatorias, Requisitos, Proceso de ingreso, Preguntas frecuentes</td></tr>
       <tr><td><strong>Últimas noticias</strong></td><td>Acceso directo al listado de noticias</td></tr>
     </table>
@@ -103,11 +103,11 @@
     <h3>5.2 Contadores</h3>
     <p>Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.</p>
     <h3>5.3 Convocatorias (CTA)</h3>
-    <p>Cuenta regresiva + botones de inscripción.</p>
+    <p>Cuenta regresiva + botones de inscripción. El botón principal ahora lleva a <code>/institucional/oferta-educativa</code>.</p>
     <h3>5.4 Últimas Noticias</h3>
     <p>Noticia destacada + sidebar. <strong>Cada noticia lleva a <code>/noticias/:id</code></strong>. El enlace "Ver todas las noticias" lleva a <code>/noticias</code>.</p>
     <h3>5.5 Nuestras Escuelas</h3>
-    <p>Accesos directos a las 5 escuelas con escudos.</p>
+    <p>Accesos directos a las 5 escuelas con escudos. Las tarjetas son enlaces clickeables a <code>/escuelas/:id</code>.</p>
     <h3>5.6 Testimonios</h3>
     <p>Carrusel de 3 egresados con flechas y dots.</p>
 
@@ -193,6 +193,34 @@
       <li>El placeholder aparece tanto en el listado como en el detalle de la noticia.</li>
     </ul>
 
+    <h3>Trámites en Línea</h3>
+    <p>En la página de inicio encontrarás una sección con las 4 aplicaciones institucionales del ISeP:</p>
+    <table>
+      <tr><th>App</th><th>Para quién</th><th>Qué hace</th></tr>
+      <tr><td>Mi ISeP</td><td>Docentes, personal policial cursante y postulantes inscriptos</td><td>Acceso a aulas virtuales, material de cursado, notas y asistencia</td></tr>
+      <tr><td>SIGEDI</td><td>Solo personal interno del ISeP</td><td>Sistema de gestión de expedientes internos</td></tr>
+      <tr><td>Gestión Cadetes</td><td>Cadetes de 1° y 2° año</td><td>Control y notificaciones del cursado</td></tr>
+      <tr><td>Webmail</td><td>Todo el personal del ISeP</td><td>Correo electrónico institucional</td></tr>
+    </table>
+    <p>Cada tarjeta tiene un enlace directo al sistema correspondiente.</p>
+
+    <h3>Galería de Fotos</h3>
+    <p>Página dedicada para ver imágenes del ISeP:</p>
+    <ul>
+      <li><strong>Ubicación:</strong> Institucional → Galería de Fotos (o directamente en <code>/institucional/galeria</code>).</li>
+      <li><strong>Filtros por categoría</strong> para organizar las fotos.</li>
+      <li><strong>Lightbox</strong> al hacer clic en una imagen (visualización ampliada con navegación).</li>
+      <li><strong>Diseño responsive</strong> que se ajusta a diferentes tamaños de pantalla.</li>
+    </ul>
+
+    <h3>Mapa del Sitio</h3>
+    <p>Guía visual de todas las páginas del sitio:</p>
+    <ul>
+      <li><strong>Ubicación:</strong> <code>/mapa-del-sitio</code>.</li>
+      <li>Muestra todas las rutas disponibles organizadas por sección.</li>
+      <li>Útil para encontrar rápidamente cualquier página del sitio.</li>
+    </ul>
+
     <h2>10. Normativa y Resoluciones</h2>
     <p>17 documentos oficiales descargables. Filtros por año y tipo. Chips coloreados.</p>
 
@@ -209,7 +237,7 @@
     <p>Botón verde flotante, siempre visible. Abre conversación en <code>wa.me/5493424579000</code> (tel: +54 342 457-9000).</p>
 
     <h2>15. Ir arriba (ScrollToTop)</h2>
-    <p>Botón flotante con flecha. Aparece tras 400px de scroll. Click → scroll suave al inicio.</p>
+    <p>Botón flotante con flecha. Aparece tras 400px de scroll. En móvil, se posiciona en la esquina inferior izquierda para no superponerse con el botón de WhatsApp. Click → scroll suave al inicio.</p>
 
     <h2>16. Redes sociales (Footer)</h2>
     <table>

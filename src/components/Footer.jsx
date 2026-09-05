@@ -4,6 +4,7 @@
  * Contiene identidad institucional, redes sociales, información
  * de contacto, sedes y copyright dinámico.
  */
+import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <footer>
@@ -76,7 +77,7 @@ export default function Footer() {
       {/* Bottom — todo en una línea */}
       <div className="footer-bottom">
         <span className="copyright">
-          © {new Date().getFullYear()} Instituto de Seguridad Pública de Santa Fe — Departamento Desarrollo, Tecnología e Innovación — {new Date().toLocaleDateString("es-AR", { day: "2-digit", month: "long", year: "numeric" })}
+          © {new Date().getFullYear()} Instituto de Seguridad Pública de Santa Fe — Departamento Desarrollo, Tecnología e Innovación — <Link to="/mapa-del-sitio" className="footer-bottom-link">Mapa del Sitio</Link> — {new Date().toLocaleDateString("es-AR", { day: "2-digit", month: "long", year: "numeric" })}
         </span>
       </div>
 

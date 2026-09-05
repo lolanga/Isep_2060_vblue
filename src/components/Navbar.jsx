@@ -20,6 +20,7 @@ const institucional = [
   { label: "Organización",            href: "/institucional/organizacion",   icon: "account_tree" },
   { label: "Normativa y Resoluciones", href: "/institucional/resoluciones",  icon: "gavel" },
   { label: "Sedes y Contacto",        href: "/institucional/sedes-contacto", icon: "location_on" },
+  { label: "Galería de Fotos",        href: "/institucional/galeria",        icon: "photo_library" },
 ];
 
 const escuelas = [

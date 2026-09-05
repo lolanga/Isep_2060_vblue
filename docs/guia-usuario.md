@@ -11,7 +11,7 @@ La barra de navegación superior (fija al hacer scroll) organiza todo en 3 menú
 | Menú | Qué contiene |
 |---|---|
 | **Institucional** | El ISeP, Autoridades, Organización, Normativa y Resoluciones, Sedes y Contacto |
-| **Formación** | Oferta Académica, Escuelas (5), Títulos y Certificaciones, Biblioteca Virtual |
+| **Formación** | Oferta Académica, Escuelas (5), Cursos, Títulos y Certificaciones, Biblioteca Virtual |
 | **Ingreso** | Convocatorias vigentes, Próximas convocatorias, Requisitos, Proceso de ingreso, Preguntas frecuentes |
 | **Últimas noticias** | Acceso directo al listado de noticias |
 
@@ -82,13 +82,13 @@ El botón **"Mi ISeP"** siempre visible en la barra superior. Lleva a `mi.isepsa
 Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.
 
 ### 5.3 Convocatorias (CTA)
-Cuenta regresiva + botones de inscripción.
+Cuenta regresiva + botones de inscripción. El botón principal ahora lleva a `/institucional/oferta-educativa`.
 
 ### 5.4 Últimas Noticias
 Noticia destacada + sidebar. **Cada noticia lleva a su página de detalle** (`/noticias/:id`). El enlace "Ver todas las noticias" lleva a `/noticias`.
 
 ### 5.5 Nuestras Escuelas
-Accesos directos a las 5 escuelas con escudos.
+Accesos directos a las 5 escuelas con escudos. Las tarjetas son enlaces clickeables a `/escuelas/:id`.
 
 ### 5.6 Testimonios
 Carrusel de 3 egresados con flechas y dots.
@@ -182,6 +182,31 @@ En páginas interiores: **Inicio** / Sección / Página actual. Clic en cualquie
 - Esto permite publicar noticias sin necesidad de preparar una imagen.
 - El placeholder aparece tanto en el listado como en el detalle de la noticia.
 
+### Trámites en Línea
+En la página de inicio encontrarás una sección con las 4 aplicaciones institucionales del ISeP:
+
+| App | Para quién | Qué hace |
+|---|---|---|
+| **Mi ISeP** | Docentes, personal policial cursante y postulantes inscriptos | Acceso a aulas virtuales, material de cursado, notas y asistencia |
+| **SIGEDI** | Solo personal interno del ISeP | Sistema de gestión de expedientes internos |
+| **Gestión Cadetes** | Cadetes de 1° y 2° año | Control y notificaciones del cursado |
+| **Webmail** | Todo el personal del ISeP | Correo electrónico institucional |
+
+Cada tarjeta tiene un enlace directo al sistema correspondiente.
+
+### Galería de Fotos
+Página dedicada para ver imágenes del ISeP:
+- **Ubicación:** Institucional → Galería de Fotos (o directamente en `/institucional/galeria`).
+- **Filtros por categoría** para organizar las fotos.
+- **Lightbox** al hacer clic en una imagen (visualización ampliada con navegación).
+- **Diseño responsive** que se ajusta a diferentes tamaños de pantalla.
+
+### Mapa del Sitio
+Guía visual de todas las páginas del sitio:
+- **Ubicación:** `/mapa-del-sitio`.
+- Muestra todas las rutas disponibles organizadas por sección.
+- Útil para encontrar rápidamente cualquier página del sitio.
+
 ---
 
 ## 10. Normativa y Resoluciones
@@ -208,7 +233,7 @@ Botón verde flotante, siempre visible. Abre conversación en `wa.me/54934245790
 ---
 
 ## 14. Ir arriba (ScrollToTop)
-Botón flotante con flecha. Aparece tras 400px de scroll. Click → scroll suave al inicio.
+Botón flotante con flecha. Aparece tras 400px de scroll. En móvil, se posiciona en la esquina inferior izquierda para no superponerse con el botón de WhatsApp. Click → scroll suave al inicio.
 
 ---
 

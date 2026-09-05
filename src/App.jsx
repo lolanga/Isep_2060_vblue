@@ -55,6 +55,10 @@ const SedesContacto = lazy(() => import("./pages/Institucional/SedesContacto"));
 const OfertaEducativa = lazy(() => import("./pages/Institucional/OfertaEducativa"));
 const Carrera = lazy(() => import("./pages/Institucional/Carrera"));
 const Resoluciones = lazy(() => import("./pages/Institucional/Resoluciones"));
+const Galeria = lazy(() => import("./pages/Institucional/Galeria"));
+
+// ── Mapa del Sitio ──
+const MapaDelSitio = lazy(() => import("./pages/MapaDelSitio"));
 
 // ── Escuelas ──
 const EscuelaPolicia = lazy(() => import("./pages/Escuelas/Policia"));
@@ -97,6 +101,8 @@ function App() {
             <Route path="/institucional/oferta-educativa" element={<OfertaEducativa />} />
             <Route path="/institucional/carreras" element={<Carrera />} />
             <Route path="/institucional/resoluciones" element={<Resoluciones />} />
+            <Route path="/institucional/galeria" element={<Galeria />} />
+            <Route path="/mapa-del-sitio" element={<MapaDelSitio />} />
             <Route path="/escuelas/policia" element={<EscuelaPolicia />} />
             <Route path="/escuelas/superior" element={<EscuelaSuperior />} />
             <Route path="/escuelas/especialidades" element={<EscuelaEspecialidades />} />

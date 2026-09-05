@@ -1,0 +1,359 @@
+/* =============================================
+   NEW FEATURES — Galería, Mapa del Sitio, Trámites
+   ============================================= */
+
+/* ── Footer link ── */
+.footer-bottom-link {
+  color: inherit;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.footer-bottom-link:hover {
+  color: var(--secondary, #0055c9);
+}
+
+/* ── Galería ── */
+.galeria-content {
+  padding: 2rem;
+}
+
+.galeria-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.galeria-filtro-icon {
+  font-size: 1rem;
+  margin-right: 0.25rem;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.galeria-card {
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  font-family: inherit;
+}
+
+.galeria-card__img-wrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.galeria-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.galeria-card:hover .galeria-card__img {
+  transform: scale(1.05);
+}
+
+.galeria-card__category {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(0, 37, 77, 0.85);
+  color: #fff;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.galeria-card__category-icon {
+  font-size: 0.85rem;
+}
+
+.galeria-card__body {
+  padding: 1rem;
+}
+
+.galeria-card__caption {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--slate-900, #0f172a);
+  line-height: 1.4;
+  margin-bottom: 0.35rem;
+}
+
+.galeria-card__date {
+  font-size: 0.78rem;
+  color: var(--slate-400, #94a3b8);
+}
+
+/* Lightbox */
+.galeria-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  cursor: pointer;
+}
+
+.galeria-lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  z-index: 10;
+  transition: background 0.2s;
+}
+
+.galeria-lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.galeria-lightbox__img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+.galeria-lightbox__caption {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.galeria-lightbox__text {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.galeria-lightbox__date {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
+
+/* ── Mapa del Sitio ── */
+.mapa-content {
+  padding: 2rem;
+}
+
+.mapa-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.mapa-section {
+  padding: 1.5rem;
+}
+
+.mapa-section__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #eef2f7;
+}
+
+.mapa-section__icon {
+  font-size: 1.25rem;
+  color: var(--secondary, #0055c9);
+}
+
+.mapa-section__title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--slate-900, #0f172a);
+}
+
+.mapa-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mapa-list__item + .mapa-list__item {
+  margin-top: 0.35rem;
+}
+
+.mapa-link {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.88rem;
+  color: var(--slate-600, #475569);
+  text-decoration: none;
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.4rem;
+  transition: background 0.15s, color 0.15s;
+}
+
+.mapa-link:hover {
+  background: #f1f5f9;
+  color: var(--secondary, #0055c9);
+}
+
+.mapa-link__icon {
+  font-size: 1.1rem;
+  color: var(--slate-400, #94a3b8);
+}
+
+.mapa-link:hover .mapa-link__icon {
+  color: var(--secondary, #0055c9);
+}
+
+/* ── Trámites ── */
+.tramites-section {
+  padding: 5rem 0;
+  background: #f8fafc;
+}
+
+.tramites-inner {
+  padding: 0 2rem;
+}
+
+.tramites-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.tramites-title {
+  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  font-weight: 800;
+  color: var(--slate-900, #0f172a);
+  margin-top: 0.5rem;
+}
+
+.tramites-subtitle {
+  font-size: 1rem;
+  color: var(--slate-500, #64748b);
+  margin-top: 0.5rem;
+}
+
+.tramites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1.25rem;
+}
+
+.tramites-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+}
+
+.tramites-card__icon-wrap {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.tramites-card__icon {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.tramites-card__name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--slate-900, #0f172a);
+  margin-bottom: 0.75rem;
+}
+
+.tramites-card__detail {
+  margin-bottom: 0.5rem;
+}
+
+.tramites-card__label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--secondary, #0055c9);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.15rem;
+}
+
+.tramites-card__value {
+  font-size: 0.85rem;
+  color: var(--slate-600, #475569);
+  line-height: 1.5;
+}
+
+.tramites-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--secondary, #0055c9);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.tramites-card__btn .material-symbols-outlined {
+  font-size: 1rem;
+}
+
+.tramites-card__btn:hover {
+  color: var(--primary, #00254d);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .galeria-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .galeria-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mapa-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .galeria-card__img-wrap {
+    height: 200px;
+  }
+
+  .tramites-grid {
+    grid-template-columns: 1fr;
+  }
+}

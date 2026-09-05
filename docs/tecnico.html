@@ -61,21 +61,21 @@
     <h2>2. Estructura de directorios</h2>
     <pre>src/
 ├── main.jsx                 # Entry point + imports CSS
-├── App.jsx                  # Router principal (24 rutas)
+├── App.jsx                  # Router principal (26 rutas)
 ├── assets/                  # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
 │   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger
 │   ├── Hero.jsx             # Slider 3 slides picsum.photos
-│   ├── SearchBox.jsx        # Buscador global agrupado
+│   ├── SearchBox.jsx        # Buscador global agrupado (con debounce 300ms)
 │   ├── News.jsx             # Sección noticias Home (datos reales + links)
 │   ├── Apps.jsx             # 4 apps institucionales
-│   ├── Schools.jsx          # Grid de escuelas con escudos
+│   ├── Schools.jsx          # Grid de escuelas con escudos (enlaces a /escuelas/:id)
 │   ├── CTA.jsx              # Llamado a la acción con countdown
 │   ├── Footer.jsx           # Footer 3 columnas + redes sociales
 │   ├── EscuelaTemplate.jsx  # Plantilla reutilizable de escuela
 │   ├── FloatWhatsApp.jsx    # WhatsApp flotante (z-60)
-│   ├── ScrollToTop.jsx      # Botón ir arriba (z-70, tras 400px)
-│   ├── Breadcrumb.jsx       # Migas de pan con home icon (Margen superior: 2rem)
+│   ├── ScrollToTop.jsx      # Botón ir arriba (z-70, bottom-left en móvil)
+│   ├── Breadcrumb.jsx       # Migas de pan con home icon
 │   ├── Countdown.jsx        # Cuenta regresiva
 │   ├── Contadores.jsx       # Estadísticas animadas
 │   ├── Testimonios.jsx      # Carrusel testimonios
@@ -88,15 +88,15 @@
 │   ├── normativa.js         # 17 resoluciones (compartido)
 │   └── buscador.js          # 48 entradas + buscar() + buscarAgrupado()
 ├── pages/
-│   ├── Home.jsx             # 7 secciones
-│   ├── Noticias.jsx         # Filtro + paginación + links a detalle
+│   ├── Home.jsx             # 7 secciones + Trámites en Línea
+│   ├── Noticias.jsx         # Filtro + paginación + filtro por escuela + links a detalle
 │   ├── NoticiaDetalle.jsx   # Detalle de noticia individual
 │   ├── Institucional/       # ElISeP, Autoridades, Organizacion, Resoluciones,
-│   │                        # SedesContacto (Maps), OfertaEducativa, Carrera
+│   │                        # SedesContacto (Maps), OfertaEducativa, Carrera, Galeria
 │   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
 │   ├── Ingreso/             # Convocatorias (contenido real), ProximasConvocatorias,
 │   │                        # Requisitos, Proceso, Faq (12 preguntas)
-│   └── Secretaria/          # Titulos (contenido real), Biblioteca (22 artículos), Cursos
+│   └── Secretaria/          # Titulos, Biblioteca (22 artículos), Cursos (lazy loaded)
 └── styles/
     ├── variables.css        # Design tokens + gradiente
     ├── base.css             # Reset, tipografía, fondo global, .chip
@@ -108,6 +108,7 @@
     ├── apps.css             # Apps + WhatsApp
     ├── oferta.css           # Cards, chips, filtros, acordeón
     ├── footer.css           # Footer 3 columnas + bottom
+    ├── galeria.css          # Galería de fotos (grid, lightbox)
     └── responsive.css       # Mobile-first</pre>
 
     <h2>3. Sistema de diseño</h2>
@@ -167,12 +168,12 @@
     <h2>5. Rutas (App.jsx)</h2>
     <pre>&lt;BrowserRouter&gt;
   &lt;Navbar /&gt;
-  &lt;Routes&gt;{/* 24 rutas */}&lt;/Routes&gt;
+  &lt;Routes&gt;{/* 26 rutas */}&lt;/Routes&gt;
   &lt;Footer /&gt;
   &lt;FloatWhatsApp /&gt;
   &lt;ScrollToTop /&gt;
 &lt;/BrowserRouter&gt;</pre>
-    <p>Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. 24 rutas: Home, Noticias, NoticiaDetalle, 6 Institucional, 5 Escuelas, 5 Ingreso, 3 Secretaría.</p>
+    <p>Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. 26 rutas: Home, Noticias, NoticiaDetalle, 7 Institucional (incluye Galería), 5 Escuelas, 5 Ingreso, 3 Secretaría, Mapa del Sitio.</p>
 
     <h2>6. Datos (mock)</h2>
     <h3>institucional.js</h3>
@@ -204,6 +205,7 @@
       <li>Navegación: ArrowUp/ArrowDown/Enter/Escape.</li>
       <li>Enter en campo → abre primer resultado.</li>
       <li>Cierre automático al hacer clic fuera.</li>
+      <li><strong>Debounce</strong> de 300ms para evitar búsquedas excesivas.</li>
     </ul>
 
     <h2>8. Hero slider</h2>
@@ -228,7 +230,7 @@ background-image:
       <tr><td><code>index.html</code></td><td>2.09 kB</td></tr>
       <tr><td><code>index.css</code></td><td>76.62 kB (gzip: 13.62 kB)</td></tr>
       <tr><td><code>index.js</code></td><td>212.65 kB (gzip: 66.43 kB)</td></tr>
-      <tr><td>Módulos</td><td>90</td></tr>
+      <tr><td>Módulos</td><td>96</td></tr>
       <tr><td>Lazy chunks</td><td>Rutas bajo demanda (React.lazy)</td></tr>
       <tr><td>Build time</td><td>~0.8-1s</td></tr>
     </table>
@@ -295,7 +297,8 @@ background-image:
 ├── hero/              ← Slider (1600×700, JPG, &lt;300KB)
 ├── noticias/          ← Fotos noticias (900×500, JPG/PNG, &lt;200KB)
 ├── testimonios/       ← Avatares (120×120, JPG, &lt;50KB)
-└── banners/           ← Banners páginas (1600×600, JPG, &lt;250KB)</pre>
+├── banners/           ← Banners páginas (1600×600, JPG, &lt;250KB)
+└── galeria/           ← Fotos galería (varios tamaños)</pre>
     <p>Todos los componentes usan el patrón <code>{img ? &lt;img/&gt; : &lt;div className="placeholder"/&gt;}</code> para manejar <code>img: null</code>.</p>
     <p>Placeholders disponibles: <code>.card-img-placeholder</code>, <code>.mini-img-placeholder</code>, <code>.np-img-placeholder</code>, <code>.hcard-img-placeholder</code>, <code>.news-hero__placeholder</code>, <code>.related-card__placeholder</code>, <code>.escuela-news-placeholder</code>.</p>
 
@@ -315,7 +318,7 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
     <h2>13. Mejoras de Calidad</h2>
 
     <h3>13.1 Lazy Loading</h3>
-    <p>Cada ruta se carga bajo demanda con <code>React.lazy()</code> + <code>Suspense</code>. El usuario solo descarga el JS de las páginas que visita, mejorando el tiempo de carga inicial.</p>
+    <p>Cada ruta se carga bajo demanda con <code>React.lazy()</code> + <code>Suspense</code>. El usuario solo descarga el JS de las páginas que visita, mejorando el tiempo de carga inicial. Actualmente hay 96 módulos, con las páginas de Secretaría (Títulos, Biblioteca, Cursos) también bajo carga lazy.</p>
 
     <h3>13.2 Testing</h3>
     <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. 18 tests en 3 archivos:</p>
@@ -339,7 +342,7 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
     <h3>13.4 SEO</h3>
     <ul>
       <li><strong>JSON-LD:</strong> Structured data con <code>EducationalOrganization</code>, <code>NewsArticle</code>, <code>BreadcrumbList</code></li>
-      <li><strong>Meta tags dinámicos:</strong> título, descripción e imagen por página (Open Graph)</li>
+      <li><strong>Meta tags dinámicos:</strong> título, descripción, imagen, tipo, locale por página (Open Graph + Twitter Card)</li>
       <li><strong>sitemap.xml:</strong> mapa del sitio para motores de búsqueda</li>
     </ul>
 
@@ -440,7 +443,7 @@ export const GA_ID = "G-XXXXXXXXXX";  // Placeholder</pre>
       <tr><td><code>index.html</code></td><td>2.09 kB</td></tr>
       <tr><td><code>index.css</code></td><td>76.62 kB (gzip: 13.62 kB)</td></tr>
       <tr><td><code>index.js</code></td><td>212.65 kB (gzip: 66.43 kB)</td></tr>
-      <tr><td>Módulos</td><td>90</td></tr>
+      <tr><td>Módulos</td><td>96</td></tr>
       <tr><td>Build time</td><td>~0.8-1s</td></tr>
     </table>
   </main>

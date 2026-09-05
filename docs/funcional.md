@@ -68,6 +68,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/institucional/sedes-contacto` | Sedes y Contacto (Google Maps embebido) | Implementada |
 | `/institucional/oferta-educativa` | Oferta Académica (dinámica: Carreras/Cursos/Convocatorias) | Implementada |
 | `/institucional/carreras` | Carreras (grid hits con estado inscripción) | Implementada |
+| `/institucional/galeria` | Galería de Fotos (categorías, filtros, lightbox) | Implementada |
 | `/escuelas/policia` | Escuela de Policía (datos oficiales) | Implementada |
 | `/escuelas/superior` | Escuela Superior (datos oficiales) | Implementada |
 | `/escuelas/especialidades` | Escuela de Especialidades (datos oficiales) | Implementada |
@@ -81,6 +82,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/secretaria/titulos` | Títulos y Certificaciones | Implementada |
 | `/secretaria/biblioteca` | Biblioteca Virtual (22 recursos bibliográficos reales del ISeP) | Implementada |
 | `/secretaria/cursos` | Cursos (dinámico con filtros) | Implementada |
+| `/mapa-del-sitio` | Mapa del Sitio (guía visual de todas las rutas) | Implementada |
 
 ---
 
@@ -91,9 +93,9 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 1. **Hero Slider** — Banner principal con slider automático (3 slides con imagen de picsum.photos), transiciones suaves, flechas de navegación y indicadores (dots).
 2. **Aplicaciones Institucionales** — 4 accesos: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail.
 3. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
-4. **CTA Inscripciones** — Bloque con countdown configurable (fecha en `src/components/CTA.jsx`, variable `FECHA_CIERRE`) + botones.
+4. **CTA Inscripciones** — Bloque con countdown configurable (fecha en `src/components/CTA.jsx`, variable `FECHA_CIERRE`) + botones. El botón principal ahora lleva a `/institucional/oferta-educativa`.
 5. **Últimas Noticias** — Noticia destacada + sidebar de noticias recientes con **links a contenido de ejemplo**.
-6. **Nuestras Escuelas** — Cuadrícula de las 5 escuelas con escudos.
+6. **Nuestras Escuelas** — Cuadrícula de las 5 escuelas con escudos. Las tarjetas son enlaces clickeables a `/escuelas/:id`.
 7. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
 
 ### 4.1 Hero Slider
@@ -111,6 +113,7 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 - Noticia destacada (tarjeta grande) con **link a `/noticias/:id`**.
 - Sidebar de 3 mini-cards con **links a `/noticias/:id`**.
 - **"Ver todas las noticias"** apunta a `/noticias`.
+- **ShareButton** en cada card de noticia para compartir directamente.
 - Bloque de Calendario Académico (promo).
 - Alimentado desde `src/data/noticias.js`.
 - **Imágenes opcionales:** si un registro tiene `img: null`, se muestra un placeholder con ícono en lugar de la imagen. Esto permite publicar noticias sin foto alusiva.
@@ -118,6 +121,7 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 ### 4.3 Página de Noticias (`/noticias`)
 
 - **Filtro por categorías:** Todas, Institucional, Académica, Escuelas, Eventos, Convenios.
+- **Filtro por escuela:** permite filtrar noticias por escuela asociada (Policía, Superior, Especialidades, Investigaciones, EaD).
 - **Padding en filtros:** separados del borde con `padding: 0 2rem`.
 - **Botón compartir:** cada noticia tiene `ShareButton` (Web Share API o clipboard).
 - **Noticia principal:** última publicación con imagen, fecha, título y extracto → **link a `/noticias/:id`**.
@@ -133,6 +137,31 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 - **Noticias relacionadas** (misma categoría, max 3).
 - **Botón "Volver a noticias"**.
 - **Estado 404:** si el ID no existe, muestra mensaje y enlace de retorno.
+
+### 4.5 Trámites en Línea (Home)
+
+Sección en la página de inicio que presenta las 4 aplicaciones institucionales del ISeP, cada una con una breve explicación y a quién está dirigida:
+
+| App | Descripción | Audiencia |
+|---|---|---|
+| **Mi ISeP** | Acceso a aulas virtuales, material de cursado, notas y asistencia | Docentes, personal policial cursante y postulantes inscriptos |
+| **SIGEDI** | Sistema de gestión de expedientes internos | Solo personal interno del ISeP |
+| **Gestión Cadetes** | Control y notificaciones del cursado | Cadetes de 1° y 2° año |
+| **Webmail** | Correo electrónico institucional | Todo el personal del ISeP |
+
+- Se muestra como tarjetas en la página de inicio, debajo del Hero.
+- Cada tarjeta tiene un enlace directo al sistema correspondiente.
+- Las URLs están centralizadas en `src/data/config.js`.
+
+### 4.6 Galería de Fotos (`/institucional/galeria`)
+
+Página dedicada para mostrar imágenes del ISeP:
+
+- **Grid de fotos** con diseño responsive (1-4 columnas según dispositivo).
+- **Filtros por categoría** para organizar las fotos.
+- **Lightbox** al hacer clic en una imagen (visualización ampliada con navegación).
+- **Imágenes almacenadas** en `public/img/galeria/`.
+- **Diseño adaptable** que se ajusta a diferentes tamaños de pantalla.
 
 ---
 
@@ -276,6 +305,7 @@ Sección "Aplicaciones Institucionales" en el home (4 apps):
 ### 12.2 ScrollToTop
 - Botón flotante con SVG flecha (z-index 70).
 - Visible tras 400px de scroll, `bottom: 5.5rem`.
+- En móvil, se posiciona en la esquina inferior izquierda para no superponerse con el botón de WhatsApp.
 - Scroll suave al inicio.
 
 ### 12.3 Redes sociales (Footer)
@@ -527,8 +557,8 @@ Se implementan 3 tipos de structured data según la página:
 | Tipo | Página | Contenido |
 |---|---|---|
 | `EducationalOrganization` | Home (`/`) | Datos del ISeP: nombre, dirección, redes sociales, logo |
-| `NewsArticle` | Detalle de noticia (`/noticias/:id`) | Título, autor, fecha, imagen, excerpt |
-| `BreadcrumbList` | Todas las páginas | Ruta de navegación jerárquica |
+| `NewsArticle` | Detalle de noticia (`/noticias/:id`) | Título, autor, fecha, imagen, excerpt (rich results para Google) |
+| `BreadcrumbList` | 12 páginas con Breadcrumb | Ruta de navegación jerárquica |
 
 - Se renderizan como `<script type="application/ld+json">` inline en cada componente de página.
 - Validar con Google Rich Results Test.
@@ -545,6 +575,8 @@ El componente `SEO.jsx` gestiona meta tags por página:
 | `<meta property="og:description">` | Descripción para redes sociales |
 | `<meta property="og:image">` | Imagen representativa |
 | `<meta property="og:type">` | website / article |
+| `<meta property="og:locale">` | es_AR |
+| `<meta name="twitter:card">` | summary_large_image |
 
 - Se actualizan dinámicamente con `useEffect` al cambiar de ruta.
 
@@ -589,7 +621,7 @@ Para activar el tracking de Analytics se deben seguir estos pasos:
 
 | Característica | Descripción |
 |---|---|
-| `SkipToContent` | Enlace invisible al inicio que aparece con Tab, salta al contenido principal |
+| `SkipToContent` | Enlace invisible al inicio que aparece con Tab, salta al contenido principal (id="main-content" en todos los elementos main) |
 | `focus-visible` | Indicadores de foco visibles solo con navegación por teclado (no en clics) |
 | `sr-only` | Contenido exclusivo para lectores de pantalla (ej: labels de botones) |
 | `skeleton-pulse` | Placeholder animado mientras cargan datos (mejora percepción de rendimiento) |

@@ -26,7 +26,7 @@ const SEDES = [
     telefono: "342-4815570",
     email: "contacto@isepsantafe.edu.ar",
     horario: "Lunes a Viernes de 8:00 a 17:00",
-    mapa: "https://maps.google.com/maps?q=RN11+km+482+Recreo+Santa+Fe+Argentina&t=&z=17&ie=UTF8&iwloc=&output=embed",
+    mapa: "https://maps.google.com/maps?q=Escuela+de+Policia+Recreo+Santa+Fe+Argentina&t=&z=17&ie=UTF8&iwloc=&output=embed",
   },
 ];
 
