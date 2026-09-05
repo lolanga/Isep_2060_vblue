@@ -7,6 +7,7 @@
 
 import { Link } from "react-router-dom";
 import { noticias } from "../data/noticias";
+import ShareButton from "./ShareButton";
 
 /** Sección de noticias del Home con destacada + sidebar. */
 export default function News() {
@@ -50,7 +51,10 @@ export default function News() {
                 </div>
 
                 <div className="card-body">
-                  <span className="card-date">{destacada.fecha}</span>
+                  <div className="card-date-row">
+                    <span className="card-date">{destacada.fecha}</span>
+                    <ShareButton noticia={destacada} />
+                  </div>
 
                   <h3 className="card-title">
                     {destacada.titulo.toUpperCase()}
@@ -86,7 +90,10 @@ export default function News() {
                   </div>
 
                   <div className="mini-content">
-                    <span className="mini-date">{n.fechaCorta}</span>
+                    <div className="mini-header-row">
+                      <span className="mini-date">{n.fechaCorta}</span>
+                      <ShareButton noticia={n} />
+                    </div>
                     <h4 className="mini-title">
                       {n.titulo}
                     </h4>

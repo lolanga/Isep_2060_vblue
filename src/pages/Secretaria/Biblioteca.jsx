@@ -8,6 +8,7 @@
 import { useState } from "react";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
+import { BreadcrumbLd } from "../../components/JsonLd";
 
 const BASE = "https://www.isepsantafe.edu.ar/index.php/academico/biblioteca";
 
@@ -66,7 +67,7 @@ export default function Biblioteca() {
   });
 
   return (
-    <main className="page-main">
+    <main id="main-content" className="page-main">
       <SEO title="Biblioteca Virtual" description="Recursos digitales de la biblioteca del ISeP" />
       <section className="page-hero">
         <div className="page-hero__inner">
@@ -82,6 +83,13 @@ export default function Biblioteca() {
 
       <div className="container-max biblio-content">
         <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Secretaría Académica" },
+            { label: "Biblioteca" },
+          ]}
+        />
+        <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
             { label: "Secretaría Académica" },

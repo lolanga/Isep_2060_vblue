@@ -17,8 +17,7 @@ import {
   cursosDeEscuela,
 } from "../data/institucional";
 import { noticias } from "../data/noticias";
-
-const MI_ISEP = "https://mi.isepsantafe.edu.ar";
+import { MI_ISEP_URL } from "../data/config";
 
 /**
  * Plantilla reutilizable para páginas de escuela.
@@ -39,7 +38,7 @@ export default function EscuelaTemplate({ escuelaId }) {
   const info = escuela.informacion;
 
   return (
-    <main className="page-main">
+    <main id="main-content" className="page-main">
       {/* Logo + presentación */}
       <section className="escuela-hero">
         <div className="escuela-hero__inner">
@@ -137,7 +136,7 @@ export default function EscuelaTemplate({ escuelaId }) {
                   <p className="escuela-periodo">
                     Período: {curso.periodo}
                   </p>
-                  <a className="btn-cta escuela-btn-cta" href={MI_ISEP} target="_blank" rel="noreferrer">
+                  <a className="btn-cta escuela-btn-cta" href={MI_ISEP_URL} target="_blank" rel="noreferrer">
                     Acceso a Mi ISeP
                     <span className="material-symbols-outlined">arrow_forward</span>
                   </a>

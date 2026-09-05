@@ -9,20 +9,32 @@ import { Link } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
 import ShareButton from "../components/ShareButton";
 import SEO from "../components/SEO";
+import { BreadcrumbLd } from "../components/JsonLd";
 import { noticias } from "../data/noticias";
 
 const CATEGORIAS = ["Todas", "Institucional", "Academica", "Escuelas", "Eventos", "Convenios"];
+
+const ESCUELAS = [
+  { value: "todas", label: "Todas" },
+  { value: "policia", label: "Escuela de Policía" },
+  { value: "superior", label: "Escuela Superior" },
+  { value: "especialidades", label: "Escuela de Especialidades" },
+  { value: "investigaciones", label: "Escuela de Investigaciones" },
+  { value: "ead", label: "Educación a Distancia" },
+];
 
 const ITEMS_POR_PAGINA = 10;
 
 /** Página de listado de noticias con filtro por categoría y paginación. */
 export default function Noticias() {
   const [categoriaActiva, setCategoriaActiva] = useState("Todas");
+  const [escuelaActiva, setEscuelaActiva] = useState("todas");
   const [pagina, setPagina] = useState(1);
 
   const filtradas = noticias.filter(
     (n) =>
-      (categoriaActiva === "Todas" || n.categoria === categoriaActiva)
+      (categoriaActiva === "Todas" || n.categoria === categoriaActiva) &&
+      (escuelaActiva === "todas" || (n.escuelas && n.escuelas.includes(escuelaActiva)))
   );
 
   const principal = filtradas[0] || null;
@@ -34,11 +46,17 @@ export default function Noticias() {
 
   const cambiarCategoria = (cat) => {
     setCategoriaActiva(cat);
+    setEscuelaActiva("todas");
+    setPagina(1);
+  };
+
+  const cambiarEscuela = (esc) => {
+    setEscuelaActiva(esc);
     setPagina(1);
   };
 
   return (
-    <main className="noticias-page">
+    <main id="main-content" className="noticias-page">
       <SEO title="Noticias" description="Últimas noticias del Instituto de Seguridad Pública de Santa Fe" />
       <section className="noticias-hero">
         <div className="noticias-hero__bg">
@@ -63,6 +81,12 @@ export default function Noticias() {
             { label: "Noticias" },
           ]}
         />
+        <BreadcrumbLd
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Noticias" },
+          ]}
+        />
       </div>
 
       <div className="noticias-filtro-wrap">
@@ -77,6 +101,19 @@ export default function Noticias() {
               {cat}
             </button>
           ))}
+        </div>
+        <div className="noticias-filtro noticias-filtro--escuelas container-max">
+          <select
+            className="noticias-escuela-select"
+            value={escuelaActiva}
+            onChange={(e) => cambiarEscuela(e.target.value)}
+          >
+            {ESCUELAS.map((esc) => (
+              <option key={esc.value} value={esc.value}>
+                {esc.label}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 

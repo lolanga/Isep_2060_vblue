@@ -9,7 +9,7 @@
  */
 export default function Placeholder({ badge, title, highlight, description, features }) {
   return (
-    <main className="placeholder-main">
+    <main id="main-content" className="placeholder-main">
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">{badge}</span>

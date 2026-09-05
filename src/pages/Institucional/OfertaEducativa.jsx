@@ -9,9 +9,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
+import { BreadcrumbLd } from "../../components/JsonLd";
 import { carreras, cursos, convocatorias, escuelaPorId, escuelas } from "../../data/institucional";
-
-const MI_ISEP = "https://mi.isepsantafe.edu.ar";
+import { MI_ISEP_URL } from "../../data/config";
 
 const escuelasFiltradas = escuelas.filter((e) => e.id !== "ead");
 
@@ -26,7 +26,7 @@ export default function OfertaEducativa() {
   ];
 
   return (
-    <main className="page-main">
+    <main id="main-content" className="page-main">
       <SEO title="Oferta Educativa" description="Carreras y formación del Instituto de Seguridad Pública" />
       <section className="page-hero">
         <div className="page-hero__inner">
@@ -42,6 +42,13 @@ export default function OfertaEducativa() {
 
       <div className="container-max titulos-container">
         <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Institucional" },
+            { label: "Oferta Educativa" },
+          ]}
+        />
+        <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
             { label: "Institucional" },
@@ -167,7 +174,7 @@ export default function OfertaEducativa() {
                       {c.periodo}
                     </span>
                   </div>
-                  <a className="btn-cta oferta-mi-isep" href={MI_ISEP} target="_blank" rel="noreferrer">
+                  <a className="btn-cta oferta-mi-isep" href={MI_ISEP_URL} target="_blank" rel="noreferrer">
                     Acceso a Mi ISeP
                     <span className="material-symbols-outlined">arrow_forward</span>
                   </a>

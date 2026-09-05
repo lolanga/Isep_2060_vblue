@@ -11,6 +11,7 @@ import { noticias } from "../data/noticias";
 import Breadcrumb from "../components/Breadcrumb";
 import ShareButton from "../components/ShareButton";
 import SEO from "../components/SEO";
+import { NewsArticleLd, BreadcrumbLd } from "../components/JsonLd";
 
 const CONTENIDO_EJEMPLO = (titulo, excerpt) => `
 El Instituto de Seguridad Pública de la Provincia de Santa Fe informa a toda la comunidad institucional y al público en general sobre novedades relacionadas con ${titulo.toLowerCase()}.
@@ -41,7 +42,7 @@ export default function NoticiaDetalle() {
 
   if (!noticia) {
     return (
-      <main className="noticia-page">
+      <main id="main-content" className="noticia-page">
         <SEO title="Noticia no encontrada" />
         <div className="container-max noticia-notfound">
           <span className="material-symbols-outlined not-found__icon">search_off</span>
@@ -55,8 +56,9 @@ export default function NoticiaDetalle() {
   }
 
   return (
-    <main className="noticia-page">
+    <main id="main-content" className="noticia-page">
       <SEO title={noticia.titulo} description={noticia.excerpt} />
+      <NewsArticleLd noticia={noticia} />
       {/* Hero de noticia */}
       <section className="news-hero">
         {noticia.img ? (
@@ -91,6 +93,13 @@ export default function NoticiaDetalle() {
 
       <div className="container-max noticia-body">
         <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Noticias", to: "/noticias" },
+            { label: noticia.titulo },
+          ]}
+        />
+        <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
             { label: "Noticias", to: "/noticias" },

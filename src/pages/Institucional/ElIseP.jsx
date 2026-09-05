@@ -7,6 +7,7 @@
 
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
+import { BreadcrumbLd } from "../../components/JsonLd";
 import escudoIsep from "../../assets/escudo_ISeP.png";
 
 const SEDES = [
@@ -27,7 +28,7 @@ const SEDES = [
 /** Página de presentación institucional: qué es el ISeP, misión, visión, valores y sedes. */
 export default function ElIseP() {
   return (
-    <main className="page-main">
+    <main id="main-content" className="page-main">
       <SEO title="El ISeP" description="Conocé al Instituto de Seguridad Pública de Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
@@ -43,6 +44,13 @@ export default function ElIseP() {
 
       <div className="container-max elisep-content">
         <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Institucional" },
+            { label: "El ISeP" },
+          ]}
+        />
+        <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
             { label: "Institucional" },

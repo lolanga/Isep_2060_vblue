@@ -17,7 +17,7 @@ export default function Proceso() {
   ];
 
   return (
-    <main className="page-main">
+    <main id="main-content" className="page-main">
       <SEO title="Proceso de Ingreso" description="Proceso de ingreso al ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">

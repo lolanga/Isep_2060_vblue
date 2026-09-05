@@ -27,10 +27,16 @@ const GRUPO_CONFIG = {
  */
 export default function SearchBox({ onClose }) {
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [activeIdx, setActiveIdx] = useState(-1);
   const inputRef = useRef(null);
   const boxRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedQuery(query), 300);
+    return () => clearTimeout(timer);
+  }, [query]);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -38,7 +44,7 @@ export default function SearchBox({ onClose }) {
 
   // Resultados aplanados para navegación por teclado
   const flatResults = useMemo(() => {
-    const q = (query || "").trim();
+    const q = (debouncedQuery || "").trim();
     if (!q) return [];
     const grupos = buscarAgrupado(q, 3);
     const flat = [];
@@ -48,14 +54,14 @@ export default function SearchBox({ onClose }) {
       }
     });
     return flat;
-  }, [query]);
+  }, [debouncedQuery]);
 
   // Grupos para render
   const grupos = useMemo(() => {
-    const q = (query || "").trim();
+    const q = (debouncedQuery || "").trim();
     if (!q) return {};
     return buscarAgrupado(q, 3);
-  }, [query]);
+  }, [debouncedQuery]);
 
   const hayResultados = flatResults.length > 0;
   const hayQuery = query.trim().length > 0;

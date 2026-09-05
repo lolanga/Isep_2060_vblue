@@ -12,7 +12,7 @@ export default function ProximasConvocatorias() {
   const proximas = convocatorias.filter((c) => c.estado === "proxima");
 
   return (
-    <main className="page-main">
+    <main id="main-content" className="page-main">
       <SEO title="Próximas Convocatorias" description="Próximas convocatorias del ISeP" />
       <section className="page-hero">
         <div className="page-hero__inner">

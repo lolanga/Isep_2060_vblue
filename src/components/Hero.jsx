@@ -6,6 +6,7 @@
  */
 
 import { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 
 const SLIDES = [
   {
@@ -92,10 +93,10 @@ export default function Hero() {
 
           <p className="hero-description">{slide.description}</p>
 
-          <button className="btn-cta">
+          <Link to="/institucional/oferta-educativa" className="btn-cta">
             Conoce nuestras propuestas
             <span className="material-symbols-outlined">arrow_forward</span>
-          </button>
+          </Link>
         </div>
       </div>
 

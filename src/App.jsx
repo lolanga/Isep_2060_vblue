@@ -71,9 +71,9 @@ const Proceso = lazy(() => import("./pages/Ingreso/Proceso"));
 const Faq = lazy(() => import("./pages/Ingreso/Faq"));
 
 // ── Secretaría Académica ──
-import Titulos from "./pages/Secretaria/Titulos";
-import Biblioteca from "./pages/Secretaria/Biblioteca";
-import Cursos from "./pages/Secretaria/Cursos";
+const Titulos = lazy(() => import("./pages/Secretaria/Titulos"));
+const Biblioteca = lazy(() => import("./pages/Secretaria/Biblioteca"));
+const Cursos = lazy(() => import("./pages/Secretaria/Cursos"));
 
 /** Router principal — define todas las rutas con lazy loading. */
 function App() {

@@ -14,7 +14,7 @@ export default function Faq() {
   const [open, setOpen] = useState(null);
 
   return (
-    <main className="page-main">
+    <main id="main-content" className="page-main">
       <SEO title="Preguntas Frecuentes" description="Preguntas frecuentes sobre el ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">

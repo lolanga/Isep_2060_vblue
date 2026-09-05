@@ -8,6 +8,7 @@
 import { useState } from "react";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
+import { BreadcrumbLd } from "../../components/JsonLd";
 
 const PASOS = [
   {
@@ -67,7 +68,7 @@ export default function Titulos() {
   };
 
   return (
-    <main className="page-main">
+    <main id="main-content" className="page-main">
       <SEO title="Títulos y Certificaciones" description="Trámites de títulos y certificaciones del ISeP" />
       <section className="page-hero">
         <div className="page-hero__inner">
@@ -83,6 +84,13 @@ export default function Titulos() {
 
       <div className="container-max titulos-container">
         <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Secretaría Académica" },
+            { label: "Títulos y Certificaciones" },
+          ]}
+        />
+        <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
             { label: "Secretaría Académica" },

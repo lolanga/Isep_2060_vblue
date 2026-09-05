@@ -10,7 +10,7 @@ import SEO from "../components/SEO";
 /** Página 404 — ruta no encontrada. */
 export default function NotFound() {
   return (
-    <main className="not-found">
+    <main id="main-content" className="not-found">
       <SEO title="Página no encontrada" />
       <span className="material-symbols-outlined not-found__icon">
         search_off

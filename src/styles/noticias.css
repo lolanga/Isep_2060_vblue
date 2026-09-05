@@ -54,6 +54,24 @@
   scrollbar-width: none;
 }
 
+.noticias-filtro--escuelas {
+  padding-top: 0;
+  padding-bottom: 0.5rem;
+}
+
+.noticias-escuela-select {
+  padding: 0.45rem 1.1rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background-color: var(--surface-container-low);
+  color: var(--slate-600);
+  border: 1px solid var(--outline-variant);
+  cursor: pointer;
+  appearance: auto;
+}
+
 .noticias-filtro::-webkit-scrollbar {
   display: none;
 }

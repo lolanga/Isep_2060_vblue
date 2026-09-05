@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Countdown from "../../components/Countdown";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
+import { BreadcrumbLd } from "../../components/JsonLd";
 
 const DOCUMENTACION = [
   {
@@ -75,7 +76,7 @@ export default function Convocatorias() {
   const fechaPresentacion = "2026-12-01T09:00:00";
 
   return (
-    <main className="conv-main">
+    <main id="main-content" className="conv-main">
       <SEO title="Convocatorias" description="Proceso de selección — Escuela de Policía 2027-2028" />
       {/* Hero dedicado */}
       <section className="page-hero">
@@ -118,6 +119,13 @@ export default function Convocatorias() {
 
       <div className="container-max conv-content">
         <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Ingreso" },
+            { label: "Convocatorias" },
+          ]}
+        />
+        <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
             { label: "Ingreso" },

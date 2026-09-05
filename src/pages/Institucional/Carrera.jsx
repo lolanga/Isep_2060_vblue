@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { carreras, escuelaPorId } from "../../data/institucional";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
+import { BreadcrumbLd } from "../../components/JsonLd";
 
 const ESTADOS = {
   abierta: { label: "Inscripciones abiertas", color: "#17be95", bg: "rgba(23,190,149,0.1)" },
@@ -19,7 +20,7 @@ const ESTADOS = {
 /** Página de detalle de carreras con estado de inscripción y metadata. */
 export default function Carrera() {
   return (
-    <main className="page-main">
+    <main id="main-content" className="page-main">
       <SEO title="Carreras" description="Carreras del Instituto de Seguridad Pública de Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
@@ -35,6 +36,13 @@ export default function Carrera() {
 
       <div className="container-max titulos-container">
         <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Institucional", to: "/institucional/oferta-educativa" },
+            { label: "Carreras" },
+          ]}
+        />
+        <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
             { label: "Institucional", to: "/institucional/oferta-educativa" },

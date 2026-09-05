@@ -8,6 +8,7 @@
 import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
+import { BreadcrumbLd } from "../../components/JsonLd";
 
 const REQUISITOS = [
   { texto: "Ser argentino", icono: "flag" },
@@ -37,7 +38,7 @@ const FORMULARIOS = [
 /** Página de requisitos de ingreso: condiciones, documentación y formularios. */
 export default function Requisitos() {
   return (
-    <main className="requisitos-main">
+    <main id="main-content" className="requisitos-main">
       <SEO title="Requisitos" description="Requisitos para inscripción al ISeP" />
       <section className="page-hero">
         <div className="page-hero__inner">
@@ -53,6 +54,13 @@ export default function Requisitos() {
 
       <div className="container-max requisitos-content">
         <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Ingreso" },
+            { label: "Requisitos" },
+          ]}
+        />
+        <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
             { label: "Ingreso" },

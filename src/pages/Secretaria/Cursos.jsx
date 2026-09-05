@@ -11,8 +11,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO";
 import { cursos, escuelas } from "../../data/institucional";
-
-const MI_ISEP = "https://mi.isepsantafe.edu.ar";
+import { MI_ISEP_URL } from "../../data/config";
 
 /**
  * Badge de estado del curso (actual, próximo, finalizado).
@@ -56,7 +55,7 @@ export default function Cursos() {
   ];
 
   return (
-    <main className="cursos-main">
+    <main id="main-content" className="cursos-main">
       <SEO title="Cursos" description="Cursos de capacitación del ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
@@ -147,7 +146,7 @@ export default function Cursos() {
                           <p className="cursos-escuela-text">
                             Escuela: {escuelaNombre(curso.escuela)}
                           </p>
-                          <a className="btn-cta" href={MI_ISEP} target="_blank" rel="noreferrer">
+                          <a className="btn-cta" href={MI_ISEP_URL} target="_blank" rel="noreferrer">
                             Acceso a Mi ISeP
                             <span className="material-symbols-outlined">arrow_forward</span>
                           </a>

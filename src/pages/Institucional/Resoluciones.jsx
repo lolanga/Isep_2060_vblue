@@ -8,6 +8,7 @@
 import { useState, useMemo } from "react";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
+import { BreadcrumbLd } from "../../components/JsonLd";
 import { resoluciones } from "../../data/normativa";
 
 const ANIOS = ["Todos", ...new Set(resoluciones.map((r) => r.anio))].sort((a, b) => {
@@ -53,7 +54,7 @@ export default function Resoluciones() {
   }, []);
 
   return (
-    <main className="resoluciones-main">
+    <main id="main-content" className="resoluciones-main">
       <SEO title="Resoluciones" description="Resoluciones y normativa del ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
@@ -69,6 +70,13 @@ export default function Resoluciones() {
 
       <div className="container-max resoluciones-content">
         <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Institucional" },
+            { label: "Resoluciones" },
+          ]}
+        />
+        <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
             { label: "Institucional" },

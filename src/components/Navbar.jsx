@@ -36,6 +36,7 @@ const formacion = [
   { label: "Escuelas",                  submenu: escuelas,                       type: "submenu", icon: "account_balance" },
   { label: "Títulos y Certificaciones", href: "/secretaria/titulos",             type: "link",  icon: "emoji_events" },
   { label: "Biblioteca Virtual",        href: "/secretaria/biblioteca",          type: "link",  icon: "library_books" },
+  { label: "Cursos",                    href: "/secretaria/cursos",              type: "link",  icon: "menu_book" },
 ];
 
 const ingreso = [

@@ -1435,6 +1435,13 @@
   transition: opacity 0.25s, transform 0.2s;
 }
 
+@media (max-width: 767px) {
+  .scroll-top-float {
+    left: 1rem;
+    right: auto;
+  }
+}
+
 /* ── Titulos ── */
 .page-main {
   padding-top: var(--navbar-height);

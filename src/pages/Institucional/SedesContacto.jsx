@@ -7,6 +7,7 @@
 
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
+import { BreadcrumbLd } from "../../components/JsonLd";
 
 const SEDES = [
   {
@@ -16,7 +17,7 @@ const SEDES = [
     telefono: "341-4728526",
     email: "contacto@isepsantafe.edu.ar",
     horario: "Lunes a Viernes de 8:00 a 17:00",
-    mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.5!2d-60.64!3d-32.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b75f4d1e2e3f3b%3A0x1234567890abcdef!2sLeandro+N.+Alem+2050%2C+Rosario%2C+Santa+Fe!5e0!3m2!1ses!2sar!4v1",
+    mapa: "https://maps.google.com/maps?q=Leandro+N+Alem+2050+Rosario+Santa+Fe+Argentina&t=&z=17&ie=UTF8&iwloc=&output=embed",
   },
   {
     id: 2,
@@ -25,7 +26,7 @@ const SEDES = [
     telefono: "342-4815570",
     email: "contacto@isepsantafe.edu.ar",
     horario: "Lunes a Viernes de 8:00 a 17:00",
-    mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.5!2d-60.7!3d-31.64!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDM4JzI0LjAiUyA2MMKwNDInMDAuMCJX!5e0!3m2!1ses!2sar!4v1",
+    mapa: "https://maps.google.com/maps?q=RN11+km+482+Recreo+Santa+Fe+Argentina&t=&z=17&ie=UTF8&iwloc=&output=embed",
   },
 ];
 
@@ -45,7 +46,7 @@ const REDES = [
 /** Página de sedes y contacto: información de sedes, canales y redes sociales. */
 export default function SedesContacto() {
   return (
-    <main className="page-main">
+    <main id="main-content" className="page-main">
       <SEO title="Sedes y Contacto" description="Sedes y datos de contacto del ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
@@ -61,6 +62,13 @@ export default function SedesContacto() {
 
       <div className="container-max sedes-content">
         <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Institucional" },
+            { label: "Sedes y Contacto" },
+          ]}
+        />
+        <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
             { label: "Institucional" },

@@ -8,6 +8,7 @@
 import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
+import { BreadcrumbLd } from "../../components/JsonLd";
 import escudoIsep from "../../assets/escudo_ISeP.png";
 import escudoEP from "../../assets/escudo_EP.png";
 import escudoES from "../../assets/escudo_ES.png";
@@ -89,7 +90,7 @@ const DIRECTORES_ESCUELAS = [
 /** Página de autoridades: autoridades provinciales, concejo, director general y directores de escuelas. */
 export default function Autoridades() {
   return (
-    <main className="autoridades-main">
+    <main id="main-content" className="autoridades-main">
       <SEO title="Autoridades" description="Autoridades del Instituto de Seguridad Pública de Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
@@ -105,6 +106,13 @@ export default function Autoridades() {
 
       <div className="container-max autoridades-content">
         <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Institucional" },
+            { label: "Autoridades" },
+          ]}
+        />
+        <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
             { label: "Institucional" },
