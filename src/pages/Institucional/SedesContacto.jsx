@@ -45,12 +45,8 @@ const REDES = [
 /** Página de sedes y contacto: información de sedes, canales y redes sociales. */
 export default function SedesContacto() {
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title="Sedes y Contacto" description="Sedes y datos de contacto del ISeP Santa Fe" />
-=======
     <main className="page-main">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title="Sedes y Contacto" description="Sedes y datos de contacto del ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Institucional</span>

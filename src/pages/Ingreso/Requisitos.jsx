@@ -37,12 +37,8 @@ const FORMULARIOS = [
 /** Página de requisitos de ingreso: condiciones, documentación y formularios. */
 export default function Requisitos() {
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title="Requisitos" description="Requisitos para inscripción al ISeP" />
-=======
     <main className="requisitos-main">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title="Requisitos" description="Requisitos para inscripción al ISeP" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>

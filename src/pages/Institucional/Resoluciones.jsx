@@ -53,12 +53,8 @@ export default function Resoluciones() {
   }, []);
 
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title="Resoluciones" description="Resoluciones y normativa del ISeP Santa Fe" />
-=======
     <main className="resoluciones-main">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title="Resoluciones" description="Resoluciones y normativa del ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Institucional</span>

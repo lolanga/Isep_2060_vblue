@@ -19,12 +19,8 @@ const ESTADOS = {
 /** Página de detalle de carreras con estado de inscripción y metadata. */
 export default function Carrera() {
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title="Carreras" description="Carreras del Instituto de Seguridad Pública de Santa Fe" />
-=======
     <main className="page-main">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title="Carreras" description="Carreras del Instituto de Seguridad Pública de Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Formación</span>

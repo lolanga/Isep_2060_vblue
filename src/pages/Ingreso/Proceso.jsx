@@ -17,12 +17,8 @@ export default function Proceso() {
   ];
 
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title="Proceso de Ingreso" description="Proceso de ingreso al ISeP Santa Fe" />
-=======
     <main className="page-main">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title="Proceso de Ingreso" description="Proceso de ingreso al ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>

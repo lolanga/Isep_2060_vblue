@@ -26,12 +26,8 @@ export default function OfertaEducativa() {
   ];
 
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title="Oferta Educativa" description="Carreras y formación del Instituto de Seguridad Pública" />
-=======
     <main className="page-main">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title="Oferta Educativa" description="Carreras y formación del Instituto de Seguridad Pública" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Formación</span>

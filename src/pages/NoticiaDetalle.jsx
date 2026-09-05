@@ -41,20 +41,12 @@ export default function NoticiaDetalle() {
 
   if (!noticia) {
     return (
-<<<<<<< HEAD
-      <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-        <SEO title="Noticia no encontrada" />
-        <div className="container-max" style={{ padding: "4rem 2rem", textAlign: "center" }}>
-          <span className="material-symbols-outlined" style={{ fontSize: "4rem", color: "#cbd5e1" }}>search_off</span>
-          <h2 style={{ color: "var(--slate-700)", marginTop: "1rem" }}>Noticia no encontrada</h2>
-          <Link to="/noticias" style={{ color: "var(--primary)", fontWeight: 600, marginTop: "1rem", display: "inline-block" }}>
-=======
       <main className="noticia-page">
+        <SEO title="Noticia no encontrada" />
         <div className="container-max noticia-notfound">
           <span className="material-symbols-outlined not-found__icon">search_off</span>
           <h2 className="not-found__title">Noticia no encontrada</h2>
           <Link to="/noticias" className="not-found__link">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
             ← Volver a noticias
           </Link>
         </div>
@@ -63,12 +55,8 @@ export default function NoticiaDetalle() {
   }
 
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title={noticia.titulo} description={noticia.excerpt} />
-=======
     <main className="noticia-page">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title={noticia.titulo} description={noticia.excerpt} />
       {/* Hero de noticia */}
       <section className="news-hero">
         {noticia.img ? (

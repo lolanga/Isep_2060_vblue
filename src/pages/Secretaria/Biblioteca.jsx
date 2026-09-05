@@ -66,12 +66,8 @@ export default function Biblioteca() {
   });
 
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title="Biblioteca Virtual" description="Recursos digitales de la biblioteca del ISeP" />
-=======
     <main className="page-main">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title="Biblioteca Virtual" description="Recursos digitales de la biblioteca del ISeP" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Secretaría Académica</span>

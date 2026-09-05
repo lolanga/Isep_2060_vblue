@@ -67,12 +67,8 @@ export default function Titulos() {
   };
 
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title="Títulos y Certificaciones" description="Trámites de títulos y certificaciones del ISeP" />
-=======
     <main className="page-main">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title="Títulos y Certificaciones" description="Trámites de títulos y certificaciones del ISeP" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Secretaría Académica</span>

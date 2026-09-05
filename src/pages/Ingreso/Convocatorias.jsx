@@ -75,12 +75,8 @@ export default function Convocatorias() {
   const fechaPresentacion = "2026-12-01T09:00:00";
 
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title="Convocatorias" description="Proceso de selección — Escuela de Policía 2027-2028" />
-=======
     <main className="conv-main">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title="Convocatorias" description="Proceso de selección — Escuela de Policía 2027-2028" />
       {/* Hero dedicado */}
       <section className="page-hero">
         <div className="page-hero__bg" />

@@ -89,12 +89,8 @@ const DIRECTORES_ESCUELAS = [
 /** Página de autoridades: autoridades provinciales, concejo, director general y directores de escuelas. */
 export default function Autoridades() {
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title="Autoridades" description="Autoridades del Instituto de Seguridad Pública de Santa Fe" />
-=======
     <main className="autoridades-main">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title="Autoridades" description="Autoridades del Instituto de Seguridad Pública de Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Institucional</span>

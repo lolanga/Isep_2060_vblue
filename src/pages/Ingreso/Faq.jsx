@@ -14,12 +14,8 @@ export default function Faq() {
   const [open, setOpen] = useState(null);
 
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title="Preguntas Frecuentes" description="Preguntas frecuentes sobre el ISeP Santa Fe" />
-=======
     <main className="page-main">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title="Preguntas Frecuentes" description="Preguntas frecuentes sobre el ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>

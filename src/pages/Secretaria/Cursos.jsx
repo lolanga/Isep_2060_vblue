@@ -56,12 +56,8 @@ export default function Cursos() {
   ];
 
   return (
-<<<<<<< HEAD
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
-      <SEO title="Cursos" description="Cursos de capacitación del ISeP Santa Fe" />
-=======
     <main className="cursos-main">
->>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
+      <SEO title="Cursos" description="Cursos de capacitación del ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Formación</span>
