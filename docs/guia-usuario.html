@@ -239,7 +239,61 @@
     </table>
     <div class="tip">Cada constante tiene documentación explicando qué es y cómo modificarla.</div>
 
-    <h2>17. Problemas comunes</h2>
+    <h2>17. Imágenes del sitio</h2>
+    <p>Todas las imágenes del sitio se organizan en carpetas dentro de <code>public/img/</code>.</p>
+
+    <h3>17.1 Estructura de carpetas</h3>
+    <pre><code>public/img/
+├── hero/              ← Slider principal (3 slides)
+├── noticias/          ← Fotos de noticias
+├── testimonios/       ← Avatares de egresados
+└── banners/           ← Banners de páginas</code></pre>
+
+    <h3>17.2 Mapa de imágenes por sección</h3>
+    <table>
+      <tr><th>Sección</th><th>Carpeta</th><th>Estado</th></tr>
+      <tr><td>Hero Slide 1</td><td><code>hero/</code></td><td>Placeholder</td></tr>
+      <tr><td>Hero Slide 2</td><td><code>hero/</code></td><td>Placeholder</td></tr>
+      <tr><td>Hero Slide 3</td><td><code>hero/</code></td><td>Placeholder</td></tr>
+      <tr><td>Banner Noticias</td><td><code>banners/</code></td><td>Placeholder</td></tr>
+      <tr><td>Testimonio 1</td><td><code>testimonios/</code></td><td>Placeholder</td></tr>
+      <tr><td>Testimonio 2</td><td><code>testimonios/</code></td><td>Placeholder</td></tr>
+      <tr><td>Testimonio 3</td><td><code>testimonios/</code></td><td>Placeholder</td></tr>
+      <tr><td>Noticia 1</td><td><code>noticias/</code></td><td>✅ Real</td></tr>
+    </table>
+
+    <h3>17.3 Formato recomendado</h3>
+    <table>
+      <tr><th>Tipo</th><th>Dimensiones</th><th>Formato</th><th>Max KB</th></tr>
+      <tr><td>Hero slider</td><td>1600×700</td><td>JPG</td><td>300</td></tr>
+      <tr><td>Banners</td><td>1600×600</td><td>JPG</td><td>250</td></tr>
+      <tr><td>Testimonios</td><td>120×120</td><td>JPG</td><td>50</td></tr>
+      <tr><td>Noticias</td><td>900×500</td><td>JPG/PNG</td><td>200</td></tr>
+    </table>
+
+    <h3>17.4 Cómo cambiar una imagen</h3>
+    <ol>
+      <li>Prepará la imagen con las dimensiones recomendadas</li>
+      <li>Guardala en la carpeta correspondiente: <code>public/img/hero/slide-formacion.jpg</code></li>
+      <li>Abrí el archivo que usa esa imagen (ej: <code>src/components/Hero.jsx</code>)</li>
+      <li>Reemplazá la URL de picsum por la ruta local: <code>src="/img/hero/slide-formacion.jpg"</code></li>
+      <li>Guardá y verificá</li>
+    </ol>
+
+    <h3>17.5 Referencia rápida</h3>
+    <table>
+      <tr><th>Quiero cambiar...</th><th>Archivo</th></tr>
+      <tr><td>Slide 1 del hero</td><td><code>Hero.jsx:17</code></td></tr>
+      <tr><td>Slide 2 del hero</td><td><code>Hero.jsx:25</code></td></tr>
+      <tr><td>Slide 3 del hero</td><td><code>Hero.jsx:33</code></td></tr>
+      <tr><td>Banner de Noticias</td><td><code>Noticias.jsx:43</code></td></tr>
+      <tr><td>Foto egresado 1</td><td><code>Testimonios.jsx:13</code></td></tr>
+      <tr><td>Foto egresado 2</td><td><code>Testimonios.jsx:20</code></td></tr>
+      <tr><td>Foto egresado 3</td><td><code>Testimonios.jsx:27</code></td></tr>
+      <tr><td>Imagen de noticia</td><td><code>noticias.js</code> — cambiar <code>img: null</code></td></tr>
+    </table>
+
+    <h2>18. Problemas comunes</h2>
     <table>
       <tr><th>Problema</th><th>Solución</th></tr>
       <tr><td>El menú no se ve en celular</td><td>Tocá ☰ arriba a la derecha</td></tr>

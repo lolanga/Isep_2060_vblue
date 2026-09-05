@@ -99,6 +99,7 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 ### 4.1 Hero Slider
 
 - **Slides:** 3 slides con imagen, badge, título y descripción.
+- **Imágenes:** actualmente usa placeholders (`picsum.photos`). Para reemplazar con fotos reales, ver sección 17.4 de la Guía de Usuario.
 - **Automático:** cambia cada 6 segundos.
 - **Pausa:** al pasar el cursor.
 - **Navegación:** flechas + dots.

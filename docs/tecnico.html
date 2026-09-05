@@ -282,6 +282,23 @@ background-image:
       <li><code>url</code>: ruta relativa desde <code>public/</code> (ej: <code>/docs/resolucion-123.pdf</code>) o URL absoluta.</li>
       <li>El componente <code>NoticiaDetalle.jsx</code> renderiza botones de descarga para cada adjunto.</li>
     </ul>
+
+    <h3>Sistema de imágenes</h3>
+    <p>El proyecto maneja imágenes en dos niveles:</p>
+    <table>
+      <tr><th>Nivel</th><th>Ubicación</th><th>Uso</th></tr>
+      <tr><td>Assets locales</td><td><code>src/assets/</code></td><td>Escudos, logos (importados vía ES modules)</td></tr>
+      <tr><td>Imágenes públicas</td><td><code>public/img/</code></td><td>Fotos de slider, noticias, testimonios, banners</td></tr>
+    </table>
+    <p><code>src/assets/</code> se procesan con Vite (optimización, hash). <code>public/img/</code> se sirven tal cual.</p>
+    <pre>public/img/
+├── hero/              ← Slider (1600×700, JPG, &lt;300KB)
+├── noticias/          ← Fotos noticias (900×500, JPG/PNG, &lt;200KB)
+├── testimonios/       ← Avatares (120×120, JPG, &lt;50KB)
+└── banners/           ← Banners páginas (1600×600, JPG, &lt;250KB)</pre>
+    <p>Todos los componentes usan el patrón <code>{img ? &lt;img/&gt; : &lt;div className="placeholder"/&gt;}</code> para manejar <code>img: null</code>.</p>
+    <p>Placeholders disponibles: <code>.card-img-placeholder</code>, <code>.mini-img-placeholder</code>, <code>.np-img-placeholder</code>, <code>.hcard-img-placeholder</code>, <code>.news-hero__placeholder</code>, <code>.related-card__placeholder</code>, <code>.escuela-news-placeholder</code>.</p>
+
     <h3>Diagrama de componentes</h3>
     <pre>Noticias.jsx ──── noticias[] ──── Link a /noticias/:id
                                         │

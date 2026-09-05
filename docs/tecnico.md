@@ -294,6 +294,76 @@ interface Noticia {
 - **Formatos:** PDF, Excel, JPG, PNG, etc.
 - **Render:** `NoticiaDetalle.jsx` muestra botones de descarga
 
+### 12.5 Sistema de imágenes
+
+#### Arquitectura
+
+El proyecto maneja imágenes en dos niveles:
+
+| Nivel | Ubicación | Uso | Ejemplo |
+|---|---|---|---|
+| **Assets locales** | `src/assets/` | Escudos, logos institucionales (importados vía ES modules) | `import escudoEP from "../assets/escudo_EP.png"` |
+| **Imágenes públicas** | `public/img/` | Fotos de slider, noticias, testimonios, banners | `<img src="/img/hero/slide-formacion.jpg" />` |
+
+#### Por qué dos ubicaciones
+
+- `src/assets/`: se procesan con Vite (optimización, hash en nombre). Ideales para logos que se usan en múltiples componentes.
+- `public/img/`: se sirven tal cual sin procesar. Ideales para fotos grandes que solo se referencian por URL.
+
+#### Estructura de carpetas
+
+```
+public/img/
+├── hero/              ← Slider principal (3 slides, 1600×700)
+├── noticias/          ← Fotos de noticias (900×500)
+├── testimonios/       ← Avatares de egresados (120×120)
+└── banners/           ← Banners de páginas (1600×600)
+```
+
+#### Formatos y optimización
+
+| Tipo | Dimensiones | Formato | Max KB |
+|---|---|---|---|
+| Hero slider | 1600×700 | JPG | 300 |
+| Banners | 1600×600 | JPG | 250 |
+| Testimonios | 120×120 | JPG | 50 |
+| Noticias | 900×500 | JPG/PNG | 200 |
+
+#### Patrón de implementación
+
+Todos los componentes que muestran imágenes usan el mismo patrón para manejar `img: null`:
+
+```jsx
+{noticia.img ? (
+  <img src={noticia.img} alt={noticia.titulo} />
+) : (
+  <div className="placeholder-class">
+    <span className="material-symbols-outlined">article</span>
+  </div>
+)}
+```
+
+Clases de placeholder disponibles en `pages.css`:
+- `.card-img-placeholder` — tarjetas grandes del Home
+- `.mini-img-placeholder` — mini-cards del sidebar
+- `.np-img-placeholder` — hero de página de noticias
+- `.hcard-img-placeholder` — tarjetas del historial
+- `.news-hero__placeholder` — hero de detalle de noticia
+- `.related-card__placeholder` — noticias relacionadas
+- `.escuela-news-placeholder` — noticias en página de escuela
+
+#### Imágenes externas actuales (placeholders)
+
+| URL | Componente | Reemplazar por |
+|---|---|---|
+| `picsum.photos/seed/isep-formacion/1600/700` | `Hero.jsx:17` | `/img/hero/slide-formacion.jpg` |
+| `picsum.photos/seed/isep-escuelas/1600/700` | `Hero.jsx:25` | `/img/hero/slide-escuelas.jpg` |
+| `picsum.photos/seed/isep-oferta/1600/700` | `Hero.jsx:33` | `/img/hero/slide-oferta.jpg` |
+| `picsum.photos/seed/isephero/1600/600` | `Noticias.jsx:43` | `/img/banners/hero-noticias.jpg` |
+| `picsum.photos/seed/eg1/120/120` | `Testimonios.jsx:13` | `/img/testimonios/egresado-1.jpg` |
+| `picsum.photos/seed/eg2/120/120` | `Testimonios.jsx:20` | `/img/testimonios/egresado-2.jpg` |
+| `picsum.photos/seed/eg3/120/120` | `Testimonios.jsx:27` | `/img/testimonios/egresado-3.jpg` |
+
 ## 13. Mejoras de Calidad
 
 ### 13.1 Lazy Loading

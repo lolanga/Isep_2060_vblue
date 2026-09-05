@@ -246,7 +246,87 @@ El archivo `src/data/config.js` centraliza datos que se usan en múltiples parte
 
 ---
 
-## 17. Problemas comunes
+## 17. Imágenes del sitio
+
+Todas las imágenes del sitio se organizan en carpetas dentro de `public/img/`. Esta sección explica dónde poner cada imagen y cómo reemplazar los placeholders actuales.
+
+### 17.1 Estructura de carpetas
+
+```
+public/img/
+├── hero/              ← Imágenes del slider principal (3 slides)
+├── noticias/          ← Imágenes de noticias
+├── testimonios/       ← Fotos de egresados (avatares)
+├── banners/           ← Banners de páginas (ej: hero de Noticias)
+```
+
+### 17.2 Mapa de imágenes por sección
+
+| Sección del sitio | Carpeta | Archivo esperado | Estado actual |
+|---|---|---|---|
+| **Hero Slider — Slide 1** | `hero/` | `slide-formacion.jpg` | Placeholder (picsum) |
+| **Hero Slider — Slide 2** | `hero/` | `slide-escuelas.jpg` | Placeholder (picsum) |
+| **Hero Slider — Slide 3** | `hero/` | `slide-oferta.jpg` | Placeholder (picsum) |
+| **Banner página Noticias** | `banners/` | `hero-noticias.jpg` | Placeholder (picsum) |
+| **Testimonio 1** | `testimonios/` | `egresado-1.jpg` | Placeholder (picsum) |
+| **Testimonio 2** | `testimonios/` | `egresado-2.jpg` | Placeholder (picsum) |
+| **Testimonio 3** | `testimonios/` | `egresado-3.jpg` | Placeholder (picsum) |
+| **Noticia 1** | `noticias/` | `siniestros-viales.png` | ✅ Imagen real |
+| **Noticias 2, 3, 4** | `noticias/` | — | Sin imagen (`img: null`) |
+
+### 17.3 Formato recomendado
+
+| Tipo de imagen | Dimensiones | Formato | Tamaño máximo |
+|---|---|---|---|
+| Hero slider | 1600 × 700 px | JPG | < 300 KB |
+| Banners | 1600 × 600 px | JPG | < 250 KB |
+| Testimonios (avatars) | 120 × 120 px (cuadrada) | JPG | < 50 KB |
+| Noticias | 900 × 500 px | JPG o PNG | < 200 KB |
+
+**Consejos:**
+- Usá siempre `.jpg` para fotos (mejor compresión)
+- Usá `.png` solo si necesitá transparencia
+- Comprimí las imágenes antes de subirlas (ej: [tinypng.com](https://tinypng.com))
+- Nombrá los archivos con minúsculas y guiones: `slide-formacion.jpg`, NO `Slide Formacion.jpg`
+
+### 17.4 Cómo cambiar una imagen (paso a paso)
+
+**Ejemplo: reemplazar el placeholder del Hero Slider.**
+
+1. **Prepará la imagen** con las dimensiones recomendadas (1600×700 px para hero)
+2. **Guardála** en la carpeta correspondiente:
+   ```
+   public/img/hero/slide-formacion.jpg
+   ```
+3. **Abrí el archivo** que usa esa imagen. En este caso es `src/components/Hero.jsx`
+4. **Buscá la URL del placeholder** (picsum.photos) y reemplazala por la ruta local:
+   ```jsx
+   // ANTES (placeholder):
+   src="https://picsum.photos/seed/isep-formacion/1600/700"
+
+   // DESPUÉS (imagen real):
+   src="/img/hero/slide-formacion.jpg"
+   ```
+5. **Guardá** y verificá que la imagen se vea correctamente
+
+**Mismo proceso para cualquier sección:**找到 la URL de picsum o `img: null` en el archivo correspondiente, y reemplazala por la ruta de tu imagen en `public/img/`.
+
+### 17.5 Tabla de referencia rápida
+
+| Si querés cambiar... | Abrí este archivo | Reemplazá esta línea |
+|---|---|---|
+| Slide 1 del hero | `src/components/Hero.jsx:17` | `src="https://picsum.photos/seed/isep-formacion/1600/700"` |
+| Slide 2 del hero | `src/components/Hero.jsx:25` | `src="https://picsum.photos/seed/isep-escuelas/1600/700"` |
+| Slide 3 del hero | `src/components/Hero.jsx:33` | `src="https://picsum.photos/seed/isep-oferta/1600/700"` |
+| Banner de Noticias | `src/pages/Noticias.jsx:43` | `src="https://picsum.photos/seed/isephero/1600/600"` |
+| Foto del egresado 1 | `src/components/Testimonios.jsx:13` | `src="https://picsum.photos/seed/eg1/120/120"` |
+| Foto del egresado 2 | `src/components/Testimonios.jsx:20` | `src="https://picsum.photos/seed/eg2/120/120"` |
+| Foto del egresado 3 | `src/components/Testimonios.jsx:27` | `src="https://picsum.photos/seed/eg3/120/120"` |
+| Agregar imagen a noticia | `src/data/noticias.js` | Cambiar `img: null` por `img: "/img/noticias/tu-archivo.jpg"` |
+
+---
+
+## 18. Problemas comunes
 
 | Problema | Solución |
 |---|---|
@@ -262,6 +342,7 @@ El archivo `src/data/config.js` centraliza datos que se usan en múltiples parte
 | Una noticia no se abre | Verificá que la URL sea `/noticias/{id}` con id válido |
 | No hay noticias en una categoría | La categoría puede no tener publicaciones aún |
 | Una noticia no tiene imagen | Es normal: si `img` es `null`, se muestra un placeholder con ícono |
+| Quiero cambiar una imagen del slider | Ver sección 17.4 — Cómo cambiar una imagen |
 | Quiero ejecutar los tests | Ejecutá `npm run test` en la terminal |
 | Quiero agregar un test nuevo | Creá un archivo `*.test.jsx` en la carpeta del componente, usá `render()` y `screen` de React Testing Library |
 | Cómo funciona la integración continua | GitHub Actions ejecuta lint + build + test en cada push al repositorio |
