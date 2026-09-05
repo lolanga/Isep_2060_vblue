@@ -104,7 +104,7 @@
       <li><strong>Hero Slider</strong> — Banner principal con slider automático (3 slides picsum.photos), transiciones suaves, flechas y dots.</li>
       <li><strong>Aplicaciones Institucionales</strong> — 4 accesos: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail.</li>
       <li><strong>Contadores</strong> — Estadísticas animadas: Docentes (2200+), Cadetes (1100+), Personal (800+), Aulas (500+).</li>
-      <li><strong>CTA Inscripciones</strong> — Countdown + botones de inscripción.</li>
+      <li><strong>CTA Inscripciones</strong> — Countdown configurable (fecha en <code>src/components/CTA.jsx</code>, variable <code>FECHA_CIERRE</code>) + botones de inscripción.</li>
       <li><strong>Últimas Noticias</strong> — Noticia destacada + sidebar con <strong>links a contenido de ejemplo</strong>.</li>
       <li><strong>Nuestras Escuelas</strong> — Grid de las 5 escuelas con escudos.</li>
       <li><strong>Testimonios</strong> — Carrusel de 3 egresados con flechas y dots.</li>
@@ -117,6 +117,7 @@
       <li><strong>"Ver todas las noticias"</strong> apunta a <code>/noticias</code>.</li>
       <li>Bloque de Calendario Académico (promo).</li>
       <li>Alimentado desde <code>src/data/noticias.js</code>.</li>
+      <li><strong>Imágenes opcionales:</strong> si un registro tiene <code>img: null</code>, se muestra un placeholder con ícono en lugar de la imagen. Esto permite publicar noticias sin foto alusiva.</li>
     </ul>
 
     <h3>Página de Noticias (<code>/noticias</code>)</h3>
@@ -248,7 +249,10 @@
     <h3>17.1 Testing automatizado</h3>
     <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>:</p>
     <ul>
-      <li>18 tests cubriendo buscador, páginas institucionales y renderizado de datos</li>
+      <li>18 tests en 3 archivos, cubriendo la capa de datos (no los componentes UI)</li>
+      <li><code>datos.test.js</code>: valida estructura de noticias (IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como <code>null</code>)</li>
+      <li><code>institucional.test.js</code>: valida estructura de escuelas, carreras, cursos y convocatorias</li>
+      <li><code>buscador.test.js</code>: valida funcionalidad de búsqueda y resultados agrupados</li>
       <li>Tests ejecutados automáticamente en CI (GitHub Actions) en cada push</li>
       <li>Ejecutar localmente con <code>npm run test</code></li>
     </ul>
@@ -270,24 +274,26 @@
   fecha: "3 DE SEPTIEMBRE, 2026",
   fechaCorta: "3 SEP",
   excerpt: "Extracto breve...",
-  img: "https://picsum.photos/seed/n12/900/500",
+  img: "https://picsum.photos/seed/n12/900/500",  // o null
   adjuntos: [
     { nombre: "Resolución 123.pdf", url: "/docs/resolucion-123.pdf" }
   ],
   escuelas: ["policia", "superior", "especialidades", "investigaciones", "ead"],
   contenido: `Primer párrafo.\n\nSegundo párrafo.`
 }</pre>
+    <div class="note"><strong>Campo <code>img</code>:</strong> puede ser una URL de imagen (local o externa) o <code>null</code>. Si es <code>null</code>, se muestra un placeholder con ícono de material symbols en lugar de la imagen. Esto permite publicar noticias sin foto alusiva.</div>
     <div class="note"><strong>Campo <code>contenido</code>:</strong> si se define, se usa como cuerpo de la noticia en el detalle. Si no se define, se genera un texto genérico a partir del título y excerpt.</div>
     <div class="note"><strong>Campo <code>adjuntos</code>:</strong> array opcional de objetos <code>{ nombre, url }</code>. Cada adjunto se renderiza como botón de descarga en el detalle de la noticia. El campo <code>nombre</code> es el texto visible del botón y <code>url</code> es la ruta relativa (desde <code>public/</code>) o URL absoluta del archivo.</div>
     <div class="note"><strong>Campo <code>escuelas</code>:</strong> array de IDs de escuelas asociadas a la noticia. Valores válidos: <code>"policia"</code>, <code>"superior"</code>, <code>"especialidades"</code>, <code>"investigaciones"</code>, <code>"ead"</code>. En <code>/noticias</code> se muestran todas las noticias sin importar este campo.</div>
 
     <h3>18.2 Pasos para publicar</h3>
     <ol>
-      <li><strong>Preparar imagen alusiva</strong> (3 opciones):
+      <li><strong>Preparar imagen alusiva</strong> (4 opciones):
         <ul>
           <li><strong>Opción A (recomendada):</strong> Imagen local en <code>public/img/noticias/</code></li>
           <li><strong>Opción B:</strong> URL externa</li>
           <li><strong>Opción C:</strong> Placeholder con picsum.photos — <code>https://picsum.photos/seed/mi-noticia/900/500</code></li>
+          <li><strong>Opción D:</strong> Sin imagen — <code>img: null</code> (se muestra placeholder con ícono)</li>
         </ul>
         900×500 px (16:9), JPG/PNG, &lt;200 KB.</li>
       <li><strong>Definir categoría:</strong> Institucional | Académica | Escuelas | Eventos | Convenios.</li>
@@ -372,8 +378,9 @@ Segundo párrafo con más detalle.`,
       <li><strong>Herramienta:</strong> <code>gtag.js</code> (Google Analytics 4).</li>
       <li><strong>Carga:</strong> asíncrona, no bloquea el render.</li>
       <li><strong>Modo:</strong> solo producción (desactivado en <code>npm run dev</code>).</li>
-      <li><strong>ID configurable:</strong> en <code>src/components/Analytics.jsx</code> (variable <code>GA_ID</code>).</li>
-      <li><strong>Eventos rastreados:</strong> page_view, scroll, click en CTAs externos.</li>
+      <li><strong>ID configurable:</strong> en <code>src/components/Analytics.jsx</code> (variable <code>GA_ID</code>) y <code>src/utils/analytics.js</code>.</li>
+      <li><strong>Estado actual:</strong> el ID es un placeholder (<code>G-XXXXXXXXXX</code>). En desarrollo, Analytics retorna <code>null</code>. En producción, gtag.js se carga pero con el ID placeholder no se recolectan datos reales.</li>
+      <li><strong>Para activar:</strong> reemplazar el ID placeholder con un Measurement ID real de GA4 en ambos archivos. Ver guía paso a paso en <code>funcional.md</code>.</li>
     </ul>
 
     <h3>19.5 PWA</h3>
@@ -390,6 +397,7 @@ Segundo párrafo con más detalle.`,
       <tr><td><code>focus-visible</code></td><td>Indicadores de foco visibles solo con navegación por teclado (no en clics)</td></tr>
       <tr><td><code>sr-only</code></td><td>Contenido exclusivo para lectores de pantalla (ej: labels de botones)</td></tr>
       <tr><td><code>skeleton-pulse</code></td><td>Placeholder animado mientras cargan datos (mejora percepción de rendimiento)</td></tr>
+      <tr><td><strong>Labels en formularios</strong></td><td>Campos con <code>&lt;label htmlFor&gt;</code> vinculados al input. Ejemplo: DNI en Títulos, búsqueda de Resoluciones, búsqueda en Biblioteca</td></tr>
     </table>
 
     <h3>19.7 Error Handling</h3>
@@ -408,6 +416,19 @@ Segundo párrafo con más detalle.`,
       <tr><td><strong>Design tokens</strong></td><td>Variables CSS en <code>variables.css</code></td></tr>
       <tr><td><strong>Mobile-first</strong></td><td><code>responsive.css</code> con media queries ascendentes</td></tr>
     </table>
+
+    <h3>19.9 Configuración Centralizada</h3>
+    <p>El archivo <code>src/data/config.js</code> centraliza datos que se usan en múltiples componentes:</p>
+    <table>
+      <tr><th>Constante</th><th>Descripción</th></tr>
+      <tr><td><code>TELEFONO_ISR</code> / <code>TELEFONO_LIMPIO</code></td><td>Números de teléfono institucionales</td></tr>
+      <tr><td><code>EMAIL_CONTACTO</code> / <code>EMAIL_PRENSA</code> / <code>EMAIL_TITULOS</code></td><td>Direcciones de correo electrónico</td></tr>
+      <tr><td><code>MI_ISEP_URL</code> / <code>GESTION_URL</code> / <code>CADETES_URL</code> / <code>WEBMAIL_URL</code></td><td>URLs de sistemas institucionales</td></tr>
+      <tr><td><code>WHATSAPP_URL</code></td><td>Enlace de WhatsApp</td></tr>
+      <tr><td><code>REDES_SOCIALES</code></td><td>URLs de redes sociales (Facebook, YouTube, Instagram, TikTok)</td></tr>
+      <tr><td><code>GA_ID</code></td><td>ID de Google Analytics (placeholder actualmente)</td></tr>
+    </table>
+    <div class="note"><strong>Nota:</strong> el archivo fue creado pero aún no está integrado en todos los componentes. Cada constante tiene documentación JSDoc indicando qué es y cómo modificarla. Los componentes pueden importar estos valores en lugar de usar valores hardcodeados.</div>
   </main>
 </body>
 </html>

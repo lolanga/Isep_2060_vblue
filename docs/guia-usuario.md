@@ -163,7 +163,7 @@ En páginas interiores: **Inicio** / Sección / Página actual. Clic en cualquie
 - **Paginación** (10 por página).
 
 ### Detalle de noticia (`/noticias/:id`)
-- **Hero de imagen** con overlay gradiente.
+- **Hero de imagen** con overlay gradiente. Si la noticia no tiene imagen (`img: null`), se muestra un placeholder con ícono.
 - **Badged de categoría** y fecha.
 - **Extracto** destacado con borde izquierdo.
 - **Contenido completo** de la noticia.
@@ -176,6 +176,11 @@ En páginas interiores: **Inicio** / Sección / Página actual. Clic en cualquie
 - Cada página de escuela (`/escuelas/:id`) muestra hasta 3 noticias filtradas.
 - Se usan las noticias que tienen el campo `escuelas` con el ID de esa escuela.
 - En `/noticias` se muestran TODAS las noticias sin filtrar por escuela.
+
+### Noticias sin imagen
+- Si una noticia tiene `img: null`, se muestra un placeholder con ícono en lugar de la foto alusiva.
+- Esto permite publicar noticias sin necesidad de preparar una imagen.
+- El placeholder aparece tanto en el listado como en el detalle de la noticia.
 
 ---
 
@@ -219,7 +224,29 @@ Footer: identidad, contacto, sedes y créditos de desarrollo.
 
 ---
 
-## 16. Problemas comunes
+## 16. Configuración del sitio
+
+El archivo `src/data/config.js` centraliza datos que se usan en múltiples partes del sitio. Si necesitás cambiar un teléfono, email, URL o el ID de Analytics, ese es el archivo a modificar.
+
+| Dato | Constante | Descripción |
+|---|---|---|
+| Teléfono | `TELEFONO_ISR` | Número de teléfono institucional |
+| Email de contacto | `EMAIL_CONTACTO` | Correo electrónico de contacto general |
+| Email de prensa | `EMAIL_PRENSA` | Correo para prensa y difusión |
+| Email de títulos | `EMAIL_TITULOS` | Correo de la sección de títulos |
+| Mi ISeP | `MI_ISEP_URL` | URL del portal Mi ISeP |
+| Gestión | `GESTION_URL` | URL de SIGEDI |
+| Cadetes | `CADETES_URL` | URL de Gestión Cadetes |
+| Webmail | `WEBMAIL_URL` | URL del correo institucional |
+| WhatsApp | `WHATSAPP_URL` | Enlace de WhatsApp |
+| Redes sociales | `REDES_SOCIALES` | URLs de Facebook, YouTube, Instagram, TikTok |
+| Analytics | `GA_ID` | ID de Google Analytics (placeholder actualmente) |
+
+> Cada constante tiene documentación explicando qué es y cómo modificarla.
+
+---
+
+## 17. Problemas comunes
 
 | Problema | Solución |
 |---|---|
@@ -234,10 +261,11 @@ Footer: identidad, contacto, sedes y créditos de desarrollo.
 | Quiero descargar una resolución | Institucional → Resoluciones, filtrá y descendá |
 | Una noticia no se abre | Verificá que la URL sea `/noticias/{id}` con id válido |
 | No hay noticias en una categoría | La categoría puede no tener publicaciones aún |
+| Una noticia no tiene imagen | Es normal: si `img` es `null`, se muestra un placeholder con ícono |
 | Quiero ejecutar los tests | Ejecutá `npm run test` en la terminal |
 | Quiero agregar un test nuevo | Creá un archivo `*.test.jsx` en la carpeta del componente, usá `render()` y `screen` de React Testing Library |
 | Cómo funciona la integración continua | GitHub Actions ejecuta lint + build + test en cada push al repositorio |
-| Quiero cambiar el tracking de Analytics | Editá `src/components/Analytics.jsx` y cambiá el valor de `GA_ID` |
+| Quiero cambiar el tracking de Analytics | Editá `src/data/config.js` y cambiá el valor de `GA_ID` (también hay un `GA_ID` en `src/components/Analytics.jsx` y `src/utils/analytics.js` que debe actualizarse) |
 | Quiero agregar JSON-LD a una página | Agregá un `<script type="application/ld+json">` con el objeto structured data en el componente de la página |
 | Quiero instalar como PWA | Abrí el sitio en el navegador, tocá "Agregar a pantalla de inicio" (Android) o "Compartir → Agregar a pantalla de inicio" (iOS). Usá `manifest.json` para configurar nombre, colores e iconos |
 | Quiero verificar structured data (JSON-LD) | Abrí DevTools (F12) → pestaña Elements → buscá `<script type="application/ld+json">`. O usá Google Rich Results Test (search.google.com/test/rich-results) pegando la URL |

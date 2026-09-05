@@ -168,15 +168,21 @@ export default function EscuelaTemplate({ escuelaId }) {
                   className="card escuela-news-card"
                 >
                   <div className="escuela-news-img-wrap">
-                    <img
-                      src={n.img}
-                      alt={n.titulo}
-                      className="escuela-news-img"
-                      loading="lazy"
-                      width="400"
-                      height="225"
-                      onError={(e) => e.target.classList.add("img-error")}
-                    />
+                    {n.img ? (
+                      <img
+                        src={n.img}
+                        alt={n.titulo}
+                        className="escuela-news-img"
+                        loading="lazy"
+                        width="400"
+                        height="225"
+                        onError={(e) => e.target.classList.add("img-error")}
+                      />
+                    ) : (
+                      <div className="escuela-news-placeholder">
+                        <span className="material-symbols-outlined">article</span>
+                      </div>
+                    )}
                     <span className="escuela-news-badge">
                       {n.categoria}
                     </span>

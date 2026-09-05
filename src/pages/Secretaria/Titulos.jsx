@@ -97,7 +97,9 @@ export default function Titulos() {
             ISeP Provincia de Santa Fe
           </p>
           <form onSubmit={handleConsulta} className="form-row">
+            <label htmlFor="dni-input" className="sr-only">Número de DNI</label>
             <input
+              id="dni-input"
               type="text"
               value={dni}
               onChange={(e) => setDni(e.target.value)}

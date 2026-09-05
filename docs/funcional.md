@@ -2,7 +2,7 @@
 
 **Proyecto:** `Isep_2060_vblue`
 **Versión:** 0.0.0
-**Última actualización:** Septiembre 2026
+**Última actualización:** Septiembre 2026 (actualización de documentación)
 
 ---
 
@@ -91,7 +91,7 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 1. **Hero Slider** — Banner principal con slider automático (3 slides con imagen de picsum.photos), transiciones suaves, flechas de navegación y indicadores (dots).
 2. **Aplicaciones Institucionales** — 4 accesos: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail.
 3. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
-4. **CTA Inscripciones** — Bloque con countdown + botones.
+4. **CTA Inscripciones** — Bloque con countdown configurable (fecha en `src/components/CTA.jsx`, variable `FECHA_CIERRE`) + botones.
 5. **Últimas Noticias** — Noticia destacada + sidebar de noticias recientes con **links a contenido de ejemplo**.
 6. **Nuestras Escuelas** — Cuadrícula de las 5 escuelas con escudos.
 7. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
@@ -112,6 +112,7 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 - **"Ver todas las noticias"** apunta a `/noticias`.
 - Bloque de Calendario Académico (promo).
 - Alimentado desde `src/data/noticias.js`.
+- **Imágenes opcionales:** si un registro tiene `img: null`, se muestra un placeholder con ícono en lugar de la imagen. Esto permite publicar noticias sin foto alusiva.
 
 ### 4.3 Página de Noticias (`/noticias`)
 
@@ -332,7 +333,10 @@ Carrusel de 3 egresados con foto, nombre, promoción y texto. Flechas y dots.
 ### 17.1 Testing automatizado
 
 Suite de tests con **Vitest** + **React Testing Library** + **jsdom**:
-- 18 tests cubriendo buscador, páginas institucionales y renderizado de datos
+- 18 tests en 3 archivos, cubriendo la capa de datos (no los componentes UI)
+- `datos.test.js`: valida estructura de noticias (IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como `null`)
+- `institucional.test.js`: valida estructura de escuelas, carreras, cursos y convocatorias
+- `buscador.test.js`: valida funcionalidad de búsqueda y resultados agrupados
 - Tests ejecutados automáticamente en CI (GitHub Actions) en cada push
 - Ejecutar localmente con `npm run test`
 
@@ -358,7 +362,7 @@ Cada noticia se define en `src/data/noticias.js` con la siguiente estructura:
   fecha: "24 DE MAYO, 2025",   // Formato largo
   fechaCorta: "24 MAY",        // Formato corto (para cards)
   excerpt: "Extracto breve de la noticia...",
-  img: "/img/noticias/imagen.jpg",  // URL de imagen (local o externa)
+  img: "/img/noticias/imagen.jpg",  // URL de imagen (local, externa) o null
   escuelas: ["policia"],            // (opcional) IDs de escuelas asociadas
   adjuntos: [                          // (opcional) documentos adjuntos
     { nombre: "Nombre del archivo.pdf", url: "/docs/archivo.pdf" },
@@ -367,6 +371,7 @@ Cada noticia se define en `src/data/noticias.js` con la siguiente estructura:
 }
 ```
 
+> **Campo `img`:** puede ser una URL de imagen (local o externa) o `null`. Si es `null`, se muestra un placeholder con ícono de material symbols en lugar de la imagen. Esto permite publicar noticias sin foto alusiva. Todos los componentes de noticias y escuelas manejan este caso.
 > **Campo `contenido`:** soporta HTML (h2, h3, p, ul/ol, li, strong, a, img, blockquote, .btn-inscripcion, .info-box). Si el contenido empieza con `<`, se renderiza como HTML. Si no, se trata como texto plano con párrafos separados por `\n\n`.
 > **Campo `adjuntos`:** lista de archivos para descargar (PDF, Excel, JPG, PNG, etc.). Colocar archivos en `public/docs/`.
 > **Campo `escuelas`:** array con IDs de escuelas (`policia`, `superior`, `especialidades`, `investigaciones`, `ead`). Si se define, la noticia aparece en las páginas de esas escuelas. En `/noticias` se muestran todas las noticias sin importar este campo.
@@ -392,6 +397,12 @@ img: "https://isepsantafe.edu.ar/images/noticias/mi-noticia.jpg",
 ```javascript
 img: "https://picsum.photos/seed/mi-noticia/900/500",
 ```
+
+**Opción D: Sin imagen (null)**
+```javascript
+img: null,
+```
+> Se muestra un placeholder con ícono de material symbols. Ideal para noticias sin foto alusiva.
 
 **Especificaciones:** 900×500 px (ratio 16:9), JPG/PNG, máximo 200 KB.
 
@@ -548,8 +559,24 @@ El componente `SEO.jsx` gestiona meta tags por página:
 - **Herramienta:** `gtag.js` (Google Analytics 4).
 - **Carga:** asíncrona, no bloquea el render.
 - **Modo:** solo producción (desactivado en `npm run dev`).
-- **ID configurable:** en `src/components/Analytics.jsx` (variable `GA_ID`).
-- **Eventos rastreados:** page_view, scroll, click en CTAs externos.
+- **ID configurable:** en `src/components/Analytics.jsx` (variable `GA_ID`) y `src/utils/analytics.js`.
+- **Estado actual:** el ID es un placeholder (`G-XXXXXXXXXX`). En modo desarrollo, el componente Analytics retorna `null` (no carga nada). En producción, gtag.js se carga pero con el ID placeholder no se recolectan datos reales.
+- **Para activar Analytics:** reemplazar el ID placeholder con un Measurement ID real de GA4. Ver sección 19.4.1.
+
+#### 19.4.1 Configuración de GA4 (cuando esté disponible)
+
+Para activar el tracking de Analytics se deben seguir estos pasos:
+
+1. **Obtener el Measurement ID:** crear una propiedad en Google Analytics 4 y copiar el ID (formato `G-XXXXXXXXXX`).
+2. **Reemplazar el ID en dos archivos:**
+   - `src/components/Analytics.jsx` → variable `GA_ID`
+   - `src/utils/analytics.js` → variable `GA_ID`
+3. **Activar page_view en cambios de ruta:** en `Analytics.jsx`, cuando `loadGA()` ejecuta `window.gtag`, enviar un evento `page_view` con la ruta actual:
+   ```javascript
+   gtag("event", "page_view", { page_path: window.location.pathname });
+   ```
+   Alternativamente, usar la función `trackPageView()` de `utils/analytics.js` en el componente `TrackPageView`.
+4. **Configuración adicional:** asegurarse de que `send_page_view` no esté en `false` en la configuración de gtag.
 
 ### 19.5 PWA
 
@@ -565,6 +592,7 @@ El componente `SEO.jsx` gestiona meta tags por página:
 | `focus-visible` | Indicadores de foco visibles solo con navegación por teclado (no en clics) |
 | `sr-only` | Contenido exclusivo para lectores de pantalla (ej: labels de botones) |
 | `skeleton-pulse` | Placeholder animado mientras cargan datos (mejora percepción de rendimiento) |
+| **Labels en formularios** | Campos de formulario con `<label htmlFor>` vinculados al input correspondiente. Ejemplo: formulario de DNI en Títulos, búsqueda de Resoluciones, búsqueda en Biblioteca |
 
 ### 19.7 Error Handling
 
@@ -581,3 +609,20 @@ El componente `SEO.jsx` gestiona meta tags por página:
 | **Separación** | tokens → base → componentes → páginas → responsive |
 | **Design tokens** | Variables CSS (`--primary`, `--gradient-primary`, etc.) en `variables.css` |
 | **Mobile-first** | `responsive.css` con media queries ascendentes |
+
+---
+
+## 19.9 Configuración Centralizada
+
+El archivo `src/data/config.js` centraliza datos que se usan en múltiples componentes:
+
+| Constante | Descripción |
+|---|---|
+| `TELEFONO_ISR` / `TELEFONO_LIMPIO` | Números de teléfono institucionales |
+| `EMAIL_CONTACTO` / `EMAIL_PRENSA` / `EMAIL_TITULOS` | Direcciones de correo electrónico |
+| `MI_ISEP_URL` / `GESTION_URL` / `CADETES_URL` / `WEBMAIL_URL` | URLs de sistemas institucionales |
+| `WHATSAPP_URL` | Enlace de WhatsApp |
+| `REDES_SOCIALES` | URLs de redes sociales (Facebook, YouTube, Instagram, TikTok) |
+| `GA_ID` | ID de Google Analytics (placeholder actualmente) |
+
+> **Nota:** el archivo fue creado pero aún no está integrado en todos los componentes. Cada constante tiene documentación JSDoc indicando qué es y cómo modificarla. Cuando se desee migrar, los componentes pueden importar estos valores en lugar de usar valores hardcodeados.

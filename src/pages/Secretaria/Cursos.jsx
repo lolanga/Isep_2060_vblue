@@ -127,7 +127,7 @@ export default function Cursos() {
                           <span className="curso-acc__nombre">{curso.nombre}</span>
                           <div className="curso-acc__badges">
                             <EstadoBadge estado={curso.estado} />
-                            <span className="curso-estado curso-estado--proximo cursos-tipo-badge">
+                            <span className={`curso-estado curso-estado--${curso.estado} cursos-tipo-badge`}>
                               {curso.tipo}
                             </span>
                           </div>

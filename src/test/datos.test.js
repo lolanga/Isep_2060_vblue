@@ -18,7 +18,8 @@ describe("noticias data", () => {
       expect(n.titulo).toBeTruthy();
       expect(n.categoria).toBeTruthy();
       expect(n.fecha).toBeTruthy();
-      expect(n.img).toBeTruthy();
+      // img puede ser null (noticias sin imagen)
+      expect(typeof n.img === "string" || n.img === null).toBe(true);
     });
   });
 

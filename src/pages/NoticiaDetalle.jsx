@@ -20,10 +20,6 @@ ${excerpt}
 
 Esta iniciativa se enmarca en el plan estratégico institucional que busca garantizar una formación de calidad, accesible y actualizada para todos los integrantes de las fuerzas de seguridad de Santa Fe.
 
-Desde el ISeP se promueve la excelencia académica como pilar fundamental de la seguridad pública, inv personal de seguridad de la provincia.
-
-Esta iniciativa se enmarca en el plan estratégico institucional que busca garantizar una formación de calidad, accesible y actualizada para todos los integrantes de las fuerzas de seguridad de Santa Fe.
-
 Desde el ISeP se promueve la excelencia académica como pilar fundamental de la seguridad pública, incentivando la actualización permanente y el intercambio de conocimientos entre profesionales del ámbito.
 
 Para más información, comunicarse con la prensa y difusión del ISeP al correo prensaydifusion@isepsantafe.edu.ar o a través de las redes sociales oficiales.
@@ -60,14 +56,20 @@ export default function NoticiaDetalle() {
     <main className="noticia-page">
       {/* Hero de noticia */}
       <section className="news-hero">
-        <img
-          src={noticia.img}
-          alt={noticia.titulo}
-          className="news-hero__img"
-          loading="eager"
-          width="900"
-          height="500"
-        />
+        {noticia.img ? (
+          <img
+            src={noticia.img}
+            alt={noticia.titulo}
+            className="news-hero__img"
+            loading="eager"
+            width="900"
+            height="500"
+          />
+        ) : (
+          <div className="news-hero__placeholder">
+            <span className="material-symbols-outlined">article</span>
+          </div>
+        )}
         <div className="news-hero__overlay" />
         <div className="news-hero__content">
           <div className="container-max">
@@ -151,7 +153,13 @@ export default function NoticiaDetalle() {
               {relacionadas.map((n) => (
                 <Link key={n.id} to={`/noticias/${n.id}`} className="related-card-link">
                   <div className="related-card">
-                    <img src={n.img} alt={n.titulo} className="related-card__img" loading="lazy" width="400" height="225" />
+                    {n.img ? (
+                      <img src={n.img} alt={n.titulo} className="related-card__img" loading="lazy" width="400" height="225" />
+                    ) : (
+                      <div className="related-card__placeholder">
+                        <span className="material-symbols-outlined">article</span>
+                      </div>
+                    )}
                     <div className="related-card__body">
                       <span className="related-card__fecha">{n.fechaCorta}</span>
                       <h3 className="related-card__title">

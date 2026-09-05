@@ -5,6 +5,7 @@
  * Datos extraídos de isepsantafe.edu.ar/index.php/institucional/autoridades
  */
 
+import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
 import escudoIsep from "../../assets/escudo_ISeP.png";
 import escudoEP from "../../assets/escudo_EP.png";
@@ -186,9 +187,9 @@ export default function Autoridades() {
           </h2>
           <div className="grid-3col">
             {DIRECTORES_ESCUELAS.map((d) => (
-              <a
+              <Link
                 key={d.escuela}
-                href={d.href}
+                to={d.href}
                 className="inst-card flex-row-center autoridades-school-link"
               >
                 <img src={d.escudo} alt={`Escudo ${d.escuela}`} className="autoridades-school-img" />
@@ -200,7 +201,7 @@ export default function Autoridades() {
                     {d.nombre}
                   </p>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </section>

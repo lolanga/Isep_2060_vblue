@@ -1492,6 +1492,31 @@
   display: block;
 }
 
+/* ── News image placeholders (sin imagen) ── */
+.card-img-placeholder,
+.mini-img-placeholder,
+.np-img-placeholder,
+.hcard-img-placeholder,
+.news-hero__placeholder,
+.related-card__placeholder,
+.escuela-news-placeholder {
+  background: var(--primary-light, #e0e7ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  color: var(--primary, #227bd1);
+}
+.news-hero__placeholder {
+  min-height: 300px;
+  position: absolute;
+  inset: 0;
+}
+.related-card__placeholder {
+  min-height: 140px;
+  border-radius: var(--radius-sm, 6px) var(--radius-sm, 6px) 0 0;
+}
+
 .titulos-container {
   padding: 2rem;
 }
@@ -2976,9 +3001,6 @@
 .loading-spinner { display: flex; justify-content: center; padding: 4rem 2rem; }
 .loading-spinner .skeleton-card { width: 100%; max-width: 800px; }
 .loading-spinner .skeleton-card__body { padding: 1rem; }
-
-/* ── Image error fallback ── */
-.img-error { background: var(--primary-light, #e0e7ff); display: block; }
 
 @media (max-width: 768px) {
   .noticias-body { padding: 2rem 1rem; }

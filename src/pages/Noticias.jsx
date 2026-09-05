@@ -92,7 +92,13 @@ export default function Noticias() {
             <Link to={`/noticias/${principal.id}`} className="noticias-link">
               <article className="np-card">
                 <div className="np-img-wrap">
-                  <img src={principal.img} alt={principal.titulo} />
+                  {principal.img ? (
+                    <img src={principal.img} alt={principal.titulo} />
+                  ) : (
+                    <div className="np-img-placeholder">
+                      <span className="material-symbols-outlined">article</span>
+                    </div>
+                  )}
                   <div className="np-img-overlay"></div>
                   {principal.adjuntos && principal.adjuntos.length > 0 && (
                     <span className="np-attach-badge">
@@ -126,7 +132,13 @@ export default function Noticias() {
                 <Link key={n.id} to={`/noticias/${n.id}`} className="noticias-link">
                   <article className="hcard">
                     <div className="hcard-img-wrap">
-                      <img src={n.img} alt={n.titulo} />
+                      {n.img ? (
+                        <img src={n.img} alt={n.titulo} />
+                      ) : (
+                        <div className="hcard-img-placeholder">
+                          <span className="material-symbols-outlined">article</span>
+                        </div>
+                      )}
                       <div className="hcard-overlay"></div>
                       <span className={`hcard-cat badge-categoria badge-categoria--${n.categoria.toLowerCase()}`}>
                         {n.categoria.toUpperCase()}

@@ -96,11 +96,13 @@ export default function Biblioteca() {
               search
             </span>
             <input
+              id="biblio-buscar"
               type="text"
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
               placeholder="Buscar artículos..."
               className="biblio-search-input"
+              aria-label="Buscar artículos de biblioteca"
             />
           </div>
         </div>

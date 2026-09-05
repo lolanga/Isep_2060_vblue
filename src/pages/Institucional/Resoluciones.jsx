@@ -102,7 +102,7 @@ export default function Resoluciones() {
         <div className="resoluciones-filtros">
           {/* Búsqueda */}
           <div className="resoluciones-search">
-            <label className="filter-label">
+            <label htmlFor="resoluciones-buscar" className="filter-label">
               Buscar
             </label>
             <div className="search-wrapper">
@@ -110,6 +110,7 @@ export default function Resoluciones() {
                 search
               </span>
               <input
+                id="resoluciones-buscar"
                 type="text"
                 placeholder="Buscar resolución..."
                 value={busqueda}

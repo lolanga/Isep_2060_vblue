@@ -45,8 +45,9 @@ src/
 │   ├── ShareButton.jsx      # Compartir noticia (Web Share API / clipboard)
 │   └── Placeholder.jsx      # Páginas "Próximamente"
 ├── data/
+│   ├── config.js          # Configuración centralizada (teléfonos, emails, URLs, GA_ID)
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, FAQ
-│   ├── noticias.js          # 11 noticias (compartido)
+│   ├── noticias.js          # 14 noticias (compartido, admite img: null)
 │   ├── normativa.js         # 17 resoluciones (compartido)
 │   └── buscador.js          # 48 entradas + buscar() + buscarAgrupado()
 ├── pages/
@@ -178,7 +179,7 @@ src/
 
 ### 6.2 noticias.js
 
-11 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img.
+14 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img (admite `null`), adjuntos, escuelas, contenido.
 
 ### 6.3 normativa.js
 
@@ -259,7 +260,7 @@ interface Noticia {
   fecha: string;         // "3 DE SEPTIEMBRE, 2026"
   fechaCorta: string;    // "3 SEP"
   excerpt: string;       // Extracto (1-2 oraciones)
-  img: string;           // URL de imagen (900×500 px)
+  img: string | null;    // URL de imagen (900×500 px) o null (placeholder con ícono)
   escuelas?: string[];   // (Opcional) IDs: "policia" | "superior" | "especialidades" | "investigaciones" | "ead"
   adjuntos?: {           // (Opcional) documentos adjuntos
     nombre: string;      // Nombre para mostrar
@@ -282,6 +283,7 @@ interface Noticia {
 **Opción A (recomendada):** Imagen local en `public/img/noticias/`
 **Opción B:** URL externa
 **Opción C:** Placeholder: `https://picsum.photos/seed/{nombre}/900/500`
+**Opción D:** Sin imagen: `img: null` — se muestra placeholder con ícono de material symbols
 
 - **Dimensiones:** 900×500 px (ratio 16:9)
 - **Formato:** JPG/PNG, <200 KB
@@ -298,10 +300,17 @@ interface Noticia {
 Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. El usuario solo descarga el JS de las páginas que visita, mejorando el tiempo de carga inicial.
 
 ### 13.2 Testing
-Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. 18 tests cubriendo:
-- Buscador global (SearchBox)
-- Páginas institucionales
-- Renderizado de datos
+Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. 18 tests en 3 archivos:
+
+| Archivo | Qué valida | Tests |
+|---|---|---|
+| `datos.test.js` | Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como `null` | ~6 |
+| `institucional.test.js` | Estructura de escuelas, carreras, cursos y convocatorias | ~6 |
+| `buscador.test.js` | Funcionalidad de búsqueda y resultados agrupados | ~6 |
+
+**Qué se testea:** la capa de datos (mock data), no los componentes UI.
+**Por qué:** la integridad de los datos es más crítica que testear componentes React con datos mock.
+**Qué NO se testea:** renderizado de componentes, interacciones de usuario, routing.
 
 Comando: `npm run test`
 
@@ -316,11 +325,30 @@ CI automatizado con GitHub Actions que ejecuta en cada push:
 - **Meta tags dinámicos:** título, descripción e imagen por página (Open Graph)
 - **sitemap.xml:** mapa del sitio para motores de búsqueda
 
+### 13.4.1 Configuración Centralizada
+
+Archivo `src/data/config.js` que exporta constantes con datos compartidos:
+
+```javascript
+export const TELEFONO_ISR = "+54 342 457-9000";
+export const EMAIL_CONTACTO = "prensaydifusion@isepsantafe.edu.ar";
+export const MI_ISEP_URL = "https://mi.isepsantafe.edu.ar/";
+export const GA_ID = "G-XXXXXXXXXX";  // Placeholder
+// ... más constantes con JSDoc
+```
+
+- Cada constante tiene documentación JSDoc explicando qué es y cómo modificarla.
+- **Estado actual:** creado pero no integrado en componentes (valores aún hardcodeados en JSX).
+- **Uso previsto:** `import { TELEFONO_ISR } from "../data/config.js"` en componentes.
+
 ### 13.5 Analytics
 Google Analytics 4 (`gtag.js`):
 - Carga asíncrona (no bloquea render)
 - Solo en producción (desactivado en dev)
 - Configuración en `src/components/Analytics.jsx`
+- **Estado actual:** `GA_ID = "G-XXXXXXXXXX"` (placeholder). En dev, Analytics retorna `null`. En prod, gtag.js carga pero no recolecta datos reales con el ID placeholder.
+- **Archivos relacionados:** `src/components/Analytics.jsx`, `src/utils/analytics.js`
+- **Para activar:** reemplazar `GA_ID` en ambos archivos con un Measurement ID real de GA4, y asegurar que `send_page_view` no esté en `false`.
 
 ### 13.6 CSS Architecture
 - **0 inline styles** en componentes

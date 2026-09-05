@@ -82,8 +82,9 @@
 │   ├── ShareButton.jsx      # Compartir noticia (Web Share API / clipboard)
 │   └── Placeholder.jsx      # Páginas "Próximamente"
 ├── data/
+│   ├── config.js          # Configuración centralizada (teléfonos, emails, URLs, GA_ID)
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, FAQ
-│   ├── noticias.js          # 11 noticias (compartido)
+│   ├── noticias.js          # 14 noticias (compartido, admite img: null)
 │   ├── normativa.js         # 17 resoluciones (compartido)
 │   └── buscador.js          # 48 entradas + buscar() + buscarAgrupado()
 ├── pages/
@@ -186,7 +187,7 @@
     </table>
 
     <h3>noticias.js</h3>
-    <p>11 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img, adjuntos, escuelas.</p>
+    <p>14 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img (admite <code>null</code>), adjuntos, escuelas, contenido.</p>
 <div class="note"><strong>Filtrado por <code>escuelas</code>:</strong> en <code>/noticias</code> se muestran todas las noticias sin importar el valor de este campo. Las páginas de escuela filtran automáticamente según las IDs listadas.</div>
 
     <h3>normativa.js</h3>
@@ -253,7 +254,7 @@ background-image:
   fecha: string;         // "3 DE SEPTIEMBRE, 2026"
   fechaCorta: string;    // "3 SEP"
   excerpt: string;
-  img: string;           // 900×500 px
+  img: string | null;    // URL de imagen o null (placeholder con ícono)
   adjuntos?: { nombre: string; url: string; }[];
   escuelas?: ("policia" | "superior" | "especialidades" | "investigaciones" | "ead")[];
   contenido?: string;
@@ -270,6 +271,7 @@ background-image:
       <li><strong>Opción A (recomendada):</strong> Imagen local en <code>public/img/noticias/</code></li>
       <li><strong>Opción B:</strong> URL externa</li>
       <li><strong>Opción C:</strong> Placeholder: <code>https://picsum.photos/seed/{nombre}/900/500</code></li>
+      <li><strong>Opción D:</strong> Sin imagen: <code>img: null</code> (se muestra placeholder con ícono)</li>
     </ul>
     <p><strong>Dimensiones:</strong> 900×500 px (ratio 16:9). <strong>Formato:</strong> JPG/PNG, &lt;200 KB.</p>
     <h3>Documentos adjuntos</h3>
@@ -299,12 +301,14 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
     <p>Cada ruta se carga bajo demanda con <code>React.lazy()</code> + <code>Suspense</code>. El usuario solo descarga el JS de las páginas que visita, mejorando el tiempo de carga inicial.</p>
 
     <h3>13.2 Testing</h3>
-    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. 18 tests cubriendo:</p>
-    <ul>
-      <li>Buscador global (SearchBox)</li>
-      <li>Páginas institucionales</li>
-      <li>Renderizado de datos</li>
-    </ul>
+    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. 18 tests en 3 archivos:</p>
+    <table>
+      <tr><th>Archivo</th><th>Qué valida</th></tr>
+      <tr><td><code>datos.test.js</code></td><td>Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como <code>null</code></td></tr>
+      <tr><td><code>institucional.test.js</code></td><td>Estructura de escuelas, carreras, cursos y convocatorias</td></tr>
+      <tr><td><code>buscador.test.js</code></td><td>Funcionalidad de búsqueda y resultados agrupados</td></tr>
+    </table>
+    <p><strong>Qué se testea:</strong> la capa de datos (mock data), no los componentes UI. <strong>Por qué:</strong> la integridad de los datos es más crítica que testear componentes React con datos mock. <strong>Qué NO se testea:</strong> renderizado de componentes, interacciones de usuario, routing.</p>
     <p>Comando: <code>npm run test</code></p>
 
     <h3>13.3 GitHub Actions</h3>
@@ -322,12 +326,27 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
       <li><strong>sitemap.xml:</strong> mapa del sitio para motores de búsqueda</li>
     </ul>
 
+    <h3>13.4.1 Configuración Centralizada</h3>
+    <p>Archivo <code>src/data/config.js</code> que exporta constantes con datos compartidos:</p>
+    <pre>export const TELEFONO_ISR = "+54 342 457-9000";
+export const EMAIL_CONTACTO = "prensaydifusion@isepsantafe.edu.ar";
+export const MI_ISEP_URL = "https://mi.isepsantafe.edu.ar/";
+export const GA_ID = "G-XXXXXXXXXX";  // Placeholder</pre>
+    <ul>
+      <li>Cada constante tiene documentación JSDoc explicando qué es y cómo modificarla.</li>
+      <li><strong>Estado actual:</strong> creado pero no integrado en componentes (valores aún hardcodeados en JSX).</li>
+      <li><strong>Uso previsto:</strong> <code>import { TELEFONO_ISR } from "../data/config.js"</code> en componentes.</li>
+    </ul>
+
     <h3>13.5 Analytics</h3>
     <p>Google Analytics 4 (<code>gtag.js</code>):</p>
     <ul>
       <li>Carga asíncrona (no bloquea render)</li>
       <li>Solo en producción (desactivado en dev)</li>
       <li>Configuración en <code>src/components/Analytics.jsx</code></li>
+      <li><strong>Estado actual:</strong> <code>GA_ID = "G-XXXXXXXXXX"</code> (placeholder). En dev, Analytics retorna <code>null</code>. En prod, gtag.js carga pero no recolecta datos reales.</li>
+      <li><strong>Archivos:</strong> <code>src/components/Analytics.jsx</code>, <code>src/utils/analytics.js</code></li>
+      <li><strong>Para activar:</strong> reemplazar <code>GA_ID</code> en ambos archivos con un Measurement ID real de GA4.</li>
     </ul>
 
     <h3>13.6 CSS Architecture</h3>

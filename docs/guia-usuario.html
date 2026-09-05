@@ -169,7 +169,7 @@
     </ul>
     <h3>Detalle de noticia (<code>/noticias/:id</code>)</h3>
     <ul>
-      <li><strong>Hero de imagen</strong> con overlay gradiente.</li>
+      <li><strong>Hero de imagen</strong> con overlay gradiente. Si la noticia no tiene imagen (<code>img: null</code>), se muestra un placeholder con ícono.</li>
       <li><strong>Badged de categoría</strong> y fecha.</li>
       <li><strong>Extracto</strong> destacado con borde izquierdo.</li>
       <li><strong>Contenido completo</strong> de la noticia.</li>
@@ -184,6 +184,13 @@
       <li>Cada página de escuela (<code>/escuelas/:id</code>) muestra hasta 3 noticias filtradas.</li>
       <li>Se usan las noticias que tienen el campo <code>escuelas</code> con el ID de esa escuela.</li>
       <li>En <code>/noticias</code> se muestran TODAS las noticias sin filtrar por escuela.</li>
+    </ul>
+
+    <h3>Noticias sin imagen</h3>
+    <ul>
+      <li>Si una noticia tiene <code>img: null</code>, se muestra un placeholder con ícono en lugar de la foto alusiva.</li>
+      <li>Esto permite publicar noticias sin necesidad de preparar una imagen.</li>
+      <li>El placeholder aparece tanto en el listado como en el detalle de la noticia.</li>
     </ul>
 
     <h2>10. Normativa y Resoluciones</h2>
@@ -214,6 +221,24 @@
     </table>
     <p>Footer: identidad, contacto, sedes y créditos de desarrollo.</p>
 
+    <h2>16. Configuración del sitio</h2>
+    <p>El archivo <code>src/data/config.js</code> centraliza datos que se usan en múltiples partes del sitio. Si necesitás cambiar un teléfono, email, URL o el ID de Analytics, ese es el archivo a modificar.</p>
+    <table>
+      <tr><th>Dato</th><th>Constante</th><th>Descripción</th></tr>
+      <tr><td>Teléfono</td><td><code>TELEFONO_ISR</code></td><td>Número de teléfono institucional</td></tr>
+      <tr><td>Email de contacto</td><td><code>EMAIL_CONTACTO</code></td><td>Correo electrónico de contacto general</td></tr>
+      <tr><td>Email de prensa</td><td><code>EMAIL_PRENSA</code></td><td>Correo para prensa y difusión</td></tr>
+      <tr><td>Email de títulos</td><td><code>EMAIL_TITULOS</code></td><td>Correo de la sección de títulos</td></tr>
+      <tr><td>Mi ISeP</td><td><code>MI_ISEP_URL</code></td><td>URL del portal Mi ISeP</td></tr>
+      <tr><td>Gestión</td><td><code>GESTION_URL</code></td><td>URL de SIGEDI</td></tr>
+      <tr><td>Cadetes</td><td><code>CADETES_URL</code></td><td>URL de Gestión Cadetes</td></tr>
+      <tr><td>Webmail</td><td><code>WEBMAIL_URL</code></td><td>URL del correo institucional</td></tr>
+      <tr><td>WhatsApp</td><td><code>WHATSAPP_URL</code></td><td>Enlace de WhatsApp</td></tr>
+      <tr><td>Redes sociales</td><td><code>REDES_SOCIALES</code></td><td>URLs de redes sociales</td></tr>
+      <tr><td>Analytics</td><td><code>GA_ID</code></td><td>ID de Google Analytics (placeholder actualmente)</td></tr>
+    </table>
+    <div class="tip">Cada constante tiene documentación explicando qué es y cómo modificarla.</div>
+
     <h2>17. Problemas comunes</h2>
     <table>
       <tr><th>Problema</th><th>Solución</th></tr>
@@ -229,10 +254,11 @@
       <tr><td>Quiero descargar una resolución</td><td>Institucional → Resoluciones, filtrá y descendá</td></tr>
       <tr><td>Una noticia no se abre</td><td>Verificá que la URL sea /noticias/{id} válido</td></tr>
       <tr><td>No hay noticias en una categoría</td><td>La categoría puede no tener publicaciones aún</td></tr>
+      <tr><td>Una noticia no tiene imagen</td><td>Es normal: si <code>img</code> es <code>null</code>, se muestra un placeholder con ícono</td></tr>
       <tr><td>Quiero ejecutar los tests</td><td>Ejecutá <code>npm run test</code> en la terminal</td></tr>
       <tr><td>Quiero agregar un test nuevo</td><td>Creá un archivo <code>*.test.jsx</code> en la carpeta del componente, usá <code>render()</code> y <code>screen</code> de React Testing Library</td></tr>
       <tr><td>Cómo funciona la integración continua</td><td>GitHub Actions ejecuta lint + build + test en cada push al repositorio</td></tr>
-      <tr><td>Quiero cambiar el tracking de Analytics</td><td>Editá <code>src/components/Analytics.jsx</code> y cambiá el valor de <code>GA_ID</code></td></tr>
+      <tr><td>Quiero cambiar el tracking de Analytics</td><td>Editá <code>src/data/config.js</code> y cambiá el valor de <code>GA_ID</code> (también hay un <code>GA_ID</code> en <code>src/components/Analytics.jsx</code> y <code>src/utils/analytics.js</code> que debe actualizarse)</td></tr>
       <tr><td>Quiero agregar JSON-LD a una página</td><td>Agregá un <code>&lt;script type="application/ld+json"&gt;</code> con el objeto structured data en el componente de la página</td></tr>
       <tr><td>Quiero instalar como PWA</td><td>Abrí el sitio en el navegador, tocá "Agregar a pantalla de inicio" (Android) o "Compartir → Agregar a pantalla de inicio" (iOS). Usá <code>manifest.json</code> para configurar nombre, colores e iconos</td></tr>
       <tr><td>Quiero verificar structured data (JSON-LD)</td><td>Abrí DevTools (F12) → pestaña Elements → buscá <code>&lt;script type="application/ld+json"&gt;</code>. O usá Google Rich Results Test pegando la URL</td></tr>
