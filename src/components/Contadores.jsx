@@ -2,7 +2,7 @@
  * Contadores.jsx — Sección de estadísticas institucionales
  */
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 
 const STATS = [
   { label: "Docentes", value: 2200, suffix: "+", icon: "groups", color: "#227bd1" },
@@ -11,6 +11,13 @@ const STATS = [
   { label: "Aulas virtuales", value: 500, suffix: "+", icon: "desktop_windows", color: "#7c3aed" },
 ];
 
+/**
+ * Hook que anima un contador de 0 hasta target con easing cúbico.
+ * @param {number} target - Valor final
+ * @param {number} duration - Duración en ms
+ * @param {boolean} start - Si es true, inicia la animación
+ * @returns {number} Valor actual del contador
+ */
 function useCountUp(target, duration = 2000, start = false) {
   const [count, setCount] = useState(0);
 
@@ -36,7 +43,12 @@ function useCountUp(target, duration = 2000, start = false) {
   return count;
 }
 
-function StatCard({ stat }) {
+/**
+ * Tarjeta de estadística con animación de conteo al entrar en viewport.
+ * @param {{ label: string, value: number, suffix: string, icon: string, color: string }} stat
+ */
+// Optimización: envolver en React.memo para evitar re-renderizados cuando las props no cambian
+const StatCard = memo(function StatCard({ stat }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   const count = useCountUp(stat.value, 2000, visible);
@@ -51,11 +63,11 @@ function StatCard({ stat }) {
   }, []);
 
   return (
-    <div ref={ref} className="contador-card">
-      <span className="material-symbols-outlined contador-card-icon" style={{ color: stat.color }}>
+    <div ref={ref} className="contador-card" style={{ "--stat-color": stat.color }}>
+      <span className="material-symbols-outlined contador-card-icon">
         {stat.icon}
       </span>
-      <span className="contador-card-num" style={{ color: stat.color }}>
+      <span className="contador-card-num">
         {count.toLocaleString("es-AR")}{stat.suffix}
       </span>
       <span className="contador-card-label">
@@ -63,8 +75,9 @@ function StatCard({ stat }) {
       </span>
     </div>
   );
-}
+});
 
+/** Sección de estadísticas institucionales con contadores animados. */
 export default function Contadores() {
   return (
     <section className="contadores-section">

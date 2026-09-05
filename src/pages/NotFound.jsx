@@ -6,6 +6,7 @@
 
 import { Link } from "react-router-dom";
 
+/** Página 404 — ruta no encontrada. */
 export default function NotFound() {
   return (
     <main className="not-found">

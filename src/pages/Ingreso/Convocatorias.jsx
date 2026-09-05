@@ -69,6 +69,7 @@ const INSCRIPCION_PASOS = [
 
 const LISTADO_URL = "https://www.isepsantafe.edu.ar/images/Publicaciones/LISTADO_PRESENTACION_PROCESO_SELECCION_2027_2028_0900.pdf";
 
+/** Página completa del proceso de selección — Escuela de Policía 2027–2028. */
 export default function Convocatorias() {
   const fechaPresentacion = "2026-12-01T09:00:00";
 

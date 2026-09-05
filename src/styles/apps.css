@@ -2,6 +2,7 @@
    APPS — Aplicaciones institucionales (Apps.jsx)
    ============================================= */
 
+/* ── Grid de apps ── */
 .apps-section {
   padding: 6rem 0;
 }
@@ -125,9 +126,7 @@
   transform: translateX(4px);
 }
 
-/* =============================================
-   WHATSAPP — Boton flotante global
-   ============================================= */
+/* ── Botón flotante WhatsApp ── */
 
 .whatsapp-float {
   position: fixed;

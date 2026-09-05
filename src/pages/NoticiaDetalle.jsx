@@ -5,6 +5,7 @@
  * Muestra imagen, fecha, categoría, título, contenido completo y noticias relacionadas.
  */
 
+import { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { noticias } from "../data/noticias";
 import Breadcrumb from "../components/Breadcrumb";
@@ -28,9 +29,18 @@ Desde el ISeP se promueve la excelencia académica como pilar fundamental de la 
 Para más información, comunicarse con la prensa y difusión del ISeP al correo prensaydifusion@isepsantafe.edu.ar o a través de las redes sociales oficiales.
 `;
 
+/** Página de detalle de una noticia individual con contenido completo. */
 export default function NoticiaDetalle() {
   const { id } = useParams();
   const noticia = noticias.find((n) => n.id === Number(id));
+  const relacionadas = useMemo(() =>
+    noticia
+      ? noticias
+          .filter((n) => n.id !== noticia.id && n.categoria === noticia.categoria)
+          .slice(0, 3)
+      : [],
+    [noticia]
+  );
 
   if (!noticia) {
     return (
@@ -46,10 +56,6 @@ export default function NoticiaDetalle() {
     );
   }
 
-  const relacionadas = noticias
-    .filter((n) => n.id !== noticia.id && n.categoria === noticia.categoria)
-    .slice(0, 3);
-
   return (
     <main className="noticia-page">
       {/* Hero de noticia */}
@@ -58,6 +64,9 @@ export default function NoticiaDetalle() {
           src={noticia.img}
           alt={noticia.titulo}
           className="news-hero__img"
+          loading="eager"
+          width="900"
+          height="500"
         />
         <div className="news-hero__overlay" />
         <div className="news-hero__content">
@@ -142,7 +151,7 @@ export default function NoticiaDetalle() {
               {relacionadas.map((n) => (
                 <Link key={n.id} to={`/noticias/${n.id}`} className="related-card-link">
                   <div className="related-card">
-                    <img src={n.img} alt={n.titulo} className="related-card__img" />
+                    <img src={n.img} alt={n.titulo} className="related-card__img" loading="lazy" width="400" height="225" />
                     <div className="related-card__body">
                       <span className="related-card__fecha">{n.fechaCorta}</span>
                       <h3 className="related-card__title">

@@ -2,7 +2,7 @@
  * Testimonios.jsx — Carrusel de testimonios de egresados
  */
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 const TESTIMONIOS = [
   {
@@ -28,11 +28,13 @@ const TESTIMONIOS = [
   },
 ];
 
+/** Carrusel de testimonios de egresados con navegación manual. */
 export default function Testimonios() {
   const [actual, setActual] = useState(0);
 
-  const siguiente = () => setActual((a) => (a + 1) % TESTIMONIOS.length);
-  const anterior = () => setActual((a) => (a - 1 + TESTIMONIOS.length) % TESTIMONIOS.length);
+  // Optimización: envolver en useCallback para evitar recrear funciones en cada render
+  const siguiente = useCallback(() => setActual((a) => (a + 1) % TESTIMONIOS.length), []);
+  const anterior = useCallback(() => setActual((a) => (a - 1 + TESTIMONIOS.length) % TESTIMONIOS.length), []);
 
   const t = TESTIMONIOS[actual];
 
@@ -59,6 +61,9 @@ export default function Testimonios() {
             src={t.foto}
             alt={t.nombre}
             className="testimonios-photo"
+            loading="lazy"
+            width="120"
+            height="120"
           />
 
           <p className="testimonios-quote">

@@ -21,6 +21,10 @@ const GRUPO_CONFIG = {
   Página:       { icon: "article",         color: "#475569" },
 };
 
+/**
+ * Buscador global con resultados agrupados por tipo.
+ * @param {Function} onClose - Callback para cerrar el buscador
+ */
 export default function SearchBox({ onClose }) {
   const [query, setQuery] = useState("");
   const [activeIdx, setActiveIdx] = useState(-1);

@@ -7,6 +7,10 @@
 
 import { useState } from "react";
 
+/**
+ * Botón de compartir noticia. Usa Web Share API o copia al portapapeles.
+ * @param {{ id: number, titulo: string, excerpt: string }} noticia
+ */
 export default function ShareButton({ noticia }) {
   const [copiado, setCopiado] = useState(false);
 

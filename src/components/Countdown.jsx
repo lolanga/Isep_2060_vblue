@@ -5,6 +5,11 @@
 
 import { useState, useEffect } from "react";
 
+/**
+ * Calcula la diferencia entre una fecha objetivo y ahora.
+ * @param {string} fecha - Fecha ISO (YYYY-MM-DDTHH:MM:SS)
+ * @returns {{ dias: number, horas: number, minutos: number, segundos: number, expirado: boolean }}
+ */
 function calcularTiempo(fecha) {
   const diff = new Date(fecha) - new Date();
   if (diff <= 0) return { dias: 0, horas: 0, minutos: 0, segundos: 0, expirado: true };
@@ -17,6 +22,11 @@ function calcularTiempo(fecha) {
   };
 }
 
+/**
+ * Componente de cuenta regresiva visual.
+ * @param {string} targetDate - Fecha objetivo en formato ISO
+ * @param {string} [label] - Texto descriptivo sobre los bloques
+ */
 export default function Countdown({ targetDate, label }) {
   const [timeLeft, setTimeLeft] = useState(() => calcularTiempo(targetDate));
 

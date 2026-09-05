@@ -48,6 +48,7 @@ const SEDES = [
   { nombre: "DZCN — Recreo", direccion: "RN11, km 482, Recreo, Santa Fe" },
 ];
 
+/** Página de títulos y certificaciones: consulta de certificados, trámites y descargas. */
 export default function Titulos() {
   const [dni, setDni] = useState("");
   const [consultando, setConsultando] = useState(false);

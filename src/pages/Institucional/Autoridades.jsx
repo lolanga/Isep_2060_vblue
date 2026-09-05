@@ -84,6 +84,7 @@ const DIRECTORES_ESCUELAS = [
   },
 ];
 
+/** Página de autoridades: autoridades provinciales, concejo, director general y directores de escuelas. */
 export default function Autoridades() {
   return (
     <main className="autoridades-main">

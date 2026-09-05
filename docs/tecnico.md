@@ -225,12 +225,12 @@ background-image:
 
 | Archivo | Tamaño |
 |---|---|
-| `index.html` | 0.72 kB |
-| `index.css` | 80.42 kB (gzip: 13.98 kB) |
-| `index.js` | 212.65 kB (gzip: 66.45 kB) |
+| `index.html` | 2.09 kB |
+| `index.css` | 76.62 kB (gzip: 13.62 kB) |
+| `index.js` | 212.65 kB (gzip: 66.43 kB) |
 | Módulos | 90 |
 | Lazy chunks | Rutas bajo demanda (React.lazy) |
-| Build time | ~6-10s |
+| Build time | ~0.8-1s |
 
 ---
 
@@ -338,6 +338,61 @@ Google Analytics 4 (`gtag.js`):
 
 ### 13.9 API Layer
 `src/services/api.js`: capa de abstracción mock→backend-ready. Actualmente usa datos mock, preparada para conectar a API real sin cambiar componentes.
+
+---
+
+## 14. Auditoría y Optimización
+
+### 14.1 Auditoría de código
+
+| Aspecto | Antes | Después |
+|---|---|---|
+| Inline styles | 523 | 0 (29 archivos migrados a CSS) |
+| Código muerto eliminado | — | analytics.js, api.js, Skeleton.jsx, SEO.jsx |
+| Exports no usados eliminados | — | NewsArticleLd, BreadcrumbLd |
+| Dependencias no usadas eliminadas | — | react-icons, lucide-react |
+| Bugs corregidos | — | Resoluciones.jsx TIPO_ICONS "Plan Estratégico:" (colon extra), Carrera.jsx link a ruta inexistente |
+
+### 14.2 Optimización de carga
+
+| Aspecto | Cambio |
+|---|---|
+| Imágenes | `loading="lazy"` + `width`/`height` en todas las imágenes (prevenir CLS) |
+| Fuentes | Inter optimizado de 7 a 4 pesos (400, 600, 700, 800) |
+| Material Symbols | Agregado `display=swap` (eliminó FOIT) |
+| Font preload | Preload hint para Inter woff2 |
+| Lazy search index | buscador.js construye índice solo en primera llamada |
+
+### 14.3 Optimización React
+
+| Hook | Componente | Descripción |
+|---|---|---|
+| `React.memo` | StatCard (Contadores.jsx) | Evita re-renderizado innecesario |
+| `useMemo` | EscuelaTemplate, NoticiaDetalle | cursos/noticiasEscuela, relacionadas |
+| `useCallback` | Testimonios | siguiente/anterior |
+| Hooks rules | EscuelaTemplate, NoticiaDetalle | Corregidos hooks condicionales |
+
+### 14.4 Limpieza CSS
+
+- **Dead CSS classes eliminadas:** ~15 clases nunca usadas en JSX
+- **Duplicados eliminados:** `.chip`, `.filtro-btn`, `.badge`, `.hero-title`, `.hero-description`, `.page-hero`, `.page-hero__inner`, `.skeleton-*`, `.skip-to-content`, `@keyframes skeleton-pulse`
+- **pages.css:** reducido de 3280 a ~2935 líneas
+
+### 14.5 Comentarios JSDoc
+
+- Todos los componentes JSX documentados con JSDoc
+- Todos los archivos CSS con sección dividers
+- Archivos de datos con documentación de funciones
+
+### 14.6 Build stats actualizados
+
+| Archivo | Tamaño |
+|---|---|
+| `index.html` | 2.09 kB |
+| `index.css` | 76.62 kB (gzip: 13.62 kB) |
+| `index.js` | 212.65 kB (gzip: 66.43 kB) |
+| Módulos | 90 |
+| Build time | ~0.8-1s |
 
 ---
 

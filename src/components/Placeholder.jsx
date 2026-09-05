@@ -1,7 +1,12 @@
 /**
  * Placeholder.jsx — Componente reutilizable para páginas "Próximamente"
+ *
+ * @param {string} badge - Texto del badge superior (ej: "Institucional")
+ * @param {string} title - Título principal antes del highlight
+ * @param {string} highlight - Palabra resaltada en color del título
+ * @param {string} description - Texto explicativo de la sección
+ * @param {string[]} [features] - Lista de funcionalidades próximas
  */
-
 export default function Placeholder({ badge, title, highlight, description, features }) {
   return (
     <main className="placeholder-main">

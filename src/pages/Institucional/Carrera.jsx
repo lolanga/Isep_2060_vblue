@@ -15,6 +15,7 @@ const ESTADOS = {
   cerrada: { label: "Inscripciones cerradas", color: "#94a3b8", bg: "rgba(148,163,184,0.1)" },
 };
 
+/** Página de detalle de carreras con estado de inscripción y metadata. */
 export default function Carrera() {
   return (
     <main className="page-main">
@@ -107,7 +108,7 @@ export default function Carrera() {
                   {/* Links */}
                   <div className="carrera-card__links">
                     <Link
-                      to={`/formacion/carrera/${carrera.id}`}
+                      to="/institucional/carreras"
                       className="carrera-card__link"
                     >
                       Ver detalle

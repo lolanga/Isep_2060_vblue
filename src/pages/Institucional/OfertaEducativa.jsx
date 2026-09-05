@@ -14,6 +14,7 @@ const MI_ISEP = "https://mi.isepsantafe.edu.ar";
 
 const escuelasFiltradas = escuelas.filter((e) => e.id !== "ead");
 
+/** Página de oferta educativa con pestañas de carreras, cursos y convocatorias. */
 export default function OfertaEducativa() {
   const [tab, setTab] = useState("carreras");
 

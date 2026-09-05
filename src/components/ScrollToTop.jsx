@@ -4,6 +4,7 @@
 
 import { useState, useEffect } from "react";
 
+/** Botón flotante para volver al inicio — visible al superar 400px de scroll. */
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 

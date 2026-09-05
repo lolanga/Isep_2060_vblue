@@ -21,10 +21,11 @@ const VERIFICADOR_URL = "https://validadordefirmas.gob.ar/upload";
 const TIPO_ICONS = {
   Resolución: "description",
   Convenio: "handshake",
-  "Plan Estratégico:": "route",
+  "Plan Estratégico": "route",
   Estatuto: "gavel",
 };
 
+/** Página de resoluciones y normativa con filtros por año, tipo y búsqueda. */
 export default function Resoluciones() {
   const [anioFiltro, setAnioFiltro] = useState("Todos");
   const [tipoFiltro, setTipoFiltro] = useState("Todos");

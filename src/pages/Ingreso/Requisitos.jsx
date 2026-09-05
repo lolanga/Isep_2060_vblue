@@ -33,6 +33,7 @@ const FORMULARIOS = [
   "Declaración Jurada Psicológica",
 ];
 
+/** Página de requisitos de ingreso: condiciones, documentación y formularios. */
 export default function Requisitos() {
   return (
     <main className="requisitos-main">

@@ -23,6 +23,7 @@ const SEDES = [
   },
 ];
 
+/** Página de presentación institucional: qué es el ISeP, misión, visión, valores y sedes. */
 export default function ElIseP() {
   return (
     <main className="page-main">

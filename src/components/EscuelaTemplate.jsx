@@ -9,6 +9,7 @@
  * derivan sus carreras y cursos desde los datos centrales.
  */
 
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
   escuelaPorId,
@@ -19,17 +20,23 @@ import { noticias } from "../data/noticias";
 
 const MI_ISEP = "https://mi.isepsantafe.edu.ar";
 
+/**
+ * Plantilla reutilizable para páginas de escuela.
+ * @param {string} escuelaId - ID de la escuela (policia, superior, etc.)
+ */
 export default function EscuelaTemplate({ escuelaId }) {
   const escuela = escuelaPorId(escuelaId);
-  if (!escuela) return null;
-
   const carreras = carrerasDeEscuela(escuelaId);
-  const cursos = cursosDeEscuela(escuelaId).filter((c) => c.estado !== "finalizado");
-  const info = escuela.informacion;
+  const cursos = useMemo(() => cursosDeEscuela(escuelaId).filter((c) => c.estado !== "finalizado"), [escuelaId]);
+  const noticiasEscuela = useMemo(() =>
+    noticias
+      .filter((n) => n.escuelas && n.escuelas.includes(escuelaId))
+      .slice(0, 3),
+    [escuelaId]
+  );
 
-  const noticiasEscuela = noticias
-    .filter((n) => n.escuelas && n.escuelas.includes(escuelaId))
-    .slice(0, 3);
+  if (!escuela) return null;
+  const info = escuela.informacion;
 
   return (
     <main className="page-main">
@@ -37,7 +44,7 @@ export default function EscuelaTemplate({ escuelaId }) {
       <section className="escuela-hero">
         <div className="escuela-hero__inner">
           <div className="escuela-hero__logo">
-            <img src={escuela.logo} alt={`Escudo ${escuela.nombre}`} />
+            <img src={escuela.logo} alt={`Escudo ${escuela.nombre}`} loading="eager" width="64" height="64" />
           </div>
           <div>
             <span className="badge">Escuela</span>
@@ -165,7 +172,10 @@ export default function EscuelaTemplate({ escuelaId }) {
                       src={n.img}
                       alt={n.titulo}
                       className="escuela-news-img"
-                      onError={(e) => { e.target.style.background = "var(--primary-light)"; e.target.style.display = "block"; }}
+                      loading="lazy"
+                      width="400"
+                      height="225"
+                      onError={(e) => e.target.classList.add("img-error")}
                     />
                     <span className="escuela-news-badge">
                       {n.categoria}

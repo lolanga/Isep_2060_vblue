@@ -8,6 +8,7 @@
 const GA_ID = "G-XXXXXXXXXX"; // Reemplazar con el ID real de Google Analytics
 
 // Carga el script de GA4 de forma asíncrona
+/** Carga el script de GA4 de forma asíncrona sin bloquear el render. */
 function loadGA() {
   if (typeof window === "undefined" || document.getElementById("ga-script")) return;
 
@@ -24,6 +25,7 @@ function loadGA() {
   gtag("config", GA_ID, { send_page_view: false });
 }
 
+/** Inicializa Google Analytics 4 (solo en producción). */
 export default function Analytics() {
   if (import.meta.env.DEV) return null;
   loadGA();

@@ -14,6 +14,7 @@ const CATEGORIAS = ["Todas", "Institucional", "Academica", "Escuelas", "Eventos"
 
 const ITEMS_POR_PAGINA = 10;
 
+/** Página de listado de noticias con filtro por categoría y paginación. */
 export default function Noticias() {
   const [categoriaActiva, setCategoriaActiva] = useState("Todas");
   const [pagina, setPagina] = useState(1);

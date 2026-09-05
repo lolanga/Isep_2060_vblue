@@ -3,36 +3,36 @@
    Editar aqui para cambiar colores en toda la web
    ============================================= */
 
+/* ── Paleta principal ── */
 :root {
-  /* Paleta principal */
   --primary:                  #00254d;
   --primary-container:        #003b73;
   --primary-fixed:            #d5e3ff;
 
-  /* Paleta secundaria */
+  /* ── Paleta secundaria ── */
   --secondary:                #0055c9;
   --secondary-container:      #036cfb;
   --on-secondary-container:   #fefcff;
 
-  /* Paleta terciaria */
+  /* ── Paleta terciaria ── */
   --tertiary-container:       #004058;
   --on-tertiary-container:    #00b1ed;
 
-  /* Superficies */
+  /* ── Superficies ── */
   --surface:                  #f9f9ff;
   --surface-container-low:    #f1f3ff;
   --surface-container-lowest: #ffffff;
   --surface-container-highest:#d7e3ff;
 
-  /* Texto */
+  /* ── Texto ── */
   --on-surface:               #001b3f;
   --on-surface-variant:       #434750;
 
-  /* Bordes */
+  /* ── Bordes ── */
   --outline-variant:          #c3c6d1;
   --outline:                  #737781;
 
-  /* Neutros */
+  /* ── Neutros ── */
   --white:                    #ffffff;
   --slate-400:                #94a3b8;
   --slate-500:                #64748b;
@@ -40,13 +40,13 @@
   --slate-900:                #0f172a;
   --slate-950:                #020617;
 
-  /* Gradiente principal */
+  /* ── Gradiente principal ── */
   --gradient-primary:          linear-gradient(90deg, #227bd1, #17be95);
   --gradient-glow:             0 6px 18px #1bb4c373;
   --gradient-hover-lift:       translateY(-1px);
   --color-start:               #227bd1;
   --color-end:                 #17be95;
 
-  /* Layout */
+  /* ── Layout ── */
   --navbar-height:            72px;
 }

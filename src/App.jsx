@@ -20,20 +20,22 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import SkipToContent from "./components/SkipToContent";
 
 // ── Loading global para lazy routes ──
+/** Skeleton animado mientras se carga un lazy route. */
 function LoadingSpinner() {
   return (
-    <div className="skeleton-grid" style={{ justifyContent: "center", padding: "4rem 2rem" }}>
+    <div className="skeleton-grid loading-spinner-wrap">
       <div className="skeleton-card">
         <div className="skeleton-img" />
-        <div style={{ padding: "1rem" }}>
-          <div className="skeleton-line skeleton-line--mt-sm" style={{ width: "60%", height: "1.2rem" }} />
-          <div className="skeleton-line skeleton-line--mt-xs" style={{ width: "90%", height: "0.9rem" }} />
+        <div className="loading-spinner-inner">
+          <div className="skeleton-line skeleton-line--mt-sm loading-spinner-line-sm" />
+          <div className="skeleton-line skeleton-line--mt-xs loading-spinner-line-xs" />
         </div>
       </div>
     </div>
   );
 }
 
+/** Sincroniza cambios de ruta con Google Analytics. */
 function TrackPageView() {
   const { pathname } = useLocation();
   return <Analytics path={pathname} />;
@@ -73,6 +75,7 @@ const Titulos = lazy(() => import("./pages/Secretaria/Titulos"));
 const Biblioteca = lazy(() => import("./pages/Secretaria/Biblioteca"));
 const Cursos = lazy(() => import("./pages/Secretaria/Cursos"));
 
+/** Router principal — define todas las rutas con lazy loading. */
 function App() {
   return (
     <ErrorBoundary>

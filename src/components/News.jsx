@@ -1,9 +1,17 @@
+/**
+ * News.jsx — Sección de noticias destacadas del Home
+ *
+ * Muestra la noticia principal en un card grande y tres noticias
+ * laterales en mini-cards, plus un promo de calendario académico.
+ */
+
 import { Link } from "react-router-dom";
 import { noticias } from "../data/noticias";
 
 const destacada = noticias[0];
 const laterales = noticias.slice(1, 4);
 
+/** Sección de noticias del Home con destacada + sidebar. */
 export default function News() {
   return (
     <section className="news-section">
@@ -27,10 +35,10 @@ export default function News() {
 
           {/* NOTICIA DESTACADA */}
           <div className="featured-news">
-            <Link to={`/noticias/${destacada.id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/noticias/${destacada.id}`} className="featured-news-link">
               <article className="card">
                 <div className="card-img-container">
-                  <img src={destacada.img} alt={destacada.titulo} />
+                  <img src={destacada.img} alt={destacada.titulo} loading="eager" width="900" height="500" />
                   <span className="news-badge">{destacada.categoria.toUpperCase()}</span>
                 </div>
 
@@ -58,10 +66,10 @@ export default function News() {
           <div className="sidebar-news">
 
             {laterales.map((n) => (
-              <Link key={n.id} to={`/noticias/${n.id}`} style={{ textDecoration: "none" }}>
+              <Link key={n.id} to={`/noticias/${n.id}`} className="sidebar-news-link">
                 <div className="mini-card">
                   <div className="mini-img">
-                    <img src={n.img} alt={n.titulo} />
+                    <img src={n.img} alt={n.titulo} loading="lazy" width="400" height="225" />
                   </div>
 
                   <div className="mini-content">

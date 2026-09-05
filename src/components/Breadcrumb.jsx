@@ -5,6 +5,10 @@
 
 import { Link } from "react-router-dom";
 
+/**
+ * Componente de navegación de migas de pan.
+ * @param {{ label: string, to?: string }[]} items - Array de items del breadcrumb
+ */
 export default function Breadcrumb({ items }) {
   if (!items || items.length === 0) return null;
 

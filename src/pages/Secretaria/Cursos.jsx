@@ -13,6 +13,10 @@ import { cursos, escuelas } from "../../data/institucional";
 
 const MI_ISEP = "https://mi.isepsantafe.edu.ar";
 
+/**
+ * Badge de estado del curso (actual, próximo, finalizado).
+ * @param {"actual"|"proximo"|"finalizado"} estado
+ */
 function EstadoBadge({ estado }) {
   const map = {
     actual: "Actual",
@@ -22,6 +26,7 @@ function EstadoBadge({ estado }) {
   return <span className={`curso-estado curso-estado--${estado}`}>{map[estado]}</span>;
 }
 
+/** Página de cursos con filtros por escuela, tipo y estado, y acordeón expandible. */
 export default function Cursos() {
   const [filtroEscuela, setFiltroEscuela] = useState("todas");
   const [filtroTipo, setFiltroTipo] = useState("todos");

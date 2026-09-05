@@ -6,6 +6,7 @@
 import { Link } from "react-router-dom";
 import { convocatorias, escuelaPorId } from "../../data/institucional";
 
+/** Página de próximas convocatorias anunciadas para futuros ciclos. */
 export default function ProximasConvocatorias() {
   const proximas = convocatorias.filter((c) => c.estado === "proxima");
 

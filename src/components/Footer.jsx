@@ -1,3 +1,9 @@
+/**
+ * Footer.jsx — Pie de página global del sitio
+ *
+ * Contiene identidad institucional, redes sociales, información
+ * de contacto, sedes y copyright dinámico.
+ */
 export default function Footer() {
   return (
     <footer>

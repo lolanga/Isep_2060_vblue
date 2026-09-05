@@ -50,6 +50,7 @@ const CAT_COLORS = {
   Institucional: { bg: "#f3e8ff", text: "#7c3aed" },
 };
 
+/** Página de biblioteca virtual con buscador, filtros por categoría y grid de artículos. */
 export default function Biblioteca() {
   const [filtro, setFiltro] = useState("Todas");
   const [busqueda, setBusqueda] = useState("");
@@ -135,8 +136,8 @@ export default function Biblioteca() {
                   <span
                     className="biblio-badge"
                     style={{
-                      backgroundColor: color.bg,
-                      color: color.text,
+                      "--badge-bg": color.bg,
+                      "--badge-color": color.text,
                     }}
                   >
                     <span className="material-symbols-outlined biblio-badge-icon">{icon}</span>

@@ -1,6 +1,8 @@
 /**
- * pages/Ingreso/Proceso.jsx
- * Proceso de ingreso — Ingreso
+ * Proceso.jsx — Página del proceso de ingreso al ISeP
+ *
+ * Muestra los pasos secuenciales para formar parte del instituto,
+ * desde el registro en Mi ISeP hasta la confirmación del ingreso.
  */
 
 export default function Proceso() {
