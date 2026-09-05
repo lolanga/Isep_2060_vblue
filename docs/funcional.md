@@ -79,7 +79,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/ingreso/proceso` | Proceso de ingreso | Implementada |
 | `/ingreso/faq` | Preguntas frecuentes (12 preguntas) | Implementada |
 | `/secretaria/titulos` | Títulos y Certificaciones | Implementada |
-| `/secretaria/biblioteca` | Biblioteca Virtual (21 recursos bibliográficos reales del ISeP) | Implementada |
+| `/secretaria/biblioteca` | Biblioteca Virtual (22 recursos bibliográficos reales del ISeP) | Implementada |
 | `/secretaria/cursos` | Cursos (dinámico con filtros) | Implementada |
 
 ---
@@ -207,7 +207,7 @@ Grid de tarjetas mejoradas:
 ## 7. Búsqueda global
 
 - **Ubicación:** ícono de lupa en el navbar, al lado de "Mi ISeP".
-- **Índice:** 58 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 11 noticias + 11 normativa + 12 páginas + 6 Misceláneas).
+- **Índice:** 48 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 11 noticias + 17 normativa + 10 páginas + 6 Misceláneas).
 - **Resultados agrupados por tipo:** Escuelas → Carreras → Cursos → Convocatorias → Noticias → Normativa → Páginas → Misceláneas.
 - **Navegación por teclado:** ↑↓, Enter, Escape.
 - **Contador de resultados** y hints de teclado.
@@ -226,7 +226,7 @@ Grid de tarjetas mejoradas:
 
 ## 9. Biblioteca Virtual (`/secretaria/biblioteca`)
 
-- **21 artículos reales del ISeP** con categorías: Normativa, Protocolos, Formación, Institucional
+- **22 artículos reales del ISeP** con categorías: Normativa, Protocolos, Formación, Institucional
 - Chips coloreados por tipo
 - Botón de descarga por recurso (enlaces directos a PDFs de isepsantafe.edu.ar)
 
@@ -269,7 +269,7 @@ Sección "Aplicaciones Institucionales" en el home (4 apps):
 
 ### 12.1 WhatsApp
 - Botón flotante verde, siempre visible (z-index 60).
-- Enlace a `wa.me/5490000000000`.
+- Enlace a `wa.me/5493424579000` (tel: +54 342 457-9000).
 
 ### 12.2 ScrollToTop
 - Botón flotante con SVG flecha (z-index 70).
@@ -458,14 +458,14 @@ Al hacer clic en una card de noticia, se abre `/noticias/:id` con:
 - Noticias relacionadas (misma categoría)
 - Breadcrumb y botón de volver
 
-#### Paso 6: Probar visualmente
+#### Paso 7: Probar visualmente
 
 1. Ejecutar `npm run dev`
 2. Ir a la página de inicio → verificar que la noticia aparece en "Últimas Noticias"
 3. Ir a `/noticias` → verificar que aparece en el listado y se puede filtrar por categoría
 4. Hacer clic en la noticia → verificar que se abre el detalle con imagen, contenido y relacionadas
 5. Verificar el botón de compartir (copia enlace al portapapeles)
-6. Ejecutar `npm run build` y `npm run lint` para confirmar que no hay errores
+7. Ejecutar `npm run build` y `npm run lint` para confirmar que no hay errores
 
 ### 18.3 Documentos adjuntos y links
 
@@ -503,3 +503,81 @@ Para agregar documentos adjuntos o links externos a una noticia:
 | 4 | `src/data/buscador.js` | Agregar entrada de búsqueda |
 | 5 | `npm run dev` | Verificar visualmente |
 | 6 | `npm run build` | Confirmar build limpio |
+
+---
+
+## 19. Infraestructura SEO y Analytics
+
+### 19.1 JSON-LD (Structured Data)
+
+Se implementan 3 tipos de structured data según la página:
+
+| Tipo | Página | Contenido |
+|---|---|---|
+| `EducationalOrganization` | Home (`/`) | Datos del ISeP: nombre, dirección, redes sociales, logo |
+| `NewsArticle` | Detalle de noticia (`/noticias/:id`) | Título, autor, fecha, imagen, excerpt |
+| `BreadcrumbList` | Todas las páginas | Ruta de navegación jerárquica |
+
+- Se renderizan como `<script type="application/ld+json">` inline en cada componente de página.
+- Validar con Google Rich Results Test.
+
+### 19.2 Meta Tags dinámicos
+
+El componente `SEO.jsx` gestiona meta tags por página:
+
+| Meta tag | Fuente |
+|---|---|
+| `<title>` | Título de la página + " — ISeP Santa Fe" |
+| `<meta name="description">` | Descripción breve (150–160 chars) |
+| `<meta property="og:title">` | Título para redes sociales |
+| `<meta property="og:description">` | Descripción para redes sociales |
+| `<meta property="og:image">` | Imagen representativa |
+| `<meta property="og:type">` | website / article |
+
+- Se actualizan dinámicamente con `useEffect` al cambiar de ruta.
+
+### 19.3 Sitemap.xml
+
+- **22 URLs** con frecuencias y prioridades.
+- Incluye: Home, 5 escuelas, noticias, normativa, biblioteca, ingreso, institucional, secretaría.
+- Frecuencia de actualización: `weekly` (home, noticias) / `monthly` (institucional, escuelas).
+- Disponible en `/sitemap.xml`.
+
+### 19.4 Google Analytics 4
+
+- **Herramienta:** `gtag.js` (Google Analytics 4).
+- **Carga:** asíncrona, no bloquea el render.
+- **Modo:** solo producción (desactivado en `npm run dev`).
+- **ID configurable:** en `src/components/Analytics.jsx` (variable `GA_ID`).
+- **Eventos rastreados:** page_view, scroll, click en CTAs externos.
+
+### 19.5 PWA
+
+- **`manifest.json`:** configuración de Progressive Web App (nombre, colores, iconos).
+- **`robots.txt`:** permisos para crawlers (allow: `/`,Disallow: `/api/`).
+- Permite instalar el sitio como app en móviles y escritorio.
+
+### 19.6 Accesibilidad
+
+| Característica | Descripción |
+|---|---|
+| `SkipToContent` | Enlace invisible al inicio que aparece con Tab, salta al contenido principal |
+| `focus-visible` | Indicadores de foco visibles solo con navegación por teclado (no en clics) |
+| `sr-only` | Contenido exclusivo para lectores de pantalla (ej: labels de botones) |
+| `skeleton-pulse` | Placeholder animado mientras cargan datos (mejora percepción de rendimiento) |
+
+### 19.7 Error Handling
+
+- **ErrorBoundary global:** captura errores de render en cualquier componente y muestra una pantalla amigable en lugar de pantalla blanca.
+- **NotFound (404):** página dedicada para rutas inexistentes con enlace de retorno al inicio.
+- Ambos implementados en `App.jsx` como wrappers del router.
+
+### 19.8 CSS Architecture
+
+| Principio | Detalle |
+|---|---|
+| **0 inline styles** | Todos los estilos en archivos CSS externos |
+| **pages.css** | ~200+ clases reutilizables para páginas de contenido |
+| **Separación** | tokens → base → componentes → páginas → responsive |
+| **Design tokens** | Variables CSS (`--primary`, `--gradient-primary`, etc.) en `variables.css` |
+| **Mobile-first** | `responsive.css` con media queries ascendentes |

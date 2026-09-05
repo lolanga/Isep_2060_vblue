@@ -190,7 +190,7 @@
     <p>17 documentos oficiales descargables. Filtros por año y tipo. Chips coloreados.</p>
 
     <h2>11. Biblioteca Virtual</h2>
-    <p>21 recursos bibliográficos reales del ISeP. Filtros por tipo (Manual, Publicación, Protocolo, Resolución). Chips coloreados.</p>
+    <p>22 recursos bibliográficos reales del ISeP. Filtros por tipo (Manual, Publicación, Protocolo, Resolución). Chips coloreados.</p>
 
     <h2>12. Títulos y Certificaciones</h2>
     <p>Información sobre títulos oficiales y certificaciones otorgadas por el ISeP Santa Fe.</p>
@@ -199,7 +199,7 @@
     <p>2 sedes con Google Maps embebido, dirección, teléfono (Rosario tel 341-4728526, Recreo tel 342-4815570), email y horario.</p>
 
     <h2>14. WhatsApp</h2>
-    <p>Botón verde flotante, siempre visible. Abre conversación en <code>wa.me</code>.</p>
+    <p>Botón verde flotante, siempre visible. Abre conversación en <code>wa.me/5493424579000</code> (tel: +54 342 457-9000).</p>
 
     <h2>15. Ir arriba (ScrollToTop)</h2>
     <p>Botón flotante con flecha. Aparece tras 400px de scroll. Click → scroll suave al inicio.</p>
@@ -234,6 +234,12 @@
       <tr><td>Cómo funciona la integración continua</td><td>GitHub Actions ejecuta lint + build + test en cada push al repositorio</td></tr>
       <tr><td>Quiero cambiar el tracking de Analytics</td><td>Editá <code>src/components/Analytics.jsx</code> y cambiá el valor de <code>GA_ID</code></td></tr>
       <tr><td>Quiero agregar JSON-LD a una página</td><td>Agregá un <code>&lt;script type="application/ld+json"&gt;</code> con el objeto structured data en el componente de la página</td></tr>
+      <tr><td>Quiero instalar como PWA</td><td>Abrí el sitio en el navegador, tocá "Agregar a pantalla de inicio" (Android) o "Compartir → Agregar a pantalla de inicio" (iOS). Usá <code>manifest.json</code> para configurar nombre, colores e iconos</td></tr>
+      <tr><td>Quiero verificar structured data (JSON-LD)</td><td>Abrí DevTools (F12) → pestaña Elements → buscá <code>&lt;script type="application/ld+json"&gt;</code>. O usá Google Rich Results Test pegando la URL</td></tr>
+      <tr><td>Quiero verificar el sitemap.xml</td><td>Abrí <code>https://tudominio/sitemap.xml</code> en el navegador. Debería mostrar 22 URLs con frecuencias y prioridades</td></tr>
+      <tr><td>Cómo funciona el tracking y mi privacidad</td><td>Google Analytics 4 rastrea visitas anónimas (sin datos personales). Solo está activo en producción. Podés bloquearlo con extensiones como uBlock Origin o Ghostery</td></tr>
+      <tr><td>Qué pasa si entro a una ruta que no existe</td><td>Se muestra la página NotFound (404) con un mensaje amigable y un enlace para volver al inicio</td></tr>
+      <tr><td>Navegación con lector de pantalla</td><td>El sitio es accesible: usá <code>SkipToContent</code> (aparece con Tab al inicio), navegá con Tab/Shift+Tab, y los botones tienen labels para lectores de pantalla</td></tr>
     </table>
   </main>
 </body>

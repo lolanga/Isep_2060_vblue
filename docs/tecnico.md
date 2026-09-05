@@ -48,7 +48,7 @@ src/
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, FAQ
 │   ├── noticias.js          # 11 noticias (compartido)
 │   ├── normativa.js         # 17 resoluciones (compartido)
-│   └── buscador.js          # 64+ entradas + buscar() + buscarAgrupado()
+│   └── buscador.js          # 48 entradas + buscar() + buscarAgrupado()
 ├── pages/
 │   ├── Home.jsx             # 7 secciones
 │   ├── Noticias.jsx         # Filtro + paginación + links a detalle
@@ -58,7 +58,7 @@ src/
 │   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
 │   ├── Ingreso/             # Convocatorias (contenido real), ProximasConvocatorias,
 │   │                        # Requisitos, Proceso, Faq (12 preguntas)
-│   └── Secretaria/          # Titulos (contenido real), Biblioteca (21 artículos), Cursos
+│   └── Secretaria/          # Titulos (contenido real), Biblioteca (22 artículos), Cursos
 └── styles/
     ├── variables.css        # Design tokens + gradiente
     ├── base.css             # Reset, tipografía, fondo global, .chip
@@ -186,7 +186,7 @@ src/
 
 ### 6.4 buscador.js
 
-64+ entradas agrupadas por tipo. Funciones: `buscar()`, `buscarAgrupado()`.
+48 entradas agrupadas por tipo. Funciones: `buscar()`, `buscarAgrupado()`.
 
 ---
 

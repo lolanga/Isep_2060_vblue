@@ -95,7 +95,7 @@
       <tr><td><code>/ingreso/proceso</code></td><td>Proceso de ingreso</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/ingreso/faq</code></td><td>Preguntas frecuentes (12)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/secretaria/titulos</code></td><td>Títulos y Certificaciones</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/secretaria/biblioteca</code></td><td>Biblioteca Virtual (21 recursos)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/secretaria/biblioteca</code></td><td>Biblioteca Virtual (22 recursos)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/secretaria/cursos</code></td><td>Cursos (dinámico)</td><td><span class="badge ok">Implementada</span></td></tr>
     </table>
 
@@ -182,7 +182,7 @@
     <h2>7. Búsqueda global</h2>
     <ul>
       <li><strong>Ubicación:</strong> ícono de lupa en el navbar, al lado de "Mi ISeP".</li>
-      <li><strong>Índice:</strong> 58 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 11 noticias + 11 normativa + 12 páginas + 6 Misceláneas).</li>
+      <li><strong>Índice:</strong> 48 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 11 noticias + 17 normativa + 10 páginas + 6 Misceláneas).</li>
       <li><strong>Resultados agrupados por tipo.</strong></li>
       <li><strong>Navegación por teclado:</strong> ↑↓, Enter, Escape.</li>
       <li><strong>Enter</strong> en el campo abre el primer resultado.</li>
@@ -192,7 +192,7 @@
     <p>17 documentos oficiales descargables. Filtros por año y tipo. Chips coloreados por tipo.</p>
 
     <h2>9. Biblioteca Virtual</h2>
-    <p>21 recursos bibliográficos reales del ISeP. Filtros por tipo (Manual, Publicación, Protocolo, Resolución). Chips coloreados.</p>
+    <p>22 recursos bibliográficos reales del ISeP. Filtros por tipo (Manual, Publicación, Protocolo, Resolución). Chips coloreados.</p>
 
     <h2>10. Sedes y Contacto</h2>
     <p>2 sedes con Google Maps embebido: D.Z.S – Rosario (Alem 2050, tel 341-4728526) y DZCN – Recreo (RN11 km 482, tel 342-4815570).</p>
@@ -208,7 +208,7 @@
 
     <h2>12. Accesos flotantes y redes</h2>
     <h3>WhatsApp</h3>
-    <p>Botón flotante verde, siempre visible (z-index 60). Enlace a <code>wa.me/5490000000000</code>.</p>
+    <p>Botón flotante verde, siempre visible (z-index 60). Enlace a <code>wa.me/5493424579000</code> (tel: +54 342 457-9000).</p>
     <h3>ScrollToTop</h3>
     <p>Botón flotante con SVG flecha (z-index 70). Visible tras 400px de scroll, <code>bottom: 5.5rem</code>. Scroll suave al inicio.</p>
     <h3>Redes sociales (Footer)</h3>
@@ -332,6 +332,81 @@ Segundo párrafo con más detalle.`,
       <tr><td>5</td><td><code>buscador.js</code></td><td>Automático (importa de noticias.js)</td></tr>
       <tr><td>6</td><td><code>npm run dev</code></td><td>Verificar visualmente</td></tr>
       <tr><td>7</td><td><code>npm run build</code></td><td>Confirmar build limpio</td></tr>
+    </table>
+
+    <h2>19. Infraestructura SEO y Analytics</h2>
+
+    <h3>19.1 JSON-LD (Structured Data)</h3>
+    <p>3 tipos de structured data según la página:</p>
+    <table>
+      <tr><th>Tipo</th><th>Página</th><th>Contenido</th></tr>
+      <tr><td><code>EducationalOrganization</code></td><td>Home (<code>/</code>)</td><td>Datos del ISeP: nombre, dirección, redes sociales, logo</td></tr>
+      <tr><td><code>NewsArticle</code></td><td>Detalle de noticia (<code>/noticias/:id</code>)</td><td>Título, autor, fecha, imagen, excerpt</td></tr>
+      <tr><td><code>BreadcrumbList</code></td><td>Todas las páginas</td><td>Ruta de navegación jerárquica</td></tr>
+    </table>
+    <p>Se renderizan como <code>&lt;script type="application/ld+json"&gt;</code> inline en cada componente de página. Validar con Google Rich Results Test.</p>
+
+    <h3>19.2 Meta Tags dinámicos</h3>
+    <p>El componente <code>SEO.jsx</code> gestiona meta tags por página:</p>
+    <table>
+      <tr><th>Meta tag</th><th>Fuente</th></tr>
+      <tr><td><code>&lt;title&gt;</code></td><td>Título de la página + " — ISeP Santa Fe"</td></tr>
+      <tr><td><code>&lt;meta name="description"&gt;</code></td><td>Descripción breve (150–160 chars)</td></tr>
+      <tr><td><code>&lt;meta property="og:title"&gt;</code></td><td>Título para redes sociales</td></tr>
+      <tr><td><code>&lt;meta property="og:description"&gt;</code></td><td>Descripción para redes sociales</td></tr>
+      <tr><td><code>&lt;meta property="og:image"&gt;</code></td><td>Imagen representativa</td></tr>
+      <tr><td><code>&lt;meta property="og:type"&gt;</code></td><td>website / article</td></tr>
+    </table>
+    <p>Se actualizan dinámicamente con <code>useEffect</code> al cambiar de ruta.</p>
+
+    <h3>19.3 Sitemap.xml</h3>
+    <ul>
+      <li><strong>22 URLs</strong> con frecuencias y prioridades.</li>
+      <li>Incluye: Home, 5 escuelas, noticias, normativa, biblioteca, ingreso, institucional, secretaría.</li>
+      <li>Frecuencia de actualización: <code>weekly</code> (home, noticias) / <code>monthly</code> (institucional, escuelas).</li>
+      <li>Disponible en <code>/sitemap.xml</code>.</li>
+    </ul>
+
+    <h3>19.4 Google Analytics 4</h3>
+    <ul>
+      <li><strong>Herramienta:</strong> <code>gtag.js</code> (Google Analytics 4).</li>
+      <li><strong>Carga:</strong> asíncrona, no bloquea el render.</li>
+      <li><strong>Modo:</strong> solo producción (desactivado en <code>npm run dev</code>).</li>
+      <li><strong>ID configurable:</strong> en <code>src/components/Analytics.jsx</code> (variable <code>GA_ID</code>).</li>
+      <li><strong>Eventos rastreados:</strong> page_view, scroll, click en CTAs externos.</li>
+    </ul>
+
+    <h3>19.5 PWA</h3>
+    <ul>
+      <li><strong><code>manifest.json</code>:</strong> configuración de Progressive Web App (nombre, colores, iconos).</li>
+      <li><strong><code>robots.txt</code>:</strong> permisos para crawlers (allow: <code>/</code>, Disallow: <code>/api/</code>).</li>
+      <li>Permite instalar el sitio como app en móviles y escritorio.</li>
+    </ul>
+
+    <h3>19.6 Accesibilidad</h3>
+    <table>
+      <tr><th>Característica</th><th>Descripción</th></tr>
+      <tr><td><code>SkipToContent</code></td><td>Enlace invisible al inicio que aparece con Tab, salta al contenido principal</td></tr>
+      <tr><td><code>focus-visible</code></td><td>Indicadores de foco visibles solo con navegación por teclado (no en clics)</td></tr>
+      <tr><td><code>sr-only</code></td><td>Contenido exclusivo para lectores de pantalla (ej: labels de botones)</td></tr>
+      <tr><td><code>skeleton-pulse</code></td><td>Placeholder animado mientras cargan datos (mejora percepción de rendimiento)</td></tr>
+    </table>
+
+    <h3>19.7 Error Handling</h3>
+    <ul>
+      <li><strong>ErrorBoundary global:</strong> captura errores de render en cualquier componente y muestra una pantalla amigable en lugar de pantalla blanca.</li>
+      <li><strong>NotFound (404):</strong> página dedicada para rutas inexistentes con enlace de retorno al inicio.</li>
+      <li>Ambos implementados en <code>App.jsx</code> como wrappers del router.</li>
+    </ul>
+
+    <h3>19.8 CSS Architecture</h3>
+    <table>
+      <tr><th>Principio</th><th>Detalle</th></tr>
+      <tr><td><strong>0 inline styles</strong></td><td>Todos los estilos en archivos CSS externos</td></tr>
+      <tr><td><strong>pages.css</strong></td><td>~200+ clases reutilizables para páginas de contenido</td></tr>
+      <tr><td><strong>Separación</strong></td><td>tokens → base → componentes → páginas → responsive</td></tr>
+      <tr><td><strong>Design tokens</strong></td><td>Variables CSS en <code>variables.css</code></td></tr>
+      <tr><td><strong>Mobile-first</strong></td><td><code>responsive.css</code> con media queries ascendentes</td></tr>
     </table>
   </main>
 </body>

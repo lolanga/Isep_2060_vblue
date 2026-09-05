@@ -185,7 +185,7 @@ En páginas interiores: **Inicio** / Sección / Página actual. Clic en cualquie
 ---
 
 ## 11. Biblioteca Virtual
-21 artículos reales del ISeP con links de descarga directa a PDFs. Filtros por categoría: Normativa, Protocolos, Formación, Institucional.
+22 artículos reales del ISeP con links de descarga directa a PDFs. Filtros por categoría: Normativa, Protocolos, Formación, Institucional.
 
 ## 11.1 Títulos y Certificaciones
 Consulta de certificados por DNI, proceso de 3 pasos para solicitar títulos, links de descarga de títulos, contacto y sedes.
@@ -198,7 +198,7 @@ Consulta de certificados por DNI, proceso de 3 pasos para solicitar títulos, li
 ---
 
 ## 13. WhatsApp
-Botón verde flotante, siempre visible. Abre conversación en `wa.me`.
+Botón verde flotante, siempre visible. Abre conversación en `wa.me/5493424579000` (tel: +54 342 457-9000).
 
 ---
 
@@ -239,3 +239,9 @@ Footer: identidad, contacto, sedes y créditos de desarrollo.
 | Cómo funciona la integración continua | GitHub Actions ejecuta lint + build + test en cada push al repositorio |
 | Quiero cambiar el tracking de Analytics | Editá `src/components/Analytics.jsx` y cambiá el valor de `GA_ID` |
 | Quiero agregar JSON-LD a una página | Agregá un `<script type="application/ld+json">` con el objeto structured data en el componente de la página |
+| Quiero instalar como PWA | Abrí el sitio en el navegador, tocá "Agregar a pantalla de inicio" (Android) o "Compartir → Agregar a pantalla de inicio" (iOS). Usá `manifest.json` para configurar nombre, colores e iconos |
+| Quiero verificar structured data (JSON-LD) | Abrí DevTools (F12) → pestaña Elements → buscá `<script type="application/ld+json">`. O usá Google Rich Results Test (search.google.com/test/rich-results) pegando la URL |
+| Quiero verificar el sitemap.xml | Abrí `https://tudominio/sitemap.xml` en el navegador. Debería mostrar 22 URLs con frecuencias y prioridades. También podés validarlo con XML Sitemaps (xml-sitemaps.com) |
+| Cómo funciona el tracking y mi privacidad | Google Analytics 4 rastrea visitas anónimas (sin datos personales). Solo está activo en producción. Podés bloquearlo con extensiones como uBlock Origin o Ghostery |
+| Qué pasa si entro a una ruta que no existe | Se muestra la página NotFound (404) con un mensaje amigable y un enlace para volver al inicio |
+| Navegación con lector de pantalla | El sitio es accesible: usá `SkipToContent` (aparece con Tab al inicio), navegá con Tab/Shift+Tab, y los botones tienen labels para lectores de pantalla |
