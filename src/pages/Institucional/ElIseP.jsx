@@ -24,10 +24,15 @@ const SEDES = [
   },
 ];
 
+/** Página de presentación institucional: qué es el ISeP, misión, visión, valores y sedes. */
 export default function ElIseP() {
   return (
+<<<<<<< HEAD
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
       <SEO title="El ISeP" description="Conocé al Instituto de Seguridad Pública de Santa Fe" />
+=======
+    <main className="page-main">
+>>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Institucional</span>
@@ -40,7 +45,7 @@ export default function ElIseP() {
         </div>
       </section>
 
-      <div className="container-max" style={{ padding: "2rem" }}>
+      <div className="container-max elisep-content">
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
@@ -50,8 +55,8 @@ export default function ElIseP() {
         />
 
         {/* ── Presentación + escudo ── */}
-        <section className="page-section" style={{ display: "flex", gap: "2rem", alignItems: "flex-start", flexWrap: "wrap" }}>
-          <div style={{ flex: "1 1 300px" }}>
+        <section className="page-section elisep-presentation">
+          <div className="elisep-text-col">
             <h2 className="page-section-title">
               ¿Qué es el ISeP?
             </h2>
@@ -62,30 +67,21 @@ export default function ElIseP() {
               El perfil del graduado del ISeP debe asegurarle la capacidad de trabajar en ambientes interdisciplinarios y multiculturales, para desenvolverse con solvencia en procedimientos judiciales, administrativos, criminológicos y de investigación científica. Asimismo, lo capacita para hacer uso racional de la fuerza y toma de decisiones, en virtud de su cargo y en respeto de la ética ciudadana y los derechos humanos.
             </p>
           </div>
-          <div style={{ flex: "0 0 auto", textAlign: "center" }}>
+          <div className="elisep-escudo-col">
             <img
               src={escudoIsep}
               alt="Escudo del ISeP"
-              style={{ width: "10rem", height: "10rem", objectFit: "contain" }}
+              className="elisep-escudo-img"
             />
           </div>
         </section>
 
         {/* ── Misión ── */}
-        <section className="page-section" style={{ marginTop: "3rem" }}>
-          <div className="inst-card" style={{ borderRadius: "1rem", padding: "2rem" }}>
-            <div className="flex-row-center" style={{ marginBottom: "1rem" }}>
-              <div style={{
-                width: "2.5rem",
-                height: "2.5rem",
-                borderRadius: "0.5rem",
-                background: "var(--gradient-primary)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-              }}>
-                <span className="material-symbols-outlined" style={{ color: "#fff", fontSize: "1.25rem" }}>flag</span>
+        <section className="page-section elisep-mission">
+          <div className="inst-card elisep-card-padded">
+            <div className="flex-row-center elisep-card-header">
+              <div className="icon-box">
+                <span className="material-symbols-outlined icon-primary">flag</span>
               </div>
               <h2 className="page-section-title--sm">Misión</h2>
             </div>
@@ -96,20 +92,11 @@ export default function ElIseP() {
         </section>
 
         {/* ── Visión ── */}
-        <section className="page-section" style={{ marginTop: "1.5rem" }}>
-          <div className="inst-card" style={{ borderRadius: "1rem", padding: "2rem" }}>
-            <div className="flex-row-center" style={{ marginBottom: "1rem" }}>
-              <div style={{
-                width: "2.5rem",
-                height: "2.5rem",
-                borderRadius: "0.5rem",
-                background: "var(--gradient-primary)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-              }}>
-                <span className="material-symbols-outlined" style={{ color: "#fff", fontSize: "1.25rem" }}>visibility</span>
+        <section className="page-section elisep-vision">
+          <div className="inst-card elisep-card-padded">
+            <div className="flex-row-center elisep-card-header">
+              <div className="icon-box">
+                <span className="material-symbols-outlined icon-primary">visibility</span>
               </div>
               <h2 className="page-section-title--sm">Visión</h2>
             </div>
@@ -120,8 +107,8 @@ export default function ElIseP() {
         </section>
 
         {/* ── Valores ── */}
-        <section className="page-section" style={{ marginTop: "3rem" }}>
-          <h2 className="page-section-title" style={{ marginBottom: "1.25rem" }}>
+        <section className="page-section elisep-values">
+          <h2 className="page-section-title elisep-values-title">
             Valores institucionales
           </h2>
           <div className="grid-4col">
@@ -135,19 +122,19 @@ export default function ElIseP() {
                 key={v.titulo}
                 className="inst-card"
               >
-                <span className="material-symbols-outlined" style={{ fontSize: "1.75rem", color: "var(--secondary)", display: "block", marginBottom: "0.75rem" }}>
+                <span className="material-symbols-outlined elisep-values-icon">
                   {v.icon}
                 </span>
-                <h3 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.35rem" }}>{v.titulo}</h3>
-                <p style={{ fontSize: "0.85rem", color: "#64748b", lineHeight: 1.5, margin: 0 }}>{v.desc}</p>
+                <h3 className="elisep-values-name">{v.titulo}</h3>
+                <p className="elisep-values-desc">{v.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* ── Sedes ── */}
-        <section className="page-section" style={{ marginTop: "3rem" }}>
-          <h2 className="page-section-title" style={{ marginBottom: "1.25rem" }}>
+        <section className="page-section elisep-sedes">
+          <h2 className="page-section-title elisep-sedes-title">
             Nuestras Sedes
           </h2>
           <div className="grid-2col">
@@ -156,17 +143,17 @@ export default function ElIseP() {
                 key={s.id}
                 className="inst-card"
               >
-                <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--primary)", marginBottom: "0.75rem" }}>
+                <h3 className="elisep-sede-name">
                   {s.nombre}
                 </h3>
                 <div className="flex-col">
                   <div className="flex-row">
                     <span className="material-symbols-outlined icon-sm-top">location_on</span>
-                    <span style={{ color: "#475569", fontSize: "0.9rem" }}>{s.direccion}</span>
+                    <span className="elisep-sede-detail">{s.direccion}</span>
                   </div>
                   <div className="flex-row-center">
                     <span className="material-symbols-outlined icon-sm">call</span>
-                    <span style={{ color: "#475569", fontSize: "0.9rem" }}>{s.telefono}</span>
+                    <span className="elisep-sede-detail">{s.telefono}</span>
                   </div>
                 </div>
               </div>

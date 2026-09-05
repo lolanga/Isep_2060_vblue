@@ -2,6 +2,7 @@
    SCHOOLS — Seccion escuelas del Home
    ============================================= */
 
+/* ── Grid de escuelas ── */
 .schools-section {
   padding: 6rem 0;
 }
@@ -73,9 +74,7 @@
 }
 
 
-/* =============================================
-   CTA — Bloque inscripciones (CTA.jsx)
-   ============================================= */
+/* ── CTA — Bloque inscripciones ── */
 
 .cta-section {
   padding: 5rem 0;

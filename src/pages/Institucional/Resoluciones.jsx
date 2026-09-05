@@ -22,10 +22,11 @@ const VERIFICADOR_URL = "https://validadordefirmas.gob.ar/upload";
 const TIPO_ICONS = {
   Resolución: "description",
   Convenio: "handshake",
-  "Plan Estratégico:": "route",
+  "Plan Estratégico": "route",
   Estatuto: "gavel",
 };
 
+/** Página de resoluciones y normativa con filtros por año, tipo y búsqueda. */
 export default function Resoluciones() {
   const [anioFiltro, setAnioFiltro] = useState("Todos");
   const [tipoFiltro, setTipoFiltro] = useState("Todos");
@@ -52,8 +53,12 @@ export default function Resoluciones() {
   }, []);
 
   return (
+<<<<<<< HEAD
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
       <SEO title="Resoluciones" description="Resoluciones y normativa del ISeP Santa Fe" />
+=======
+    <main className="resoluciones-main">
+>>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Institucional</span>
@@ -66,7 +71,7 @@ export default function Resoluciones() {
         </div>
       </section>
 
-      <div className="container-max" style={{ padding: "2rem" }}>
+      <div className="container-max resoluciones-content">
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
@@ -76,25 +81,15 @@ export default function Resoluciones() {
         />
 
         {/* ── Info verificación de firmas ── */}
-        <div style={{
-          background: "#f0f9ff",
-          border: "1px solid #bae6fd",
-          borderRadius: "0.75rem",
-          padding: "1rem 1.25rem",
-          marginTop: "1.5rem",
-          display: "flex",
-          alignItems: "center",
-          gap: "0.75rem",
-          flexWrap: "wrap",
-        }}>
-          <span className="material-symbols-outlined" style={{ color: "#0284c7", fontSize: "1.5rem", flexShrink: 0 }}>
+        <div className="alert-info">
+          <span className="material-symbols-outlined alert-info__icon">
             verified
           </span>
-          <div style={{ flex: 1, minWidth: 200 }}>
-            <p style={{ fontWeight: 700, color: "#0c4a6e", fontSize: "0.9rem", margin: 0 }}>
+          <div className="alert-info__content">
+            <p className="alert-info__title">
               Verificación de firmas digitales
             </p>
-            <p style={{ fontSize: "0.8rem", color: "#0369a1", margin: "0.15rem 0 0" }}>
+            <p className="alert-info__text">
               Podés verificar la autenticidad de cualquier resolución en el sitio oficial del Estado Nacional.
             </p>
           </div>
@@ -102,70 +97,41 @@ export default function Resoluciones() {
             href={VERIFICADOR_URL}
             target="_blank"
             rel="noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.3rem",
-              padding: "0.5rem 1rem",
-              borderRadius: "0.5rem",
-              background: "#0284c7",
-              color: "#fff",
-              fontSize: "0.8rem",
-              fontWeight: 600,
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-              flexShrink: 0,
-            }}
+            className="btn-solid-blue"
           >
-            <span className="material-symbols-outlined" style={{ fontSize: "1rem" }}>open_in_new</span>
+            <span className="material-symbols-outlined icon-xs">open_in_new</span>
             Verificar firma
           </a>
         </div>
 
         {/* ── Filtros ── */}
-        <div style={{
-          display: "flex",
-          gap: "1rem",
-          flexWrap: "wrap",
-          margin: "1.5rem 0",
-          alignItems: "flex-end",
-        }}>
+        <div className="resoluciones-filtros">
           {/* Búsqueda */}
-          <div style={{ flex: "1 1 250px" }}>
-            <label style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--primary)", display: "block", marginBottom: "0.3rem" }}>
+          <div className="resoluciones-search">
+            <label htmlFor="resoluciones-buscar" className="filter-label">
               Buscar
             </label>
-            <div style={{ position: "relative" }}>
-              <span className="material-symbols-outlined" style={{ position: "absolute", left: "0.75rem", top: "50%", transform: "translateY(-50%)", fontSize: "1.1rem", color: "#94a3b8" }}>
+            <div className="search-wrapper">
+              <span className="material-symbols-outlined search-icon">
                 search
               </span>
               <input
+                id="resoluciones-buscar"
                 type="text"
                 placeholder="Buscar resolución..."
                 value={busqueda}
                 onChange={(e) => setBusqueda(e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "0.55rem 0.75rem 0.55rem 2.25rem",
-                  borderRadius: "0.5rem",
-                  border: "1px solid #e2e8f0",
-                  fontSize: "0.85rem",
-                  fontFamily: "inherit",
-                  outline: "none",
-                  transition: "border-color 0.15s",
-                }}
-                onFocus={(e) => e.target.style.borderColor = "var(--secondary)"}
-                onBlur={(e) => e.target.style.borderColor = "#e2e8f0"}
+                className="form-input form-input--search"
               />
             </div>
           </div>
 
           {/* Año */}
           <div>
-            <label style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--primary)", display: "block", marginBottom: "0.3rem" }}>
+            <label className="filter-label">
               Año
             </label>
-            <div className="flex-row" style={{ flexWrap: "wrap", gap: "0.35rem" }}>
+            <div className="flex-row flex-wrap">
               {ANIOS.map((a) => (
                 <button
                   key={a}
@@ -175,7 +141,7 @@ export default function Resoluciones() {
                 >
                   {a}
                   {a !== "Todos" && totalPorAnio[a] && (
-                    <span style={{ fontSize: "0.65rem", opacity: 0.7, marginLeft: "0.2rem" }}>
+                    <span className="filtro-count">
                       ({totalPorAnio[a]})
                     </span>
                   )}
@@ -186,10 +152,10 @@ export default function Resoluciones() {
 
           {/* Tipo */}
           <div>
-            <label style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--primary)", display: "block", marginBottom: "0.3rem" }}>
+            <label className="filter-label">
               Tipo
             </label>
-            <div className="flex-row" style={{ flexWrap: "wrap", gap: "0.35rem" }}>
+            <div className="flex-row flex-wrap">
               {TIPOS.map((t) => (
                 <button
                   key={t}
@@ -205,77 +171,44 @@ export default function Resoluciones() {
         </div>
 
         {/* ── Contador ── */}
-        <p style={{ fontSize: "0.8rem", color: "#64748b", marginBottom: "1rem" }}>
+        <p className="result-count">
           {filtradas.length} resultado{filtradas.length !== 1 ? "s" : ""} encontrado{filtradas.length !== 1 ? "s" : ""}
         </p>
 
         {/* ── Listado ── */}
-        <div className="flex-col" style={{ gap: "0.75rem" }}>
+        <div className="flex-col resoluciones-card-list">
           {filtradas.map((r) => (
             <div
               key={r.id}
-              className="inst-card flex-row-center"
-              style={{
-                gap: "1rem",
-                padding: "1rem 1.25rem",
-                flexWrap: "wrap",
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0 2px 8px rgba(15,23,42,0.08)"}
-              onMouseLeave={(e) => e.currentTarget.style.boxShadow = "0 1px 3px rgba(15,23,42,0.06)"}
+              className="inst-card flex-row-center resoluciones-card"
             >
-              <span className="material-symbols-outlined" style={{ fontSize: "1.5rem", color: "var(--secondary)", flexShrink: 0 }}>
+              <span className="material-symbols-outlined resoluciones-type-icon">
                 {TIPO_ICONS[r.tipo] || "description"}
               </span>
-              <div style={{ flex: 1, minWidth: 200 }}>
-                <p style={{ fontWeight: 600, color: "var(--slate-900)", fontSize: "0.95rem", margin: 0 }}>{r.titulo}</p>
-                <div className="card-meta" style={{ marginTop: "0.3rem" }}>
-                  <span className="chip" data-type="tipo" style={{ fontSize: "0.7rem", padding: "0.15rem 0.5rem" }}>{r.tipo}</span>
-                  <span style={{ fontSize: "0.75rem", color: "#94a3b8" }}>{r.fecha}</span>
-                  <span style={{ fontSize: "0.75rem", color: "#94a3b8" }}>{r.tamaño}</span>
+              <div className="flex-1 resoluciones-card-content">
+                <p className="resoluciones-card-title">{r.titulo}</p>
+                <div className="card-meta">
+                  <span className="chip" data-type="tipo">{r.tipo}</span>
+                  <span className="resoluciones-meta">{r.fecha}</span>
+                  <span className="resoluciones-meta">{r.tamaño}</span>
                 </div>
               </div>
-              <div className="flex-row" style={{ flexShrink: 0 }}>
+              <div className="card-actions">
                 <a
                   href={VERIFICADOR_URL}
                   target="_blank"
                   rel="noreferrer"
                   title="Verificar firma digital"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "2rem",
-                    height: "2rem",
-                    borderRadius: "0.5rem",
-                    border: "1px solid #e2e8f0",
-                    background: "#fff",
-                    color: "#64748b",
-                    textDecoration: "none",
-                    transition: "border-color 0.15s, color 0.15s",
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--secondary)"; e.currentTarget.style.color = "var(--secondary)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#e2e8f0"; e.currentTarget.style.color = "#64748b"; }}
+                  className="btn-ghost"
                 >
-                  <span className="material-symbols-outlined" style={{ fontSize: "1rem" }}>verified</span>
+                  <span className="material-symbols-outlined icon-xs">verified</span>
                 </a>
                 <a
                   href={r.archivo}
                   download
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.3rem",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "0.5rem",
-                    background: "var(--gradient-primary)",
-                    color: "#fff",
-                    fontSize: "0.8rem",
-                    fontWeight: 600,
-                    textDecoration: "none",
-                    whiteSpace: "nowrap",
-                  }}
+                  className="btn-gradient"
                 >
-                  <span className="material-symbols-outlined" style={{ fontSize: "1rem" }}>download</span>
+                  <span className="material-symbols-outlined icon-xs">download</span>
                   Descargar
                 </a>
               </div>
@@ -284,24 +217,14 @@ export default function Resoluciones() {
         </div>
 
         {filtradas.length === 0 && (
-          <div style={{ textAlign: "center", padding: "3rem 1rem", color: "#94a3b8" }}>
-            <span className="material-symbols-outlined" style={{ fontSize: "2.5rem", display: "block", marginBottom: "0.75rem" }}>search_off</span>
-            <p style={{ margin: 0 }}>No se encontraron documentos con los filtros seleccionados.</p>
+          <div className="empty-state">
+            <span className="material-symbols-outlined empty-state__icon">search_off</span>
+            <p className="resoluciones-empty-text">No se encontraron documentos con los filtros seleccionados.</p>
             {(busqueda || anioFiltro !== "Todos" || tipoFiltro !== "Todos") && (
               <button
                 type="button"
                 onClick={() => { setBusqueda(""); setAnioFiltro("Todos"); setTipoFiltro("Todos"); }}
-                style={{
-                  marginTop: "1rem",
-                  padding: "0.5rem 1.25rem",
-                  borderRadius: "0.5rem",
-                  border: "1px solid #e2e8f0",
-                  background: "#fff",
-                  color: "var(--primary)",
-                  fontSize: "0.85rem",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                }}
+                className="resoluciones-clear-btn"
               >
                 Limpiar filtros
               </button>

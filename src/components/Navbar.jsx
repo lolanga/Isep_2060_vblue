@@ -70,7 +70,7 @@ function DesktopDropdown({ label, items, isOpen, onToggle, onClose, dropRef, ico
           item.type === "submenu" ? (
             <div className="dropdown-group" key={item.label}>
               <span className="dropdown-group__label">
-                {item.icon && <span className="material-symbols-outlined" style={{ fontSize: "0.9rem", marginRight: "0.25rem" }}>{item.icon}</span>}
+                {item.icon && <span className="material-symbols-outlined nav-icon--group-label">{item.icon}</span>}
                 {item.label}
               </span>
               {item.submenu.map((sub) => (
@@ -80,7 +80,7 @@ function DesktopDropdown({ label, items, isOpen, onToggle, onClose, dropRef, ico
                   to={sub.href}
                   onClick={onClose}
                 >
-                  {sub.icon && <span className="material-symbols-outlined" style={{ fontSize: "1rem", marginRight: "0.5rem" }}>{sub.icon}</span>}
+                  {sub.icon && <span className="material-symbols-outlined nav-icon--item">{sub.icon}</span>}
                   {sub.label}
                 </Link>
               ))}
@@ -92,7 +92,7 @@ function DesktopDropdown({ label, items, isOpen, onToggle, onClose, dropRef, ico
               to={item.href}
               onClick={onClose}
             >
-              {item.icon && <span className="material-symbols-outlined" style={{ fontSize: "1rem", marginRight: "0.5rem" }}>{item.icon}</span>}
+              {item.icon && <span className="material-symbols-outlined nav-icon--item">{item.icon}</span>}
               {item.label}
             </Link>
           )
@@ -113,7 +113,7 @@ function MobileAccordion({ label, items, isOpen, onToggle, onCloseAll, icon }) {
         className={`mobile-link mobile-link--accordion${isOpen ? " mobile-link--accordion-open" : ""}`}
         onClick={onToggle}
       >
-        {icon && <span className="material-symbols-outlined" style={{ fontSize: "1.1rem", marginRight: "0.5rem" }}>{icon}</span>}
+        {icon && <span className="material-symbols-outlined nav-icon--mobile">{icon}</span>}
         {label}
         <span className={`dropdown-chevron${isOpen ? " dropdown-chevron--open" : ""}`}>
           <span className="material-symbols-outlined">expand_more</span>
@@ -126,7 +126,7 @@ function MobileAccordion({ label, items, isOpen, onToggle, onCloseAll, icon }) {
           item.type === "submenu" ? (
             <div key={item.label}>
               <span className="mobile-group__label">
-                {item.icon && <span className="material-symbols-outlined" style={{ fontSize: "0.9rem", marginRight: "0.25rem" }}>{item.icon}</span>}
+                {item.icon && <span className="material-symbols-outlined nav-icon--group-label">{item.icon}</span>}
                 {item.label}
               </span>
               {item.submenu.map((sub) => (
@@ -335,7 +335,7 @@ export default function Navbar() {
           to="/noticias"
           onClick={closeAll}
         >
-          <span className="material-symbols-outlined" style={{ fontSize: "1.1rem", marginRight: "0.5rem" }}>newspaper</span>
+          <span className="material-symbols-outlined nav-icon--mobile">newspaper</span>
           Últimas noticias
         </Link>
       </div>

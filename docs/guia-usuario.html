@@ -169,7 +169,7 @@
     </ul>
     <h3>Detalle de noticia (<code>/noticias/:id</code>)</h3>
     <ul>
-      <li><strong>Hero de imagen</strong> con overlay gradiente.</li>
+      <li><strong>Hero de imagen</strong> con overlay gradiente. Si la noticia no tiene imagen (<code>img: null</code>), se muestra un placeholder con ícono.</li>
       <li><strong>Badged de categoría</strong> y fecha.</li>
       <li><strong>Extracto</strong> destacado con borde izquierdo.</li>
       <li><strong>Contenido completo</strong> de la noticia.</li>
@@ -186,11 +186,18 @@
       <li>En <code>/noticias</code> se muestran TODAS las noticias sin filtrar por escuela.</li>
     </ul>
 
+    <h3>Noticias sin imagen</h3>
+    <ul>
+      <li>Si una noticia tiene <code>img: null</code>, se muestra un placeholder con ícono en lugar de la foto alusiva.</li>
+      <li>Esto permite publicar noticias sin necesidad de preparar una imagen.</li>
+      <li>El placeholder aparece tanto en el listado como en el detalle de la noticia.</li>
+    </ul>
+
     <h2>10. Normativa y Resoluciones</h2>
     <p>17 documentos oficiales descargables. Filtros por año y tipo. Chips coloreados.</p>
 
     <h2>11. Biblioteca Virtual</h2>
-    <p>21 recursos bibliográficos reales del ISeP. Filtros por tipo (Manual, Publicación, Protocolo, Resolución). Chips coloreados.</p>
+    <p>22 recursos bibliográficos reales del ISeP. Filtros por tipo (Manual, Publicación, Protocolo, Resolución). Chips coloreados.</p>
 
     <h2>12. Títulos y Certificaciones</h2>
     <p>Información sobre títulos oficiales y certificaciones otorgadas por el ISeP Santa Fe.</p>
@@ -199,7 +206,7 @@
     <p>2 sedes con Google Maps embebido, dirección, teléfono (Rosario tel 341-4728526, Recreo tel 342-4815570), email y horario.</p>
 
     <h2>14. WhatsApp</h2>
-    <p>Botón verde flotante, siempre visible. Abre conversación en <code>wa.me</code>.</p>
+    <p>Botón verde flotante, siempre visible. Abre conversación en <code>wa.me/5493424579000</code> (tel: +54 342 457-9000).</p>
 
     <h2>15. Ir arriba (ScrollToTop)</h2>
     <p>Botón flotante con flecha. Aparece tras 400px de scroll. Click → scroll suave al inicio.</p>
@@ -213,6 +220,24 @@
       <tr><td>TikTok</td><td><code>tiktok.com/@isepsantafe</code></td></tr>
     </table>
     <p>Footer: identidad, contacto, sedes y créditos de desarrollo.</p>
+
+    <h2>16. Configuración del sitio</h2>
+    <p>El archivo <code>src/data/config.js</code> centraliza datos que se usan en múltiples partes del sitio. Si necesitás cambiar un teléfono, email, URL o el ID de Analytics, ese es el archivo a modificar.</p>
+    <table>
+      <tr><th>Dato</th><th>Constante</th><th>Descripción</th></tr>
+      <tr><td>Teléfono</td><td><code>TELEFONO_ISR</code></td><td>Número de teléfono institucional</td></tr>
+      <tr><td>Email de contacto</td><td><code>EMAIL_CONTACTO</code></td><td>Correo electrónico de contacto general</td></tr>
+      <tr><td>Email de prensa</td><td><code>EMAIL_PRENSA</code></td><td>Correo para prensa y difusión</td></tr>
+      <tr><td>Email de títulos</td><td><code>EMAIL_TITULOS</code></td><td>Correo de la sección de títulos</td></tr>
+      <tr><td>Mi ISeP</td><td><code>MI_ISEP_URL</code></td><td>URL del portal Mi ISeP</td></tr>
+      <tr><td>Gestión</td><td><code>GESTION_URL</code></td><td>URL de SIGEDI</td></tr>
+      <tr><td>Cadetes</td><td><code>CADETES_URL</code></td><td>URL de Gestión Cadetes</td></tr>
+      <tr><td>Webmail</td><td><code>WEBMAIL_URL</code></td><td>URL del correo institucional</td></tr>
+      <tr><td>WhatsApp</td><td><code>WHATSAPP_URL</code></td><td>Enlace de WhatsApp</td></tr>
+      <tr><td>Redes sociales</td><td><code>REDES_SOCIALES</code></td><td>URLs de redes sociales</td></tr>
+      <tr><td>Analytics</td><td><code>GA_ID</code></td><td>ID de Google Analytics (placeholder actualmente)</td></tr>
+    </table>
+    <div class="tip">Cada constante tiene documentación explicando qué es y cómo modificarla.</div>
 
     <h2>17. Problemas comunes</h2>
     <table>
@@ -229,6 +254,18 @@
       <tr><td>Quiero descargar una resolución</td><td>Institucional → Resoluciones, filtrá y descendá</td></tr>
       <tr><td>Una noticia no se abre</td><td>Verificá que la URL sea /noticias/{id} válido</td></tr>
       <tr><td>No hay noticias en una categoría</td><td>La categoría puede no tener publicaciones aún</td></tr>
+      <tr><td>Una noticia no tiene imagen</td><td>Es normal: si <code>img</code> es <code>null</code>, se muestra un placeholder con ícono</td></tr>
+      <tr><td>Quiero ejecutar los tests</td><td>Ejecutá <code>npm run test</code> en la terminal</td></tr>
+      <tr><td>Quiero agregar un test nuevo</td><td>Creá un archivo <code>*.test.jsx</code> en la carpeta del componente, usá <code>render()</code> y <code>screen</code> de React Testing Library</td></tr>
+      <tr><td>Cómo funciona la integración continua</td><td>GitHub Actions ejecuta lint + build + test en cada push al repositorio</td></tr>
+      <tr><td>Quiero cambiar el tracking de Analytics</td><td>Editá <code>src/data/config.js</code> y cambiá el valor de <code>GA_ID</code> (también hay un <code>GA_ID</code> en <code>src/components/Analytics.jsx</code> y <code>src/utils/analytics.js</code> que debe actualizarse)</td></tr>
+      <tr><td>Quiero agregar JSON-LD a una página</td><td>Agregá un <code>&lt;script type="application/ld+json"&gt;</code> con el objeto structured data en el componente de la página</td></tr>
+      <tr><td>Quiero instalar como PWA</td><td>Abrí el sitio en el navegador, tocá "Agregar a pantalla de inicio" (Android) o "Compartir → Agregar a pantalla de inicio" (iOS). Usá <code>manifest.json</code> para configurar nombre, colores e iconos</td></tr>
+      <tr><td>Quiero verificar structured data (JSON-LD)</td><td>Abrí DevTools (F12) → pestaña Elements → buscá <code>&lt;script type="application/ld+json"&gt;</code>. O usá Google Rich Results Test pegando la URL</td></tr>
+      <tr><td>Quiero verificar el sitemap.xml</td><td>Abrí <code>https://tudominio/sitemap.xml</code> en el navegador. Debería mostrar 22 URLs con frecuencias y prioridades</td></tr>
+      <tr><td>Cómo funciona el tracking y mi privacidad</td><td>Google Analytics 4 rastrea visitas anónimas (sin datos personales). Solo está activo en producción. Podés bloquearlo con extensiones como uBlock Origin o Ghostery</td></tr>
+      <tr><td>Qué pasa si entro a una ruta que no existe</td><td>Se muestra la página NotFound (404) con un mensaje amigable y un enlace para volver al inicio</td></tr>
+      <tr><td>Navegación con lector de pantalla</td><td>El sitio es accesible: usá <code>SkipToContent</code> (aparece con Tab al inicio), navegá con Tab/Shift+Tab, y los botones tienen labels para lectores de pantalla</td></tr>
     </table>
   </main>
 </body>

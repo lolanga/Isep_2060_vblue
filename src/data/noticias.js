@@ -100,4 +100,34 @@ export const noticias = [
     <p>🪪 El personal deberá asistir con credencial policial.</p>
   `
 },
+  {
+    id: 2,
+    titulo: "Capacitación en Primeros Auxilios para Personal de Seguridad",
+    categoria: "Escuelas",
+    fecha: "1 DE SEPTIEMBRE, 2026",
+    fechaCorta: "1 SEP",
+    excerpt: "La Escuela de Especialidades dictará un curso intensivo de primeros auxilios orientado al personal policial en actividad.",
+    img: null,
+    escuelas: ["especialidades"],
+  },
+  {
+    id: 3,
+    titulo: "Convenio de Cooperación con la Universidad Nacional del Litoral",
+    categoria: "Convenios",
+    fecha: "28 DE AGOSTO, 2026",
+    fechaCorta: "28 AGO",
+    excerpt: "El ISeP firmó un nuevo convenio marco para el reconocimiento de títulos y la articulación de carreras de grado en seguridad pública.",
+    img: null,
+    escuelas: ["superior"],
+  },
+  {
+    id: 4,
+    titulo: "Jornada de Reflexión sobre Seguridad Comunitaria",
+    categoria: "Eventos",
+    fecha: "25 DE AGOSTO, 2026",
+    fechaCorta: "25 AGO",
+    excerpt: "Se realizó la jornada de reflexión sobre los nuevos enfoques de seguridad comunitaria con participación de docentes y estudiantes de todas las escuelas del ISeP.",
+    img: null,
+    escuelas: ["policia", "superior"],
+  },
 ];

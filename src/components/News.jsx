@@ -1,10 +1,19 @@
+/**
+ * News.jsx — Sección de noticias destacadas del Home
+ *
+ * Muestra la noticia principal en un card grande y tres noticias
+ * laterales en mini-cards, plus un promo de calendario académico.
+ */
+
 import { Link } from "react-router-dom";
 import { noticias } from "../data/noticias";
 
-const destacada = noticias[0];
-const laterales = noticias.slice(1, 4);
-
+/** Sección de noticias del Home con destacada + sidebar. */
 export default function News() {
+  if (noticias.length === 0) return null;
+
+  const destacada = noticias[0];
+  const laterales = noticias.slice(1, 4);
   return (
     <section className="news-section">
       <div className="container-max">
@@ -27,10 +36,16 @@ export default function News() {
 
           {/* NOTICIA DESTACADA */}
           <div className="featured-news">
-            <Link to={`/noticias/${destacada.id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/noticias/${destacada.id}`} className="featured-news-link">
               <article className="card">
                 <div className="card-img-container">
-                  <img src={destacada.img} alt={destacada.titulo} />
+                  {destacada.img ? (
+                    <img src={destacada.img} alt={destacada.titulo} loading="eager" width="900" height="500" />
+                  ) : (
+                    <div className="card-img-placeholder">
+                      <span className="material-symbols-outlined">article</span>
+                    </div>
+                  )}
                   <span className="news-badge">{destacada.categoria.toUpperCase()}</span>
                 </div>
 
@@ -58,10 +73,16 @@ export default function News() {
           <div className="sidebar-news">
 
             {laterales.map((n) => (
-              <Link key={n.id} to={`/noticias/${n.id}`} style={{ textDecoration: "none" }}>
+              <Link key={n.id} to={`/noticias/${n.id}`} className="sidebar-news-link">
                 <div className="mini-card">
                   <div className="mini-img">
-                    <img src={n.img} alt={n.titulo} />
+                    {n.img ? (
+                      <img src={n.img} alt={n.titulo} loading="lazy" width="400" height="225" />
+                    ) : (
+                      <div className="mini-img-placeholder">
+                        <span className="material-symbols-outlined">article</span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="mini-content">

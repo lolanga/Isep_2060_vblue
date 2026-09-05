@@ -1,9 +1,17 @@
+/**
+ * CTA.jsx — Call-to-action de inscripciones del Home
+ *
+ * Muestra countdown hasta el cierre de inscripciones y botones
+ * de pre-inscripción online y consulta de requisitos.
+ */
+
 import { Link } from "react-router-dom";
 import Countdown from "./Countdown";
 
-// Cierre de inscripciones: 30 de septiembre 2025
-const FECHA_CIERRE = "2025-09-30T23:59:59";
+// Cierre de inscripciones: 30 de septiembre 2027
+const FECHA_CIERRE = "2027-09-30T23:59:59";
 
+/** Bloque CTA con countdown y enlaces a inscripciones. */
 export default function CTA() {
   return (
     <section className="cta-section">

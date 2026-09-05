@@ -3,6 +3,7 @@
  * Siempre visible (desktop y móvil), esquina inferior derecha.
  */
 
+/** Botón flotante de WhatsApp — siempre visible, esquina inferior derecha. */
 export default function FloatWhatsApp() {
   return (
     <a

@@ -2,7 +2,7 @@
  * Testimonios.jsx — Carrusel de testimonios de egresados
  */
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 const TESTIMONIOS = [
   {
@@ -28,129 +28,72 @@ const TESTIMONIOS = [
   },
 ];
 
+/** Carrusel de testimonios de egresados con navegación manual. */
 export default function Testimonios() {
   const [actual, setActual] = useState(0);
 
-  const siguiente = () => setActual((a) => (a + 1) % TESTIMONIOS.length);
-  const anterior = () => setActual((a) => (a - 1 + TESTIMONIOS.length) % TESTIMONIOS.length);
+  // Optimización: envolver en useCallback para evitar recrear funciones en cada render
+  const siguiente = useCallback(() => setActual((a) => (a + 1) % TESTIMONIOS.length), []);
+  const anterior = useCallback(() => setActual((a) => (a - 1 + TESTIMONIOS.length) % TESTIMONIOS.length), []);
 
   const t = TESTIMONIOS[actual];
 
   return (
-    <section style={{ padding: "4rem 0", background: "#f8fafc" }}>
-      <div className="container-max" style={{ padding: "0 2rem" }}>
-        <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-          <span className="badge" style={{ marginBottom: "0.75rem" }}>Testimonios</span>
-          <h2 style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 800, color: "var(--slate-900)" }}>
-            Voces de nuestros <span style={{ color: "var(--primary)" }}>egresados</span>
+    <section className="testimonios-section">
+      <div className="container-max testimonios-inner">
+        <div className="testimonios-header">
+          <span className="badge testimonios-badge">Testimonios</span>
+          <h2 className="testimonios-title">
+            Voces de nuestros <span className="text-primary">egresados</span>
           </h2>
         </div>
 
-        <div style={{
-          maxWidth: "700px",
-          margin: "0 auto",
-          background: "#fff",
-          borderRadius: "1.25rem",
-          padding: "2.5rem 2rem",
-          border: "1px solid #eef2f7",
-          boxShadow: "0 2px 8px rgba(15,23,42,0.05)",
-          textAlign: "center",
-          position: "relative",
-        }}>
+        <div className="testimonios-card">
           <button
             onClick={anterior}
             aria-label="Anterior"
-            style={{
-              position: "absolute",
-              left: "0.75rem",
-              top: "50%",
-              transform: "translateY(-50%)",
-              background: "var(--gradient-primary)",
-              border: "none",
-              borderRadius: "50%",
-              width: "2.25rem",
-              height: "2.25rem",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
-            }}
+            className="testimonios-arrow testimonios-arrow--left"
           >
-            <span className="material-symbols-outlined" style={{ color: "#fff", fontSize: "1.1rem" }}>chevron_left</span>
+            <span className="material-symbols-outlined testimonios-arrow-icon">chevron_left</span>
           </button>
 
           <img
             src={t.foto}
             alt={t.nombre}
-            style={{
-              width: "72px",
-              height: "72px",
-              borderRadius: "50%",
-              objectFit: "cover",
-              marginBottom: "1rem",
-              border: "3px solid var(--primary)",
-            }}
+            className="testimonios-photo"
+            loading="lazy"
+            width="120"
+            height="120"
           />
 
-          <p style={{
-            fontSize: "1rem",
-            color: "#475569",
-            lineHeight: 1.7,
-            fontStyle: "italic",
-            marginBottom: "1.25rem",
-            padding: "0 1.5rem",
-          }}>
+          <p className="testimonios-quote">
             "{t.texto}"
           </p>
 
-          <p style={{ fontWeight: 700, color: "var(--slate-900)", fontSize: "0.95rem", marginBottom: "0.2rem" }}>
+          <p className="testimonios-name">
             {t.nombre}
           </p>
-          <p style={{ fontSize: "0.8rem", color: "var(--primary)" }}>
+          <p className="testimonios-role">
             {t.promocion}
           </p>
 
           <button
             onClick={siguiente}
             aria-label="Siguiente"
-            style={{
-              position: "absolute",
-              right: "0.75rem",
-              top: "50%",
-              transform: "translateY(-50%)",
-              background: "var(--gradient-primary)",
-              border: "none",
-              borderRadius: "50%",
-              width: "2.25rem",
-              height: "2.25rem",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
-            }}
+            className="testimonios-arrow testimonios-arrow--right"
           >
-            <span className="material-symbols-outlined" style={{ color: "#fff", fontSize: "1.1rem" }}>chevron_right</span>
+            <span className="material-symbols-outlined testimonios-arrow-icon">chevron_right</span>
           </button>
         </div>
 
         {/* Dots */}
-        <div style={{ display: "flex", justifyContent: "center", gap: "0.5rem", marginTop: "1.5rem" }}>
+        <div className="testimonios-dots">
           {TESTIMONIOS.map((_, i) => (
             <button
               key={i}
               onClick={() => setActual(i)}
               aria-label={`Testimonio ${i + 1}`}
-              style={{
-                width: actual === i ? "1.5rem" : "0.5rem",
-                height: "0.5rem",
-                borderRadius: "999px",
-                border: "none",
-                background: actual === i ? "var(--primary)" : "#cbd5e1",
-                cursor: "pointer",
-                transition: "all 0.3s",
-              }}
+              className={`testimonios-dot${actual === i ? " testimonios-dot--active" : ""}`}
             />
           ))}
         </div>

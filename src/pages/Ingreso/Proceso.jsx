@@ -1,6 +1,8 @@
 /**
- * pages/Ingreso/Proceso.jsx
- * Proceso de ingreso — Ingreso
+ * Proceso.jsx — Página del proceso de ingreso al ISeP
+ *
+ * Muestra los pasos secuenciales para formar parte del instituto,
+ * desde el registro en Mi ISeP hasta la confirmación del ingreso.
  */
 
 import SEO from "../../components/SEO";
@@ -15,8 +17,12 @@ export default function Proceso() {
   ];
 
   return (
+<<<<<<< HEAD
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
       <SEO title="Proceso de Ingreso" description="Proceso de ingreso al ISeP Santa Fe" />
+=======
+    <main className="page-main">
+>>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>
@@ -29,18 +35,17 @@ export default function Proceso() {
         </div>
       </section>
 
-      <div className="container-max oferta-section" style={{ padding: "2rem" }}>
+      <div className="container-max oferta-section proceso-section">
         <div className="grid-2">
           {pasos.map((paso, i) => (
             <div className="card" key={i}>
               <span
-                className="card__chip"
+                className="card__chip proceso-chip"
                 data-type="paso"
-                style={{ width: "fit-content", fontSize: "1rem" }}
               >
                 Paso {i + 1}
               </span>
-              <h3 className="card__title" style={{ fontSize: "1.1rem" }}>{paso.titulo}</h3>
+              <h3 className="card__title proceso-card-title">{paso.titulo}</h3>
               <p className="card__desc">{paso.texto}</p>
             </div>
           ))}

@@ -1,8 +1,20 @@
 /**
  * services/api.js
  *
- * Capa de acceso a datos. Por ahora retorna datos mock,
- * pero al conectar un backend solo se cambian las funciones internas.
+ * MIGRATION PATH TO A REAL BACKEND
+ * ---------------------------------
+ * This module is the single entry point for all data access. Components should
+ * import from here instead of directly from data/ files.
+ *
+ * Currently it wraps static mock data with a simulated network delay so that
+ * loading states and Skeleton components can be tested during development.
+ *
+ * When connecting a real API (REST, GraphQL, etc.):
+ *   1. Create a base HTTP client (fetch/axios) with auth, interceptors, etc.
+ *   2. Replace the function bodies below with real fetch() calls.
+ *   3. The return shape of each function MUST stay the same — components
+ *      depend on the resolved value, not on how it was obtained.
+ *   4. Remove the `delay()` helper and the mock data imports.
  *
  * Uso:
  *   import { getNoticias, getEscuela } from "../services/api";
@@ -13,7 +25,7 @@ import { noticias } from "../data/noticias";
 import { escuelas, carreras, cursos, convocatorias, escuelaPorId, carrerasDeEscuela, cursosDeEscuela, preguntasFrecuentes } from "../data/institucional";
 import { resoluciones } from "../data/normativa";
 
-// Simula latencia de red (para testing de Skeleton/loading states)
+/** Simula latencia de red para testing de Skeleton/loading states. */
 const delay = (ms = 300) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export async function getNoticias() {

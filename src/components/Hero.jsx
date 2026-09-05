@@ -36,6 +36,7 @@ const SLIDES = [
 
 const INTERVAL = 6000;
 
+/** Hero principal del Home — slider automático con 3 slides. */
 export default function Hero() {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -71,6 +72,9 @@ export default function Hero() {
           <img
             src={s.img}
             alt={s.title + s.highlight}
+            loading={i === 0 ? "eager" : "lazy"}
+            width="1600"
+            height="700"
             onError={(e) => { e.target.style.display = "none"; }}
           />
           <div className="hero-overlay"></div>

@@ -1,18 +1,25 @@
 /**
- * pages/Ingreso/Faq.jsx
- * Preguntas frecuentes — Ingreso
+ * Faq.jsx — Preguntas frecuentes sobre el proceso de ingreso
+ *
+ * Acordeón interactivo que muestra las preguntas más comunes
+ * y sus respuestas sobre inscripción, requisitos y evaluaciones.
  */
 
 import { useState } from "react";
 import SEO from "../../components/SEO";
 import { preguntasFrecuentes } from "../../data/institucional";
 
+/** Página de preguntas frecuentes con acordeón expandible. */
 export default function Faq() {
   const [open, setOpen] = useState(null);
 
   return (
+<<<<<<< HEAD
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
       <SEO title="Preguntas Frecuentes" description="Preguntas frecuentes sobre el ISeP Santa Fe" />
+=======
+    <main className="page-main">
+>>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>
@@ -26,7 +33,7 @@ export default function Faq() {
       </section>
 
       <div className="container-max oferta-section">
-        <div className="cursos-accordion" style={{ maxWidth: "48rem", margin: "0 auto" }}>
+        <div className="cursos-accordion faq-wrap">
           {preguntasFrecuentes.map((item, i) => {
             const isOpen = open === i;
             return (
@@ -42,7 +49,7 @@ export default function Faq() {
                 </button>
                 <div className="curso-acc__body">
                   <div className="curso-acc__content">
-                    <p style={{ color: "var(--slate-600)" }}>{item.respuesta}</p>
+                    <p className="faq-answer">{item.respuesta}</p>
                   </div>
                 </div>
               </div>

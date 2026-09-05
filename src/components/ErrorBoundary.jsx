@@ -20,37 +20,19 @@ export default class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "2rem",
-          textAlign: "center",
-          fontFamily: "'Segoe UI', system-ui, sans-serif",
-        }}>
-          <span className="material-symbols-outlined" style={{ fontSize: "4rem", color: "#ef4444", marginBottom: "1rem" }}>
+        <div className="error-boundary">
+          <span className="material-symbols-outlined error-boundary__icon">
             error
           </span>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#1e293b", marginBottom: "0.5rem" }}>
+          <h1 className="error-boundary__title">
             Algo salió mal
           </h1>
-          <p style={{ color: "#64748b", maxWidth: "400px", marginBottom: "1.5rem" }}>
+          <p className="error-boundary__text">
             Ocurrió un error inesperado. Por favor, intentá recargar la página.
           </p>
           <button
             onClick={() => window.location.reload()}
-            style={{
-              padding: "0.75rem 2rem",
-              borderRadius: "0.5rem",
-              background: "linear-gradient(90deg, #227bd1, #17be95)",
-              color: "#fff",
-              border: "none",
-              fontWeight: 700,
-              fontSize: "0.95rem",
-              cursor: "pointer",
-            }}
+            className="error-boundary__btn"
           >
             Recargar página
           </button>

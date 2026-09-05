@@ -10,7 +10,14 @@ import { escuelas, carreras, cursos, convocatorias } from "./institucional";
 import { noticias } from "./noticias";
 import { resoluciones } from "./normativa";
 
-const INDICE_BUSQUEDA = [
+// Optimización: inicialización lazy del índice de búsqueda
+// Se construye solo en la primera llamada a buscar(), no al importar el módulo
+let INDICE_BUSQUEDA = null;
+
+function getIndiceBusqueda() {
+  if (INDICE_BUSQUEDA) return INDICE_BUSQUEDA;
+
+  INDICE_BUSQUEDA = [
   // ── Escuelas ──
   ...escuelas.map((e) => ({
     id: `escuela-${e.id}`,
@@ -177,12 +184,16 @@ const INDICE_BUSQUEDA = [
     ruta: "/ingreso/faq",
     keywords: ["preguntas", "frecuentes", "faq", "dudas", "ayuda"],
   },
-];
+  ];
+
+  return INDICE_BUSQUEDA;
+}
 
 /**
- * Busca en el índice. Devuelve resultados agrupados por tipo.
- * - query: texto a buscar.
- * - max: cantidad máxima de resultados por grupo.
+ * Busca en el índice por tokens. Devuelve resultados rankeados por relevancia.
+ * @param {string} query - Texto a buscar
+ * @param {number} [max=8] - Cantidad máxima de resultados
+ * @returns {Array} Resultados rankeados
  */
 export function buscar(query, max = 8) {
   const q = (query || "").trim().toLowerCase();
@@ -190,7 +201,10 @@ export function buscar(query, max = 8) {
 
   const tokens = q.split(/\s+/);
 
-  const scored = INDICE_BUSQUEDA.map((item) => {
+  // Optimización: construir índice lazy solo en la primera búsqueda
+  const indice = getIndiceBusqueda();
+
+  const scored = indice.map((item) => {
     const haystack = [item.title, item.subtitle, item.categoria, item.tipo, ...item.keywords]
       .join(" ")
       .toLowerCase();
@@ -209,8 +223,10 @@ export function buscar(query, max = 8) {
 }
 
 /**
- * Busca y agrupa por tipo.
- * Devuelve un objeto: { "Escuela": [...], "Carrera": [...], ... }
+ * Busca y agrupa resultados por tipo (Escuela, Carrera, etc.).
+ * @param {string} query - Texto a buscar
+ * @param {number} [maxPorGrupo=3] - Máximo de resultados por grupo
+ * @returns {Object} Objeto con arrays agrupados por tipo
  */
 export function buscarAgrupado(query, maxPorGrupo = 3) {
   const resultados = buscar(query, maxPorGrupo * 4);

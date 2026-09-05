@@ -1,3 +1,8 @@
+/**
+ * Organizacion.jsx — Página de organización institucional (placeholder)
+ *
+ * Muestra un placeholder indicando que la sección está en construcción.
+ */
 import Placeholder from "../../components/Placeholder";
 import SEO from "../../components/SEO";
 
@@ -8,6 +13,7 @@ const FEATURES = [
   "Relaciones interinstitucionales",
 ];
 
+/** Página placeholder de la sección Organización. */
 export default function Organizacion() {
   return (
     <>

@@ -51,6 +51,7 @@ const CAT_COLORS = {
   Institucional: { bg: "#f3e8ff", text: "#7c3aed" },
 };
 
+/** Página de biblioteca virtual con buscador, filtros por categoría y grid de artículos. */
 export default function Biblioteca() {
   const [filtro, setFiltro] = useState("Todas");
   const [busqueda, setBusqueda] = useState("");
@@ -65,8 +66,12 @@ export default function Biblioteca() {
   });
 
   return (
+<<<<<<< HEAD
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
       <SEO title="Biblioteca Virtual" description="Recursos digitales de la biblioteca del ISeP" />
+=======
+    <main className="page-main">
+>>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Secretaría Académica</span>
@@ -79,7 +84,7 @@ export default function Biblioteca() {
         </div>
       </section>
 
-      <div className="container-max" style={{ padding: "2rem" }}>
+      <div className="container-max biblio-content">
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
@@ -89,40 +94,27 @@ export default function Biblioteca() {
         />
 
         {/* ── Buscador ── */}
-        <div style={{ marginTop: "2rem", marginBottom: "1.5rem" }}>
-          <div style={{ position: "relative", maxWidth: "28rem" }}>
+        <div className="biblio-search-section">
+          <div className="biblio-search-wrap">
             <span
-              className="material-symbols-outlined"
-              style={{
-                position: "absolute",
-                left: "0.85rem",
-                top: "50%",
-                transform: "translateY(-50%)",
-                fontSize: "1.2rem",
-                color: "#94a3b8",
-              }}
+              className="material-symbols-outlined biblio-search-icon"
             >
               search
             </span>
             <input
+              id="biblio-buscar"
               type="text"
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
               placeholder="Buscar artículos..."
-              style={{
-                width: "100%",
-                padding: "0.75rem 1rem 0.75rem 2.75rem",
-                borderRadius: "0.5rem",
-                border: "1px solid #cbd5e1",
-                fontSize: "0.9rem",
-                outline: "none",
-              }}
+              className="biblio-search-input"
+              aria-label="Buscar artículos de biblioteca"
             />
           </div>
         </div>
 
         {/* ── Filtros por categoría ── */}
-        <div className="oferta-tabs" style={{ marginBottom: "2rem" }}>
+        <div className="oferta-tabs biblio-filters">
           {CATEGORIAS.map((c) => (
             <button
               key={c}
@@ -136,7 +128,7 @@ export default function Biblioteca() {
         </div>
 
         {/* ── Grid de artículos ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 320px), 1fr))", gap: "1rem" }}>
+        <div className="biblio-grid">
           {filtrados.map((a) => {
             const color = CAT_COLORS[a.categoria] || { bg: "#f1f5f9", text: "#475569" };
             const icon = CAT_ICONS[a.categoria] || "article";
@@ -146,65 +138,31 @@ export default function Biblioteca() {
                 href={a.url || "#"}
                 target="_blank"
                 rel="noreferrer"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.75rem",
-                  padding: "1.25rem",
-                  background: "#fff",
-                  borderRadius: "0.75rem",
-                  border: "1px solid #eef2f7",
-                  textDecoration: "none",
-                  transition: "box-shadow 0.2s, transform 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = "0 4px 12px rgba(15,23,42,0.1)";
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "none";
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
+                className="biblio-card"
               >
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div className="biblio-card-header">
                   <span
+                    className="biblio-badge"
                     style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.3rem",
-                      padding: "0.2rem 0.6rem",
-                      borderRadius: "999px",
-                      backgroundColor: color.bg,
-                      color: color.text,
-                      fontSize: "0.72rem",
-                      fontWeight: 600,
+                      "--badge-bg": color.bg,
+                      "--badge-color": color.text,
                     }}
                   >
-                    <span className="material-symbols-outlined" style={{ fontSize: "0.85rem" }}>{icon}</span>
+                    <span className="material-symbols-outlined biblio-badge-icon">{icon}</span>
                     {a.categoria}
                   </span>
                   <span
-                    className="material-symbols-outlined"
-                    style={{ fontSize: "1.1rem", color: "#94a3b8" }}
+                    className="material-symbols-outlined biblio-open-icon"
                   >
                     open_in_new
                   </span>
                 </div>
-                <h3 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--slate-900)", lineHeight: 1.4 }}>
+                <h3 className="biblio-card-title">
                   {a.titulo}
                 </h3>
-                <div style={{ marginTop: "auto" }}>
-                  <span
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.3rem",
-                      fontSize: "0.8rem",
-                      fontWeight: 600,
-                      color: "var(--primary)",
-                    }}
-                  >
-                    <span className="material-symbols-outlined" style={{ fontSize: "0.95rem" }}>description</span>
+                <div className="biblio-card-spacer">
+                  <span className="biblio-card-link">
+                    <span className="material-symbols-outlined biblio-card-link-icon">description</span>
                     Ver artículo
                   </span>
                 </div>
@@ -214,18 +172,18 @@ export default function Biblioteca() {
         </div>
 
         {filtrados.length === 0 && (
-          <div style={{ textAlign: "center", padding: "3rem 1rem" }}>
-            <span className="material-symbols-outlined" style={{ fontSize: "3rem", color: "var(--slate-300)" }}>
+          <div className="biblio-empty">
+            <span className="material-symbols-outlined biblio-empty-icon">
               search_off
             </span>
-            <p style={{ color: "var(--slate-500)", marginTop: "1rem" }}>
+            <p className="biblio-empty-text">
               No se encontraron artículos para "{busqueda || filtro}".
             </p>
           </div>
         )}
 
         {/* ── Contador ── */}
-        <div style={{ textAlign: "center", marginTop: "2rem", fontSize: "0.8rem", color: "#94a3b8" }}>
+        <div className="biblio-count">
           {filtrados.length} artículo{filtrados.length !== 1 && "s"} disponible{filtrados.length !== 1 && "s"}
         </div>
       </div>

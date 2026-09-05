@@ -308,7 +308,9 @@ export const preguntasFrecuentes = [
   },
 ];
 
-// Helper: devolver una escuela por id
+/** Busca una escuela por su ID. */
 export const escuelaPorId = (id) => escuelas.find((e) => e.id === id);
+/** Devuelve las carreras asociadas a una escuela. */
 export const carrerasDeEscuela = (id) => carreras.filter((c) => c.escuela === id);
+/** Devuelve los cursos asociados a una escuela. */
 export const cursosDeEscuela = (id) => cursos.filter((c) => c.escuela === id);

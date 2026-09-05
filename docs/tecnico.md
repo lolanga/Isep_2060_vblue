@@ -15,6 +15,7 @@
 | Íconos | Google Material Symbols, lucide-react ^1.7.0, react-icons ^5.6.0 | — |
 | Compilador | babel-plugin-react-compiler | ^1.0.0 |
 | Lint | ESLint ^9.39.4 | — |
+| Testing | Vitest + React Testing Library + jsdom | — |
 
 ---
 
@@ -44,10 +45,11 @@ src/
 │   ├── ShareButton.jsx      # Compartir noticia (Web Share API / clipboard)
 │   └── Placeholder.jsx      # Páginas "Próximamente"
 ├── data/
+│   ├── config.js          # Configuración centralizada (teléfonos, emails, URLs, GA_ID)
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, FAQ
-│   ├── noticias.js          # 11 noticias (compartido)
+│   ├── noticias.js          # 14 noticias (compartido, admite img: null)
 │   ├── normativa.js         # 17 resoluciones (compartido)
-│   └── buscador.js          # 64+ entradas + buscar() + buscarAgrupado()
+│   └── buscador.js          # 48 entradas + buscar() + buscarAgrupado()
 ├── pages/
 │   ├── Home.jsx             # 7 secciones
 │   ├── Noticias.jsx         # Filtro + paginación + links a detalle
@@ -57,7 +59,7 @@ src/
 │   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
 │   ├── Ingreso/             # Convocatorias (contenido real), ProximasConvocatorias,
 │   │                        # Requisitos, Proceso, Faq (12 preguntas)
-│   └── Secretaria/          # Titulos (contenido real), Biblioteca (21 artículos), Cursos
+│   └── Secretaria/          # Titulos (contenido real), Biblioteca (22 artículos), Cursos
 └── styles/
     ├── variables.css        # Design tokens + gradiente
     ├── base.css             # Reset, tipografía, fondo global, .chip
@@ -177,7 +179,7 @@ src/
 
 ### 6.2 noticias.js
 
-11 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img.
+14 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img (admite `null`), adjuntos, escuelas, contenido.
 
 ### 6.3 normativa.js
 
@@ -185,7 +187,7 @@ src/
 
 ### 6.4 buscador.js
 
-64+ entradas agrupadas por tipo. Funciones: `buscar()`, `buscarAgrupado()`.
+48 entradas agrupadas por tipo. Funciones: `buscar()`, `buscarAgrupado()`.
 
 ---
 
@@ -224,11 +226,12 @@ background-image:
 
 | Archivo | Tamaño |
 |---|---|
-| `index.html` | 0.72 kB |
-| `index.css` | 37.23 kB (gzip: 7.45 kB) |
-| `index.js` | 445 kB (gzip: 114.80 kB) |
-| Módulos | 86 |
-| Build time | ~6-10s |
+| `index.html` | 2.09 kB |
+| `index.css` | 76.62 kB (gzip: 13.62 kB) |
+| `index.js` | 212.65 kB (gzip: 66.43 kB) |
+| Módulos | 90 |
+| Lazy chunks | Rutas bajo demanda (React.lazy) |
+| Build time | ~0.8-1s |
 
 ---
 
@@ -241,6 +244,7 @@ background-image:
 | `npm run build` | Build de producción |
 | `npm run preview` | Previsualiza el build |
 | `npm run lint` | Ejecuta ESLint |
+| `npm run test` | Ejecuta tests con Vitest |
 
 ---
 
@@ -256,7 +260,7 @@ interface Noticia {
   fecha: string;         // "3 DE SEPTIEMBRE, 2026"
   fechaCorta: string;    // "3 SEP"
   excerpt: string;       // Extracto (1-2 oraciones)
-  img: string;           // URL de imagen (900×500 px)
+  img: string | null;    // URL de imagen (900×500 px) o null (placeholder con ícono)
   escuelas?: string[];   // (Opcional) IDs: "policia" | "superior" | "especialidades" | "investigaciones" | "ead"
   adjuntos?: {           // (Opcional) documentos adjuntos
     nombre: string;      // Nombre para mostrar
@@ -279,6 +283,7 @@ interface Noticia {
 **Opción A (recomendada):** Imagen local en `public/img/noticias/`
 **Opción B:** URL externa
 **Opción C:** Placeholder: `https://picsum.photos/seed/{nombre}/900/500`
+**Opción D:** Sin imagen: `img: null` — se muestra placeholder con ícono de material symbols
 
 - **Dimensiones:** 900×500 px (ratio 16:9)
 - **Formato:** JPG/PNG, <200 KB
@@ -288,6 +293,136 @@ interface Noticia {
 - **Carpeta:** `public/docs/`
 - **Formatos:** PDF, Excel, JPG, PNG, etc.
 - **Render:** `NoticiaDetalle.jsx` muestra botones de descarga
+
+## 13. Mejoras de Calidad
+
+### 13.1 Lazy Loading
+Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. El usuario solo descarga el JS de las páginas que visita, mejorando el tiempo de carga inicial.
+
+### 13.2 Testing
+Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. 18 tests en 3 archivos:
+
+| Archivo | Qué valida | Tests |
+|---|---|---|
+| `datos.test.js` | Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como `null` | ~6 |
+| `institucional.test.js` | Estructura de escuelas, carreras, cursos y convocatorias | ~6 |
+| `buscador.test.js` | Funcionalidad de búsqueda y resultados agrupados | ~6 |
+
+**Qué se testea:** la capa de datos (mock data), no los componentes UI.
+**Por qué:** la integridad de los datos es más crítica que testear componentes React con datos mock.
+**Qué NO se testea:** renderizado de componentes, interacciones de usuario, routing.
+
+Comando: `npm run test`
+
+### 13.3 GitHub Actions
+CI automatizado con GitHub Actions que ejecuta en cada push:
+- Lint (`npm run lint`)
+- Build (`npm run build`)
+- Tests (`npm run test`)
+
+### 13.4 SEO
+- **JSON-LD:** Structured data con `EducationalOrganization`, `NewsArticle`, `BreadcrumbList`
+- **Meta tags dinámicos:** título, descripción e imagen por página (Open Graph)
+- **sitemap.xml:** mapa del sitio para motores de búsqueda
+
+### 13.4.1 Configuración Centralizada
+
+Archivo `src/data/config.js` que exporta constantes con datos compartidos:
+
+```javascript
+export const TELEFONO_ISR = "+54 342 457-9000";
+export const EMAIL_CONTACTO = "prensaydifusion@isepsantafe.edu.ar";
+export const MI_ISEP_URL = "https://mi.isepsantafe.edu.ar/";
+export const GA_ID = "G-XXXXXXXXXX";  // Placeholder
+// ... más constantes con JSDoc
+```
+
+- Cada constante tiene documentación JSDoc explicando qué es y cómo modificarla.
+- **Estado actual:** creado pero no integrado en componentes (valores aún hardcodeados en JSX).
+- **Uso previsto:** `import { TELEFONO_ISR } from "../data/config.js"` en componentes.
+
+### 13.5 Analytics
+Google Analytics 4 (`gtag.js`):
+- Carga asíncrona (no bloquea render)
+- Solo en producción (desactivado en dev)
+- Configuración en `src/components/Analytics.jsx`
+- **Estado actual:** `GA_ID = "G-XXXXXXXXXX"` (placeholder). En dev, Analytics retorna `null`. En prod, gtag.js carga pero no recolecta datos reales con el ID placeholder.
+- **Archivos relacionados:** `src/components/Analytics.jsx`, `src/utils/analytics.js`
+- **Para activar:** reemplazar `GA_ID` en ambos archivos con un Measurement ID real de GA4, y asegurar que `send_page_view` no esté en `false`.
+
+### 13.6 CSS Architecture
+- **0 inline styles** en componentes
+- `pages.css` con ~200+ clases reutilizables
+- Separación clara: tokens → base → componentes → páginas → responsive
+
+### 13.7 Accesibilidad
+- **SkipToContent:** enlace para saltar al contenido principal
+- **focus-visible:** indicadores de foco solo con teclado
+- **sr-only:** contenido exclusivo para lectores de pantalla
+
+### 13.8 Error Handling
+- **ErrorBoundary global:** captura errores de render y muestra fallback amigable
+- **NotFound page:** página 404 para rutas inexistentes
+
+### 13.9 API Layer
+`src/services/api.js`: capa de abstracción mock→backend-ready. Actualmente usa datos mock, preparada para conectar a API real sin cambiar componentes.
+
+---
+
+## 14. Auditoría y Optimización
+
+### 14.1 Auditoría de código
+
+| Aspecto | Antes | Después |
+|---|---|---|
+| Inline styles | 523 | 0 (29 archivos migrados a CSS) |
+| Código muerto eliminado | — | analytics.js, api.js, Skeleton.jsx, SEO.jsx |
+| Exports no usados eliminados | — | NewsArticleLd, BreadcrumbLd |
+| Dependencias no usadas eliminadas | — | react-icons, lucide-react |
+| Bugs corregidos | — | Resoluciones.jsx TIPO_ICONS "Plan Estratégico:" (colon extra), Carrera.jsx link a ruta inexistente |
+
+### 14.2 Optimización de carga
+
+| Aspecto | Cambio |
+|---|---|
+| Imágenes | `loading="lazy"` + `width`/`height` en todas las imágenes (prevenir CLS) |
+| Fuentes | Inter optimizado de 7 a 4 pesos (400, 600, 700, 800) |
+| Material Symbols | Agregado `display=swap` (eliminó FOIT) |
+| Font preload | Preload hint para Inter woff2 |
+| Lazy search index | buscador.js construye índice solo en primera llamada |
+
+### 14.3 Optimización React
+
+| Hook | Componente | Descripción |
+|---|---|---|
+| `React.memo` | StatCard (Contadores.jsx) | Evita re-renderizado innecesario |
+| `useMemo` | EscuelaTemplate, NoticiaDetalle | cursos/noticiasEscuela, relacionadas |
+| `useCallback` | Testimonios | siguiente/anterior |
+| Hooks rules | EscuelaTemplate, NoticiaDetalle | Corregidos hooks condicionales |
+
+### 14.4 Limpieza CSS
+
+- **Dead CSS classes eliminadas:** ~15 clases nunca usadas en JSX
+- **Duplicados eliminados:** `.chip`, `.filtro-btn`, `.badge`, `.hero-title`, `.hero-description`, `.page-hero`, `.page-hero__inner`, `.skeleton-*`, `.skip-to-content`, `@keyframes skeleton-pulse`
+- **pages.css:** reducido de 3280 a ~2935 líneas
+
+### 14.5 Comentarios JSDoc
+
+- Todos los componentes JSX documentados con JSDoc
+- Todos los archivos CSS con sección dividers
+- Archivos de datos con documentación de funciones
+
+### 14.6 Build stats actualizados
+
+| Archivo | Tamaño |
+|---|---|
+| `index.html` | 2.09 kB |
+| `index.css` | 76.62 kB (gzip: 13.62 kB) |
+| `index.js` | 212.65 kB (gzip: 66.43 kB) |
+| Módulos | 90 |
+| Build time | ~0.8-1s |
+
+---
 
 ### 12.4 Distribución de componentes
 

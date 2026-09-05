@@ -54,6 +54,7 @@ const apps = [
   },
 ];
 
+/** Grid de accesos rápidos a aplicaciones institucionales. */
 export default function Apps() {
   return (
     <section className="apps-section">
@@ -76,7 +77,7 @@ export default function Apps() {
             >
               <div className="app-icon">
                 {app.img ? (
-                  <img src={app.img} alt={app.name} className="app-icon__img" />
+                  <img src={app.img} alt={app.name} className="app-icon__img" loading="lazy" width="48" height="48" />
                 ) : app.svg ? (
                   <app.SvgIcon />
                 ) : (

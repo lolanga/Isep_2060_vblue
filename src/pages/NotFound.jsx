@@ -7,8 +7,10 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
+/** Página 404 — ruta no encontrada. */
 export default function NotFound() {
   return (
+<<<<<<< HEAD
     <main style={{
       paddingTop: "var(--navbar-height)",
       minHeight: "100vh",
@@ -21,31 +23,24 @@ export default function NotFound() {
     }}>
       <SEO title="Página no encontrada" />
       <span className="material-symbols-outlined" style={{ fontSize: "5rem", color: "#cbd5e1", marginBottom: "1rem" }}>
+=======
+    <main className="not-found">
+      <span className="material-symbols-outlined not-found__icon">
+>>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
         search_off
       </span>
-      <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 800, color: "var(--primary)", marginBottom: "0.5rem" }}>
+      <h1 className="not-found__code">
         404
       </h1>
-      <h2 style={{ fontSize: "1.3rem", fontWeight: 600, color: "var(--slate-700)", marginBottom: "0.5rem" }}>
+      <h2 className="not-found__title">
         Página no encontrada
       </h2>
-      <p style={{ color: "#64748b", maxWidth: "400px", marginBottom: "2rem", lineHeight: 1.6 }}>
+      <p className="not-found__text">
         La página que buscás no existe o fue movida a otra ubicación.
       </p>
       <Link
         to="/"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: "0.5rem",
-          padding: "0.85rem 2rem",
-          borderRadius: "0.6rem",
-          background: "var(--gradient-primary)",
-          color: "#fff",
-          fontSize: "1rem",
-          fontWeight: 700,
-          textDecoration: "none",
-        }}
+        className="not-found__link btn-primary"
       >
         <span className="material-symbols-outlined">home</span>
         Volver al inicio

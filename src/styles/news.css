@@ -33,6 +33,14 @@
   gap: 2rem;
 }
 
+.featured-news-link {
+  text-decoration: none;
+}
+
+.sidebar-news-link {
+  text-decoration: none;
+}
+
 @media (min-width: 1024px) {
   .news-grid {
     grid-template-columns: repeat(12, 1fr);

@@ -14,6 +14,10 @@ import { cursos, escuelas } from "../../data/institucional";
 
 const MI_ISEP = "https://mi.isepsantafe.edu.ar";
 
+/**
+ * Badge de estado del curso (actual, próximo, finalizado).
+ * @param {"actual"|"proximo"|"finalizado"} estado
+ */
 function EstadoBadge({ estado }) {
   const map = {
     actual: "Actual",
@@ -23,6 +27,7 @@ function EstadoBadge({ estado }) {
   return <span className={`curso-estado curso-estado--${estado}`}>{map[estado]}</span>;
 }
 
+/** Página de cursos con filtros por escuela, tipo y estado, y acordeón expandible. */
 export default function Cursos() {
   const [filtroEscuela, setFiltroEscuela] = useState("todas");
   const [filtroTipo, setFiltroTipo] = useState("todos");
@@ -51,8 +56,12 @@ export default function Cursos() {
   ];
 
   return (
+<<<<<<< HEAD
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
       <SEO title="Cursos" description="Cursos de capacitación del ISeP Santa Fe" />
+=======
+    <main className="cursos-main">
+>>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Formación</span>
@@ -124,7 +133,7 @@ export default function Cursos() {
                           <span className="curso-acc__nombre">{curso.nombre}</span>
                           <div className="curso-acc__badges">
                             <EstadoBadge estado={curso.estado} />
-                            <span className="curso-estado curso-estado--proximo" style={{ backgroundColor: "rgba(34,123,209,0.08)" }}>
+                            <span className={`curso-estado curso-estado--${curso.estado} cursos-tipo-badge`}>
                               {curso.tipo}
                             </span>
                           </div>
@@ -134,12 +143,12 @@ export default function Cursos() {
 
                       <div className="curso-acc__body">
                         <div className="curso-acc__content">
-                          <p style={{ color: "var(--slate-600)" }}>{curso.informacion}</p>
+                          <p className="cursos-info-text">{curso.informacion}</p>
                           <p className="curso-acc__periodo">
                             <span className="material-symbols-outlined">calendar_today</span>
                             {curso.periodo}
                           </p>
-                          <p style={{ fontSize: "0.85rem", color: "var(--slate-500)", marginBottom: "1rem" }}>
+                          <p className="cursos-escuela-text">
                             Escuela: {escuelaNombre(curso.escuela)}
                           </p>
                           <a className="btn-cta" href={MI_ISEP} target="_blank" rel="noreferrer">
@@ -157,13 +166,13 @@ export default function Cursos() {
         })}
 
         {filtrados.length === 0 && (
-          <p style={{ textAlign: "center", color: "var(--slate-500)", padding: "3rem 0" }}>
+          <p className="cursos-empty">
             No hay cursos que coincidan con los filtros seleccionados.
           </p>
         )}
 
-        <div style={{ textAlign: "center", marginTop: "3rem" }}>
-          <Link to="/institucional/oferta-educativa" className="read-more" style={{ justifyContent: "center" }}>
+        <div className="cursos-footer">
+          <Link to="/institucional/oferta-educativa" className="read-more cursos-footer-link">
             Volver a la oferta académica
             <span className="material-symbols-outlined">arrow_forward</span>
           </Link>

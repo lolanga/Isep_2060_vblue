@@ -1,4 +1,10 @@
-// Página principal (Home)
+/**
+ * Home.jsx — Página principal del sitio ISeP
+ *
+ * Ensambla las secciones de landing: Hero, Apps, Contadores,
+ * CTA, News, Schools y Testimonios. Contadores y Testimonios
+ * se ocultan en móvil (hide-mobile).
+ */
 import Hero from "../components/Hero";
 import Apps from "../components/Apps";
 import Contadores from "../components/Contadores";
@@ -8,7 +14,7 @@ import Schools from "../components/Schools";
 import Testimonios from "../components/Testimonios";
 import SEO from "../components/SEO";
 
-// Home ahora contiene landing completa
+/** Página principal — landing completa del ISeP. */
 export default function Home() {
   return (
     <>

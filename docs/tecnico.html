@@ -55,6 +55,7 @@
       <tr><td>Íconos</td><td>Material Symbols, lucide-react, react-icons</td><td>—</td></tr>
       <tr><td>Compilador</td><td>babel-plugin-react-compiler</td><td>^1.0.0</td></tr>
       <tr><td>Lint</td><td>ESLint</td><td>^9.39.4</td></tr>
+      <tr><td>Testing</td><td>Vitest + React Testing Library + jsdom</td><td>—</td></tr>
     </table>
 
     <h2>2. Estructura de directorios</h2>
@@ -81,10 +82,11 @@
 │   ├── ShareButton.jsx      # Compartir noticia (Web Share API / clipboard)
 │   └── Placeholder.jsx      # Páginas "Próximamente"
 ├── data/
+│   ├── config.js          # Configuración centralizada (teléfonos, emails, URLs, GA_ID)
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, FAQ
-│   ├── noticias.js          # 11 noticias (compartido)
+│   ├── noticias.js          # 14 noticias (compartido, admite img: null)
 │   ├── normativa.js         # 17 resoluciones (compartido)
-│   └── buscador.js          # 64+ entradas + buscar() + buscarAgrupado()
+│   └── buscador.js          # 48 entradas + buscar() + buscarAgrupado()
 ├── pages/
 │   ├── Home.jsx             # 7 secciones
 │   ├── Noticias.jsx         # Filtro + paginación + links a detalle
@@ -94,7 +96,7 @@
 │   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
 │   ├── Ingreso/             # Convocatorias (contenido real), ProximasConvocatorias,
 │   │                        # Requisitos, Proceso, Faq (12 preguntas)
-│   └── Secretaria/          # Titulos (contenido real), Biblioteca (21 artículos), Cursos
+│   └── Secretaria/          # Titulos (contenido real), Biblioteca (22 artículos), Cursos
 └── styles/
     ├── variables.css        # Design tokens + gradiente
     ├── base.css             # Reset, tipografía, fondo global, .chip
@@ -185,14 +187,14 @@
     </table>
 
     <h3>noticias.js</h3>
-    <p>11 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img, adjuntos, escuelas.</p>
+    <p>14 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img (admite <code>null</code>), adjuntos, escuelas, contenido.</p>
 <div class="note"><strong>Filtrado por <code>escuelas</code>:</strong> en <code>/noticias</code> se muestran todas las noticias sin importar el valor de este campo. Las páginas de escuela filtran automáticamente según las IDs listadas.</div>
 
     <h3>normativa.js</h3>
     <p>17 resoluciones con: id, titulo, tipo, fecha, tamano, url.</p>
 
     <h3>buscador.js</h3>
-    <p>64+ entradas agrupadas por tipo. Funciones: <code>buscar()</code>, <code>buscarAgrupado()</code>.</p>
+    <p>48 entradas agrupadas por tipo. Funciones: <code>buscar()</code>, <code>buscarAgrupado()</code>.</p>
 
     <h2>7. Buscador funcional</h2>
     <h3>SearchBox (<code>src/components/SearchBox.jsx</code>)</h3>
@@ -223,11 +225,12 @@ background-image:
     <h2>10. Build stats</h2>
     <table>
       <tr><th>Archivo</th><th>Tamaño</th></tr>
-      <tr><td><code>index.html</code></td><td>0.72 kB</td></tr>
-      <tr><td><code>index.css</code></td><td>37.58 kB (gzip: 7.45 kB)</td></tr>
-      <tr><td><code>index.js</code></td><td>392.67 kB (gzip: 114.80 kB)</td></tr>
-      <tr><td>Módulos</td><td>86</td></tr>
-      <tr><td>Build time</td><td>~6-10s</td></tr>
+      <tr><td><code>index.html</code></td><td>2.09 kB</td></tr>
+      <tr><td><code>index.css</code></td><td>76.62 kB (gzip: 13.62 kB)</td></tr>
+      <tr><td><code>index.js</code></td><td>212.65 kB (gzip: 66.43 kB)</td></tr>
+      <tr><td>Módulos</td><td>90</td></tr>
+      <tr><td>Lazy chunks</td><td>Rutas bajo demanda (React.lazy)</td></tr>
+      <tr><td>Build time</td><td>~0.8-1s</td></tr>
     </table>
 
     <h2>11. Comandos</h2>
@@ -238,6 +241,7 @@ background-image:
       <tr><td><code>npm run build</code></td><td>Build de producción</td></tr>
       <tr><td><code>npm run preview</code></td><td>Previsualiza el build</td></tr>
       <tr><td><code>npm run lint</code></td><td>Ejecuta ESLint</td></tr>
+      <tr><td><code>npm run test</code></td><td>Ejecuta tests con Vitest</td></tr>
     </table>
 
     <h2>12. Publicación de noticias — Especificación técnica</h2>
@@ -250,7 +254,7 @@ background-image:
   fecha: string;         // "3 DE SEPTIEMBRE, 2026"
   fechaCorta: string;    // "3 SEP"
   excerpt: string;
-  img: string;           // 900×500 px
+  img: string | null;    // URL de imagen o null (placeholder con ícono)
   adjuntos?: { nombre: string; url: string; }[];
   escuelas?: ("policia" | "superior" | "especialidades" | "investigaciones" | "ead")[];
   contenido?: string;
@@ -267,6 +271,7 @@ background-image:
       <li><strong>Opción A (recomendada):</strong> Imagen local en <code>public/img/noticias/</code></li>
       <li><strong>Opción B:</strong> URL externa</li>
       <li><strong>Opción C:</strong> Placeholder: <code>https://picsum.photos/seed/{nombre}/900/500</code></li>
+      <li><strong>Opción D:</strong> Sin imagen: <code>img: null</code> (se muestra placeholder con ícono)</li>
     </ul>
     <p><strong>Dimensiones:</strong> 900×500 px (ratio 16:9). <strong>Formato:</strong> JPG/PNG, &lt;200 KB.</p>
     <h3>Documentos adjuntos</h3>
@@ -290,6 +295,137 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
                                   ├── Contenido
                                   ├── Noticias relacionadas
                                   └── Botón volver</pre>
+    <h2>13. Mejoras de Calidad</h2>
+
+    <h3>13.1 Lazy Loading</h3>
+    <p>Cada ruta se carga bajo demanda con <code>React.lazy()</code> + <code>Suspense</code>. El usuario solo descarga el JS de las páginas que visita, mejorando el tiempo de carga inicial.</p>
+
+    <h3>13.2 Testing</h3>
+    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. 18 tests en 3 archivos:</p>
+    <table>
+      <tr><th>Archivo</th><th>Qué valida</th></tr>
+      <tr><td><code>datos.test.js</code></td><td>Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como <code>null</code></td></tr>
+      <tr><td><code>institucional.test.js</code></td><td>Estructura de escuelas, carreras, cursos y convocatorias</td></tr>
+      <tr><td><code>buscador.test.js</code></td><td>Funcionalidad de búsqueda y resultados agrupados</td></tr>
+    </table>
+    <p><strong>Qué se testea:</strong> la capa de datos (mock data), no los componentes UI. <strong>Por qué:</strong> la integridad de los datos es más crítica que testear componentes React con datos mock. <strong>Qué NO se testea:</strong> renderizado de componentes, interacciones de usuario, routing.</p>
+    <p>Comando: <code>npm run test</code></p>
+
+    <h3>13.3 GitHub Actions</h3>
+    <p>CI automatizado con GitHub Actions que ejecuta en cada push:</p>
+    <ul>
+      <li>Lint (<code>npm run lint</code>)</li>
+      <li>Build (<code>npm run build</code>)</li>
+      <li>Tests (<code>npm run test</code>)</li>
+    </ul>
+
+    <h3>13.4 SEO</h3>
+    <ul>
+      <li><strong>JSON-LD:</strong> Structured data con <code>EducationalOrganization</code>, <code>NewsArticle</code>, <code>BreadcrumbList</code></li>
+      <li><strong>Meta tags dinámicos:</strong> título, descripción e imagen por página (Open Graph)</li>
+      <li><strong>sitemap.xml:</strong> mapa del sitio para motores de búsqueda</li>
+    </ul>
+
+    <h3>13.4.1 Configuración Centralizada</h3>
+    <p>Archivo <code>src/data/config.js</code> que exporta constantes con datos compartidos:</p>
+    <pre>export const TELEFONO_ISR = "+54 342 457-9000";
+export const EMAIL_CONTACTO = "prensaydifusion@isepsantafe.edu.ar";
+export const MI_ISEP_URL = "https://mi.isepsantafe.edu.ar/";
+export const GA_ID = "G-XXXXXXXXXX";  // Placeholder</pre>
+    <ul>
+      <li>Cada constante tiene documentación JSDoc explicando qué es y cómo modificarla.</li>
+      <li><strong>Estado actual:</strong> creado pero no integrado en componentes (valores aún hardcodeados en JSX).</li>
+      <li><strong>Uso previsto:</strong> <code>import { TELEFONO_ISR } from "../data/config.js"</code> en componentes.</li>
+    </ul>
+
+    <h3>13.5 Analytics</h3>
+    <p>Google Analytics 4 (<code>gtag.js</code>):</p>
+    <ul>
+      <li>Carga asíncrona (no bloquea render)</li>
+      <li>Solo en producción (desactivado en dev)</li>
+      <li>Configuración en <code>src/components/Analytics.jsx</code></li>
+      <li><strong>Estado actual:</strong> <code>GA_ID = "G-XXXXXXXXXX"</code> (placeholder). En dev, Analytics retorna <code>null</code>. En prod, gtag.js carga pero no recolecta datos reales.</li>
+      <li><strong>Archivos:</strong> <code>src/components/Analytics.jsx</code>, <code>src/utils/analytics.js</code></li>
+      <li><strong>Para activar:</strong> reemplazar <code>GA_ID</code> en ambos archivos con un Measurement ID real de GA4.</li>
+    </ul>
+
+    <h3>13.6 CSS Architecture</h3>
+    <ul>
+      <li><strong>0 inline styles</strong> en componentes</li>
+      <li><code>pages.css</code> con ~200+ clases reutilizables</li>
+      <li>Separación clara: tokens → base → componentes → páginas → responsive</li>
+    </ul>
+
+    <h3>13.7 Accesibilidad</h3>
+    <ul>
+      <li><strong>SkipToContent:</strong> enlace para saltar al contenido principal</li>
+      <li><strong>focus-visible:</strong> indicadores de foco solo con teclado</li>
+      <li><strong>sr-only:</strong> contenido exclusivo para lectores de pantalla</li>
+    </ul>
+
+    <h3>13.8 Error Handling</h3>
+    <ul>
+      <li><strong>ErrorBoundary global:</strong> captura errores de render y muestra fallback amigable</li>
+      <li><strong>NotFound page:</strong> página 404 para rutas inexistentes</li>
+    </ul>
+
+    <h3>13.9 API Layer</h3>
+    <p><code>src/services/api.js</code>: capa de abstracción mock→backend-ready. Actualmente usa datos mock, preparada para conectar a API real sin cambiar componentes.</p>
+
+    <h2>14. Auditoría y Optimización</h2>
+
+    <h3>14.1 Auditoría de código</h3>
+    <table>
+      <tr><th>Aspecto</th><th>Antes</th><th>Después</th></tr>
+      <tr><td>Inline styles</td><td>523</td><td>0 (29 archivos migrados a CSS)</td></tr>
+      <tr><td>Código muerto eliminado</td><td>—</td><td>analytics.js, api.js, Skeleton.jsx, SEO.jsx</td></tr>
+      <tr><td>Exports no usados eliminados</td><td>—</td><td>NewsArticleLd, BreadcrumbLd</td></tr>
+      <tr><td>Dependencias no usadas eliminadas</td><td>—</td><td>react-icons, lucide-react</td></tr>
+      <tr><td>Bugs corregidos</td><td>—</td><td>Resoluciones.jsx TIPO_ICONS "Plan Estratégico:" (colon extra), Carrera.jsx link a ruta inexistente</td></tr>
+    </table>
+
+    <h3>14.2 Optimización de carga</h3>
+    <table>
+      <tr><th>Aspecto</th><th>Cambio</th></tr>
+      <tr><td>Imágenes</td><td><code>loading="lazy"</code> + <code>width</code>/<code>height</code> en todas las imágenes (prevenir CLS)</td></tr>
+      <tr><td>Fuentes</td><td>Inter optimizado de 7 a 4 pesos (400, 600, 700, 800)</td></tr>
+      <tr><td>Material Symbols</td><td>Agregado <code>display=swap</code> (eliminó FOIT)</td></tr>
+      <tr><td>Font preload</td><td>Preload hint para Inter woff2</td></tr>
+      <tr><td>Lazy search index</td><td>buscador.js construye índice solo en primera llamada</td></tr>
+    </table>
+
+    <h3>14.3 Optimización React</h3>
+    <table>
+      <tr><th>Hook</th><th>Componente</th><th>Descripción</th></tr>
+      <tr><td><code>React.memo</code></td><td>StatCard (Contadores.jsx)</td><td>Evita re-renderizado innecesario</td></tr>
+      <tr><td><code>useMemo</code></td><td>EscuelaTemplate, NoticiaDetalle</td><td>cursos/noticiasEscuela, relacionadas</td></tr>
+      <tr><td><code>useCallback</code></td><td>Testimonios</td><td>siguiente/anterior</td></tr>
+      <tr><td>Hooks rules</td><td>EscuelaTemplate, NoticiaDetalle</td><td>Corregidos hooks condicionales</td></tr>
+    </table>
+
+    <h3>14.4 Limpieza CSS</h3>
+    <ul>
+      <li><strong>Dead CSS classes eliminadas:</strong> ~15 clases nunca usadas en JSX</li>
+      <li><strong>Duplicados eliminados:</strong> <code>.chip</code>, <code>.filtro-btn</code>, <code>.badge</code>, <code>.hero-title</code>, <code>.hero-description</code>, <code>.page-hero</code>, <code>.page-hero__inner</code>, <code>.skeleton-*</code>, <code>.skip-to-content</code>, <code>@keyframes skeleton-pulse</code></li>
+      <li><strong>pages.css:</strong> reducido de 3280 a ~2935 líneas</li>
+    </ul>
+
+    <h3>14.5 Comentarios JSDoc</h3>
+    <ul>
+      <li>Todos los componentes JSX documentados con JSDoc</li>
+      <li>Todos los archivos CSS con sección dividers</li>
+      <li>Archivos de datos con documentación de funciones</li>
+    </ul>
+
+    <h3>14.6 Build stats actualizados</h3>
+    <table>
+      <tr><th>Archivo</th><th>Tamaño</th></tr>
+      <tr><td><code>index.html</code></td><td>2.09 kB</td></tr>
+      <tr><td><code>index.css</code></td><td>76.62 kB (gzip: 13.62 kB)</td></tr>
+      <tr><td><code>index.js</code></td><td>212.65 kB (gzip: 66.43 kB)</td></tr>
+      <tr><td>Módulos</td><td>90</td></tr>
+      <tr><td>Build time</td><td>~0.8-1s</td></tr>
+    </table>
   </main>
 </body>
 </html>

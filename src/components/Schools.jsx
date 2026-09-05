@@ -1,4 +1,10 @@
-// Escuelas (data-driven simple)
+/**
+ * Schools.jsx — Grid de escuelas del Home
+ *
+ * Muestra las cuatro escuelas principales con escudo, nombre y descripción.
+ * Data-driven: el array schools define el contenido.
+ */
+
 import escudoEP from "../assets/escudo_EP.png";
 import escudoES from "../assets/escudo_ES.png";
 import escudoEE from "../assets/escudo_EE.png";
@@ -11,6 +17,7 @@ const schools = [
   { title: "Escuela de Investigaciones", desc: "Entrenamiento técnico y académico para el agrupamiento Ejecución.", escudo: escudoEI },
 ];
 
+/** Grid de las cuatro escuelas principales del ISeP. */
 export default function Schools() {
   return (
     <section className="schools-section">
@@ -24,7 +31,7 @@ export default function Schools() {
           {schools.map((s, i) => (
             <div className="school-card" key={i}>
               <div className="school-icon">
-                <img src={s.escudo} alt={`Escudo ${s.title}`} className="school-icon__img" />
+                <img src={s.escudo} alt={`Escudo ${s.title}`} className="school-icon__img" loading="lazy" width="64" height="64" />
               </div>
 
               <h3>{s.title}</h3>

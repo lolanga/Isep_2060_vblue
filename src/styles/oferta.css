@@ -2,6 +2,7 @@
    OFERTA ACADÉMICA — Vistas dinámicas, cursos, carreras y escuelas
    ============================================= */
 
+/* ── Secciones de oferta ── */
 .oferta-section {
   padding: 4rem 0;
 }
@@ -45,7 +46,7 @@
   color: var(--white);
 }
 
-/* ── Grids genéricos ── */
+/* ── Pestañas de oferta ── */
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr;

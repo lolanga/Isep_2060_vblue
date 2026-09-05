@@ -5,6 +5,7 @@
  * Datos extraídos de isepsantafe.edu.ar/index.php/institucional/autoridades
  */
 
+import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
 import escudoIsep from "../../assets/escudo_ISeP.png";
@@ -85,10 +86,15 @@ const DIRECTORES_ESCUELAS = [
   },
 ];
 
+/** Página de autoridades: autoridades provinciales, concejo, director general y directores de escuelas. */
 export default function Autoridades() {
   return (
+<<<<<<< HEAD
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
       <SEO title="Autoridades" description="Autoridades del Instituto de Seguridad Pública de Santa Fe" />
+=======
+    <main className="autoridades-main">
+>>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Institucional</span>
@@ -101,7 +107,7 @@ export default function Autoridades() {
         </div>
       </section>
 
-      <div className="container-max" style={{ padding: "2rem" }}>
+      <div className="container-max autoridades-content">
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
@@ -112,33 +118,23 @@ export default function Autoridades() {
 
         {/* ── Autoridades superiores ── */}
         <section className="page-section">
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1.25rem" }}>
+          <h2 className="autoridades-heading">
             Autoridades Provinciales
           </h2>
           <div className="grid-3col">
             {AUTORIDADES_SUPERIORES.map((a) => (
               <div
                 key={a.cargo}
-                className="inst-card flex-row"
-                style={{ gap: "0.75rem" }}
+                className="inst-card flex-row autoridades-card"
               >
-                <div style={{
-                  width: "2.5rem",
-                  height: "2.5rem",
-                  borderRadius: "0.5rem",
-                  background: "var(--gradient-primary)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                }}>
-                  <span className="material-symbols-outlined" style={{ color: "#fff", fontSize: "1.25rem" }}>{a.icon}</span>
+                <div className="autoridades-icon-box">
+                  <span className="material-symbols-outlined autoridades-icon-white">{a.icon}</span>
                 </div>
                 <div>
-                  <p style={{ fontSize: "0.78rem", fontWeight: 600, color: "var(--primary)", textTransform: "uppercase", letterSpacing: "0.03em", marginBottom: "0.2rem" }}>
+                  <p className="autoridades-label">
                     {a.cargo}
                   </p>
-                  <p style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--slate-900)", lineHeight: 1.3 }}>
+                  <p className="autoridades-name">
                     {a.nombre}
                   </p>
                 </div>
@@ -148,26 +144,22 @@ export default function Autoridades() {
         </section>
 
         {/* ── Concejo Interinstitucional ── */}
-        <section className="page-section" style={{ marginTop: "3rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1.25rem" }}>
+        <section className="page-section autoridades-section">
+          <h2 className="autoridades-heading">
             Concejo Interinstitucional
           </h2>
-          <div className="inst-card" style={{ overflow: "hidden", padding: 0 }}>
+          <div className="inst-card autoridades-concejo-card">
             {CONCEJO.map((c, i) => (
               <div
                 key={c.nombre}
-                className="flex-row-center"
-                style={{
-                  padding: "1rem 1.25rem",
-                  borderBottom: i < CONCEJO.length - 1 ? "1px solid #eef2f7" : "none",
-                }}
+                className={`flex-row-center autoridades-concejo-row${i < CONCEJO.length - 1 ? "" : ""}`}
               >
-                <span className="material-symbols-outlined" style={{ fontSize: "1.5rem", color: "var(--secondary)", flexShrink: 0 }}>
+                <span className="material-symbols-outlined autoridades-concejo-icon">
                   person
                 </span>
                 <div>
-                  <p style={{ fontWeight: 700, color: "var(--slate-900)", fontSize: "0.95rem", margin: 0 }}>{c.nombre}</p>
-                  <p style={{ fontSize: "0.8rem", color: "#64748b", margin: "0.15rem 0 0" }}>{c.representacion}</p>
+                  <p className="autoridades-concejo-name">{c.nombre}</p>
+                  <p className="autoridades-concejo-rep">{c.representacion}</p>
                 </div>
               </div>
             ))}
@@ -175,37 +167,19 @@ export default function Autoridades() {
         </section>
 
         {/* ── Director General ── */}
-        <section className="page-section" style={{ marginTop: "3rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1.25rem" }}>
+        <section className="page-section autoridades-section">
+          <h2 className="autoridades-heading">
             Dirección General del ISeP
           </h2>
-          <div
-            className="inst-card"
-            style={{
-              borderRadius: "1rem",
-              display: "flex",
-              alignItems: "center",
-              gap: "1.5rem",
-              padding: "1.5rem",
-            }}
-          >
-            <div style={{
-              width: "4rem",
-              height: "4rem",
-              borderRadius: "50%",
-              background: "var(--gradient-primary)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
-            }}>
-              <img src={DIRECTORGENERAL.escudo} alt="Escudo ISeP" style={{ width: "2.5rem", height: "2.5rem", objectFit: "contain" }} />
+          <div className="inst-card autoridades-director-card">
+            <div className="autoridades-avatar">
+              <img src={DIRECTORGENERAL.escudo} alt="Escudo ISeP" className="autoridades-avatar-img" />
             </div>
             <div>
-              <p style={{ fontSize: "0.78rem", fontWeight: 600, color: "var(--primary)", textTransform: "uppercase", letterSpacing: "0.03em", marginBottom: "0.2rem" }}>
+              <p className="autoridades-label">
                 {DIRECTORGENERAL.cargo}
               </p>
-              <p style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--slate-900)" }}>
+              <p className="autoridades-director-name">
                 {DIRECTORGENERAL.nombre}
               </p>
             </div>
@@ -213,39 +187,27 @@ export default function Autoridades() {
         </section>
 
         {/* ── Directores de Escuelas ── */}
-        <section className="page-section" style={{ marginTop: "3rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1.25rem" }}>
+        <section className="page-section autoridades-section">
+          <h2 className="autoridades-heading">
             Directores de Escuelas
           </h2>
           <div className="grid-3col">
             {DIRECTORES_ESCUELAS.map((d) => (
-              <a
+              <Link
                 key={d.escuela}
-                href={d.href}
-                className="inst-card flex-row-center"
-                style={{
-                  textDecoration: "none",
-                  gap: "1rem",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = "0 4px 12px rgba(15,23,42,0.1)";
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "0 1px 3px rgba(15,23,42,0.06)";
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
+                to={d.href}
+                className="inst-card flex-row-center autoridades-school-link"
               >
-                <img src={d.escudo} alt={`Escudo ${d.escuela}`} style={{ width: "3rem", height: "3rem", objectFit: "contain", flexShrink: 0 }} />
+                <img src={d.escudo} alt={`Escudo ${d.escuela}`} className="autoridades-school-img" />
                 <div>
-                  <p style={{ fontSize: "0.78rem", fontWeight: 600, color: "var(--primary)", textTransform: "uppercase", letterSpacing: "0.03em", marginBottom: "0.15rem" }}>
+                  <p className="autoridades-school-label">
                     {d.escuela}
                   </p>
-                  <p style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--slate-900)", lineHeight: 1.3 }}>
+                  <p className="autoridades-school-name">
                     {d.nombre}
                   </p>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </section>

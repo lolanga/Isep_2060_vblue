@@ -34,10 +34,15 @@ const FORMULARIOS = [
   "Declaración Jurada Psicológica",
 ];
 
+/** Página de requisitos de ingreso: condiciones, documentación y formularios. */
 export default function Requisitos() {
   return (
+<<<<<<< HEAD
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
       <SEO title="Requisitos" description="Requisitos para inscripción al ISeP" />
+=======
+    <main className="requisitos-main">
+>>>>>>> b2abd80d2a935bc7c174419e87dadaf8c710b708
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>
@@ -50,7 +55,7 @@ export default function Requisitos() {
         </div>
       </section>
 
-      <div className="container-max" style={{ padding: "2rem" }}>
+      <div className="container-max requisitos-content">
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
@@ -60,18 +65,18 @@ export default function Requisitos() {
         />
 
         {/* ── Requisitos para la inscripción ── */}
-        <section style={{ marginBottom: "2.5rem" }}>
+        <section className="requisitos-section">
           <h2 className="page-section-title">
             Requisitos para la inscripción
           </h2>
-          <div className="inst-card" style={{ padding: "1.5rem" }}>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 320px), 1fr))", gap: "0.75rem" }}>
+          <div className="inst-card requisitos-card">
+            <ul className="requisitos-grid">
               {REQUISITOS.map((r, i) => (
-                <li key={i} className="flex-row" style={{ padding: "0.6rem 0.75rem", borderRadius: "0.5rem", background: "#f8fafc", gap: "0.6rem" }}>
+                <li key={i} className="flex-row requisitos-item">
                   <span className="material-symbols-outlined icon-sm-top">
                     {r.icono}
                   </span>
-                  <span style={{ fontSize: "0.88rem", color: "#334155", lineHeight: 1.5 }}>
+                  <span className="requisitos-item-text">
                     {r.texto}
                   </span>
                 </li>
@@ -81,80 +86,71 @@ export default function Requisitos() {
         </section>
 
         {/* ── Documentación ── */}
-        <section style={{ marginBottom: "2.5rem" }}>
+        <section className="requisitos-section">
           <h2 className="page-section-title">
             Documentación que deberán presentar
           </h2>
           <div className="grid-3col">
             {DOCUMENTACION.map((doc, i) => (
-              <div key={i} className="inst-card flex-row" style={{ gap: "0.75rem" }}>
-                <div style={{
-                  width: "2.5rem",
-                  height: "2.5rem",
-                  borderRadius: "0.5rem",
-                  background: "var(--gradient-primary)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                }}>
-                  <span className="material-symbols-outlined" style={{ color: "#fff", fontSize: "1.25rem" }}>{doc.icono}</span>
+              <div key={i} className="inst-card flex-row requisitos-doc-card">
+                <div className="icon-box">
+                  <span className="material-symbols-outlined requisitos-icon-white">{doc.icono}</span>
                 </div>
                 <div>
-                  <h4 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.25rem" }}>{doc.titulo}</h4>
-                  <p style={{ fontSize: "0.85rem", color: "#64748b", lineHeight: 1.5, margin: 0 }}>{doc.desc}</p>
+                  <h4 className="requisitos-doc-title">{doc.titulo}</h4>
+                  <p className="requisitos-doc-desc">{doc.desc}</p>
                 </div>
               </div>
             ))}
           </div>
-          <p style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "0.75rem", fontStyle: "italic" }}>
+          <p className="requisitos-footnote--sm">
             La documentación será utilizada únicamente para su verificación y posteriormente será devuelta.
             Debe coincidir con la documentación cargada en MI ISEP.
           </p>
         </section>
 
         {/* ── Formularios obligatorios ── */}
-        <section style={{ marginBottom: "2.5rem" }}>
+        <section className="requisitos-section">
           <h2 className="page-section-title">
             Formularios obligatorios
           </h2>
-          <div className="inst-card" style={{ padding: "1.5rem" }}>
-            <p className="page-text" style={{ marginBottom: "1rem" }}>
+          <div className="inst-card requisitos-card">
+            <p className="page-text page-text--mb-sm">
               La inscripción solo será válida cuando completes los cuatro formularios:
             </p>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <ul className="check-list">
               {FORMULARIOS.map((f, i) => (
-                <li key={i} className="flex-row-center" style={{ fontSize: "0.9rem", color: "#475569", marginBottom: "0.5rem" }}>
+                <li key={i} className="flex-row-center check-item check-item--lg check-item--mb">
                   <span className="material-symbols-outlined icon-sm">check_circle</span>
                   {f}
                 </li>
               ))}
             </ul>
-            <p style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "1rem", fontStyle: "italic" }}>
+            <p className="requisitos-footnote--lg">
               Todas las declaraciones tienen carácter excluyente. Deben completarse con datos reales y verificables.
             </p>
           </div>
         </section>
 
         {/* ── Información adicional ── */}
-        <section style={{ marginBottom: "2.5rem" }}>
+        <section className="requisitos-section">
           <div className="grid-3col">
             <div className="inst-card">
-              <h3 className="flex-row-center" style={{ fontSize: "1rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.5rem" }}>
+              <h3 className="flex-row-center requisitos-heading">
                 <span className="material-symbols-outlined icon-primary">cake</span>
                 Edad requerida
               </h3>
-              <p style={{ fontSize: "0.85rem", color: "#475569", lineHeight: 1.5, margin: 0 }}>
+              <p className="requisitos-body-text">
                 Podrán inscribirse quienes tengan entre <strong>18 y 30 años</strong> al <strong>02/02/2027</strong>.
                 No podrán participar quienes tengan menos de 18 años o más de 30 años en esa fecha.
               </p>
             </div>
             <div className="inst-card">
-              <h3 className="flex-row-center" style={{ fontSize: "1rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.5rem" }}>
+              <h3 className="flex-row-center requisitos-heading">
                 <span className="material-symbols-outlined icon-primary">info</span>
                 Información importante
               </h3>
-              <p style={{ fontSize: "0.85rem", color: "#475569", lineHeight: 1.5, margin: 0 }}>
+              <p className="requisitos-body-text">
                 Si tenés dudas médicas, consultá el <strong>Manual de Aptitud Psicofísica</strong> para conocer todas las causales de exclusión del proceso de selección.
               </p>
             </div>
@@ -162,28 +158,22 @@ export default function Requisitos() {
         </section>
 
         {/* ── Consultas ── */}
-        <section style={{ marginBottom: "2rem" }}>
-          <div style={{
-            background: "#f8fafc",
-            borderRadius: "0.75rem",
-            padding: "1.5rem",
-            border: "1px solid #eef2f7",
-            textAlign: "center",
-          }}>
-            <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.5rem" }}>
+        <section className="conv-section--sm">
+          <div className="info-box info-box--center">
+            <h3 className="requisitos-heading">
               ¿Tenés dudas?
             </h3>
-            <p style={{ fontSize: "0.85rem", color: "var(--primary)", fontWeight: 600, margin: 0 }}>
+            <p className="requisitos-email">
               prensaydifusion@isepsantafe.edu.ar
             </p>
           </div>
         </section>
 
         {/* ── CTA ── */}
-        <div style={{ textAlign: "center", marginTop: "2rem" }}>
-          <Link to="/ingreso/convocatorias" className="btn-cta" style={{ fontSize: "0.9rem" }}>
+        <div className="requisitos-cta-wrap">
+          <Link to="/ingreso/convocatorias" className="btn-cta requisitos-cta">
             Ver convocatoria vigente
-            <span className="material-symbols-outlined" style={{ fontSize: "1rem" }}>arrow_forward</span>
+            <span className="material-symbols-outlined requisitos-cta-icon">arrow_forward</span>
           </Link>
         </div>
       </div>
