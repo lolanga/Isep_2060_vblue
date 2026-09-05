@@ -27,8 +27,8 @@ export default function Countdown({ targetDate, label }) {
 
   if (timeLeft.expirado) {
     return (
-      <div style={{ textAlign: "center", margin: "1rem 0" }}>
-        <span style={{ color: "var(--color-end, #17be95)", fontWeight: 700, fontSize: "1rem" }}>
+      <div className="countdown-expired-wrap">
+        <span className="countdown-expired-text">
           ¡Las inscripciones están abiertas!
         </span>
       </div>
@@ -43,28 +43,21 @@ export default function Countdown({ targetDate, label }) {
   ];
 
   return (
-    <div style={{ textAlign: "center", margin: "1.25rem 0" }}>
+    <div className="countdown-wrap">
       {label && (
-        <p style={{ fontSize: "0.8rem", fontWeight: 600, color: "rgba(255,255,255,0.7)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.75rem" }}>
+        <p className="countdown-label">
           {label}
         </p>
       )}
-      <div style={{ display: "flex", justifyContent: "center", gap: "0.75rem" }}>
+      <div className="countdown-blocks">
         {bloques.map((b) => (
-          <div key={b.etiqueta} style={{ textAlign: "center" }}>
-            <div style={{
-              background: "rgba(255,255,255,0.15)",
-              backdropFilter: "blur(4px)",
-              borderRadius: "0.75rem",
-              padding: "0.6rem 0.9rem",
-              minWidth: "3.5rem",
-              border: "1px solid rgba(255,255,255,0.2)",
-            }}>
-              <span style={{ fontSize: "1.75rem", fontWeight: 800, color: "#fff", lineHeight: 1, display: "block", fontVariantNumeric: "tabular-nums" }}>
+          <div key={b.etiqueta} className="countdown-block-item">
+            <div className="countdown-block-inner">
+              <span className="countdown-block-num">
                 {String(b.valor).padStart(2, "0")}
               </span>
             </div>
-            <span style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.6)", marginTop: "0.3rem", display: "block", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+            <span className="countdown-block-label">
               {b.etiqueta}
             </span>
           </div>

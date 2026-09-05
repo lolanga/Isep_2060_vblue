@@ -32,7 +32,7 @@ export default function EscuelaTemplate({ escuelaId }) {
     .slice(0, 3);
 
   return (
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+    <main className="page-main">
       {/* Logo + presentación */}
       <section className="escuela-hero">
         <div className="escuela-hero__inner">
@@ -89,17 +89,17 @@ export default function EscuelaTemplate({ escuelaId }) {
               <ul className="escuela-list">
                 {carreras.map((c) => (
                   <li key={c.id}>
-                    <Link to="/institucional/carreras" style={{ color: "var(--color-start)" }}>
+                    <Link to="/institucional/carreras" className="escuela-link">
                       {c.nombre}
                     </Link>
-                    <p style={{ fontSize: "0.85rem", color: "var(--slate-500)", marginTop: "0.25rem" }}>
+                    <p className="escuela-carerra-meta">
                       {c.modalidad} · {c.duracion}
                     </p>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p style={{ color: "var(--slate-500)" }}>
+              <p className="escuela-empty">
                 Esta escuela define sus carreras según convocatoria. Consultá la oferta académica.
               </p>
             )}
@@ -119,7 +119,7 @@ export default function EscuelaTemplate({ escuelaId }) {
             <div className="grid-2">
               {cursos.map((curso) => (
                 <div className="card" key={curso.id}>
-                  <h3 className="card__title" style={{ fontSize: "1.1rem" }}>{curso.nombre}</h3>
+                  <h3 className="card__title escuela-card-title">{curso.nombre}</h3>
                   <p className="card__desc">{curso.informacion}</p>
                   <div className="card__meta">
                     <span className="card__chip" data-type="tipo">
@@ -127,10 +127,10 @@ export default function EscuelaTemplate({ escuelaId }) {
                       {curso.tipo}
                     </span>
                   </div>
-                  <p style={{ fontSize: "0.85rem", color: "var(--slate-500)" }}>
+                  <p className="escuela-periodo">
                     Período: {curso.periodo}
                   </p>
-                  <a className="btn-cta" href={MI_ISEP} target="_blank" rel="noreferrer" style={{ alignSelf: "flex-start", fontSize: "0.85rem", padding: "0.75rem 1.5rem" }}>
+                  <a className="btn-cta escuela-btn-cta" href={MI_ISEP} target="_blank" rel="noreferrer">
                     Acceso a Mi ISeP
                     <span className="material-symbols-outlined">arrow_forward</span>
                   </a>
@@ -138,7 +138,7 @@ export default function EscuelaTemplate({ escuelaId }) {
               ))}
             </div>
           ) : (
-            <p style={{ color: "var(--slate-500)" }}>
+            <p className="escuela-empty">
               No hay cursos vigentes por el momento para esta escuela.
             </p>
           )}
@@ -158,65 +158,42 @@ export default function EscuelaTemplate({ escuelaId }) {
                 <Link
                   key={n.id}
                   to={`/noticias/${n.id}`}
-                  className="card"
-                  style={{ textDecoration: "none", overflow: "hidden", padding: "0" }}
+                  className="card escuela-news-card"
                 >
-                  <div style={{ position: "relative", height: "140px", overflow: "hidden" }}>
+                  <div className="escuela-news-img-wrap">
                     <img
                       src={n.img}
                       alt={n.titulo}
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      className="escuela-news-img"
                       onError={(e) => { e.target.style.background = "var(--primary-light)"; e.target.style.display = "block"; }}
                     />
-                    <span style={{
-                      position: "absolute", top: "0.5rem", left: "0.5rem",
-                      background: "var(--primary)", color: "#fff",
-                      padding: "0.15rem 0.5rem", borderRadius: "1rem",
-                      fontSize: "0.65rem", fontWeight: 700, textTransform: "uppercase",
-                      zIndex: 2
-                    }}>
+                    <span className="escuela-news-badge">
                       {n.categoria}
                     </span>
                     {n.adjuntos && n.adjuntos.length > 0 && (
-                      <span style={{
-                        position: "absolute", top: "0.5rem", right: "0.5rem",
-                        background: "rgba(255,255,255,0.9)",
-                        borderRadius: "50%",
-                        width: "24px", height: "24px",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        boxShadow: "0 1px 4px rgba(0,0,0,0.15)"
-                      }}>
-                        <span className="material-symbols-outlined" style={{ fontSize: "14px", color: "var(--primary)" }}>attach_file</span>
+                      <span className="escuela-news-attach">
+                        <span className="material-symbols-outlined escuela-news-attach-icon">attach_file</span>
                       </span>
                     )}
                   </div>
-                  <div style={{ padding: "1rem" }}>
-                    <h3 className="card__title" style={{ fontSize: "0.9rem", marginBottom: "0.4rem", lineHeight: 1.3 }}>{n.titulo}</h3>
-                    <p className="card__desc" style={{ fontSize: "0.8rem", marginBottom: "0.4rem", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{n.excerpt}</p>
-                    <span style={{ fontSize: "0.72rem", color: "var(--slate-400)" }}>{n.fechaCorta}</span>
+                  <div className="escuela-news-body">
+                    <h3 className="card__title escuela-news-title">{n.titulo}</h3>
+                    <p className="card__desc escuela-news-excerpt">{n.excerpt}</p>
+                    <span className="escuela-news-date">{n.fechaCorta}</span>
                   </div>
                 </Link>
               ))}
             </div>
           ) : (
-            <p style={{ color: "var(--slate-500)" }}>
+            <p className="escuela-empty">
               No hay noticias publicadas para esta escuela.
             </p>
           )}
           {noticiasEscuela.length > 0 && (
-            <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
-              <Link to="/noticias" style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                fontSize: "0.9rem",
-                fontWeight: 600,
-                color: "var(--primary)",
-                textDecoration: "none",
-                transition: "color 0.2s"
-              }}>
+            <div className="escuela-news-more">
+              <Link to="/noticias" className="escuela-news-link">
                 Ver todas las noticias
-                <span className="material-symbols-outlined" style={{ fontSize: "1rem" }}>arrow_forward</span>
+                <span className="material-symbols-outlined escuela-news-link-icon">arrow_forward</span>
               </Link>
             </div>
           )}

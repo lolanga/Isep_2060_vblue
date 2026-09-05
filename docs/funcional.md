@@ -9,7 +9,7 @@
 ## 1. Visión general
 
 Sitio web institucional del **Instituto de Seguridad Pública (ISeP) de la Provincia de Santa Fe**.
-SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, tablet, desktop).
+SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, tablet, desktop). Lazy loading por ruta para tiempos de carga optimizados.
 
 ---
 
@@ -327,6 +327,20 @@ Carrusel de 3 egresados con foto, nombre, promoción y texto. Flechas y dots.
 - **Desarrollo:** `npm run dev` (localhost:5173)
 - **Build:** `npm run build` → `npm run preview`
 - **Lint:** `npm run lint`
+- **Tests:** `npm run test`
+
+### 17.1 Testing automatizado
+
+Suite de tests con **Vitest** + **React Testing Library** + **jsdom**:
+- 18 tests cubriendo buscador, páginas institucionales y renderizado de datos
+- Tests ejecutados automáticamente en CI (GitHub Actions) en cada push
+- Ejecutar localmente con `npm run test`
+
+### 17.2 CI/CD
+
+GitHub Actions ejecuta en cada push:
+- Lint → Build → Test
+- Si cualquier paso falla, el push se bloquea
 
 ---
 

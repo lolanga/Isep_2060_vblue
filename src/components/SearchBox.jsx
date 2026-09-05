@@ -137,10 +137,10 @@ export default function SearchBox({ onClose }) {
             return (
               <div key={tipo} className="search-group">
                 <div className="search-group__header">
-                  <span className="material-symbols-outlined" style={{ fontSize: "0.85rem", color: cfg.color }}>
+                  <span className="material-symbols-outlined search-group__header-icon" style={{ "--group-color": cfg.color }}>
                     {cfg.icon}
                   </span>
-                  <span className="search-group__label" style={{ color: cfg.color }}>
+                  <span className="search-group__label" style={{ "--group-color": cfg.color }}>
                     {tipo}{items.length > 1 ? "s" : ""}
                   </span>
                 </div>
@@ -169,25 +169,18 @@ export default function SearchBox({ onClose }) {
 
       {hayQuery && !hayResultados && (
         <div className="search-results search-results--empty">
-          <span className="material-symbols-outlined" style={{ fontSize: "2rem", color: "#cbd5e1", display: "block", marginBottom: "0.5rem" }}>
+          <span className="material-symbols-outlined search-empty__icon">
             search_off
           </span>
           <p>No se encontraron resultados para "<strong>{query}</strong>"</p>
-          <p style={{ fontSize: "0.75rem", color: "#94a3b8", marginTop: "0.25rem" }}>
+          <p className="search-empty__hint">
             Intentá con otros términos: escuelas, carreras, noticias, normativa...
           </p>
         </div>
       )}
 
       {hayQuery && hayResultados && (
-        <div style={{
-          padding: "0.5rem 1rem",
-          borderTop: "1px solid #eef2f7",
-          fontSize: "0.7rem",
-          color: "#94a3b8",
-          display: "flex",
-          justifyContent: "space-between",
-        }}>
+        <div className="search-footer">
           <span>{flatResults.length} resultado{flatResults.length !== 1 ? "s" : ""}</span>
           <span>↑↓ navegar · Enter seleccionar · Esc cerrar</span>
         </div>

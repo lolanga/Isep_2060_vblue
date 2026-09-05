@@ -10,7 +10,7 @@ export default function ProximasConvocatorias() {
   const proximas = convocatorias.filter((c) => c.estado === "proxima");
 
   return (
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+    <main className="page-main">
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>
@@ -23,13 +23,13 @@ export default function ProximasConvocatorias() {
         </div>
       </section>
 
-      <div className="container-max oferta-section" style={{ padding: "2rem" }}>
+      <div className="container-max oferta-section proximas-section">
         <div className="grid-2">
           {proximas.map((cv) => {
             const escuela = escuelaPorId(cv.escuela);
             return (
               <div className="card" key={cv.id}>
-                <h3 className="card__title" style={{ fontSize: "1.1rem" }}>{cv.nombre}</h3>
+                <h3 className="card__title proximas-card-title">{cv.nombre}</h3>
                 <p className="card__desc">{cv.descripcion}</p>
                 <div className="card__meta">
                   <span className="card__chip" data-type="estado">
@@ -51,13 +51,13 @@ export default function ProximasConvocatorias() {
         </div>
 
         {proximas.length === 0 && (
-          <p style={{ textAlign: "center", color: "var(--slate-500)", padding: "3rem 0" }}>
+          <p className="proximas-empty">
             No hay convocatorias anunciadas por el momento.
           </p>
         )}
 
-        <div style={{ textAlign: "center", marginTop: "2rem" }}>
-          <Link to="/ingreso/convocatorias" className="read-more" style={{ justifyContent: "center" }}>
+        <div className="proximas-cta-wrap">
+          <Link to="/ingreso/convocatorias" className="read-more">
             Ver convocatorias vigentes
             <span className="material-symbols-outlined">arrow_forward</span>
           </Link>

@@ -65,7 +65,7 @@ export default function Titulos() {
   };
 
   return (
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+    <main className="page-main">
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Secretaría Académica</span>
@@ -78,7 +78,7 @@ export default function Titulos() {
         </div>
       </section>
 
-      <div className="container-max" style={{ padding: "2rem" }}>
+      <div className="container-max titulos-container">
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
@@ -88,58 +88,33 @@ export default function Titulos() {
         />
 
         {/* ── Consulta de certificados ── */}
-        <section style={{ background: "#f8fafc", borderRadius: "0.75rem", padding: "1.5rem", border: "1px solid #eef2f7", marginBottom: "2.5rem" }}>
-          <h2 style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--primary)", marginBottom: "0.75rem" }}>
+        <section className="info-box info-box--mb">
+          <h2 className="section-title--sm section-title--primary">
             Consulta de Certificados
           </h2>
-          <p style={{ fontSize: "0.9rem", color: "#475569", marginBottom: "1rem" }}>
+          <p className="card-subtitle">
             ISeP Provincia de Santa Fe
           </p>
-          <form onSubmit={handleConsulta} style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
+          <form onSubmit={handleConsulta} className="form-row">
             <input
               type="text"
               value={dni}
               onChange={(e) => setDni(e.target.value)}
               placeholder="Ingresá tu número de DNI"
-              style={{
-                flex: "1 1 200px",
-                padding: "0.75rem 1rem",
-                borderRadius: "0.5rem",
-                border: "1px solid #cbd5e1",
-                fontSize: "0.9rem",
-                outline: "none",
-              }}
+              className="form-input"
             />
             <button
               type="submit"
               disabled={consultando}
-              style={{
-                padding: "0.75rem 1.5rem",
-                borderRadius: "0.5rem",
-                background: consultando ? "#94a3b8" : "var(--gradient-primary)",
-                color: "#fff",
-                border: "none",
-                fontWeight: 600,
-                fontSize: "0.9rem",
-                cursor: consultando ? "not-allowed" : "pointer",
-              }}
+              className="btn-submit"
             >
               {consultando ? "Consultando certificados…" : "Consultar"}
             </button>
           </form>
           {resultado && !resultado.encontrado && (
-            <div style={{
-              marginTop: "1rem",
-              padding: "0.75rem 1rem",
-              borderRadius: "0.5rem",
-              background: "rgba(245,158,11,0.1)",
-              border: "1px solid rgba(245,158,11,0.2)",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-            }}>
-              <span className="material-symbols-outlined" style={{ fontSize: "1.1rem", color: "#f59e0b" }}>info</span>
-              <span style={{ fontSize: "0.85rem", color: "#92400e" }}>
+            <div className="result-banner">
+              <span className="material-symbols-outlined result-banner__icon">info</span>
+              <span className="result-banner__text">
                 No se encontró un certificado asociado al DNI <strong>{resultado.dni}</strong>. Verificá que los datos sean correctos o contactate con la sección Títulos y Registros.
               </span>
             </div>
@@ -147,11 +122,11 @@ export default function Titulos() {
         </section>
 
         {/* ── Títulos y Registros ── */}
-        <section style={{ marginBottom: "2.5rem" }}>
-          <h2 style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1rem" }}>
+        <section className="info-box--mb">
+          <h2 className="section-title--sm">
             Títulos y Registros
           </h2>
-          <p className="page-text" style={{ marginBottom: "1.5rem" }}>
+          <p className="page-text page-text--mb">
             La Dirección General con la colaboración del Departamento Tecnología, Desarrollo e Innovación y de la Secretaría Académica,
             en su proceso de innovación constante pone a disposición de sus egresados el <strong>formulario online</strong> para pedidos
             de títulos y certificaciones. En la búsqueda de simplificar y agilizar los procesos hemos creado una manera más simple de
@@ -163,29 +138,16 @@ export default function Titulos() {
             {PASOS.map((paso) => (
               <div
                 key={paso.numero}
-                className="inst-card flex-row"
-                style={{ gap: "1rem" }}
+                className="inst-card flex-row titulos-step-row"
               >
-                <div style={{
-                  width: "2.2rem",
-                  height: "2.2rem",
-                  borderRadius: "50%",
-                  background: "var(--gradient-primary)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                  color: "#fff",
-                  fontWeight: 800,
-                  fontSize: "0.85rem",
-                }}>
+                <div className="step-circle step-circle--sm">
                   {paso.numero}
                 </div>
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.35rem" }}>
+                <div className="card-content">
+                  <h3 className="step-title">
                     Paso {paso.numero}: {paso.titulo}
                   </h3>
-                  <p style={{ fontSize: "0.85rem", color: "#64748b", lineHeight: 1.5, marginBottom: paso.url ? "0.75rem" : 0 }}>
+                  <p className="step-desc">
                     {paso.descripcion}
                   </p>
                   {paso.url && (
@@ -193,18 +155,10 @@ export default function Titulos() {
                       href={paso.url}
                       target="_blank"
                       rel="noreferrer"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "0.3rem",
-                        fontSize: "0.85rem",
-                        fontWeight: 600,
-                        color: "var(--primary)",
-                        textDecoration: "none",
-                      }}
+                      className="verified-link"
                     >
                       {paso.urlLabel}
-                      <span className="material-symbols-outlined" style={{ fontSize: "1rem" }}>open_in_new</span>
+                      <span className="material-symbols-outlined step-link-icon">open_in_new</span>
                     </a>
                   )}
                 </div>
@@ -214,11 +168,11 @@ export default function Titulos() {
         </section>
 
         {/* ── Títulos para retirar ── */}
-        <section style={{ marginBottom: "2.5rem" }}>
-          <h2 style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "0.75rem" }}>
+        <section className="info-box--mb">
+          <h2 className="section-title--sm">
             Títulos de Técnico Superior para retirar
           </h2>
-          <p className="page-text" style={{ marginBottom: "1rem" }}>
+          <p className="page-text page-text--mb">
             Se pone a disposición de quienes hayan solicitado la impresión del título de la <strong>"Tecnicatura Superior"</strong>,
             dictada por la Ex – Escuela de Cadetes de Policía (ECP) y el actual Instituto de Seguridad Pública (I.Se.P.),
             la lista de aquellos que se encuentran para retirar en la sección "Títulos y Registros".
@@ -229,30 +183,19 @@ export default function Titulos() {
                 key={t.titulo}
                 className="inst-card"
               >
-                <h4 style={{ fontSize: "0.9rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.25rem" }}>
+                <h4 className="titulos-card-title">
                   {t.titulo}
                 </h4>
-                <p style={{ fontSize: "0.78rem", color: "#94a3b8", marginBottom: "0.75rem" }}>
+                <p className="titulos-card-updated">
                   {t.actualizado}
                 </p>
                 <a
                   href={t.url}
                   target="_blank"
                   rel="noreferrer"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.3rem",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "0.5rem",
-                    background: "var(--gradient-primary)",
-                    color: "#fff",
-                    fontSize: "0.8rem",
-                    fontWeight: 600,
-                    textDecoration: "none",
-                  }}
+                  className="btn-gradient"
                 >
-                  <span className="material-symbols-outlined" style={{ fontSize: "0.9rem" }}>download</span>
+                  <span className="material-symbols-outlined icon-sm">download</span>
                   Descargar
                 </a>
               </div>
@@ -261,28 +204,28 @@ export default function Titulos() {
         </section>
 
         {/* ── Contacto ── */}
-        <section style={{ background: "#f8fafc", borderRadius: "0.75rem", padding: "1.5rem", border: "1px solid #eef2f7", marginBottom: "2rem" }}>
-          <h2 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--primary)", marginBottom: "0.75rem" }}>
+        <section className="info-box info-box--mb titulos-section-mb">
+          <h2 className="section-title--sm section-title--primary">
             Te ayudamos
           </h2>
-          <p style={{ fontSize: "0.85rem", color: "#475569", marginBottom: "0.5rem" }}>
+          <p className="contact-text">
             Sección Títulos y Registros
           </p>
           <div className="flex-col">
             <div className="flex-row-center">
               <span className="material-symbols-outlined icon-sm">call</span>
-              <span style={{ fontSize: "0.85rem", color: "#475569" }}>0341-4728526</span>
+              <span className="contact-text">0341-4728526</span>
             </div>
             <div className="flex-row-center">
               <span className="material-symbols-outlined icon-sm">mail</span>
-              <span style={{ fontSize: "0.85rem", color: "#475569" }}>titulosisep@isepsantafe.edu.ar</span>
+              <span className="contact-text">titulosisep@isepsantafe.edu.ar</span>
             </div>
           </div>
         </section>
 
         {/* ── Sedes ── */}
         <section>
-          <p className="page-text" style={{ marginBottom: "1rem" }}>
+          <p className="page-text page-text--mb-sm">
             La Dirección General junto a la Secretaría Académica y su área de Títulos y Certificaciones siguen innovando para facilitar gestiones.
             Ahora podés buscar tu título en cualquiera de nuestras sedes:
           </p>
@@ -290,13 +233,12 @@ export default function Titulos() {
             {SEDES.map((s) => (
               <div
                 key={s.nombre}
-                className="inst-card flex-row"
-                style={{ padding: "1rem", gap: "0.75rem" }}
+                className="inst-card flex-row sede-card"
               >
-                <span className="material-symbols-outlined" style={{ fontSize: "1.2rem", color: "var(--primary)", marginTop: "0.1rem" }}>location_on</span>
+                <span className="material-symbols-outlined sede-icon">location_on</span>
                 <div>
-                  <p style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--slate-900)" }}>{s.nombre}</p>
-                  <p style={{ fontSize: "0.8rem", color: "#64748b" }}>{s.direccion}</p>
+                  <p className="sede-name">{s.nombre}</p>
+                  <p className="sede-address">{s.direccion}</p>
                 </div>
               </div>
             ))}

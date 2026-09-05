@@ -5,11 +5,11 @@
  * Muestra pulsaciones animadas mientras se cargan datos.
  */
 
-export function SkeletonLine({ width = "100%", height = "1rem", style = {} }) {
+export function SkeletonLine({ width = "100%", height = "1rem", className = "" }) {
   return (
     <div
-      className="skeleton-line"
-      style={{ width, height, borderRadius: "0.375rem", ...style }}
+      className={`skeleton-line ${className}`.trim()}
+      style={{ width, height }}
       aria-hidden="true"
     />
   );
@@ -19,10 +19,10 @@ export function SkeletonCard() {
   return (
     <div className="skeleton-card" aria-hidden="true">
       <div className="skeleton-img" />
-      <div style={{ padding: "1rem" }}>
+      <div className="skeleton-card__body">
         <SkeletonLine width="40%" height="0.75rem" />
-        <SkeletonLine width="90%" height="1rem" style={{ marginTop: "0.5rem" }} />
-        <SkeletonLine width="70%" height="0.85rem" style={{ marginTop: "0.35rem" }} />
+        <SkeletonLine width="90%" height="1rem" className="skeleton-line--mt-sm" />
+        <SkeletonLine width="70%" height="0.85rem" className="skeleton-line--mt-xs" />
       </div>
     </div>
   );

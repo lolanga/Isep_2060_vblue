@@ -55,6 +55,7 @@
       <tr><td>Íconos</td><td>Material Symbols, lucide-react, react-icons</td><td>—</td></tr>
       <tr><td>Compilador</td><td>babel-plugin-react-compiler</td><td>^1.0.0</td></tr>
       <tr><td>Lint</td><td>ESLint</td><td>^9.39.4</td></tr>
+      <tr><td>Testing</td><td>Vitest + React Testing Library + jsdom</td><td>—</td></tr>
     </table>
 
     <h2>2. Estructura de directorios</h2>
@@ -224,9 +225,10 @@ background-image:
     <table>
       <tr><th>Archivo</th><th>Tamaño</th></tr>
       <tr><td><code>index.html</code></td><td>0.72 kB</td></tr>
-      <tr><td><code>index.css</code></td><td>37.58 kB (gzip: 7.45 kB)</td></tr>
-      <tr><td><code>index.js</code></td><td>392.67 kB (gzip: 114.80 kB)</td></tr>
-      <tr><td>Módulos</td><td>86</td></tr>
+      <tr><td><code>index.css</code></td><td>80.42 kB (gzip: 13.98 kB)</td></tr>
+      <tr><td><code>index.js</code></td><td>212.65 kB (gzip: 66.45 kB)</td></tr>
+      <tr><td>Módulos</td><td>90</td></tr>
+      <tr><td>Lazy chunks</td><td>Rutas bajo demanda (React.lazy)</td></tr>
       <tr><td>Build time</td><td>~6-10s</td></tr>
     </table>
 
@@ -238,6 +240,7 @@ background-image:
       <tr><td><code>npm run build</code></td><td>Build de producción</td></tr>
       <tr><td><code>npm run preview</code></td><td>Previsualiza el build</td></tr>
       <tr><td><code>npm run lint</code></td><td>Ejecuta ESLint</td></tr>
+      <tr><td><code>npm run test</code></td><td>Ejecuta tests con Vitest</td></tr>
     </table>
 
     <h2>12. Publicación de noticias — Especificación técnica</h2>
@@ -290,6 +293,65 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
                                   ├── Contenido
                                   ├── Noticias relacionadas
                                   └── Botón volver</pre>
+    <h2>13. Mejoras de Calidad</h2>
+
+    <h3>13.1 Lazy Loading</h3>
+    <p>Cada ruta se carga bajo demanda con <code>React.lazy()</code> + <code>Suspense</code>. El usuario solo descarga el JS de las páginas que visita, mejorando el tiempo de carga inicial.</p>
+
+    <h3>13.2 Testing</h3>
+    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. 18 tests cubriendo:</p>
+    <ul>
+      <li>Buscador global (SearchBox)</li>
+      <li>Páginas institucionales</li>
+      <li>Renderizado de datos</li>
+    </ul>
+    <p>Comando: <code>npm run test</code></p>
+
+    <h3>13.3 GitHub Actions</h3>
+    <p>CI automatizado con GitHub Actions que ejecuta en cada push:</p>
+    <ul>
+      <li>Lint (<code>npm run lint</code>)</li>
+      <li>Build (<code>npm run build</code>)</li>
+      <li>Tests (<code>npm run test</code>)</li>
+    </ul>
+
+    <h3>13.4 SEO</h3>
+    <ul>
+      <li><strong>JSON-LD:</strong> Structured data con <code>EducationalOrganization</code>, <code>NewsArticle</code>, <code>BreadcrumbList</code></li>
+      <li><strong>Meta tags dinámicos:</strong> título, descripción e imagen por página (Open Graph)</li>
+      <li><strong>sitemap.xml:</strong> mapa del sitio para motores de búsqueda</li>
+    </ul>
+
+    <h3>13.5 Analytics</h3>
+    <p>Google Analytics 4 (<code>gtag.js</code>):</p>
+    <ul>
+      <li>Carga asíncrona (no bloquea render)</li>
+      <li>Solo en producción (desactivado en dev)</li>
+      <li>Configuración en <code>src/components/Analytics.jsx</code></li>
+    </ul>
+
+    <h3>13.6 CSS Architecture</h3>
+    <ul>
+      <li><strong>0 inline styles</strong> en componentes</li>
+      <li><code>pages.css</code> con ~200+ clases reutilizables</li>
+      <li>Separación clara: tokens → base → componentes → páginas → responsive</li>
+    </ul>
+
+    <h3>13.7 Accesibilidad</h3>
+    <ul>
+      <li><strong>SkipToContent:</strong> enlace para saltar al contenido principal</li>
+      <li><strong>focus-visible:</strong> indicadores de foco solo con teclado</li>
+      <li><strong>sr-only:</strong> contenido exclusivo para lectores de pantalla</li>
+    </ul>
+
+    <h3>13.8 Error Handling</h3>
+    <ul>
+      <li><strong>ErrorBoundary global:</strong> captura errores de render y muestra fallback amigable</li>
+      <li><strong>NotFound page:</strong> página 404 para rutas inexistentes</li>
+    </ul>
+
+    <h3>13.9 API Layer</h3>
+    <p><code>src/services/api.js</code>: capa de abstracción mock→backend-ready. Actualmente usa datos mock, preparada para conectar a API real sin cambiar componentes.</p>
   </main>
 </body>
 </html>

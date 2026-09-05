@@ -51,31 +51,14 @@ function StatCard({ stat }) {
   }, []);
 
   return (
-    <div ref={ref} style={{
-      textAlign: "center",
-      padding: "1.5rem 1rem",
-      background: "#fff",
-      borderRadius: "0.75rem",
-      border: "1px solid #eef2f7",
-      boxShadow: "0 1px 3px rgba(15,23,42,0.05)",
-      transition: "transform 0.2s, box-shadow 0.2s",
-    }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "translateY(-3px)";
-        e.currentTarget.style.boxShadow = "0 4px 12px rgba(15,23,42,0.1)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "translateY(0)";
-        e.currentTarget.style.boxShadow = "0 1px 3px rgba(15,23,42,0.05)";
-      }}
-    >
-      <span className="material-symbols-outlined" style={{ fontSize: "2rem", color: stat.color, marginBottom: "0.5rem", display: "block" }}>
+    <div ref={ref} className="contador-card">
+      <span className="material-symbols-outlined contador-card-icon" style={{ color: stat.color }}>
         {stat.icon}
       </span>
-      <span style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontWeight: 800, color: stat.color, lineHeight: 1, display: "block", fontVariantNumeric: "tabular-nums" }}>
+      <span className="contador-card-num" style={{ color: stat.color }}>
         {count.toLocaleString("es-AR")}{stat.suffix}
       </span>
-      <span style={{ fontSize: "0.85rem", color: "#64748b", marginTop: "0.35rem", display: "block" }}>
+      <span className="contador-card-label">
         {stat.label}
       </span>
     </div>
@@ -84,19 +67,15 @@ function StatCard({ stat }) {
 
 export default function Contadores() {
   return (
-    <section style={{ padding: "3.5rem 0", background: "#f8fafc" }}>
-      <div className="container-max" style={{ padding: "0 2rem" }}>
-        <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+    <section className="contadores-section">
+      <div className="container-max contadores-inner">
+        <div className="contadores-header">
           <span className="badge">En números</span>
-          <h2 style={{ fontSize: "clamp(1.3rem, 2.5vw, 1.75rem)", fontWeight: 800, color: "var(--slate-900)", marginTop: "0.5rem" }}>
-            El ISeP en <span style={{ color: "var(--primary)" }}>cifras</span>
+          <h2 className="contadores-title">
+            El ISeP en <span className="text-primary">cifras</span>
           </h2>
         </div>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))",
-          gap: "1.25rem",
-        }}>
+        <div className="contadores-grid">
           {STATS.map((s) => (
             <StatCard key={s.label} stat={s} />
           ))}

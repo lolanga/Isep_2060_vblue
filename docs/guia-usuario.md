@@ -234,3 +234,8 @@ Footer: identidad, contacto, sedes y créditos de desarrollo.
 | Quiero descargar una resolución | Institucional → Resoluciones, filtrá y descendá |
 | Una noticia no se abre | Verificá que la URL sea `/noticias/{id}` con id válido |
 | No hay noticias en una categoría | La categoría puede no tener publicaciones aún |
+| Quiero ejecutar los tests | Ejecutá `npm run test` en la terminal |
+| Quiero agregar un test nuevo | Creá un archivo `*.test.jsx` en la carpeta del componente, usá `render()` y `screen` de React Testing Library |
+| Cómo funciona la integración continua | GitHub Actions ejecuta lint + build + test en cada push al repositorio |
+| Quiero cambiar el tracking de Analytics | Editá `src/components/Analytics.jsx` y cambiá el valor de `GA_ID` |
+| Quiero agregar JSON-LD a una página | Agregá un `<script type="application/ld+json">` con el objeto structured data en el componente de la página |

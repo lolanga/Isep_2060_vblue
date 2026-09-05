@@ -43,7 +43,7 @@ const REDES = [
 
 export default function SedesContacto() {
   return (
-    <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+    <main className="page-main">
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Institucional</span>
@@ -56,7 +56,7 @@ export default function SedesContacto() {
         </div>
       </section>
 
-      <div className="container-max" style={{ padding: "2rem" }}>
+      <div className="container-max sedes-content">
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
@@ -66,42 +66,40 @@ export default function SedesContacto() {
         />
 
         {/* ── Sedes ── */}
-        <div className="grid-2col" style={{ gap: "2rem", marginTop: "2rem" }}>
+        <div className="grid-2col sedes-grid">
           {SEDES.map((sede) => (
             <div
               key={sede.id}
-              className="inst-card"
-              style={{ borderRadius: "1rem", overflow: "hidden" }}
+              className="inst-card sedes-card"
             >
-              <div style={{ padding: "1.5rem" }}>
-                <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--primary)", marginBottom: "1rem" }}>
+              <div className="sedes-card__body">
+                <h3 className="sedes-card__title">
                   {sede.nombre}
                 </h3>
-                <div className="flex-col" style={{ gap: "0.75rem" }}>
+                <div className="flex-col sedes-flex-col-gap">
                   <div className="flex-row">
                     <span className="material-symbols-outlined icon-sm-top">location_on</span>
-                    <span style={{ color: "#475569", fontSize: "0.9rem" }}>{sede.direccion}</span>
+                    <span className="sedes-detail-text">{sede.direccion}</span>
                   </div>
                   <div className="flex-row-center">
                     <span className="material-symbols-outlined icon-sm">call</span>
-                    <span style={{ color: "#475569", fontSize: "0.9rem" }}>{sede.telefono}</span>
+                    <span className="sedes-detail-text">{sede.telefono}</span>
                   </div>
                   <div className="flex-row-center">
                     <span className="material-symbols-outlined icon-sm">mail</span>
-                    <span style={{ color: "#475569", fontSize: "0.9rem" }}>{sede.email}</span>
+                    <span className="sedes-detail-text">{sede.email}</span>
                   </div>
                   <div className="flex-row-center">
                     <span className="material-symbols-outlined icon-sm">schedule</span>
-                    <span style={{ color: "#475569", fontSize: "0.9rem" }}>{sede.horario}</span>
+                    <span className="sedes-detail-text">{sede.horario}</span>
                   </div>
                 </div>
               </div>
-              <div style={{ height: "220px", borderTop: "1px solid #eef2f7" }}>
+              <div className="sedes-map">
                 <iframe
                   src={sede.mapa}
                   width="100%"
                   height="100%"
-                  style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -113,34 +111,24 @@ export default function SedesContacto() {
         </div>
 
         {/* ── Canales de contacto ── */}
-        <section className="page-section" style={{ marginTop: "3rem" }}>
-          <h2 className="page-section-title" style={{ marginBottom: "1.25rem" }}>
+        <section className="page-section sedes-section-mb">
+          <h2 className="page-section-title sedes-title-mb">
             Canales de contacto
           </h2>
           <div className="grid-3col">
             {CANALES.map((c) => (
               <div
                 key={c.label}
-                className="inst-card flex-row-center"
-                style={{ gap: "0.75rem" }}
+                className="inst-card flex-row-center sedes-channel-card"
               >
-                <div style={{
-                  width: "2.5rem",
-                  height: "2.5rem",
-                  borderRadius: "0.5rem",
-                  background: "var(--gradient-primary)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                }}>
-                  <span className="material-symbols-outlined" style={{ color: "#fff", fontSize: "1.25rem" }}>{c.icon}</span>
+                <div className="icon-box">
+                  <span className="material-symbols-outlined icon-primary">{c.icon}</span>
                 </div>
                 <div>
-                  <p style={{ fontSize: "0.78rem", fontWeight: 600, color: "var(--primary)", textTransform: "uppercase", letterSpacing: "0.03em", marginBottom: "0.1rem" }}>
+                  <p className="sedes-channel-label">
                     {c.label}
                   </p>
-                  <p style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--slate-900)" }}>{c.valor}</p>
+                  <p className="sedes-channel-value">{c.valor}</p>
                 </div>
               </div>
             ))}
@@ -149,35 +137,19 @@ export default function SedesContacto() {
 
         {/* ── Redes sociales ── */}
         <section className="page-section">
-          <h2 className="page-section-title" style={{ marginBottom: "1.25rem" }}>
+          <h2 className="page-section-title sedes-title-mb">
             Seguinos en nuestras redes
           </h2>
-          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+          <div className="sedes-redes-row">
             {REDES.map((r) => (
               <a
                 key={r.nombre}
                 href={r.url}
                 target="_blank"
                 rel="noreferrer"
-                className="inst-card flex-row-center"
-                style={{
-                  gap: "0.6rem",
-                  padding: "0.75rem 1.25rem",
-                  color: "var(--slate-900)",
-                  textDecoration: "none",
-                  fontSize: "0.9rem",
-                  fontWeight: 600,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = "0 4px 12px rgba(15,23,42,0.1)";
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "none";
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
+                className="inst-card flex-row-center sedes-redes-link"
               >
-                <span style={{ color: "var(--primary)", display: "flex" }}>{r.svg}</span>
+                <span className="sedes-redes-icon">{r.svg}</span>
                 {r.nombre}
               </a>
             ))}
@@ -185,18 +157,11 @@ export default function SedesContacto() {
         </section>
 
         {/* ── CTA ── */}
-        <div style={{
-          marginTop: "3rem",
-          background: "#f8fafc",
-          borderRadius: "0.75rem",
-          padding: "2rem",
-          border: "1px solid #eef2f7",
-          textAlign: "center",
-        }}>
-          <h3 style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--primary)", marginBottom: "0.5rem" }}>
+        <div className="sedes-cta-box">
+          <h3 className="sedes-cta-title">
             ¿Tenés consultas?
           </h3>
-          <p style={{ color: "#64748b", maxWidth: "500px", margin: "0 auto", lineHeight: 1.6, fontSize: "0.9rem" }}>
+          <p className="sedes-cta-text">
             Comunicate con nosotros a través de los canales indicados o acercate a cualquiera de nuestras sedes.
             Estamos para ayudarte.
           </p>

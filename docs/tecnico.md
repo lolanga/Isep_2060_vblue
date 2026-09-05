@@ -15,6 +15,7 @@
 | Íconos | Google Material Symbols, lucide-react ^1.7.0, react-icons ^5.6.0 | — |
 | Compilador | babel-plugin-react-compiler | ^1.0.0 |
 | Lint | ESLint ^9.39.4 | — |
+| Testing | Vitest + React Testing Library + jsdom | — |
 
 ---
 
@@ -225,9 +226,10 @@ background-image:
 | Archivo | Tamaño |
 |---|---|
 | `index.html` | 0.72 kB |
-| `index.css` | 37.23 kB (gzip: 7.45 kB) |
-| `index.js` | 445 kB (gzip: 114.80 kB) |
-| Módulos | 86 |
+| `index.css` | 80.42 kB (gzip: 13.98 kB) |
+| `index.js` | 212.65 kB (gzip: 66.45 kB) |
+| Módulos | 90 |
+| Lazy chunks | Rutas bajo demanda (React.lazy) |
 | Build time | ~6-10s |
 
 ---
@@ -241,6 +243,7 @@ background-image:
 | `npm run build` | Build de producción |
 | `npm run preview` | Previsualiza el build |
 | `npm run lint` | Ejecuta ESLint |
+| `npm run test` | Ejecuta tests con Vitest |
 
 ---
 
@@ -288,6 +291,55 @@ interface Noticia {
 - **Carpeta:** `public/docs/`
 - **Formatos:** PDF, Excel, JPG, PNG, etc.
 - **Render:** `NoticiaDetalle.jsx` muestra botones de descarga
+
+## 13. Mejoras de Calidad
+
+### 13.1 Lazy Loading
+Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. El usuario solo descarga el JS de las páginas que visita, mejorando el tiempo de carga inicial.
+
+### 13.2 Testing
+Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. 18 tests cubriendo:
+- Buscador global (SearchBox)
+- Páginas institucionales
+- Renderizado de datos
+
+Comando: `npm run test`
+
+### 13.3 GitHub Actions
+CI automatizado con GitHub Actions que ejecuta en cada push:
+- Lint (`npm run lint`)
+- Build (`npm run build`)
+- Tests (`npm run test`)
+
+### 13.4 SEO
+- **JSON-LD:** Structured data con `EducationalOrganization`, `NewsArticle`, `BreadcrumbList`
+- **Meta tags dinámicos:** título, descripción e imagen por página (Open Graph)
+- **sitemap.xml:** mapa del sitio para motores de búsqueda
+
+### 13.5 Analytics
+Google Analytics 4 (`gtag.js`):
+- Carga asíncrona (no bloquea render)
+- Solo en producción (desactivado en dev)
+- Configuración en `src/components/Analytics.jsx`
+
+### 13.6 CSS Architecture
+- **0 inline styles** en componentes
+- `pages.css` con ~200+ clases reutilizables
+- Separación clara: tokens → base → componentes → páginas → responsive
+
+### 13.7 Accesibilidad
+- **SkipToContent:** enlace para saltar al contenido principal
+- **focus-visible:** indicadores de foco solo con teclado
+- **sr-only:** contenido exclusivo para lectores de pantalla
+
+### 13.8 Error Handling
+- **ErrorBoundary global:** captura errores de render y muestra fallback amigable
+- **NotFound page:** página 404 para rutas inexistentes
+
+### 13.9 API Layer
+`src/services/api.js`: capa de abstracción mock→backend-ready. Actualmente usa datos mock, preparada para conectar a API real sin cambiar componentes.
+
+---
 
 ### 12.4 Distribución de componentes
 

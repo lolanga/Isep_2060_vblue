@@ -28,21 +28,9 @@ export default function ShareButton({ noticia }) {
       type="button"
       onClick={handleShare}
       title="Compartir noticia"
-      style={{
-        background: "none",
-        border: "none",
-        cursor: "pointer",
-        color: copiado ? "var(--color-end, #17be95)" : "#94a3b8",
-        display: "flex",
-        alignItems: "center",
-        gap: "0.25rem",
-        fontSize: "0.75rem",
-        padding: "0.25rem",
-        borderRadius: "0.25rem",
-        transition: "color 0.2s",
-      }}
+      className={`share-btn${copiado ? " share-btn--copied" : ""}`}
     >
-      <span className="material-symbols-outlined" style={{ fontSize: "1rem" }}>
+      <span className="material-symbols-outlined share-btn__icon">
         {copiado ? "check" : "share"}
       </span>
       {copiado ? "¡Copiado!" : ""}

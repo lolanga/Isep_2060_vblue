@@ -53,7 +53,7 @@ export default function Noticias() {
         </div>
       </section>
 
-      <div className="container-max" style={{ padding: "0 2rem" }}>
+      <div className="container-max noticias-breadcrumb-wrap">
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
@@ -62,7 +62,7 @@ export default function Noticias() {
         />
       </div>
 
-      <div className="noticias-filtro-wrap" style={{ padding: "0 2rem" }}>
+      <div className="noticias-filtro-wrap">
         <div className="noticias-filtro container-max">
           {CATEGORIAS.map((cat) => (
             <button
@@ -88,27 +88,14 @@ export default function Noticias() {
               <ShareButton noticia={principal} />
             </div>
 
-            <Link to={`/noticias/${principal.id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/noticias/${principal.id}`} className="noticias-link">
               <article className="np-card">
                 <div className="np-img-wrap">
                   <img src={principal.img} alt={principal.titulo} />
                   <div className="np-img-overlay"></div>
                   {principal.adjuntos && principal.adjuntos.length > 0 && (
-                    <span style={{
-                      position: "absolute",
-                      top: "1rem",
-                      right: "1rem",
-                      background: "rgba(255,255,255,0.9)",
-                      borderRadius: "50%",
-                      width: "36px",
-                      height: "36px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-                      zIndex: 3
-                    }}>
-                      <span className="material-symbols-outlined" style={{ fontSize: "20px", color: "var(--primary)" }}>attach_file</span>
+                    <span className="np-attach-badge">
+                      <span className="material-symbols-outlined np-attach-icon">attach_file</span>
                     </span>
                   )}
                   <div className="np-img-text">
@@ -135,7 +122,7 @@ export default function Noticias() {
 
             <div className="historial-grid">
               {paginadas.map((n) => (
-                <Link key={n.id} to={`/noticias/${n.id}`} style={{ textDecoration: "none" }}>
+                <Link key={n.id} to={`/noticias/${n.id}`} className="noticias-link">
                   <article className="hcard">
                     <div className="hcard-img-wrap">
                       <img src={n.img} alt={n.titulo} />
@@ -144,25 +131,13 @@ export default function Noticias() {
                         {n.categoria.toUpperCase()}
                       </span>
                       {n.adjuntos && n.adjuntos.length > 0 && (
-                        <span style={{
-                          position: "absolute",
-                          top: "0.75rem",
-                          right: "0.75rem",
-                          background: "rgba(255,255,255,0.9)",
-                          borderRadius: "50%",
-                          width: "28px",
-                          height: "28px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.15)"
-                        }}>
-                          <span className="material-symbols-outlined" style={{ fontSize: "16px", color: "var(--primary)" }}>attach_file</span>
+                        <span className="hcard-attach-badge">
+                          <span className="material-symbols-outlined hcard-attach-icon">attach_file</span>
                         </span>
                       )}
                     </div>
                     <div className="hcard-body">
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                      <div className="hcard-header-row">
                         <span className="hcard-fecha">{n.fechaCorta}</span>
                         <ShareButton noticia={n} />
                       </div>
