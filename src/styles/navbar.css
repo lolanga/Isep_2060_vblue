@@ -269,27 +269,56 @@
   z-index: 60;
 }
 
+/* Hamburguesa mobile: solo visible en mobile */
+.hamburger--mobile {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .hamburger {
     display: none;
   }
 }
 
-/* ── Responsive móvil: Mi ISeP siempre visible y compacto ── */
+/* ── Responsive móvil ── */
 @media (max-width: 767px) {
   .navbar-content {
     padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Hamburguesa: a la izquierda */
+  .hamburger--mobile {
+    display: flex;
+    order: 1;
+    margin-right: auto;
+  }
+
+  /* Brand: centrado */
+  .brand {
+    order: 2;
+    flex: 1;
+    justify-content: center;
+  }
+
+  /* Links desktop: ocultos */
+  .nav-links {
+    display: none;
+  }
+
+  /* Acciones: a la derecha */
+  .nav-actions {
+    order: 3;
+    margin-left: auto;
+    gap: 0.5rem;
   }
 
   .btn-isep {
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
     white-space: nowrap;
-  }
-
-  .nav-actions {
-    gap: 0.5rem;
-    margin-left: auto;
   }
 }
 

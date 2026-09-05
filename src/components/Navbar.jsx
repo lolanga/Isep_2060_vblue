@@ -205,6 +205,18 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? " navbar--scrolled" : ""}`}>
       <div className="navbar-content">
 
+        {/* ── HAMBURGUESA MOBILE — solo visible en móvil, a la izquierda ── */}
+        <button
+          type="button"
+          className={`hamburger hamburger--mobile${menuOpen ? " hamburger--open" : ""}`}
+          onClick={(e) => { e.stopPropagation(); setMenuOpen((prev) => !prev); }}
+          aria-label="Abrir menú"
+        >
+          <span className="hamburger__line"></span>
+          <span className="hamburger__line"></span>
+          <span className="hamburger__line"></span>
+        </button>
+
         {/* ── LOGO — siempre visible (desktop y móvil), linkeable al inicio ── */}
         <Link to="/" className="brand brand--desktop" aria-label="ISeP Santa Fe — Inicio">
           <img src={escudoIsep} alt="" className="brand__escudo" />
@@ -256,7 +268,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* ── ACCIONES (Buscador + Mi ISeP + hamburguesa) ── */}
+        {/* ── ACCIONES (Buscador + Mi ISeP) ── */}
         <div className="nav-actions">
           {searchOpen ? (
             <SearchBox onClose={() => setSearchOpen(false)} />
@@ -279,17 +291,6 @@ export default function Navbar() {
           >
             Mi ISeP
           </a>
-
-          <button
-            type="button"
-            className={`hamburger${menuOpen ? " hamburger--open" : ""}`}
-            onClick={(e) => { e.stopPropagation(); setMenuOpen((prev) => !prev); }}
-            aria-label="Abrir menú"
-          >
-            <span className="hamburger__line"></span>
-            <span className="hamburger__line"></span>
-            <span className="hamburger__line"></span>
-          </button>
         </div>
 
       </div>
