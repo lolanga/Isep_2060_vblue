@@ -1,4 +1,5 @@
 import Placeholder from "../../components/Placeholder";
+import SEO from "../../components/SEO";
 
 const FEATURES = [
   "Organigrama institucional interactivo",
@@ -9,12 +10,15 @@ const FEATURES = [
 
 export default function Organizacion() {
   return (
-    <Placeholder
-      badge="Institucional"
-      title="Nuestra"
-      highlight="Organización"
-      description="Estructura organizativa del Instituto de Seguridad Pública"
-      features={FEATURES}
-    />
+    <>
+      <SEO title="Organización" description="Organización del Instituto de Seguridad Pública de Santa Fe" />
+      <Placeholder
+        badge="Institucional"
+        title="Nuestra"
+        highlight="Organización"
+        description="Estructura organizativa del Instituto de Seguridad Pública"
+        features={FEATURES}
+      />
+    </>
   );
 }

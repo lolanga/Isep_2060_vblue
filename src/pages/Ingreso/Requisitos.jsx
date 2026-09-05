@@ -7,6 +7,7 @@
 
 import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
+import SEO from "../../components/SEO";
 
 const REQUISITOS = [
   { texto: "Ser argentino", icono: "flag" },
@@ -36,6 +37,7 @@ const FORMULARIOS = [
 export default function Requisitos() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Requisitos" description="Requisitos para inscripción al ISeP" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>

@@ -7,6 +7,7 @@
 
 import { useState } from "react";
 import Breadcrumb from "../../components/Breadcrumb";
+import SEO from "../../components/SEO";
 
 const PASOS = [
   {
@@ -66,6 +67,7 @@ export default function Titulos() {
 
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Títulos y Certificaciones" description="Trámites de títulos y certificaciones del ISeP" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Secretaría Académica</span>

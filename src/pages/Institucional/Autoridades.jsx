@@ -6,6 +6,7 @@
  */
 
 import Breadcrumb from "../../components/Breadcrumb";
+import SEO from "../../components/SEO";
 import escudoIsep from "../../assets/escudo_ISeP.png";
 import escudoEP from "../../assets/escudo_EP.png";
 import escudoES from "../../assets/escudo_ES.png";
@@ -87,6 +88,7 @@ const DIRECTORES_ESCUELAS = [
 export default function Autoridades() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Autoridades" description="Autoridades del Instituto de Seguridad Pública de Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Institucional</span>

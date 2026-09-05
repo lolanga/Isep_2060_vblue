@@ -6,6 +6,7 @@
  */
 
 import Breadcrumb from "../../components/Breadcrumb";
+import SEO from "../../components/SEO";
 import escudoIsep from "../../assets/escudo_ISeP.png";
 
 const SEDES = [
@@ -26,6 +27,7 @@ const SEDES = [
 export default function ElIseP() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="El ISeP" description="Conocé al Instituto de Seguridad Pública de Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Institucional</span>

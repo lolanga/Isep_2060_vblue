@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
 import ShareButton from "../components/ShareButton";
+import SEO from "../components/SEO";
 import { noticias } from "../data/noticias";
 
 const CATEGORIAS = ["Todas", "Institucional", "Academica", "Escuelas", "Eventos", "Convenios"];
@@ -37,6 +38,7 @@ export default function Noticias() {
 
   return (
     <main className="noticias-page">
+      <SEO title="Noticias" description="Últimas noticias del Instituto de Seguridad Pública de Santa Fe" />
       <section className="noticias-hero">
         <div className="noticias-hero__bg">
           <img src="https://picsum.photos/seed/isephero/1600/600" alt="Noticias ISeP" />

@@ -7,6 +7,7 @@
 
 import { useState } from "react";
 import Breadcrumb from "../../components/Breadcrumb";
+import SEO from "../../components/SEO";
 
 const BASE = "https://www.isepsantafe.edu.ar/index.php/academico/biblioteca";
 
@@ -65,6 +66,7 @@ export default function Biblioteca() {
 
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Biblioteca Virtual" description="Recursos digitales de la biblioteca del ISeP" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Secretaría Académica</span>

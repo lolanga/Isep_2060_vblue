@@ -8,6 +8,7 @@
 import { Link } from "react-router-dom";
 import Countdown from "../../components/Countdown";
 import Breadcrumb from "../../components/Breadcrumb";
+import SEO from "../../components/SEO";
 
 const DOCUMENTACION = [
   {
@@ -74,6 +75,7 @@ export default function Convocatorias() {
 
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Convocatorias" description="Proceso de selección — Escuela de Policía 2027-2028" />
       {/* Hero dedicado */}
       <section style={{
         background: "var(--gradient-primary)",

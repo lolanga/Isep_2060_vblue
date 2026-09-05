@@ -3,6 +3,8 @@
  * Proceso de ingreso — Ingreso
  */
 
+import SEO from "../../components/SEO";
+
 export default function Proceso() {
   const pasos = [
     { titulo: "Registro en Mi ISeP", texto: "Creá tu cuenta en la plataforma Mi ISeP para poder iniciar la inscripción." },
@@ -14,6 +16,7 @@ export default function Proceso() {
 
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Proceso de Ingreso" description="Proceso de ingreso al ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>

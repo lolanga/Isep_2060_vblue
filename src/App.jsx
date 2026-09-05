@@ -49,6 +49,12 @@ import Titulos from "./pages/Secretaria/Titulos";
 import Biblioteca from "./pages/Secretaria/Biblioteca";
 import Cursos from "./pages/Secretaria/Cursos";
 
+import { SkeletonGrid } from "./components/Skeleton";
+
+function LoadingSpinner() {
+  return <SkeletonGrid count={1} />;
+}
+
 function App() {
   return (
     <ErrorBoundary>

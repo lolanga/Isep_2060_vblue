@@ -5,6 +5,7 @@
  */
 
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 export default function NotFound() {
   return (
@@ -18,6 +19,7 @@ export default function NotFound() {
       padding: "2rem",
       textAlign: "center",
     }}>
+      <SEO title="Página no encontrada" />
       <span className="material-symbols-outlined" style={{ fontSize: "5rem", color: "#cbd5e1", marginBottom: "1rem" }}>
         search_off
       </span>

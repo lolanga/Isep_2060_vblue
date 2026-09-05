@@ -4,7 +4,13 @@
  */
 
 import EscuelaTemplate from "../../components/EscuelaTemplate";
+import SEO from "../../components/SEO";
 
 export default function Superior() {
-  return <EscuelaTemplate escuelaId="superior" />;
+  return (
+    <>
+      <SEO title="Escuela Superior de Seguridad Pública" description="Escuela Superior del Instituto de Seguridad Pública de Santa Fe" />
+      <EscuelaTemplate escuelaId="superior" />
+    </>
+  );
 }

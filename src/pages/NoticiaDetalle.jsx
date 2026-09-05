@@ -9,6 +9,7 @@ import { useParams, Link } from "react-router-dom";
 import { noticias } from "../data/noticias";
 import Breadcrumb from "../components/Breadcrumb";
 import ShareButton from "../components/ShareButton";
+import SEO from "../components/SEO";
 
 const CONTENIDO_EJEMPLO = (titulo, excerpt) => `
 El Instituto de Seguridad Pública de la Provincia de Santa Fe informa a toda la comunidad institucional y al público en general sobre novedades relacionadas con ${titulo.toLowerCase()}.
@@ -35,6 +36,7 @@ export default function NoticiaDetalle() {
   if (!noticia) {
     return (
       <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+        <SEO title="Noticia no encontrada" />
         <div className="container-max" style={{ padding: "4rem 2rem", textAlign: "center" }}>
           <span className="material-symbols-outlined" style={{ fontSize: "4rem", color: "#cbd5e1" }}>search_off</span>
           <h2 style={{ color: "var(--slate-700)", marginTop: "1rem" }}>Noticia no encontrada</h2>
@@ -52,6 +54,7 @@ export default function NoticiaDetalle() {
 
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title={noticia.titulo} description={noticia.excerpt} />
       {/* Hero de noticia */}
       <section style={{ position: "relative", height: "clamp(300px, 40vw, 480px)", overflow: "hidden" }}>
         <img

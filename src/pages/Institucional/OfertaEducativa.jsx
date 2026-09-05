@@ -8,6 +8,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
+import SEO from "../../components/SEO";
 import { carreras, cursos, convocatorias, escuelaPorId, escuelas } from "../../data/institucional";
 
 const MI_ISEP = "https://mi.isepsantafe.edu.ar";
@@ -25,6 +26,7 @@ export default function OfertaEducativa() {
 
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Oferta Educativa" description="Carreras y formación del Instituto de Seguridad Pública" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Formación</span>

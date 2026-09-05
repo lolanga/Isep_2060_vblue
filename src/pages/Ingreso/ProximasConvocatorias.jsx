@@ -4,6 +4,7 @@
  */
 
 import { Link } from "react-router-dom";
+import SEO from "../../components/SEO";
 import { convocatorias, escuelaPorId } from "../../data/institucional";
 
 export default function ProximasConvocatorias() {
@@ -11,6 +12,7 @@ export default function ProximasConvocatorias() {
 
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Próximas Convocatorias" description="Próximas convocatorias del ISeP" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>

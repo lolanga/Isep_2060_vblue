@@ -4,6 +4,7 @@
  */
 
 import { useState } from "react";
+import SEO from "../../components/SEO";
 import { preguntasFrecuentes } from "../../data/institucional";
 
 export default function Faq() {
@@ -11,6 +12,7 @@ export default function Faq() {
 
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Preguntas Frecuentes" description="Preguntas frecuentes sobre el ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>

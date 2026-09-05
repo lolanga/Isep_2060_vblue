@@ -9,6 +9,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../../components/SEO";
 import { cursos, escuelas } from "../../data/institucional";
 
 const MI_ISEP = "https://mi.isepsantafe.edu.ar";
@@ -51,6 +52,7 @@ export default function Cursos() {
 
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Cursos" description="Cursos de capacitación del ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Formación</span>

@@ -7,6 +7,7 @@
 
 import { useState, useMemo } from "react";
 import Breadcrumb from "../../components/Breadcrumb";
+import SEO from "../../components/SEO";
 import { resoluciones } from "../../data/normativa";
 
 const ANIOS = ["Todos", ...new Set(resoluciones.map((r) => r.anio))].sort((a, b) => {
@@ -52,6 +53,7 @@ export default function Resoluciones() {
 
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Resoluciones" description="Resoluciones y normativa del ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Institucional</span>

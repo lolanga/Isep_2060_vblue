@@ -6,6 +6,7 @@
  */
 
 import Breadcrumb from "../../components/Breadcrumb";
+import SEO from "../../components/SEO";
 
 const SEDES = [
   {
@@ -44,6 +45,7 @@ const REDES = [
 export default function SedesContacto() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Sedes y Contacto" description="Sedes y datos de contacto del ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Institucional</span>

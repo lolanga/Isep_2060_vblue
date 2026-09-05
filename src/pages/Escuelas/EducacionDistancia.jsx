@@ -4,7 +4,13 @@
  */
 
 import EscuelaTemplate from "../../components/EscuelaTemplate";
+import SEO from "../../components/SEO";
 
 export default function EducacionDistancia() {
-  return <EscuelaTemplate escuelaId="ead" />;
+  return (
+    <>
+      <SEO title="Educación a Distancia" description="Educación a Distancia del Instituto de Seguridad Pública de Santa Fe" />
+      <EscuelaTemplate escuelaId="ead" />
+    </>
+  );
 }

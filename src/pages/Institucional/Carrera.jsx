@@ -8,6 +8,7 @@
 import { Link } from "react-router-dom";
 import { carreras, escuelaPorId } from "../../data/institucional";
 import Breadcrumb from "../../components/Breadcrumb";
+import SEO from "../../components/SEO";
 
 const ESTADOS = {
   abierta: { label: "Inscripciones abiertas", color: "#17be95", bg: "rgba(23,190,149,0.1)" },
@@ -18,6 +19,7 @@ const ESTADOS = {
 export default function Carrera() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
+      <SEO title="Carreras" description="Carreras del Instituto de Seguridad Pública de Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Formación</span>
