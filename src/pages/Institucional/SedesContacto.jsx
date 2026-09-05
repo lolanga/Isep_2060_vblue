@@ -66,37 +66,32 @@ export default function SedesContacto() {
         />
 
         {/* ── Sedes ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))", gap: "2rem", marginTop: "2rem" }}>
+        <div className="grid-2col" style={{ gap: "2rem", marginTop: "2rem" }}>
           {SEDES.map((sede) => (
             <div
               key={sede.id}
-              style={{
-                background: "#fff",
-                borderRadius: "1rem",
-                border: "1px solid #eef2f7",
-                overflow: "hidden",
-                boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
-              }}
+              className="inst-card"
+              style={{ borderRadius: "1rem", overflow: "hidden" }}
             >
               <div style={{ padding: "1.5rem" }}>
                 <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--primary)", marginBottom: "1rem" }}>
                   {sede.nombre}
                 </h3>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: "1.1rem", color: "var(--secondary)", marginTop: "0.1rem" }}>location_on</span>
+                <div className="flex-col" style={{ gap: "0.75rem" }}>
+                  <div className="flex-row">
+                    <span className="material-symbols-outlined icon-sm-top">location_on</span>
                     <span style={{ color: "#475569", fontSize: "0.9rem" }}>{sede.direccion}</span>
                   </div>
-                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: "1.1rem", color: "var(--secondary)" }}>call</span>
+                  <div className="flex-row-center">
+                    <span className="material-symbols-outlined icon-sm">call</span>
                     <span style={{ color: "#475569", fontSize: "0.9rem" }}>{sede.telefono}</span>
                   </div>
-                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: "1.1rem", color: "var(--secondary)" }}>mail</span>
+                  <div className="flex-row-center">
+                    <span className="material-symbols-outlined icon-sm">mail</span>
                     <span style={{ color: "#475569", fontSize: "0.9rem" }}>{sede.email}</span>
                   </div>
-                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: "1.1rem", color: "var(--secondary)" }}>schedule</span>
+                  <div className="flex-row-center">
+                    <span className="material-symbols-outlined icon-sm">schedule</span>
                     <span style={{ color: "#475569", fontSize: "0.9rem" }}>{sede.horario}</span>
                   </div>
                 </div>
@@ -118,23 +113,16 @@ export default function SedesContacto() {
         </div>
 
         {/* ── Canales de contacto ── */}
-        <section style={{ marginTop: "3rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1.25rem" }}>
+        <section className="page-section" style={{ marginTop: "3rem" }}>
+          <h2 className="page-section-title" style={{ marginBottom: "1.25rem" }}>
             Canales de contacto
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 280px), 1fr))", gap: "1rem" }}>
+          <div className="grid-3col">
             {CANALES.map((c) => (
               <div
                 key={c.label}
-                style={{
-                  background: "#fff",
-                  borderRadius: "0.75rem",
-                  padding: "1.25rem",
-                  border: "1px solid #eef2f7",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                }}
+                className="inst-card flex-row-center"
+                style={{ gap: "0.75rem" }}
               >
                 <div style={{
                   width: "2.5rem",
@@ -160,8 +148,8 @@ export default function SedesContacto() {
         </section>
 
         {/* ── Redes sociales ── */}
-        <section style={{ marginTop: "2.5rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1.25rem" }}>
+        <section className="page-section">
+          <h2 className="page-section-title" style={{ marginBottom: "1.25rem" }}>
             Seguinos en nuestras redes
           </h2>
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -171,19 +159,14 @@ export default function SedesContacto() {
                 href={r.url}
                 target="_blank"
                 rel="noreferrer"
+                className="inst-card flex-row-center"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
                   gap: "0.6rem",
                   padding: "0.75rem 1.25rem",
-                  background: "#fff",
-                  borderRadius: "0.75rem",
-                  border: "1px solid #eef2f7",
                   color: "var(--slate-900)",
                   textDecoration: "none",
                   fontSize: "0.9rem",
                   fontWeight: 600,
-                  transition: "box-shadow 0.2s, transform 0.2s",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.boxShadow = "0 4px 12px rgba(15,23,42,0.1)";

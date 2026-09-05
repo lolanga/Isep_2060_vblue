@@ -8,6 +8,21 @@
 import Breadcrumb from "../../components/Breadcrumb";
 import escudoIsep from "../../assets/escudo_ISeP.png";
 
+const SEDES = [
+  {
+    id: "rosario",
+    nombre: "D.Z.S — Rosario",
+    direccion: "Leandro N. Alem 2050, S2000FMH Rosario, Santa Fe",
+    telefono: "+54 342 457-9000",
+  },
+  {
+    id: "recreo",
+    nombre: "DZCN — Recreo",
+    direccion: "RN11, km 482, Recreo, Santa Fe",
+    telefono: "+54 342 457-9000",
+  },
+];
+
 export default function ElIseP() {
   return (
     <main style={{ paddingTop: "var(--navbar-height)", minHeight: "100vh" }}>
@@ -33,15 +48,15 @@ export default function ElIseP() {
         />
 
         {/* ── Presentación + escudo ── */}
-        <section style={{ marginTop: "2.5rem", display: "flex", gap: "2rem", alignItems: "flex-start", flexWrap: "wrap" }}>
+        <section className="page-section" style={{ display: "flex", gap: "2rem", alignItems: "flex-start", flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 300px" }}>
-            <h2 style={{ fontSize: "1.35rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1rem" }}>
+            <h2 className="page-section-title">
               ¿Qué es el ISeP?
             </h2>
-            <p style={{ fontSize: "0.95rem", color: "#475569", lineHeight: 1.8, marginBottom: "1rem" }}>
+            <p className="page-text">
               En el I.Se.P. se forman recursos humanos en el área de la seguridad, con especialización en seguridad pública. Para esto, el instituto gestiona carreras terciarias, cursos de perfeccionamiento y de grado junto a otras actividades educativas, complementando así las competencias necesarias para la prevención del delito, la resolución pacífica de conflictos y la protección de la vida y la seguridad de los bienes de las personas.
             </p>
-            <p style={{ fontSize: "0.95rem", color: "#475569", lineHeight: 1.8 }}>
+            <p className="page-text">
               El perfil del graduado del ISeP debe asegurarle la capacidad de trabajar en ambientes interdisciplinarios y multiculturales, para desenvolverse con solvencia en procedimientos judiciales, administrativos, criminológicos y de investigación científica. Asimismo, lo capacita para hacer uso racional de la fuerza y toma de decisiones, en virtud de su cargo y en respeto de la ética ciudadana y los derechos humanos.
             </p>
           </div>
@@ -55,15 +70,9 @@ export default function ElIseP() {
         </section>
 
         {/* ── Misión ── */}
-        <section style={{ marginTop: "3rem" }}>
-          <div style={{
-            background: "#fff",
-            borderRadius: "1rem",
-            border: "1px solid #eef2f7",
-            padding: "2rem",
-            boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+        <section className="page-section" style={{ marginTop: "3rem" }}>
+          <div className="inst-card" style={{ borderRadius: "1rem", padding: "2rem" }}>
+            <div className="flex-row-center" style={{ marginBottom: "1rem" }}>
               <div style={{
                 width: "2.5rem",
                 height: "2.5rem",
@@ -76,24 +85,18 @@ export default function ElIseP() {
               }}>
                 <span className="material-symbols-outlined" style={{ color: "#fff", fontSize: "1.25rem" }}>flag</span>
               </div>
-              <h2 style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--slate-900)" }}>Misión</h2>
+              <h2 className="page-section-title--sm">Misión</h2>
             </div>
-            <p style={{ fontSize: "0.95rem", color: "#475569", lineHeight: 1.8 }}>
+            <p className="page-text">
               Formar profesionales de la seguridad pública con excelencia académica, compromiso ético y respeto a los derechos humanos, contribuyendo a la prevención del delito, la resolución pacífica de conflictos y la protección de la vida y los bienes de las personas de la Provincia de Santa Fe.
             </p>
           </div>
         </section>
 
         {/* ── Visión ── */}
-        <section style={{ marginTop: "1.5rem" }}>
-          <div style={{
-            background: "#fff",
-            borderRadius: "1rem",
-            border: "1px solid #eef2f7",
-            padding: "2rem",
-            boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+        <section className="page-section" style={{ marginTop: "1.5rem" }}>
+          <div className="inst-card" style={{ borderRadius: "1rem", padding: "2rem" }}>
+            <div className="flex-row-center" style={{ marginBottom: "1rem" }}>
               <div style={{
                 width: "2.5rem",
                 height: "2.5rem",
@@ -106,20 +109,20 @@ export default function ElIseP() {
               }}>
                 <span className="material-symbols-outlined" style={{ color: "#fff", fontSize: "1.25rem" }}>visibility</span>
               </div>
-              <h2 style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--slate-900)" }}>Visión</h2>
+              <h2 className="page-section-title--sm">Visión</h2>
             </div>
-            <p style={{ fontSize: "0.95rem", color: "#475569", lineHeight: 1.8 }}>
+            <p className="page-text">
               Ser referente provincial y nacional en la formación de profesionales de la seguridad pública, con estándares de calidad internacional, promoviendo la innovación educativa, la investigación científica y la modernización continua de las fuerzas de seguridad.
             </p>
           </div>
         </section>
 
         {/* ── Valores ── */}
-        <section style={{ marginTop: "3rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1.25rem" }}>
+        <section className="page-section" style={{ marginTop: "3rem" }}>
+          <h2 className="page-section-title" style={{ marginBottom: "1.25rem" }}>
             Valores institucionales
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 250px), 1fr))", gap: "1rem" }}>
+          <div className="grid-4col">
             {[
               { icon: "balance", titulo: "Ética", desc: "Actuación con integridad, transparencia y respeto a la ley en todas nuestras acciones." },
               { icon: "groups", titulo: "Comunidad", desc: "Compromiso con la seguridad y el bienestar de la sociedad santafesina." },
@@ -128,13 +131,7 @@ export default function ElIseP() {
             ].map((v) => (
               <div
                 key={v.titulo}
-                style={{
-                  background: "#fff",
-                  borderRadius: "0.75rem",
-                  padding: "1.25rem",
-                  border: "1px solid #eef2f7",
-                  boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
-                }}
+                className="inst-card"
               >
                 <span className="material-symbols-outlined" style={{ fontSize: "1.75rem", color: "var(--secondary)", display: "block", marginBottom: "0.75rem" }}>
                   {v.icon}
@@ -147,32 +144,26 @@ export default function ElIseP() {
         </section>
 
         {/* ── Sedes ── */}
-        <section style={{ marginTop: "3rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1.25rem" }}>
+        <section className="page-section" style={{ marginTop: "3rem" }}>
+          <h2 className="page-section-title" style={{ marginBottom: "1.25rem" }}>
             Nuestras Sedes
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 350px), 1fr))", gap: "1rem" }}>
+          <div className="grid-2col">
             {SEDES.map((s) => (
               <div
                 key={s.id}
-                style={{
-                  background: "#fff",
-                  borderRadius: "0.75rem",
-                  border: "1px solid #eef2f7",
-                  padding: "1.25rem",
-                  boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
-                }}
+                className="inst-card"
               >
                 <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--primary)", marginBottom: "0.75rem" }}>
                   {s.nombre}
                 </h3>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: "1.1rem", color: "var(--secondary)", marginTop: "0.1rem" }}>location_on</span>
+                <div className="flex-col">
+                  <div className="flex-row">
+                    <span className="material-symbols-outlined icon-sm-top">location_on</span>
                     <span style={{ color: "#475569", fontSize: "0.9rem" }}>{s.direccion}</span>
                   </div>
-                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: "1.1rem", color: "var(--secondary)" }}>call</span>
+                  <div className="flex-row-center">
+                    <span className="material-symbols-outlined icon-sm">call</span>
                     <span style={{ color: "#475569", fontSize: "0.9rem" }}>{s.telefono}</span>
                   </div>
                 </div>

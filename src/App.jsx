@@ -12,11 +12,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatWhatsApp from "./components/FloatWhatsApp";
 import ScrollToTop from "./components/ScrollToTop";
+import ErrorBoundary from "./components/ErrorBoundary";
+import SkipToContent from "./components/SkipToContent";
 
 // ── Páginas ──
 import Home from "./pages/Home";
 import Noticias from "./pages/Noticias";
 import NoticiaDetalle from "./pages/NoticiaDetalle";
+import NotFound from "./pages/NotFound";
 
 // ── Institucional ──
 import ElIseP from "./pages/Institucional/ElIseP";
@@ -48,54 +51,60 @@ import Cursos from "./pages/Secretaria/Cursos";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
+    <ErrorBoundary>
+      <BrowserRouter>
+        <SkipToContent />
+        <Navbar />
 
-      <Routes>
-        {/* Home */}
-        <Route path="/" element={<Home />} />
+        <Routes>
+          {/* Home */}
+          <Route path="/" element={<Home />} />
 
-        {/* Noticias */}
-        <Route path="/noticias" element={<Noticias />} />
-        <Route path="/noticias/:id" element={<NoticiaDetalle />} />
+          {/* Noticias */}
+          <Route path="/noticias" element={<Noticias />} />
+          <Route path="/noticias/:id" element={<NoticiaDetalle />} />
 
-        {/* Institucional */}
-        <Route path="/institucional/el-isep" element={<ElIseP />} />
-        <Route path="/institucional/autoridades" element={<Autoridades />} />
-        <Route path="/institucional/organizacion" element={<Organizacion />} />
-        <Route path="/institucional/sedes-contacto" element={<SedesContacto />} />
-        <Route path="/institucional/oferta-educativa" element={<OfertaEducativa />} />
-        <Route path="/institucional/carreras" element={<Carrera />} />
-        <Route path="/institucional/resoluciones" element={<Resoluciones />} />
+          {/* Institucional */}
+          <Route path="/institucional/el-isep" element={<ElIseP />} />
+          <Route path="/institucional/autoridades" element={<Autoridades />} />
+          <Route path="/institucional/organizacion" element={<Organizacion />} />
+          <Route path="/institucional/sedes-contacto" element={<SedesContacto />} />
+          <Route path="/institucional/oferta-educativa" element={<OfertaEducativa />} />
+          <Route path="/institucional/carreras" element={<Carrera />} />
+          <Route path="/institucional/resoluciones" element={<Resoluciones />} />
 
-        {/* Escuelas */}
-        <Route path="/escuelas/policia" element={<EscuelaPolicia />} />
-        <Route path="/escuelas/superior" element={<EscuelaSuperior />} />
-        <Route path="/escuelas/especialidades" element={<EscuelaEspecialidades />} />
-        <Route path="/escuelas/investigaciones" element={<EscuelaInvestigaciones />} />
-        <Route path="/escuelas/educacion-a-distancia" element={<EducacionDistancia />} />
+          {/* Escuelas */}
+          <Route path="/escuelas/policia" element={<EscuelaPolicia />} />
+          <Route path="/escuelas/superior" element={<EscuelaSuperior />} />
+          <Route path="/escuelas/especialidades" element={<EscuelaEspecialidades />} />
+          <Route path="/escuelas/investigaciones" element={<EscuelaInvestigaciones />} />
+          <Route path="/escuelas/educacion-a-distancia" element={<EducacionDistancia />} />
 
-        {/* Ingreso */}
-        <Route path="/ingreso/convocatorias" element={<Convocatorias />} />
-        <Route path="/ingreso/proximas-convocatorias" element={<ProximasConvocatorias />} />
-        <Route path="/ingreso/requisitos" element={<Requisitos />} />
-        <Route path="/ingreso/proceso" element={<Proceso />} />
-        <Route path="/ingreso/faq" element={<Faq />} />
+          {/* Ingreso */}
+          <Route path="/ingreso/convocatorias" element={<Convocatorias />} />
+          <Route path="/ingreso/proximas-convocatorias" element={<ProximasConvocatorias />} />
+          <Route path="/ingreso/requisitos" element={<Requisitos />} />
+          <Route path="/ingreso/proceso" element={<Proceso />} />
+          <Route path="/ingreso/faq" element={<Faq />} />
 
-        {/* Secretaría Académica */}
-        <Route path="/secretaria/titulos" element={<Titulos />} />
-        <Route path="/secretaria/biblioteca" element={<Biblioteca />} />
-        <Route path="/secretaria/cursos" element={<Cursos />} />
-      </Routes>
+          {/* Secretaría Académica */}
+          <Route path="/secretaria/titulos" element={<Titulos />} />
+          <Route path="/secretaria/biblioteca" element={<Biblioteca />} />
+          <Route path="/secretaria/cursos" element={<Cursos />} />
 
-      <Footer />
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
 
-      {/* Botón flotante WhatsApp — siempre visible */}
-      <FloatWhatsApp />
+        <Footer />
 
-      {/* Botón ir arriba — aparece al hacer scroll */}
-      <ScrollToTop />
-    </BrowserRouter>
+        {/* Botón flotante WhatsApp — siempre visible */}
+        <FloatWhatsApp />
+
+        {/* Botón ir arriba — aparece al hacer scroll */}
+        <ScrollToTop />
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 

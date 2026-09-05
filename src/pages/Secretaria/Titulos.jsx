@@ -151,7 +151,7 @@ export default function Titulos() {
           <h2 style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1rem" }}>
             Títulos y Registros
           </h2>
-          <p style={{ fontSize: "0.9rem", color: "#475569", lineHeight: 1.7, marginBottom: "1.5rem" }}>
+          <p className="page-text" style={{ marginBottom: "1.5rem" }}>
             La Dirección General con la colaboración del Departamento Tecnología, Desarrollo e Innovación y de la Secretaría Académica,
             en su proceso de innovación constante pone a disposición de sus egresados el <strong>formulario online</strong> para pedidos
             de títulos y certificaciones. En la búsqueda de simplificar y agilizar los procesos hemos creado una manera más simple de
@@ -159,19 +159,12 @@ export default function Titulos() {
           </p>
 
           {/* Pasos */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <div className="flex-col">
             {PASOS.map((paso) => (
               <div
                 key={paso.numero}
-                style={{
-                  background: "#fff",
-                  borderRadius: "0.75rem",
-                  padding: "1.25rem",
-                  border: "1px solid #eef2f7",
-                  display: "flex",
-                  gap: "1rem",
-                  alignItems: "flex-start",
-                }}
+                className="inst-card flex-row"
+                style={{ gap: "1rem" }}
               >
                 <div style={{
                   width: "2.2rem",
@@ -225,21 +218,16 @@ export default function Titulos() {
           <h2 style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "0.75rem" }}>
             Títulos de Técnico Superior para retirar
           </h2>
-          <p style={{ fontSize: "0.9rem", color: "#475569", lineHeight: 1.6, marginBottom: "1rem" }}>
+          <p className="page-text" style={{ marginBottom: "1rem" }}>
             Se pone a disposición de quienes hayan solicitado la impresión del título de la <strong>"Tecnicatura Superior"</strong>,
             dictada por la Ex – Escuela de Cadetes de Policía (ECP) y el actual Instituto de Seguridad Pública (I.Se.P.),
             la lista de aquellos que se encuentran para retirar en la sección "Títulos y Registros".
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 260px), 1fr))", gap: "1rem" }}>
+          <div className="grid-3col">
             {TITULOS_DESCARGA.map((t) => (
               <div
                 key={t.titulo}
-                style={{
-                  background: "#fff",
-                  borderRadius: "0.75rem",
-                  padding: "1.25rem",
-                  border: "1px solid #eef2f7",
-                }}
+                className="inst-card"
               >
                 <h4 style={{ fontSize: "0.9rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.25rem" }}>
                   {t.titulo}
@@ -280,13 +268,13 @@ export default function Titulos() {
           <p style={{ fontSize: "0.85rem", color: "#475569", marginBottom: "0.5rem" }}>
             Sección Títulos y Registros
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span className="material-symbols-outlined" style={{ fontSize: "1rem", color: "var(--secondary)" }}>call</span>
+          <div className="flex-col">
+            <div className="flex-row-center">
+              <span className="material-symbols-outlined icon-sm">call</span>
               <span style={{ fontSize: "0.85rem", color: "#475569" }}>0341-4728526</span>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span className="material-symbols-outlined" style={{ fontSize: "1rem", color: "var(--secondary)" }}>mail</span>
+            <div className="flex-row-center">
+              <span className="material-symbols-outlined icon-sm">mail</span>
               <span style={{ fontSize: "0.85rem", color: "#475569" }}>titulosisep@isepsantafe.edu.ar</span>
             </div>
           </div>
@@ -294,23 +282,16 @@ export default function Titulos() {
 
         {/* ── Sedes ── */}
         <section>
-          <p style={{ fontSize: "0.9rem", color: "#475569", lineHeight: 1.6, marginBottom: "1rem" }}>
+          <p className="page-text" style={{ marginBottom: "1rem" }}>
             La Dirección General junto a la Secretaría Académica y su área de Títulos y Certificaciones siguen innovando para facilitar gestiones.
             Ahora podés buscar tu título en cualquiera de nuestras sedes:
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 280px), 1fr))", gap: "1rem" }}>
+          <div className="grid-3col">
             {SEDES.map((s) => (
               <div
                 key={s.nombre}
-                style={{
-                  background: "#fff",
-                  borderRadius: "0.75rem",
-                  padding: "1rem",
-                  border: "1px solid #eef2f7",
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: "0.75rem",
-                }}
+                className="inst-card flex-row"
+                style={{ padding: "1rem", gap: "0.75rem" }}
               >
                 <span className="material-symbols-outlined" style={{ fontSize: "1.2rem", color: "var(--primary)", marginTop: "0.1rem" }}>location_on</span>
                 <div>

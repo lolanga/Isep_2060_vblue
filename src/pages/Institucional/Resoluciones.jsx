@@ -163,7 +163,7 @@ export default function Resoluciones() {
             <label style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--primary)", display: "block", marginBottom: "0.3rem" }}>
               Año
             </label>
-            <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap" }}>
+            <div className="flex-row" style={{ flexWrap: "wrap", gap: "0.35rem" }}>
               {ANIOS.map((a) => (
                 <button
                   key={a}
@@ -187,7 +187,7 @@ export default function Resoluciones() {
             <label style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--primary)", display: "block", marginBottom: "0.3rem" }}>
               Tipo
             </label>
-            <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap" }}>
+            <div className="flex-row" style={{ flexWrap: "wrap", gap: "0.35rem" }}>
               {TIPOS.map((t) => (
                 <button
                   key={t}
@@ -208,37 +208,31 @@ export default function Resoluciones() {
         </p>
 
         {/* ── Listado ── */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+        <div className="flex-col" style={{ gap: "0.75rem" }}>
           {filtradas.map((r) => (
             <div
               key={r.id}
+              className="inst-card flex-row-center"
               style={{
-                display: "flex",
-                alignItems: "center",
                 gap: "1rem",
                 padding: "1rem 1.25rem",
-                background: "#fff",
-                borderRadius: "0.75rem",
-                border: "1px solid #eef2f7",
-                boxShadow: "0 1px 2px rgba(15,23,42,0.04)",
                 flexWrap: "wrap",
-                transition: "box-shadow 0.15s",
               }}
               onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0 2px 8px rgba(15,23,42,0.08)"}
-              onMouseLeave={(e) => e.currentTarget.style.boxShadow = "0 1px 2px rgba(15,23,42,0.04)"}
+              onMouseLeave={(e) => e.currentTarget.style.boxShadow = "0 1px 3px rgba(15,23,42,0.06)"}
             >
               <span className="material-symbols-outlined" style={{ fontSize: "1.5rem", color: "var(--secondary)", flexShrink: 0 }}>
                 {TIPO_ICONS[r.tipo] || "description"}
               </span>
               <div style={{ flex: 1, minWidth: 200 }}>
                 <p style={{ fontWeight: 600, color: "var(--slate-900)", fontSize: "0.95rem", margin: 0 }}>{r.titulo}</p>
-                <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.3rem", flexWrap: "wrap", alignItems: "center" }}>
+                <div className="card-meta" style={{ marginTop: "0.3rem" }}>
                   <span className="chip" data-type="tipo" style={{ fontSize: "0.7rem", padding: "0.15rem 0.5rem" }}>{r.tipo}</span>
                   <span style={{ fontSize: "0.75rem", color: "#94a3b8" }}>{r.fecha}</span>
                   <span style={{ fontSize: "0.75rem", color: "#94a3b8" }}>{r.tamaño}</span>
                 </div>
               </div>
-              <div style={{ display: "flex", gap: "0.5rem", flexShrink: 0 }}>
+              <div className="flex-row" style={{ flexShrink: 0 }}>
                 <a
                   href={VERIFICADOR_URL}
                   target="_blank"

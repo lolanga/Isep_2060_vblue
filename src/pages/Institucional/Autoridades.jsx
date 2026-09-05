@@ -109,24 +109,16 @@ export default function Autoridades() {
         />
 
         {/* ── Autoridades superiores ── */}
-        <section style={{ marginTop: "2.5rem" }}>
+        <section className="page-section">
           <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1.25rem" }}>
             Autoridades Provinciales
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 280px), 1fr))", gap: "1rem" }}>
+          <div className="grid-3col">
             {AUTORIDADES_SUPERIORES.map((a) => (
               <div
                 key={a.cargo}
-                style={{
-                  background: "#fff",
-                  borderRadius: "0.75rem",
-                  padding: "1.25rem",
-                  border: "1px solid #eef2f7",
-                  boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: "0.75rem",
-                }}
+                className="inst-card flex-row"
+                style={{ gap: "0.75rem" }}
               >
                 <div style={{
                   width: "2.5rem",
@@ -154,23 +146,16 @@ export default function Autoridades() {
         </section>
 
         {/* ── Concejo Interinstitucional ── */}
-        <section style={{ marginTop: "3rem" }}>
+        <section className="page-section" style={{ marginTop: "3rem" }}>
           <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1.25rem" }}>
             Concejo Interinstitucional
           </h2>
-          <div style={{
-            background: "#fff",
-            borderRadius: "0.75rem",
-            border: "1px solid #eef2f7",
-            overflow: "hidden",
-          }}>
+          <div className="inst-card" style={{ overflow: "hidden", padding: 0 }}>
             {CONCEJO.map((c, i) => (
               <div
                 key={c.nombre}
+                className="flex-row-center"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "1rem",
                   padding: "1rem 1.25rem",
                   borderBottom: i < CONCEJO.length - 1 ? "1px solid #eef2f7" : "none",
                 }}
@@ -188,17 +173,14 @@ export default function Autoridades() {
         </section>
 
         {/* ── Director General ── */}
-        <section style={{ marginTop: "3rem" }}>
+        <section className="page-section" style={{ marginTop: "3rem" }}>
           <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1.25rem" }}>
             Dirección General del ISeP
           </h2>
           <div
+            className="inst-card"
             style={{
-              background: "#fff",
               borderRadius: "1rem",
-              border: "1px solid #eef2f7",
-              overflow: "hidden",
-              boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
               display: "flex",
               alignItems: "center",
               gap: "1.5rem",
@@ -229,26 +211,19 @@ export default function Autoridades() {
         </section>
 
         {/* ── Directores de Escuelas ── */}
-        <section style={{ marginTop: "3rem" }}>
+        <section className="page-section" style={{ marginTop: "3rem" }}>
           <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1.25rem" }}>
             Directores de Escuelas
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 280px), 1fr))", gap: "1rem" }}>
+          <div className="grid-3col">
             {DIRECTORES_ESCUELAS.map((d) => (
               <a
                 key={d.escuela}
                 href={d.href}
+                className="inst-card flex-row-center"
                 style={{
                   textDecoration: "none",
-                  background: "#fff",
-                  borderRadius: "0.75rem",
-                  border: "1px solid #eef2f7",
-                  padding: "1.25rem",
-                  display: "flex",
-                  alignItems: "center",
                   gap: "1rem",
-                  boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
-                  transition: "box-shadow 0.2s, transform 0.2s",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.boxShadow = "0 4px 12px rgba(15,23,42,0.1)";

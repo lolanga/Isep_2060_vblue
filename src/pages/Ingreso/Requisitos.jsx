@@ -59,19 +59,14 @@ export default function Requisitos() {
 
         {/* ── Requisitos para la inscripción ── */}
         <section style={{ marginBottom: "2.5rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1rem" }}>
+          <h2 className="page-section-title">
             Requisitos para la inscripción
           </h2>
-          <div style={{
-            background: "#fff",
-            borderRadius: "0.75rem",
-            padding: "1.5rem",
-            border: "1px solid #eef2f7",
-          }}>
+          <div className="inst-card" style={{ padding: "1.5rem" }}>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 320px), 1fr))", gap: "0.75rem" }}>
               {REQUISITOS.map((r, i) => (
-                <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", padding: "0.6rem 0.75rem", borderRadius: "0.5rem", background: "#f8fafc" }}>
-                  <span className="material-symbols-outlined" style={{ fontSize: "1.1rem", color: "var(--primary)", marginTop: "0.1rem", flexShrink: 0 }}>
+                <li key={i} className="flex-row" style={{ padding: "0.6rem 0.75rem", borderRadius: "0.5rem", background: "#f8fafc", gap: "0.6rem" }}>
+                  <span className="material-symbols-outlined icon-sm-top">
                     {r.icono}
                   </span>
                   <span style={{ fontSize: "0.88rem", color: "#334155", lineHeight: 1.5 }}>
@@ -85,20 +80,12 @@ export default function Requisitos() {
 
         {/* ── Documentación ── */}
         <section style={{ marginBottom: "2.5rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1rem" }}>
+          <h2 className="page-section-title">
             Documentación que deberán presentar
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))", gap: "1rem" }}>
+          <div className="grid-3col">
             {DOCUMENTACION.map((doc, i) => (
-              <div key={i} style={{
-                background: "#fff",
-                borderRadius: "0.75rem",
-                padding: "1.25rem",
-                border: "1px solid #eef2f7",
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "0.75rem",
-              }}>
+              <div key={i} className="inst-card flex-row" style={{ gap: "0.75rem" }}>
                 <div style={{
                   width: "2.5rem",
                   height: "2.5rem",
@@ -126,22 +113,17 @@ export default function Requisitos() {
 
         {/* ── Formularios obligatorios ── */}
         <section style={{ marginBottom: "2.5rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--slate-900)", marginBottom: "1rem" }}>
+          <h2 className="page-section-title">
             Formularios obligatorios
           </h2>
-          <div style={{
-            background: "#fff",
-            borderRadius: "0.75rem",
-            padding: "1.5rem",
-            border: "1px solid #eef2f7",
-          }}>
-            <p style={{ fontSize: "0.9rem", color: "#475569", marginBottom: "1rem", lineHeight: 1.5 }}>
+          <div className="inst-card" style={{ padding: "1.5rem" }}>
+            <p className="page-text" style={{ marginBottom: "1rem" }}>
               La inscripción solo será válida cuando completes los cuatro formularios:
             </p>
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {FORMULARIOS.map((f, i) => (
-                <li key={i} style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.9rem", color: "#475569", marginBottom: "0.5rem" }}>
-                  <span className="material-symbols-outlined" style={{ fontSize: "1rem", color: "var(--secondary)" }}>check_circle</span>
+                <li key={i} className="flex-row-center" style={{ fontSize: "0.9rem", color: "#475569", marginBottom: "0.5rem" }}>
+                  <span className="material-symbols-outlined icon-sm">check_circle</span>
                   {f}
                 </li>
               ))}
@@ -154,15 +136,10 @@ export default function Requisitos() {
 
         {/* ── Información adicional ── */}
         <section style={{ marginBottom: "2.5rem" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))", gap: "1rem" }}>
-            <div style={{
-              background: "#fff",
-              borderRadius: "0.75rem",
-              padding: "1.25rem",
-              border: "1px solid #eef2f7",
-            }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <span className="material-symbols-outlined" style={{ color: "var(--primary)", fontSize: "1.25rem" }}>cake</span>
+          <div className="grid-3col">
+            <div className="inst-card">
+              <h3 className="flex-row-center" style={{ fontSize: "1rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.5rem" }}>
+                <span className="material-symbols-outlined icon-primary">cake</span>
                 Edad requerida
               </h3>
               <p style={{ fontSize: "0.85rem", color: "#475569", lineHeight: 1.5, margin: 0 }}>
@@ -170,14 +147,9 @@ export default function Requisitos() {
                 No podrán participar quienes tengan menos de 18 años o más de 30 años en esa fecha.
               </p>
             </div>
-            <div style={{
-              background: "#fff",
-              borderRadius: "0.75rem",
-              padding: "1.25rem",
-              border: "1px solid #eef2f7",
-            }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <span className="material-symbols-outlined" style={{ color: "var(--primary)", fontSize: "1.25rem" }}>info</span>
+            <div className="inst-card">
+              <h3 className="flex-row-center" style={{ fontSize: "1rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "0.5rem" }}>
+                <span className="material-symbols-outlined icon-primary">info</span>
                 Información importante
               </h3>
               <p style={{ fontSize: "0.85rem", color: "#475569", lineHeight: 1.5, margin: 0 }}>

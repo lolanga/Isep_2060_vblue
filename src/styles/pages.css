@@ -1,0 +1,144 @@
+/* =============================================
+   PAGE-INSTITUCIONAL — Estilos compartidos de páginas institucionales
+   ============================================= */
+
+/* ── Layout común ── */
+.page-section {
+  margin-top: 2.5rem;
+}
+
+.page-section + .page-section {
+  margin-top: 3rem;
+}
+
+.page-section-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--slate-900, #0f172a);
+  margin-bottom: 1rem;
+}
+
+.page-section-title--sm {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--slate-900, #0f172a);
+  margin-bottom: 1rem;
+}
+
+.page-text {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.8;
+}
+
+.page-text + .page-text {
+  margin-top: 1rem;
+}
+
+/* ── Cards institucionales ── */
+.inst-card {
+  background: #fff;
+  border-radius: 0.75rem;
+  border: 1px solid #eef2f7;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.inst-card:hover {
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ── Grid responsive ── */
+.grid-2col {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+  gap: 1rem;
+}
+
+.grid-3col {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 1rem;
+}
+
+.grid-4col {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: 1rem;
+}
+
+/* ── Flex utils ── */
+.flex-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.flex-row-center {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ── Icon utils ── */
+.icon-sm {
+  font-size: 1.1rem;
+  color: var(--secondary, #0055c9);
+}
+
+.icon-sm-top {
+  font-size: 1.1rem;
+  color: var(--secondary, #0055c9);
+  margin-top: 0.1rem;
+}
+
+.icon-primary {
+  font-size: 1.25rem;
+  color: var(--primary, #00254d);
+}
+
+/* ── Card meta ── */
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Badge ── */
+.badge-pill {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+/* ── Separator ── */
+.section-sep {
+  border-top: 1px solid #eef2f7;
+  padding-top: 2rem;
+  margin-top: 3rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .page-section-title {
+    font-size: 1.15rem;
+  }
+
+  .grid-2col,
+  .grid-3col {
+    grid-template-columns: 1fr;
+  }
+}
