@@ -93,10 +93,16 @@ export default function Hero() {
 
           <p className="hero-description">{slide.description}</p>
 
-          <Link to="/institucional/oferta-educativa" className="btn-cta">
-            Conoce nuestras propuestas
-            <span className="material-symbols-outlined">arrow_forward</span>
-          </Link>
+          <div className="hero-ctas">
+            <Link to="/institucional/oferta-educativa" className="btn-cta">
+              Conoce nuestras propuestas
+              <span className="material-symbols-outlined">arrow_forward</span>
+            </Link>
+            <Link to="/ingreso/convocatorias" className="btn-cta-outline">
+              <span className="material-symbols-outlined">event</span>
+              Inscripciones 2027
+            </Link>
+          </div>
         </div>
       </div>
 

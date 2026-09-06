@@ -32,7 +32,6 @@
 /* ── Secciones: reducir padding vertical en móvil ── */
 @media (max-width: 640px) {
   .news-section,
-  .apps-section,
   .schools-section {
     padding: 4rem 0;
   }

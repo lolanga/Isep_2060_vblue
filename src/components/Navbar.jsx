@@ -51,12 +51,12 @@ const ingreso = [
 /**
  * Componente reutilizable: Dropdown desktop
  */
-function DesktopDropdown({ label, items, isOpen, onToggle, onClose, dropRef, icon }) {
+function DesktopDropdown({ label, items, isOpen, onToggle, onClose, dropRef, icon, isActive }) {
   return (
     <div className="nav-dropdown" ref={dropRef}>
       <button
         type="button"
-        className={`nav-dropdown__trigger${isOpen ? " active" : ""}`}
+        className={`nav-dropdown__trigger${isOpen ? " active" : ""}${isActive ? " nav-is-active" : ""}`}
         onClick={onToggle}
       >
         {icon && <span className="material-symbols-outlined">{icon}</span>}
@@ -107,12 +107,12 @@ function DesktopDropdown({ label, items, isOpen, onToggle, onClose, dropRef, ico
 /**
  * Componente reutilizable: Acordeón mobile
  */
-function MobileAccordion({ label, items, isOpen, onToggle, onCloseAll, icon }) {
+function MobileAccordion({ label, items, isOpen, onToggle, onCloseAll, icon, isActive }) {
   return (
     <div className="mobile-accordion">
       <button
         type="button"
-        className={`mobile-link mobile-link--accordion${isOpen ? " mobile-link--accordion-open" : ""}`}
+        className={`mobile-link mobile-link--accordion${isOpen ? " mobile-link--accordion-open" : ""}${isActive ? " nav-is-active" : ""}`}
         onClick={onToggle}
       >
         {icon && <span className="material-symbols-outlined nav-icon--mobile">{icon}</span>}
@@ -203,6 +203,14 @@ export default function Navbar() {
   const toggleMobile  = (key) => setOpenMobile((prev) => (prev === key ? null : key));
   const closeAll      = () => { setMenuOpen(false); setOpenMobile(null); };
 
+  // ── Detección de sección activa según ruta ──
+  const path = location.pathname;
+  const isInstitucional = path.startsWith("/institucional") || path.startsWith("/escuelas");
+  const isFormacion     = path.startsWith("/institucional/oferta-educativa")
+    || path.startsWith("/secretaria")
+    || path.startsWith("/escuelas");
+  const isIngreso       = path.startsWith("/ingreso");
+
   return (
     <nav className={`navbar${scrolled ? " navbar--scrolled" : ""}`}>
       <div className="navbar-content">
@@ -236,6 +244,7 @@ export default function Navbar() {
             onClose={() => setOpenDesktop(null)}
             dropRef={refInstitucional}
             icon="account_balance"
+            isActive={isInstitucional}
           />
 
           {/* Formación (dropdown con submenú Escuelas) */}
@@ -247,6 +256,7 @@ export default function Navbar() {
             onClose={() => setOpenDesktop(null)}
             dropRef={refFormacion}
             icon="school"
+            isActive={isFormacion}
           />
 
           {/* Ingreso (dropdown) */}
@@ -258,6 +268,7 @@ export default function Navbar() {
             onClose={() => setOpenDesktop(null)}
             dropRef={refIngreso}
             icon="login"
+            isActive={isIngreso}
           />
 
           {/* Últimas noticias */}
@@ -310,6 +321,7 @@ export default function Navbar() {
           onToggle={() => toggleMobile("institucional")}
           onCloseAll={closeAll}
           icon="account_balance"
+          isActive={isInstitucional}
         />
 
         {/* Formación (acordeón) */}
@@ -320,6 +332,7 @@ export default function Navbar() {
           onToggle={() => toggleMobile("formacion")}
           onCloseAll={closeAll}
           icon="school"
+          isActive={isFormacion}
         />
 
         {/* Ingreso (acordeón) */}
@@ -330,6 +343,7 @@ export default function Navbar() {
           onToggle={() => toggleMobile("ingreso")}
           onCloseAll={closeAll}
           icon="login"
+          isActive={isIngreso}
         />
 
         {/* Últimas noticias */}

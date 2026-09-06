@@ -165,6 +165,16 @@
   padding-bottom: 0.25rem;
 }
 
+/* Sección activa (ruta actual) — feedback de "dónde estoy" */
+.nav-dropdown__trigger.nav-is-active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.nav-dropdown__trigger.nav-is-active .material-symbols-outlined {
+  color: var(--on-tertiary-container);
+}
+
 .dropdown-chevron {
   display: flex;
   align-items: center;
@@ -398,6 +408,11 @@
   font-weight: 700;
   border-left: 3px solid var(--on-tertiary-container);
   padding-left: 0.75rem;
+}
+
+.mobile-link.nav-is-active {
+  color: var(--primary);
+  font-weight: 700;
 }
 
 /* ── Acordeon mobile ── */

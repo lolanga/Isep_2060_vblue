@@ -151,6 +151,35 @@
   line-height: 1.6;
 }
 
+/* CTA del hero — fila que envuelve en móvil */
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero-ctas .btn-cta,
+.hero-ctas .btn-cta-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-ctas .btn-cta,
+  .hero-ctas .btn-cta-outline {
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
+}
+
 /* Flechas de navegación */
 .hero-arrow {
   position: absolute;
