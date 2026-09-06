@@ -71,7 +71,7 @@
 ├── App.jsx                  # Router principal (26 rutas) + ErrorBoundary + NotFound
 ├── assets/                  # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
-│   ├── Navbar.jsx           # Nav + SearchBox + hamburger + dark mode + nav-is-active
+│   ├── Navbar.jsx           # Nav + SearchBox + hamburger + nav-is-active
 │   ├── Hero.jsx             # Slider 3 slides + 2 CTAs + prefers-reduced-motion
 │   ├── SearchBox.jsx        # Buscador global (debounce 300ms)
 │   ├── News.jsx             # Noticias Home
@@ -119,7 +119,7 @@
 └── styles/
     ├── variables.css        # Design tokens
     ├── base.css             # Reset, tipografía, fondo, prefers-reduced-motion global
-    ├── navbar.css           # Navbar + buscador + dark mode + nav-is-active
+    ├── navbar.css           # Navbar + buscador + hamburger + nav-is-active
     ├── hero.css             # Hero slider
     ├── news.css             # Noticias Home
     ├── noticias.css         # Página /noticias
@@ -166,7 +166,7 @@
       <tr><td>Tablet</td><td>768–1023px</td><td>Nav desktop con escudo, grids 2 columnas</td></tr>
       <tr><td>Desktop</td><td>≥ 1024px</td><td>Grids 3-4+ columnas, layout completo</td></tr>
     </table>
-    <p><strong>Nav responsive:</strong> desktop con escudo + dropdowns + dark mode; tablet solo escudo; móvil hamburger. La <strong>sección activa</strong> se resalta con <code>nav-is-active</code> (vía <code>useLocation</code>) en desktop y móvil.</p>
+    <p><strong>Nav responsive:</strong> desktop con escudo + dropdowns; tablet solo escudo; móvil hamburger. La <strong>sección activa</strong> se resalta con <code>nav-is-active</code> (vía <code>useLocation</code>) en desktop y móvil.</p>
 
     <h2>5. Rutas (App.jsx) — 26 rutas</h2>
     <p>Todas las rutas usan <code>React.lazy()</code> + <code>Suspense</code> para code-splitting. Navbar, Footer, FloatWhatsApp y ScrollToTop son globales.</p>
@@ -340,7 +340,6 @@ export const GA_ID = "G-XXXXXXXXXX";  // Placeholder</pre>
       <li><strong>SkipToContent</strong> + <code>id="main-content"</code> en todos los <code>&lt;main&gt;</code></li>
       <li><strong>focus-visible</strong> — indicadores de foco solo con teclado</li>
       <li><strong>sr-only</strong> — contenido para lectores de pantalla</li>
-      <li><strong>Dark mode</strong> — toggle persistente en navbar</li>
       <li><strong>prefers-reduced-motion</strong> — ver §15.1 (pausa autoplay + desactivación de animaciones)</li>
     </ul>
 

@@ -29,7 +29,7 @@ src/
 ├── App.jsx                  # Router principal (26 rutas) + ErrorBoundary + NotFound
 ├── assets/                  # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
-│   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger + dark mode toggle
+│   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger + nav-is-active
 │   ├── Hero.jsx             # Slider 3 slides + 2 CTAs + pausa por prefers-reduced-motion
 │   ├── SearchBox.jsx        # Buscador global agrupado (debounce 300ms)
 │   ├── News.jsx             # Sección noticias Home (datos reales + links)
@@ -95,7 +95,7 @@ src/
 └── styles/
     ├── variables.css        # Design tokens + gradiente
     ├── base.css             # Reset, tipografía, fondo global, .chip, prefers-reduced-motion global
-    ├── navbar.css           # Navbar + buscador + hamburger + dark mode + nav-is-active
+    ├── navbar.css           # Navbar + buscador + hamburger + nav-is-active
     ├── hero.css             # Hero slider + overlays + .page-hero
     ├── news.css             # Noticias Home
     ├── noticias.css         # Página /noticias
@@ -165,7 +165,7 @@ src/
 | Desktop | `≥ 1024px` | Grids 3-4+ columnas, layout completo |
 
 ### 4.2 Nav responsive
-- Desktop: escudo + texto + dropdowns + dark mode toggle
+- Desktop: escudo + texto + dropdowns
 - Tablet (768-1023px): solo escudo
 - Mobile (<768px): hamburger left, logo center, Mi ISeP + search right
 - **Sección activa:** el enlace de la página actual se resalta con la clase `nav-is-active` (detectada con `useLocation`), tanto en desktop como en móvil
@@ -449,7 +449,6 @@ Google Analytics 4 (`gtag.js`): carga asíncrona, solo en producción. Archivos:
 - **SkipToContent:** enlace para saltar al contenido principal (`id="main-content"`)
 - **focus-visible:** indicadores de foco solo con teclado
 - **sr-only:** contenido para lectores de pantalla
-- **Dark mode:** toggle persistente en navbar
 - **prefers-reduced-motion:** ver §15.1 (pausa autoplay + desactivación de animaciones)
 
 ### 13.9 Error Handling

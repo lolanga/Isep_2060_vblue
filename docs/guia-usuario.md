@@ -19,7 +19,6 @@ La barra de navegación superior (fija al hacer scroll) organiza todo en menús 
 | **Noticias** | Acceso directo al listado de noticias |
 | **Mi ISeP** | Botón siempre visible, enlace externo a `mi.isepsantafe.edu.ar` |
 | **Buscador** | Ícono de lupa, resultados agrupados |
-| **Modo oscuro** | Toggle accesible desde el navbar |
 
 **En escritorio:** pasá el cursor sobre un menú para desplegarlo. Dentro de *Formación → Escuelas* hay submenú con escudos.
 
@@ -52,13 +51,6 @@ Al lado del botón "Mi ISeP" hay un **ícono de lupa**. Al hacer clic se abre un
 - ↑↓ para navegar
 - **Enter** para seleccionar
 - **Esc** para cerrar
-
-### 1.3 Modo Oscuro
-
-El toggle de modo oscuro está en la navbar. Al activarlo:
-- Los colores del sitio cambian a tema oscuro.
-- La preferencia se guarda y persiste entre visitas.
-- Se puede alternar en cualquier momento.
 
 ---
 
@@ -410,5 +402,4 @@ public/img/
 | Quiero verificar sitemap | Abrí `/sitemap.xml` en el navegador (22 URLs) |
 | Ruta inexistente | Se muestra NotFound (404) con enlace al inicio |
 | Navegación con lector de pantalla | Usá `SkipToContent` (Tab al inicio), navegá con Tab/Shift+Tab |
-| Modo oscuro no funciona | Verificá que el toggle esté en la navbar |
 | Quiero cambiar un teléfono | Editá `src/data/config.js` → `TELEFONO_ISR` |

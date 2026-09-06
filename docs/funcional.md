@@ -9,7 +9,7 @@
 ## 1. Visión general
 
 Sitio web institucional del **Instituto de Seguridad Pública (ISeP) de la Provincia de Santa Fe**.
-SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, tablet, desktop). Lazy loading por ruta para tiempos de carga optimizados. Modo oscuro incluido.
+SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, tablet, desktop). Lazy loading por ruta para tiempos de carga optimizados.
 
 ---
 
@@ -55,7 +55,6 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 - **Noticias** → link directo a `/noticias` con ícono "newspaper".
 - **Mi ISeP** → botón siempre visible (desktop y móvil), enlace externo a `mi.isepsantafe.edu.ar`.
 - **Buscador** → ícono de lupa que abre `SearchBox` con debounce 300ms y resultados agrupados.
-- **Modo oscuro** → toggle accesible desde el navbar.
 - **Sección activa** → el enlace de la sección actual se resalta automáticamente (`nav-is-active`) en desktop y móvil.
 
 **Mobile:** hamburguesa a la izquierda, logo al centro, Mi ISeP + buscador a la derecha.
@@ -319,18 +318,13 @@ Guía visual de todas las rutas del sitio organizadas por sección:
 - En móvil, se posiciona en la esquina inferior izquierda para no superponerse con el botón de WhatsApp.
 - Scroll suave al inicio.
 
-### 12.3 Modo Oscuro
-- Toggle accesible desde el navbar.
-- Alterna entre tema claro y oscuro.
-- Persiste la preferencia del usuario.
-
-### 12.4 Redes sociales (Footer)
+### 12.3 Redes sociales (Footer)
 - **Facebook:** `facebook.com/isepsantafe/`
 - **YouTube:** `youtube.com/c/InstitutodeSeguridadPúblicaDeSantaFe`
 - **Instagram:** `instagram.com/isepsantafe`
 - **TikTok:** `tiktok.com/@isepsantafe`
 
-### 12.5 Footer
+### 12.4 Footer
 - Fondo sólido `#00254d`, grid 3 columnas.
 - Bottom 1 línea: "Departamento Desarrollo, Tecnología e Innovación" + fecha dinámica.
 
@@ -368,9 +362,7 @@ Carrusel de 3 egresados con foto, nombre, promoción y texto. Flechas y dots.
 5. **Consistencia visual** (gradiente, glow)
 6. **Fondo decorativo global** (`background-attachment: fixed`)
 7. **Favicon:** escudo ISeP
-8. **Modo oscuro** toggle desde navbar
-9. **SkipToContent** + `id="main-content"` en todos los `<main>`
-10. **Dark mode persistente** (guarda preferencia del usuario)
+8. **SkipToContent** + `id="main-content"` en todos los `<main>`
 
 ---
 

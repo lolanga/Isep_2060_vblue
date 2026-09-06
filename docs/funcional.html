@@ -56,7 +56,7 @@
 
   <main>
     <h2>1. Visión general</h2>
-    <p>Sitio web institucional del <strong>Instituto de Seguridad Pública (ISeP) de la Provincia de Santa Fe</strong>. SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, tablet, desktop). Lazy loading por ruta para tiempos de carga optimizados. Modo oscuro incluido.</p>
+    <p>Sitio web institucional del <strong>Instituto de Seguridad Pública (ISeP) de la Provincia de Santa Fe</strong>. SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, tablet, desktop). Lazy loading por ruta para tiempos de carga optimizados.</p>
 
     <h2>2. Audiencias</h2>
     <table>
@@ -77,7 +77,6 @@
       <tr><td><strong>Noticias</strong></td><td>Link directo a <code>/noticias</code></td></tr>
       <tr><td><strong>Mi ISeP</strong></td><td>Botón siempre visible (desktop y móvil), enlace externo</td></tr>
       <tr><td><strong>Buscador</strong></td><td>Ícono de lupa, debounce 300ms, resultados agrupados</td></tr>
-      <tr><td><strong>Modo oscuro</strong></td><td>Toggle desde navbar</td></tr>
       <tr><td><strong>Sección activa</strong></td><td>El enlace de la sección actual se resalta (nav-is-active) en desktop y móvil</td></tr>
     </table>
     <div class="note"><strong>Mobile:</strong> hamburguesa a la izquierda, logo al centro, Mi ISeP + buscador a la derecha.</div>
@@ -228,8 +227,6 @@
     <p>Botón flotante verde, siempre visible (z-index 60). Enlace a <code>wa.me/5493424579000</code> (tel: +54 342 457-9000).</p>
     <h3>ScrollToTop</h3>
     <p>Botón flotante (z-index 70). Visible tras 400px de scroll. En móvil, esquina inferior izquierda para no superponerse con WhatsApp.</p>
-    <h3>Modo Oscuro</h3>
-    <p>Toggle accesible desde el navbar. Alterna entre tema claro y oscuro. Persiste la preferencia del usuario.</p>
     <h3>Redes sociales (Footer)</h3>
     <table>
       <tr><th>Red</th><th>Enlace</th></tr>
@@ -257,9 +254,7 @@
       <li>Consistencia visual (gradiente, glow).</li>
       <li>Fondo decorativo global.</li>
       <li>Favicon: escudo ISeP.</li>
-      <li>Modo oscuro toggle desde navbar.</li>
       <li>SkipToContent + id="main-content" en todos los main.</li>
-      <li>Dark mode persistente.</li>
     </ol>
 
     <h2>17. Disponibilidad</h2>
