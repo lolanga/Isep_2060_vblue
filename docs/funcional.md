@@ -56,6 +56,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 - **Mi ISeP** → botón siempre visible (desktop y móvil), enlace externo a `mi.isepsantafe.edu.ar`.
 - **Buscador** → ícono de lupa que abre `SearchBox` con debounce 300ms y resultados agrupados.
 - **Modo oscuro** → toggle accesible desde el navbar.
+- **Sección activa** → el enlace de la sección actual se resalta automáticamente (`nav-is-active`) en desktop y móvil.
 
 **Mobile:** hamburguesa a la izquierda, logo al centro, Mi ISeP + buscador a la derecha.
 
@@ -70,6 +71,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/institucional/autoridades` | Autoridades | Implementada |
 | `/institucional/organizacion` | Organización | Implementada |
 | `/institucional/oferta-educativa` | Oferta Educativa (tabs: Carreras/Cursos/Convocatorias) | Implementada |
+| `/institucional/carreras` | Carreras (grid con estado de inscripción) | Implementada |
 | `/institucional/resoluciones` | Resoluciones (17 documentos descargables) | Implementada |
 | `/institucional/sedes-contacto` | Sedes y Contacto (Google Maps embebido) | Implementada |
 | `/institucional/galeria` | Galería de Fotos (categorías, filtros, lightbox) | Implementada |
@@ -83,9 +85,9 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/ingreso/convocatorias` | Landing Convocatorias (contenido real Esc. Policía 2027–2028) | Implementada |
 | `/ingreso/proximas-convocatorias` | Próximas convocatorias (2027-2028) | Implementada |
 | `/ingreso/faq` | Preguntas frecuentes (12 preguntas) | Implementada |
-| `/secretaria/titulos-y-certificaciones` | Títulos y Certificaciones | Implementada |
-| `/secretaria/biblioteca-virtual` | Biblioteca Virtual (22 recursos bibliográficos) | Implementada |
-| `/secretaria/cursos-de-capacitacion` | Cursos de Capacitación | Implementada |
+| `/secretaria/titulos` | Títulos y Certificaciones | Implementada |
+| `/secretaria/biblioteca` | Biblioteca Virtual (22 recursos bibliográficos) | Implementada |
+| `/secretaria/cursos` | Cursos de Capacitación | Implementada |
 | `/mapa-del-sitio` | Mapa del Sitio (guía visual de todas las rutas) | Implementada |
 | `/404` | Página no encontrada | Implementada |
 
@@ -95,14 +97,13 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 
 La página de inicio (`/`) está compuesta por las siguientes secciones, en orden:
 
-1. **Hero Slider** — Banner principal con slider automático (3 slides), transiciones suaves, flechas de navegación y indicadores (dots). CTA principal → `/institucional/oferta-educativa`.
-2. **Trámites en Línea** — 4 tarjetas explicativas: Mi ISeP, SIGEDI, Cadetes, Webmail. Cada una con audiencia y descripción de qué hace.
-3. **Aplicaciones Institucionales** — 4 accesos directos a sistemas institucionales.
-4. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
-5. **CTA Inscripciones** — Bloque con countdown configurable (fecha objetivo: 2027-09-30) + botones de inscripción.
-6. **Últimas Noticias** — Noticia destacada + sidebar de noticias recientes con ShareButton. Links a `/noticias/:id`.
-7. **Nuestras Escuelas** — Cuadrícula de las 5 escuelas con escudos. Tarjetas enlaces clickeables a `/escuelas/:slug`.
-8. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
+1. **Hero Slider** — Banner principal con slider automático (3 slides), transiciones suaves, flechas de navegación y indicadores (dots). Dos CTAs: "Conoce nuestras propuestas" → `/institucional/oferta-educativa` y "Inscripciones 2027" → `/ingreso/convocatorias`.
+2. **Trámites y Sistemas** — 4 tarjetas de acceso a los sistemas del ISeP: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail. Cada una con audiencia y descripción de qué hace.
+3. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
+4. **CTA Inscripciones** — Bloque con countdown configurable (fecha objetivo: 2027-09-30) + botones "Pre-Inscripción Online" (`/ingreso/convocatorias`) y "Ver Requisitos" (`/ingreso/requisitos`).
+5. **Últimas Noticias** — Noticia destacada + sidebar de noticias recientes con ShareButton. Links a `/noticias/:id`.
+6. **Nuestras Escuelas** — Cuadrícula de las 5 escuelas con escudos. Tarjetas enlaces clickeables a `/escuelas/:slug`.
+7. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
 
 ### 4.1 Hero Slider
 
@@ -112,8 +113,10 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 - **Navegación:** flechas + dots.
 - **Transiciones:** fade suave (1s ease-in-out).
 - **Altura:** `100svh`.
+- **CTAs:** botón principal "Conoce nuestras propuestas" (`/institucional/oferta-educativa`) + botón secundario "Inscripciones 2027" (`/ingreso/convocatorias`).
+- **Accesibilidad:** respeta `prefers-reduced-motion` — si el usuario pidió reducir movimiento, el autoplay se pausa (ver tecnico.md §13.13).
 
-### 4.2 Sección Trámites en Línea (Home)
+### 4.2 Sección Trámites y Sistemas (Home)
 
 | App | Descripción | Audiencia |
 |---|---|---|
@@ -186,7 +189,7 @@ Grid de tarjetas mejoradas:
 - Fecha de inscripción
 - Hover animado (elevación)
 
-### 5.3 Cursos (`/secretaria/cursos-de-capacitacion`)
+### 5.3 Cursos (`/secretaria/cursos`)
 
 - Filtros por Escuela, Tipo y Estado
 - Acordeón/desplegable por curso
@@ -242,7 +245,7 @@ Pasos detallados del proceso de ingreso.
 
 ## 7. Secretaría
 
-### 7.1 Títulos y Certificaciones (`/secretaria/titulos-y-certificaciones`)
+### 7.1 Títulos y Certificaciones (`/secretaria/titulos`)
 
 - **Consulta de Certificados** — Formulario de búsqueda por DNI con feedback visual
 - **Títulos y Registros** — Proceso de 3 pasos (verificar título, escanear documentos, formulario online)
@@ -251,14 +254,14 @@ Pasos detallados del proceso de ingreso.
 - **Contacto:** Sección Títulos y Registros, tel 0341-4728526, correo titulosisep@isepsantafe.edu.ar
 - **Sedes:** Rosario y Recreo con direcciones
 
-### 7.2 Biblioteca Virtual (`/secretaria/biblioteca-virtual`)
+### 7.2 Biblioteca Virtual (`/secretaria/biblioteca`)
 
 - **22 artículos reales del ISeP** con categorías: Normativa, Protocolos, Formación, Institucional
 - Chips coloreados por tipo
 - Botón de descarga por recurso (enlaces directos a PDFs de isepsantafe.edu.ar)
 - Filtros por categoría
 
-### 7.3 Cursos de Capacitación (`/secretaria/cursos-de-capacitacion`)
+### 7.3 Cursos de Capacitación (`/secretaria/cursos`)
 
 - Cursos con badges de estado
 - Botón "Acceso a Mi ISeP" usando `MI_ISEP_URL` desde `config.js`
@@ -381,10 +384,14 @@ Carrusel de 3 egresados con foto, nombre, promoción y texto. Flechas y dots.
 ### 17.1 Testing automatizado
 
 Suite de tests con **Vitest** + **React Testing Library** + **jsdom**:
-- 18 tests en 3 archivos, cubriendo la capa de datos (no los componentes UI)
-- `datos.test.js`: valida estructura de noticias (IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como `null`)
-- `institucional.test.js`: valida estructura de escuelas, carreras, cursos y convocatorias
-- `buscador.test.js`: valida funcionalidad de búsqueda y resultados agrupados
+- 33 tests en 7 archivos, cubriendo tanto la capa de datos como componentes UI:
+- `datos.test.js` (6): valida estructura de noticias (IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como `null`)
+- `institucional.test.js` (7): valida estructura de escuelas, carreras, cursos y convocatorias
+- `buscador.test.js` (5): valida funcionalidad de búsqueda y resultados agrupados
+- `navbar.test.jsx` (5): navegación desktop/móvil y enlaces privados
+- `hero.test.jsx` (5): render de slides, CTAs y navegación
+- `news.test.jsx` (2): render de noticias destacadas con y sin imagen
+- `sharebutton.test.jsx` (3): copiar al portapapeles, Web Share API y feedback "¡Copiado!"
 - Tests ejecutados automáticamente en CI (GitHub Actions) en cada push
 - Ejecutar localmente con `npm run test`
 
@@ -565,6 +572,7 @@ El componente `SEO.jsx` gestiona meta tags por página:
 | `<meta property="og:type">` | website / article |
 | `<meta property="og:locale">` | es_AR |
 | `<meta name="twitter:card">` | summary_large_image |
+| `<link rel="canonical">` | URL canónica dinámica (`origin` + `pathname`) |
 
 - Se actualizan dinámicamente con `useEffect` al cambiar de ruta.
 

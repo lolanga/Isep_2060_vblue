@@ -59,7 +59,7 @@
       <tr><td>Framework</td><td>React</td><td>^19.2.4</td></tr>
       <tr><td>Build</td><td>Vite</td><td>^8.0.8</td></tr>
       <tr><td>Router</td><td>react-router-dom</td><td>^7.13.2</td></tr>
-      <tr><td>Íconos</td><td>Material Symbols, lucide-react, react-icons</td><td>—</td></tr>
+      <tr><td>Íconos</td><td>Google Material Symbols</td><td>—</td></tr>
       <tr><td>Compilador</td><td>babel-plugin-react-compiler</td><td>^1.0.0</td></tr>
       <tr><td>Lint</td><td>ESLint</td><td>^9.39.4</td></tr>
       <tr><td>Testing</td><td>Vitest + React Testing Library + jsdom</td><td>—</td></tr>
@@ -71,11 +71,11 @@
 ├── App.jsx                  # Router principal (26 rutas) + ErrorBoundary + NotFound
 ├── assets/                  # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
-│   ├── Navbar.jsx           # Nav + SearchBox + hamburger + dark mode toggle
-│   ├── Hero.jsx             # Slider 3 slides
+│   ├── Navbar.jsx           # Nav + SearchBox + hamburger + dark mode + nav-is-active
+│   ├── Hero.jsx             # Slider 3 slides + 2 CTAs + prefers-reduced-motion
 │   ├── SearchBox.jsx        # Buscador global (debounce 300ms)
 │   ├── News.jsx             # Noticias Home
-│   ├── Apps.jsx             # 4 apps institucionales
+│   ├── Tramites.jsx         # 4 apps institucionales (Trámites y Sistemas)
 │   ├── Schools.jsx          # Grid escuelas con escudos
 │   ├── CTA.jsx              # Countdown (2027-09-30)
 │   ├── Footer.jsx           # Footer 3 columnas
@@ -83,28 +83,30 @@
 │   ├── FloatWhatsApp.jsx    # WhatsApp flotante (z-60)
 │   ├── ScrollToTop.jsx      # Botón ir arriba (z-70)
 │   ├── Breadcrumb.jsx       # Migas de pan
-│   ├── BreadcrumbLd.jsx     # JSON-LD BreadcrumbList
+│   ├── JsonLd.jsx           # JSON-LD consolidado (EduOrg + NewsArticle + BreadcrumbList)
+│   ├── Countdown.jsx        # Cuenta regresiva
+│   ├── Contadores.jsx       # Estadísticas animadas
+│   ├── Testimonios.jsx      # Carrusel testimonios
 │   ├── ShareButton.jsx      # Compartir (Web Share API / clipboard)
-│   ├── SEO.jsx              # Meta tags dinámicos
-│   ├── Analytics.jsx        # GA4 (gtag.js)
-│   ├── EducationalOrganizationLd.jsx
-│   ├── NewsArticleLd.jsx
-│   ├── SkipToContent.jsx
-│   └── ErrorBoundary.jsx
+│   ├── Placeholder.jsx      # Páginas "Próximamente"
+│   ├── Skeleton.jsx         # Placeholder de carga
+│   ├── SkipToContent.jsx    # Enlace accesible
+│   ├── ErrorBoundary.jsx    # Captura errores de render
+│   ├── SEO.jsx              # Meta tags dinámicos + canonical
+│   └── Analytics.jsx        # GA4 (gtag.js)
 ├── data/
 │   ├── config.js            # Config centralizada
 │   ├── institucional.js     # Escuelas, carreras, cursos, convocatorias, FAQ
 │   ├── noticias.js          # 14 noticias (admite img: null)
 │   ├── normativa.js         # 17 resoluciones
-│   ├── galeria.js           # Fotos galería (4 categorías)
 │   └── buscador.js          # 48 entradas + buscar/buscarAgrupado
 ├── pages/
-│   ├── Home.jsx             # 8 secciones + Trámites
+│   ├── Home.jsx             # 7 secciones + Trámites y Sistemas
 │   ├── Noticias.jsx         # Filtro + paginación + filtro escuela
 │   ├── NoticiaDetalle.jsx   # Detalle noticia
 │   ├── MapaDelSitio.jsx     # Mapa visual 26 rutas
 │   ├── Institucional/       # ElISeP, Autoridades, Organizacion,
-│   │                        # OfertaEducativa, Resoluciones,
+│   │                        # OfertaEducativa, Carrera, Resoluciones,
 │   │                        # SedesContacto (Maps), Galeria
 │   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
 │   ├── Ingreso/             # Convocatorias, ProximasConvocatorias,
@@ -116,16 +118,16 @@
 │   └── analytics.js         # Tracking GA4
 └── styles/
     ├── variables.css        # Design tokens
-    ├── base.css             # Reset, tipografía, fondo global
-    ├── navbar.css           # Navbar + buscador + dark mode
+    ├── base.css             # Reset, tipografía, fondo, prefers-reduced-motion global
+    ├── navbar.css           # Navbar + buscador + dark mode + nav-is-active
     ├── hero.css             # Hero slider
     ├── news.css             # Noticias Home
     ├── noticias.css         # Página /noticias
     ├── schools-cta.css      # Escuelas + CTA
-    ├── apps.css             # Apps + WhatsApp
+    ├── new-features.css     # Trámites y Sistemas + mejoras recientes
     ├── oferta.css           # Cards, chips, filtros
+    ├── pages.css            # Clases reutilizables de contenido
     ├── footer.css           # Footer
-    ├── galeria.css          # Galería (grid, lightbox)
     └── responsive.css       # Mobile-first</pre>
 
     <h2>3. Sistema de diseño</h2>
@@ -164,6 +166,7 @@
       <tr><td>Tablet</td><td>768–1023px</td><td>Nav desktop con escudo, grids 2 columnas</td></tr>
       <tr><td>Desktop</td><td>≥ 1024px</td><td>Grids 3-4+ columnas, layout completo</td></tr>
     </table>
+    <p><strong>Nav responsive:</strong> desktop con escudo + dropdowns + dark mode; tablet solo escudo; móvil hamburger. La <strong>sección activa</strong> se resalta con <code>nav-is-active</code> (vía <code>useLocation</code>) en desktop y móvil.</p>
 
     <h2>5. Rutas (App.jsx) — 26 rutas</h2>
     <p>Todas las rutas usan <code>React.lazy()</code> + <code>Suspense</code> para code-splitting. Navbar, Footer, FloatWhatsApp y ScrollToTop son globales.</p>
@@ -174,7 +177,7 @@
       <tr><td><code>institucional.js</code></td><td>5 escuelas, 4 carreras, 6+ cursos, convocatorias, 12 FAQ, helpers</td></tr>
       <tr><td><code>noticias.js</code></td><td>14 noticias (admite <code>img: null</code>)</td></tr>
       <tr><td><code>normativa.js</code></td><td>17 resoluciones descargables</td></tr>
-      <tr><td><code>galeria.js</code></td><td>Fotos con categorías (Eventos/Formación/Instalaciones/Graduaciones)</td></tr>
+      <tr><td><code>Galeria.jsx</code></td><td>Fotos hardcodeadas en el componente (categorías Eventos/Formación/Instalaciones/Graduaciones). No existe <code>galeria.js</code></td></tr>
       <tr><td><code>buscador.js</code></td><td>48 entradas + <code>buscar()</code> + <code>buscarAgrupado()</code></td></tr>
       <tr><td><code>config.js</code></td><td>MI_ISEP_URL, GESTION_URL, CADETES_URL, WEBMAIL_URL, emails, teléfonos, GA_ID, redes</td></tr>
     </table>
@@ -194,6 +197,8 @@
       <li>3 slides, automático (6s), pausa en hover.</li>
       <li>Flechas + dots, altura <code>100svh</code>.</li>
       <li>Transiciones: fade suave (1s ease-in-out).</li>
+      <li>2 CTAs: "Conoce nuestras propuestas" (<code>/institucional/oferta-educativa</code>) + "Inscripciones 2027" (<code>/ingreso/convocatorias</code>).</li>
+      <li>Autoplay se pausa con <code>prefers-reduced-motion</code> (ver §15.1).</li>
     </ul>
 
     <h2>9. Build stats</h2>
@@ -219,6 +224,7 @@
     </table>
 
     <h2>11. Publicación de noticias — Especificación técnica</h2>
+    <div class="note">Esta sección documenta la <strong>estructura de datos y archivos</strong>. El <strong>paso a paso operativo</strong> está en funcional.md §18.</div>
     <h3>Estructura de datos</h3>
     <pre>interface Noticia {
   id: number;            // Único, incremental
@@ -285,12 +291,16 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
     <p>Cada ruta se carga bajo demanda con <code>React.lazy()</code> + <code>Suspense</code>. 96 módulos totales.</p>
 
     <h3>12.2 Testing</h3>
-    <p>18 tests en 3 archivos con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>:</p>
+    <p><strong>33 tests en 7 archivos</strong> con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>:</p>
     <table>
-      <tr><th>Archivo</th><th>Qué valida</th></tr>
-      <tr><td><code>datos.test.js</code></td><td>IDs únicos, campos requeridos, categorías válidas, imágenes <code>null</code></td></tr>
-      <tr><td><code>institucional.test.js</code></td><td>Escuelas, carreras, cursos, convocatorias</td></tr>
-      <tr><td><code>buscador.test.js</code></td><td>Búsqueda y resultados agrupados</td></tr>
+      <tr><th>Archivo</th><th>Qué valida</th><th>Tests</th></tr>
+      <tr><td><code>datos.test.js</code></td><td>IDs únicos, campos requeridos, categorías válidas, imágenes <code>null</code></td><td>6</td></tr>
+      <tr><td><code>institucional.test.js</code></td><td>Escuelas, carreras, cursos, convocatorias</td><td>7</td></tr>
+      <tr><td><code>buscador.test.js</code></td><td>Búsqueda y resultados agrupados</td><td>5</td></tr>
+      <tr><td><code>navbar.test.jsx</code></td><td>Navegación desktop/móvil, enlaces</td><td>5</td></tr>
+      <tr><td><code>hero.test.jsx</code></td><td>Render de slides, CTAs, navegación</td><td>5</td></tr>
+      <tr><td><code>news.test.jsx</code></td><td>Noticia destacada y sin imagen</td><td>2</td></tr>
+      <tr><td><code>sharebutton.test.jsx</code></td><td>Copiar, Web Share API, feedback "¡Copiado!"</td><td>3</td></tr>
     </table>
 
     <h3>12.3 GitHub Actions</h3>
@@ -298,8 +308,9 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
 
     <h3>12.4 SEO</h3>
     <ul>
-      <li><strong>JSON-LD:</strong> <code>EducationalOrganization</code>, <code>NewsArticle</code>, <code>BreadcrumbList</code></li>
+      <li><strong>JSON-LD:</strong> <code>EducationalOrganization</code>, <code>NewsArticle</code>, <code>BreadcrumbList</code> (consolidados en <code>JsonLd.jsx</code>)</li>
       <li><strong>Meta tags dinámicos:</strong> título, descripción, imagen, tipo, locale (OG + Twitter Card)</li>
+      <li><strong>Canonical:</strong> dinámico en <code>SEO.jsx</code>, con <code>origin</code> + <code>pathname</code></li>
       <li><strong>sitemap.xml:</strong> 22 URLs</li>
       <li><strong>robots.txt:</strong> permisos para crawlers</li>
     </ul>
@@ -330,6 +341,7 @@ export const GA_ID = "G-XXXXXXXXXX";  // Placeholder</pre>
       <li><strong>focus-visible</strong> — indicadores de foco solo con teclado</li>
       <li><strong>sr-only</strong> — contenido para lectores de pantalla</li>
       <li><strong>Dark mode</strong> — toggle persistente en navbar</li>
+      <li><strong>prefers-reduced-motion</strong> — ver §15.1 (pausa autoplay + desactivación de animaciones)</li>
     </ul>
 
     <h3>12.9 Error Handling</h3>
@@ -339,7 +351,7 @@ export const GA_ID = "G-XXXXXXXXXX";  // Placeholder</pre>
     <p><code>src/services/api.js</code>: mock→backend-ready.</p>
 
     <h3>12.11 Galería de Fotos</h3>
-    <p><code>src/data/galeria.js</code>: fotos con categorías (Eventos/Formación/Instalaciones/Graduaciones). Grid responsive, filtros, lightbox.</p>
+    <p><code>src/pages/Institucional/Galeria.jsx</code>: fotos hardcodeadas (categorías Eventos/Formación/Instalaciones/Graduaciones). Grid responsive, filtros, lightbox. (No existe <code>src/data/galeria.js</code>.)</p>
 
     <h3>12.12 PWA</h3>
     <p><code>manifest.json</code> + <code>robots.txt</code> en <code>public/</code>.</p>
@@ -350,9 +362,9 @@ export const GA_ID = "G-XXXXXXXXXX";  // Placeholder</pre>
     <table>
       <tr><th>Aspecto</th><th>Antes</th><th>Después</th></tr>
       <tr><td>Inline styles</td><td>523</td><td>0 (29 archivos migrados a CSS)</td></tr>
-      <tr><td>Código muerto</td><td>—</td><td>Eliminado</td></tr>
-      <tr><td>Exports no usados</td><td>—</td><td>Eliminados</td></tr>
-      <tr><td>Dependencias no usadas</td><td>—</td><td>Eliminadas</td></tr>
+      <tr><td>Código muerto</td><td>—</td><td>Se mantuvieron en uso: analytics.js, api.js, Skeleton.jsx, SEO.jsx</td></tr>
+      <tr><td>Consolidación JSON-LD</td><td>—</td><td>EducationalOrganizationLd + NewsArticleLd + BreadcrumbLd → <code>JsonLd.jsx</code></td></tr>
+      <tr><td>Dependencias no usadas</td><td>—</td><td>Eliminadas: react-icons, lucide-react</td></tr>
       <tr><td>Bugs corregidos</td><td>—</td><td>Resoluciones.jsx, Carrera.jsx</td></tr>
     </table>
 
@@ -376,6 +388,56 @@ export const GA_ID = "G-XXXXXXXXXX";  // Placeholder</pre>
 
     <h3>13.4 Limpieza CSS</h3>
     <p>~15 dead CSS classes eliminadas. Duplicados eliminados. pages.css reducido de 3280 a ~2935 líneas.</p>
+
+    <h2>14. Accesibilidad de movimiento, Canonical y Preconnect</h2>
+
+    <h3>14.1 prefers-reduced-motion (accesibilidad de movimiento)</h3>
+    <p><strong>Qué es:</strong> media query de CSS que expone si el usuario pidió reducir el movimiento de la interfaz (configuración del sistema operativo/buscador). Se lee desde CSS (<code>@media (prefers-reduced-motion: reduce)</code>) o JS (<code>window.matchMedia</code>).</p>
+    <p><strong>Para qué sirve:</strong> evita mareos/convulsiones en usuarios sensibles al movimiento. WCAG 2.2 Criterio 2.3.3 ("Animation from Interactions") recomienda permitir desactivar animaciones.</p>
+    <p><strong>Cómo se implementa — dos niveles:</strong></p>
+    <ul>
+      <li><strong>CSS global (<code>src/styles/base.css</code>):</strong> anula animaciones y transiciones en todo el sitio:</li>
+    </ul>
+    <pre>@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}</pre>
+    <ul>
+      <li><strong>JS en Hero (<code>src/components/Hero.jsx</code>):</strong> el autoplay del slider se pausa si el usuario pidió reducir movimiento, con el hook <code>usePrefersReducedMotion()</code> basado en <code>useSyncExternalStore</code> (patrón React que reactúa a <code>matchMedia</code> sin setState en efecto).</li>
+    </ul>
+    <p><strong>Dónde está alojado:</strong> <code>Hero.jsx</code> (hook + pausa autoplay), <code>src/styles/base.css</code> (media query global).</p>
+    <p><strong>Qué rutas afecta:</strong> el autoplay del slider solo existe en la página de inicio <code>/</code> (Hero). La regla CSS es global (todas las rutas).</p>
+    <p><strong>Por qué no se usa setState en un efecto:</strong> la regla <code>react-hooks/set-state-in-effect</code> del linter prohíbe actualizar estado dentro de <code>useEffect</code>; <code>useSyncExternalStore</code> es la alternativa oficial que además evita el flicker del primer render.</p>
+
+    <h3>14.2 Canonical URL</h3>
+    <p><strong>Qué es:</strong> <code>&lt;link rel="canonical"&gt;</code> indica a los buscadores la URL canónica (principal) de una página, útil para evitar contenido duplicado (parámetros de tracking, variaciones de <code>www</code>).</p>
+    <p><strong>Para qué sirve:</strong> consolida la autoridad SEO en una sola URL por página.</p>
+    <p><strong>Cómo se implementa (<code>src/components/SEO.jsx</code>):</strong> se genera dinámicamente a partir de la URL actual:</p>
+    <pre>useEffect(() => {
+  const url = `${window.location.origin}${window.location.pathname}`;
+  let link = document.querySelector('link[rel="canonical"]');
+  if (!link) {
+    link = document.createElement("link");
+    link.rel = "canonical";
+    document.head.appendChild(link);
+  }
+  link.href = url;
+}, [pathname]);</pre>
+    <p><strong>Dónde está alojado:</strong> <code>SEO.jsx</code> (se recalcula en cada cambio de ruta vía <code>useEffect([pathname])</code>).</p>
+    <p><strong>Qué rutas usa:</strong> todas — el componente <code>SEO</code> se monta en <code>App.jsx</code> y se actualiza en cada navegación.</p>
+
+    <h3>14.3 Preconnect (fuentes)</h3>
+    <p><strong>Qué es:</strong> hint al navegador para establecer conexión temprana (DNS + TCP + TLS) con un origen antes de que se necesite un recurso.</p>
+    <p><strong>Para qué sirve:</strong> reduce el tiempo de carga de las fuentes de Google Fonts (Inter y Material Symbols).</p>
+    <p><strong>Cómo se implementa (<code>index.html</code>):</strong></p>
+    <pre>&lt;link rel="preconnect" href="https://fonts.googleapis.com" /&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /&gt;</pre>
+    <p><strong>Dónde está alojado:</strong> <code>&lt;head&gt;</code> de <code>index.html</code>.</p>
+    <p><strong>Qué rutas usa:</strong> el sitio completo — la conexión se establece al cargar la primera página y las fuentes (usadas en todas las rutas) se reutilizan.</p>
   </main>
 
   <footer>

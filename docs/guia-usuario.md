@@ -83,14 +83,16 @@ El botón **"Mi ISeP"** siempre visible en la barra superior. Lleva a `mi.isepsa
 
 - Cambio cada 6 segundos, pausa al hover
 - Flechas + dots para navegación manual
-- CTA principal → `/institucional/oferta-educativa`
+- **2 botones de acción (CTA):**
+  - "Conoce nuestras propuestas" → `/institucional/oferta-educativa`
+  - "Inscripciones 2027" → `/ingreso/convocatorias`
 
 ---
 
 ## 5. Secciones del Home
 
-### 5.1 Trámites en Línea
-4 tarjetas explicativas:
+### 5.1 Trámites y Sistemas
+4 tarjetas de acceso a los sistemas del ISeP:
 
 | App | Para quién | Qué hace |
 |---|---|---|
@@ -99,22 +101,21 @@ El botón **"Mi ISeP"** siempre visible en la barra superior. Lleva a `mi.isepsa
 | **Gestión Cadetes** | Cadetes de 1° y 2° año | Control y notificaciones del cursado |
 | **Webmail** | Todo el personal del ISeP | Correo electrónico institucional |
 
-### 5.2 Aplicaciones Institucionales
-4 accesos directos a sistemas institucionales.
-
-### 5.3 Contadores
+### 5.2 Contadores
 Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.
 
-### 5.4 Convocatorias (CTA)
-Cuenta regresiva al 30 de septiembre de 2027 + botones de inscripción. El botón principal lleva a `/institucional/oferta-educativa`.
+### 5.3 Convocatorias (CTA)
+Cuenta regresiva al 30 de septiembre de 2027 + botones de inscripción:
+- "Pre-Inscripción Online" → `/ingreso/convocatorias`
+- "Ver Requisitos" → `/ingreso/requisitos`
 
-### 5.5 Últimas Noticias
+### 5.4 Últimas Noticias
 Noticia destacada + sidebar. **Cada noticia lleva a su página de detalle** (`/noticias/:id`). El enlace "Ver todas las noticias" lleva a `/noticias`.
 
-### 5.6 Nuestras Escuelas
+### 5.5 Nuestras Escuelas
 Accesos directos a las 5 escuelas con escudos. Las tarjetas son enlaces clickeables a `/escuelas/:slug`.
 
-### 5.7 Testimonios
+### 5.6 Testimonios
 Carrusel de 3 egresados con flechas y dots.
 
 ---
@@ -175,20 +176,20 @@ Pasos detallados del proceso de ingreso.
 
 ## 8. Secretaría
 
-### 8.1 Títulos y Certificaciones (`/secretaria/titulos-y-certificaciones`)
+### 8.1 Títulos y Certificaciones (`/secretaria/titulos`)
 - **Consulta de certificados** por DNI con feedback visual.
 - **Proceso de 3 pasos** para solicitar títulos.
 - Links externos (santafe.gov.ar, Google Forms).
 - Títulos para retirar (2 links de descarga).
 - Contacto: titulosisep@isepsantafe.edu.ar, tel 0341-4728526.
 
-### 8.2 Biblioteca Virtual (`/secretaria/biblioteca-virtual`)
+### 8.2 Biblioteca Virtual (`/secretaria/biblioteca`)
 - **22 recursos bibliográficos reales** del ISeP.
 - Filtros por categoría: Normativa, Protocolos, Formación, Institucional.
 - Chips coloreados por tipo.
 - Botón de descarga directa a PDF.
 
-### 8.3 Cursos de Capacitación (`/secretaria/cursos-de-capacitacion`)
+### 8.3 Cursos de Capacitación (`/secretaria/cursos`)
 - Cursos con badges de estado.
 - Botón "Acceso a Mi ISeP".
 

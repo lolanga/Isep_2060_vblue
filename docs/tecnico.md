@@ -14,7 +14,7 @@
 | Framework | React | ^19.2.4 |
 | Build | Vite | ^8.0.8 |
 | Router | react-router-dom | ^7.13.2 |
-| Íconos | Google Material Symbols, lucide-react ^1.7.0, react-icons ^5.6.0 | — |
+| Íconos | Google Material Symbols | — |
 | Compilador | babel-plugin-react-compiler | ^1.0.0 |
 | Lint | ESLint ^9.39.4 | — |
 | Testing | Vitest + React Testing Library + jsdom | — |
@@ -30,10 +30,10 @@ src/
 ├── assets/                  # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
 │   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger + dark mode toggle
-│   ├── Hero.jsx             # Slider 3 slides
+│   ├── Hero.jsx             # Slider 3 slides + 2 CTAs + pausa por prefers-reduced-motion
 │   ├── SearchBox.jsx        # Buscador global agrupado (debounce 300ms)
 │   ├── News.jsx             # Sección noticias Home (datos reales + links)
-│   ├── Apps.jsx             # 4 apps institucionales
+│   ├── Tramites.jsx         # 4 apps institucionales (sección "Trámites y Sistemas")
 │   ├── Schools.jsx          # Grid de escuelas con escudos (enlaces a /escuelas/:slug)
 │   ├── CTA.jsx              # Llamado a la acción con countdown (2027-09-30)
 │   ├── Footer.jsx           # Footer 3 columnas + redes sociales
@@ -41,27 +41,25 @@ src/
 │   ├── FloatWhatsApp.jsx    # WhatsApp flotante (z-60)
 │   ├── ScrollToTop.jsx      # Botón ir arriba (z-70, bottom-left en móvil)
 │   ├── Breadcrumb.jsx       # Migas de pan con home icon
-│   ├── BreadcrumbLd.jsx     # JSON-LD BreadcrumbList
+│   ├── JsonLd.jsx           # JSON-LD consolidado (EducationalOrganization + NewsArticle + BreadcrumbList)
 │   ├── Countdown.jsx        # Cuenta regresiva
 │   ├── Contadores.jsx       # Estadísticas animadas
 │   ├── Testimonios.jsx      # Carrusel testimonios
 │   ├── ShareButton.jsx      # Compartir noticia (Web Share API / clipboard)
 │   ├── Placeholder.jsx      # Páginas "Próximamente"
+│   ├── Skeleton.jsx         # Placeholder de carga (skeleton)
 │   ├── SkipToContent.jsx    # Enlace accesible para saltar al contenido
 │   ├── ErrorBoundary.jsx    # Captura de errores de render
-│   ├── SEO.jsx              # Meta tags dinámicos (title, og, twitter)
-│   ├── Analytics.jsx        # Google Analytics 4 (gtag.js)
-│   ├── EducationalOrganizationLd.jsx  # JSON-LD para home
-│   └── NewsArticleLd.jsx    # JSON-LD para detalle de noticia
+│   ├── SEO.jsx              # Meta tags dinámicos (title, og, twitter, canonical)
+│   └── Analytics.jsx        # Google Analytics 4 (gtag.js)
 ├── data/
 │   ├── config.js            # Configuración centralizada (MI_ISEP_URL, teléfonos, emails, GA_ID, redes)
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, FAQ
 │   ├── noticias.js          # 14 noticias (compartido, admite img: null)
 │   ├── normativa.js         # 17 resoluciones (compartido)
-│   ├── galeria.js           # Fotos de galería (categorías: Eventos/Formación/Instalaciones/Graduaciones)
 │   └── buscador.js          # 48 entradas + buscar() + buscarAgrupado()
 ├── pages/
-│   ├── Home.jsx             # 8 secciones + Trámites en Línea
+│   ├── Home.jsx             # 7 secciones + Trámites y Sistemas
 │   ├── Noticias.jsx         # Filtro + paginación + filtro por escuela + links a detalle
 │   ├── NoticiaDetalle.jsx   # Detalle de noticia individual
 │   ├── MapaDelSitio.jsx     # Mapa visual de todas las rutas (26)
@@ -70,9 +68,10 @@ src/
 │   │   ├── Autoridades.jsx  # Contenido completo + links a escuelas
 │   │   ├── Organizacion.jsx # Organización institucional
 │   │   ├── OfertaEducativa.jsx  # Tabs (Carreras/Cursos/Convocatorias) + MI_ISEP_URL
+│   │   ├── Carrera.jsx      # Grid de carreras con estado de inscripción
 │   │   ├── Resoluciones.jsx # 17 PDFs descargables, filtros año/tipo
 │   │   ├── SedesContacto.jsx # 2 sedes con Google Maps embebido
-│   │   └── Galeria.jsx      # Photo grid, categorías, lightbox, responsive
+│   │   └── Galeria.jsx      # Photo grid, categorías, lightbox, responsive (FOTOS hardcodeadas)
 │   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
 │   │   ├── Policia.jsx
 │   │   ├── Superior.jsx
@@ -95,16 +94,16 @@ src/
 │   └── analytics.js         # Utilidades de tracking GA4
 └── styles/
     ├── variables.css        # Design tokens + gradiente
-    ├── base.css             # Reset, tipografía, fondo global, .chip
-    ├── navbar.css           # Navbar + buscador + hamburger + dark mode
+    ├── base.css             # Reset, tipografía, fondo global, .chip, prefers-reduced-motion global
+    ├── navbar.css           # Navbar + buscador + hamburger + dark mode + nav-is-active
     ├── hero.css             # Hero slider + overlays + .page-hero
     ├── news.css             # Noticias Home
     ├── noticias.css         # Página /noticias
     ├── schools-cta.css      # Escuelas + CTA
-    ├── apps.css             # Apps + WhatsApp
+    ├── new-features.css     # Trámites y Sistemas + contadores + últimas mejoras
     ├── oferta.css           # Cards, chips, filtros, acordeón
+    ├── pages.css            # Clases reutilizables de páginas de contenido
     ├── footer.css           # Footer 3 columnas + bottom
-    ├── galeria.css          # Galería de fotos (grid, lightbox)
     └── responsive.css       # Mobile-first
 ```
 
@@ -169,6 +168,7 @@ src/
 - Desktop: escudo + texto + dropdowns + dark mode toggle
 - Tablet (768-1023px): solo escudo
 - Mobile (<768px): hamburger left, logo center, Mi ISeP + search right
+- **Sección activa:** el enlace de la página actual se resalta con la clase `nav-is-active` (detectada con `useLocation`), tanto en desktop como en móvil
 
 ---
 
@@ -209,9 +209,9 @@ Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. Todas las rutas usan l
 
 17 resoluciones con: id, titulo, tipo, fecha, tamano, url.
 
-### 6.4 galeria.js
+### 6.4 Galeria.jsx (fotos de galería)
 
-Fotos de galería con categorías: Eventos, Formación, Instalaciones, Graduaciones.
+Las fotos están **hardcodeadas** en el componente `src/pages/Institucional/Galeria.jsx` (constante `FOTOS`), con categorías: Eventos, Formación, Instalaciones, Graduaciones. No existe `src/data/galeria.js`.
 
 ### 6.5 buscador.js
 
@@ -236,6 +236,8 @@ Fotos de galería con categorías: Eventos, Formación, Instalaciones, Graduacio
 - 3 slides, automático (6s), pausa en hover
 - Flechas + dots, altura `100svh`
 - Transiciones: fade suave (1s ease-in-out)
+- 2 CTAs: "Conoce nuestras propuestas" (`/institucional/oferta-educativa`) + "Inscripciones 2027" (`/ingreso/convocatorias`)
+- Autoplay se pausa con `prefers-reduced-motion` (ver §15.1)
 
 ---
 
@@ -278,6 +280,8 @@ background-image:
 ---
 
 ## 12. Publicación de noticias — Especificación técnica
+
+> Esta sección documenta la **estructura de datos y archivos** del sistema de noticias. El **paso a paso operativo** (cómo publicar una noticia nueva) está en **funcional.md §18**.
 
 ### 12.1 Estructura de datos
 
@@ -394,20 +398,25 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
 Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. 96 módulos totales. Todas las páginas incluidas (incluyendo Secretaría).
 
 ### 13.2 Testing
-Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. 18 tests en 3 archivos:
+Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **33 tests en 7 archivos**:
 
 | Archivo | Qué valida | Tests |
 |---|---|---|
-| `datos.test.js` | IDs únicos, campos requeridos, categorías válidas, imágenes `null` | ~6 |
-| `institucional.test.js` | Escuelas, carreras, cursos, convocatorias | ~6 |
-| `buscador.test.js` | Búsqueda y resultados agrupados | ~6 |
+| `datos.test.js` | IDs únicos, campos requeridos, categorías válidas, imágenes `null` | 6 |
+| `institucional.test.js` | Escuelas, carreras, cursos, convocatorias | 7 |
+| `buscador.test.js` | Búsqueda y resultados agrupados | 5 |
+| `navbar.test.jsx` | Navegación desktop/móvil, enlaces | 5 |
+| `hero.test.jsx` | Render de slides, CTAs, navegación | 5 |
+| `news.test.jsx` | Noticia destacada y sin imagen | 2 |
+| `sharebutton.test.jsx` | Copiar, Web Share API, feedback "¡Copiado!" | 3 |
 
 ### 13.3 GitHub Actions
 CI automatizado: Lint → Build → Test en cada push. Archivo: `.github/workflows/ci.yml`.
 
 ### 13.4 SEO
-- **JSON-LD:** `EducationalOrganization`, `NewsArticle`, `BreadcrumbList`
+- **JSON-LD:** `EducationalOrganization`, `NewsArticle`, `BreadcrumbList` (consolidados en `JsonLd.jsx`)
 - **Meta tags dinámicos:** título, descripción, imagen, tipo, locale (Open Graph + Twitter Card)
+- **Canonical:** `SEO.jsx` genera `<link rel="canonical">` dinámico con `origin` + `pathname`
 - **sitemap.xml:** 22 URLs
 - **robots.txt:** permisos para crawlers
 
@@ -441,6 +450,7 @@ Google Analytics 4 (`gtag.js`): carga asíncrona, solo en producción. Archivos:
 - **focus-visible:** indicadores de foco solo con teclado
 - **sr-only:** contenido para lectores de pantalla
 - **Dark mode:** toggle persistente en navbar
+- **prefers-reduced-motion:** ver §15.1 (pausa autoplay + desactivación de animaciones)
 
 ### 13.9 Error Handling
 - **ErrorBoundary global:** captura errores de render
@@ -451,7 +461,7 @@ Google Analytics 4 (`gtag.js`): carga asíncrona, solo en producción. Archivos:
 `src/services/api.js`: capa de abstracción mock→backend-ready. Preparada para conectar a API real.
 
 ### 13.11 Galería de Fotos
-`src/data/galeria.js`: fotos con categorías (Eventos, Formación, Instalaciones, Graduaciones). Grid responsive, filtros, lightbox.
+`src/pages/Institucional/Galeria.jsx`: fotos hardcodeadas con categorías (Eventos, Formación, Instalaciones, Graduaciones). Grid responsive, filtros, lightbox. (No existe `src/data/galeria.js`.)
 
 ### 13.12 PWA
 `manifest.json` + `robots.txt` en `public/`. Permite instalar como Progressive Web App.
@@ -465,8 +475,8 @@ Google Analytics 4 (`gtag.js`): carga asíncrona, solo en producción. Archivos:
 | Aspecto | Antes | Después |
 |---|---|---|
 | Inline styles | 523 | 0 (29 archivos migrados a CSS) |
-| Código muerto eliminado | — | analytics.js, api.js, Skeleton.jsx, SEO.jsx |
-| Exports no usados eliminados | — | NewsArticleLd, BreadcrumbLd |
+| Código muerto | — | Se mantuvieron en uso: analytics.js (GA4), api.js (capa mock→backend-ready), Skeleton.jsx, SEO.jsx — todos siguen existiendo |
+| Consolidación JSON-LD | — | EducationalOrganizationLd + NewsArticleLd + BreadcrumbLd → un solo `JsonLd.jsx` |
 | Dependencias no usadas eliminadas | — | react-icons, lucide-react |
 | Bugs corregidos | — | Resoluciones.jsx TIPO_ICONS, Carrera.jsx link a ruta inexistente |
 
@@ -500,3 +510,82 @@ Google Analytics 4 (`gtag.js`): carga asíncrona, solo en producción. Archivos:
 - Todos los componentes JSX documentados con JSDoc
 - Todos los archivos CSS con sección dividers
 - Archivos de datos con documentación de funciones
+
+---
+
+## 15. Accesibilidad de movimiento, Canonical y Preconnect
+
+### 15.1 prefers-reduced-motion (accesibilidad de movimiento)
+
+**Qué es:** media query de CSS que expone si el usuario pidió reducir el movimiento de la interfaz (configuración del sistema operativo/buscador). Se puede leer desde CSS (`@media (prefers-reduced-motion: reduce)`) o desde JS (`window.matchMedia`).
+
+**Para qué sirve:** evita mareos/convulsiones en usuarios sensibles al movimiento. WCAG 2.2 Criterio 2.3.3 ("Animation from Interactions") recomienda permitir desactivar animaciones.
+
+**Cómo se implementa — dos niveles:**
+
+1. **CSS global (`src/styles/base.css`):** media query que anula animaciones y transiciones en todo el sitio:
+   ```css
+   @media (prefers-reduced-motion: reduce) {
+     *, *::before, *::after {
+       animation-duration: 0.01ms !important;
+       animation-iteration-count: 1 !important;
+       transition-duration: 0.01ms !important;
+       scroll-behavior: auto !important;
+     }
+   }
+   ```
+
+2. **JS en Hero (`src/components/Hero.jsx`):** el autoplay del slider se pausa si el usuario pidió reducir movimiento. Implementado con el hook `usePrefersReducedMotion()` basado en `useSyncExternalStore` (patrón React que reactúa a `matchMedia` sin setState en efecto):
+   ```jsx
+   function usePrefersReducedMotion() {
+     return useSyncExternalStore(subscribeMatchMedia, () =>
+       matchMedia("(prefers-reduced-motion: reduce)").matches
+     );
+   }
+   ```
+
+**Dónde está alojado:** `Hero.jsx` (hook + pausa autoplay), `src/styles/base.css` (media query global).
+
+**Qué rutas afecta:** el autoplay del slider solo existe en la página de inicio `/` (Hero). La regla CSS es global (todas las rutas).
+
+**Por qué no se usa setState en un efecto:** la regla `react-hooks/set-state-in-effect` del linter prohíbe actualizar estado directamente dentro de `useEffect`; `useSyncExternalStore` es la alternativa oficial que además evita el parpadeo (flicker) del primer render.
+
+### 15.2 Canonical URL
+
+**Qué es:** `<link rel="canonical">` indica a los buscadores la URL canónica (principal) de una página, útil para evitar contenido duplicado (ej: parámetros de tracking, variaciones de `www`).
+
+**Para qué sirve:** consolida la autoridad SEO en una sola URL por página.
+
+**Cómo se implementa (`src/components/SEO.jsx`):** se genera dinámicamente a partir de la URL actual:
+```jsx
+useEffect(() => {
+  const url = `${window.location.origin}${window.location.pathname}`;
+  let link = document.querySelector('link[rel="canonical"]');
+  if (!link) {
+    link = document.createElement("link");
+    link.rel = "canonical";
+    document.head.appendChild(link);
+  }
+  link.href = url;
+}, [pathname]);
+```
+
+**Dónde está alojado:** `SEO.jsx` (se recalcula en cada cambio de ruta vía `useEffect([pathname])`).
+
+**Qué rutas usa:** todas — el componente `SEO` se monta en `App.jsx` y se actualiza en cada navegación.
+
+### 15.3 Preconnect (fuentes)
+
+**Qué es:** hint al navegador para establecer conexión temprana (DNS + TCP + TLS) con un origen antes de que se necesite un recurso.
+
+**Para qué sirve:** reduce el tiempo de carga de las fuentes de Google Fonts (Inter y Material Symbols).
+
+**Cómo se implementa (`index.html`):**
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+```
+
+**Dónde está alojado:** `<head>` de `index.html`.
+
+**Qué rutas usa:** el sitio completo — la conexión se establece al cargar la primera página y las fuentes (que se usan en todas las rutas) se reutilizan.

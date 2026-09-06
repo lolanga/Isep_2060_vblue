@@ -6,8 +6,8 @@ SPA con **React 19 + Vite 8 + React Router 7** y **100% responsive**.
 ## Stack
 
 - React ^19.2.4 · Vite ^8.0.8 · react-router-dom ^7.13.2
-- Google Material Symbols, lucide-react, react-icons
-- ESLint + babel-plugin-react-compiler
+- Google Material Symbols
+- ESLint + babel-plugin-react-compiler + Vitest / React Testing Library
 
 ## Documentación
 
@@ -21,24 +21,39 @@ SPA con **React 19 + Vite 8 + React Router 7** y **100% responsive**.
 
 ```
 src/
-├── main.jsx, App.jsx
-├── components/   Navbar (con buscador), Hero (slider automático), SearchBox,
-│                 News, Apps, Schools, CTA, Footer, EscuelaTemplate, FloatWhatsApp
-├── data/         institucional.js (escuelas, carreras, cursos, convocatorias, FAQ)
-│                 buscador.js (índice de búsqueda)
-├── pages/        Home, Noticias, Institucional, Escuelas, Ingreso, Secretaria
-└── styles/       variables, base (fondo global), navbar (buscador), hero (slider),
-                  news, noticias, schools-cta, apps, oferta, footer, responsive
+├── main.jsx, App.jsx (router con lazy loading)
+├── components/   Navbar (con buscador), Hero (slider + 2 CTAs), SearchBox,
+│                 News, Tramites, Schools, CTA, Footer, EscuelaTemplate,
+│                 FloatWhatsApp, Breadcrumb, JsonLd, Countdown, Contadores,
+│                 Testimonios, ShareButton, Placeholder, Skeleton, SkipToContent,
+│                 ErrorBoundary, SEO, Analytics
+├── data/         config.js (configuración centralizada), institucional.js
+│                 (escuelas, carreras, cursos, convocatorias, FAQ), noticias.js,
+│                 normativa.js, buscador.js (índice de búsqueda)
+├── services/     api.js (capa mock→backend-ready)
+├── utils/        analytics.js (GA4)
+├── pages/        Home, Noticias, Institucional (8), Escuelas (5), Ingreso (5),
+│                 Secretaria (3), NotFound
+└── styles/       variables, base, navbar, hero, news, noticias, schools-cta,
+                  new-features, oferta, pages, footer, responsive
 ```
 
 ## Funcionalidades principales
 
-- **Hero Slider:** banner automático con 3 slides (picsum.photos), transiciones suaves, flechas y dots.
+- **Hero Slider:** banner automático con 3 slides, 2 CTAs ("Conoce nuestras propuestas" y "Inscripciones 2027"), transiciones suaves, flechas y dots. Pausa autoplay con `prefers-reduced-motion`.
 - **Buscador funcional:** indexa escuelas, carreras, cursos, convocatorias, noticias, normativa y páginas institucionales. Resultados dinámicos con navegación por teclado.
+- **Trámites y Sistemas:** accesos a Mi ISeP, SIGEDI, Gestión Cadetes y Webmail.
+- **CTA de inscripciones** con countdown al 30 de septiembre de 2027.
 - **Íconos en navegación:** cada sección del menú tiene un ícono de Material Symbols.
 - **Fondo decorativo global:** patrón sutil con `background-attachment: fixed`, color base `#bcd8db` y gradientes radiales tenues.
 - **Escudos institucionales:** cada tarjeta de escuela muestra su escudo.
 - **Plantilla de escuela reutilizable:** las 5 escuelas usan `EscuelaTemplate`.
+- **Galería de fotos** con categorías, filtros y lightbox.
+- **Mapa del sitio** (`/mapa-del-sitio`) con guía visual de todas las rutas.
+- **Compartir noticias** con Web Share API / portapapeles (ShareButton).
+- **Accesibilidad:** SkipToContent, foco visible, `prefers-reduced-motion`, alt text descriptivos.
+- **SEO:** JSON-LD (EducationalOrganization, NewsArticle, BreadcrumbList), Open Graph, canonical dinámico, sitemap.xml.
+- **PWA:** manifest.json + robots.txt (instalable en móviles/desktop).
 
 ## Sistema de diseño
 
@@ -55,17 +70,19 @@ npm run dev     # servidor de desarrollo (puerto 5173)
 npm run build   # build de producción
 npm run preview # previsualizar build
 npm run lint    # eslint
+npm run test    # tests (Vitest + React Testing Library)
 ```
 
 ## Páginas
 
-- `/` — Home (Hero Slider, Noticias, Aplicaciones, Escuelas, CTA)
-- `/noticias` — listado con filtro y paginación
-- `/institucional/*` — El ISeP, Autoridades, Organización, Normativa y Resoluciones (17 docs), Sedes y Contacto (redes sociales)
-- `/institucional/oferta-educativa` — Oferta Académica (4 escuelas, carreras reales, cursos, convocatorias)
-- `/institucional/carreras` — vista general de carreras con datos oficiales
+- `/` — Home (Hero Slider, Trámites y Sistemas, Contadores, CTA Inscripciones, Noticias, Escuelas, Testimonios)
+- `/noticias` — listado con filtro, paginación y detalle (`/noticias/:id`)
+- `/institucional/*` — El ISeP, Autoridades, Organización, Oferta Educativa, Carreras, Normativa y Resoluciones (17 docs), Sedes y Contacto, Galería de Fotos
+- `/institucional/oferta-educativa` — Oferta Educativa (tabs: Carreras, Cursos, Convocatorias)
+- `/institucional/galeria` — Galería de fotos con filtros y lightbox
 - `/escuelas/*` — 5 páginas de escuela con plantilla común (Logo, Presentación, Información, Carreras, Cursos, Noticias, Contacto)
 - `/ingreso/*` — Convocatorias vigentes (contenido real Esc. Policía 2027–2028), Próximas, Requisitos (10 items), Proceso y Preguntas frecuentes
 - `/secretaria/titulos` — Títulos y Certificaciones (consulta por DNI, proceso 3 pasos, descargas)
-- `/secretaria/biblioteca` — Biblioteca Virtual (21 artículos reales con links PDF)
+- `/secretaria/biblioteca` — Biblioteca Virtual (22 artículos reales con links PDF)
 - `/secretaria/cursos` — Cursos con filtros por Escuela / Tipo / Estado y acceso a Mi ISeP
+- `/mapa-del-sitio` — Mapa visual con todas las rutas

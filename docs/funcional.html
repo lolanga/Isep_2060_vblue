@@ -78,19 +78,21 @@
       <tr><td><strong>Mi ISeP</strong></td><td>Botón siempre visible (desktop y móvil), enlace externo</td></tr>
       <tr><td><strong>Buscador</strong></td><td>Ícono de lupa, debounce 300ms, resultados agrupados</td></tr>
       <tr><td><strong>Modo oscuro</strong></td><td>Toggle desde navbar</td></tr>
+      <tr><td><strong>Sección activa</strong></td><td>El enlace de la sección actual se resalta (nav-is-active) en desktop y móvil</td></tr>
     </table>
     <div class="note"><strong>Mobile:</strong> hamburguesa a la izquierda, logo al centro, Mi ISeP + buscador a la derecha.</div>
 
     <h3>Rutas existentes (26 rutas)</h3>
     <table>
       <tr><th>Ruta</th><th>Página</th><th>Estado</th></tr>
-      <tr><td><code>/</code></td><td>Home (8 secciones)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/</code></td><td>Home (7 secciones)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/noticias</code></td><td>Listado de noticias con filtro, paginación</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/noticias/:id</code></td><td>Detalle de noticia individual</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/el-isep</code></td><td>El ISeP</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/autoridades</code></td><td>Autoridades</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/organizacion</code></td><td>Organización</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/oferta-educativa</code></td><td>Oferta Educativa (tabs)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/institucional/carreras</code></td><td>Carreras (grid con estado de inscripción)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/resoluciones</code></td><td>Resoluciones (17 docs)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/sedes-contacto</code></td><td>Sedes y Contacto (Google Maps)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/galeria</code></td><td>Galería de Fotos (categorías, lightbox)</td><td><span class="badge ok">Implementada</span></td></tr>
@@ -104,26 +106,25 @@
       <tr><td><code>/ingreso/convocatorias</code></td><td>Convocatorias (contenido real)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/ingreso/proximas-convocatorias</code></td><td>Próximas convocatorias</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/ingreso/faq</code></td><td>FAQ (12 preguntas)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/secretaria/titulos-y-certificaciones</code></td><td>Títulos y Certificaciones</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/secretaria/biblioteca-virtual</code></td><td>Biblioteca Virtual (22 recursos)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/secretaria/cursos-de-capacitacion</code></td><td>Cursos de Capacitación</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/secretaria/titulos</code></td><td>Títulos y Certificaciones</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/secretaria/biblioteca</code></td><td>Biblioteca Virtual (22 recursos)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/secretaria/cursos</code></td><td>Cursos de Capacitación</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/mapa-del-sitio</code></td><td>Mapa del Sitio</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/404</code></td><td>Página no encontrada</td><td><span class="badge ok">Implementada</span></td></tr>
     </table>
 
     <h2>4. Funcionalidades implementadas (Home)</h2>
     <ol>
-      <li><strong>Hero Slider</strong> — Banner principal con slider automático (3 slides), transiciones suaves, flechas y dots. CTA → <code>/institucional/oferta-educativa</code>.</li>
-      <li><strong>Trámites en Línea</strong> — 4 tarjetas: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail (con audiencia y descripción).</li>
-      <li><strong>Aplicaciones Institucionales</strong> — 4 accesos directos a sistemas institucionales.</li>
+      <li><strong>Hero Slider</strong> — Banner principal con slider automático (3 slides), transiciones suaves, flechas y dots. CTAs: "Conoce nuestras propuestas" → <code>/institucional/oferta-educativa</code> y "Inscripciones 2027" → <code>/ingreso/convocatorias</code>.</li>
+      <li><strong>Trámites y Sistemas</strong> — 4 tarjetas: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail (con audiencia y descripción).</li>
       <li><strong>Contadores</strong> — Docentes (2200+), Cadetes (1100+), Personal (800+), Aulas (500+).</li>
-      <li><strong>CTA Inscripciones</strong> — Countdown a 2027-09-30 + botones de inscripción.</li>
+      <li><strong>CTA Inscripciones</strong> — Countdown a 2027-09-30 + botones "Pre-Inscripción Online" (<code>/ingreso/convocatorias</code>) y "Ver Requisitos" (<code>/ingreso/requisitos</code>).</li>
       <li><strong>Últimas Noticias</strong> — Noticia destacada + sidebar con ShareButton.</li>
       <li><strong>Nuestras Escuelas</strong> — Grid de 5 escuelas con escudos, enlaces a <code>/escuelas/:slug</code>.</li>
       <li><strong>Testimonios</strong> — Carrusel de 3 egresados con flechas y dots.</li>
     </ol>
 
-    <h3>Trámites en Línea</h3>
+    <h3>Trámites y Sistemas</h3>
     <table>
       <tr><th>App</th><th>Descripción</th><th>Audiencia</th></tr>
       <tr><td>Mi ISeP</td><td>Aulas virtuales, material de cursado, notas y asistencia</td><td>Docentes, personal policial cursante y postulantes inscriptos</td></tr>
@@ -265,12 +266,16 @@
     <p><code>npm install</code> → <code>npm run dev</code> (localhost:5173). Build: <code>npm run build</code> → <code>npm run preview</code>. Lint: <code>npm run lint</code>. Tests: <code>npm run test</code>.</p>
 
     <h3>17.1 Testing automatizado</h3>
-    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. 18 tests en 3 archivos:</p>
+    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. <strong>33 tests en 7 archivos</strong> (capa de datos + componentes UI):</p>
     <table>
       <tr><th>Archivo</th><th>Qué valida</th></tr>
-      <tr><td><code>datos.test.js</code></td><td>Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como <code>null</code></td></tr>
-      <tr><td><code>institucional.test.js</code></td><td>Estructura de escuelas, carreras, cursos y convocatorias</td></tr>
-      <tr><td><code>buscador.test.js</code></td><td>Funcionalidad de búsqueda y resultados agrupados</td></tr>
+      <tr><td><code>datos.test.js</code></td><td>Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como <code>null</code> (6)</td></tr>
+      <tr><td><code>institucional.test.js</code></td><td>Estructura de escuelas, carreras, cursos y convocatorias (7)</td></tr>
+      <tr><td><code>buscador.test.js</code></td><td>Funcionalidad de búsqueda y resultados agrupados (5)</td></tr>
+      <tr><td><code>navbar.test.jsx</code></td><td>Navegación desktop/móvil y enlaces (5)</td></tr>
+      <tr><td><code>hero.test.jsx</code></td><td>Render de slides, CTAs y navegación (5)</td></tr>
+      <tr><td><code>news.test.jsx</code></td><td>Noticia destacada y sin imagen (2)</td></tr>
+      <tr><td><code>sharebutton.test.jsx</code></td><td>Copiar, Web Share API, feedback "¡Copiado!" (3)</td></tr>
     </table>
 
     <h3>17.2 CI/CD</h3>
@@ -332,7 +337,7 @@
     </table>
 
     <h3>19.2 Meta Tags dinámicos</h3>
-    <p>Componente <code>SEO.jsx</code>: título, descripción, og:image, og:type, og:locale, twitter:card.</p>
+    <p>Componente <code>SEO.jsx</code>: título, descripción, og:image, og:type, og:locale, twitter:card, más <strong>canonical dinámico</strong> (<code>origin</code> + <code>pathname</code>).</p>
 
     <h3>19.3 Sitemap.xml</h3>
     <p>22 URLs con frecuencias y prioridades. Disponible en <code>/sitemap.xml</code>.</p>
