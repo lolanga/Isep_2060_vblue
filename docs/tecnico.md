@@ -1,6 +1,8 @@
 # Especificaciones Técnicas — Sitio Web ISeP Santa Fe
 
 **Proyecto:** `Isep_2060_vblue`
+**Versión:** 1.0.0
+**Última actualización:** 5 de septiembre de 2026
 **Stack:** React 19 + Vite 8 + React Router 7
 
 ---
@@ -24,46 +26,77 @@
 ```
 src/
 ├── main.jsx                 # Entry point + imports CSS
-├── App.jsx                  # Router principal (26 rutas)
+├── App.jsx                  # Router principal (26 rutas) + ErrorBoundary + NotFound
 ├── assets/                  # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
-│   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger
-│   ├── Hero.jsx             # Slider 3 slides picsum.photos
-│   ├── SearchBox.jsx        # Buscador global agrupado (con debounce 300ms)
+│   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger + dark mode toggle
+│   ├── Hero.jsx             # Slider 3 slides
+│   ├── SearchBox.jsx        # Buscador global agrupado (debounce 300ms)
 │   ├── News.jsx             # Sección noticias Home (datos reales + links)
 │   ├── Apps.jsx             # 4 apps institucionales
-│   ├── Schools.jsx          # Grid de escuelas con escudos (enlaces a /escuelas/:id)
-│   ├── CTA.jsx              # Llamado a la acción con countdown
+│   ├── Schools.jsx          # Grid de escuelas con escudos (enlaces a /escuelas/:slug)
+│   ├── CTA.jsx              # Llamado a la acción con countdown (2027-09-30)
 │   ├── Footer.jsx           # Footer 3 columnas + redes sociales
 │   ├── EscuelaTemplate.jsx  # Plantilla reutilizable de escuela
 │   ├── FloatWhatsApp.jsx    # WhatsApp flotante (z-60)
 │   ├── ScrollToTop.jsx      # Botón ir arriba (z-70, bottom-left en móvil)
 │   ├── Breadcrumb.jsx       # Migas de pan con home icon
+│   ├── BreadcrumbLd.jsx     # JSON-LD BreadcrumbList
 │   ├── Countdown.jsx        # Cuenta regresiva
 │   ├── Contadores.jsx       # Estadísticas animadas
 │   ├── Testimonios.jsx      # Carrusel testimonios
 │   ├── ShareButton.jsx      # Compartir noticia (Web Share API / clipboard)
-│   └── Placeholder.jsx      # Páginas "Próximamente"
+│   ├── Placeholder.jsx      # Páginas "Próximamente"
+│   ├── SkipToContent.jsx    # Enlace accesible para saltar al contenido
+│   ├── ErrorBoundary.jsx    # Captura de errores de render
+│   ├── SEO.jsx              # Meta tags dinámicos (title, og, twitter)
+│   ├── Analytics.jsx        # Google Analytics 4 (gtag.js)
+│   ├── EducationalOrganizationLd.jsx  # JSON-LD para home
+│   └── NewsArticleLd.jsx    # JSON-LD para detalle de noticia
 ├── data/
-│   ├── config.js          # Configuración centralizada (teléfonos, emails, URLs, GA_ID)
+│   ├── config.js            # Configuración centralizada (MI_ISEP_URL, teléfonos, emails, GA_ID, redes)
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, FAQ
 │   ├── noticias.js          # 14 noticias (compartido, admite img: null)
 │   ├── normativa.js         # 17 resoluciones (compartido)
+│   ├── galeria.js           # Fotos de galería (categorías: Eventos/Formación/Instalaciones/Graduaciones)
 │   └── buscador.js          # 48 entradas + buscar() + buscarAgrupado()
 ├── pages/
-│   ├── Home.jsx             # 7 secciones + Trámites en Línea
+│   ├── Home.jsx             # 8 secciones + Trámites en Línea
 │   ├── Noticias.jsx         # Filtro + paginación + filtro por escuela + links a detalle
 │   ├── NoticiaDetalle.jsx   # Detalle de noticia individual
-│   ├── Institucional/       # ElISeP, Autoridades, Organizacion, Resoluciones,
-│   │                        # SedesContacto (Maps), OfertaEducativa, Carrera, Galeria
+│   ├── MapaDelSitio.jsx     # Mapa visual de todas las rutas (26)
+│   ├── Institucional/
+│   │   ├── ElISeP.jsx       # Contenido completo + SEDES const
+│   │   ├── Autoridades.jsx  # Contenido completo + links a escuelas
+│   │   ├── Organizacion.jsx # Organización institucional
+│   │   ├── OfertaEducativa.jsx  # Tabs (Carreras/Cursos/Convocatorias) + MI_ISEP_URL
+│   │   ├── Resoluciones.jsx # 17 PDFs descargables, filtros año/tipo
+│   │   ├── SedesContacto.jsx # 2 sedes con Google Maps embebido
+│   │   └── Galeria.jsx      # Photo grid, categorías, lightbox, responsive
 │   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
-│   ├── Ingreso/             # Convocatorias (contenido real), ProximasConvocatorias,
-│   │                        # Requisitos, Proceso, Faq (12 preguntas)
-│   └── Secretaria/          # Titulos, Biblioteca (22 artículos), Cursos (lazy loaded)
+│   │   ├── Policia.jsx
+│   │   ├── Superior.jsx
+│   │   ├── Especialidades.jsx
+│   │   ├── Investigaciones.jsx
+│   │   └── EducacionADistancia.jsx
+│   ├── Ingreso/
+│   │   ├── Convocatorias.jsx     # Contenido real Esc. Policía 2027-2028
+│   │   ├── ProximasConvocatorias.jsx # Próximas convocatorias 2027-2028
+│   │   ├── Requisitos.jsx        # 10 requisitos reales + documentación
+│   │   ├── Proceso.jsx           # Proceso de selección
+│   │   └── Faq.jsx               # 12 preguntas en acordeón
+│   └── Secretaria/
+│       ├── Titulos.jsx           # Títulos y Certificaciones (formulario DNI, proceso 3 pasos)
+│       ├── Biblioteca.jsx        # 22 recursos bibliográficos reales + filtros
+│       └── Cursos.jsx            # Cursos de capacitación + badges
+├── services/
+│   └── api.js               # Capa de abstracción mock→backend-ready
+├── utils/
+│   └── analytics.js         # Utilidades de tracking GA4
 └── styles/
     ├── variables.css        # Design tokens + gradiente
     ├── base.css             # Reset, tipografía, fondo global, .chip
-    ├── navbar.css           # Navbar + buscador + hamburger
+    ├── navbar.css           # Navbar + buscador + hamburger + dark mode
     ├── hero.css             # Hero slider + overlays + .page-hero
     ├── news.css             # Noticias Home
     ├── noticias.css         # Página /noticias
@@ -128,51 +161,41 @@ src/
 
 | Breakpoint | Ancho | Comportamiento |
 |---|---|---|
-| Móvil | `< 768px` | Hamburger, grids 1 columna, botones full-width |
+| Móvil | `< 768px` | Hamburger left, logo center, Mi ISeP + search right, grids 1 columna |
 | Tablet | `768px – 1023px` | Nav desktop con escudo, grids 2 columnas |
 | Desktop | `≥ 1024px` | Grids 3-4+ columnas, layout completo |
 
 ### 4.2 Nav responsive
-- Desktop: escudo + texto + dropdowns
+- Desktop: escudo + texto + dropdowns + dark mode toggle
 - Tablet (768-1023px): solo escudo
-- Mobile (<768px): solo texto + hamburger
+- Mobile (<768px): hamburger left, logo center, Mi ISeP + search right
 
 ---
 
-## 5. Componentes clave
+## 5. Rutas (App.jsx) — 26 rutas
 
-### 5.1 Breadcrumb (`Breadcrumb.jsx`)
-- Fondo `#f8fafc`, borde `#eef2f7`
-- Margen superior: 2rem
-- Links color `--primary`, último en negrita
+```
+<BrowserRouter>
+  <Navbar />
+  <Routes>{/* 26 rutas con React.lazy + Suspense */}</Routes>
+  <Footer />
+  <FloatWhatsApp />
+  <ScrollToTop />
+</BrowserRouter>
+```
 
-### 5.2 Countdown (`Countdown.jsx`)
-- Bloques semitransparentes + backdrop-filter
-- Expired: "¡Las inscripciones están abiertas!"
-
-### 5.3 Contadores (`Contadores.jsx`)
-- 4 estadísticas con `IntersectionObserver` (easing cúbico)
-
-### 5.4 Testimonios (`Testimonios.jsx`)
-- Carrusel de 3 testimonios con flechas y dots
-
-### 5.5 ShareButton (`ShareButton.jsx`)
-- Web Share API (móviles) o clipboard (desktop)
-- Feedback visual: check verde + "¡Copiado!"
-
-### 5.6 Placeholder (`Placeholder.jsx`)
-- Badge, título, descripción, features para páginas "Próximamente"
+Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. Todas las rutas usan lazy loading.
 
 ---
 
-## 6. Datos mock
+## 6. Datos
 
 ### 6.1 institucional.js
 
 | Export | Contenido |
 |---|---|
 | `escuelas` | 5 escuelas con datos oficiales + emails de contacto |
-| `carreras` | 4 carreras con datos oficiales del sitio |
+| `carreras` | 4 carreras con inscripciones/fechaInscripcion |
 | `cursos` | 6+ cursos con tipo, período, estado |
 | `convocatorias` | Convocatorias con estado, tipo, fecha |
 | `preguntasFrecuentes` | 12 preguntas y respuestas |
@@ -186,7 +209,11 @@ src/
 
 17 resoluciones con: id, titulo, tipo, fecha, tamano, url.
 
-### 6.4 buscador.js
+### 6.4 galeria.js
+
+Fotos de galería con categorías: Eventos, Formación, Instalaciones, Graduaciones.
+
+### 6.5 buscador.js
 
 48 entradas agrupadas por tipo. Funciones: `buscar()`, `buscarAgrupado()`.
 
@@ -199,14 +226,16 @@ src/
 - Scoring: +3 título, +2 tipo, +1 keyword
 - Navegación: ArrowUp/ArrowDown/Enter/Escape
 - Enter en campo → abre primer resultado
-- **Debounce** de 300ms para evitar búsquedas excesivas
+- **Debounce** de 300ms
+- Cierre automático al hacer clic fuera
 
 ---
 
 ## 8. Hero slider
 
-- 3 slides picsum.photos, automático (6s), pausa en hover
+- 3 slides, automático (6s), pausa en hover
 - Flechas + dots, altura `100svh`
+- Transiciones: fade suave (1s ease-in-out)
 
 ---
 
@@ -216,8 +245,6 @@ src/
 background-attachment: fixed;
 background-color: #bcd8db;
 background-image:
-  /* linear-gradient(90deg, #ffffff40 1px, #0000 0),
-  linear-gradient(180deg, #ffffff40 1px, #0000 0), */
   radial-gradient(circle at 10% 20%, #208caf15 0, #0000 45%),
   radial-gradient(circle at 90% 80%, #00c39612 0, #0000 45%);
 ```
@@ -229,10 +256,10 @@ background-image:
 | Archivo | Tamaño |
 |---|---|
 | `index.html` | 2.09 kB |
-| `index.css` | 76.62 kB (gzip: 13.62 kB) |
-| `index.js` | 212.65 kB (gzip: 66.43 kB) |
+| `index.css` | ~82 kB (gzip: ~14 kB) |
+| `index.js` | ~212 kB (gzip: ~66 kB) |
 | Módulos | 96 |
-| Lazy chunks | Rutas bajo demanda (React.lazy) |
+| Lazy chunks | Todas las rutas bajo demanda (React.lazy) |
 | Build time | ~0.8-1s |
 
 ---
@@ -257,18 +284,15 @@ background-image:
 ```typescript
 interface Noticia {
   id: number;            // Único, incremental
-  titulo: string;        // Título de la noticia
+  titulo: string;
   categoria: "Institucional" | "Academica" | "Escuelas" | "Eventos" | "Convenios";
   fecha: string;         // "3 DE SEPTIEMBRE, 2026"
   fechaCorta: string;    // "3 SEP"
-  excerpt: string;       // Extracto (1-2 oraciones)
-  img: string | null;    // URL de imagen (900×500 px) o null (placeholder con ícono)
-  escuelas?: string[];   // (Opcional) IDs: "policia" | "superior" | "especialidades" | "investigaciones" | "ead"
-  adjuntos?: {           // (Opcional) documentos adjuntos
-    nombre: string;      // Nombre para mostrar
-    url: string;         // Ruta relativa: /docs/archivo.pdf
-  }[];
-  contenido?: string;    // (Opcional) HTML o texto plano (\n\n para párrafos)
+  excerpt: string;
+  img: string | null;    // URL de imagen (900×500) o null
+  escuelas?: ("policia" | "superior" | "especialidades" | "investigaciones" | "ead")[];
+  adjuntos?: { nombre: string; url: string; }[];
+  contenido?: string;    // HTML o texto plano (\n\n para párrafos)
 }
 ```
 
@@ -278,17 +302,15 @@ interface Noticia {
 |---|---|
 | `src/data/noticias.js` | Agregar objeto al array `noticias` |
 | `src/data/buscador.js` | Automático (importa de noticias.js) |
-| `public/docs/` | Colocar archivos adjuntos (PDF, Excel, JPG, PNG) |
+| `public/docs/` | Colocar archivos adjuntos |
 
 ### 12.3 Imagen alusiva
 
-**Opción A (recomendada):** Imagen local en `public/img/noticias/`
-**Opción B:** URL externa
-**Opción C:** Placeholder: `https://picsum.photos/seed/{nombre}/900/500`
-**Opción D:** Sin imagen: `img: null` — se muestra placeholder con ícono de material symbols
-
-- **Dimensiones:** 900×500 px (ratio 16:9)
-- **Formato:** JPG/PNG, <200 KB
+- **Opción A (recomendada):** Imagen local en `public/img/noticias/`
+- **Opción B:** URL externa
+- **Opción C:** Placeholder: `https://picsum.photos/seed/{nombre}/900/500`
+- **Opción D:** Sin imagen: `img: null` — placeholder con ícono
+- **Dimensiones:** 900×500 px (ratio 16:9), JPG/PNG, <200 KB
 
 ### 12.4 Documentos adjuntos
 
@@ -300,17 +322,10 @@ interface Noticia {
 
 #### Arquitectura
 
-El proyecto maneja imágenes en dos niveles:
-
-| Nivel | Ubicación | Uso | Ejemplo |
-|---|---|---|---|
-| **Assets locales** | `src/assets/` | Escudos, logos institucionales (importados vía ES modules) | `import escudoEP from "../assets/escudo_EP.png"` |
-| **Imágenes públicas** | `public/img/` | Fotos de slider, noticias, testimonios, banners | `<img src="/img/hero/slide-formacion.jpg" />` |
-
-#### Por qué dos ubicaciones
-
-- `src/assets/`: se procesan con Vite (optimización, hash en nombre). Ideales para logos que se usan en múltiples componentes.
-- `public/img/`: se sirven tal cual sin procesar. Ideales para fotos grandes que solo se referencian por URL.
+| Nivel | Ubicación | Uso |
+|---|---|---|
+| **Assets locales** | `src/assets/` | Escudos, logos (importados vía ES modules) |
+| **Imágenes públicas** | `public/img/` | Fotos de slider, noticias, testimonios, banners, galería |
 
 #### Estructura de carpetas
 
@@ -334,11 +349,9 @@ public/img/
 
 #### Patrón de implementación
 
-Todos los componentes que muestran imágenes usan el mismo patrón para manejar `img: null`:
-
 ```jsx
 {noticia.img ? (
-  <img src={noticia.img} alt={noticia.titulo} />
+  <img src={noticia.img} alt={noticia.titulo} loading="lazy" />
 ) : (
   <div className="placeholder-class">
     <span className="material-symbols-outlined">article</span>
@@ -355,90 +368,93 @@ Clases de placeholder disponibles en `pages.css`:
 - `.related-card__placeholder` — noticias relacionadas
 - `.escuela-news-placeholder` — noticias en página de escuela
 
-#### Imágenes externas actuales (placeholders)
+### 12.6 Diagrama de componentes
 
-| URL | Componente | Reemplazar por |
-|---|---|---|
-| `picsum.photos/seed/isep-formacion/1600/700` | `Hero.jsx:17` | `/img/hero/slide-formacion.jpg` |
-| `picsum.photos/seed/isep-escuelas/1600/700` | `Hero.jsx:25` | `/img/hero/slide-escuelas.jpg` |
-| `picsum.photos/seed/isep-oferta/1600/700` | `Hero.jsx:33` | `/img/hero/slide-oferta.jpg` |
-| `picsum.photos/seed/isephero/1600/600` | `Noticias.jsx:43` | `/img/banners/hero-noticias.jpg` |
-| `picsum.photos/seed/eg1/120/120` | `Testimonios.jsx:13` | `/img/testimonios/egresado-1.jpg` |
-| `picsum.photos/seed/eg2/120/120` | `Testimonios.jsx:20` | `/img/testimonios/egresado-2.jpg` |
-| `picsum.photos/seed/eg3/120/120` | `Testimonios.jsx:27` | `/img/testimonios/egresado-3.jpg` |
+```
+Noticias.jsx ──── noticias[] ──── Link a /noticias/:id
+                                        │
+News.jsx ────────── noticias[0..3] ──── Link a /noticias/:id
+                                        │
+                                        ▼
+                                  NoticiaDetalle.jsx
+                                  ├── Hero (imagen + overlay)
+                                  ├── Breadcrumb
+                                  ├── NewsArticleLd (JSON-LD)
+                                  ├── ShareButton
+                                  ├── Contenido
+                                  ├── Noticias relacionadas
+                                  └── Botón volver
+```
+
+---
 
 ## 13. Mejoras de Calidad
 
 ### 13.1 Lazy Loading
-Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. El usuario solo descarga el JS de las páginas que visita, mejorando el tiempo de carga inicial. Actualmente hay 96 módulos, con las páginas de Secretaría (Títulos, Biblioteca, Cursos) también bajo carga lazy.
+Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. 96 módulos totales. Todas las páginas incluidas (incluyendo Secretaría).
 
 ### 13.2 Testing
 Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. 18 tests en 3 archivos:
 
 | Archivo | Qué valida | Tests |
 |---|---|---|
-| `datos.test.js` | Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como `null` | ~6 |
-| `institucional.test.js` | Estructura de escuelas, carreras, cursos y convocatorias | ~6 |
-| `buscador.test.js` | Funcionalidad de búsqueda y resultados agrupados | ~6 |
-
-**Qué se testea:** la capa de datos (mock data), no los componentes UI.
-**Por qué:** la integridad de los datos es más crítica que testear componentes React con datos mock.
-**Qué NO se testea:** renderizado de componentes, interacciones de usuario, routing.
-
-Comando: `npm run test`
+| `datos.test.js` | IDs únicos, campos requeridos, categorías válidas, imágenes `null` | ~6 |
+| `institucional.test.js` | Escuelas, carreras, cursos, convocatorias | ~6 |
+| `buscador.test.js` | Búsqueda y resultados agrupados | ~6 |
 
 ### 13.3 GitHub Actions
-CI automatizado con GitHub Actions que ejecuta en cada push:
-- Lint (`npm run lint`)
-- Build (`npm run build`)
-- Tests (`npm run test`)
+CI automatizado: Lint → Build → Test en cada push. Archivo: `.github/workflows/ci.yml`.
 
 ### 13.4 SEO
-- **JSON-LD:** Structured data con `EducationalOrganization`, `NewsArticle`, `BreadcrumbList`
-- **Meta tags dinámicos:** título, descripción, imagen, tipo, locale por página (Open Graph + Twitter Card)
-- **sitemap.xml:** mapa del sitio para motores de búsqueda
+- **JSON-LD:** `EducationalOrganization`, `NewsArticle`, `BreadcrumbList`
+- **Meta tags dinámicos:** título, descripción, imagen, tipo, locale (Open Graph + Twitter Card)
+- **sitemap.xml:** 22 URLs
+- **robots.txt:** permisos para crawlers
 
-### 13.4.1 Configuración Centralizada
+### 13.5 Configuración Centralizada
 
-Archivo `src/data/config.js` que exporta constantes con datos compartidos:
+`src/data/config.js`:
 
 ```javascript
+export const MI_ISEP_URL = "https://mi.isepsantafe.edu.ar/";
+export const GESTION_URL = "https://gestion.isepsantafe.edu.ar";
+export const CADETES_URL = "https://cadetes.isepsantafe.edu.ar/";
+export const WEBMAIL_URL = "https://webmail.isepsantafe.edu.ar";
 export const TELEFONO_ISR = "+54 342 457-9000";
 export const EMAIL_CONTACTO = "prensaydifusion@isepsantafe.edu.ar";
-export const MI_ISEP_URL = "https://mi.isepsantafe.edu.ar/";
+export const WHATSAPP_URL = "https://wa.me/5493424579000";
 export const GA_ID = "G-XXXXXXXXXX";  // Placeholder
 // ... más constantes con JSDoc
 ```
 
-- Cada constante tiene documentación JSDoc explicando qué es y cómo modificarla.
-- **Estado actual:** creado pero no integrado en componentes (valores aún hardcodeados en JSX).
-- **Uso previsto:** `import { TELEFONO_ISR } from "../data/config.js"` en componentes.
+### 13.6 Analytics
+Google Analytics 4 (`gtag.js`): carga asíncrona, solo en producción. Archivos: `Analytics.jsx`, `analytics.js`. Estado: placeholder.
 
-### 13.5 Analytics
-Google Analytics 4 (`gtag.js`):
-- Carga asíncrona (no bloquea render)
-- Solo en producción (desactivado en dev)
-- Configuración en `src/components/Analytics.jsx`
-- **Estado actual:** `GA_ID = "G-XXXXXXXXXX"` (placeholder). En dev, Analytics retorna `null`. En prod, gtag.js carga pero no recolecta datos reales con el ID placeholder.
-- **Archivos relacionados:** `src/components/Analytics.jsx`, `src/utils/analytics.js`
-- **Para activar:** reemplazar `GA_ID` en ambos archivos con un Measurement ID real de GA4, y asegurar que `send_page_view` no esté en `false`.
-
-### 13.6 CSS Architecture
+### 13.7 CSS Architecture
 - **0 inline styles** en componentes
 - `pages.css` con ~200+ clases reutilizables
-- Separación clara: tokens → base → componentes → páginas → responsive
+- Separación: tokens → base → componentes → páginas → responsive
+- **Mobile-first** con `responsive.css`
 
-### 13.7 Accesibilidad
-- **SkipToContent:** enlace para saltar al contenido principal
+### 13.8 Accesibilidad
+- **SkipToContent:** enlace para saltar al contenido principal (`id="main-content"`)
 - **focus-visible:** indicadores de foco solo con teclado
-- **sr-only:** contenido exclusivo para lectores de pantalla
+- **sr-only:** contenido para lectores de pantalla
+- **Dark mode:** toggle persistente en navbar
 
-### 13.8 Error Handling
-- **ErrorBoundary global:** captura errores de render y muestra fallback amigable
-- **NotFound page:** página 404 para rutas inexistentes
+### 13.9 Error Handling
+- **ErrorBoundary global:** captura errores de render
+- **NotFound (404):** página dedicada para rutas inexistentes
+- Ambos en `App.jsx` como wrappers del router
 
-### 13.9 API Layer
-`src/services/api.js`: capa de abstracción mock→backend-ready. Actualmente usa datos mock, preparada para conectar a API real sin cambiar componentes.
+### 13.10 API Layer
+`src/services/api.js`: capa de abstracción mock→backend-ready. Preparada para conectar a API real.
+
+### 13.11 Galería de Fotos
+`src/data/galeria.js`: fotos con categorías (Eventos, Formación, Instalaciones, Graduaciones). Grid responsive, filtros, lightbox.
+
+### 13.12 PWA
+`manifest.json` + `robots.txt` en `public/`. Permite instalar como Progressive Web App.
 
 ---
 
@@ -452,15 +468,15 @@ Google Analytics 4 (`gtag.js`):
 | Código muerto eliminado | — | analytics.js, api.js, Skeleton.jsx, SEO.jsx |
 | Exports no usados eliminados | — | NewsArticleLd, BreadcrumbLd |
 | Dependencias no usadas eliminadas | — | react-icons, lucide-react |
-| Bugs corregidos | — | Resoluciones.jsx TIPO_ICONS "Plan Estratégico:" (colon extra), Carrera.jsx link a ruta inexistente |
+| Bugs corregidos | — | Resoluciones.jsx TIPO_ICONS, Carrera.jsx link a ruta inexistente |
 
 ### 14.2 Optimización de carga
 
 | Aspecto | Cambio |
 |---|---|
-| Imágenes | `loading="lazy"` + `width`/`height` en todas las imágenes (prevenir CLS) |
+| Imágenes | `loading="lazy"` + `width`/`height` en todas las imágenes |
 | Fuentes | Inter optimizado de 7 a 4 pesos (400, 600, 700, 800) |
-| Material Symbols | Agregado `display=swap` (eliminó FOIT) |
+| Material Symbols | `display=swap` (eliminó FOIT) |
 | Font preload | Preload hint para Inter woff2 |
 | Lazy search index | buscador.js construye índice solo en primera llamada |
 
@@ -484,32 +500,3 @@ Google Analytics 4 (`gtag.js`):
 - Todos los componentes JSX documentados con JSDoc
 - Todos los archivos CSS con sección dividers
 - Archivos de datos con documentación de funciones
-
-### 14.6 Build stats actualizados
-
-| Archivo | Tamaño |
-|---|---|
-| `index.html` | 2.09 kB |
-| `index.css` | 76.62 kB (gzip: 13.62 kB) |
-| `index.js` | 212.65 kB (gzip: 66.43 kB) |
-| Módulos | 96 |
-| Build time | ~0.8-1s |
-
----
-
-### 12.4 Distribución de componentes
-
-```
-Noticias.jsx ─── noticias[] ──── Link a /noticias/:id
-                                    │
-News.jsx ──────── noticias[0..3] ── Link a /noticias/:id
-                                    │
-                                    ▼
-                              NoticiaDetalle.jsx
-                              ├── Hero (imagen + overlay)
-                              ├── Breadcrumb
-                              ├── ShareButton
-                              ├── Contenido
-                              ├── Noticias relacionadas
-                              └── Botón volver
-```

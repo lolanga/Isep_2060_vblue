@@ -32,9 +32,15 @@
     code { background: #eef2ff; color: var(--primary); padding: .1rem .35rem; border-radius: 4px; font-size: .85rem; }
     .badge { display: inline-block; padding: .15rem .6rem; border-radius: 9999px; font-size: .7rem; font-weight: 700; }
     .ok { background: #d1fae5; color: #065f46; }
-    .soon { background: #fee2e2; color: #991b1b; }
     .note { background: #fff; border-left: 4px solid var(--grad-1); padding: .8rem 1rem; border-radius: 0 6px 6px 0; margin: 1rem 0; }
     pre { background: #0f172a; color: #e2e8f0; padding: 1rem 1.2rem; border-radius: 8px; overflow-x: auto; font-size: .85rem; margin: 1rem 0; }
+    footer { margin-top: 40px; padding: 16px 0; border-top: 1px solid #ddd; text-align: center; font-size: 11px; color: #666; }
+    @media print {
+      @page { margin: 2cm; }
+      body { counter-reset: page; }
+      .page-content { page-break-after: always; }
+      footer { position: fixed; bottom: 0; left: 0; right: 0; text-align: center; font-size: 10px; color: #666; border-top: 1px solid #ddd; padding: 8px 0; }
+    }
     @media (max-width: 560px) {
       header h1 { font-size: 1.4rem; }
       main { padding: 1.5rem 1rem; }
@@ -45,134 +51,108 @@
 <body>
   <header>
     <h1>Especificaciones Funcionales</h1>
-    <p>Sitio Web ISeP Santa Fe — Instituto de Seguridad Pública</p>
+    <p>Sitio Web ISeP Santa Fe — Instituto de Seguridad Pública — Versión 1.0.0</p>
   </header>
 
   <main>
     <h2>1. Visión general</h2>
-    <p>Sitio web institucional del <strong>Instituto de Seguridad Pública (ISeP) de la Provincia de Santa Fe</strong>. SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, tablet, desktop). Lazy loading por ruta para tiempos de carga optimizados.</p>
+    <p>Sitio web institucional del <strong>Instituto de Seguridad Pública (ISeP) de la Provincia de Santa Fe</strong>. SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, tablet, desktop). Lazy loading por ruta para tiempos de carga optimizados. Modo oscuro incluido.</p>
 
     <h2>2. Audiencias</h2>
     <table>
       <tr><th>Audiencia</th><th>Necesidad principal</th><th>Contenido relevante</th></tr>
       <tr><td><strong>Postulantes</strong></td><td>Requisitos, convocatorias, proceso y FAQ</td><td>Ingreso (5 páginas) + Landing Convocatorias con contenido real</td></tr>
       <tr><td><strong>Personal en actividad</strong></td><td>Trámites, correo, sistemas internos</td><td>Mi ISeP, SIGEDI, Gestión Cadetes, Webmail</td></tr>
-      <tr><td><strong>Público general</strong></td><td>Información institucional y actualidad</td><td>Institucional, Noticias (con detalle), Biblioteca</td></tr>
+      <tr><td><strong>Público general</strong></td><td>Información institucional y actualidad</td><td>Institucional, Noticias (con detalle), Biblioteca, Galería</td></tr>
       <tr><td><strong>Profesionales de la educación</strong></td><td>Oferta académica y cursos</td><td>Formación, Carreras, Cursos</td></tr>
     </table>
 
     <h2>3. Mapa de navegación</h2>
     <table>
       <tr><th>Menú</th><th>Ítems</th></tr>
-      <tr><td><strong>Institucional</strong></td><td>El ISeP · Autoridades · Organización · Normativa y Resoluciones · Sedes y Contacto</td></tr>
-      <tr><td><strong>Formación</strong></td><td>Oferta Académica · Escuelas (submenú: Policía, Especialidades, Superior, Investigaciones, EaD) · Títulos y Certificaciones · Biblioteca Virtual</td></tr>
-      <tr><td><strong>Ingreso</strong></td><td>Convocatorias vigentes · Próximas convocatorias · Requisitos · Proceso de ingreso · Preguntas frecuentes</td></tr>
-      <tr><td><strong>Últimas noticias</strong></td><td>Link directo a <code>/noticias</code></td></tr>
-      <tr><td><strong>Mi ISeP</strong></td><td>Botón siempre visible (desktop y móvil)</td></tr>
+      <tr><td><strong>Institucional</strong></td><td>El ISeP · Autoridades · Organización · Oferta Educativa · Resoluciones · Sedes y Contacto · Galería de Fotos</td></tr>
+      <tr><td><strong>Formación</strong></td><td>Escuelas (submenú: Policía, Especialidades, Superior, Investigaciones, EaD) · Cursos</td></tr>
+      <tr><td><strong>Ingreso</strong></td><td>Proceso de Selección · Requisitos · Próximas Convocatorias · FAQ</td></tr>
+      <tr><td><strong>Secretaría</strong></td><td>Títulos y Certificaciones · Biblioteca Virtual · Cursos de Capacitación</td></tr>
+      <tr><td><strong>Noticias</strong></td><td>Link directo a <code>/noticias</code></td></tr>
+      <tr><td><strong>Mi ISeP</strong></td><td>Botón siempre visible (desktop y móvil), enlace externo</td></tr>
+      <tr><td><strong>Buscador</strong></td><td>Ícono de lupa, debounce 300ms, resultados agrupados</td></tr>
+      <tr><td><strong>Modo oscuro</strong></td><td>Toggle desde navbar</td></tr>
     </table>
+    <div class="note"><strong>Mobile:</strong> hamburguesa a la izquierda, logo al centro, Mi ISeP + buscador a la derecha.</div>
 
-    <h3>Rutas existentes</h3>
+    <h3>Rutas existentes (26 rutas)</h3>
     <table>
       <tr><th>Ruta</th><th>Página</th><th>Estado</th></tr>
-      <tr><td><code>/</code></td><td>Home (7 secciones)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/</code></td><td>Home (8 secciones)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/noticias</code></td><td>Listado de noticias con filtro, paginación</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/noticias/:id</code></td><td>Detalle de noticia individual</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/el-isep</code></td><td>El ISeP</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/autoridades</code></td><td>Autoridades</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/institucional/organizacion</code></td><td>Organización</td><td><span class="badge soon">Placeholder</span></td></tr>
-      <tr><td><code>/institucional/resoluciones</code></td><td>Normativa y Resoluciones (17 docs)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/institucional/organizacion</code></td><td>Organización</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/institucional/oferta-educativa</code></td><td>Oferta Educativa (tabs)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/institucional/resoluciones</code></td><td>Resoluciones (17 docs)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/sedes-contacto</code></td><td>Sedes y Contacto (Google Maps)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/institucional/oferta-educativa</code></td><td>Oferta Académica (dinámica)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/institucional/carreras</code></td><td>Carreras (grid hits)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/institucional/galeria</code></td><td>Galería de Fotos (categorías, filtros, lightbox)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/escuelas/policia</code></td><td>Escuela de Policía (datos oficiales)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/escuelas/superior</code></td><td>Escuela Superior (datos oficiales)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/escuelas/especialidades</code></td><td>Escuela de Especialidades (datos oficiales)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/escuelas/investigaciones</code></td><td>Escuela de Investigaciones (datos oficiales)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/institucional/galeria</code></td><td>Galería de Fotos (categorías, lightbox)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/escuelas/policia</code></td><td>Escuela de Policía</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/escuelas/superior</code></td><td>Escuela Superior</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/escuelas/especialidades</code></td><td>Escuela de Especialidades</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/escuelas/investigaciones</code></td><td>Escuela de Investigaciones</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/escuelas/educacion-a-distancia</code></td><td>Educación a Distancia</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/ingreso/convocatorias</code></td><td>Landing Convocatorias (contenido real)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/ingreso/proximas-convocatorias</code></td><td>Próximas convocatorias</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/ingreso/proceso</code></td><td>Proceso de selección</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/ingreso/requisitos</code></td><td>Requisitos</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/ingreso/proceso</code></td><td>Proceso de ingreso</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/ingreso/faq</code></td><td>Preguntas frecuentes (12)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/secretaria/titulos</code></td><td>Títulos y Certificaciones</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/secretaria/biblioteca</code></td><td>Biblioteca Virtual (22 recursos)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/secretaria/cursos</code></td><td>Cursos (dinámico)</td><td><span class="badge ok">Implementada</span></td></tr>
-      <tr><td><code>/mapa-del-sitio</code></td><td>Mapa del Sitio (guía visual de todas las rutas)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/ingreso/convocatorias</code></td><td>Convocatorias (contenido real)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/ingreso/proximas-convocatorias</code></td><td>Próximas convocatorias</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/ingreso/faq</code></td><td>FAQ (12 preguntas)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/secretaria/titulos-y-certificaciones</code></td><td>Títulos y Certificaciones</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/secretaria/biblioteca-virtual</code></td><td>Biblioteca Virtual (22 recursos)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/secretaria/cursos-de-capacitacion</code></td><td>Cursos de Capacitación</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/mapa-del-sitio</code></td><td>Mapa del Sitio</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/404</code></td><td>Página no encontrada</td><td><span class="badge ok">Implementada</span></td></tr>
     </table>
 
     <h2>4. Funcionalidades implementadas (Home)</h2>
     <ol>
-      <li><strong>Hero Slider</strong> — Banner principal con slider automático (3 slides con placeholderspicsum.photos, ver Guía §17 para reemplazar con fotos reales), transiciones suaves, flechas y dots.</li>
-      <li><strong>Aplicaciones Institucionales</strong> — 4 accesos: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail.</li>
-      <li><strong>Contadores</strong> — Estadísticas animadas: Docentes (2200+), Cadetes (1100+), Personal (800+), Aulas (500+).</li>
-      <li><strong>CTA Inscripciones</strong> — Countdown configurable (fecha en <code>src/components/CTA.jsx</code>, variable <code>FECHA_CIERRE</code>) + botones de inscripción. El botón principal ahora lleva a <code>/institucional/oferta-educativa</code>.</li>
-      <li><strong>Últimas Noticias</strong> — Noticia destacada + sidebar con <strong>links a contenido de ejemplo</strong>.</li>
-      <li><strong>Nuestras Escuelas</strong> — Grid de las 5 escuelas con escudos. Las tarjetas son enlaces clickeables a <code>/escuelas/:id</code>.</li>
+      <li><strong>Hero Slider</strong> — Banner principal con slider automático (3 slides), transiciones suaves, flechas y dots. CTA → <code>/institucional/oferta-educativa</code>.</li>
+      <li><strong>Trámites en Línea</strong> — 4 tarjetas: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail (con audiencia y descripción).</li>
+      <li><strong>Aplicaciones Institucionales</strong> — 4 accesos directos a sistemas institucionales.</li>
+      <li><strong>Contadores</strong> — Docentes (2200+), Cadetes (1100+), Personal (800+), Aulas (500+).</li>
+      <li><strong>CTA Inscripciones</strong> — Countdown a 2027-09-30 + botones de inscripción.</li>
+      <li><strong>Últimas Noticias</strong> — Noticia destacada + sidebar con ShareButton.</li>
+      <li><strong>Nuestras Escuelas</strong> — Grid de 5 escuelas con escudos, enlaces a <code>/escuelas/:slug</code>.</li>
       <li><strong>Testimonios</strong> — Carrusel de 3 egresados con flechas y dots.</li>
     </ol>
 
-    <h3>Sección Noticias del Home</h3>
-    <ul>
-      <li>Noticia destacada con <strong>link a <code>/noticias/:id</code></strong>.</li>
-      <li>Sidebar de 3 mini-cards con <strong>links a <code>/noticias/:id</code></strong>.</li>
-      <li><strong>"Ver todas las noticias"</strong> apunta a <code>/noticias</code>.</li>
-      <li><strong>ShareButton</strong> en cada card de noticia para compartir directamente.</li>
-      <li>Bloque de Calendario Académico (promo).</li>
-      <li>Alimentado desde <code>src/data/noticias.js</code>.</li>
-      <li><strong>Imágenes opcionales:</strong> si un registro tiene <code>img: null</code>, se muestra un placeholder con ícono en lugar de la imagen. Esto permite publicar noticias sin foto alusiva.</li>
-    </ul>
-
-    <h3>Página de Noticias (<code>/noticias</code>)</h3>
-    <ul>
-      <li><strong>Filtro por categorías:</strong> Todas, Institucional, Académica, Escuelas, Eventos, Convenios.</li>
-      <li><strong>Filtro por escuela:</strong> permite filtrar noticias por escuela asociada (Policía, Superior, Especialidades, Investigaciones, EaD).</li>
-      <li><strong>Padding en filtros:</strong> separados del borde con <code>padding: 0 2rem</code>.</li>
-      <li><strong>Botón compartir:</strong> cada noticia tiene ShareButton (Web Share API o clipboard).</li>
-      <li><strong>Noticia principal:</strong> última publicación → <strong>link a <code>/noticias/:id</code></strong>.</li>
-      <li><strong>Historial:</strong> grid de tarjetas con <strong>links a <code>/noticias/:id</code></strong> y paginación (10 por página).</li>
-      <li><strong>Breadcrumb</strong> para navegación.</li>
-    </ul>
-
-    <h3>Detalle de Noticia (<code>/noticias/:id</code>)</h3>
-    <ul>
-      <li><strong>Hero de imagen</strong> con overlay gradiente y badged de categoría.</li>
-      <li><strong>Breadcrumb:</strong> Inicio → Noticias → Título.</li>
-      <li><strong>Contenido completo:</strong> excerpt destacado + cuerpo de texto.</li>
-      <li><strong>ShareButton</strong> para compartir.</li>
-      <li><strong>Noticias relacionadas</strong> (misma categoría, max 3).</li>
-      <li><strong>Botón "Volver a noticias"</strong>.</li>
-      <li><strong>Estado 404:</strong> si el ID no existe, muestra mensaje y enlace.</li>
-    </ul>
-
-    <h3>Trámites en Línea (Home)</h3>
-    <p>Sección en la página de inicio que presenta las 4 aplicaciones institucionales del ISeP:</p>
+    <h3>Trámites en Línea</h3>
     <table>
       <tr><th>App</th><th>Descripción</th><th>Audiencia</th></tr>
-      <tr><td>Mi ISeP</td><td>Acceso a aulas virtuales, material de cursado, notas y asistencia</td><td>Docentes, personal policial cursante y postulantes inscriptos</td></tr>
-      <tr><td>SIGEDI</td><td>Sistema de gestión de expedientes internos</td><td>Solo personal interno del ISeP</td></tr>
+      <tr><td>Mi ISeP</td><td>Aulas virtuales, material de cursado, notas y asistencia</td><td>Docentes, personal policial cursante y postulantes inscriptos</td></tr>
+      <tr><td>SIGEDI</td><td>Gestión de expedientes internos</td><td>Solo personal interno del ISeP</td></tr>
       <tr><td>Gestión Cadetes</td><td>Control y notificaciones del cursado</td><td>Cadetes de 1° y 2° año</td></tr>
       <tr><td>Webmail</td><td>Correo electrónico institucional</td><td>Todo el personal del ISeP</td></tr>
     </table>
+
+    <h3>Galería de Fotos</h3>
     <ul>
-      <li>Se muestra como tarjetas en la página de inicio, debajo del Hero.</li>
-      <li>Cada tarjeta tiene un enlace directo al sistema correspondiente.</li>
-      <li>Las URLs están centralizadas en <code>src/data/config.js</code>.</li>
+      <li><strong>Grid responsive</strong> (1-4 columnas según dispositivo).</li>
+      <li><strong>Filtros por categoría:</strong> Eventos, Formación, Instalaciones, Graduaciones.</li>
+      <li><strong>Lightbox</strong> al hacer clic en una imagen.</li>
+      <li>Imágenes en <code>public/img/galeria/</code>.</li>
     </ul>
 
-    <h3>Galería de Fotos (<code>/institucional/galeria</code>)</h3>
-    <p>Página dedicada para mostrar imágenes del ISeP:</p>
+    <h3>Noticias</h3>
     <ul>
-      <li><strong>Grid de fotos</strong> con diseño responsive (1-4 columnas según dispositivo).</li>
-      <li><strong>Filtros por categoría</strong> para organizar las fotos.</li>
-      <li><strong>Lightbox</strong> al hacer clic en una imagen (visualización ampliada con navegación).</li>
-      <li><strong>Imágenes almacenadas</strong> en <code>public/img/galeria/</code>.</li>
-      <li><strong>Diseño adaptable</strong> que se ajusta a diferentes tamaños de pantalla.</li>
+      <li><strong>14 noticias</strong> publicadas (4 originales + 10 adicionales).</li>
+      <li><strong>Filtro por categorías:</strong> Todas, Institucional, Académica, Escuelas, Eventos, Convenios.</li>
+      <li><strong>Filtro por escuela:</strong> permite filtrar por escuela asociada.</li>
+      <li><strong>Imágenes opcionales:</strong> <code>img: null</code> muestra placeholder con ícono.</li>
+      <li><strong>ShareButton</strong> en cada card (Web Share API / clipboard).</li>
+      <li><strong>Paginación:</strong> 10 noticias por página.</li>
     </ul>
 
     <h2>5. Formación</h2>
-    <h3>Oferta Académica</h3>
-    <p>Vista dinámica en pestañas: <strong>Carreras</strong>, <strong>Cursos</strong> y <strong>Convocatorias</strong>. Las tarjetas de escuelas muestran <strong>imágenes de escudos</strong> (no cajas de color con abreviaciones).</p>
+    <h3>Oferta Educativa</h3>
+    <p>Vista dinámica en pestañas: <strong>Carreras</strong>, <strong>Cursos</strong> y <strong>Convocatorias</strong>. Las tarjetas de escuelas muestran <strong>imágenes de escudos</strong>. Botón de acceso usa <code>MI_ISEP_URL</code> desde <code>config.js</code>.</p>
     <h3>Carreras</h3>
     <p>Grid de tarjetas con header coloreado por escuela, chips, estado de inscripción (abiertas/próximamente/cerradas), fecha y hover animado.</p>
     <h3>Cursos</h3>
@@ -180,9 +160,9 @@
       <li>Filtros por Escuela, Tipo y Estado.</li>
       <li>Acordeón desplegable + botón "Acceso a Mi ISeP".</li>
     </ul>
-    <h3>Páginas de escuela (plantilla)</h3>
+    <h3>Páginas de escuela</h3>
     <p>5 escuelas con datos oficiales (presentación, email de contacto, sede): Policía, Superior, Especialidades, Investigaciones, EaD.</p>
-    <div class="note"><strong>Solo Escuela de Policía</strong> muestra la sección "Carreras". Las demás escuelas (Superior, Especialidades, Investigaciones y EaD) no incluyen esta sección.</div>
+    <div class="note"><strong>Solo Escuela de Policía</strong> incluye la sección "Carreras". Las demás escuelas no muestran esta sección.</div>
 
     <h2>6. Ingreso</h2>
     <h3>Landing de Convocatorias (contenido real)</h3>
@@ -203,44 +183,52 @@
     <h3>Otras páginas de ingreso</h3>
     <table>
       <tr><th>Página</th><th>Contenido</th></tr>
-      <tr><td>Próximas convocatorias</td><td>Aperturas anunciadas</td></tr>
-      <tr><td>Requisitos</td><td>Condiciones y documentación</td></tr>
-      <tr><td>Proceso de ingreso</td><td>Pasos detallados</td></tr>
+      <tr><td>Próximas convocatorias</td><td>Aperturas ciclo 2027-2028</td></tr>
+      <tr><td>Requisitos</td><td>10 requisitos reales + documentación + formularios</td></tr>
+      <tr><td>Proceso de selección</td><td>Pasos detallados</td></tr>
       <tr><td>Preguntas frecuentes</td><td>12 preguntas en acordeón</td></tr>
     </table>
 
-    <h2>7. Búsqueda global</h2>
+    <h2>7. Secretaría</h2>
+    <h3>Títulos y Certificaciones</h3>
     <ul>
-      <li><strong>Ubicación:</strong> ícono de lupa en el navbar, al lado de "Mi ISeP".</li>
-      <li><strong>Índice:</strong> 48 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 11 noticias + 17 normativa + 10 páginas + 6 Misceláneas).</li>
+      <li>Consulta de certificados por DNI con feedback visual.</li>
+      <li>Proceso de 3 pasos para solicitar títulos.</li>
+      <li>Links externos (santafe.gov.ar, Google Forms).</li>
+      <li>Títulos para retirar (2 links de descarga).</li>
+      <li>Contacto: titulosisep@isepsantafe.edu.ar, tel 0341-4728526.</li>
+    </ul>
+    <h3>Biblioteca Virtual</h3>
+    <p>22 recursos bibliográficos reales del ISeP. Filtros por tipo (Manual, Publicación, Protocolo, Resolución). Chips coloreados.</p>
+    <h3>Cursos de Capacitación</h3>
+    <p>Cursos con badges de estado. Botón "Acceso a Mi ISeP" usando <code>MI_ISEP_URL</code>.</p>
+
+    <h2>8. Búsqueda global</h2>
+    <ul>
+      <li><strong>Ubicación:</strong> ícono de lupa en el navbar.</li>
+      <li><strong>Debounce:</strong> 300ms.</li>
+      <li><strong>Índice:</strong> 48 entradas.</li>
       <li><strong>Resultados agrupados por tipo.</strong></li>
       <li><strong>Navegación por teclado:</strong> ↑↓, Enter, Escape.</li>
       <li><strong>Enter</strong> en el campo abre el primer resultado.</li>
     </ul>
 
-    <h2>8. Normativa y Resoluciones</h2>
+    <h2>9. Normativa y Resoluciones</h2>
     <p>17 documentos oficiales descargables. Filtros por año y tipo. Chips coloreados por tipo.</p>
-
-    <h2>9. Biblioteca Virtual</h2>
-    <p>22 recursos bibliográficos reales del ISeP. Filtros por tipo (Manual, Publicación, Protocolo, Resolución). Chips coloreados.</p>
 
     <h2>10. Sedes y Contacto</h2>
     <p>2 sedes con Google Maps embebido: D.Z.S – Rosario (Alem 2050, tel 341-4728526) y DZCN – Recreo (RN11 km 482, tel 342-4815570).</p>
 
-    <h2>11. Aplicaciones institucionales</h2>
-    <table>
-      <tr><th>App</th><th>URL</th><th>Destino</th></tr>
-      <tr><td>Mi ISeP</td><td><code>mi.isepsantafe.edu.ar</code></td><td>Portal personal</td></tr>
-      <tr><td>SIGEDI</td><td><code>gestion.isepsantafe.edu.ar</code></td><td>Gestión Educativa</td></tr>
-      <tr><td>Gestión Cadetes</td><td><code>cadetes.isepsantafe.edu.ar</code></td><td>Control de asistencia</td></tr>
-      <tr><td>Webmail</td><td><code>webmail.isepsantafe.edu.ar</code></td><td>Correo institucional</td></tr>
-    </table>
+    <h2>11. Mapa del Sitio</h2>
+    <p>Guía visual de todas las rutas del sitio organizadas por sección. Arbol jerárquico con las 26 rutas y enlaces directos.</p>
 
     <h2>12. Accesos flotantes y redes</h2>
     <h3>WhatsApp</h3>
     <p>Botón flotante verde, siempre visible (z-index 60). Enlace a <code>wa.me/5493424579000</code> (tel: +54 342 457-9000).</p>
     <h3>ScrollToTop</h3>
-    <p>Botón flotante con SVG flecha (z-index 70). Visible tras 400px de scroll, <code>bottom: 5.5rem</code>. En móvil, se posiciona en la esquina inferior izquierda para no superponerse con el botón de WhatsApp. Scroll suave al inicio.</p>
+    <p>Botón flotante (z-index 70). Visible tras 400px de scroll. En móvil, esquina inferior izquierda para no superponerse con WhatsApp.</p>
+    <h3>Modo Oscuro</h3>
+    <p>Toggle accesible desde el navbar. Alterna entre tema claro y oscuro. Persiste la preferencia del usuario.</p>
     <h3>Redes sociales (Footer)</h3>
     <table>
       <tr><th>Red</th><th>Enlace</th></tr>
@@ -249,11 +237,9 @@
       <tr><td>Instagram</td><td><code>instagram.com/isepsantafe</code></td></tr>
       <tr><td>TikTok</td><td><code>tiktok.com/@isepsantafe</code></td></tr>
     </table>
-    <h3>Footer</h3>
-    <p>Fondo sólido <code>#00254d</code>, grid 3 columnas. Bottom 1 línea: "Departamento Desarrollo, Tecnología e Innovación" + fecha dinámica.</p>
 
     <h2>13. Breadcrumb</h2>
-    <p>Fondo <code>#f8fafc</code>, borde <code>#eef2f7</code>. Ícono home enlazable, separadores "/". Último elemento en negrita.</p>
+    <p>Fondo <code>#f8fafc</code>, borde <code>#eef2f7</code>. Ícono home enlazable, separadores "/". Último elemento en negrita. BreadcrumbLd (JSON-LD) en todas las páginas.</p>
 
     <h2>14. Contadores</h2>
     <p>4 estadísticas animadas con IntersectionObserver: Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.</p>
@@ -268,103 +254,69 @@
       <li>Mi ISeP siempre visible.</li>
       <li>Logo ISeP enlazable al inicio.</li>
       <li>Consistencia visual (gradiente, glow).</li>
-      <li>Fondo decorativo global (<code>background-attachment: fixed</code>).</li>
+      <li>Fondo decorativo global.</li>
       <li>Favicon: escudo ISeP.</li>
+      <li>Modo oscuro toggle desde navbar.</li>
+      <li>SkipToContent + id="main-content" en todos los main.</li>
+      <li>Dark mode persistente.</li>
     </ol>
 
     <h2>17. Disponibilidad</h2>
     <p><code>npm install</code> → <code>npm run dev</code> (localhost:5173). Build: <code>npm run build</code> → <code>npm run preview</code>. Lint: <code>npm run lint</code>. Tests: <code>npm run test</code>.</p>
 
     <h3>17.1 Testing automatizado</h3>
-    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>:</p>
-    <ul>
-      <li>18 tests en 3 archivos, cubriendo la capa de datos (no los componentes UI)</li>
-      <li><code>datos.test.js</code>: valida estructura de noticias (IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como <code>null</code>)</li>
-      <li><code>institucional.test.js</code>: valida estructura de escuelas, carreras, cursos y convocatorias</li>
-      <li><code>buscador.test.js</code>: valida funcionalidad de búsqueda y resultados agrupados</li>
-      <li>Tests ejecutados automáticamente en CI (GitHub Actions) en cada push</li>
-      <li>Ejecutar localmente con <code>npm run test</code></li>
-    </ul>
+    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. 18 tests en 3 archivos:</p>
+    <table>
+      <tr><th>Archivo</th><th>Qué valida</th></tr>
+      <tr><td><code>datos.test.js</code></td><td>Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como <code>null</code></td></tr>
+      <tr><td><code>institucional.test.js</code></td><td>Estructura de escuelas, carreras, cursos y convocatorias</td></tr>
+      <tr><td><code>buscador.test.js</code></td><td>Funcionalidad de búsqueda y resultados agrupados</td></tr>
+    </table>
 
     <h3>17.2 CI/CD</h3>
-    <p>GitHub Actions ejecuta en cada push:</p>
-    <ul>
-      <li>Lint → Build → Test</li>
-      <li>Si cualquier paso falla, el push se bloquea</li>
-    </ul>
+    <p>GitHub Actions ejecuta en cada push: Lint → Build → Test.</p>
 
     <h2>18. Publicación de noticias — Guía paso a paso</h2>
 
     <h3>18.1 Estructura de datos</h3>
     <pre>{
-  id: 12,
-  titulo: "Título de la noticia",
-  categoria: "Institucional",
-  fecha: "3 DE SEPTIEMBRE, 2026",
-  fechaCorta: "3 SEP",
-  excerpt: "Extracto breve...",
-  img: "https://picsum.photos/seed/n12/900/500",  // o null
-  adjuntos: [
-    { nombre: "Resolución 123.pdf", url: "/docs/resolucion-123.pdf" }
-  ],
-  escuelas: ["policia", "superior", "especialidades", "investigaciones", "ead"],
-  contenido: `Primer párrafo.\n\nSegundo párrafo.`
-}</pre>
-    <div class="note"><strong>Campo <code>img</code>:</strong> puede ser una URL de imagen (local o externa) o <code>null</code>. Si es <code>null</code>, se muestra un placeholder con ícono de material symbols en lugar de la imagen. Esto permite publicar noticias sin foto alusiva.</div>
-    <div class="note"><strong>Campo <code>contenido</code>:</strong> si se define, se usa como cuerpo de la noticia en el detalle. Si no se define, se genera un texto genérico a partir del título y excerpt.</div>
-    <div class="note"><strong>Campo <code>adjuntos</code>:</strong> array opcional de objetos <code>{ nombre, url }</code>. Cada adjunto se renderiza como botón de descarga en el detalle de la noticia. El campo <code>nombre</code> es el texto visible del botón y <code>url</code> es la ruta relativa (desde <code>public/</code>) o URL absoluta del archivo.</div>
-    <div class="note"><strong>Campo <code>escuelas</code>:</strong> array de IDs de escuelas asociadas a la noticia. Valores válidos: <code>"policia"</code>, <code>"superior"</code>, <code>"especialidades"</code>, <code>"investigaciones"</code>, <code>"ead"</code>. En <code>/noticias</code> se muestran todas las noticias sin importar este campo.</div>
-
-    <h3>18.2 Pasos para publicar</h3>
-    <ol>
-      <li><strong>Preparar imagen alusiva</strong> (4 opciones):
-        <ul>
-          <li><strong>Opción A (recomendada):</strong> Imagen local en <code>public/img/noticias/</code></li>
-          <li><strong>Opción B:</strong> URL externa</li>
-          <li><strong>Opción C:</strong> Placeholder con picsum.photos — <code>https://picsum.photos/seed/mi-noticia/900/500</code></li>
-          <li><strong>Opción D:</strong> Sin imagen — <code>img: null</code> (se muestra placeholder con ícono)</li>
-        </ul>
-        900×500 px (16:9), JPG/PNG, &lt;200 KB.</li>
-      <li><strong>Definir categoría:</strong> Institucional | Académica | Escuelas | Eventos | Convenios.</li>
-      <li><strong>Colocar archivos adjuntos en <code>public/docs/</code>:</strong> colocar los archivos (PDF, DOC, etc.) que se quieran adjuntar a la noticia en la carpeta <code>public/docs/</code>. Si no hay adjuntos, omitir este paso.</li>
-      <li><strong>Agregar en <code>src/data/noticias.js</code>:</strong> nuevo objeto al array con id único y campo <code>escuelas</code> para asociar la noticia a escuelas específicas. Ejemplo:
-        <pre>{
   id: 14,
   titulo: "Título descriptivo",
   categoria: "Institucional",
   fecha: "4 DE SEPTIEMBRE, 2026",
   fechaCorta: "4 SEP",
   excerpt: "Extracto de 1 a 2 oraciones.",
-  img: "/img/noticias/mi-imagen.jpg",
+  img: "/img/noticias/mi-imagen.jpg",  // o null
   adjuntos: [
-    { nombre: "Resolución adjunta.pdf", url: "/docs/resolucion.pdf" }
+    { nombre: "Resolución.pdf", url: "/docs/resolucion.pdf" }
   ],
   escuelas: ["policia"],
-  contenido: `Primer párrafo del cuerpo.
-
-Segundo párrafo con más detalle.`,
+  contenido: `Primer párrafo.\n\nSegundo párrafo.`
 }</pre>
-      </li>
-      <li><strong>Verificar el buscador:</strong> <code>src/data/buscador.js</code> importa directamente de <code>noticias.js</code>, por lo que la noticia aparecerá automáticamente en las búsquedas. No es necesario agregar nada manualmente.</li>
-      <li><strong>Probar:</strong> <code>npm run dev</code>, verificar en home, /noticias y detalle. Al hacer clic en la card, se abre el detalle con imagen, contenido (campo <code>contenido</code> si existe, o texto generado), botones de descarga de adjuntos y noticias relacionadas.</li>
+    <div class="note"><strong>Campo <code>img</code>:</strong> URL de imagen o <code>null</code> (placeholder con ícono).</div>
+    <div class="note"><strong>Campo <code>contenido</code>:</strong> HTML o texto plano (\n\n para párrafos).</div>
+    <div class="note"><strong>Campo <code>adjuntos</code>:</strong> Array opcional de <code>{ nombre, url }</code>.</div>
+    <div class="note"><strong>Campo <code>escuelas</code>:</strong> Array de IDs de escuelas asociadas.</div>
+
+    <h3>18.2 Pasos para publicar</h3>
+    <ol>
+      <li><strong>Preparar imagen</strong> (4 opciones: local, externa, picsum, null). 900×500 px.</li>
+      <li><strong>Definir categoría:</strong> Institucional | Académica | Escuelas | Eventos | Convenios.</li>
+      <li><strong>Colocar adjuntos en <code>public/docs/</code></strong> (si aplica).</li>
+      <li><strong>Agregar en <code>noticias.js</code></strong> con ID único.</li>
+      <li><strong>Buscador:</strong> automático (importa de noticias.js).</li>
+      <li><strong>Probar:</strong> <code>npm run dev</code>, verificar home, /noticias y detalle.</li>
       <li><strong>Confirmar:</strong> <code>npm run build</code> + <code>npm run lint</code>.</li>
     </ol>
 
-    <h3>18.3 Documentos adjuntos y links</h3>
-    <ol>
-      <li>Subir documento a <code>public/docs/</code> o usar URL externa.</li>
-      <li>Agregar campo <code>adjuntos</code> al objeto: <code>[{ nombre, url }]</code>.</li>
-      <li>Modificar <code>NoticiaDetalle.jsx</code> para renderizar la sección de adjuntos.</li>
-    </ol>
-
-    <h3>18.4 Resumen del flujo</h3>
+    <h3>18.3 Resumen del flujo</h3>
     <table>
       <tr><th>Paso</th><th>Archivo</th><th>Acción</th></tr>
       <tr><td>1</td><td>Imagen</td><td>Preparar 900×500 px</td></tr>
       <tr><td>2</td><td>—</td><td>Definir categoría</td></tr>
-      <tr><td>3</td><td><code>public/docs/</code></td><td>Colocar archivos adjuntos (si aplica)</td></tr>
-      <tr><td>4</td><td><code>noticias.js</code></td><td>Agregar objeto al array (con campos <code>adjuntos</code> y <code>escuelas</code> si aplica)</td></tr>
-      <tr><td>5</td><td><code>buscador.js</code></td><td>Automático (importa de noticias.js)</td></tr>
+      <tr><td>3</td><td><code>public/docs/</code></td><td>Colocar adjuntos (si aplica)</td></tr>
+      <tr><td>4</td><td><code>noticias.js</code></td><td>Agregar objeto al array</td></tr>
+      <tr><td>5</td><td><code>buscador.js</code></td><td>Automático</td></tr>
       <tr><td>6</td><td><code>npm run dev</code></td><td>Verificar visualmente</td></tr>
       <tr><td>7</td><td><code>npm run build</code></td><td>Confirmar build limpio</td></tr>
     </table>
@@ -372,94 +324,59 @@ Segundo párrafo con más detalle.`,
     <h2>19. Infraestructura SEO y Analytics</h2>
 
     <h3>19.1 JSON-LD (Structured Data)</h3>
-    <p>3 tipos de structured data según la página:</p>
     <table>
       <tr><th>Tipo</th><th>Página</th><th>Contenido</th></tr>
-      <tr><td><code>EducationalOrganization</code></td><td>Home (<code>/</code>)</td><td>Datos del ISeP: nombre, dirección, redes sociales, logo</td></tr>
-      <tr><td><code>NewsArticle</code></td><td>Detalle de noticia (<code>/noticias/:id</code>)</td><td>Título, autor, fecha, imagen, excerpt (rich results para Google)</td></tr>
-      <tr><td><code>BreadcrumbList</code></td><td>12 páginas con Breadcrumb</td><td>Ruta de navegación jerárquica</td></tr>
+      <tr><td><code>EducationalOrganization</code></td><td>Home</td><td>Datos del ISeP</td></tr>
+      <tr><td><code>NewsArticle</code></td><td>Detalle de noticia</td><td>Título, autor, fecha, imagen</td></tr>
+      <tr><td><code>BreadcrumbList</code></td><td>Todas las páginas con Breadcrumb</td><td>Ruta de navegación</td></tr>
     </table>
-    <p>Se renderizan como <code>&lt;script type="application/ld+json"&gt;</code> inline en cada componente de página. Validar con Google Rich Results Test.</p>
 
     <h3>19.2 Meta Tags dinámicos</h3>
-    <p>El componente <code>SEO.jsx</code> gestiona meta tags por página:</p>
-    <table>
-      <tr><th>Meta tag</th><th>Fuente</th></tr>
-      <tr><td><code>&lt;title&gt;</code></td><td>Título de la página + " — ISeP Santa Fe"</td></tr>
-      <tr><td><code>&lt;meta name="description"&gt;</code></td><td>Descripción breve (150–160 chars)</td></tr>
-      <tr><td><code>&lt;meta property="og:title"&gt;</code></td><td>Título para redes sociales</td></tr>
-      <tr><td><code>&lt;meta property="og:description"&gt;</code></td><td>Descripción para redes sociales</td></tr>
-      <tr><td><code>&lt;meta property="og:image"&gt;</code></td><td>Imagen representativa</td></tr>
-      <tr><td><code>&lt;meta property="og:type"&gt;</code></td><td>website / article</td></tr>
-      <tr><td><code>&lt;meta property="og:locale"&gt;</code></td><td>es_AR</td></tr>
-      <tr><td><code>&lt;meta name="twitter:card"&gt;</code></td><td>summary_large_image</td></tr>
-    </table>
-    <p>Se actualizan dinámicamente con <code>useEffect</code> al cambiar de ruta.</p>
+    <p>Componente <code>SEO.jsx</code>: título, descripción, og:image, og:type, og:locale, twitter:card.</p>
 
     <h3>19.3 Sitemap.xml</h3>
-    <ul>
-      <li><strong>22 URLs</strong> con frecuencias y prioridades.</li>
-      <li>Incluye: Home, 5 escuelas, noticias, normativa, biblioteca, ingreso, institucional, secretaría.</li>
-      <li>Frecuencia de actualización: <code>weekly</code> (home, noticias) / <code>monthly</code> (institucional, escuelas).</li>
-      <li>Disponible en <code>/sitemap.xml</code>.</li>
-    </ul>
+    <p>22 URLs con frecuencias y prioridades. Disponible en <code>/sitemap.xml</code>.</p>
 
     <h3>19.4 Google Analytics 4</h3>
-    <ul>
-      <li><strong>Herramienta:</strong> <code>gtag.js</code> (Google Analytics 4).</li>
-      <li><strong>Carga:</strong> asíncrona, no bloquea el render.</li>
-      <li><strong>Modo:</strong> solo producción (desactivado en <code>npm run dev</code>).</li>
-      <li><strong>ID configurable:</strong> en <code>src/components/Analytics.jsx</code> (variable <code>GA_ID</code>) y <code>src/utils/analytics.js</code>.</li>
-      <li><strong>Estado actual:</strong> el ID es un placeholder (<code>G-XXXXXXXXXX</code>). En desarrollo, Analytics retorna <code>null</code>. En producción, gtag.js se carga pero con el ID placeholder no se recolectan datos reales.</li>
-      <li><strong>Para activar:</strong> reemplazar el ID placeholder con un Measurement ID real de GA4 en ambos archivos. Ver guía paso a paso en <code>funcional.md</code>.</li>
-    </ul>
+    <p>Carga asíncrona, solo en producción. ID configurable en <code>config.js</code>. Actualmente placeholder.</p>
 
     <h3>19.5 PWA</h3>
-    <ul>
-      <li><strong><code>manifest.json</code>:</strong> configuración de Progressive Web App (nombre, colores, iconos).</li>
-      <li><strong><code>robots.txt</code>:</strong> permisos para crawlers (allow: <code>/</code>, Disallow: <code>/api/</code>).</li>
-      <li>Permite instalar el sitio como app en móviles y escritorio.</li>
-    </ul>
+    <p><code>manifest.json</code> + <code>robots.txt</code>. Permite instalar como app.</p>
 
     <h3>19.6 Accesibilidad</h3>
     <table>
       <tr><th>Característica</th><th>Descripción</th></tr>
-      <tr><td><code>SkipToContent</code></td><td>Enlace invisible al inicio que aparece con Tab, salta al contenido principal (id="main-content" en todos los elementos main)</td></tr>
-      <tr><td><code>focus-visible</code></td><td>Indicadores de foco visibles solo con navegación por teclado (no en clics)</td></tr>
-      <tr><td><code>sr-only</code></td><td>Contenido exclusivo para lectores de pantalla (ej: labels de botones)</td></tr>
-      <tr><td><code>skeleton-pulse</code></td><td>Placeholder animado mientras cargan datos (mejora percepción de rendimiento)</td></tr>
-      <tr><td><strong>Labels en formularios</strong></td><td>Campos con <code>&lt;label htmlFor&gt;</code> vinculados al input. Ejemplo: DNI en Títulos, búsqueda de Resoluciones, búsqueda en Biblioteca</td></tr>
+      <tr><td><code>SkipToContent</code></td><td>Enlace para saltar al contenido principal</td></tr>
+      <tr><td><code>focus-visible</code></td><td>Indicadores de foco solo con teclado</td></tr>
+      <tr><td><code>sr-only</code></td><td>Contenido para lectores de pantalla</td></tr>
+      <tr><td><code>skeleton-pulse</code></td><td>Placeholder animado</td></tr>
+      <tr><td>Labels</td><td>Campos con <code>&lt;label htmlFor&gt;</code></td></tr>
     </table>
 
     <h3>19.7 Error Handling</h3>
-    <ul>
-      <li><strong>ErrorBoundary global:</strong> captura errores de render en cualquier componente y muestra una pantalla amigable en lugar de pantalla blanca.</li>
-      <li><strong>NotFound (404):</strong> página dedicada para rutas inexistentes con enlace de retorno al inicio.</li>
-      <li>Ambos implementados en <code>App.jsx</code> como wrappers del router.</li>
-    </ul>
+    <p>ErrorBoundary global + NotFound (404) en <code>App.jsx</code>.</p>
 
-    <h3>19.8 CSS Architecture</h3>
-    <table>
-      <tr><th>Principio</th><th>Detalle</th></tr>
-      <tr><td><strong>0 inline styles</strong></td><td>Todos los estilos en archivos CSS externos</td></tr>
-      <tr><td><strong>pages.css</strong></td><td>~200+ clases reutilizables para páginas de contenido</td></tr>
-      <tr><td><strong>Separación</strong></td><td>tokens → base → componentes → páginas → responsive</td></tr>
-      <tr><td><strong>Design tokens</strong></td><td>Variables CSS en <code>variables.css</code></td></tr>
-      <tr><td><strong>Mobile-first</strong></td><td><code>responsive.css</code> con media queries ascendentes</td></tr>
-    </table>
-
-    <h3>19.9 Configuración Centralizada</h3>
-    <p>El archivo <code>src/data/config.js</code> centraliza datos que se usan en múltiples componentes:</p>
+    <h3>19.8 Configuración Centralizada</h3>
     <table>
       <tr><th>Constante</th><th>Descripción</th></tr>
-      <tr><td><code>TELEFONO_ISR</code> / <code>TELEFONO_LIMPIO</code></td><td>Números de teléfono institucionales</td></tr>
-      <tr><td><code>EMAIL_CONTACTO</code> / <code>EMAIL_PRENSA</code> / <code>EMAIL_TITULOS</code></td><td>Direcciones de correo electrónico</td></tr>
-      <tr><td><code>MI_ISEP_URL</code> / <code>GESTION_URL</code> / <code>CADETES_URL</code> / <code>WEBMAIL_URL</code></td><td>URLs de sistemas institucionales</td></tr>
+      <tr><td><code>MI_ISEP_URL</code></td><td>URL del portal Mi ISeP</td></tr>
+      <tr><td><code>GESTION_URL</code></td><td>URL de SIGEDI</td></tr>
+      <tr><td><code>CADETES_URL</code></td><td>URL de Gestión Cadetes</td></tr>
+      <tr><td><code>WEBMAIL_URL</code></td><td>URL del correo institucional</td></tr>
+      <tr><td><code>TELEFONO_ISR</code></td><td>Número de teléfono institucional</td></tr>
+      <tr><td><code>EMAIL_CONTACTO</code></td><td>Correo de contacto</td></tr>
       <tr><td><code>WHATSAPP_URL</code></td><td>Enlace de WhatsApp</td></tr>
-      <tr><td><code>REDES_SOCIALES</code></td><td>URLs de redes sociales (Facebook, YouTube, Instagram, TikTok)</td></tr>
-      <tr><td><code>GA_ID</code></td><td>ID de Google Analytics (placeholder actualmente)</td></tr>
+      <tr><td><code>REDES_SOCIALES</code></td><td>URLs de redes sociales</td></tr>
+      <tr><td><code>GA_ID</code></td><td>ID de Google Analytics (placeholder)</td></tr>
     </table>
-    <div class="note"><strong>Nota:</strong> el archivo fue creado pero aún no está integrado en todos los componentes. Cada constante tiene documentación JSDoc indicando qué es y cómo modificarla. Los componentes pueden importar estos valores en lugar de usar valores hardcodeados.</div>
+
+    <h3>19.9 API Service Layer</h3>
+    <p><code>src/services/api.js</code>: capa de abstracción mock→backend-ready.</p>
   </main>
+
+  <footer>
+    Instituto de Seguridad Pública de Santa Fe — Documentación del sitio web<br>
+    Generado: 5 de septiembre de 2026 — Versión 1.0.0
+  </footer>
 </body>
 </html>

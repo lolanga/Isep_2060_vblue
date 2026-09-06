@@ -29,6 +29,13 @@
     tr:nth-child(even) td { background: #fff; }
     code { background: #eef2ff; color: var(--primary); padding: .1rem .35rem; border-radius: 4px; font-size: .85rem; }
     .tip { background: #fff; border-left: 4px solid var(--grad-2); padding: .8rem 1rem; border-radius: 0 6px 6px 0; margin: 1rem 0; }
+    footer { margin-top: 40px; padding: 16px 0; border-top: 1px solid #ddd; text-align: center; font-size: 11px; color: #666; }
+    @media print {
+      @page { margin: 2cm; }
+      body { counter-reset: page; }
+      .page-content { page-break-after: always; }
+      footer { position: fixed; bottom: 0; left: 0; right: 0; text-align: center; font-size: 10px; color: #666; border-top: 1px solid #ddd; padding: 8px 0; }
+    }
     @media (max-width: 560px) {
       header h1 { font-size: 1.35rem; }
       main { padding: 1.5rem 1rem; }
@@ -39,21 +46,25 @@
 <body>
   <header>
     <h1>Guía de Usuario</h1>
-    <p>Sitio Web ISeP Santa Fe</p>
+    <p>Sitio Web ISeP Santa Fe — Versión 1.0.0</p>
   </header>
 
   <main>
     <h2>1. Cómo navegar por el sitio</h2>
-    <p>La barra de navegación superior (fija al hacer scroll) organiza el contenido en 3 menús desplegables + enlace directo:</p>
+    <p>La barra de navegación superior (fija al hacer scroll) organiza el contenido en menús desplegables + enlaces directos:</p>
     <table>
       <tr><th>Menú</th><th>Qué contiene</th></tr>
-      <tr><td><strong>Institucional</strong></td><td>El ISeP, Autoridades, Organización, Normativa y Resoluciones, Sedes y Contacto</td></tr>
-      <tr><td><strong>Formación</strong></td><td>Oferta Académica, Escuelas (5), Cursos, Títulos y Certificaciones, Biblioteca Virtual</td></tr>
-      <tr><td><strong>Ingreso</strong></td><td>Convocatorias vigentes, Próximas convocatorias, Requisitos, Proceso de ingreso, Preguntas frecuentes</td></tr>
-      <tr><td><strong>Últimas noticias</strong></td><td>Acceso directo al listado de noticias</td></tr>
+      <tr><td><strong>Institucional</strong></td><td>El ISeP, Autoridades, Organización, Oferta Educativa, Resoluciones, Sedes y Contacto, Galería de Fotos</td></tr>
+      <tr><td><strong>Formación</strong></td><td>Escuelas (5 con escudos), Cursos de Capacitación</td></tr>
+      <tr><td><strong>Ingreso</strong></td><td>Proceso de Selección, Requisitos, Próximas Convocatorias, FAQ</td></tr>
+      <tr><td><strong>Secretaría</strong></td><td>Títulos y Certificaciones, Biblioteca Virtual, Cursos</td></tr>
+      <tr><td><strong>Noticias</strong></td><td>Acceso directo al listado de noticias</td></tr>
+      <tr><td><strong>Mi ISeP</strong></td><td>Botón siempre visible, enlace externo</td></tr>
+      <tr><td><strong>Buscador</strong></td><td>Ícono de lupa, debounce 300ms, resultados agrupados</td></tr>
+      <tr><td><strong>Modo oscuro</strong></td><td>Toggle desde navbar</td></tr>
     </table>
     <p><strong>En escritorio:</strong> pasá el cursor sobre un menú para desplegarlo. En <em>Formación → Escuelas</em> hay submenú con escudos.</p>
-    <p><strong>En celular/tablet:</strong> tocá ☰ (hamburguesa) para abrir el menú completo con acordeones. Logo y botón <strong>Mi ISeP</strong> siempre visibles.</p>
+    <p><strong>En celular/tablet:</strong> hamburguesa a la izquierda, logo al centro, Mi ISeP y buscador a la derecha.</p>
 
     <h3>1.1 Íconos en la navegación</h3>
     <table>
@@ -61,59 +72,70 @@
       <tr><td>Institucional</td><td>account_balance</td></tr>
       <tr><td>Formación</td><td>school</td></tr>
       <tr><td>Ingreso</td><td>login</td></tr>
-      <tr><td>Últimas noticias</td><td>newspaper</td></tr>
+      <tr><td>Noticias</td><td>newspaper</td></tr>
     </table>
 
     <h3>1.2 Buscador global</h3>
-    <p>Al lado del botón "Mi ISeP" hay un <strong>ícono de lupa</strong>. Al hacer clic se abre un campo con resultados <strong>agrupados por tipo</strong>:</p>
+    <p>Al lado del botón "Mi ISeP" hay un <strong>ícono de lupa</strong>. Resultados <strong>agrupados por tipo</strong>:</p>
     <table>
       <tr><th>Grupo</th><th>Qué incluye</th></tr>
       <tr><td>Escuelas</td><td>Las 5 escuelas del ISeP</td></tr>
       <tr><td>Carreras</td><td>Todas las carreras disponibles</td></tr>
       <tr><td>Cursos</td><td>Cursos activos y próximos</td></tr>
       <tr><td>Convocatorias</td><td>Inscripciones abiertas y próximas</td></tr>
-      <tr><td>Noticias</td><td>Noticias institucionales</td></tr>
-      <tr><td>Normativa</td><td>Resoluciones, convenios, estatutos</td></tr>
+      <tr><td>Noticias</td><td>14 noticias institucionales</td></tr>
+      <tr><td>Normativa</td><td>17 resoluciones, convenios, estatutos</td></tr>
       <tr><td>Páginas</td><td>Accesos directos a secciones</td></tr>
     </table>
     <p><strong>Atajos:</strong> ↑↓ navegar, Enter seleccionar, Esc cerrar.</p>
+
+    <h3>1.3 Modo Oscuro</h3>
+    <p>Toggle accesible desde la navbar. Alterna entre tema claro y oscuro. La preferencia se guarda y persiste entre visitas.</p>
 
     <h2>2. Volver al inicio</h2>
     <p>El logo <strong>"ISeP Santa Fe"</strong> (arriba a la izquierda) es un enlace que te devuelve a <code>/</code>.</p>
 
     <h2>3. Acceso rápido (Mi ISeP)</h2>
     <p>El botón <strong>"Mi ISeP"</strong> siempre visible en la barra superior. Lleva a <code>mi.isepsantafe.edu.ar</code> en pestaña nueva.</p>
-    <div class="tip">Este botón no desaparece en móviles — es el acceso principal del personal.</div>
 
     <h2>4. Hero (página de inicio)</h2>
     <p><strong>Slider automático</strong> con 3 slides:</p>
     <ul>
-      <li><strong>Slide 1:</strong> "Formación Profesional para la Seguridad Pública"</li>
-      <li><strong>Slide 2:</strong> "Formando líderes en Seguridad Pública"</li>
-      <li><strong>Slide 3:</strong> "Carreras y cursos de alto nivel"</li>
+      <li>"Formación Profesional para la Seguridad Pública"</li>
+      <li>"Formando líderes en Seguridad Pública"</li>
+      <li>"Carreras y cursos de alto nivel"</li>
     </ul>
     <ul>
       <li>Cambio cada 6 segundos, pausa al hover.</li>
       <li>Flechas + dots para navegación manual.</li>
+      <li>CTA principal → <code>/institucional/oferta-educativa</code>.</li>
     </ul>
 
     <h2>5. Secciones del Home</h2>
-    <h3>5.1 Aplicaciones Institucionales</h3>
-    <p>4 accesos: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail.</p>
-    <h3>5.2 Contadores</h3>
+    <h3>5.1 Trámites en Línea</h3>
+    <table>
+      <tr><th>App</th><th>Para quién</th><th>Qué hace</th></tr>
+      <tr><td>Mi ISeP</td><td>Docentes, personal policial cursante y postulantes inscriptos</td><td>Aulas virtuales, material de cursado, notas y asistencia</td></tr>
+      <tr><td>SIGEDI</td><td>Solo personal interno del ISeP</td><td>Gestión de expedientes internos</td></tr>
+      <tr><td>Gestión Cadetes</td><td>Cadetes de 1° y 2° año</td><td>Control y notificaciones del cursado</td></tr>
+      <tr><td>Webmail</td><td>Todo el personal del ISeP</td><td>Correo electrónico institucional</td></tr>
+    </table>
+    <h3>5.2 Aplicaciones Institucionales</h3>
+    <p>4 accesos directos a sistemas institucionales.</p>
+    <h3>5.3 Contadores</h3>
     <p>Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.</p>
-    <h3>5.3 Convocatorias (CTA)</h3>
-    <p>Cuenta regresiva + botones de inscripción. El botón principal ahora lleva a <code>/institucional/oferta-educativa</code>.</p>
-    <h3>5.4 Últimas Noticias</h3>
-    <p>Noticia destacada + sidebar. <strong>Cada noticia lleva a <code>/noticias/:id</code></strong>. El enlace "Ver todas las noticias" lleva a <code>/noticias</code>.</p>
-    <h3>5.5 Nuestras Escuelas</h3>
-    <p>Accesos directos a las 5 escuelas con escudos. Las tarjetas son enlaces clickeables a <code>/escuelas/:id</code>.</p>
-    <h3>5.6 Testimonios</h3>
+    <h3>5.4 Convocatorias (CTA)</h3>
+    <p>Cuenta regresiva al 30/09/2027 + botones de inscripción. Botón principal → <code>/institucional/oferta-educativa</code>.</p>
+    <h3>5.5 Últimas Noticias</h3>
+    <p>Noticia destacada + sidebar. <strong>Cada noticia lleva a <code>/noticias/:id</code></strong>.</p>
+    <h3>5.6 Nuestras Escuelas</h3>
+    <p>Grid de 5 escuelas con escudos, enlaces a <code>/escuelas/:slug</code>.</p>
+    <h3>5.7 Testimonios</h3>
     <p>Carrusel de 3 egresados con flechas y dots.</p>
 
     <h2>6. Formación</h2>
-    <h3>Oferta Académica</h3>
-    <p>Vista dinámica con 3 pestañas: Carreras, Cursos, Convocatorias. Las tarjetas de escuelas muestran <strong>escudos</strong> (imágenes de escudo).</p>
+    <h3>Oferta Educativa</h3>
+    <p>Vista dinámica con 3 pestañas: Carreras, Cursos, Convocatorias. Tarjetas de escuelas con <strong>escudos</strong>.</p>
     <h3>Carreras</h3>
     <p>Tarjetas con header coloreado por escuela, chips, estado de inscripción y hover animado.</p>
     <h3>Cursos</h3>
@@ -122,124 +144,99 @@
       <li>Acordeón desplegable + botón "Acceso a Mi ISeP".</li>
     </ul>
     <h3>Páginas de escuela</h3>
-    <p>Cada escuela: escudo, presentación (datos oficiales), información, contacto con email institucional. Las noticias se filtran automáticamente según la escuela (campo <code>escuelas</code> en cada noticia).</p>
+    <p>Cada escuela: escudo, presentación, información, contacto. Noticias filtradas automáticamente.</p>
     <div class="tip"><strong>Solo Escuela de Policía</strong> incluye la sección "Carreras". Las demás escuelas no muestran esta sección.</div>
 
     <h2>7. Ingreso (postulantes)</h2>
     <h3>7.1 Convocatorias — Contenido real</h3>
-    <p>Landing con <strong>proceso de selección de la Escuela de Policía Ciclo 2027–2028</strong>:</p>
+    <p>Landing con <strong>proceso de selección Escuela de Policía Ciclo 2027–2028</strong>:</p>
     <ul>
+      <li>Hero con countdown y enlace a MI ISEP</li>
       <li>Alerta de presentación (09:00 hs, tolerancia 20 min)</li>
-      <li>Documentación requerida (título + DNI)</li>
-      <li>Vestimenta y elementos</li>
+      <li>Documentación (título + DNI), vestimenta, elementos</li>
       <li>Cómo inscribirte en MI ISEP (4 pasos)</li>
       <li>Formularios obligatorios (4 DJ)</li>
       <li>Edad requerida (18-30 años al 02/02/2027)</li>
       <li>Etapas del proceso (4 etapas)</li>
       <li>Requisitos (10 items)</li>
       <li>Consultas: prensaydifusion@isepsantafe.edu.ar</li>
-      <li>Link al listado de presentación (PDF)</li>
     </ul>
     <h3>7.2 Próximas convocatorias</h3>
-    <p>Aperturas para próximos ciclos.</p>
+    <p>Aperturas para el ciclo 2027-2028.</p>
     <h3>7.3 Requisitos</h3>
-    <p>Condiciones y documentación.</p>
-    <h3>7.4 Proceso de ingreso</h3>
-    <p>Pasos detallados.</p>
+    <p>10 requisitos reales + documentación + formularios obligatorios.</p>
+    <h3>7.4 Proceso de selección</h3>
+    <p>Pasos detallados del proceso de ingreso.</p>
     <h3>7.5 Preguntas frecuentes</h3>
     <p>12 preguntas en acordeón.</p>
 
-    <h2>8. Breadcrumb</h2>
+    <h2>8. Secretaría</h2>
+    <h3>Títulos y Certificaciones</h3>
+    <ul>
+      <li>Consulta de certificados por DNI con feedback visual.</li>
+      <li>Proceso de 3 pasos para solicitar títulos.</li>
+      <li>Links externos (santafe.gov.ar, Google Forms).</li>
+      <li>Contacto: titulosisep@isepsantafe.edu.ar, tel 0341-4728526.</li>
+    </ul>
+    <h3>Biblioteca Virtual</h3>
+    <p>22 recursos bibliográficos reales. Filtros por categoría. Chips coloreados. Descarga directa a PDF.</p>
+    <h3>Cursos de Capacitación</h3>
+    <p>Cursos con badges de estado. Botón "Acceso a Mi ISeP".</p>
+
+    <h2>9. Breadcrumb</h2>
     <p>En páginas interiores: <strong>Inicio</strong> / Sección / Página actual. Clic en cualquier nivel para volver.</p>
 
-    <h2>9. Noticias</h2>
+    <h2>10. Noticias</h2>
     <h3>En la página de inicio</h3>
     <ul>
-      <li><strong>Noticia destacada</strong> (tarjeta grande) = la más reciente → lleva a <code>/noticias/:id</code>.</li>
-      <li><strong>Sidebar</strong> = 3 mini-cards → llevan a <code>/noticias/:id</code>.</li>
-      <li><strong>"Ver todas las noticias"</strong> → lleva a <code>/noticias</code>.</li>
+      <li><strong>Noticia destacada</strong> → <code>/noticias/:id</code>.</li>
+      <li><strong>Sidebar</strong> = 3 mini-cards con ShareButton.</li>
+      <li><strong>"Ver todas las noticias"</strong> → <code>/noticias</code>.</li>
     </ul>
     <h3>En "Últimas noticias" (<code>/noticias</code>)</h3>
     <ul>
-      <li><strong>Filtro por categorías</strong> con padding (separado del borde).</li>
-      <li><strong>Botón compartir</strong> (icono ↗) copia enlace al portapapeles.</li>
-      <li><strong>Noticia principal</strong> → lleva a <code>/noticias/:id</code>.</li>
-      <li><strong>Historial</strong> con tarjetas → llevan a <code>/noticias/:id</code>.</li>
-      <li><strong>Paginación</strong> (10 por página).</li>
+      <li><strong>Filtro por categorías:</strong> Todas, Institucional, Académica, Escuelas, Eventos, Convenios.</li>
+      <li><strong>Filtro por escuela.</strong></li>
+      <li><strong>Paginación:</strong> 10 por página.</li>
+      <li><strong>14 noticias</strong> publicadas.</li>
     </ul>
     <h3>Detalle de noticia (<code>/noticias/:id</code>)</h3>
     <ul>
-      <li><strong>Hero de imagen</strong> con overlay gradiente. Si la noticia no tiene imagen (<code>img: null</code>), se muestra un placeholder con ícono.</li>
-      <li><strong>Badged de categoría</strong> y fecha.</li>
-      <li><strong>Extracto</strong> destacado con borde izquierdo.</li>
-      <li><strong>Contenido completo</strong> de la noticia.</li>
-      <li><strong>Documentos adjuntos</strong> con botones de descarga (si existen).</li>
+      <li><strong>Hero de imagen</strong> con overlay gradiente. Si <code>img: null</code>, placeholder con ícono.</li>
+      <li><strong>Documentos adjuntos</strong> con botones de descarga.</li>
       <li><strong>Noticias relacionadas</strong> (misma categoría).</li>
-      <li><strong>ShareButton</strong> para compartir.</li>
-      <li><strong>Botón "Volver a noticias"</strong>.</li>
+      <li><strong>ShareButton</strong> + botón "Volver a noticias".</li>
     </ul>
 
     <h3>Noticias por escuela</h3>
-    <ul>
-      <li>Cada página de escuela (<code>/escuelas/:id</code>) muestra hasta 3 noticias filtradas.</li>
-      <li>Se usan las noticias que tienen el campo <code>escuelas</code> con el ID de esa escuela.</li>
-      <li>En <code>/noticias</code> se muestran TODAS las noticias sin filtrar por escuela.</li>
-    </ul>
+    <p>Cada página de escuela muestra hasta 3 noticias filtradas por el campo <code>escuelas</code>.</p>
 
-    <h3>Noticias sin imagen</h3>
-    <ul>
-      <li>Si una noticia tiene <code>img: null</code>, se muestra un placeholder con ícono en lugar de la foto alusiva.</li>
-      <li>Esto permite publicar noticias sin necesidad de preparar una imagen.</li>
-      <li>El placeholder aparece tanto en el listado como en el detalle de la noticia.</li>
-    </ul>
+    <h2>11. Normativa y Resoluciones</h2>
+    <p>17 documentos oficiales descargables. Filtros por año (2022-2026) y tipo (Resolución, Convenio, Plan Estratégico, Estatuto).</p>
 
-    <h3>Trámites en Línea</h3>
-    <p>En la página de inicio encontrarás una sección con las 4 aplicaciones institucionales del ISeP:</p>
-    <table>
-      <tr><th>App</th><th>Para quién</th><th>Qué hace</th></tr>
-      <tr><td>Mi ISeP</td><td>Docentes, personal policial cursante y postulantes inscriptos</td><td>Acceso a aulas virtuales, material de cursado, notas y asistencia</td></tr>
-      <tr><td>SIGEDI</td><td>Solo personal interno del ISeP</td><td>Sistema de gestión de expedientes internos</td></tr>
-      <tr><td>Gestión Cadetes</td><td>Cadetes de 1° y 2° año</td><td>Control y notificaciones del cursado</td></tr>
-      <tr><td>Webmail</td><td>Todo el personal del ISeP</td><td>Correo electrónico institucional</td></tr>
-    </table>
-    <p>Cada tarjeta tiene un enlace directo al sistema correspondiente.</p>
-
-    <h3>Galería de Fotos</h3>
-    <p>Página dedicada para ver imágenes del ISeP:</p>
-    <ul>
-      <li><strong>Ubicación:</strong> Institucional → Galería de Fotos (o directamente en <code>/institucional/galeria</code>).</li>
-      <li><strong>Filtros por categoría</strong> para organizar las fotos.</li>
-      <li><strong>Lightbox</strong> al hacer clic en una imagen (visualización ampliada con navegación).</li>
-      <li><strong>Diseño responsive</strong> que se ajusta a diferentes tamaños de pantalla.</li>
-    </ul>
-
-    <h3>Mapa del Sitio</h3>
-    <p>Guía visual de todas las páginas del sitio:</p>
-    <ul>
-      <li><strong>Ubicación:</strong> <code>/mapa-del-sitio</code>.</li>
-      <li>Muestra todas las rutas disponibles organizadas por sección.</li>
-      <li>Útil para encontrar rápidamente cualquier página del sitio.</li>
-    </ul>
-
-    <h2>10. Normativa y Resoluciones</h2>
-    <p>17 documentos oficiales descargables. Filtros por año y tipo. Chips coloreados.</p>
-
-    <h2>11. Biblioteca Virtual</h2>
-    <p>22 recursos bibliográficos reales del ISeP. Filtros por tipo (Manual, Publicación, Protocolo, Resolución). Chips coloreados.</p>
-
-    <h2>12. Títulos y Certificaciones</h2>
-    <p>Información sobre títulos oficiales y certificaciones otorgadas por el ISeP Santa Fe.</p>
+    <h2>12. Biblioteca Virtual</h2>
+    <p>22 artículos reales del ISeP con links de descarga directa a PDF. Filtros por categoría.</p>
 
     <h2>13. Sedes y Contacto</h2>
-    <p>2 sedes con Google Maps embebido, dirección, teléfono (Rosario tel 341-4728526, Recreo tel 342-4815570), email y horario.</p>
+    <p>2 sedes con Google Maps embebido: D.Z.S – Rosario (Alem 2050, tel 341-4728526) y DZCN – Recreo (RN11 km 482, tel 342-4815570).</p>
 
-    <h2>14. WhatsApp</h2>
-    <p>Botón verde flotante, siempre visible. Abre conversación en <code>wa.me/5493424579000</code> (tel: +54 342 457-9000).</p>
+    <h2>14. Galería de Fotos</h2>
+    <ul>
+      <li><strong>Filtros por categoría:</strong> Eventos, Formación, Instalaciones, Graduaciones.</li>
+      <li><strong>Lightbox</strong> al hacer clic en una imagen.</li>
+      <li><strong>Diseño responsive.</strong></li>
+    </ul>
 
-    <h2>15. Ir arriba (ScrollToTop)</h2>
-    <p>Botón flotante con flecha. Aparece tras 400px de scroll. En móvil, se posiciona en la esquina inferior izquierda para no superponerse con el botón de WhatsApp. Click → scroll suave al inicio.</p>
+    <h2>15. Mapa del Sitio</h2>
+    <p>Guía visual de las 26 rutas del sitio. Arbol jerárquico con enlaces directos.</p>
 
-    <h2>16. Redes sociales (Footer)</h2>
+    <h2>16. WhatsApp</h2>
+    <p>Botón verde flotante, siempre visible. <code>wa.me/5493424579000</code> (tel: +54 342 457-9000).</p>
+
+    <h2>17. Ir arriba (ScrollToTop)</h2>
+    <p>Botón flotante con flecha. Aparece tras 400px de scroll. En móvil, esquina inferior izquierda.</p>
+
+    <h2>18. Redes sociales (Footer)</h2>
     <table>
       <tr><th>Red</th><th>Enlace</th></tr>
       <tr><td>Facebook</td><td><code>facebook.com/isepsantafe/</code></td></tr>
@@ -247,50 +244,36 @@
       <tr><td>Instagram</td><td><code>instagram.com/isepsantafe</code></td></tr>
       <tr><td>TikTok</td><td><code>tiktok.com/@isepsantafe</code></td></tr>
     </table>
-    <p>Footer: identidad, contacto, sedes y créditos de desarrollo.</p>
 
-    <h2>16. Configuración del sitio</h2>
-    <p>El archivo <code>src/data/config.js</code> centraliza datos que se usan en múltiples partes del sitio. Si necesitás cambiar un teléfono, email, URL o el ID de Analytics, ese es el archivo a modificar.</p>
+    <h2>19. Configuración del sitio</h2>
+    <p>El archivo <code>src/data/config.js</code> centraliza datos usados en múltiples partes del sitio:</p>
     <table>
       <tr><th>Dato</th><th>Constante</th><th>Descripción</th></tr>
-      <tr><td>Teléfono</td><td><code>TELEFONO_ISR</code></td><td>Número de teléfono institucional</td></tr>
-      <tr><td>Email de contacto</td><td><code>EMAIL_CONTACTO</code></td><td>Correo electrónico de contacto general</td></tr>
-      <tr><td>Email de prensa</td><td><code>EMAIL_PRENSA</code></td><td>Correo para prensa y difusión</td></tr>
-      <tr><td>Email de títulos</td><td><code>EMAIL_TITULOS</code></td><td>Correo de la sección de títulos</td></tr>
       <tr><td>Mi ISeP</td><td><code>MI_ISEP_URL</code></td><td>URL del portal Mi ISeP</td></tr>
       <tr><td>Gestión</td><td><code>GESTION_URL</code></td><td>URL de SIGEDI</td></tr>
       <tr><td>Cadetes</td><td><code>CADETES_URL</code></td><td>URL de Gestión Cadetes</td></tr>
       <tr><td>Webmail</td><td><code>WEBMAIL_URL</code></td><td>URL del correo institucional</td></tr>
+      <tr><td>Teléfono</td><td><code>TELEFONO_ISR</code></td><td>Número de teléfono institucional</td></tr>
+      <tr><td>Email contacto</td><td><code>EMAIL_CONTACTO</code></td><td>Correo de contacto general</td></tr>
+      <tr><td>Email prensa</td><td><code>EMAIL_PRENSA</code></td><td>Correo para prensa y difusión</td></tr>
+      <tr><td>Email títulos</td><td><code>EMAIL_TITULOS</code></td><td>Correo de la sección de títulos</td></tr>
       <tr><td>WhatsApp</td><td><code>WHATSAPP_URL</code></td><td>Enlace de WhatsApp</td></tr>
       <tr><td>Redes sociales</td><td><code>REDES_SOCIALES</code></td><td>URLs de redes sociales</td></tr>
-      <tr><td>Analytics</td><td><code>GA_ID</code></td><td>ID de Google Analytics (placeholder actualmente)</td></tr>
+      <tr><td>Analytics</td><td><code>GA_ID</code></td><td>ID de Google Analytics (placeholder)</td></tr>
     </table>
-    <div class="tip">Cada constante tiene documentación explicando qué es y cómo modificarla.</div>
 
-    <h2>17. Imágenes del sitio</h2>
-    <p>Todas las imágenes del sitio se organizan en carpetas dentro de <code>public/img/</code>.</p>
+    <h2>20. Imágenes del sitio</h2>
+    <p>Todas las imágenes se organizan en <code>public/img/</code>.</p>
 
-    <h3>17.1 Estructura de carpetas</h3>
+    <h3>20.1 Estructura de carpetas</h3>
     <pre><code>public/img/
 ├── hero/              ← Slider principal (3 slides)
 ├── noticias/          ← Fotos de noticias
 ├── testimonios/       ← Avatares de egresados
-└── banners/           ← Banners de páginas</code></pre>
+├── banners/           ← Banners de páginas
+└── galeria/           ← Fotos de la galería</code></pre>
 
-    <h3>17.2 Mapa de imágenes por sección</h3>
-    <table>
-      <tr><th>Sección</th><th>Carpeta</th><th>Estado</th></tr>
-      <tr><td>Hero Slide 1</td><td><code>hero/</code></td><td>Placeholder</td></tr>
-      <tr><td>Hero Slide 2</td><td><code>hero/</code></td><td>Placeholder</td></tr>
-      <tr><td>Hero Slide 3</td><td><code>hero/</code></td><td>Placeholder</td></tr>
-      <tr><td>Banner Noticias</td><td><code>banners/</code></td><td>Placeholder</td></tr>
-      <tr><td>Testimonio 1</td><td><code>testimonios/</code></td><td>Placeholder</td></tr>
-      <tr><td>Testimonio 2</td><td><code>testimonios/</code></td><td>Placeholder</td></tr>
-      <tr><td>Testimonio 3</td><td><code>testimonios/</code></td><td>Placeholder</td></tr>
-      <tr><td>Noticia 1</td><td><code>noticias/</code></td><td>✅ Real</td></tr>
-    </table>
-
-    <h3>17.3 Formato recomendado</h3>
+    <h3>20.2 Formato recomendado</h3>
     <table>
       <tr><th>Tipo</th><th>Dimensiones</th><th>Formato</th><th>Max KB</th></tr>
       <tr><td>Hero slider</td><td>1600×700</td><td>JPG</td><td>300</td></tr>
@@ -299,16 +282,16 @@
       <tr><td>Noticias</td><td>900×500</td><td>JPG/PNG</td><td>200</td></tr>
     </table>
 
-    <h3>17.4 Cómo cambiar una imagen</h3>
+    <h3>20.3 Cómo cambiar una imagen</h3>
     <ol>
-      <li>Prepará la imagen con las dimensiones recomendadas</li>
-      <li>Guardala en la carpeta correspondiente: <code>public/img/hero/slide-formacion.jpg</code></li>
-      <li>Abrí el archivo que usa esa imagen (ej: <code>src/components/Hero.jsx</code>)</li>
-      <li>Reemplazá la URL de picsum por la ruta local: <code>src="/img/hero/slide-formacion.jpg"</code></li>
-      <li>Guardá y verificá</li>
+      <li>Prepará la imagen con las dimensiones recomendadas.</li>
+      <li>Guardala: <code>public/img/hero/slide-formacion.jpg</code>.</li>
+      <li>Abrí el archivo que usa esa imagen (ej: <code>src/components/Hero.jsx</code>).</li>
+      <li>Reemplazá la URL de picsum: <code>src="/img/hero/slide-formacion.jpg"</code>.</li>
+      <li>Guardá y verificá.</li>
     </ol>
 
-    <h3>17.5 Referencia rápida</h3>
+    <h3>20.4 Referencia rápida</h3>
     <table>
       <tr><th>Quiero cambiar...</th><th>Archivo</th></tr>
       <tr><td>Slide 1 del hero</td><td><code>Hero.jsx:17</code></td></tr>
@@ -321,10 +304,10 @@
       <tr><td>Imagen de noticia</td><td><code>noticias.js</code> — cambiar <code>img: null</code></td></tr>
     </table>
 
-    <h2>18. Problemas comunes</h2>
+    <h2>21. Problemas comunes</h2>
     <table>
       <tr><th>Problema</th><th>Solución</th></tr>
-      <tr><td>El menú no se ve en celular</td><td>Tocá ☰ arriba a la derecha</td></tr>
+      <tr><td>El menú no se ve en celular</td><td>Tocá ☰ arriba a la izquierda</td></tr>
       <tr><td>No encuentro Mi ISeP</td><td>Siempre en la barra superior</td></tr>
       <tr><td>No se lee texto sobre imagen</td><td>Overlays con contraste automático</td></tr>
       <tr><td>No abre SIGEDI/Webmail</td><td>Verificá conexión y credenciales</td></tr>
@@ -337,18 +320,21 @@
       <tr><td>Una noticia no se abre</td><td>Verificá que la URL sea /noticias/{id} válido</td></tr>
       <tr><td>No hay noticias en una categoría</td><td>La categoría puede no tener publicaciones aún</td></tr>
       <tr><td>Una noticia no tiene imagen</td><td>Es normal: si <code>img</code> es <code>null</code>, se muestra un placeholder con ícono</td></tr>
-      <tr><td>Quiero ejecutar los tests</td><td>Ejecutá <code>npm run test</code> en la terminal</td></tr>
-      <tr><td>Quiero agregar un test nuevo</td><td>Creá un archivo <code>*.test.jsx</code> en la carpeta del componente, usá <code>render()</code> y <code>screen</code> de React Testing Library</td></tr>
-      <tr><td>Cómo funciona la integración continua</td><td>GitHub Actions ejecuta lint + build + test en cada push al repositorio</td></tr>
-      <tr><td>Quiero cambiar el tracking de Analytics</td><td>Editá <code>src/data/config.js</code> y cambiá el valor de <code>GA_ID</code> (también hay un <code>GA_ID</code> en <code>src/components/Analytics.jsx</code> y <code>src/utils/analytics.js</code> que debe actualizarse)</td></tr>
-      <tr><td>Quiero agregar JSON-LD a una página</td><td>Agregá un <code>&lt;script type="application/ld+json"&gt;</code> con el objeto structured data en el componente de la página</td></tr>
-      <tr><td>Quiero instalar como PWA</td><td>Abrí el sitio en el navegador, tocá "Agregar a pantalla de inicio" (Android) o "Compartir → Agregar a pantalla de inicio" (iOS). Usá <code>manifest.json</code> para configurar nombre, colores e iconos</td></tr>
-      <tr><td>Quiero verificar structured data (JSON-LD)</td><td>Abrí DevTools (F12) → pestaña Elements → buscá <code>&lt;script type="application/ld+json"&gt;</code>. O usá Google Rich Results Test pegando la URL</td></tr>
-      <tr><td>Quiero verificar el sitemap.xml</td><td>Abrí <code>https://tudominio/sitemap.xml</code> en el navegador. Debería mostrar 22 URLs con frecuencias y prioridades</td></tr>
-      <tr><td>Cómo funciona el tracking y mi privacidad</td><td>Google Analytics 4 rastrea visitas anónimas (sin datos personales). Solo está activo en producción. Podés bloquearlo con extensiones como uBlock Origin o Ghostery</td></tr>
-      <tr><td>Qué pasa si entro a una ruta que no existe</td><td>Se muestra la página NotFound (404) con un mensaje amigable y un enlace para volver al inicio</td></tr>
-      <tr><td>Navegación con lector de pantalla</td><td>El sitio es accesible: usá <code>SkipToContent</code> (aparece con Tab al inicio), navegá con Tab/Shift+Tab, y los botones tienen labels para lectores de pantalla</td></tr>
+      <tr><td>Quiero ejecutar los tests</td><td><code>npm run test</code> en la terminal</td></tr>
+      <tr><td>Quiero cambiar Analytics</td><td>Editá <code>src/data/config.js</code> → <code>GA_ID</code> (también en <code>Analytics.jsx</code> y <code>analytics.js</code>)</td></tr>
+      <tr><td>Quiero instalar como PWA</td><td>"Agregar a pantalla de inicio" en el navegador</td></tr>
+      <tr><td>Quiero verificar JSON-LD</td><td>DevTools (F12) → Elements → buscá <code>&lt;script type="application/ld+json"&gt;</code></td></tr>
+      <tr><td>Quiero verificar sitemap</td><td>Abrí <code>/sitemap.xml</code> (22 URLs)</td></tr>
+      <tr><td>Ruta inexistente</td><td>Se muestra NotFound (404) con enlace al inicio</td></tr>
+      <tr><td>Navegación con lector de pantalla</td><td>Usá <code>SkipToContent</code> (Tab al inicio), navegá con Tab/Shift+Tab</td></tr>
+      <tr><td>Modo oscuro</td><td>Toggle en la navbar, persiste la preferencia</td></tr>
+      <tr><td>Quiero cambiar un teléfono</td><td>Editá <code>src/data/config.js</code> → <code>TELEFONO_ISR</code></td></tr>
     </table>
   </main>
+
+  <footer>
+    Instituto de Seguridad Pública de Santa Fe — Documentación del sitio web<br>
+    Generado: 5 de septiembre de 2026 — Versión 1.0.0
+  </footer>
 </body>
 </html>
