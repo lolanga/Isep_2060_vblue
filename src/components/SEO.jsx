@@ -63,6 +63,15 @@ export default function SEO({ title, description }) {
     }
     ogLocale.setAttribute("content", "es_AR");
 
+    // Canonical — evita contenido duplicado apuntando a la URL canónica absoluta
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute("href", `${window.location.origin}${window.location.pathname}`);
+
     let twCard = document.querySelector('meta[name="twitter:card"]');
     if (!twCard) {
       twCard = document.createElement("meta");

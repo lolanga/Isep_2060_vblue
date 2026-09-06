@@ -31,13 +31,14 @@ export default function ShareButton({ noticia }) {
     <button
       type="button"
       onClick={handleShare}
+      aria-label="Compartir noticia"
       title="Compartir noticia"
       className={`share-btn${copiado ? " share-btn--copied" : ""}`}
     >
-      <span className="material-symbols-outlined share-btn__icon">
+      <span className="material-symbols-outlined share-btn__icon" aria-hidden="true">
         {copiado ? "check" : "share"}
       </span>
-      {copiado ? "¡Copiado!" : ""}
+      {copiado ? <span aria-hidden="true">¡Copiado!</span> : ""}
     </button>
   );
 }

@@ -5,7 +5,7 @@
  * Mantiene el formato actual (imagen + overlay + badge + título + CTA).
  */
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useSyncExternalStore } from "react";
 import { Link } from "react-router-dom";
 
 const SLIDES = [
@@ -37,10 +37,23 @@ const SLIDES = [
 
 const INTERVAL = 6000;
 
+/** Sigue prefers-reduced-motion sin setState en efecto (React 19 idiomático). */
+function usePrefersReducedMotion() {
+  return useSyncExternalStore(
+    (onChange) => {
+      const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+      mq.addEventListener?.("change", onChange);
+      return () => mq.removeEventListener?.("change", onChange);
+    },
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
 /** Hero principal del Home — slider automático con 3 slides. */
 export default function Hero() {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
+  const reduceMotion = usePrefersReducedMotion();
 
   const next = useCallback(() => {
     setCurrent((i) => (i + 1) % SLIDES.length);
@@ -51,10 +64,10 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || reduceMotion) return;
     const id = setInterval(next, INTERVAL);
     return () => clearInterval(id);
-  }, [paused, next]);
+  }, [paused, reduceMotion, next]);
 
   const slide = SLIDES[current];
 
