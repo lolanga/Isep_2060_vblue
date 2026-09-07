@@ -102,6 +102,23 @@ export default function News() {
               </Link>
             ))}
 
+            {/* PROMO */}
+            <div className="calendar-promo">
+              <span className="material-symbols-outlined bg-icon">
+                shield
+              </span>
+
+              <h4 className="promo-title">Calendario Académico</h4>
+
+              <p className="promo-text">
+                Consulta todas las fechas importantes del ciclo lectivo 2026.
+              </p>
+
+              <button className="btn-download">
+                DESCARGAR PDF
+              </button>
+            </div>
+
           </div>
         </div>
       </div>

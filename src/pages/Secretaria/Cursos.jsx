@@ -72,7 +72,7 @@ export default function Cursos() {
         </div>
       </section>
 
-      <div className="container-max" style={{ padding: "0 2rem" }}>
+      <div className="container-max">
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },

@@ -34,7 +34,7 @@ export default function Proceso() {
         </div>
       </section>
 
-      <div className="container-max" style={{ padding: "0 2rem" }}>
+      <div className="container-max">
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
