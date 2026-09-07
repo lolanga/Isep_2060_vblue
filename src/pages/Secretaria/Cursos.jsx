@@ -80,9 +80,7 @@ export default function Cursos() {
             { label: "Cursos" },
           ]}
         />
-      </div>
 
-      <div className="container-max oferta-section">
         {/* Filtros */}
         <div className="cursos-filters">
           <div className="cursos-filters__group">

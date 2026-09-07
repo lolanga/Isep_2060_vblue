@@ -42,9 +42,7 @@ export default function Proceso() {
             { label: "Proceso de Ingreso" },
           ]}
         />
-      </div>
 
-      <div className="container-max oferta-section proceso-section">
         <div className="grid-2">
           {pasos.map((paso, i) => (
             <div className="card" key={i}>

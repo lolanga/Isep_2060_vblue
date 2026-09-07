@@ -37,9 +37,7 @@ export default function ProximasConvocatorias() {
             { label: "Próximas Convocatorias" },
           ]}
         />
-      </div>
 
-      <div className="container-max oferta-section proximas-section">
         <div className="grid-2">
           {proximas.map((cv) => {
             const escuela = escuelaPorId(cv.escuela);

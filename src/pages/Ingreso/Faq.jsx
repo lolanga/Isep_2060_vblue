@@ -39,9 +39,7 @@ export default function Faq() {
             { label: "Preguntas Frecuentes" },
           ]}
         />
-      </div>
 
-      <div className="container-max oferta-section">
         <div className="cursos-accordion faq-wrap">
           {preguntasFrecuentes.map((item, i) => {
             const isOpen = open === i;

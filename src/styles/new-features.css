@@ -22,7 +22,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin: 1.5rem 0;
+  margin-bottom: 1.5rem;
 }
 
 .galeria-filtro-icon {
@@ -166,7 +166,6 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
-  margin-top: 1.5rem;
 }
 
 .mapa-section {
