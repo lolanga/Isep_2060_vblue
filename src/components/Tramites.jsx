@@ -24,7 +24,7 @@ const tramites = [
   },
   {
     name: "Gestión Cadetes",
-    icon: "police",
+    icon: "badge",
     url: CADETES_URL,
     paraQuien: "Cadetes de 1° y 2° año",
     queHace: "Control y notificaciones generales del cursado",
