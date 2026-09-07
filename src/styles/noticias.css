@@ -40,6 +40,7 @@
 
 /* ── Filtro de categorias ── */
 .noticias-filtro-wrap {
+  background-color: #fff;
   border-bottom: 1px solid var(--outline-variant);
   position: sticky;
   top: var(--navbar-height);
