@@ -63,7 +63,7 @@ export const noticias = [
       <strong>Info importante</strong>
     </div>
   `
-  }
+  },
 
   {
     id: 1,
