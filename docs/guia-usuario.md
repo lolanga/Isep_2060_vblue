@@ -105,7 +105,7 @@ Cuenta regresiva al 30 de septiembre de 2027 + botones de inscripción:
 Noticia destacada + sidebar. **Cada noticia lleva a su página de detalle** (`/noticias/:id`). El enlace "Ver todas las noticias" lleva a `/noticias`.
 
 ### 5.5 Nuestras Escuelas
-Accesos directos a las 5 escuelas con escudos. Las tarjetas son enlaces clickeables a `/escuelas/:slug`.
+Las 4 escuelas principales con escudos (Policía, Superior, Especialidades, Investigaciones). Las tarjetas son enlaces clickeables a `/escuelas/:slug`. La 5ta escuela (EaD) se accede desde el menú Formación.
 
 ### 5.6 Testimonios
 Carrusel de 3 egresados con flechas y dots.

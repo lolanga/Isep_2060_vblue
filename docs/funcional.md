@@ -68,7 +68,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/noticias/:id` | Detalle de noticia individual (contenido, relacionadas) | Implementada |
 | `/institucional/el-isep` | El ISeP | Implementada |
 | `/institucional/autoridades` | Autoridades | Implementada |
-| `/institucional/organizacion` | Organización | Implementada |
+| `/institucional/organizacion` | Organización (placeholder — Próximamente) | Implementada |
 | `/institucional/oferta-educativa` | Oferta Educativa (tabs: Carreras/Cursos/Convocatorias) | Implementada |
 | `/institucional/carreras` | Carreras (grid con estado de inscripción) | Implementada |
 | `/institucional/resoluciones` | Resoluciones (17 documentos descargables) | Implementada |
@@ -101,7 +101,7 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 3. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
 4. **CTA Inscripciones** — Bloque con countdown configurable (fecha objetivo: 2027-09-30) + botones "Pre-Inscripción Online" (`/ingreso/convocatorias`) y "Ver Requisitos" (`/ingreso/requisitos`).
 5. **Últimas Noticias** — Noticia destacada + sidebar de noticias recientes con ShareButton. Links a `/noticias/:id`.
-6. **Nuestras Escuelas** — Cuadrícula de las 5 escuelas con escudos. Tarjetas enlaces clickeables a `/escuelas/:slug`.
+6. **Nuestras Escuelas** — Cuadrícula de las 4 escuelas principales (Policía, Superior, Especialidades, Investigaciones) con escudos. Tarjetas enlaces clickeables a `/escuelas/:slug`. La 5ta escuela (EaD) se accede desde el menú Formación.
 7. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
 
 ### 4.1 Hero Slider
