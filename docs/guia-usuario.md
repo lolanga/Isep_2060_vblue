@@ -403,3 +403,102 @@ public/img/
 | Ruta inexistente | Se muestra NotFound (404) con enlace al inicio |
 | Navegación con lector de pantalla | Usá `SkipToContent` (Tab al inicio), navegá con Tab/Shift+Tab |
 | Quiero cambiar un teléfono | Editá `src/data/config.js` → `TELEFONO_ISR` |
+
+---
+
+## 22. Workflow: publicar una noticia
+
+### Paso 1 — Archivos
+
+| Tipo | Ruta | Ejemplo |
+|---|---|---|
+| Imagen destacada | `public/img/noticias/` | `public/img/noticias/mi-noticia.jpg` |
+| Adjuntos (PDFs, etc.) | `public/docs/` | `public/docs/convocatoria.pdf` |
+
+### Paso 2 — Agregar en `src/data/noticias.js`
+
+```js
+{
+  id: 15,  // siguiente incremental
+  titulo: "Título de la noticia",
+  categoria: "Institucional",  // Institucional | Academica | Escuelas | Eventos | Convenios
+  fecha: "7 DE SEPTIEMBRE, 2026",
+  fechaCorta: "7 SEP",
+  excerpt: "Extracto breve de 1-2 oraciones.",
+  img: "/img/noticias/mi-noticia.jpg",
+  escuelas: ["policia"],  // opcional: policia, superior, especialidades, investigaciones, ead
+  adjuntos: [
+    { nombre: "Convocatoria PDF", url: "/docs/convocatoria.pdf" }
+  ],
+  contenido: `
+    <p><strong>Texto en negrita.</strong> Párrafo normal.</p>
+
+    <h2>Sección</h2>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+    </ul>
+
+    <a href="https://forms.google.com/..." class="btn-inscripcion" target="_blank">
+      INSCRIBIRSE
+    </a>
+
+    <blockquote>Cita destacada</blockquote>
+
+    <div class="info-box">
+      <strong>Info importante</strong>
+    </div>
+  `
+}
+```
+
+### Paso 3 — Build
+
+```
+npx vite build
+```
+
+La noticia aparece automáticamente en `/noticias`, en el buscador, y en `/escuelas/:id` si se asigna `escuelas`.
+
+---
+
+## 23. Workflow: agregar un slide al Hero
+
+### Paso 1 — Imagen
+
+| Tipo | Ruta | Formato recomendado |
+|---|---|---|
+| Imagen del slide | `public/img/hero/` o URL externa | 1600×700px, JPG/WebP |
+
+Para imagen local: `public/img/hero/mi-slide.jpg` → se usa `/img/hero/mi-slide.jpg`
+
+### Paso 2 — Agregar en `src/components/Hero.jsx` (array `SLIDES`)
+
+```js
+{
+  id: 4,  // siguiente incremental
+  badge: "Nuevo Curso",
+  title: "Capacitación en ",
+  highlight: "Seguridad Vial",
+  description: "Curso intensivo para personal policial en actividad.",
+  img: "/img/hero/mi-slide.jpg",  // o picsum: "https://picsum.photos/seed/mi-slide/1600/700"
+}
+```
+
+### Campos
+
+| Campo | Uso | Ejemplo |
+|---|---|---|
+| `badge` | Etiqueta small sobre el título | `"Excelencia Académica"` |
+| `title` | Texto antes del span (parte normal) | `"Formación en "` |
+| `highlight` | Texto dentro del `<span>` (color primario) | `"Seguridad Pública"` |
+| `description` | Párrafo debajo del título | `"Curso intensivo..."` |
+| `img` | Imagen de fondo (1600×700) | `"/img/hero/slide.jpg"` |
+
+### Paso 3 — Build
+
+```
+npx vite build
+```
+
+El slide se agrega automáticamente al slider (rotación cada 6s, pausa al hover, flechas + dots de navegación).

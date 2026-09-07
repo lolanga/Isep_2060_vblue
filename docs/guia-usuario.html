@@ -329,6 +329,75 @@
       <tr><td>Navegación con lector de pantalla</td><td>Usá <code>SkipToContent</code> (Tab al inicio), navegá con Tab/Shift+Tab</td></tr>
       <tr><td>Quiero cambiar un teléfono</td><td>Editá <code>src/data/config.js</code> → <code>TELEFONO_ISR</code></td></tr>
     </table>
+
+    <h2>22. Workflow: publicar una noticia</h2>
+
+    <h3>Paso 1 — Archivos</h3>
+    <table>
+      <tr><th>Tipo</th><th>Ruta</th><th>Ejemplo</th></tr>
+      <tr><td>Imagen destacada</td><td><code>public/img/noticias/</code></td><td><code>public/img/noticias/mi-noticia.jpg</code></td></tr>
+      <tr><td>Adjuntos (PDFs, etc.)</td><td><code>public/docs/</code></td><td><code>public/docs/convocatoria.pdf</code></td></tr>
+    </table>
+
+    <h3>Paso 2 — Agregar en <code>src/data/noticias.js</code></h3>
+    <pre><code>{
+  id: 15,  // siguiente incremental
+  titulo: "Título de la noticia",
+  categoria: "Institucional",
+  fecha: "7 DE SEPTIEMBRE, 2026",
+  fechaCorta: "7 SEP",
+  excerpt: "Extracto breve de 1-2 oraciones.",
+  img: "/img/noticias/mi-noticia.jpg",
+  escuelas: ["policia"],
+  adjuntos: [
+    { nombre: "Convocatoria PDF", url: "/docs/convocatoria.pdf" }
+  ],
+  contenido: `
+    &lt;p&gt;&lt;strong&gt;Texto en negrita.&lt;/strong&gt; Párrafo normal.&lt;/p&gt;
+    &lt;h2&gt;Sección&lt;/h2&gt;
+    &lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;li&gt;Item 2&lt;/li&gt;&lt;/ul&gt;
+    &lt;a href="..." class="btn-inscripcion"&gt;INSCRIBIRSE&lt;/a&gt;
+    &lt;blockquote&gt;Cita destacada&lt;/blockquote&gt;
+    &lt;div class="info-box"&gt;&lt;strong&gt;Info importante&lt;/strong&gt;&lt;/div&gt;
+  `
+}</code></pre>
+
+    <h3>Paso 3 — Build</h3>
+    <p><code>npx vite build</code></p>
+    <p>La noticia aparece automáticamente en <code>/noticias</code>, en el buscador, y en <code>/escuelas/:id</code> si se asigna <code>escuelas</code>.</p>
+
+    <h2>23. Workflow: agregar un slide al Hero</h2>
+
+    <h3>Paso 1 — Imagen</h3>
+    <table>
+      <tr><th>Tipo</th><th>Ruta</th><th>Formato</th></tr>
+      <tr><td>Imagen del slide</td><td><code>public/img/hero/</code> o URL externa</td><td>1600×700px, JPG/WebP</td></tr>
+    </table>
+    <p>Para imagen local: <code>public/img/hero/mi-slide.jpg</code> → se usa <code>/img/hero/mi-slide.jpg</code></p>
+
+    <h3>Paso 2 — Agregar en <code>src/components/Hero.jsx</code> (array <code>SLIDES</code>)</h3>
+    <pre><code>{
+  id: 4,  // siguiente incremental
+  badge: "Nuevo Curso",
+  title: "Capacitación en ",
+  highlight: "Seguridad Vial",
+  description: "Curso intensivo para personal policial en actividad.",
+  img: "/img/hero/mi-slide.jpg",
+}</code></pre>
+
+    <h3>Campos</h3>
+    <table>
+      <tr><th>Campo</th><th>Uso</th><th>Ejemplo</th></tr>
+      <tr><td><code>badge</code></td><td>Etiqueta small sobre el título</td><td><code>"Excelencia Académica"</code></td></tr>
+      <tr><td><code>title</code></td><td>Texto antes del span</td><td><code>"Formación en "</code></td></tr>
+      <tr><td><code>highlight</code></td><td>Texto dentro del <code>&lt;span&gt;</code> (color primario)</td><td><code>"Seguridad Pública"</code></td></tr>
+      <tr><td><code>description</code></td><td>Párrafo debajo del título</td><td><code>"Curso intensivo..."</code></td></tr>
+      <tr><td><code>img</code></td><td>Imagen de fondo (1600×700)</td><td><code>"/img/hero/slide.jpg"</code></td></tr>
+    </table>
+
+    <h3>Paso 3 — Build</h3>
+    <p><code>npx vite build</code></p>
+    <p>El slide se agrega automáticamente al slider (rotación cada 6s, pausa al hover, flechas + dots de navegación).</p>
   </main>
 
   <footer>
