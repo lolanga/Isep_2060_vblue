@@ -97,9 +97,9 @@
 ├── data/
 │   ├── config.js            # Config centralizada
 │   ├── institucional.js     # Escuelas, carreras, cursos, convocatorias, FAQ
-│   ├── noticias.js          # 14 noticias (admite img: null)
+│   ├── noticias.js          # 15 noticias (admite img: null)
 │   ├── normativa.js         # 17 resoluciones
-│   └── buscador.js          # 48 entradas + buscar/buscarAgrupado
+│   └── buscador.js          # 60 entradas + buscar/buscarAgrupado
 ├── pages/
 │   ├── Home.jsx             # 7 secciones + Trámites y Sistemas
 │   ├── Noticias.jsx         # Filtro + paginación + filtro escuela
@@ -175,10 +175,10 @@
     <table>
       <tr><th>Archivo</th><th>Contenido</th></tr>
       <tr><td><code>institucional.js</code></td><td>5 escuelas, 4 carreras, 6+ cursos, convocatorias, 12 FAQ, helpers</td></tr>
-      <tr><td><code>noticias.js</code></td><td>14 noticias (admite <code>img: null</code>)</td></tr>
+      <tr><td><code>noticias.js</code></td><td>15 noticias (admite <code>img: null</code>)</td></tr>
       <tr><td><code>normativa.js</code></td><td>17 resoluciones descargables</td></tr>
       <tr><td><code>Galeria.jsx</code></td><td>Fotos hardcodeadas en el componente (categorías Eventos/Formación/Instalaciones/Graduaciones). No existe <code>galeria.js</code></td></tr>
-      <tr><td><code>buscador.js</code></td><td>48 entradas + <code>buscar()</code> + <code>buscarAgrupado()</code></td></tr>
+      <tr><td><code>buscador.js</code></td><td>60 entradas + <code>buscar()</code> + <code>buscarAgrupado()</code></td></tr>
       <tr><td><code>config.js</code></td><td>MI_ISEP_URL, GESTION_URL, CADETES_URL, WEBMAIL_URL, emails, teléfonos, GA_ID, redes</td></tr>
     </table>
 
@@ -198,7 +198,7 @@
       <li>Flechas + dots, altura <code>100svh</code>.</li>
       <li>Transiciones: fade suave (1s ease-in-out).</li>
       <li>2 CTAs: "Conoce nuestras propuestas" (<code>/institucional/oferta-educativa</code>) + "Inscripciones 2027" (<code>/ingreso/convocatorias</code>).</li>
-      <li>Autoplay se pausa con <code>prefers-reduced-motion</code> (ver §15.1).</li>
+      <li>Autoplay se pausa con <code>prefers-reduced-motion</code> (ver §14.1).</li>
     </ul>
 
     <h2>9. Build stats</h2>
@@ -251,10 +251,10 @@
     <ul>
       <li><strong>Opción A (recomendada):</strong> Imagen local en <code>public/img/noticias/</code></li>
       <li><strong>Opción B:</strong> URL externa</li>
-      <li><strong>Opción C:</strong> Placeholder: <code>https://picsum.photos/seed/{nombre}/900/500</code></li>
+      <li><strong>Opción C:</strong> Placeholder: <code>https://picsum.photos/seed/{nombre}/800/450</code></li>
       <li><strong>Opción D:</strong> Sin imagen: <code>img: null</code></li>
     </ul>
-    <p><strong>Dimensiones:</strong> 900×500 px (ratio 16:9). <strong>Formato:</strong> JPG/PNG, &lt;200 KB.</p>
+    <p><strong>Dimensiones:</strong> ratio 16:9 (la destacada muestra 900×500; picsum usa 800×450). <strong>Formato:</strong> JPG/PNG, &lt;200 KB.</p>
 
     <h3>Sistema de imágenes</h3>
     <table>
@@ -291,7 +291,7 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
     <p>Cada ruta se carga bajo demanda con <code>React.lazy()</code> + <code>Suspense</code>. 96 módulos totales.</p>
 
     <h3>12.2 Testing</h3>
-    <p><strong>33 tests en 7 archivos</strong> con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>:</p>
+    <p><strong>33 tests en 7 archivos</strong> con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. Configuración en <code>vitest.config.js</code> (ambiente <code>jsdom</code>, globals, <code>setup.js</code> y <code>css: false</code>):</p>
     <table>
       <tr><th>Archivo</th><th>Qué valida</th><th>Tests</th></tr>
       <tr><td><code>datos.test.js</code></td><td>IDs únicos, campos requeridos, categorías válidas, imágenes <code>null</code></td><td>6</td></tr>
@@ -340,7 +340,7 @@ export const GA_ID = "G-XXXXXXXXXX";  // Placeholder</pre>
       <li><strong>SkipToContent</strong> + <code>id="main-content"</code> en todos los <code>&lt;main&gt;</code></li>
       <li><strong>focus-visible</strong> — indicadores de foco solo con teclado</li>
       <li><strong>sr-only</strong> — contenido para lectores de pantalla</li>
-      <li><strong>prefers-reduced-motion</strong> — ver §15.1 (pausa autoplay + desactivación de animaciones)</li>
+      <li><strong>prefers-reduced-motion</strong> — ver §14.1 (pausa autoplay + desactivación de animaciones)</li>
     </ul>
 
     <h3>12.9 Error Handling</h3>
@@ -441,7 +441,7 @@ export const GA_ID = "G-XXXXXXXXXX";  // Placeholder</pre>
 
   <footer>
     Instituto de Seguridad Pública de Santa Fe — Documentación del sitio web<br>
-    Generado: 5 de septiembre de 2026 — Versión 1.0.0
+    Generado: 7 de septiembre de 2026 — Versión 1.0.0
   </footer>
 </body>
 </html>

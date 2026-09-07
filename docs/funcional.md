@@ -2,7 +2,7 @@
 
 **Proyecto:** `Isep_2060_vblue`
 **Versión:** 1.0.0
-**Última actualización:** 5 de septiembre de 2026
+**Última actualización:** 7 de septiembre de 2026
 
 ---
 
@@ -97,12 +97,14 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 La página de inicio (`/`) está compuesta por las siguientes secciones, en orden:
 
 1. **Hero Slider** — Banner principal con slider automático (3 slides), transiciones suaves, flechas de navegación y indicadores (dots). Dos CTAs: "Conoce nuestras propuestas" → `/institucional/oferta-educativa` y "Inscripciones 2027" → `/ingreso/convocatorias`.
-2. **Trámites y Sistemas** — 4 tarjetas de acceso a los sistemas del ISeP: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail. Cada una con audiencia y descripción de qué hace.
-3. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
-4. **CTA Inscripciones** — Bloque con countdown configurable (fecha objetivo: 2027-09-30) + botones "Pre-Inscripción Online" (`/ingreso/convocatorias`) y "Ver Requisitos" (`/ingreso/requisitos`).
-5. **Últimas Noticias** — Noticia destacada + sidebar de noticias recientes con ShareButton. Links a `/noticias/:id`.
-6. **Nuestras Escuelas** — Cuadrícula de las 4 escuelas principales (Policía, Superior, Especialidades, Investigaciones) con escudos. Tarjetas enlaces clickeables a `/escuelas/:slug`. La 5ta escuela (EaD) se accede desde el menú Formación.
+2. **Últimas Noticias** — Noticia destacada + sidebar de noticias recientes con ShareButton y promo **"Calendario Académico"** (botón DESCARGAR PDF). Links a `/noticias/:id`.
+3. **Trámites y Sistemas** — 4 tarjetas de acceso a los sistemas del ISeP: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail. Cada una con audiencia y descripción de qué hace.
+4. **CTA Inscripciones** — Bloque con título "Inscripciones Abiertas 2027", countdown configurable (fecha objetivo: 2027-09-30) + botones "Pre-Inscripción Online" (`/ingreso/convocatorias`) y "Ver Requisitos" (`/ingreso/requisitos`).
+5. **Nuestras Escuelas** — Cuadrícula de las 4 escuelas principales (Policía, Superior, Especialidades, Investigaciones) con escudos. Tarjetas enlaces clickeables a `/escuelas/:slug`. La 5ta escuela (EaD) se accede desde el menú Formación.
+6. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
 7. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
+
+> **Nota:** Contadores y Testimonios se ocultan en móvil (`hide-mobile`).
 
 ### 4.1 Hero Slider
 
@@ -113,7 +115,7 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 - **Transiciones:** fade suave (1s ease-in-out).
 - **Altura:** `100svh`.
 - **CTAs:** botón principal "Conoce nuestras propuestas" (`/institucional/oferta-educativa`) + botón secundario "Inscripciones 2027" (`/ingreso/convocatorias`).
-- **Accesibilidad:** respeta `prefers-reduced-motion` — si el usuario pidió reducir movimiento, el autoplay se pausa (ver tecnico.md §13.13).
+- **Accesibilidad:** respeta `prefers-reduced-motion` — si el usuario pidió reducir movimiento, el autoplay se pausa (ver tecnico.md §15.1).
 
 ### 4.2 Sección Trámites y Sistemas (Home)
 
@@ -128,6 +130,7 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 
 - Noticia destacada (tarjeta grande) con **link a `/noticias/:id`**.
 - Sidebar de 3 mini-cards con **links a `/noticias/:id`**.
+- **Promo "Calendario Académico"** al final del sidebar (ícono escudo + botón "DESCARGAR PDF").
 - **ShareButton** en cada card de noticia para compartir directamente.
 - **"Ver todas las noticias"** apunta a `/noticias`.
 - Alimentado desde `src/data/noticias.js`.
@@ -141,7 +144,7 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 - **Noticia principal:** última publicación con imagen, fecha, título y extracto → **link a `/noticias/:id`**.
 - **Historial:** grid de tarjetas con **links a `/noticias/:id`** y paginación (10 por página).
 - **Breadcrumb** para navegación.
-- **14 noticias** publicadas (4 originales + 10 adicionales).
+- **15 noticias** publicadas.
 
 ### 4.5 Detalle de Noticia (`/noticias/:id`)
 
@@ -271,7 +274,7 @@ Pasos detallados del proceso de ingreso.
 
 - **Ubicación:** ícono de lupa en el navbar, al lado de "Mi ISeP".
 - **Debounce:** 300ms para evitar búsquedas excesivas.
-- **Índice:** 48 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 14 noticias + 17 normativa + páginas + misceláneas).
+- **Índice:** 60 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 15 noticias + 17 normativa + 10 páginas).
 - **Resultados agrupados por tipo:** Escuelas → Carreras → Cursos → Convocatorias → Noticias → Normativa → Páginas → Misceláneas.
 - **Navegación por teclado:** ↑↓, Enter, Escape.
 - **Contador de resultados** y hints de teclado.
@@ -442,7 +445,7 @@ img: "https://isepsantafe.edu.ar/images/noticias/mi-noticia.jpg",
 
 **Opción C: Placeholder (picsum.photos)**
 ```javascript
-img: "https://picsum.photos/seed/mi-noticia/900/500",
+img: "https://picsum.photos/seed/mi-noticia/800/450",
 ```
 
 **Opción D: Sin imagen (null)**
@@ -451,7 +454,7 @@ img: null,
 ```
 > Se muestra un placeholder con ícono de material symbols. Ideal para noticias sin foto alusiva.
 
-**Especificaciones:** 900×500 px (ratio 16:9), JPG/PNG, máximo 200 KB.
+**Especificaciones:** ratio 16:9 (la card destacada muestra 900×500 y las mini-cards 400×225; picsum usa 800×450), JPG/PNG, máximo 200 KB.
 
 #### Paso 2: Definir la categoría
 
@@ -478,28 +481,44 @@ Si la noticia tiene documentos para descargar:
 
 ```javascript
 {
-  id: 14,  // Siguiente ID disponible
+  id: 16,  // Siguiente ID disponible (máximo actual 15)
   titulo: "Título descriptivo de la noticia",
   categoria: "Institucional",
-  fecha: "4 DE SEPTIEMBRE, 2026",
-  fechaCorta: "4 SEP",
+  fecha: "7 DE SEPTIEMBRE, 2026",   // formato largo
+  fechaCorta: "7 SEP",              // formato corto para cards
   excerpt: "Extracto de 1 a 2 oraciones.",
-  img: "/img/noticias/mi-imagen.jpg",
+  img: "/img/noticias/mi-imagen.jpg",  // colocar en public/img/noticias/
+  escuelas: ["policia"],               // opcional: policia, superior, especialidades, investigaciones, ead
   adjuntos: [
-    { nombre: "Documento.pdf", url: "/docs/documento.pdf" },
+    { nombre: "Protocolo PDF", url: "/docs/protocolo.pdf" },  // colocar en public/docs/
   ],
-  escuelas: ["policia"],
-  contenido: `Primer párrafo del cuerpo de la noticia.
+  contenido: `
+    <p><strong>Texto en negrita.</strong> Párrafo normal.</p>
 
-Segundo párrafo con más detalle.`,
+    <h2>Sección</h2>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+    </ul>
+
+    <a href="https://forms.google.com/..." class="btn-inscripcion" target="_blank">
+      INSCRIBIRSE
+    </a>
+
+    <blockquote>Cita destacada</blockquote>
+
+    <div class="info-box">
+      <strong>Info importante</strong>
+    </div>
+  `
 }
 ```
 
-> **Importante:** el `id` debe ser único. El campo `contenido` usa backticks y se separan párrafos con `\n\n`.
+> **Importante:** el `id` debe ser único (usar el máximo actual + 1). El campo `contenido` se escribe con backticks y acepta el HTML indicado en 18.1 (`h2`, `p`, `ul/ol`, `strong`, `a`, `.btn-inscripcion`, `blockquote`, `img`, `.info-box`). Si se asignan `escuelas`, la noticia también aparece en las páginas `/escuelas/:id` correspondientes.
 
 #### Paso 5: Verificar el buscador
 
-`src/data/buscador.js` importa directamente de `noticias.js`, la noticia aparecerá automáticamente.
+`src/data/buscador.js` importa directamente de `noticias.js`, la noticia aparecerá automáticamente en el buscador global y en `/noticias` sin ningún paso extra.
 
 #### Paso 6: Verificar el contenido
 
@@ -525,7 +544,7 @@ Al hacer clic en una card de noticia, se abre `/noticias/:id` con:
 
 | Paso | Archivo | Acción |
 |---|---|---|
-| 1 | Imagen | Preparar 900×500 px (JPG/PNG) |
+| 1 | Imagen | Preparar imagen 16:9 (ej. 900×500, JPG/PNG) |
 | 2 | — | Definir categoría |
 | 3 | `public/docs/` | Colocar archivos adjuntos (si aplica) |
 | 4 | `src/data/noticias.js` | Agregar objeto al array |

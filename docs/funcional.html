@@ -115,13 +115,14 @@
     <h2>4. Funcionalidades implementadas (Home)</h2>
     <ol>
       <li><strong>Hero Slider</strong> — Banner principal con slider automático (3 slides), transiciones suaves, flechas y dots. CTAs: "Conoce nuestras propuestas" → <code>/institucional/oferta-educativa</code> y "Inscripciones 2027" → <code>/ingreso/convocatorias</code>.</li>
+      <li><strong>Últimas Noticias</strong> — Noticia destacada + sidebar de noticias recientes con ShareButton y promo "Calendario Académico" (botón DESCARGAR PDF).</li>
       <li><strong>Trámites y Sistemas</strong> — 4 tarjetas: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail (con audiencia y descripción).</li>
-      <li><strong>Contadores</strong> — Docentes (2200+), Cadetes (1100+), Personal (800+), Aulas (500+).</li>
-      <li><strong>CTA Inscripciones</strong> — Countdown a 2027-09-30 + botones "Pre-Inscripción Online" (<code>/ingreso/convocatorias</code>) y "Ver Requisitos" (<code>/ingreso/requisitos</code>).</li>
-      <li><strong>Últimas Noticias</strong> — Noticia destacada + sidebar con ShareButton.</li>
+      <li><strong>CTA Inscripciones</strong> — Título "Inscripciones Abiertas 2027", countdown a 2027-09-30 + botones "Pre-Inscripción Online" (<code>/ingreso/convocatorias</code>) y "Ver Requisitos" (<code>/ingreso/requisitos</code>).</li>
       <li><strong>Nuestras Escuelas</strong> — Grid de 4 escuelas principales (Policía, Superior, Especialidades, Investigaciones) con escudos, enlaces a <code>/escuelas/:slug</code>. La 5ta escuela (EaD) se accede desde el menú Formación.</li>
+      <li><strong>Contadores</strong> — Docentes (2200+), Cadetes (1100+), Personal (800+), Aulas (500+).</li>
       <li><strong>Testimonios</strong> — Carrusel de 3 egresados con flechas y dots.</li>
     </ol>
+    <p class="note"><strong>Nota:</strong> Contadores y Testimonios se ocultan en móvil (<code>hide-mobile</code>).</p>
 
     <h3>Trámites y Sistemas</h3>
     <table>
@@ -142,7 +143,7 @@
 
     <h3>Noticias</h3>
     <ul>
-      <li><strong>14 noticias</strong> publicadas (4 originales + 10 adicionales).</li>
+      <li><strong>15 noticias</strong> publicadas.</li>
       <li><strong>Filtro por categorías:</strong> Todas, Institucional, Académica, Escuelas, Eventos, Convenios.</li>
       <li><strong>Filtro por escuela:</strong> permite filtrar por escuela asociada.</li>
       <li><strong>Imágenes opcionales:</strong> <code>img: null</code> muestra placeholder con ícono.</li>
@@ -207,7 +208,7 @@
     <ul>
       <li><strong>Ubicación:</strong> ícono de lupa en el navbar.</li>
       <li><strong>Debounce:</strong> 300ms.</li>
-      <li><strong>Índice:</strong> 48 entradas.</li>
+      <li><strong>Índice:</strong> 60 entradas.</li>
       <li><strong>Resultados agrupados por tipo.</strong></li>
       <li><strong>Navegación por teclado:</strong> ↑↓, Enter, Escape.</li>
       <li><strong>Enter</strong> en el campo abre el primer resultado.</li>
@@ -280,18 +281,18 @@
 
     <h3>18.1 Estructura de datos</h3>
     <pre>{
-  id: 14,
+  id: 16,
   titulo: "Título descriptivo",
   categoria: "Institucional",
-  fecha: "4 DE SEPTIEMBRE, 2026",
-  fechaCorta: "4 SEP",
+  fecha: "7 DE SEPTIEMBRE, 2026",
+  fechaCorta: "7 SEP",
   excerpt: "Extracto de 1 a 2 oraciones.",
   img: "/img/noticias/mi-imagen.jpg",  // o null
   adjuntos: [
     { nombre: "Resolución.pdf", url: "/docs/resolucion.pdf" }
   ],
   escuelas: ["policia"],
-  contenido: `Primer párrafo.\n\nSegundo párrafo.`
+  contenido: `&lt;p&gt;&lt;strong&gt;Texto en negrita.&lt;/strong&gt;, &lt;h2&gt;Sección&lt;/h2&gt;, &lt;a class="btn-inscripcion"&gt;, &lt;blockquote&gt;, &lt;div class="info-box"&gt;...`
 }</pre>
     <div class="note"><strong>Campo <code>img</code>:</strong> URL de imagen o <code>null</code> (placeholder con ícono).</div>
     <div class="note"><strong>Campo <code>contenido</code>:</strong> HTML o texto plano (\n\n para párrafos).</div>
@@ -300,10 +301,10 @@
 
     <h3>18.2 Pasos para publicar</h3>
     <ol>
-      <li><strong>Preparar imagen</strong> (4 opciones: local, externa, picsum, null). 900×500 px.</li>
+      <li><strong>Preparar imagen</strong> (4 opciones: local, externa, picsum 800×450, null). Ratio 16:9 (la destacada muestra 900×500).</li>
       <li><strong>Definir categoría:</strong> Institucional | Académica | Escuelas | Eventos | Convenios.</li>
       <li><strong>Colocar adjuntos en <code>public/docs/</code></strong> (si aplica).</li>
-      <li><strong>Agregar en <code>noticias.js</code></strong> con ID único.</li>
+      <li><strong>Agregar en <code>noticias.js</code></strong> con ID único (máximo actual 15 → siguiente 16).</li>
       <li><strong>Buscador:</strong> automático (importa de noticias.js).</li>
       <li><strong>Probar:</strong> <code>npm run dev</code>, verificar home, /noticias y detalle.</li>
       <li><strong>Confirmar:</strong> <code>npm run build</code> + <code>npm run lint</code>.</li>
@@ -312,7 +313,7 @@
     <h3>18.3 Resumen del flujo</h3>
     <table>
       <tr><th>Paso</th><th>Archivo</th><th>Acción</th></tr>
-      <tr><td>1</td><td>Imagen</td><td>Preparar 900×500 px</td></tr>
+      <tr><td>1</td><td>Imagen</td><td>Preparar imagen 16:9 (ej. 900×500, JPG/PNG)</td></tr>
       <tr><td>2</td><td>—</td><td>Definir categoría</td></tr>
       <tr><td>3</td><td><code>public/docs/</code></td><td>Colocar adjuntos (si aplica)</td></tr>
       <tr><td>4</td><td><code>noticias.js</code></td><td>Agregar objeto al array</td></tr>
@@ -376,7 +377,7 @@
 
   <footer>
     Instituto de Seguridad Pública de Santa Fe — Documentación del sitio web<br>
-    Generado: 5 de septiembre de 2026 — Versión 1.0.0
+    Generado: 7 de septiembre de 2026 — Versión 1.0.0
   </footer>
 </body>
 </html>

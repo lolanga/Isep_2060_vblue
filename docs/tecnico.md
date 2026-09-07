@@ -2,7 +2,7 @@
 
 **Proyecto:** `Isep_2060_vblue`
 **Versión:** 1.0.0
-**Última actualización:** 5 de septiembre de 2026
+**Última actualización:** 7 de septiembre de 2026
 **Stack:** React 19 + Vite 8 + React Router 7
 
 ---
@@ -55,9 +55,9 @@ src/
 ├── data/
 │   ├── config.js            # Configuración centralizada (MI_ISEP_URL, teléfonos, emails, GA_ID, redes)
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, FAQ
-│   ├── noticias.js          # 14 noticias (compartido, admite img: null)
+│   ├── noticias.js          # 15 noticias (compartido, admite img: null)
 │   ├── normativa.js         # 17 resoluciones (compartido)
-│   └── buscador.js          # 48 entradas + buscar() + buscarAgrupado()
+│   └── buscador.js          # 60 entradas + buscar() + buscarAgrupado()
 ├── pages/
 │   ├── Home.jsx             # 7 secciones + Trámites y Sistemas
 │   ├── Noticias.jsx         # Filtro + paginación + filtro por escuela + links a detalle
@@ -203,7 +203,7 @@ Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. Todas las rutas usan l
 
 ### 6.2 noticias.js
 
-14 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img (admite `null`), adjuntos, escuelas, contenido.
+15 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img (admite `null`), adjuntos, escuelas, contenido.
 
 ### 6.3 normativa.js
 
@@ -215,7 +215,7 @@ Las fotos están **hardcodeadas** en el componente `src/pages/Institucional/Gale
 
 ### 6.5 buscador.js
 
-48 entradas agrupadas por tipo. Funciones: `buscar()`, `buscarAgrupado()`.
+60 entradas agrupadas por tipo. Funciones: `buscar()`, `buscarAgrupado()`.
 
 ---
 
@@ -293,7 +293,7 @@ interface Noticia {
   fecha: string;         // "3 DE SEPTIEMBRE, 2026"
   fechaCorta: string;    // "3 SEP"
   excerpt: string;
-  img: string | null;    // URL de imagen (900×500) o null
+  img: string | null;    // URL de imagen (16:9) o null
   escuelas?: ("policia" | "superior" | "especialidades" | "investigaciones" | "ead")[];
   adjuntos?: { nombre: string; url: string; }[];
   contenido?: string;    // HTML o texto plano (\n\n para párrafos)
@@ -312,9 +312,9 @@ interface Noticia {
 
 - **Opción A (recomendada):** Imagen local en `public/img/noticias/`
 - **Opción B:** URL externa
-- **Opción C:** Placeholder: `https://picsum.photos/seed/{nombre}/900/500`
+- **Opción C:** Placeholder: `https://picsum.photos/seed/{nombre}/800/450`
 - **Opción D:** Sin imagen: `img: null` — placeholder con ícono
-- **Dimensiones:** 900×500 px (ratio 16:9), JPG/PNG, <200 KB
+- **Dimensiones:** ratio 16:9 (la destacada muestra 900×500; picsum usa 800×450), JPG/PNG, <200 KB
 
 ### 12.4 Documentos adjuntos
 
@@ -398,7 +398,7 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
 Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. 96 módulos totales. Todas las páginas incluidas (incluyendo Secretaría).
 
 ### 13.2 Testing
-Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **33 tests en 7 archivos**:
+Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **33 tests en 7 archivos**. Configuración en `vitest.config.js` (ambiente `jsdom`, globals, `setup.js` y `css: false`).
 
 | Archivo | Qué valida | Tests |
 |---|---|---|

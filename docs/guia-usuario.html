@@ -82,7 +82,7 @@
       <tr><td>Carreras</td><td>Todas las carreras disponibles</td></tr>
       <tr><td>Cursos</td><td>Cursos activos y próximos</td></tr>
       <tr><td>Convocatorias</td><td>Inscripciones abiertas y próximas</td></tr>
-      <tr><td>Noticias</td><td>14 noticias institucionales</td></tr>
+      <tr><td>Noticias</td><td>15 noticias institucionales</td></tr>
       <tr><td>Normativa</td><td>17 resoluciones, convenios, estatutos</td></tr>
       <tr><td>Páginas</td><td>Accesos directos a secciones</td></tr>
     </table>
@@ -110,7 +110,10 @@
     </ul>
 
     <h2>5. Secciones del Home</h2>
-    <h3>5.1 Trámites y Sistemas</h3>
+    <p>En orden de aparición (en móvil, Contadores y Testimonios se ocultan):</p>
+    <h3>5.1 Últimas Noticias</h3>
+    <p>Noticia destacada + sidebar con 3 mini-noticias y promo de <strong>Calendario Académico</strong> (botón "DESCARGAR PDF"). <strong>Cada noticia lleva a <code>/noticias/:id</code></strong>. El enlace "Ver todas las noticias" lleva a <code>/noticias</code>.</p>
+    <h3>5.2 Trámites y Sistemas</h3>
     <table>
       <tr><th>App</th><th>Para quién</th><th>Qué hace</th></tr>
       <tr><td>Mi ISeP</td><td>Docentes, personal policial cursante y postulantes inscriptos</td><td>Aulas virtuales, material de cursado, notas y asistencia</td></tr>
@@ -118,18 +121,16 @@
       <tr><td>Gestión Cadetes</td><td>Cadetes de 1° y 2° año</td><td>Control y notificaciones del cursado</td></tr>
       <tr><td>Webmail</td><td>Todo el personal del ISeP</td><td>Correo electrónico institucional</td></tr>
     </table>
-    <h3>5.2 Contadores</h3>
-    <p>Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.</p>
     <h3>5.3 Convocatorias (CTA)</h3>
     <p>Cuenta regresiva al 30/09/2027 + botones de inscripción:</p>
     <ul>
       <li>"Pre-Inscripción Online" → <code>/ingreso/convocatorias</code>.</li>
       <li>"Ver Requisitos" → <code>/ingreso/requisitos</code>.</li>
     </ul>
-    <h3>5.4 Últimas Noticias</h3>
-    <p>Noticia destacada + sidebar. <strong>Cada noticia lleva a <code>/noticias/:id</code></strong>.</p>
-    <h3>5.5 Nuestras Escuelas</h3>
+    <h3>5.4 Nuestras Escuelas</h3>
     <p>Las 4 escuelas principales con escudos (Policía, Superior, Especialidades, Investigaciones), enlaces a <code>/escuelas/:slug</code>. La 5ta escuela (EaD) se accede desde el menú Formación.</p>
+    <h3>5.5 Contadores</h3>
+    <p>Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.</p>
     <h3>5.6 Testimonios</h3>
     <p>Carrusel de 3 egresados con flechas y dots.</p>
 
@@ -198,7 +199,7 @@
       <li><strong>Filtro por categorías:</strong> Todas, Institucional, Académica, Escuelas, Eventos, Convenios.</li>
       <li><strong>Filtro por escuela.</strong></li>
       <li><strong>Paginación:</strong> 10 por página.</li>
-      <li><strong>14 noticias</strong> publicadas.</li>
+      <li><strong>15 noticias</strong> publicadas.</li>
     </ul>
     <h3>Detalle de noticia (<code>/noticias/:id</code>)</h3>
     <ul>
@@ -294,10 +295,10 @@
     <h3>20.4 Referencia rápida</h3>
     <table>
       <tr><th>Quiero cambiar...</th><th>Archivo</th></tr>
-      <tr><td>Slide 1 del hero</td><td><code>Hero.jsx:17</code></td></tr>
-      <tr><td>Slide 2 del hero</td><td><code>Hero.jsx:25</code></td></tr>
-      <tr><td>Slide 3 del hero</td><td><code>Hero.jsx:33</code></td></tr>
-      <tr><td>Banner de Noticias</td><td><code>Noticias.jsx:43</code></td></tr>
+      <tr><td>Slide 1 del hero</td><td><code>Hero.jsx:18</code></td></tr>
+      <tr><td>Slide 2 del hero</td><td><code>Hero.jsx:26</code></td></tr>
+      <tr><td>Slide 3 del hero</td><td><code>Hero.jsx:34</code></td></tr>
+      <tr><td>Banner de Noticias</td><td><code>Noticias.jsx:63</code></td></tr>
       <tr><td>Foto egresado 1</td><td><code>Testimonios.jsx:13</code></td></tr>
       <tr><td>Foto egresado 2</td><td><code>Testimonios.jsx:20</code></td></tr>
       <tr><td>Foto egresado 3</td><td><code>Testimonios.jsx:27</code></td></tr>
@@ -328,45 +329,10 @@
       <tr><td>Ruta inexistente</td><td>Se muestra NotFound (404) con enlace al inicio</td></tr>
       <tr><td>Navegación con lector de pantalla</td><td>Usá <code>SkipToContent</code> (Tab al inicio), navegá con Tab/Shift+Tab</td></tr>
       <tr><td>Quiero cambiar un teléfono</td><td>Editá <code>src/data/config.js</code> → <code>TELEFONO_ISR</code></td></tr>
+      <tr><td>Quiero publicar una noticia</td><td>Seguí la guía paso a paso de <code>funcional.md</code> §18</td></tr>
     </table>
 
-    <h2>22. Workflow: publicar una noticia</h2>
-
-    <h3>Paso 1 — Archivos</h3>
-    <table>
-      <tr><th>Tipo</th><th>Ruta</th><th>Ejemplo</th></tr>
-      <tr><td>Imagen destacada</td><td><code>public/img/noticias/</code></td><td><code>public/img/noticias/mi-noticia.jpg</code></td></tr>
-      <tr><td>Adjuntos (PDFs, etc.)</td><td><code>public/docs/</code></td><td><code>public/docs/convocatoria.pdf</code></td></tr>
-    </table>
-
-    <h3>Paso 2 — Agregar en <code>src/data/noticias.js</code></h3>
-    <pre><code>{
-  id: 15,  // siguiente incremental
-  titulo: "Título de la noticia",
-  categoria: "Institucional",
-  fecha: "7 DE SEPTIEMBRE, 2026",
-  fechaCorta: "7 SEP",
-  excerpt: "Extracto breve de 1-2 oraciones.",
-  img: "/img/noticias/mi-noticia.jpg",
-  escuelas: ["policia"],
-  adjuntos: [
-    { nombre: "Convocatoria PDF", url: "/docs/convocatoria.pdf" }
-  ],
-  contenido: `
-    &lt;p&gt;&lt;strong&gt;Texto en negrita.&lt;/strong&gt; Párrafo normal.&lt;/p&gt;
-    &lt;h2&gt;Sección&lt;/h2&gt;
-    &lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;li&gt;Item 2&lt;/li&gt;&lt;/ul&gt;
-    &lt;a href="..." class="btn-inscripcion"&gt;INSCRIBIRSE&lt;/a&gt;
-    &lt;blockquote&gt;Cita destacada&lt;/blockquote&gt;
-    &lt;div class="info-box"&gt;&lt;strong&gt;Info importante&lt;/strong&gt;&lt;/div&gt;
-  `
-}</code></pre>
-
-    <h3>Paso 3 — Build</h3>
-    <p><code>npx vite build</code></p>
-    <p>La noticia aparece automáticamente en <code>/noticias</code>, en el buscador, y en <code>/escuelas/:id</code> si se asigna <code>escuelas</code>.</p>
-
-    <h2>23. Workflow: agregar un slide al Hero</h2>
+    <h2>22. Workflow: agregar un slide al Hero</h2>
 
     <h3>Paso 1 — Imagen</h3>
     <table>
@@ -402,7 +368,7 @@
 
   <footer>
     Instituto de Seguridad Pública de Santa Fe — Documentación del sitio web<br>
-    Generado: 5 de septiembre de 2026 — Versión 1.0.0
+    Generado: 7 de septiembre de 2026 — Versión 1.0.0
   </footer>
 </body>
 </html>

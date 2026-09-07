@@ -2,7 +2,7 @@
 
 **Proyecto:** `Isep_2060_vblue`
 **Versión:** 1.0.0
-**Última actualización:** 5 de septiembre de 2026
+**Última actualización:** 7 de septiembre de 2026
 
 ---
 
@@ -43,7 +43,7 @@ Al lado del botón "Mi ISeP" hay un **ícono de lupa**. Al hacer clic se abre un
 | **Carreras** | Todas las carreras disponibles |
 | **Cursos** | Cursos activos y próximos |
 | **Convocatorias** | Inscripciones abiertas y próximas |
-| **Noticias** | 14 noticias institucionales |
+| **Noticias** | 15 noticias institucionales |
 | **Normativa** | 17 resoluciones, convenios, estatutos |
 | **Páginas** | Accesos directos a secciones |
 
@@ -83,7 +83,12 @@ El botón **"Mi ISeP"** siempre visible en la barra superior. Lleva a `mi.isepsa
 
 ## 5. Secciones del Home
 
-### 5.1 Trámites y Sistemas
+En orden de aparición (en móvil, Contadores y Testimonios se ocultan):
+
+### 5.1 Últimas Noticias
+Noticia destacada + sidebar con 3 mini-noticias y promo de **Calendario Académico** (botón "DESCARGAR PDF"). **Cada noticia lleva a su página de detalle** (`/noticias/:id`). El enlace "Ver todas las noticias" lleva a `/noticias`.
+
+### 5.2 Trámites y Sistemas
 4 tarjetas de acceso a los sistemas del ISeP:
 
 | App | Para quién | Qué hace |
@@ -93,19 +98,16 @@ El botón **"Mi ISeP"** siempre visible en la barra superior. Lleva a `mi.isepsa
 | **Gestión Cadetes** | Cadetes de 1° y 2° año | Control y notificaciones del cursado |
 | **Webmail** | Todo el personal del ISeP | Correo electrónico institucional |
 
-### 5.2 Contadores
-Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.
-
 ### 5.3 Convocatorias (CTA)
 Cuenta regresiva al 30 de septiembre de 2027 + botones de inscripción:
 - "Pre-Inscripción Online" → `/ingreso/convocatorias`
 - "Ver Requisitos" → `/ingreso/requisitos`
 
-### 5.4 Últimas Noticias
-Noticia destacada + sidebar. **Cada noticia lleva a su página de detalle** (`/noticias/:id`). El enlace "Ver todas las noticias" lleva a `/noticias`.
-
-### 5.5 Nuestras Escuelas
+### 5.4 Nuestras Escuelas
 Las 4 escuelas principales con escudos (Policía, Superior, Especialidades, Investigaciones). Las tarjetas son enlaces clickeables a `/escuelas/:slug`. La 5ta escuela (EaD) se accede desde el menú Formación.
+
+### 5.5 Contadores
+Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.
 
 ### 5.6 Testimonios
 Carrusel de 3 egresados con flechas y dots.
@@ -207,7 +209,7 @@ En páginas interiores: **Inicio** / Sección / Página actual. Clic en cualquie
 - **Noticia principal** → lleva a `/noticias/:id`.
 - **Historial** con tarjetas → llevan a `/noticias/:id`.
 - **Paginación** (10 por página).
-- **14 noticias** publicadas.
+- **15 noticias** publicadas.
 
 ### Detalle de noticia (`/noticias/:id`)
 - **Hero de imagen** con overlay gradiente. Si `img: null`, se muestra placeholder con ícono.
@@ -367,10 +369,10 @@ public/img/
 
 | Si querés cambiar... | Abrí este archivo | Reemplazá esta línea |
 |---|---|---|
-| Slide 1 del hero | `src/components/Hero.jsx:17` | `src="https://picsum.photos/seed/isep-formacion/1600/700"` |
-| Slide 2 del hero | `src/components/Hero.jsx:25` | `src="https://picsum.photos/seed/isep-escuelas/1600/700"` |
-| Slide 3 del hero | `src/components/Hero.jsx:33` | `src="https://picsum.photos/seed/isep-oferta/1600/700"` |
-| Banner de Noticias | `src/pages/Noticias.jsx:43` | `src="https://picsum.photos/seed/isephero/1600/600"` |
+| Slide 1 del hero | `src/components/Hero.jsx:18` | `src="https://picsum.photos/seed/isep-formacion/1600/700"` |
+| Slide 2 del hero | `src/components/Hero.jsx:26` | `src="https://picsum.photos/seed/isep-escuelas/1600/700"` |
+| Slide 3 del hero | `src/components/Hero.jsx:34` | `src="https://picsum.photos/seed/isep-oferta/1600/700"` |
+| Banner de Noticias | `src/pages/Noticias.jsx:63` | `src="https://picsum.photos/seed/isephero/1600/600"` |
 | Foto del egresado 1 | `src/components/Testimonios.jsx:13` | `src="https://picsum.photos/seed/eg1/120/120"` |
 | Foto del egresado 2 | `src/components/Testimonios.jsx:20` | `src="https://picsum.photos/seed/eg2/120/120"` |
 | Foto del egresado 3 | `src/components/Testimonios.jsx:27` | `src="https://picsum.photos/seed/eg3/120/120"` |
@@ -403,66 +405,11 @@ public/img/
 | Ruta inexistente | Se muestra NotFound (404) con enlace al inicio |
 | Navegación con lector de pantalla | Usá `SkipToContent` (Tab al inicio), navegá con Tab/Shift+Tab |
 | Quiero cambiar un teléfono | Editá `src/data/config.js` → `TELEFONO_ISR` |
+| Quiero publicar una noticia | Seguí la guía paso a paso de `funcional.md` §18 |
 
 ---
 
-## 22. Workflow: publicar una noticia
-
-### Paso 1 — Archivos
-
-| Tipo | Ruta | Ejemplo |
-|---|---|---|
-| Imagen destacada | `public/img/noticias/` | `public/img/noticias/mi-noticia.jpg` |
-| Adjuntos (PDFs, etc.) | `public/docs/` | `public/docs/convocatoria.pdf` |
-
-### Paso 2 — Agregar en `src/data/noticias.js`
-
-```js
-{
-  id: 15,  // siguiente incremental
-  titulo: "Título de la noticia",
-  categoria: "Institucional",  // Institucional | Academica | Escuelas | Eventos | Convenios
-  fecha: "7 DE SEPTIEMBRE, 2026",
-  fechaCorta: "7 SEP",
-  excerpt: "Extracto breve de 1-2 oraciones.",
-  img: "/img/noticias/mi-noticia.jpg",
-  escuelas: ["policia"],  // opcional: policia, superior, especialidades, investigaciones, ead
-  adjuntos: [
-    { nombre: "Convocatoria PDF", url: "/docs/convocatoria.pdf" }
-  ],
-  contenido: `
-    <p><strong>Texto en negrita.</strong> Párrafo normal.</p>
-
-    <h2>Sección</h2>
-    <ul>
-      <li>Item 1</li>
-      <li>Item 2</li>
-    </ul>
-
-    <a href="https://forms.google.com/..." class="btn-inscripcion" target="_blank">
-      INSCRIBIRSE
-    </a>
-
-    <blockquote>Cita destacada</blockquote>
-
-    <div class="info-box">
-      <strong>Info importante</strong>
-    </div>
-  `
-}
-```
-
-### Paso 3 — Build
-
-```
-npx vite build
-```
-
-La noticia aparece automáticamente en `/noticias`, en el buscador, y en `/escuelas/:id` si se asigna `escuelas`.
-
----
-
-## 23. Workflow: agregar un slide al Hero
+## 22. Workflow: agregar un slide al Hero
 
 ### Paso 1 — Imagen
 

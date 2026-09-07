@@ -75,7 +75,7 @@ npm run test    # tests (Vitest + React Testing Library)
 
 ## Páginas
 
-- `/` — Home (Hero Slider, Trámites y Sistemas, Contadores, CTA Inscripciones, Noticias, Escuelas, Testimonios)
+- `/` — Home (Hero Slider, Últimas Noticias, Trámites y Sistemas, CTA Inscripciones, Nuestras Escuelas, Contadores, Testimonios)
 - `/noticias` — listado con filtro, paginación y detalle (`/noticias/:id`)
 - `/institucional/*` — El ISeP, Autoridades, Organización, Oferta Educativa, Carreras, Normativa y Resoluciones (17 docs), Sedes y Contacto, Galería de Fotos
 - `/institucional/oferta-educativa` — Oferta Educativa (tabs: Carreras, Cursos, Convocatorias)
