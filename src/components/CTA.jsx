@@ -18,7 +18,7 @@ export default function CTA() {
       <div className="container-max cta-flex">
 
         <div className="cta-text-box">
-          <h2 className="cta-title">Inscripciones Abiertas 2026</h2>
+          <h2 className="cta-title">Inscripciones Abiertas 2027</h2>
 
           <Countdown targetDate={FECHA_CIERRE} label="Cierre de inscripciones" />
 

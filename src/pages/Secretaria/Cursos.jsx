@@ -10,6 +10,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO";
+import Breadcrumb from "../../components/Breadcrumb";
+import { BreadcrumbLd } from "../../components/JsonLd";
 import { cursos, escuelas } from "../../data/institucional";
 import { MI_ISEP_URL } from "../../data/config";
 
@@ -57,6 +59,7 @@ export default function Cursos() {
   return (
     <main id="main-content" className="cursos-main">
       <SEO title="Cursos" description="Cursos de capacitación del ISeP Santa Fe" />
+      <BreadcrumbLd items={[{ label: "Inicio", to: "/" }, { label: "Formación" }, { label: "Cursos" }]} />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Formación</span>
@@ -68,6 +71,16 @@ export default function Cursos() {
           </p>
         </div>
       </section>
+
+      <div className="container-max" style={{ padding: "0 2rem" }}>
+        <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Formación" },
+            { label: "Cursos" },
+          ]}
+        />
+      </div>
 
       <div className="container-max oferta-section">
         {/* Filtros */}

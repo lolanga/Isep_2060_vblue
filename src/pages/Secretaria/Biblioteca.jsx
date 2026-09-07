@@ -20,7 +20,7 @@ const ARTICULOS = [
   { titulo: "Capacitaciones Gobierno de Santa Fe", url: "https://www.santafe.gob.ar/formacionrrhh/site/index.php", categoria: "Formación" },
   { titulo: "Protocolo de Actuación del Programa de Abordaje Integral de Prevención del Suicidio en la Policía de la Provincia de Santa Fe (Res. Ministerial Nro 151220)", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/PROTOCOLO%20DE%20ACTUACION%20DEL%20PROGRAMA%20DE%20ABORDAJE%20INTEGRAL%20DE%20PREVENCION%20DEL%20SUICIDIO%20EN%20LA%20POLICIA%20DE%20LA%20PROVINCIA%20DE%20SANTA%20FE%20Res.%20Ministerial%20Nro%20151220.pdf", categoria: "Protocolos" },
   { titulo: "Ley N° 14258 - Modifica el Código Procesal Penal de Santa Fe y el Art. 10 Bis de la Ley Orgánica Policial", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/LEY%20N%2014258%20MODIFICA%20EL%20CODIGO%20PROCESAL%20PENAL%20DE%20SANTA%20FE%20Y%20EL%20ART%2010%20BIS%20DE%20LA%20LEY%20ORGANICA%20POLICIAL.pdf", categoria: "Normativa" },
-  { titulo: "Constitución Nacional", url: null, categoria: "Normativa" },
+  { titulo: "Constitución Nacional", url: "https://www.argentina.gob.ar/constitucion", categoria: "Normativa" },
   { titulo: "Manual de Apto Psicofísico para Aspirantes", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/REGLAMENTO%20APTITUD%20PSICOFISICA-ISEP-%20ACTUALIZADO%202025.pdf", categoria: "Formación" },
   { titulo: "Pruebas de Aptitud Física para Aspirantes", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/EXAMEN%20DE%20INGRESO%20Tec.%20Seg.%20Pub.y%20Ciudadana.pdf", categoria: "Formación" },
   { titulo: "Modelo de Recurso", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/MODELO%20DE%20RECURSO%20%20DE%20REVOCATORIA.pdf", categoria: "Institucional" },

@@ -5,6 +5,8 @@
 
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO";
+import Breadcrumb from "../../components/Breadcrumb";
+import { BreadcrumbLd } from "../../components/JsonLd";
 import { convocatorias, escuelaPorId } from "../../data/institucional";
 
 /** Página de próximas convocatorias anunciadas para futuros ciclos. */
@@ -14,6 +16,7 @@ export default function ProximasConvocatorias() {
   return (
     <main id="main-content" className="page-main">
       <SEO title="Próximas Convocatorias" description="Próximas convocatorias del ISeP" />
+      <BreadcrumbLd items={[{ label: "Inicio", to: "/" }, { label: "Ingreso" }, { label: "Próximas Convocatorias" }]} />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>
@@ -25,6 +28,16 @@ export default function ProximasConvocatorias() {
           </p>
         </div>
       </section>
+
+      <div className="container-max" style={{ padding: "0 2rem" }}>
+        <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Ingreso" },
+            { label: "Próximas Convocatorias" },
+          ]}
+        />
+      </div>
 
       <div className="container-max oferta-section proximas-section">
         <div className="grid-2">

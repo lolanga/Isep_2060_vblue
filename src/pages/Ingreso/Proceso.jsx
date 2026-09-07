@@ -6,6 +6,8 @@
  */
 
 import SEO from "../../components/SEO";
+import Breadcrumb from "../../components/Breadcrumb";
+import { BreadcrumbLd } from "../../components/JsonLd";
 
 export default function Proceso() {
   const pasos = [
@@ -19,6 +21,7 @@ export default function Proceso() {
   return (
     <main id="main-content" className="page-main">
       <SEO title="Proceso de Ingreso" description="Proceso de ingreso al ISeP Santa Fe" />
+      <BreadcrumbLd items={[{ label: "Inicio", to: "/" }, { label: "Ingreso" }, { label: "Proceso de Ingreso" }]} />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>
@@ -30,6 +33,16 @@ export default function Proceso() {
           </p>
         </div>
       </section>
+
+      <div className="container-max" style={{ padding: "0 2rem" }}>
+        <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Ingreso" },
+            { label: "Proceso de Ingreso" },
+          ]}
+        />
+      </div>
 
       <div className="container-max oferta-section proceso-section">
         <div className="grid-2">

@@ -7,6 +7,8 @@
 
 import { useState } from "react";
 import SEO from "../../components/SEO";
+import Breadcrumb from "../../components/Breadcrumb";
+import { BreadcrumbLd } from "../../components/JsonLd";
 import { preguntasFrecuentes } from "../../data/institucional";
 
 /** Página de preguntas frecuentes con acordeón expandible. */
@@ -16,6 +18,7 @@ export default function Faq() {
   return (
     <main id="main-content" className="page-main">
       <SEO title="Preguntas Frecuentes" description="Preguntas frecuentes sobre el ISeP Santa Fe" />
+      <BreadcrumbLd items={[{ label: "Inicio", to: "/" }, { label: "Ingreso" }, { label: "Preguntas Frecuentes" }]} />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>
@@ -27,6 +30,16 @@ export default function Faq() {
           </p>
         </div>
       </section>
+
+      <div className="container-max" style={{ padding: "0 2rem" }}>
+        <Breadcrumb
+          items={[
+            { label: "Inicio", to: "/" },
+            { label: "Ingreso" },
+            { label: "Preguntas Frecuentes" },
+          ]}
+        />
+      </div>
 
       <div className="container-max oferta-section">
         <div className="cursos-accordion faq-wrap">
