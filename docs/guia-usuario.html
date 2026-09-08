@@ -262,125 +262,30 @@
       <tr><td>Instagram</td><td><code>instagram.com/isepsantafe</code></td></tr>
       <tr><td>TikTok</td><td><code>tiktok.com/@isepsantafe</code></td></tr>
     </table>
+    <p>Footer: identidad institucional, contacto, sedes y créditos de desarrollo.</p>
 
-    <h2>19. Configuración del sitio</h2>
-    <p>El archivo <code>src/data/config.js</code> centraliza datos usados en múltiples partes del sitio:</p>
-    <table>
-      <tr><th>Dato</th><th>Constante</th><th>Descripción</th></tr>
-      <tr><td>Mi ISeP</td><td><code>MI_ISEP_URL</code></td><td>URL del portal Mi ISeP</td></tr>
-      <tr><td>Gestión</td><td><code>GESTION_URL</code></td><td>URL de SIGEDI</td></tr>
-      <tr><td>Cadetes</td><td><code>CADETES_URL</code></td><td>URL de Gestión Cadetes</td></tr>
-      <tr><td>Webmail</td><td><code>WEBMAIL_URL</code></td><td>URL del correo institucional</td></tr>
-      <tr><td>Teléfono</td><td><code>TELEFONO_ISR</code></td><td>Número de teléfono institucional</td></tr>
-      <tr><td>Email contacto</td><td><code>EMAIL_CONTACTO</code></td><td>Correo de contacto general</td></tr>
-      <tr><td>Email prensa</td><td><code>EMAIL_PRENSA</code></td><td>Correo para prensa y difusión</td></tr>
-      <tr><td>Email títulos</td><td><code>EMAIL_TITULOS</code></td><td>Correo de la sección de títulos</td></tr>
-      <tr><td>WhatsApp</td><td><code>WHATSAPP_URL</code></td><td>Enlace de WhatsApp</td></tr>
-      <tr><td>Redes sociales</td><td><code>REDES_SOCIALES</code></td><td>URLs de redes sociales</td></tr>
-      <tr><td>Analytics</td><td><code>GA_ID</code></td><td>ID de Google Analytics (placeholder)</td></tr>
-    </table>
-
-    <h2>20. Imágenes del sitio</h2>
-    <p>Todas las imágenes se organizan en <code>public/img/</code>.</p>
-
-    <h3>20.1 Estructura de carpetas</h3>
-    <pre><code>public/img/
-├── hero/              ← Slider principal (3 slides)
-├── noticias/          ← Fotos de noticias
-├── testimonios/       ← Avatares de egresados
-├── banners/           ← Banners de páginas
-└── galeria/           ← Fotos de la galería</code></pre>
-
-    <h3>20.2 Formato recomendado</h3>
-    <table>
-      <tr><th>Tipo</th><th>Dimensiones</th><th>Formato</th><th>Max KB</th></tr>
-      <tr><td>Hero slider</td><td>1600×700</td><td>JPG</td><td>300</td></tr>
-      <tr><td>Banners</td><td>1600×600</td><td>JPG</td><td>250</td></tr>
-      <tr><td>Testimonios</td><td>120×120</td><td>JPG</td><td>50</td></tr>
-      <tr><td>Noticias</td><td>900×500</td><td>JPG/PNG</td><td>200</td></tr>
-    </table>
-
-    <h3>20.3 Cómo cambiar una imagen</h3>
-    <ol>
-      <li>Prepará la imagen con las dimensiones recomendadas.</li>
-      <li>Guardala: <code>public/img/hero/slide-formacion.jpg</code>.</li>
-      <li>Abrí el archivo que usa esa imagen (ej: <code>src/components/Hero.jsx</code>).</li>
-      <li>Reemplazá la URL de picsum: <code>src="/img/hero/slide-formacion.jpg"</code>.</li>
-      <li>Guardá y verificá.</li>
-    </ol>
-
-    <h3>20.4 Referencia rápida</h3>
-    <table>
-      <tr><th>Quiero cambiar...</th><th>Archivo</th></tr>
-      <tr><td>Slide 1 del hero</td><td><code>Hero.jsx:18</code></td></tr>
-      <tr><td>Slide 2 del hero</td><td><code>Hero.jsx:26</code></td></tr>
-      <tr><td>Slide 3 del hero</td><td><code>Hero.jsx:34</code></td></tr>
-      <tr><td>Banner de Noticias</td><td><code>Noticias.jsx:63</code></td></tr>
-      <tr><td>Foto egresado 1</td><td><code>Testimonios.jsx:13</code></td></tr>
-      <tr><td>Foto egresado 2</td><td><code>Testimonios.jsx:20</code></td></tr>
-      <tr><td>Foto egresado 3</td><td><code>Testimonios.jsx:27</code></td></tr>
-      <tr><td>Imagen de noticia</td><td><code>noticias.js</code> — cambiar <code>img: null</code></td></tr>
-    </table>
-
-    <h2>21. Problemas comunes</h2>
+    <h2>19. Problemas comunes</h2>
     <table>
       <tr><th>Problema</th><th>Solución</th></tr>
       <tr><td>El menú no se ve en celular</td><td>Tocá ☰ arriba a la izquierda</td></tr>
       <tr><td>No encuentro Mi ISeP</td><td>Siempre en la barra superior</td></tr>
       <tr><td>No se lee texto sobre imagen</td><td>Overlays con contraste automático</td></tr>
       <tr><td>No abre SIGEDI/Webmail</td><td>Verificá conexión y credenciales</td></tr>
-      <tr><td>Quiero volver al inicio</td><td>Logo arriba a la izquierda o flecha ↑</td></tr>
+      <tr><td>Quiero volver al inicio</td><td>Logo arriba a la izquierda o flecha ↑ abajo a la derecha</td></tr>
       <tr><td>No funciona el buscador</td><td>Escribí al menos 1 carácter</td></tr>
       <tr><td>El slider no cambia</td><td>Pausá con hover, usá flechas o dots</td></tr>
       <tr><td>Quiero compartir una noticia</td><td>Clic en ↗ en cada tarjeta</td></tr>
-      <tr><td>Quiero descargar un adjunto</td><td>En el detalle de la noticia, hacé clic en el botón del documento</td></tr>
       <tr><td>Quiero descargar una resolución</td><td>Institucional → Resoluciones, filtrá y descendá</td></tr>
-      <tr><td>Una noticia no se abre</td><td>Verificá que la URL sea /noticias/{id} válido</td></tr>
+      <tr><td>Una noticia no se abre</td><td>Verificá que la URL sea <code>/noticias/{id}</code> con id válido</td></tr>
       <tr><td>No hay noticias en una categoría</td><td>La categoría puede no tener publicaciones aún</td></tr>
       <tr><td>Una noticia no tiene imagen</td><td>Es normal: si <code>img</code> es <code>null</code>, se muestra un placeholder con ícono</td></tr>
-      <tr><td>Quiero ejecutar los tests</td><td><code>npm run test</code> en la terminal</td></tr>
-      <tr><td>Quiero cambiar Analytics</td><td>Editá <code>src/data/config.js</code> → <code>GA_ID</code> (también en <code>Analytics.jsx</code> y <code>analytics.js</code>)</td></tr>
       <tr><td>Quiero instalar como PWA</td><td>"Agregar a pantalla de inicio" en el navegador</td></tr>
       <tr><td>Quiero verificar JSON-LD</td><td>DevTools (F12) → Elements → buscá <code>&lt;script type="application/ld+json"&gt;</code></td></tr>
-      <tr><td>Quiero verificar sitemap</td><td>Abrí <code>/sitemap.xml</code> (22 URLs)</td></tr>
+      <tr><td>Quiero verificar sitemap</td><td>Abrí <code>/sitemap.xml</code> en el navegador (22 URLs)</td></tr>
       <tr><td>Ruta inexistente</td><td>Se muestra NotFound (404) con enlace al inicio</td></tr>
       <tr><td>Navegación con lector de pantalla</td><td>Usá <code>SkipToContent</code> (Tab al inicio), navegá con Tab/Shift+Tab</td></tr>
-      <tr><td>Quiero cambiar un teléfono</td><td>Editá <code>src/data/config.js</code> → <code>TELEFONO_ISR</code></td></tr>
-      <tr><td>Quiero publicar una noticia</td><td>Seguí la guía paso a paso de <code>funcional.md</code> §18</td></tr>
     </table>
 
-    <h2>22. Workflow: agregar un slide al Hero</h2>
-
-    <h3>Paso 1 — Imagen</h3>
-    <table>
-      <tr><th>Tipo</th><th>Ruta</th><th>Formato</th></tr>
-      <tr><td>Imagen del slide</td><td><code>public/img/hero/</code> o URL externa</td><td>1600×700px, JPG/WebP</td></tr>
-    </table>
-    <p>Para imagen local: <code>public/img/hero/mi-slide.jpg</code> → se usa <code>/img/hero/mi-slide.jpg</code></p>
-
-    <h3>Paso 2 — Agregar en <code>src/components/Hero.jsx</code> (array <code>SLIDES</code>)</h3>
-    <pre><code>{
-  id: 4,  // siguiente incremental
-  badge: "Nuevo Curso",
-  title: "Capacitación en ",
-  highlight: "Seguridad Vial",
-  description: "Curso intensivo para personal policial en actividad.",
-  img: "/img/hero/mi-slide.jpg",
-}</code></pre>
-
-    <h3>Campos</h3>
-    <table>
-      <tr><th>Campo</th><th>Uso</th><th>Ejemplo</th></tr>
-      <tr><td><code>badge</code></td><td>Etiqueta small sobre el título</td><td><code>"Excelencia Académica"</code></td></tr>
-      <tr><td><code>title</code></td><td>Texto antes del span</td><td><code>"Formación en "</code></td></tr>
-      <tr><td><code>highlight</code></td><td>Texto dentro del <code>&lt;span&gt;</code> (color primario)</td><td><code>"Seguridad Pública"</code></td></tr>
-      <tr><td><code>description</code></td><td>Párrafo debajo del título</td><td><code>"Curso intensivo..."</code></td></tr>
-      <tr><td><code>img</code></td><td>Imagen de fondo (1600×700)</td><td><code>"/img/hero/slide.jpg"</code></td></tr>
-    </table>
-
-    <h3>Paso 3 — Build</h3>
-    <p><code>npx vite build</code></p>
-    <p>El slide se agrega automáticamente al slider (rotación cada 6s, pausa al hover, flechas + dots de navegación).</p>
   </main>
 
   <footer>

@@ -295,6 +295,8 @@
 
     <h2>18. Publicación de noticias — Guía paso a paso</h2>
 
+    <blockquote>¿Querés editar otra sección del sitio (imágenes, hero, escuelas, carreras, convocatorias, cronograma, contadores, testimonios, config, etc.)? Las guías paso a paso de edición están en este mismo documento: §20 (imágenes), §21 (hero) y §22 (todos los componentes).</blockquote>
+
     <h3>18.1 Estructura de datos</h3>
     <pre>{
   id: 16,
@@ -389,6 +391,358 @@
 
     <h3>19.9 API Service Layer</h3>
     <p><code>src/services/api.js</code>: capa de abstracción mock→backend-ready.</p>
+
+    <h2>20. Imágenes del sitio (edición paso a paso)</h2>
+    <p>Todas las imágenes del sitio se organizan en carpetas dentro de <code>public/img/</code>.</p>
+
+    <h3>20.1 Estructura de carpetas</h3>
+    <pre><code>public/img/
+├── hero/              ← Imágenes del slider principal (3 slides)
+├── noticias/          ← Imágenes de noticias
+├── testimonios/       ← Fotos de egresados (avatares)
+├── banners/           ← Banners de páginas
+└── galeria/           ← Fotos de la galería</code></pre>
+
+    <h3>20.2 Mapa de imágenes por sección</h3>
+    <table>
+      <tr><th>Sección del sitio</th><th>Carpeta</th><th>Archivo esperado</th><th>Estado actual</th></tr>
+      <tr><td>Hero Slider — Slide 1</td><td><code>hero/</code></td><td><code>slide-formacion.jpg</code></td><td>Placeholder (picsum)</td></tr>
+      <tr><td>Hero Slider — Slide 2</td><td><code>hero/</code></td><td><code>slide-escuelas.jpg</code></td><td>Placeholder (picsum)</td></tr>
+      <tr><td>Hero Slider — Slide 3</td><td><code>hero/</code></td><td><code>slide-oferta.jpg</code></td><td>Placeholder (picsum)</td></tr>
+      <tr><td>Banner página Noticias</td><td><code>banners/</code></td><td><code>hero-noticias.jpg</code></td><td>Placeholder (picsum)</td></tr>
+      <tr><td>Testimonio 1</td><td><code>testimonios/</code></td><td><code>egresado-1.jpg</code></td><td>Placeholder (picsum)</td></tr>
+      <tr><td>Testimonio 2</td><td><code>testimonios/</code></td><td><code>egresado-2.jpg</code></td><td>Placeholder (picsum)</td></tr>
+      <tr><td>Testimonio 3</td><td><code>testimonios/</code></td><td><code>egresado-3.jpg</code></td><td>Placeholder (picsum)</td></tr>
+    </table>
+
+    <h3>20.3 Formato recomendado</h3>
+    <table>
+      <tr><th>Tipo de imagen</th><th>Dimensiones</th><th>Formato</th><th>Tamaño máximo</th></tr>
+      <tr><td>Hero slider</td><td>1600 × 700 px</td><td>JPG</td><td>&lt; 300 KB</td></tr>
+      <tr><td>Banners</td><td>1600 × 600 px</td><td>JPG</td><td>&lt; 250 KB</td></tr>
+      <tr><td>Testimonios (avatars)</td><td>120 × 120 px (cuadrada)</td><td>JPG</td><td>&lt; 50 KB</td></tr>
+      <tr><td>Noticias</td><td>900 × 500 px</td><td>JPG o PNG</td><td>&lt; 200 KB</td></tr>
+    </table>
+
+    <h3>20.4 Cómo cambiar una imagen (paso a paso)</h3>
+    <ol>
+      <li><strong>Prepará la imagen</strong> con las dimensiones recomendadas.</li>
+      <li><strong>Guardala</strong> en la carpeta correspondiente: <code>public/img/hero/slide-formacion.jpg</code>.</li>
+      <li><strong>Abrí el archivo</strong> que usa esa imagen (ej: <code>src/components/Hero.jsx</code>).</li>
+      <li><strong>Reemplazá la URL</strong> de picsum por la ruta local: <code>src="/img/hero/slide-formacion.jpg"</code>.</li>
+      <li><strong>Guardá</strong> y verificá.</li>
+    </ol>
+
+    <h3>20.5 Referencia rápida</h3>
+    <table>
+      <tr><th>Si querés cambiar...</th><th>Abrí este archivo</th><th>Reemplazá esta línea</th></tr>
+      <tr><td>Slide 1 del hero</td><td><code>src/components/Hero.jsx:18</code></td><td><code>src="https://picsum.photos/seed/isep-formacion/1600/700"</code></td></tr>
+      <tr><td>Slide 2 del hero</td><td><code>src/components/Hero.jsx:26</code></td><td><code>src="https://picsum.photos/seed/isep-escuelas/1600/700"</code></td></tr>
+      <tr><td>Slide 3 del hero</td><td><code>src/components/Hero.jsx:34</code></td><td><code>src="https://picsum.photos/seed/isep-oferta/1600/700"</code></td></tr>
+      <tr><td>Banner de Noticias</td><td><code>src/pages/Noticias.jsx:63</code></td><td><code>src="https://picsum.photos/seed/isephero/1600/600"</code></td></tr>
+      <tr><td>Foto del egresado 1</td><td><code>src/components/Testimonios.jsx:13</code></td><td><code>src="https://picsum.photos/seed/eg1/120/120"</code></td></tr>
+      <tr><td>Foto del egresado 2</td><td><code>src/components/Testimonios.jsx:20</code></td><td><code>src="https://picsum.photos/seed/eg2/120/120"</code></td></tr>
+      <tr><td>Foto del egresado 3</td><td><code>src/components/Testimonios.jsx:27</code></td><td><code>src="https://picsum.photos/seed/eg3/120/120"</code></td></tr>
+      <tr><td>Agregar imagen a noticia</td><td><code>src/data/noticias.js</code></td><td>Cambiar <code>img: null</code> por <code>img: "/img/noticias/tu-archivo.jpg"</code></td></tr>
+    </table>
+
+    <h2>21. Workflow: agregar un slide al Hero</h2>
+
+    <h3>Paso 1 — Imagen</h3>
+    <table>
+      <tr><th>Tipo</th><th>Ruta</th><th>Formato recomendado</th></tr>
+      <tr><td>Imagen del slide</td><td><code>public/img/hero/</code> o URL externa</td><td>1600×700px, JPG/WebP</td></tr>
+    </table>
+    <p>Para imagen local: <code>public/img/hero/mi-slide.jpg</code> → se usa <code>/img/hero/mi-slide.jpg</code></p>
+
+    <h3>Paso 2 — Agregar en <code>src/components/Hero.jsx</code> (array <code>SLIDES</code>)</h3>
+    <pre><code>{
+  id: 4,  // siguiente incremental
+  badge: "Nuevo Curso",
+  title: "Capacitación en ",
+  highlight: "Seguridad Vial",
+  description: "Curso intensivo para personal policial en actividad.",
+  img: "/img/hero/mi-slide.jpg",  // o picsum: "https://picsum.photos/seed/mi-slide/1600/700"
+}</code></pre>
+
+    <h3>Campos</h3>
+    <table>
+      <tr><th>Campo</th><th>Uso</th><th>Ejemplo</th></tr>
+      <tr><td><code>badge</code></td><td>Etiqueta small sobre el título</td><td><code>"Excelencia Académica"</code></td></tr>
+      <tr><td><code>title</code></td><td>Texto antes del span (parte normal)</td><td><code>"Formación en "</code></td></tr>
+      <tr><td><code>highlight</code></td><td>Texto dentro del <code>&lt;span&gt;</code> (color primario)</td><td><code>"Seguridad Pública"</code></td></tr>
+      <tr><td><code>description</code></td><td>Párrafo debajo del título</td><td><code>"Curso intensivo..."</code></td></tr>
+      <tr><td><code>img</code></td><td>Imagen de fondo (1600×700)</td><td><code>"/img/hero/slide.jpg"</code></td></tr>
+    </table>
+
+    <h3>Paso 3 — Build</h3>
+    <p><code>npx vite build</code></p>
+    <p>El slide se agrega automáticamente al slider (rotación cada 6s, pausa al hover, flechas + dots de navegación).</p>
+
+    <h2>22. Cómo editar el contenido del sitio (paso a paso)</h2>
+    <p>Todo lo que se ve en la web (textos, números, imágenes, enlaces, fechas) se guarda en archivos de texto dentro de la carpeta <code>src/</code>. <strong>No hace falta saber programar</strong>: solo hay que saber <em>qué archivo</em> editar, <em>qué línea</em> cambiar y guardar. Esta sección es la referencia completa: cada sección del sitio = un archivo = pasos concretos.</p>
+
+    <h3>22.1 Reglas generales (leer primero)</h3>
+    <p><strong>Rutina en 5 pasos:</strong></p>
+    <ol>
+      <li>Abrí el proyecto en <strong>VS Code</strong> (Archivo → Abrir carpeta → <code>Isep_2060_vblue</code>).</li>
+      <li>Abrí el archivo que corresponde a la sección que querés cambiar (ver tabla en 22.2).</li>
+      <li>Hacé el cambio imitando el formato de los ejemplos.</li>
+      <li>Guardá (<strong>Ctrl+S</strong>). Si <code>npm run dev</code> está corriendo, el navegador se actualiza solo.</li>
+      <li>Verificá en el navegador y, si quedó bien, publicá (ver 22.22).</li>
+    </ol>
+    <p><strong>Formato (importante para no romper la web):</strong></p>
+    <ul>
+      <li>Los textos van entre comillas <code>"..."</code>.</li>
+      <li>Cada ítem de datos es un bloque <code>{ ... }</code>; los campos se separan con comas.</li>
+      <li>Cuando agregás un ítem nuevo, el ítem anterior debe terminar con coma (<code>},</code>).</li>
+      <li>Nunca borres la línea de cierre <code>];</code> ni el texto que no estás tocando.</li>
+      <li>Los acentos y la ñ funcionan normalmente.</li>
+      <li>Si un archivo quedó "roto" (color rojo en VS Code), apretá <strong>Ctrl+Z</strong> para deshacer.</li>
+    </ul>
+
+    <h3>22.2 Referencia rápida: archivo → sección del sitio</h3>
+    <table>
+      <tr><th>Archivo</th><th>Secciones del sitio que alimenta</th></tr>
+      <tr><td><code>src/data/config.js</code></td><td>Teléfonos, emails, URLs (Mi ISeP, SIGEDI…), WhatsApp, redes, Google Analytics</td></tr>
+      <tr><td><code>src/data/institucional.js</code></td><td>Escuelas, carreras, cursos, convocatorias, cronograma de ingreso, preguntas frecuentes</td></tr>
+      <tr><td><code>src/data/noticias.js</code></td><td>Noticias (Home y <code>/noticias</code>)</td></tr>
+      <tr><td><code>src/data/normativa.js</code></td><td>Resoluciones (<code>/institucional/resoluciones</code>)</td></tr>
+      <tr><td><code>src/data/buscador.js</code></td><td>Entradas "a mano" del buscador global</td></tr>
+      <tr><td><code>src/components/Hero.jsx</code></td><td>Slider de la portada</td></tr>
+      <tr><td><code>src/components/Audiencia.jsx</code></td><td>"¿Qué estás buscando? / Elegí tu camino" (Home)</td></tr>
+      <tr><td><code>src/components/Tramites.jsx</code></td><td>"Trámites y Sistemas" (Home)</td></tr>
+      <tr><td><code>src/components/CTA.jsx</code></td><td>Banner "Inscripciones Abiertas" + fecha de cierre (Home)</td></tr>
+      <tr><td><code>src/components/Contadores.jsx</code></td><td>Los 4 números grandes del Home</td></tr>
+      <tr><td><code>src/components/Testimonios.jsx</code></td><td>Carrusel de testimonios (Home)</td></tr>
+      <tr><td><code>src/pages/Noticias.jsx</code></td><td>Título/banner de la página <code>/noticias</code></td></tr>
+      <tr><td><code>src/pages/Secretaria/Biblioteca.jsx</code></td><td>Biblioteca virtual (<code>/secretaria/biblioteca</code>)</td></tr>
+      <tr><td><code>src/pages/Institucional/Galeria.jsx</code></td><td>Galería de fotos (<code>/institucional/galeria</code>)</td></tr>
+      <tr><td><code>src/components/Footer.jsx</code></td><td>Accesos del pie de página</td></tr>
+    </table>
+
+    <h3>22.3 Noticias</h3>
+    <p>La guía paso a paso completa para publicar, editar y borrar noticias está en la §18 de este documento. Resumen: los datos viven en <code>src/data/noticias.js</code> (campos: <code>id</code>, <code>titulo</code>, <code>categoria</code>, <code>fecha</code>, <code>fechaCorta</code>, <code>excerpt</code>, <code>img</code>, <code>escuelas</code> opcional, <code>adjuntos</code>, <code>contenido</code>).</p>
+
+    <h3>22.4 Hero (slider de la portada)</h3>
+    <p>El paso a paso para cambiar o agregar slides está en §21 de este documento. Resumen: editá el array <code>SLIDES</code> de <code>src/components/Hero.jsx</code> (campos: <code>id</code>, <code>badge</code>, <code>title</code>, <code>highlight</code>, <code>description</code>, <code>img</code>).</p>
+
+    <h3>22.5 Sección "Elegí tu camino" (por audiencia)</h3>
+    <p><strong>Archivo:</strong> <code>src/components/Audiencia.jsx</code> (constante <code>audiencias</code>).<br>
+    <strong>Dónde aparece:</strong> Home, segunda sección (inmediatamente después del Hero).</p>
+    <p><strong>Pasos:</strong></p>
+    <ol>
+      <li>Abrí <code>src/components/Audiencia.jsx</code>.</li>
+      <li>Buscá <code>const audiencias = [</code>.</li>
+      <li>Para <strong>agregar una tarjeta</strong>: copiá un bloque completo existente (desde <code>{</code> hasta <code>},</code>), pegalo antes del cierre <code>];</code> y cambiá cada campo.</li>
+      <li>Para <strong>editar un texto</strong>: cambiá el valor entre comillas de cualquier campo (<code>titulo</code>, <code>descripcion</code>, <code>label</code>…).</li>
+      <li>Para <strong>quitar una tarjeta</strong>: borrá su bloque completo (desde <code>{</code> hasta <code>},</code>). No borres la coma del anterior.</li>
+      <li>Guardá y verificá.</li>
+    </ol>
+    <p><strong>Campos por tarjeta:</strong></p>
+    <table>
+      <tr><th>Campo</th><th>Qué es</th><th>Ejemplo</th></tr>
+      <tr><td><code>key</code></td><td>identificador interno (único)</td><td><code>"ingresar"</code></td></tr>
+      <tr><td><code>titulo</code></td><td>título de la tarjeta</td><td><code>"Quiero ingresar"</code></td></tr>
+      <tr><td><code>descripcion</code></td><td>texto debajo del título</td><td><code>"¿Querés ser parte de la Policía…?"</code></td></tr>
+      <tr><td><code>icon</code></td><td>ícono de la cabecera</td><td><code>"login"</code></td></tr>
+      <tr><td><code>className</code></td><td>color de la tarjeta (no tocar)</td><td><code>"audiencia-card--primary"</code></td></tr>
+      <tr><td><code>links</code></td><td>lista de accesos: <code>label</code>, <code>icon</code>, <code>to</code> (ruta interna) y <code>external: true</code> si es URL externa</td><td><code>{ label: "Requisitos de ingreso", icon: "checklist", to: "/ingreso/requisitos" }</code></td></tr>
+      <tr><td><code>cta</code></td><td>botón inferior: <code>label</code>, <code>to</code>, <code>external</code></td><td><code>{ label: "Empezar mi ingreso", to: "/ingreso", external: false }</code></td></tr>
+    </table>
+    <p>Los íconos son nombres del set <strong>Material Symbols</strong> (<code>login</code>, <code>badge</code>, <code>groups</code>, <code>how_to_reg</code>, <code>checklist</code>, <code>event_note</code>, <code>help</code>, <code>newspaper</code>, <code>school</code>, <code>library_books</code>, <code>photo_library</code>).</p>
+
+    <h3>22.6 Trámites y Sistemas</h3>
+    <p><strong>Archivo:</strong> <code>src/components/Tramites.jsx</code> (constante <code>tramites</code>).<br>
+    <strong>Dónde aparece:</strong> Home (sección "Trámites y Sistemas").</p>
+    <ol>
+      <li>Abrí <code>src/components/Tramites.jsx</code>.</li>
+      <li>Buscá <code>const tramites = [</code>.</li>
+      <li>Editá los campos de cada tarjeta: <code>name</code>, <code>icon</code>, <code>paraQuien</code>, <code>queHace</code>. El campo <code>url</code> usa una constante de <code>src/data/config.js</code> (ver 22.20) para que los enlaces estén centralizados.</li>
+      <li>Para <strong>agregar un sistema nuevo</strong>: copiá un bloque existente, pegalo antes de <code>];</code> y definí su URL. Si el sistema tiene URL propia, agregá la constante en <code>config.js</code> y usala acá.</li>
+      <li>Guardá y verificá.</li>
+    </ol>
+
+    <h3>22.7 Banner "Inscripciones Abiertas" + fecha de cierre (CTA)</h3>
+    <p><strong>Archivo:</strong> <code>src/components/CTA.jsx</code>.<br>
+    <strong>Dónde aparece:</strong> Home, sección con countdown y botones de inscripción.</p>
+    <ol>
+      <li>Abrí <code>src/components/CTA.jsx</code>.</li>
+      <li>Para <strong>cambiar la fecha límite</strong> del countdown: editá la línea <code>const FECHA_CIERRE = "2027-09-30T23:59:59";</code> con el nuevo año, mes, día y hora <strong>en el formato <code>AAAA-MM-DDTHH:MM:SS</code></strong> (ej: <code>"2028-03-15T18:00:00"</code>).</li>
+      <li>Para <strong>cambiar el título</strong>: editá la línea <code>&lt;h2 className="cta-title"&gt;Inscripciones Abiertas 2027&lt;/h2&gt;</code>.</li>
+      <li>Guardá y verificá (el countdown y los botones se actualizan solos).</li>
+    </ol>
+
+    <h3>22.8 Nuestras Escuelas + páginas de escuela</h3>
+    <p><strong>Archivo:</strong> <code>src/data/institucional.js</code> (array <code>escuelas</code>).<br>
+    <strong>Dónde aparece:</strong> Home ("Nuestras Escuelas") y cada página <code>/escuelas/{id}</code>.</p>
+    <ol>
+      <li>Abrí <code>src/data/institucional.js</code>.</li>
+      <li>Buscá <code>export const escuelas = [</code>.</li>
+      <li>Editá los campos de cada escuela: <code>id</code> (no cambiar, se usa en las rutas), <code>nombre</code>, <code>resumen</code>, <code>presentacion</code>, y dentro de <code>informacion</code>: <code>categoria</code>, <code>duracion</code>, <code>modalidad</code>, <code>sede</code>, <code>contacto</code>.</li>
+      <li>Para <strong>agregar una escuela nueva</strong>: copiá un bloque y pegálo antes de <code>];</code>. Para el <code>logo</code> usá un escudo existente o importá una imagen nueva (ver 22.21).</li>
+      <li>Guardá y verificá. La escuela nueva aparece sola en el Home, en <code>/institucional/oferta-educativa</code>, en el buscador y en <code>/escuelas/{nuevo-id}</code>.</li>
+    </ol>
+
+    <h3>22.9 Carreras</h3>
+    <p><strong>Archivo:</strong> <code>src/data/institucional.js</code> (array <code>carreras</code>).<br>
+    <strong>Dónde aparece:</strong> <code>/institucional/carreras</code> y tarjeta en el Home/escuela.</p>
+    <ol>
+      <li>Abrí <code>src/data/institucional.js</code> y buscá <code>export const carreras = [</code>.</li>
+      <li>Editá los campos: <code>id</code> (incremental, no repetir), <code>nombre</code>, <code>escuela</code> (un <code>id</code> de escuelas: <code>policia</code>, <code>superior</code>, <code>especialidades</code>, <code>investigaciones</code>, <code>ead</code>), <code>descripcion</code>, <code>duracion</code>, <code>modalidad</code>, <code>inscripciones</code> (<code>"abiertas"</code> o <code>"proximamente"</code>), <code>fechaInscripcion</code>, <code>requisitos</code> (lista entre corchetes, un texto por línea), <code>documentos</code>.</li>
+      <li>Guardá y verificá en <code>/institucional/carreras</code> y en el buscador (se indexa sola).</li>
+    </ol>
+
+    <h3>22.10 Cursos</h3>
+    <p><strong>Archivo:</strong> <code>src/data/institucional.js</code> (array <code>cursos</code>).<br>
+    <strong>Dónde aparece:</strong> <code>/secretaria/cursos</code>.</p>
+    <ol>
+      <li>Abrí <code>src/data/institucional.js</code> y buscá <code>export const cursos = [</code>.</li>
+      <li>Editá los campos: <code>id</code>, <code>nombre</code>, <code>tipo</code>, <code>informacion</code>, <code>periodo</code>, <code>estado</code> (<code>"actual"</code>, <code>"proximo"</code> o <code>"finalizado"</code>), <code>escuela</code>.</li>
+      <li>Guardá y verificá.</li>
+    </ol>
+
+    <h3>22.11 Contadores (números del Home)</h3>
+    <p><strong>Archivo:</strong> <code>src/components/Contadores.jsx</code> (constante <code>STATS</code>).<br>
+    <strong>Dónde aparece:</strong> Home, sección de los 4 números grandes.</p>
+    <ol>
+      <li>Abrí <code>src/components/Contadores.jsx</code>.</li>
+      <li>Buscá <code>const STATS = [</code>.</li>
+      <li>Editá, por cada contador, <code>label</code> (texto), <code>value</code> (número), <code>suffix</code> (<code>"+"</code> u otro sufijo, o <code>""</code>), <code>icon</code> y <code>color</code>. No repitas <code>icon</code> ni <code>color</code> si querés diferenciarlos.</li>
+      <li>Para <strong>agregar un contador</strong>: copiá un bloque, pegálo antes de <code>];</code> con <code>value</code> numérico.</li>
+      <li>Guardá y verificá (la animación de conteo se adapta sola al número).</li>
+    </ol>
+
+    <h3>22.12 Testimonios</h3>
+    <p><strong>Archivo:</strong> <code>src/components/Testimonios.jsx</code> (constante <code>TESTIMONIOS</code>).<br>
+    <strong>Dónde aparece:</strong> Home, carrusel de testimonios.</p>
+    <ol>
+      <li>Abrí <code>src/components/Testimonios.jsx</code>.</li>
+      <li>Buscá <code>const TESTIMONIOS = [</code>.</li>
+      <li>Editá los campos de cada testimonio: <code>id</code>, <code>nombre</code>, <code>promocion</code>, <code>texto</code> (y <code>img</code> si querés foto del egresado, ver 22.21).</li>
+      <li>Para <strong>agregar uno</strong>: copiá un bloque, pegálo antes de <code>];</code>.</li>
+      <li>Guardá y verificá.</li>
+    </ol>
+
+    <h3>22.13 Convocatorias</h3>
+    <p><strong>Archivo:</strong> <code>src/data/institucional.js</code> (array <code>convocatorias</code>).<br>
+    <strong>Dónde aparece:</strong> <code>/ingreso</code>, <code>/ingreso/convocatorias</code>, <code>/ingreso/proximas-convocatorias</code> y en la tarjeta de ingreso del Home.</p>
+    <ol>
+      <li>Abrí <code>src/data/institucional.js</code> y buscá <code>export const convocatorias = [</code>.</li>
+      <li>Editá los campos: <code>id</code>, <code>nombre</code>, <code>estado</code> (<code>"vigente"</code> o <code>"proxima"</code>), <code>tipo</code>, <code>descripcion</code>, <code>fecha</code>, <code>escuela</code>.</li>
+      <li>Estado: las <strong>vigentes</strong> aparecen como convocatorias activas; las <strong>próximas</strong> se listan como próximas.</li>
+      <li>Guardá y verificá. El buscador y las páginas de ingreso se actualizan solos.</li>
+    </ol>
+
+    <h3>22.14 Cronograma del proceso de ingreso</h3>
+    <p><strong>Archivo:</strong> <code>src/data/institucional.js</code> (array <code>cronograma</code>).<br>
+    <strong>Dónde aparece:</strong> la landing <code>/ingreso</code> (timeline del ciclo).</p>
+    <ol>
+      <li>Abrí <code>src/data/institucional.js</code> y buscá <code>export const cronograma = [</code>.</li>
+      <li>Editá los campos de cada etapa: <code>id</code>, <code>etapa</code> (título de la etapa), <code>detalle</code> (explicación), <code>fecha</code>, <code>estado</code> (<code>"en-curso"</code> o <code>"proximo"</code>).</li>
+      <li>Estado: las etapas <code>en-curso</code> se muestran como "En curso" (marca resaltada) y las <code>proximo</code> como próximas.</li>
+      <li>Guardá y verificá en <code>/ingreso</code>.</li>
+    </ol>
+
+    <h3>22.15 Preguntas frecuentes</h3>
+    <p><strong>Archivo:</strong> <code>src/data/institucional.js</code> (array <code>preguntasFrecuentes</code>).<br>
+    <strong>Dónde aparece:</strong> <code>/ingreso</code> (FAQ destacada) y <code>/ingreso/faq</code>.</p>
+    <ol>
+      <li>Abrí <code>src/data/institucional.js</code> y buscá <code>preguntasFrecuentes</code>.</li>
+      <li>Editá cada pregunta/respuesta (y <code>categoria</code> si hay filtro). Para agregar, copiá un bloque antes de <code>];</code>.</li>
+      <li>Guardá y verificá.</li>
+    </ol>
+
+    <h3>22.16 Resoluciones (Normativa)</h3>
+    <p><strong>Archivo:</strong> <code>src/data/normativa.js</code> (array <code>resoluciones</code>).<br>
+    <strong>Dónde aparece:</strong> <code>/institucional/resoluciones</code>.</p>
+    <ol>
+      <li>Abrí <code>src/data/normativa.js</code> y buscá <code>export const resoluciones = [</code>.</li>
+      <li>Editá los campos de cada resolución (ej: <code>numero</code>, <code>titulo</code>, <code>tipo</code>, <code>anio</code>, <code>fecha</code>, <code>archivo</code>/URL del PDF).</li>
+      <li>Guardá y verificá. Se indexa sola en el buscador (17 resoluciones).</li>
+    </ol>
+
+    <h3>22.17 Biblioteca virtual</h3>
+    <p><strong>Archivo:</strong> <code>src/pages/Secretaria/Biblioteca.jsx</code> (constante <code>ARTICULOS</code>, categorías en <code>CATEGORIAS</code>).<br>
+    <strong>Dónde aparece:</strong> <code>/secretaria/biblioteca</code>.</p>
+    <ol>
+      <li>Abrí <code>src/pages/Secretaria/Biblioteca.jsx</code>.</li>
+      <li>Buscá <code>const ARTICULOS = [</code>.</li>
+      <li>Editá los campos de cada artículo (título, autor, categoría, descripción, URL/PDF). En <code>const BASE</code> está la URL base de la biblioteca del sitio oficial.</li>
+      <li>Para <strong>agregar una categoría nueva</strong>: usala en un artículo y <strong>regenerá</strong> la lista de categorías editando <code>const CATEGORIAS = [...]</code> (o dejá que se arme sola con <code>...new Set(...)</code> si está así configurado).</li>
+      <li>Guardá y verificá.</li>
+    </ol>
+
+    <h3>22.18 Galería de fotos</h3>
+    <p><strong>Archivo:</strong> <code>src/pages/Institucional/Galeria.jsx</code> (lista de fotos, p. ej. <code>FOTOS</code>).<br>
+    <strong>Dónde aparece:</strong> <code>/institucional/galeria</code>.</p>
+    <ol>
+      <li>Abrí <code>src/pages/Institucional/Galeria.jsx</code>.</li>
+      <li>Buscá la lista de fotos (constante con las imágenes).</li>
+      <li>Editá/agregá/quitá elementos con la <strong>ruta de imagen</strong> y el <strong>texto alternativo/título</strong>. Ejemplo de entrada: <code>{ src: "/img/galeria/foto1.jpg", alt: "Formación de cadetes" }</code>.</li>
+      <li>Colocá el archivo de imagen en <code>public/img/galeria/</code> (ver §20).</li>
+      <li>Guardá y verificá.</li>
+    </ol>
+
+    <h3>22.19 Buscador global (entradas a mano)</h3>
+    <p><strong>Archivo:</strong> <code>src/data/buscador.js</code>.<br>
+    <strong>Dónde aparece:</strong> buscador de la barra superior.</p>
+    <p>El índice se construye <strong>solo</strong>: escuelas, carreras, cursos, convocatorias, noticias y resoluciones salen automáticamente desde sus datos (61 entradas en total). Solo hay que editar a mano la sección de <strong>páginas</strong> (11 entradas con <code>id: "…"</code> en texto).</p>
+    <ol>
+      <li>Abrí <code>src/data/buscador.js</code>.</li>
+      <li>Buscá la sección de las entradas con <code>id: "inst-…"</code>, <code>id: "sec-…"</code>, etc.</li>
+      <li>Para <strong>agregar el buscado a una página</strong>: copiá una entrada y cambiá <code>id</code>, <code>title</code>, <code>subtitle</code>, <code>categoria</code>, <code>tipo</code>, <code>ruta</code> y <code>keywords</code> (palabras con las que aparecerá al buscar).</li>
+      <li>Guardá y verificá escribiendo en el buscador.</li>
+    </ol>
+
+    <h3>22.20 Configuración general (teléfonos, emails, URLs, redes, Analytics)</h3>
+    <p><strong>Archivo:</strong> <code>src/data/config.js</code>.<br>
+    <strong>Dónde aparece:</strong> pie de página, contacto, accesos de sistemas, WhatsApp, redes, Analytics de todo el sitio.</p>
+    <ol>
+      <li>Abrí <code>src/data/config.js</code>. Cada constante tiene su comentario explicando qué cambiar.</li>
+    </ol>
+    <p><strong>Constantes principales:</strong></p>
+    <table>
+      <tr><th>Constante</th><th>Qué cambia</th></tr>
+      <tr><td><code>TELEFONO_ISR</code></td><td>teléfono que se muestra en el sitio</td></tr>
+      <tr><td><code>TELEFONO_LIMPIO</code></td><td>teléfono sin espacios ni guiones (se usa para WhatsApp)</td></tr>
+      <tr><td><code>EMAIL_CONTACTO</code></td><td>email de contacto general</td></tr>
+      <tr><td><code>EMAIL_PRENSA</code></td><td>email de prensa</td></tr>
+      <tr><td><code>EMAIL_TITULOS</code></td><td>email de títulos y certificaciones</td></tr>
+      <tr><td><code>MI_ISEP_URL</code></td><td>URL de "Mi ISeP"</td></tr>
+      <tr><td><code>GESTION_URL</code></td><td>URL de SIGEDI</td></tr>
+      <tr><td><code>CADETES_URL</code></td><td>URL de Gestión Cadetes</td></tr>
+      <tr><td><code>WEBMAIL_URL</code></td><td>URL del Webmail</td></tr>
+      <tr><td><code>WHATSAPP_URL</code></td><td>se arma sola con <code>TELEFONO_LIMPIO</code> (no tocar salvo excepción)</td></tr>
+      <tr><td><code>REDES_SOCIALES</code></td><td>URLs de Facebook, YouTube, Instagram y TikTok</td></tr>
+      <tr><td><code>GA_ID</code></td><td>ID de Google Analytics 4 (reemplazar el placeholder <code>G-XXXXXXXXXX</code>)</td></tr>
+    </table>
+    <p><strong>Importante:</strong> si cambiás un teléfono, también actualizá <code>TELEFONO_LIMPIO</code> (sin espacios/guiones) para que el WhatsApp siga funcionando.</p>
+    <p>Guardá y verificá (los cambios aplican en todo el sitio).</p>
+
+    <h3>22.21 Imágenes</h3>
+    <p>Todo el manejo de imágenes (carpetas, formato recomendado y cómo reemplazar una) está en <strong>§20</strong>. No olvides: las imágenes del sitio viven en <code>public/img/…</code> y se referencian con ruta <code>/img/…</code>.</p>
+
+    <h3>22.22 Verificación final y publicación</h3>
+    <ol>
+      <li><strong>Revisá en el navegador</strong> cada sección que tocaste (<code>npm run dev</code>).</li>
+      <li><strong>Corré los chequeos</strong> en la terminal (carpeta <code>Isep_2060_vblue</code>):
+        <ul>
+          <li>Lint: <code>npm run lint</code></li>
+          <li>Tests: <code>npm test</code></li>
+          <li>Build: <code>npm run build</code></li>
+        </ul>
+      </li>
+      <li>Si todo da <strong>OK</strong>, subí los cambios a GitHub:
+        <ul>
+          <li><code>git add -A</code></li>
+          <li><code>git commit -m "descripción del cambio"</code></li>
+          <li><code>git push</code></li>
+        </ul>
+      </li>
+      <li>Esperá a que la <strong>CI</strong> (GitHub Actions) termine en verde. El sitio se actualiza automáticamente.</li>
+    </ol>
+    <blockquote>Si te traba un archivo y no sabés qué pasó, guardá una copia antes de tocar (<code>Ctrl+A</code>, copiar, pegar en un <code>.txt</code> aparte) y ante dudas deshacé con <strong>Ctrl+Z</strong>.</blockquote>
   </main>
 
   <footer>

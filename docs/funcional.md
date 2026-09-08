@@ -417,6 +417,8 @@ GitHub Actions ejecuta en cada push:
 
 ## 18. Publicación de noticias — Guía paso a paso
 
+> **¿Querés editar otra sección del sitio (imágenes, hero, escuelas, carreras, convocatorias, cronograma, contadores, testimonios, config, etc.)?** Las guías paso a paso de edición están en este mismo documento: §20 (imágenes), §21 (hero) y §22 (todos los componentes).
+
 ### 18.1 Estructura de datos de una noticia
 
 Cada noticia se define en `src/data/noticias.js` con la siguiente estructura:
@@ -671,3 +673,405 @@ El archivo `src/data/config.js` centraliza datos usados en múltiples componente
 ### 19.10 API Service Layer
 
 `src/services/api.js`: capa de abstracción mock→backend-ready. Actualmente usa datos mock, preparada para conectar a API real sin cambiar componentes.
+
+---
+
+## 20. Imágenes del sitio (edición paso a paso)
+
+Todas las imágenes del sitio se organizan en carpetas dentro de `public/img/`.
+
+### 20.1 Estructura de carpetas
+
+```
+public/img/
+├── hero/              ← Imágenes del slider principal (3 slides)
+├── noticias/          ← Imágenes de noticias
+├── testimonios/       ← Fotos de egresados (avatares)
+├── banners/           ← Banners de páginas
+└── galeria/           ← Fotos de la galería
+```
+
+### 20.2 Mapa de imágenes por sección
+
+| Sección del sitio | Carpeta | Archivo esperado | Estado actual |
+|---|---|---|---|
+| **Hero Slider — Slide 1** | `hero/` | `slide-formacion.jpg` | Placeholder (picsum) |
+| **Hero Slider — Slide 2** | `hero/` | `slide-escuelas.jpg` | Placeholder (picsum) |
+| **Hero Slider — Slide 3** | `hero/` | `slide-oferta.jpg` | Placeholder (picsum) |
+| **Banner página Noticias** | `banners/` | `hero-noticias.jpg` | Placeholder (picsum) |
+| **Testimonio 1** | `testimonios/` | `egresado-1.jpg` | Placeholder (picsum) |
+| **Testimonio 2** | `testimonios/` | `egresado-2.jpg` | Placeholder (picsum) |
+| **Testimonio 3** | `testimonios/` | `egresado-3.jpg` | Placeholder (picsum) |
+
+### 20.3 Formato recomendado
+
+| Tipo de imagen | Dimensiones | Formato | Tamaño máximo |
+|---|---|---|---|
+| Hero slider | 1600 × 700 px | JPG | < 300 KB |
+| Banners | 1600 × 600 px | JPG | < 250 KB |
+| Testimonios (avatars) | 120 × 120 px (cuadrada) | JPG | < 50 KB |
+| Noticias | 900 × 500 px | JPG o PNG | < 200 KB |
+
+### 20.4 Cómo cambiar una imagen (paso a paso)
+
+1. **Prepará la imagen** con las dimensiones recomendadas
+2. **Guardála** en la carpeta correspondiente: `public/img/hero/slide-formacion.jpg`
+3. **Abrí el archivo** que usa esa imagen (ej: `src/components/Hero.jsx`)
+4. **Reemplazá la URL** de picsum por la ruta local: `src="/img/hero/slide-formacion.jpg"`
+5. **Guardá** y verificá
+
+### 20.5 Referencia rápida
+
+| Si querés cambiar... | Abrí este archivo | Reemplazá esta línea |
+|---|---|---|
+| Slide 1 del hero | `src/components/Hero.jsx:18` | `src="https://picsum.photos/seed/isep-formacion/1600/700"` |
+| Slide 2 del hero | `src/components/Hero.jsx:26` | `src="https://picsum.photos/seed/isep-escuelas/1600/700"` |
+| Slide 3 del hero | `src/components/Hero.jsx:34` | `src="https://picsum.photos/seed/isep-oferta/1600/700"` |
+| Banner de Noticias | `src/pages/Noticias.jsx:63` | `src="https://picsum.photos/seed/isephero/1600/600"` |
+| Foto del egresado 1 | `src/components/Testimonios.jsx:13` | `src="https://picsum.photos/seed/eg1/120/120"` |
+| Foto del egresado 2 | `src/components/Testimonios.jsx:20` | `src="https://picsum.photos/seed/eg2/120/120"` |
+| Foto del egresado 3 | `src/components/Testimonios.jsx:27` | `src="https://picsum.photos/seed/eg3/120/120"` |
+| Agregar imagen a noticia | `src/data/noticias.js` | Cambiar `img: null` por `img: "/img/noticias/tu-archivo.jpg"` |
+
+---
+
+## 21. Workflow: agregar un slide al Hero
+
+### Paso 1 — Imagen
+
+| Tipo | Ruta | Formato recomendado |
+|---|---|---|
+| Imagen del slide | `public/img/hero/` o URL externa | 1600×700px, JPG/WebP |
+
+Para imagen local: `public/img/hero/mi-slide.jpg` → se usa `/img/hero/mi-slide.jpg`
+
+### Paso 2 — Agregar en `src/components/Hero.jsx` (array `SLIDES`)
+
+```js
+{
+  id: 4,  // siguiente incremental
+  badge: "Nuevo Curso",
+  title: "Capacitación en ",
+  highlight: "Seguridad Vial",
+  description: "Curso intensivo para personal policial en actividad.",
+  img: "/img/hero/mi-slide.jpg",  // o picsum: "https://picsum.photos/seed/mi-slide/1600/700"
+}
+```
+
+### Campos
+
+| Campo | Uso | Ejemplo |
+|---|---|---|
+| `badge` | Etiqueta small sobre el título | `"Excelencia Académica"` |
+| `title` | Texto antes del span (parte normal) | `"Formación en "` |
+| `highlight` | Texto dentro del `<span>` (color primario) | `"Seguridad Pública"` |
+| `description` | Párrafo debajo del título | `"Curso intensivo..."` |
+| `img` | Imagen de fondo (1600×700) | `"/img/hero/slide.jpg"` |
+
+### Paso 3 — Build
+
+```
+npx vite build
+```
+
+El slide se agrega automáticamente al slider (rotación cada 6s, pausa al hover, flechas + dots de navegación).
+
+---
+
+## 22. Cómo editar el contenido del sitio (paso a paso)
+
+Todo lo que se ve en la web (textos, números, imágenes, enlaces, fechas) se guarda en archivos de texto dentro de la carpeta `src/`. **No hace falta saber programar**: solo hay que saber *qué archivo* editar, *qué línea* cambiar y guardar. Esta sección es la referencia completa: cada sección del sitio = un archivo = pasos concretos.
+
+### 22.1 Reglas generales (leer primero)
+
+**Rutina en 5 pasos:**
+
+1. Abrí el proyecto en **VS Code** (Archivo → Abrir carpeta → `Isep_2060_vblue`).
+2. Abrí el archivo que corresponde a la sección que querés cambiar (ver tabla en 22.2).
+3. Hacé el cambio imitando el formato de los ejemplos.
+4. Guardá (**Ctrl+S**). Si `npm run dev` está corriendo, el navegador se actualiza solo.
+5. Verificá en el navegador y, si quedó bien, publicá (ver 22.22).
+
+**Formato (importante para no romper la web):**
+
+- Los textos van entre comillas `"..."`.
+- Cada ítem de datos es un bloque `{ ... }`; los campos se separan con comas.
+- Cuando agregás un ítem nuevo, el ítem anterior debe terminar con coma (`},`).
+- Nunca borres la línea de cierre `];` ni el texto que no estás tocando.
+- Los acentos y la ñ funcionan normalmente.
+- Si un archivo quedó "roto" (color rojo en VS Code), apretá **Ctrl+Z** para deshacer.
+
+### 22.2 Referencia rápida: archivo → sección del sitio
+
+| Archivo | Secciones del sitio que alimenta |
+|---|---|
+| `src/data/config.js` | Teléfonos, emails, URLs (Mi ISeP, SIGEDI…), WhatsApp, redes, Google Analytics |
+| `src/data/institucional.js` | Escuelas, carreras, cursos, convocatorias, cronograma de ingreso, preguntas frecuentes |
+| `src/data/noticias.js` | Noticias (Home y `/noticias`) |
+| `src/data/normativa.js` | Resoluciones (`/institucional/resoluciones`) |
+| `src/data/buscador.js` | Entradas "a mano" del buscador global |
+| `src/components/Hero.jsx` | Slider de la portada |
+| `src/components/Audiencia.jsx` | "¿Qué estás buscando? / Elegí tu camino" (Home) |
+| `src/components/Tramites.jsx` | "Trámites y Sistemas" (Home) |
+| `src/components/CTA.jsx` | Banner "Inscripciones Abiertas" + fecha de cierre (Home) |
+| `src/components/Contadores.jsx` | Los 4 números grandes del Home |
+| `src/components/Testimonios.jsx` | Carrusel de testimonios (Home) |
+| `src/pages/Noticias.jsx` | Título/banner de la página `/noticias` |
+| `src/pages/Secretaria/Biblioteca.jsx` | Biblioteca virtual (`/secretaria/biblioteca`) |
+| `src/pages/Institucional/Galeria.jsx` | Galería de fotos (`/institucional/galeria`) |
+| `src/components/Footer.jsx` | Accesos del pie de página |
+
+### 22.3 Noticias
+
+La guía paso a paso completa para publicar, editar y borrar noticias está en la §18 de este documento. Resumen: los datos viven en `src/data/noticias.js` (campos: `id`, `titulo`, `categoria`, `fecha`, `fechaCorta`, `excerpt`, `img`, `escuelas` opcional, `adjuntos`, `contenido`).
+
+### 22.4 Hero (slider de la portada)
+
+El paso a paso para cambiar o agregar slides está en §21 de este documento. Resumen: editá el array `SLIDES` de `src/components/Hero.jsx` (campos: `id`, `badge`, `title`, `highlight`, `description`, `img`).
+
+### 22.5 Sección "Elegí tu camino" (por audiencia)
+
+- **Archivo:** `src/components/Audiencia.jsx` (constante `audiencias`).
+- **Dónde aparece:** Home, segunda sección (inmediatamente después del Hero).
+
+Pasos:
+
+1. Abrí `src/components/Audiencia.jsx`.
+2. Buscá `const audiencias = [`.
+3. Para **agregar una tarjeta**: copiá un bloque completo existente (desde `{` hasta `},`), pegalo antes del cierre `];` y cambiá cada campo.
+4. Para **editar un texto**: cambiá el valor entre comillas de cualquier campo (`titulo`, `descripcion`, `label`…).
+5. Para **quitar una tarjeta**: borrá su bloque completo (desde `{` hasta `},`). No borres la coma del anterior.
+6. Guardá y verificá.
+
+Campos por tarjeta:
+
+| Campo | Qué es | Ejemplo |
+|---|---|---|
+| `key` | identificador interno (único) | `"ingresar"` |
+| `titulo` | título de la tarjeta | `"Quiero ingresar"` |
+| `descripcion` | texto debajo del título | `"¿Querés ser parte de la Policía…?"` |
+| `icon` | ícono de la cabecera | `"login"` |
+| `className` | color de la tarjeta (no tocar) | `"audiencia-card--primary"` |
+| `links` | lista de accesos: `label`, `icon`, `to` (ruta interna) y `external: true` si es URL externa | `{ label: "Requisitos de ingreso", icon: "checklist", to: "/ingreso/requisitos" }` |
+| `cta` | botón inferior: `label`, `to`, `external` | `{ label: "Empezar mi ingreso", to: "/ingreso", external: false }` |
+
+Los íconos son nombres del set **Material Symbols** (`login`, `badge`, `groups`, `how_to_reg`, `checklist`, `event_note`, `help`, `newspaper`, `school`, `library_books`, `photo_library`).
+
+### 22.6 Trámites y Sistemas
+
+- **Archivo:** `src/components/Tramites.jsx` (constante `tramites`).
+- **Dónde aparece:** Home (sección "Trámites y Sistemas").
+
+Pasos:
+
+1. Abrí `src/components/Tramites.jsx`.
+2. Buscá `const tramites = [`.
+3. Editá los campos de cada tarjeta: `name`, `icon`, `paraQuien`, `queHace`. El campo `url` usa una constante de `src/data/config.js` (ver 22.20) para que los enlaces estén centralizados.
+4. Para **agregar un sistema nuevo**: copiá un bloque existente, pegalo antes de `];` y definí su URL. Si el sistema tiene URL propia, agregá la constante en `config.js` y usala acá.
+5. Guardá y verificá.
+
+### 22.7 Banner "Inscripciones Abiertas" + fecha de cierre (CTA)
+
+- **Archivo:** `src/components/CTA.jsx`.
+- **Dónde aparece:** Home, sección con countdown y botones de inscripción.
+
+Pasos:
+
+1. Abrí `src/components/CTA.jsx`.
+2. Para **cambiar la fecha límite** del countdown: editá la línea `const FECHA_CIERRE = "2027-09-30T23:59:59";` con el nuevo año, mes, día y hora **en el formato `AAAA-MM-DDTHH:MM:SS`** (ej: `"2028-03-15T18:00:00"`).
+3. Para **cambiar el título**: editá la línea `<h2 className="cta-title">Inscripciones Abiertas 2027</h2>`.
+4. Guardá y verificá (el countdown y los botones se actualizan solos).
+
+### 22.8 Nuestras Escuelas + páginas de escuela
+
+- **Archivo:** `src/data/institucional.js` (array `escuelas`).
+- **Dónde aparece:** Home ("Nuestras Escuelas") y cada página `/escuelas/{id}`.
+
+Pasos:
+
+1. Abrí `src/data/institucional.js`.
+2. Buscá `export const escuelas = [`.
+3. Editá los campos de cada escuela: `id` (no cambiar, se usa en las rutas), `nombre`, `resumen`, `presentacion`, y dentro de `informacion`: `categoria`, `duracion`, `modalidad`, `sede`, `contacto`.
+4. Para **agregar una escuela nueva**: copiá un bloque y pegálo antes de `];`. Para el `logo` usá un escudo existente o importá una imagen nueva (ver 22.21).
+5. Guardá y verificá. La escuela nueva aparece sola en el Home, en `/institucional/oferta-educativa`, en el buscador y en `/escuelas/{nuevo-id}`.
+
+### 22.9 Carreras
+
+- **Archivo:** `src/data/institucional.js` (array `carreras`).
+- **Dónde aparece:** `/institucional/carreras` y tarjeta en el Home/escuela.
+
+Pasos:
+
+1. Abrí `src/data/institucional.js` y buscá `export const carreras = [`.
+2. Editá los campos: `id` (incremental, no repetir), `nombre`, `escuela` (un `id` de escuelas: `policia`, `superior`, `especialidades`, `investigaciones`, `ead`), `descripcion`, `duracion`, `modalidad`, `inscripciones` (`"abiertas"` o `"proximamente"`), `fechaInscripcion`, `requisitos` (lista entre corchetes, un texto por línea), `documentos`.
+3. Guardá y verificá en `/institucional/carreras` y en el buscador (se indexa sola).
+
+### 22.10 Cursos
+
+- **Archivo:** `src/data/institucional.js` (array `cursos`).
+- **Dónde aparece:** `/secretaria/cursos`.
+
+Pasos:
+
+1. Abrí `src/data/institucional.js` y buscá `export const cursos = [`.
+2. Editá los campos: `id`, `nombre`, `tipo`, `informacion`, `periodo`, `estado` (`"actual"`, `"proximo"` o `"finalizado"`), `escuela`.
+3. Guardá y verificá.
+
+### 22.11 Contadores (números del Home)
+
+- **Archivo:** `src/components/Contadores.jsx` (constante `STATS`).
+- **Dónde aparece:** Home, sección de los 4 números grandes.
+
+Pasos:
+
+1. Abrí `src/components/Contadores.jsx`.
+2. Buscá `const STATS = [`.
+3. Editá, por cada contador, `label` (texto), `value` (número), `suffix` (`"+"` u otro sufijo, o `""`), `icon` y `color`. No repitas `icon` ni `color` si querés diferenciarlos.
+4. Para **agregar un contador**: copiá un bloque, pegálo antes de `];` con `value` numérico.
+5. Guardá y verificá (la animación de conteo se adapta sola al número).
+
+### 22.12 Testimonios
+
+- **Archivo:** `src/components/Testimonios.jsx` (constante `TESTIMONIOS`).
+- **Dónde aparece:** Home, carrusel de testimonios.
+
+Pasos:
+
+1. Abrí `src/components/Testimonios.jsx`.
+2. Buscá `const TESTIMONIOS = [`.
+3. Editá los campos de cada testimonio: `id`, `nombre`, `promocion`, `texto` (y `img` si querés foto del egresado, ver 22.21).
+4. Para **agregar uno**: copiá un bloque, pegálo antes de `];`.
+5. Guardá y verificá.
+
+### 22.13 Convocatorias
+
+- **Archivo:** `src/data/institucional.js` (array `convocatorias`).
+- **Dónde aparece:** `/ingreso`, `/ingreso/convocatorias`, `/ingreso/proximas-convocatorias` y en la tarjeta de ingreso del Home.
+
+Pasos:
+
+1. Abrí `src/data/institucional.js` y buscá `export const convocatorias = [`.
+2. Editá los campos: `id`, `nombre`, `estado` (`"vigente"` o `"proxima"`), `tipo`, `descripcion`, `fecha`, `escuela`.
+3. Estado: las **vigentes** aparecen como convocatorias activas; las **próximas** se listan como próximas.
+4. Guardá y verificá. El buscador y las páginas de ingreso se actualizan solos.
+
+### 22.14 Cronograma del proceso de ingreso
+
+- **Archivo:** `src/data/institucional.js` (array `cronograma`).
+- **Dónde aparece:** la landing `/ingreso` (timeline del ciclo).
+
+Pasos:
+
+1. Abrí `src/data/institucional.js` y buscá `export const cronograma = [`.
+2. Editá los campos de cada etapa: `id`, `etapa` (título de la etapa), `detalle` (explicación), `fecha`, `estado` (`"en-curso"` o `"proximo"`).
+3. Estado: las etapas `en-curso` se muestran como "En curso" (marca resaltada) y las `proximo` como próximas.
+4. Guardá y verificá en `/ingreso`.
+
+### 22.15 Preguntas frecuentes
+
+- **Archivo:** `src/data/institucional.js` (array `preguntasFrecuentes`).
+- **Dónde aparece:** `/ingreso` (FAQ destacada) y `/ingreso/faq`.
+
+Pasos:
+
+1. Abrí `src/data/institucional.js` y buscá `preguntasFrecuentes`.
+2. Editá cada pregunta/respuesta (y `categoria` si hay filtro). Para agregar, copiá un bloque antes de `];`.
+3. Guardá y verificá.
+
+### 22.16 Resoluciones (Normativa)
+
+- **Archivo:** `src/data/normativa.js` (array `resoluciones`).
+- **Dónde aparece:** `/institucional/resoluciones`.
+
+Pasos:
+
+1. Abrí `src/data/normativa.js` y buscá `export const resoluciones = [`.
+2. Editá los campos de cada resolución (ej: `numero`, `titulo`, `tipo`, `anio`, `fecha`, `archivo`/URL del PDF).
+3. Guardá y verificá. Se indexa sola en el buscador (17 resoluciones).
+
+### 22.17 Biblioteca virtual
+
+- **Archivo:** `src/pages/Secretaria/Biblioteca.jsx` (constante `ARTICULOS`, categorías en `CATEGORIAS`).
+- **Dónde aparece:** `/secretaria/biblioteca`.
+
+Pasos:
+
+1. Abrí `src/pages/Secretaria/Biblioteca.jsx`.
+2. Buscá `const ARTICULOS = [`.
+3. Editá los campos de cada artículo (título, autor, categoría, descripción, URL/PDF). En `const BASE` está la URL base de la biblioteca del sitio oficial.
+4. Para **agregar una categoría nueva**: usala en un artículo y **regenerá** la lista de categorías editando `const CATEGORIAS = [...]` (o dejá que se arme sola con `...new Set(...)` si está así configurado).
+5. Guardá y verificá.
+
+### 22.18 Galería de fotos
+
+- **Archivo:** `src/pages/Institucional/Galeria.jsx` (lista de fotos, p. ej. `FOTOS`).
+- **Dónde aparece:** `/institucional/galeria`.
+
+Pasos:
+
+1. Abrí `src/pages/Institucional/Galeria.jsx`.
+2. Buscá la lista de fotos (constante con las imágenes).
+3. Editá/agregá/quitá elementos con la **ruta de imagen** y el **texto alternativo/título**. Ejemplo de entrada: `{ src: "/img/galeria/foto1.jpg", alt: "Formación de cadetes" }`.
+4. Colocá el archivo de imagen en `public/img/galeria/` (ver §20).
+5. Guardá y verificá.
+
+### 22.19 Buscador global (entradas a mano)
+
+- **Archivo:** `src/data/buscador.js`.
+- **Dónde aparece:** buscador de la barra superior.
+
+El índice se construye **solo**: escuelas, carreras, cursos, convocatorias, noticias y resoluciones salen automáticamente desde sus datos (61 entradas en total). Solo hay que editar a mano la sección de **páginas** (11 entradas con `id: "…"` en texto).
+
+Pasos:
+
+1. Abrí `src/data/buscador.js`.
+2. Buscá la sección de las entradas con `id: "inst-…"`, `id: "sec-…"`, etc.
+3. Para **agregar el buscado a una página**: copiá una entrada y cambiá `id`, `title`, `subtitle`, `categoria`, `tipo`, `ruta` y `keywords` (palabras con las que aparecerá al buscar).
+4. Guardá y verificá escribiendo en el buscador.
+
+### 22.20 Configuración general (teléfonos, emails, URLs, redes, Analytics)
+
+- **Archivo:** `src/data/config.js`.
+- **Dónde aparece:** pie de página, contacto, accesos de sistemas, WhatsApp, redes, Analytics de todo el sitio.
+
+Pasos:
+
+1. Abrí `src/data/config.js`. Cada constante tiene su comentario explicando qué cambiar.
+2. Constantes principales:
+
+| Constante | Qué cambia |
+|---|---|
+| `TELEFONO_ISR` | teléfono que se muestra en el sitio |
+| `TELEFONO_LIMPIO` | teléfono sin espacios ni guiones (se usa para WhatsApp) |
+| `EMAIL_CONTACTO` | email de contacto general |
+| `EMAIL_PRENSA` | email de prensa |
+| `EMAIL_TITULOS` | email de títulos y certificaciones |
+| `MI_ISEP_URL` | URL de "Mi ISeP" |
+| `GESTION_URL` | URL de SIGEDI |
+| `CADETES_URL` | URL de Gestión Cadetes |
+| `WEBMAIL_URL` | URL del Webmail |
+| `WHATSAPP_URL` | se arma sola con `TELEFONO_LIMPIO` (no tocar salvo excepción) |
+| `REDES_SOCIALES` | URLs de Facebook, YouTube, Instagram y TikTok |
+| `GA_ID` | ID de Google Analytics 4 (reemplazar el placeholder `G-XXXXXXXXXX`) |
+
+3. **Importante:** si cambiás un teléfono, también actualizá `TELEFONO_LIMPIO` (sin espacios/guiones) para que el WhatsApp siga funcionando.
+4. Guardá y verificá (los cambios aplican en todo el sitio).
+
+### 22.21 Imágenes
+
+Todo el manejo de imágenes (carpetas, formato recomendado y cómo reemplazar una) está en **§20**. No olvides: las imágenes del sitio viven en `public/img/…` y se referencian con ruta `/img/…`.
+
+### 22.22 Verificación final y publicación
+
+1. **Revisá en el navegador** cada sección que tocaste (`npm run dev`).
+2. **Corré los chequeos** en la terminal (carpeta `Isep_2060_vblue`):
+   - Lint: `npm run lint`
+   - Tests: `npm test`
+   - Build: `npm run build`
+3. Si todo da **OK**, subí los cambios a GitHub:
+   - `git add -A`
+   - `git commit -m "descripción del cambio"`
+   - `git push`
+4. Esperá a que la **CI** (GitHub Actions) termine en verde. El sitio se actualiza automáticamente.
+
+> Si te traba un archivo y no sabés qué pasó, guardá una copia antes de tocar (`Ctrl+A`, copiar, pegar en un `.txt` aparte) y ante dudas deshacé con **Ctrl+Z**.

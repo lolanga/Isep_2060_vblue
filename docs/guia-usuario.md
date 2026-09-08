@@ -313,88 +313,7 @@ Footer: identidad institucional, contacto, sedes y créditos de desarrollo.
 
 ---
 
-## 19. Configuración del sitio
-
-El archivo `src/data/config.js` centraliza datos usados en múltiples partes del sitio:
-
-| Dato | Constante | Descripción |
-|---|---|---|
-| Mi ISeP | `MI_ISEP_URL` | URL del portal Mi ISeP |
-| Gestión | `GESTION_URL` | URL de SIGEDI |
-| Cadetes | `CADETES_URL` | URL de Gestión Cadetes |
-| Webmail | `WEBMAIL_URL` | URL del correo institucional |
-| Teléfono | `TELEFONO_ISR` | Número de teléfono institucional |
-| Email de contacto | `EMAIL_CONTACTO` | Correo de contacto general |
-| Email de prensa | `EMAIL_PRENSA` | Correo para prensa y difusión |
-| Email de títulos | `EMAIL_TITULOS` | Correo de la sección de títulos |
-| WhatsApp | `WHATSAPP_URL` | Enlace de WhatsApp |
-| Redes sociales | `REDES_SOCIALES` | URLs de redes sociales |
-| Analytics | `GA_ID` | ID de Google Analytics (placeholder) |
-
-> Cada constante tiene documentación explicando qué es y cómo modificarla.
-
----
-
-## 20. Imágenes del sitio
-
-Todas las imágenes del sitio se organizan en carpetas dentro de `public/img/`.
-
-### 20.1 Estructura de carpetas
-
-```
-public/img/
-├── hero/              ← Imágenes del slider principal (3 slides)
-├── noticias/          ← Imágenes de noticias
-├── testimonios/       ← Fotos de egresados (avatares)
-├── banners/           ← Banners de páginas
-└── galeria/           ← Fotos de la galería
-```
-
-### 20.2 Mapa de imágenes por sección
-
-| Sección del sitio | Carpeta | Archivo esperado | Estado actual |
-|---|---|---|---|
-| **Hero Slider — Slide 1** | `hero/` | `slide-formacion.jpg` | Placeholder (picsum) |
-| **Hero Slider — Slide 2** | `hero/` | `slide-escuelas.jpg` | Placeholder (picsum) |
-| **Hero Slider — Slide 3** | `hero/` | `slide-oferta.jpg` | Placeholder (picsum) |
-| **Banner página Noticias** | `banners/` | `hero-noticias.jpg` | Placeholder (picsum) |
-| **Testimonio 1** | `testimonios/` | `egresado-1.jpg` | Placeholder (picsum) |
-| **Testimonio 2** | `testimonios/` | `egresado-2.jpg` | Placeholder (picsum) |
-| **Testimonio 3** | `testimonios/` | `egresado-3.jpg` | Placeholder (picsum) |
-
-### 20.3 Formato recomendado
-
-| Tipo de imagen | Dimensiones | Formato | Tamaño máximo |
-|---|---|---|---|
-| Hero slider | 1600 × 700 px | JPG | < 300 KB |
-| Banners | 1600 × 600 px | JPG | < 250 KB |
-| Testimonios (avatars) | 120 × 120 px (cuadrada) | JPG | < 50 KB |
-| Noticias | 900 × 500 px | JPG o PNG | < 200 KB |
-
-### 20.4 Cómo cambiar una imagen (paso a paso)
-
-1. **Prepará la imagen** con las dimensiones recomendadas
-2. **Guardála** en la carpeta correspondiente: `public/img/hero/slide-formacion.jpg`
-3. **Abrí el archivo** que usa esa imagen (ej: `src/components/Hero.jsx`)
-4. **Reemplazá la URL** de picsum por la ruta local: `src="/img/hero/slide-formacion.jpg"`
-5. **Guardá** y verificá
-
-### 20.5 Referencia rápida
-
-| Si querés cambiar... | Abrí este archivo | Reemplazá esta línea |
-|---|---|---|
-| Slide 1 del hero | `src/components/Hero.jsx:18` | `src="https://picsum.photos/seed/isep-formacion/1600/700"` |
-| Slide 2 del hero | `src/components/Hero.jsx:26` | `src="https://picsum.photos/seed/isep-escuelas/1600/700"` |
-| Slide 3 del hero | `src/components/Hero.jsx:34` | `src="https://picsum.photos/seed/isep-oferta/1600/700"` |
-| Banner de Noticias | `src/pages/Noticias.jsx:63` | `src="https://picsum.photos/seed/isephero/1600/600"` |
-| Foto del egresado 1 | `src/components/Testimonios.jsx:13` | `src="https://picsum.photos/seed/eg1/120/120"` |
-| Foto del egresado 2 | `src/components/Testimonios.jsx:20` | `src="https://picsum.photos/seed/eg2/120/120"` |
-| Foto del egresado 3 | `src/components/Testimonios.jsx:27` | `src="https://picsum.photos/seed/eg3/120/120"` |
-| Agregar imagen a noticia | `src/data/noticias.js` | Cambiar `img: null` por `img: "/img/noticias/tu-archivo.jpg"` |
-
----
-
-## 21. Problemas comunes
+## 19. Problemas comunes
 
 | Problema | Solución |
 |---|---|
@@ -410,56 +329,8 @@ public/img/
 | Una noticia no se abre | Verificá que la URL sea `/noticias/{id}` con id válido |
 | No hay noticias en una categoría | La categoría puede no tener publicaciones aún |
 | Una noticia no tiene imagen | Es normal: si `img` es `null`, se muestra un placeholder con ícono |
-| Quiero cambiar una imagen del slider | Ver sección 20.4 |
-| Quiero ejecutar los tests | `npm run test` en la terminal |
-| Quiero cambiar Analytics | Editá `src/data/config.js` → `GA_ID` (también en `Analytics.jsx` y `analytics.js`) |
 | Quiero instalar como PWA | "Agregar a pantalla de inicio" en el navegador |
 | Quiero verificar JSON-LD | DevTools (F12) → Elements → buscá `<script type="application/ld+json">` |
 | Quiero verificar sitemap | Abrí `/sitemap.xml` en el navegador (22 URLs) |
 | Ruta inexistente | Se muestra NotFound (404) con enlace al inicio |
 | Navegación con lector de pantalla | Usá `SkipToContent` (Tab al inicio), navegá con Tab/Shift+Tab |
-| Quiero cambiar un teléfono | Editá `src/data/config.js` → `TELEFONO_ISR` |
-| Quiero publicar una noticia | Seguí la guía paso a paso de `funcional.md` §18 |
-
----
-
-## 22. Workflow: agregar un slide al Hero
-
-### Paso 1 — Imagen
-
-| Tipo | Ruta | Formato recomendado |
-|---|---|---|
-| Imagen del slide | `public/img/hero/` o URL externa | 1600×700px, JPG/WebP |
-
-Para imagen local: `public/img/hero/mi-slide.jpg` → se usa `/img/hero/mi-slide.jpg`
-
-### Paso 2 — Agregar en `src/components/Hero.jsx` (array `SLIDES`)
-
-```js
-{
-  id: 4,  // siguiente incremental
-  badge: "Nuevo Curso",
-  title: "Capacitación en ",
-  highlight: "Seguridad Vial",
-  description: "Curso intensivo para personal policial en actividad.",
-  img: "/img/hero/mi-slide.jpg",  // o picsum: "https://picsum.photos/seed/mi-slide/1600/700"
-}
-```
-
-### Campos
-
-| Campo | Uso | Ejemplo |
-|---|---|---|
-| `badge` | Etiqueta small sobre el título | `"Excelencia Académica"` |
-| `title` | Texto antes del span (parte normal) | `"Formación en "` |
-| `highlight` | Texto dentro del `<span>` (color primario) | `"Seguridad Pública"` |
-| `description` | Párrafo debajo del título | `"Curso intensivo..."` |
-| `img` | Imagen de fondo (1600×700) | `"/img/hero/slide.jpg"` |
-
-### Paso 3 — Build
-
-```
-npx vite build
-```
-
-El slide se agrega automáticamente al slider (rotación cada 6s, pausa al hover, flechas + dots de navegación).
