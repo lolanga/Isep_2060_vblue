@@ -17,7 +17,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 
 | Audiencia | Necesidad principal | Contenido relevante |
 |---|---|---|
-| **Postulantes** | Conocer requisitos, convocatorias, proceso y FAQ | Ingreso (5 páginas) + Landing Convocatorias con contenido real |
+| **Postulantes** | Conocer requisitos, convocatorias, proceso y FAQ | Ingreso (6 páginas) + Landing de Ingreso + Landing Convocatorias con contenido real |
 | **Personal en actividad** | Trámites, correo, sistemas internos | Mi ISeP, SIGEDI, Gestión Cadetes, Webmail |
 | **Público general** | Información institucional y actualidad | Institucional, Noticias (con detalle), Biblioteca, Galería |
 | **Profesionales de la educación** | Oferta académica y cursos | Formación, Carreras, Cursos |
@@ -32,16 +32,17 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 ├──────────┬───────────────────┬──────────────┬────────────────┤
 │INSTITUC. │    FORMACIÓN       │   INGRESO    │ ÚLTIMAS NOTICIAS│
 ├──────────┼───────────────────┼──────────────┼────────────────┤
-│ El ISeP  │ Oferta Académica  │Convocatorias │                │
-│ Autori-  │ Escuelas ▾        │ vigentes     │                │
-│ dades    │  · Policía        │Próximas      │                │
-│ Organi-  │  · Especialidades │ convocatorias│                │
-│ zación   │  · Superior       │Requisitos    │                │
-│ Normativa│  · Investigaciones│Proceso de    │                │
-│ y Resol. │  · Ed. a Distancia│ ingreso      │                │
-│ Sedes y  │ Cursos            │Preguntas     │                │
-│ Contacto │ Títulos y Cert.   │ frecuentes   │                │
-│ Galería  │ Biblioteca Virtual│              │                │
+│ El ISeP  │ Oferta Académica  │Inicio de     │                │
+│ Autori-  │ Escuelas ▾        │ ingreso      │                │
+│ dades    │  · Policía        │Convocatorias │                │
+│ Organi-  │  · Especialidades │ vigentes     │                │
+│ zación   │  · Superior       │Próximas      │                │
+│ Normativa│  · Investigaciones│ convocatorias│                │
+│ y Resol. │  · Ed. a Distancia│Requisitos    │                │
+│ Sedes y  │ Cursos            │Proceso de    │                │
+│ Contacto │ Títulos y Cert.   │ ingreso      │                │
+│ Galería  │ Biblioteca Virtual│Preguntas     │                │
+│          │                   │ frecuentes   │                │
 └──────────┴───────────────────┴──────────────┴────────────────┘
 ```
 
@@ -50,7 +51,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 - **Logo ISeP** (SVG escudo) + texto "Instituto de Seguridad Pública" — enlazable al inicio.
 - **Institucional** → dropdown con ícono "account_balance": El ISeP, Autoridades, Organización, Oferta Educativa, Resoluciones, Sedes y Contacto, Galería de Fotos.
 - **Formación** → dropdown con ícono "school": Escuelas (submenú de 5 con escudos: Policía, Especialidades, Superior, Investigaciones, EaD), Cursos.
-- **Ingreso** → dropdown con ícono "login": Proceso de Selección, Requisitos, Próximas Convocatorias, FAQ.
+- **Ingreso** → dropdown con ícono "login": **Inicio de ingreso** (landing), Proceso de Selección, Requisitos, Próximas Convocatorias, FAQ.
 - **Secretaría** → dropdown: Títulos y Certificaciones, Biblioteca Virtual, Cursos de Capacitación.
 - **Noticias** → link directo a `/noticias` con ícono "newspaper".
 - **Mi ISeP** → botón siempre visible (desktop y móvil), enlace externo a `mi.isepsantafe.edu.ar`.
@@ -59,7 +60,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 
 **Mobile:** hamburguesa a la izquierda, logo al centro, Mi ISeP + buscador a la derecha.
 
-### 3.2 Rutas existentes (26 rutas)
+### 3.2 Rutas existentes (27 rutas)
 
 | Ruta | Página | Estado |
 |---|---|---|
@@ -79,6 +80,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/escuelas/especialidades` | Escuela de Especialidades (datos oficiales) | Implementada |
 | `/escuelas/investigaciones` | Escuela de Investigaciones (datos oficiales) | Implementada |
 | `/escuelas/educacion-a-distancia` | Educación a Distancia | Implementada |
+| `/ingreso` | Landing de Ingreso (pasos, cronograma 2027-2028, convocatorias, requisitos, FAQ, anti-estafa) | Implementada |
 | `/ingreso/proceso` | Proceso de selección | Implementada |
 | `/ingreso/requisitos` | Requisitos | Implementada |
 | `/ingreso/convocatorias` | Landing Convocatorias (contenido real Esc. Policía 2027–2028) | Implementada |
@@ -212,7 +214,19 @@ Grid de tarjetas mejoradas:
 
 ## 6. Ingreso
 
-### 6.1 Landing de Convocatorias (`/ingreso/convocatorias`)
+### 6.1 Landing de Ingreso (`/ingreso`)
+
+Punto de entrada único para el postulante. **Resume todo el trayecto en una pantalla:**
+- **Hero** con badge "Ciclo Lectivo 2027–2028" y CTAs a Pre-Inscripción Online (`/ingreso/convocatorias`) y Requisitos (`/ingreso/requisitos`)
+- **Alerta anti-estafa** — "el trámite es gratuito y personal; ningún gestor ni intermediario interviene" con contacto de prensa
+- **Pasos del proceso** (4 tarjetas): crear usuario → completar inscripción → superar etapas → incorporación
+- **Cronograma 2027–2028** (timeline desde `data/institucional.js` → `cronograma`): pre-inscripción (en curso) → listado de presentación → exámenes premédico/psicológico/intelectual/físico/socioambiental → propedéutico → incorporación, cada etapa con estado y fecha
+- **Convocatorias abiertas** (cards desde `convocatorias`)
+- **Requisitos principales** (top 5) con enlace al listado completo
+- **FAQ destacadas** (3) con enlace al FAQ completo
+- **CTA final** a MI ISEP y consultas por email
+
+### 6.2 Landing de Convocatorias (`/ingreso/convocatorias`)
 
 **Contenido real** del proceso de selección — Escuela de Policía — Ciclo 2027–2028:
 - **Hero con countdown** y enlace directo a MI ISEP
@@ -227,19 +241,19 @@ Grid de tarjetas mejoradas:
 - **Consultas:** prensaydifusion@isepsantafe.edu.ar
 - **Link al listado de presentación** (PDF externo)
 
-### 6.2 Próximas Convocatorias (`/ingreso/proximas-convocatorias`)
+### 6.3 Próximas Convocatorias (`/ingreso/proximas-convocatorias`)
 
 Aperturas para el ciclo 2027-2028.
 
-### 6.3 Requisitos (`/ingreso/requisitos`)
+### 6.4 Requisitos (`/ingreso/requisitos`)
 
 10 requisitos reales del sitio + documentación requerida + formularios obligatorios.
 
-### 6.4 Proceso de Selección (`/ingreso/proceso`)
+### 6.5 Proceso de Selección (`/ingreso/proceso`)
 
 Pasos detallados del proceso de ingreso.
 
-### 6.5 Preguntas Frecuentes (`/ingreso/faq`)
+### 6.6 Preguntas Frecuentes (`/ingreso/faq`)
 
 12 preguntas y respuestas en formato acordeón.
 
@@ -274,7 +288,7 @@ Pasos detallados del proceso de ingreso.
 
 - **Ubicación:** ícono de lupa en el navbar, al lado de "Mi ISeP".
 - **Debounce:** 300ms para evitar búsquedas excesivas.
-- **Índice:** 60 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 15 noticias + 17 normativa + 10 páginas).
+- **Índice:** 61 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 15 noticias + 17 normativa + 11 páginas).
 - **Resultados agrupados por tipo:** Escuelas → Carreras → Cursos → Convocatorias → Noticias → Normativa → Páginas → Misceláneas.
 - **Navegación por teclado:** ↑↓, Enter, Escape.
 - **Contador de resultados** y hints de teclado.
@@ -303,7 +317,7 @@ Pasos detallados del proceso de ingreso.
 ## 11. Mapa del Sitio (`/mapa-del-sitio`)
 
 Guía visual de todas las rutas del sitio organizadas por sección:
-- Arbol jerárquico con todas las 26 rutas
+- Arbol jerárquico con todas las 27 rutas
 - Enlaces directos a cada página
 - Navegación visual para encontrar rápidamente cualquier contenido
 
@@ -379,13 +393,14 @@ Carrusel de 3 egresados con foto, nombre, promoción y texto. Flechas y dots.
 ### 17.1 Testing automatizado
 
 Suite de tests con **Vitest** + **React Testing Library** + **jsdom**:
-- 33 tests en 7 archivos, cubriendo tanto la capa de datos como componentes UI:
-- `datos.test.js` (6): valida estructura de noticias (IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como `null`)
+- 44 tests en 8 archivos, cubriendo tanto la capa de datos como componentes UI:
+- `datos.test.js` (9): valida estructura de noticias (IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como `null`) + cronograma de ingreso (etapas con estado válido)
 - `institucional.test.js` (7): valida estructura de escuelas, carreras, cursos y convocatorias
 - `buscador.test.js` (5): valida funcionalidad de búsqueda y resultados agrupados
-- `navbar.test.jsx` (5): navegación desktop/móvil y enlaces privados
+- `navbar.test.jsx` (6): navegación desktop/móvil, enlaces privados y dropdown Ingreso (primer destino `/ingreso`)
 - `hero.test.jsx` (5): render de slides, CTAs y navegación
 - `news.test.jsx` (2): render de noticias destacadas con y sin imagen
+- `ingreso.test.jsx` (7): render de la landing `/ingreso` (hero, anti-estafa, pasos, cronograma, convocatorias, FAQ, enlaces)
 - `sharebutton.test.jsx` (3): copiar al portapapeles, Web Share API y feedback "¡Copiado!"
 - Tests ejecutados automáticamente en CI (GitHub Actions) en cada push
 - Ejecutar localmente con `npm run test`

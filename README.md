@@ -28,11 +28,11 @@ src/
 │                 Testimonios, ShareButton, Placeholder, Skeleton, SkipToContent,
 │                 ErrorBoundary, SEO, Analytics
 ├── data/         config.js (configuración centralizada), institucional.js
-│                 (escuelas, carreras, cursos, convocatorias, FAQ), noticias.js,
+│                 (escuelas, carreras, cursos, convocatorias, cronograma, FAQ), noticias.js,
 │                 normativa.js, buscador.js (índice de búsqueda)
 ├── services/     api.js (capa mock→backend-ready)
 ├── utils/        analytics.js (GA4)
-├── pages/        Home, Noticias, Institucional (8), Escuelas (5), Ingreso (5),
+├── pages/        Home, Noticias, Institucional (8), Escuelas (5), Ingreso (6),
 │                 Secretaria (3), NotFound
 └── styles/       variables, base, navbar, hero, news, noticias, schools-cta,
                   new-features, oferta, pages, footer, responsive
@@ -81,6 +81,7 @@ npm run test    # tests (Vitest + React Testing Library)
 - `/institucional/oferta-educativa` — Oferta Educativa (tabs: Carreras, Cursos, Convocatorias)
 - `/institucional/galeria` — Galería de fotos con filtros y lightbox
 - `/escuelas/*` — 5 páginas de escuela con plantilla común (Logo, Presentación, Información, Carreras, Cursos, Noticias, Contacto)
+- `/ingreso` — Landing de ingreso (pasos, cronograma 2027–2028, convocatorias, requisitos, FAQ, aviso anti-estafa)
 - `/ingreso/*` — Convocatorias vigentes (contenido real Esc. Policía 2027–2028), Próximas, Requisitos (10 items), Proceso y Preguntas frecuentes
 - `/secretaria/titulos` — Títulos y Certificaciones (consulta por DNI, proceso 3 pasos, descargas)
 - `/secretaria/biblioteca` — Biblioteca Virtual (22 artículos reales con links PDF)

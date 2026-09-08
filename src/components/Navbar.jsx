@@ -41,6 +41,7 @@ const formacion = [
 ];
 
 const ingreso = [
+  { label: "Inicio de ingreso",         href: "/ingreso",                         icon: "login" },
   { label: "Convocatorias vigentes",  href: "/ingreso/convocatorias",            icon: "campaign" },
   { label: "Próximas convocatorias",  href: "/ingreso/proximas-convocatorias",   icon: "event_upcoming" },
   { label: "Requisitos",              href: "/ingreso/requisitos",               icon: "checklist" },

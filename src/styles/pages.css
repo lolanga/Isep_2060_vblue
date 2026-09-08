@@ -3017,3 +3017,141 @@
   .noticia-body { padding: 1.5rem 1rem; }
   .testimonios-card { padding: 1.5rem; }
 }
+
+/* ── Landing Ingreso `/ingreso` ── */
+.ingreso-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ingreso-main .conv-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ingreso-main .conv-section {
+  gap: 1rem;
+}
+
+.ingreso-step-icon {
+  font-size: 1.6rem;
+  margin-top: 0.5rem;
+}
+
+/* Timeline del cronograma */
+.ingreso-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.ingreso-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: var(--primary-soft, #bcd6ea);
+}
+
+.ingreso-timeline__item {
+  position: relative;
+}
+
+.ingreso-timeline__dot {
+  position: absolute;
+  left: -1.75rem;
+  top: 1rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: var(--primary, #00254d);
+  border: 3px solid var(--surface, #ffffff);
+  box-shadow: 0 0 0 2px var(--primary-soft, #bcd6ea);
+}
+
+.ingreso-timeline__item--en-curso .ingreso-timeline__dot {
+  background: var(--success, #15803d);
+}
+
+.ingreso-timeline__card {
+  padding: 1rem 1.25rem;
+}
+
+.ingreso-timeline__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.ingreso-timeline__fecha {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--slate-600, #475569);
+  margin: 0.35rem 0 0;
+}
+
+.ingreso-cal-icon {
+  font-size: 1rem;
+  color: var(--primary, #00254d);
+}
+
+/* Badge de estado */
+.ingreso-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--primary-soft, #bcd6ea);
+  color: var(--primary, #00254d);
+  white-space: nowrap;
+}
+
+/* Cards de convocatorias */
+.ingreso-conv-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.ingreso-conv-icon {
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  background: var(--primary-gradient, linear-gradient(135deg, #0b3d91, #1e5fb4));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+}
+
+.ingreso-conv-icon__img {
+  font-size: 1.4rem;
+}
+
+@media (max-width: 768px) {
+  .ingreso-conv-card {
+    flex-direction: column;
+  }
+
+  .ingreso-timeline__head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

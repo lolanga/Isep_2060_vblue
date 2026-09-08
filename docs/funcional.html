@@ -61,7 +61,7 @@
     <h2>2. Audiencias</h2>
     <table>
       <tr><th>Audiencia</th><th>Necesidad principal</th><th>Contenido relevante</th></tr>
-      <tr><td><strong>Postulantes</strong></td><td>Requisitos, convocatorias, proceso y FAQ</td><td>Ingreso (5 páginas) + Landing Convocatorias con contenido real</td></tr>
+      <tr><td><strong>Postulantes</strong></td><td>Requisitos, convocatorias, proceso y FAQ</td><td>Ingreso (6 páginas) + Landing de Ingreso + Landing Convocatorias con contenido real</td></tr>
       <tr><td><strong>Personal en actividad</strong></td><td>Trámites, correo, sistemas internos</td><td>Mi ISeP, SIGEDI, Gestión Cadetes, Webmail</td></tr>
       <tr><td><strong>Público general</strong></td><td>Información institucional y actualidad</td><td>Institucional, Noticias (con detalle), Biblioteca, Galería</td></tr>
       <tr><td><strong>Profesionales de la educación</strong></td><td>Oferta académica y cursos</td><td>Formación, Carreras, Cursos</td></tr>
@@ -72,7 +72,7 @@
       <tr><th>Menú</th><th>Ítems</th></tr>
       <tr><td><strong>Institucional</strong></td><td>El ISeP · Autoridades · Organización · Oferta Educativa · Resoluciones · Sedes y Contacto · Galería de Fotos</td></tr>
       <tr><td><strong>Formación</strong></td><td>Escuelas (submenú: Policía, Especialidades, Superior, Investigaciones, EaD) · Cursos</td></tr>
-      <tr><td><strong>Ingreso</strong></td><td>Proceso de Selección · Requisitos · Próximas Convocatorias · FAQ</td></tr>
+      <tr><td><strong>Ingreso</strong></td><td>Inicio de Ingreso (landing) · Proceso de Selección · Requisitos · Próximas Convocatorias · FAQ</td></tr>
       <tr><td><strong>Secretaría</strong></td><td>Títulos y Certificaciones · Biblioteca Virtual · Cursos de Capacitación</td></tr>
       <tr><td><strong>Noticias</strong></td><td>Link directo a <code>/noticias</code></td></tr>
       <tr><td><strong>Mi ISeP</strong></td><td>Botón siempre visible (desktop y móvil), enlace externo</td></tr>
@@ -81,7 +81,7 @@
     </table>
     <div class="note"><strong>Mobile:</strong> hamburguesa a la izquierda, logo al centro, Mi ISeP + buscador a la derecha.</div>
 
-    <h3>Rutas existentes (26 rutas)</h3>
+    <h3>Rutas existentes (27 rutas)</h3>
     <table>
       <tr><th>Ruta</th><th>Página</th><th>Estado</th></tr>
       <tr><td><code>/</code></td><td>Home (7 secciones)</td><td><span class="badge ok">Implementada</span></td></tr>
@@ -100,6 +100,7 @@
       <tr><td><code>/escuelas/especialidades</code></td><td>Escuela de Especialidades</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/escuelas/investigaciones</code></td><td>Escuela de Investigaciones</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/escuelas/educacion-a-distancia</code></td><td>Educación a Distancia</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/ingreso</code></td><td>Landing de Ingreso (pasos, cronograma 2027-2028, convocatorias, requisitos, FAQ, anti-estafa)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/ingreso/proceso</code></td><td>Proceso de selección</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/ingreso/requisitos</code></td><td>Requisitos</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/ingreso/convocatorias</code></td><td>Convocatorias (contenido real)</td><td><span class="badge ok">Implementada</span></td></tr>
@@ -166,6 +167,17 @@
     <div class="note"><strong>Solo Escuela de Policía</strong> incluye la sección "Carreras". Las demás escuelas no muestran esta sección.</div>
 
     <h2>6. Ingreso</h2>
+    <h3>Landing de Ingreso (<code>/ingreso</code>)</h3>
+    <p>Punto de entrada único del postulante. Resume todo el trayecto en una pantalla:</p>
+    <ul>
+      <li>Hero con badge "Ciclo Lectivo 2027–2028" + CTAs a Pre-Inscripción Online y Requisitos</li>
+      <li>Alerta anti-estafa: trámite gratuito y personal, sin gestores ni intermediarios</li>
+      <li>Pasos del proceso (4 tarjetas): crear usuario → inscripción → etapas → incorporación</li>
+      <li>Cronograma 2027–2028 (timeline): pre-inscripción (en curso) → listado → exámenes → propedéutico → incorporación, con estado y fecha por etapa</li>
+      <li>Convocatorias abiertas, requisitos top 5, FAQ destacadas (3)</li>
+      <li>CTA final a MI ISEP + consultas por email</li>
+    </ul>
+
     <h3>Landing de Convocatorias (contenido real)</h3>
     <p>Proceso de selección — Escuela de Policía — Ciclo 2027–2028:</p>
     <ul>
@@ -184,6 +196,7 @@
     <h3>Otras páginas de ingreso</h3>
     <table>
       <tr><th>Página</th><th>Contenido</th></tr>
+      <tr><td>Convocatorias vigentes</td><td>Landing Convocatorias (contenido real, Esc. Policía 2027-2028)</td></tr>
       <tr><td>Próximas convocatorias</td><td>Aperturas ciclo 2027-2028</td></tr>
       <tr><td>Requisitos</td><td>10 requisitos reales + documentación + formularios</td></tr>
       <tr><td>Proceso de selección</td><td>Pasos detallados</td></tr>
@@ -208,7 +221,7 @@
     <ul>
       <li><strong>Ubicación:</strong> ícono de lupa en el navbar.</li>
       <li><strong>Debounce:</strong> 300ms.</li>
-      <li><strong>Índice:</strong> 60 entradas.</li>
+      <li><strong>Índice:</strong> 61 entradas.</li>
       <li><strong>Resultados agrupados por tipo.</strong></li>
       <li><strong>Navegación por teclado:</strong> ↑↓, Enter, Escape.</li>
       <li><strong>Enter</strong> en el campo abre el primer resultado.</li>
@@ -221,7 +234,7 @@
     <p>2 sedes con Google Maps embebido: D.Z.S – Rosario (Alem 2050, tel 341-4728526) y DZCN – Recreo (RN11 km 482, tel 342-4815570).</p>
 
     <h2>11. Mapa del Sitio</h2>
-    <p>Guía visual de todas las rutas del sitio organizadas por sección. Arbol jerárquico con las 26 rutas y enlaces directos.</p>
+    <p>Guía visual de todas las rutas del sitio organizadas por sección. Arbol jerárquico con las 27 rutas y enlaces directos.</p>
 
     <h2>12. Accesos flotantes y redes</h2>
     <h3>WhatsApp</h3>
@@ -262,15 +275,16 @@
     <p><code>npm install</code> → <code>npm run dev</code> (localhost:5173). Build: <code>npm run build</code> → <code>npm run preview</code>. Lint: <code>npm run lint</code>. Tests: <code>npm run test</code>.</p>
 
     <h3>17.1 Testing automatizado</h3>
-    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. <strong>33 tests en 7 archivos</strong> (capa de datos + componentes UI):</p>
+    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. <strong>44 tests en 8 archivos</strong> (capa de datos + componentes UI):</p>
     <table>
       <tr><th>Archivo</th><th>Qué valida</th></tr>
-      <tr><td><code>datos.test.js</code></td><td>Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como <code>null</code> (6)</td></tr>
+      <tr><td><code>datos.test.js</code></td><td>Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como <code>null</code> + cronograma de ingreso (9)</td></tr>
       <tr><td><code>institucional.test.js</code></td><td>Estructura de escuelas, carreras, cursos y convocatorias (7)</td></tr>
       <tr><td><code>buscador.test.js</code></td><td>Funcionalidad de búsqueda y resultados agrupados (5)</td></tr>
-      <tr><td><code>navbar.test.jsx</code></td><td>Navegación desktop/móvil y enlaces (5)</td></tr>
+      <tr><td><code>navbar.test.jsx</code></td><td>Navegación desktop/móvil, enlaces y dropdown Ingreso (6)</td></tr>
       <tr><td><code>hero.test.jsx</code></td><td>Render de slides, CTAs y navegación (5)</td></tr>
       <tr><td><code>news.test.jsx</code></td><td>Noticia destacada y sin imagen (2)</td></tr>
+      <tr><td><code>ingreso.test.jsx</code></td><td>Render de la landing <code>/ingreso</code>: hero, anti-estafa, pasos, cronograma, convocatorias, FAQ, enlaces (7)</td></tr>
       <tr><td><code>sharebutton.test.jsx</code></td><td>Copiar, Web Share API, feedback "¡Copiado!" (3)</td></tr>
     </table>
 

@@ -68,7 +68,7 @@
     <h2>2. Estructura de directorios</h2>
     <pre>src/
 ├── main.jsx                 # Entry point + imports CSS
-├── App.jsx                  # Router principal (26 rutas) + ErrorBoundary + NotFound
+├── App.jsx                  # Router principal (27 rutas) + ErrorBoundary + NotFound
 ├── assets/                  # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
 │   ├── Navbar.jsx           # Nav + SearchBox + hamburger + nav-is-active
@@ -96,21 +96,22 @@
 │   └── Analytics.jsx        # GA4 (gtag.js)
 ├── data/
 │   ├── config.js            # Config centralizada
-│   ├── institucional.js     # Escuelas, carreras, cursos, convocatorias, FAQ
+│   ├── institucional.js     # Escuelas, carreras, cursos, convocatorias, cronograma, FAQ
 │   ├── noticias.js          # 15 noticias (admite img: null)
 │   ├── normativa.js         # 17 resoluciones
-│   └── buscador.js          # 60 entradas + buscar/buscarAgrupado
+│   └── buscador.js          # 61 entradas + buscar/buscarAgrupado
 ├── pages/
 │   ├── Home.jsx             # 7 secciones + Trámites y Sistemas
 │   ├── Noticias.jsx         # Filtro + paginación + filtro escuela
 │   ├── NoticiaDetalle.jsx   # Detalle noticia
-│   ├── MapaDelSitio.jsx     # Mapa visual 26 rutas
+│   ├── MapaDelSitio.jsx     # Mapa visual 27 rutas
 │   ├── Institucional/       # ElISeP, Autoridades, Organizacion,
 │   │                        # OfertaEducativa, Carrera, Resoluciones,
 │   │                        # SedesContacto (Maps), Galeria
 │   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
-│   ├── Ingreso/             # Convocatorias, ProximasConvocatorias,
-│   │                        # Requisitos, Proceso, Faq
+│   ├── Ingreso/             # Ingreso (landing), Convocatorias,
+│   │                        # ProximasConvocatorias, Requisitos,
+│   │                        # Proceso, Faq
 │   └── Secretaria/          # Titulos, Biblioteca (22), Cursos
 ├── services/
 │   └── api.js               # Mock → backend-ready
@@ -168,17 +169,17 @@
     </table>
     <p><strong>Nav responsive:</strong> desktop con escudo + dropdowns; tablet solo escudo; móvil hamburger. La <strong>sección activa</strong> se resalta con <code>nav-is-active</code> (vía <code>useLocation</code>) en desktop y móvil.</p>
 
-    <h2>5. Rutas (App.jsx) — 26 rutas</h2>
+    <h2>5. Rutas (App.jsx) — 27 rutas</h2>
     <p>Todas las rutas usan <code>React.lazy()</code> + <code>Suspense</code> para code-splitting. Navbar, Footer, FloatWhatsApp y ScrollToTop son globales.</p>
 
     <h2>6. Datos (mock)</h2>
     <table>
       <tr><th>Archivo</th><th>Contenido</th></tr>
-      <tr><td><code>institucional.js</code></td><td>5 escuelas, 4 carreras, 6+ cursos, convocatorias, 12 FAQ, helpers</td></tr>
+      <tr><td><code>institucional.js</code></td><td>5 escuelas, 4 carreras, 6+ cursos, convocatorias, cronograma, 12 FAQ, helpers</td></tr>
       <tr><td><code>noticias.js</code></td><td>15 noticias (admite <code>img: null</code>)</td></tr>
       <tr><td><code>normativa.js</code></td><td>17 resoluciones descargables</td></tr>
       <tr><td><code>Galeria.jsx</code></td><td>Fotos hardcodeadas en el componente (categorías Eventos/Formación/Instalaciones/Graduaciones). No existe <code>galeria.js</code></td></tr>
-      <tr><td><code>buscador.js</code></td><td>60 entradas + <code>buscar()</code> + <code>buscarAgrupado()</code></td></tr>
+      <tr><td><code>buscador.js</code></td><td>61 entradas + <code>buscar()</code> + <code>buscarAgrupado()</code></td></tr>
       <tr><td><code>config.js</code></td><td>MI_ISEP_URL, GESTION_URL, CADETES_URL, WEBMAIL_URL, emails, teléfonos, GA_ID, redes</td></tr>
     </table>
 
@@ -291,15 +292,16 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
     <p>Cada ruta se carga bajo demanda con <code>React.lazy()</code> + <code>Suspense</code>. 96 módulos totales.</p>
 
     <h3>12.2 Testing</h3>
-    <p><strong>33 tests en 7 archivos</strong> con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. Configuración en <code>vitest.config.js</code> (ambiente <code>jsdom</code>, globals, <code>setup.js</code> y <code>css: false</code>):</p>
+    <p><strong>44 tests en 8 archivos</strong> con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. Configuración en <code>vitest.config.js</code> (ambiente <code>jsdom</code>, globals, <code>setup.js</code> y <code>css: false</code>):</p>
     <table>
       <tr><th>Archivo</th><th>Qué valida</th><th>Tests</th></tr>
-      <tr><td><code>datos.test.js</code></td><td>IDs únicos, campos requeridos, categorías válidas, imágenes <code>null</code></td><td>6</td></tr>
+      <tr><td><code>datos.test.js</code></td><td>IDs únicos, campos requeridos, categorías válidas, imágenes <code>null</code>, cronograma</td><td>9</td></tr>
       <tr><td><code>institucional.test.js</code></td><td>Escuelas, carreras, cursos, convocatorias</td><td>7</td></tr>
       <tr><td><code>buscador.test.js</code></td><td>Búsqueda y resultados agrupados</td><td>5</td></tr>
-      <tr><td><code>navbar.test.jsx</code></td><td>Navegación desktop/móvil, enlaces</td><td>5</td></tr>
+      <tr><td><code>navbar.test.jsx</code></td><td>Navegación desktop/móvil, enlaces, dropdown Ingreso</td><td>6</td></tr>
       <tr><td><code>hero.test.jsx</code></td><td>Render de slides, CTAs, navegación</td><td>5</td></tr>
       <tr><td><code>news.test.jsx</code></td><td>Noticia destacada y sin imagen</td><td>2</td></tr>
+      <tr><td><code>ingreso.test.jsx</code></td><td>Render de la landing <code>/ingreso</code> (hero, anti-estafa, cronograma, enlaces)</td><td>7</td></tr>
       <tr><td><code>sharebutton.test.jsx</code></td><td>Copiar, Web Share API, feedback "¡Copiado!"</td><td>3</td></tr>
     </table>
 

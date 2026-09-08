@@ -50,6 +50,15 @@ describe("Navbar", () => {
     expect(hamburguesa).toHaveClass("hamburger--open");
   });
 
+  it("muestra 'Inicio de ingreso' como primer destino del dropdown Ingreso", () => {
+    const { container } = renderNavbar();
+    const navLinks = container.querySelector(".nav-links");
+    fireEvent.click(within(navLinks).getByRole("button", { name: /ingreso/i }));
+    const firstItem = within(navLinks).getByText("Inicio de ingreso");
+    expect(firstItem).toBeInTheDocument();
+    expect(firstItem.closest("a")).toHaveAttribute("href", "/ingreso");
+  });
+
   it("marca la sección Institucional como activa en /institucional/autoridades", () => {
     const { container } = renderNavbar("/institucional/autoridades");
     const navLinks = container.querySelector(".nav-links");

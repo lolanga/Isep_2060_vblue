@@ -14,7 +14,7 @@ La barra de navegación superior (fija al hacer scroll) organiza todo en menús 
 |---|---|
 | **Institucional** | El ISeP, Autoridades, Organización, Oferta Educativa, Resoluciones, Sedes y Contacto, Galería de Fotos |
 | **Formación** | Escuelas (5 con escudos), Cursos de Capacitación |
-| **Ingreso** | Proceso de Selección, Requisitos, Próximas Convocatorias, FAQ |
+| **Ingreso** | Inicio de Ingreso (landing), Proceso de Selección, Requisitos, Próximas Convocatorias, FAQ |
 | **Secretaría** | Títulos y Certificaciones, Biblioteca Virtual, Cursos |
 | **Noticias** | Acceso directo al listado de noticias |
 | **Mi ISeP** | Botón siempre visible, enlace externo a `mi.isepsantafe.edu.ar` |
@@ -134,7 +134,15 @@ Cada escuela: escudo, presentación (datos oficiales), información, contacto co
 
 ## 7. Ingreso (postulantes)
 
-### 7.1 Convocatorias — Contenido real
+### 7.1 Inicio de Ingreso (landing `/ingreso`)
+Resumen completo del camino para convertirte en Cadete, en una pantalla:
+- Pasos del proceso (4 tarjetas): crear usuario → completar inscripción → superar etapas → incorporación
+- **Cronograma 2027–2028** con el estado de cada etapa (qué está en curso y qué viene)
+- Convocatorias abiertas, requisitos principales y preguntas frecuentes
+- Alerta "trámite gratuito y personal": ningún gestor ni intermediario realiza el trámite
+- Botón para inscribirte en MI ISEP
+
+### 7.2 Convocatorias — Contenido real
 Landing con **proceso de selección de la Escuela de Policía Ciclo 2027–2028**:
 - Hero con countdown y enlace a MI ISEP
 - Alerta de presentación (09:00 hs, tolerancia 20 min)
@@ -148,10 +156,10 @@ Landing con **proceso de selección de la Escuela de Policía Ciclo 2027–2028*
 - Consultas: prensaydifusion@isepsantafe.edu.ar
 - Link al listado de presentación (PDF)
 
-### 7.2 Próximas convocatorias
+### 7.3 Próximas convocatorias
 Aperturas para el ciclo 2027-2028.
 
-### 7.3 Requisitos
+### 7.4 Requisitos
 10 requisitos reales del sitio + documentación requerida + formularios obligatorios:
 - Ser argentino
 - Tener entre 18 y 30 años
@@ -160,10 +168,10 @@ Aperturas para el ciclo 2027-2028.
 - Antecedentes penales y judiciales
 - Y otros...
 
-### 7.4 Proceso de selección
+### 7.5 Proceso de selección
 Pasos detallados del proceso de ingreso.
 
-### 7.5 Preguntas frecuentes
+### 7.6 Preguntas frecuentes
 12 preguntas en acordeón.
 
 ---
@@ -268,7 +276,7 @@ Página dedicada para ver imágenes del ISeP:
 
 Guía visual de todas las páginas del sitio:
 - **Ubicación:** `/mapa-del-sitio`.
-- Arbol jerárquico con las 26 rutas disponibles.
+- Arbol jerárquico con las 27 rutas disponibles.
 - Enlaces directos a cada página.
 - Útil para encontrar rápidamente cualquier contenido.
 

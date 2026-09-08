@@ -68,6 +68,7 @@ const EscuelaInvestigaciones = lazy(() => import("./pages/Escuelas/Investigacion
 const EducacionDistancia = lazy(() => import("./pages/Escuelas/EducacionDistancia"));
 
 // ── Ingreso ──
+const Ingreso = lazy(() => import("./pages/Ingreso/Ingreso"));
 const Convocatorias = lazy(() => import("./pages/Ingreso/Convocatorias"));
 const ProximasConvocatorias = lazy(() => import("./pages/Ingreso/ProximasConvocatorias"));
 const Requisitos = lazy(() => import("./pages/Ingreso/Requisitos"));
@@ -108,6 +109,7 @@ function App() {
             <Route path="/escuelas/especialidades" element={<EscuelaEspecialidades />} />
             <Route path="/escuelas/investigaciones" element={<EscuelaInvestigaciones />} />
             <Route path="/escuelas/educacion-a-distancia" element={<EducacionDistancia />} />
+            <Route path="/ingreso" element={<Ingreso />} />
             <Route path="/ingreso/convocatorias" element={<Convocatorias />} />
             <Route path="/ingreso/proximas-convocatorias" element={<ProximasConvocatorias />} />
             <Route path="/ingreso/requisitos" element={<Requisitos />} />

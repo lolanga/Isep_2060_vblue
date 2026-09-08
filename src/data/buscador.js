@@ -167,6 +167,15 @@ function getIndiceBusqueda() {
     keywords: ["requisitos", "ingreso", "documentación", "postulantes"],
   },
   {
+    id: "ing-ingreso",
+    title: "Ingreso al ISeP",
+    subtitle: "Proceso, cronograma, convocatorias y requisitos",
+    categoria: "Ingreso",
+    tipo: "Página",
+    ruta: "/ingreso",
+    keywords: ["ingreso", "proceso", "cronograma", "convocatorias", "policía", "cadetes", "inscripción"],
+  },
+  {
     id: "ing-proceso",
     title: "Proceso de ingreso",
     subtitle: "Pasos para formar parte del ISeP",

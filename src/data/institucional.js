@@ -254,6 +254,59 @@ export const convocatorias = [
   },
 ];
 
+// ── Cronograma del proceso de selección (Ciclo 2027–2028) ────────────────
+export const cronograma = [
+  {
+    id: 1,
+    etapa: "Pre-inscripción en Mi ISeP",
+    detalle: "Creá tu usuario y completá el formulario de inscripción con los 4 formularios obligatorios.",
+    fecha: "Hasta el 30/09/2026",
+    estado: "en-curso",
+  },
+  {
+    id: 2,
+    etapa: "Publicación del listado de presentación",
+    detalle: "Consulta el listado con DNI, sede, día y horario asignado para la primera etapa.",
+    fecha: "Diciembre 2026",
+    estado: "proximo",
+  },
+  {
+    id: 3,
+    etapa: "Examen premédico y psicológico",
+    detalle: "Primera instancia presencial del proceso de selección.",
+    fecha: "Diciembre 2026",
+    estado: "proximo",
+  },
+  {
+    id: 4,
+    etapa: "Examen intelectual y físico",
+    detalle: "Evaluación de conocimientos y aptitud física en sede.",
+    fecha: "Enero 2027",
+    estado: "proximo",
+  },
+  {
+    id: 5,
+    etapa: "Examen socioambiental",
+    detalle: "Entrevista y verificación de la situación socio-ambiental del postulante.",
+    fecha: "Enero 2027",
+    estado: "proximo",
+  },
+  {
+    id: 6,
+    etapa: "Período propedéutico",
+    detalle: "Curso introductorio previo a la incorporación como cadete.",
+    fecha: "Febrero 2027",
+    estado: "proximo",
+  },
+  {
+    id: 7,
+    etapa: "Incorporación como Cadetes",
+    detalle: "Inicio del ciclo lectivo 2027–2028 en la Escuela de Policía.",
+    fecha: "2027",
+    estado: "proximo",
+  },
+];
+
 // ── Preguntas frecuentes (Ingreso) ───────────────────────────────────────
 export const preguntasFrecuentes = [
   {

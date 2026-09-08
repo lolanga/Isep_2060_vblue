@@ -48,6 +48,7 @@ const SECCIONES = [
     titulo: "Ingreso",
     icono: "login",
     items: [
+      { label: "Inicio de ingreso", to: "/ingreso" },
       { label: "Convocatorias vigentes", to: "/ingreso/convocatorias" },
       { label: "Próximas convocatorias", to: "/ingreso/proximas-convocatorias" },
       { label: "Requisitos", to: "/ingreso/requisitos" },

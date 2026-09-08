@@ -26,7 +26,7 @@
 ```
 src/
 ├── main.jsx                 # Entry point + imports CSS
-├── App.jsx                  # Router principal (26 rutas) + ErrorBoundary + NotFound
+├── App.jsx                  # Router principal (27 rutas) + ErrorBoundary + NotFound
 ├── assets/                  # Escudos (EP, ES, EE, EI, EaD, ISeP)
 ├── components/
 │   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger + nav-is-active
@@ -54,15 +54,15 @@ src/
 │   └── Analytics.jsx        # Google Analytics 4 (gtag.js)
 ├── data/
 │   ├── config.js            # Configuración centralizada (MI_ISEP_URL, teléfonos, emails, GA_ID, redes)
-│   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, FAQ
+│   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, cronograma, FAQ
 │   ├── noticias.js          # 15 noticias (compartido, admite img: null)
 │   ├── normativa.js         # 17 resoluciones (compartido)
-│   └── buscador.js          # 60 entradas + buscar() + buscarAgrupado()
+│   └── buscador.js          # 61 entradas + buscar() + buscarAgrupado()
 ├── pages/
 │   ├── Home.jsx             # 7 secciones + Trámites y Sistemas
 │   ├── Noticias.jsx         # Filtro + paginación + filtro por escuela + links a detalle
 │   ├── NoticiaDetalle.jsx   # Detalle de noticia individual
-│   ├── MapaDelSitio.jsx     # Mapa visual de todas las rutas (26)
+│   ├── MapaDelSitio.jsx     # Mapa visual de todas las rutas (27)
 │   ├── Institucional/
 │   │   ├── ElISeP.jsx       # Contenido completo + SEDES const
 │   │   ├── Autoridades.jsx  # Contenido completo + links a escuelas
@@ -79,6 +79,7 @@ src/
 │   │   ├── Investigaciones.jsx
 │   │   └── EducacionADistancia.jsx
 │   ├── Ingreso/
+│   │   ├── Ingreso.jsx            # Landing de ingreso: pasos, cronograma, convocatorias, anti-estafa
 │   │   ├── Convocatorias.jsx     # Contenido real Esc. Policía 2027-2028
 │   │   ├── ProximasConvocatorias.jsx # Próximas convocatorias 2027-2028
 │   │   ├── Requisitos.jsx        # 10 requisitos reales + documentación
@@ -172,12 +173,12 @@ src/
 
 ---
 
-## 5. Rutas (App.jsx) — 26 rutas
+## 5. Rutas (App.jsx) — 27 rutas
 
 ```
 <BrowserRouter>
   <Navbar />
-  <Routes>{/* 26 rutas con React.lazy + Suspense */}</Routes>
+  <Routes>{/* 27 rutas con React.lazy + Suspense */}</Routes>
   <Footer />
   <FloatWhatsApp />
   <ScrollToTop />
@@ -198,6 +199,7 @@ Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. Todas las rutas usan l
 | `carreras` | 4 carreras con inscripciones/fechaInscripcion |
 | `cursos` | 6+ cursos con tipo, período, estado |
 | `convocatorias` | Convocatorias con estado, tipo, fecha |
+| `cronograma` | Etapas del proceso de ingreso con estado y fecha (ciclo 2027-2028) |
 | `preguntasFrecuentes` | 12 preguntas y respuestas |
 | `escuelaPorId` / `carrerasDeEscuela` / `cursosDeEscuela` | Helpers |
 
@@ -215,7 +217,7 @@ Las fotos están **hardcodeadas** en el componente `src/pages/Institucional/Gale
 
 ### 6.5 buscador.js
 
-60 entradas agrupadas por tipo. Funciones: `buscar()`, `buscarAgrupado()`.
+61 entradas agrupadas por tipo. Funciones: `buscar()`, `buscarAgrupado()`.
 
 ---
 
@@ -398,16 +400,17 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
 Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. 96 módulos totales. Todas las páginas incluidas (incluyendo Secretaría).
 
 ### 13.2 Testing
-Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **33 tests en 7 archivos**. Configuración en `vitest.config.js` (ambiente `jsdom`, globals, `setup.js` y `css: false`).
+Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **44 tests en 8 archivos**. Configuración en `vitest.config.js` (ambiente `jsdom`, globals, `setup.js` y `css: false`).
 
 | Archivo | Qué valida | Tests |
 |---|---|---|
-| `datos.test.js` | IDs únicos, campos requeridos, categorías válidas, imágenes `null` | 6 |
+| `datos.test.js` | IDs únicos, campos requeridos, categorías válidas, imágenes `null`, cronograma | 9 |
 | `institucional.test.js` | Escuelas, carreras, cursos, convocatorias | 7 |
 | `buscador.test.js` | Búsqueda y resultados agrupados | 5 |
-| `navbar.test.jsx` | Navegación desktop/móvil, enlaces | 5 |
+| `navbar.test.jsx` | Navegación desktop/móvil, enlaces, dropdown Ingreso | 6 |
 | `hero.test.jsx` | Render de slides, CTAs, navegación | 5 |
 | `news.test.jsx` | Noticia destacada y sin imagen | 2 |
+| `ingreso.test.jsx` | Render de la landing `/ingreso` (hero, anti-estafa, cronograma, enlaces) | 7 |
 | `sharebutton.test.jsx` | Copiar, Web Share API, feedback "¡Copiado!" | 3 |
 
 ### 13.3 GitHub Actions

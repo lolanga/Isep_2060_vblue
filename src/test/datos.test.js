@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { noticias } from "../data/noticias";
 import { resoluciones } from "../data/normativa";
+import { cronograma } from "../data/institucional";
 
 describe("noticias data", () => {
   it("tiene noticias", () => {
@@ -42,5 +43,26 @@ describe("normativa data", () => {
       expect(r.tipo).toBeTruthy();
       expect(r.fecha).toBeTruthy();
     });
+  });
+});
+
+describe("cronograma data", () => {
+  it("tiene etapas del proceso de ingreso", () => {
+    expect(cronograma.length).toBeGreaterThan(0);
+  });
+
+  it("cada etapa tiene campos obligatorios y estado válido", () => {
+    const estadosValidos = ["en-curso", "proximo"];
+    cronograma.forEach((etapa) => {
+      expect(etapa.etapa).toBeTruthy();
+      expect(etapa.detalle).toBeTruthy();
+      expect(etapa.fecha).toBeTruthy();
+      expect(estadosValidos).toContain(etapa.estado);
+    });
+  });
+
+  it("el ciclo comienza con la pre-inscripción en curso", () => {
+    expect(cronograma[0].etapa).toContain("Pre-inscripción");
+    expect(cronograma[0].estado).toBe("en-curso");
   });
 });
