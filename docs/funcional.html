@@ -84,7 +84,7 @@
     <h3>Rutas existentes (27 rutas)</h3>
     <table>
       <tr><th>Ruta</th><th>Página</th><th>Estado</th></tr>
-      <tr><td><code>/</code></td><td>Home (7 secciones)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/</code></td><td>Home (8 secciones)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/noticias</code></td><td>Listado de noticias con filtro, paginación</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/noticias/:id</code></td><td>Detalle de noticia individual</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/el-isep</code></td><td>El ISeP</td><td><span class="badge ok">Implementada</span></td></tr>
@@ -116,6 +116,7 @@
     <h2>4. Funcionalidades implementadas (Home)</h2>
     <ol>
       <li><strong>Hero Slider</strong> — Banner principal con slider automático (3 slides), transiciones suaves, flechas y dots. CTAs: "Conoce nuestras propuestas" → <code>/institucional/oferta-educativa</code> y "Inscripciones 2027" → <code>/ingreso/convocatorias</code>.</li>
+      <li><strong>¿Qué estás buscando? (Elegí tu camino)</strong> — sección por audiencia (<code>Audiencia.jsx</code>) con 3 tarjetas: <strong>Quiero ingresar</strong> (→ <code>/ingreso</code>), <strong>Soy personal</strong> (Mi ISeP, SIGEDI, Gestión Cadetes, Webmail) y <strong>Ciudadano</strong> (noticias, oferta educativa, biblioteca, galería).</li>
       <li><strong>Últimas Noticias</strong> — Noticia destacada + sidebar de noticias recientes con ShareButton y promo "Calendario Académico" (botón DESCARGAR PDF).</li>
       <li><strong>Trámites y Sistemas</strong> — 4 tarjetas: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail (con audiencia y descripción).</li>
       <li><strong>CTA Inscripciones</strong> — Título "Inscripciones Abiertas 2027", countdown a 2027-09-30 + botones "Pre-Inscripción Online" (<code>/ingreso/convocatorias</code>) y "Ver Requisitos" (<code>/ingreso/requisitos</code>).</li>
@@ -275,7 +276,7 @@
     <p><code>npm install</code> → <code>npm run dev</code> (localhost:5173). Build: <code>npm run build</code> → <code>npm run preview</code>. Lint: <code>npm run lint</code>. Tests: <code>npm run test</code>.</p>
 
     <h3>17.1 Testing automatizado</h3>
-    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. <strong>44 tests en 8 archivos</strong> (capa de datos + componentes UI):</p>
+    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. <strong>48 tests en 9 archivos</strong> (capa de datos + componentes UI):</p>
     <table>
       <tr><th>Archivo</th><th>Qué valida</th></tr>
       <tr><td><code>datos.test.js</code></td><td>Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como <code>null</code> + cronograma de ingreso (9)</td></tr>
@@ -285,6 +286,7 @@
       <tr><td><code>hero.test.jsx</code></td><td>Render de slides, CTAs y navegación (5)</td></tr>
       <tr><td><code>news.test.jsx</code></td><td>Noticia destacada y sin imagen (2)</td></tr>
       <tr><td><code>ingreso.test.jsx</code></td><td>Render de la landing <code>/ingreso</code>: hero, anti-estafa, pasos, cronograma, convocatorias, FAQ, enlaces (7)</td></tr>
+      <tr><td><code>audiencia.test.jsx</code></td><td>Sección por audiencia del Home: tres audiencias y sus enlaces (4)</td></tr>
       <tr><td><code>sharebutton.test.jsx</code></td><td>Copiar, Web Share API, feedback "¡Copiado!" (3)</td></tr>
     </table>
 

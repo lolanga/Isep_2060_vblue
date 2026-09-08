@@ -1,11 +1,12 @@
 /**
  * Home.jsx — Página principal del sitio ISeP
  *
- * Ensambla las secciones de landing: Hero, News, Trámites, CTA,
+ * Ensambla las secciones de landing: Hero, Audiencia, News, Trámites, CTA,
  * Schools, Contadores y Testimonios. Contadores y Testimonios
  * se ocultan en móvil (hide-mobile).
  */
 import Hero from "../components/Hero";
+import Audiencia from "../components/Audiencia";
 import Tramites from "../components/Tramites";
 import Contadores from "../components/Contadores";
 import CTA from "../components/CTA";
@@ -20,6 +21,7 @@ export default function Home() {
     <>
       <SEO />
       <Hero />
+      <Audiencia />
       <News />
       <Tramites />
       <CTA />

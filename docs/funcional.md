@@ -64,7 +64,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 
 | Ruta | Página | Estado |
 |---|---|---|
-| `/` | Home (7 secciones) | Implementada |
+| `/` | Home (8 secciones) | Implementada |
 | `/noticias` | Listado de noticias con filtro, paginación y detalle | Implementada |
 | `/noticias/:id` | Detalle de noticia individual (contenido, relacionadas) | Implementada |
 | `/institucional/el-isep` | El ISeP | Implementada |
@@ -99,12 +99,13 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 La página de inicio (`/`) está compuesta por las siguientes secciones, en orden:
 
 1. **Hero Slider** — Banner principal con slider automático (3 slides), transiciones suaves, flechas de navegación y indicadores (dots). Dos CTAs: "Conoce nuestras propuestas" → `/institucional/oferta-educativa` y "Inscripciones 2027" → `/ingreso/convocatorias`.
-2. **Últimas Noticias** — Noticia destacada + sidebar de noticias recientes con ShareButton y promo **"Calendario Académico"** (botón DESCARGAR PDF). Links a `/noticias/:id`.
-3. **Trámites y Sistemas** — 4 tarjetas de acceso a los sistemas del ISeP: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail. Cada una con audiencia y descripción de qué hace.
-4. **CTA Inscripciones** — Bloque con título "Inscripciones Abiertas 2027", countdown configurable (fecha objetivo: 2027-09-30) + botones "Pre-Inscripción Online" (`/ingreso/convocatorias`) y "Ver Requisitos" (`/ingreso/requisitos`).
-5. **Nuestras Escuelas** — Cuadrícula de las 4 escuelas principales (Policía, Superior, Especialidades, Investigaciones) con escudos. Tarjetas enlaces clickeables a `/escuelas/:slug`. La 5ta escuela (EaD) se accede desde el menú Formación.
-6. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
-7. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
+2. **¿Qué estás buscando? (Elegí tu camino)** — sección por audiencia (`Audiencia.jsx`) con 3 tarjetas: **Quiero ingresar** (pre-inscripción, requisitos, cronograma, FAQ → `/ingreso`), **Soy personal** (Mi ISeP, SIGEDI, Gestión Cadetes, Webmail) y **Ciudadano** (noticias, oferta educativa, biblioteca, galería).
+3. **Últimas Noticias** — Noticia destacada + sidebar de noticias recientes con ShareButton y promo **"Calendario Académico"** (botón DESCARGAR PDF). Links a `/noticias/:id`.
+4. **Trámites y Sistemas** — 4 tarjetas de acceso a los sistemas del ISeP: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail. Cada una con audiencia y descripción de qué hace.
+5. **CTA Inscripciones** — Bloque con título "Inscripciones Abiertas 2027", countdown configurable (fecha objetivo: 2027-09-30) + botones "Pre-Inscripción Online" (`/ingreso/convocatorias`) y "Ver Requisitos" (`/ingreso/requisitos`).
+6. **Nuestras Escuelas** — Cuadrícula de las 4 escuelas principales (Policía, Superior, Especialidades, Investigaciones) con escudos. Tarjetas enlaces clickeables a `/escuelas/:slug`. La 5ta escuela (EaD) se accede desde el menú Formación.
+7. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
+8. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
 
 > **Nota:** Contadores y Testimonios se ocultan en móvil (`hide-mobile`).
 
@@ -393,7 +394,7 @@ Carrusel de 3 egresados con foto, nombre, promoción y texto. Flechas y dots.
 ### 17.1 Testing automatizado
 
 Suite de tests con **Vitest** + **React Testing Library** + **jsdom**:
-- 44 tests en 8 archivos, cubriendo tanto la capa de datos como componentes UI:
+- 48 tests en 9 archivos, cubriendo tanto la capa de datos como componentes UI:
 - `datos.test.js` (9): valida estructura de noticias (IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como `null`) + cronograma de ingreso (etapas con estado válido)
 - `institucional.test.js` (7): valida estructura de escuelas, carreras, cursos y convocatorias
 - `buscador.test.js` (5): valida funcionalidad de búsqueda y resultados agrupados
@@ -401,6 +402,7 @@ Suite de tests con **Vitest** + **React Testing Library** + **jsdom**:
 - `hero.test.jsx` (5): render de slides, CTAs y navegación
 - `news.test.jsx` (2): render de noticias destacadas con y sin imagen
 - `ingreso.test.jsx` (7): render de la landing `/ingreso` (hero, anti-estafa, pasos, cronograma, convocatorias, FAQ, enlaces)
+- `audiencia.test.jsx` (4): sección por audiencia del Home (tres audiencias y sus enlaces)
 - `sharebutton.test.jsx` (3): copiar al portapapeles, Web Share API y feedback "¡Copiado!"
 - Tests ejecutados automáticamente en CI (GitHub Actions) en cada push
 - Ejecutar localmente con `npm run test`

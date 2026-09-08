@@ -22,8 +22,8 @@ SPA con **React 19 + Vite 8 + React Router 7** y **100% responsive**.
 ```
 src/
 ├── main.jsx, App.jsx (router con lazy loading)
-├── components/   Navbar (con buscador), Hero (slider + 2 CTAs), SearchBox,
-│                 News, Tramites, Schools, CTA, Footer, EscuelaTemplate,
+├── components/   Navbar (con buscador), Hero (slider + 2 CTAs), Audiencia,
+│                 SearchBox, News, Tramites, Schools, CTA, Footer, EscuelaTemplate,
 │                 FloatWhatsApp, Breadcrumb, JsonLd, Countdown, Contadores,
 │                 Testimonios, ShareButton, Placeholder, Skeleton, SkipToContent,
 │                 ErrorBoundary, SEO, Analytics
@@ -75,7 +75,7 @@ npm run test    # tests (Vitest + React Testing Library)
 
 ## Páginas
 
-- `/` — Home (Hero Slider, Últimas Noticias, Trámites y Sistemas, CTA Inscripciones, Nuestras Escuelas, Contadores, Testimonios)
+- `/` — Home (Hero Slider, ¿Qué estás buscando? por audiencia, Últimas Noticias, Trámites y Sistemas, CTA Inscripciones, Nuestras Escuelas, Contadores, Testimonios)
 - `/noticias` — listado con filtro, paginación y detalle (`/noticias/:id`)
 - `/institucional/*` — El ISeP, Autoridades, Organización, Oferta Educativa, Carreras, Normativa y Resoluciones (17 docs), Sedes y Contacto, Galería de Fotos
 - `/institucional/oferta-educativa` — Oferta Educativa (tabs: Carreras, Cursos, Convocatorias)

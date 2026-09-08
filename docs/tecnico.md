@@ -31,6 +31,7 @@ src/
 ├── components/
 │   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger + nav-is-active
 │   ├── Hero.jsx             # Slider 3 slides + 2 CTAs + pausa por prefers-reduced-motion
+│   ├── Audiencia.jsx        # Sección Home "¿Qué estás buscando?" (3 audiencias)
 │   ├── SearchBox.jsx        # Buscador global agrupado (debounce 300ms)
 │   ├── News.jsx             # Sección noticias Home (datos reales + links)
 │   ├── Tramites.jsx         # 4 apps institucionales (sección "Trámites y Sistemas")
@@ -59,7 +60,7 @@ src/
 │   ├── normativa.js         # 17 resoluciones (compartido)
 │   └── buscador.js          # 61 entradas + buscar() + buscarAgrupado()
 ├── pages/
-│   ├── Home.jsx             # 7 secciones + Trámites y Sistemas
+│   ├── Home.jsx             # 8 secciones + Trámites y Sistemas + Audiencia
 │   ├── Noticias.jsx         # Filtro + paginación + filtro por escuela + links a detalle
 │   ├── NoticiaDetalle.jsx   # Detalle de noticia individual
 │   ├── MapaDelSitio.jsx     # Mapa visual de todas las rutas (27)
@@ -400,7 +401,7 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
 Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. 96 módulos totales. Todas las páginas incluidas (incluyendo Secretaría).
 
 ### 13.2 Testing
-Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **44 tests en 8 archivos**. Configuración en `vitest.config.js` (ambiente `jsdom`, globals, `setup.js` y `css: false`).
+Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **48 tests en 9 archivos**. Configuración en `vitest.config.js` (ambiente `jsdom`, globals, `setup.js` y `css: false`).
 
 | Archivo | Qué valida | Tests |
 |---|---|---|
@@ -411,6 +412,7 @@ Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **44 test
 | `hero.test.jsx` | Render de slides, CTAs, navegación | 5 |
 | `news.test.jsx` | Noticia destacada y sin imagen | 2 |
 | `ingreso.test.jsx` | Render de la landing `/ingreso` (hero, anti-estafa, cronograma, enlaces) | 7 |
+| `audiencia.test.jsx` | Sección por audiencia del Home (3 audiencias y enlaces) | 4 |
 | `sharebutton.test.jsx` | Copiar, Web Share API, feedback "¡Copiado!" | 3 |
 
 ### 13.3 GitHub Actions
