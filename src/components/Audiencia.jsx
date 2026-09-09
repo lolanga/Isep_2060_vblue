@@ -37,9 +37,9 @@ const audiencias = [
     className: "audiencia-card--secondary",
     links: [
       { label: "Mi ISeP", icon: "laptop_mac", to: MI_ISEP_URL, external: true },
-      { label: "SIGEDI", icon: "folder_open", to: GESTION_URL, external: true },
+      { label: "SIGEDI (solo personal ISeP)", icon: "folder_open", to: GESTION_URL, external: true },
       { label: "Gestión Cadetes", icon: "military_tech", to: CADETES_URL, external: true },
-      { label: "Webmail", icon: "mail", to: WEBMAIL_URL, external: true },
+      { label: "WebMail (solo personal ISeP)", icon: "mail", to: WEBMAIL_URL, external: true },
     ],
     cta: { label: "Acceder a Mi ISeP", to: MI_ISEP_URL, external: true },
   },
