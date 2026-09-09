@@ -445,7 +445,7 @@
 
 /* Submenu — estado abierto */
 .mobile-submenu--open {
-  max-height: 300px;
+  max-height: 500px;
   opacity: 1;
 }
 
