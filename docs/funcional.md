@@ -92,6 +92,8 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/mapa-del-sitio` | Mapa del Sitio (guía visual de todas las rutas) | Implementada |
 | `/404` | Página no encontrada | Implementada |
 
+> **Ruta interna de administración:** `/admin/noticias/nueva` (herramienta de creación de noticias) **no** está listada arriba ni en el mapa del sitio: no es parte de la navegación pública. En producción se habilita bajo PIN (ver §18.4).
+
 ---
 
 ## 4. Funcionalidades implementadas (Home)
@@ -145,8 +147,9 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 - **Botón compartir:** cada noticia tiene `ShareButton` (Web Share API o clipboard).
 - **Noticia principal:** última publicación con imagen, fecha, título y extracto → **link a `/noticias/:id`**.
 - **Historial:** grid de tarjetas con **links a `/noticias/:id`** y paginación (10 por página).
+- **Orden:** más reciente a más antigua (la última publicada es la principal; igual criterio en el Home y en cada escuela).
 - **Breadcrumb** para navegación.
-- **15 noticias** publicadas.
+- **14 noticias** publicadas.
 
 ### 4.5 Detalle de Noticia (`/noticias/:id`)
 
@@ -288,7 +291,7 @@ Pasos detallados del proceso de ingreso.
 
 - **Ubicación:** ícono de lupa en el navbar, al lado de "Mi ISeP".
 - **Debounce:** 300ms para evitar búsquedas excesivas.
-- **Índice:** 61 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 15 noticias + 17 normativa + 11 páginas).
+- **Índice:** 60 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 14 noticias + 17 normativa + 11 páginas).
 - **Resultados agrupados por tipo:** Escuelas → Carreras → Cursos → Convocatorias → Noticias → Normativa → Páginas → Misceláneas.
 - **Navegación por teclado:** ↑↓, Enter, Escape.
 - **Contador de resultados** y hints de teclado.
@@ -393,7 +396,7 @@ Carrusel de 3 egresados con foto, nombre, promoción y texto. Flechas y dots.
 ### 17.1 Testing automatizado
 
 Suite de tests con **Vitest** + **React Testing Library** + **jsdom**:
-- 49 tests en 9 archivos, cubriendo tanto la capa de datos como componentes UI:
+- 52 tests en 11 archivos, cubriendo tanto la capa de datos como componentes UI:
 - `datos.test.js` (9): valida estructura de noticias (IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como `null`) + cronograma de ingreso (etapas con estado válido)
 - `institucional.test.js` (7): valida estructura de escuelas, carreras, cursos y convocatorias
 - `buscador.test.js` (5): valida funcionalidad de búsqueda y resultados agrupados
@@ -403,6 +406,8 @@ Suite de tests con **Vitest** + **React Testing Library** + **jsdom**:
 - `ingreso.test.jsx` (7): render de la landing `/ingreso` (hero, anti-estafa, pasos, cronograma, convocatorias, FAQ, enlaces)
 - `audiencia.test.jsx` (4): sección por audiencia del Home (tres audiencias y sus enlaces)
 - `sharebutton.test.jsx` (3): copiar al portapapeles, Web Share API y feedback "¡Copiado!"
+- `admin-noticianueva.test.jsx` (2): la herramienta `/admin/noticias/nueva` renderiza formulario, preview y código generado
+- `noticias-utils.test.js` (2): orden "más reciente primero" (destacada = id mayor; por escuela igual)
 - Tests ejecutados automáticamente en CI (GitHub Actions) en cada push
 - Ejecutar localmente con `npm run test`
 
@@ -417,6 +422,8 @@ GitHub Actions ejecuta en cada push:
 ## 18. Publicación de noticias — Guía paso a paso
 
 > **¿Querés editar otra sección del sitio (imágenes, hero, escuelas, carreras, convocatorias, cronograma, contadores, testimonios, config, etc.)?** Las guías paso a paso de edición están en este mismo documento: §20 (imágenes), §21 (hero) y §22 (todos los componentes).
+>
+> **¿Preferís no tocar código?** Existe una herramienta interna que publica noticias desde un formulario (WYSIWYG + preview + guardado automático en dev): ver §18.4.
 
 ### 18.1 Estructura de datos de una noticia
 
@@ -569,6 +576,38 @@ Al hacer clic en una card de noticia, se abre `/noticias/:id` con:
 | 5 | `src/data/buscador.js` | Automático (importa de noticias.js) |
 | 6 | `npm run dev` | Verificar visualmente |
 | 7 | `npm run build` | Confirmar build limpio |
+
+### 18.4 Publicación con la herramienta administrador (`/admin/noticias/nueva`)
+
+> **Alternativa automatizada** a los pasos manuales de §18.2. En vez de editar `noticias.js` a mano, un formulario interno arma, previsualiza y guarda la noticia. Detalle técnico en **tecnico.md §12.7**.
+
+**Acceso**
+- **Desarrollo (`npm run dev`):** habilitada de fábrica en `http://localhost:5173/admin/noticias/nueva`.
+- **Producción:** depende de la variable `VITE_ADMIN_PIN` del build:
+  - Variable definida → la ruta pide un PIN para entrar.
+  - Variable ausente → la ruta redirige al inicio (herramienta inaccesible).
+
+**Cómo publicar una noticia (flujo rápido)**
+1. Abrir `/admin/noticias/nueva`.
+2. **Título** de la noticia.
+3. **Categoría**: Institucional, Academica, Escuelas, Eventos o Convenios.
+4. **Extracto** breve.
+5. **Escuelas**: elegir la/s escuela/s donde debe aparecer la noticia. Si no se elige ninguna, la noticia solo figura en `/noticias` y **no** en ninguna página de escuela (la herramienta lo advierte antes de guardar).
+6. **Imagen**: el botón "Subir imagen" la guarda automáticamente en `public/img/noticias/` (*solo dev*). En producción la imagen se coloca a mano en el servidor y se escribe su URL en el campo.
+7. **Contenido**: editor WYSIWYG (negrita, cursiva, subrayado, listas, enlaces, imágenes).
+8. **Vista previa** en vivo a la derecha (se actualiza al escribir).
+9. **Guardar en noticias.js** (botón verde, *solo dev*): inserta el objeto al final de `src/data/noticias.js` con el ID siguiente automático y confirma el ID usado. Refrescar `/noticias` para verla.
+10. **Alternativa manual**: "Generar código" → "Copiar" → pegar en `src/data/noticias.js` (útil para revisar lo que se va a guardar, o para aplicar a mano en producción).
+
+**Criterio de orden (destacadas y escuelas)**
+- Las noticias se muestran de **más reciente a más antigua** (orden por `id` descendente).
+- La **última publicada** ocupa el grid grande / destacada del Home y de `/noticias`; la anterior pasa al segundo lugar, y así sucesivamente.
+- En **cada escuela** el criterio es el mismo: la más nueva de esa escuela es la primera que se muestra en su página.
+- Implementación: `src/utils/noticias.js` (`sort` por `id` descendente), consumido por `News.jsx` (Home), `/noticias`, detalle y plantillas de escuela. Ver tecnico.md §12.7.
+
+> **Notas**
+> - El **guardado directo** y la **subida de imágenes** funcionan solo en **dev** (middleware de Vite, ver tecnico.md §12.7). En producción se publica generando el código, aplicando el cambio a `noticias.js`, subiendo los archivos y re-ejecutando el build.
+> - La noticia aparece automáticamente en el **buscador global** (importa de `noticias.js`).
 
 ---
 

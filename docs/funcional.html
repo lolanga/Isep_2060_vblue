@@ -112,6 +112,7 @@
       <tr><td><code>/mapa-del-sitio</code></td><td>Mapa del Sitio</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/404</code></td><td>Página no encontrada</td><td><span class="badge ok">Implementada</span></td></tr>
     </table>
+    <div class="note"><strong>Ruta interna de administración:</strong> <code>/admin/noticias/nueva</code> (herramienta de creación de noticias) <strong>no</strong> está listada arriba ni en el mapa del sitio: no es parte de la navegación pública. En producción se habilita bajo PIN (ver §18.4).</div>
 
     <h2>4. Funcionalidades implementadas (Home)</h2>
     <ol>
@@ -144,7 +145,8 @@
 
     <h3>Noticias</h3>
     <ul>
-      <li><strong>15 noticias</strong> publicadas.</li>
+      <li><strong>14 noticias</strong> publicadas.</li>
+      <li><strong>Orden:</strong> más reciente a más antigua (la última publicada es la principal; igual criterio en el Home y en cada escuela).</li>
       <li><strong>Filtro por categorías:</strong> Todas, Institucional, Académica, Escuelas, Eventos, Convenios.</li>
       <li><strong>Filtro por escuela:</strong> permite filtrar por escuela asociada.</li>
       <li><strong>Imágenes opcionales:</strong> <code>img: null</code> muestra placeholder con ícono.</li>
@@ -221,7 +223,7 @@
     <ul>
       <li><strong>Ubicación:</strong> ícono de lupa en el navbar.</li>
       <li><strong>Debounce:</strong> 300ms.</li>
-      <li><strong>Índice:</strong> 61 entradas.</li>
+      <li><strong>Índice:</strong> 60 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 14 noticias + 17 normativa + 11 páginas).</li>
       <li><strong>Resultados agrupados por tipo.</strong></li>
       <li><strong>Navegación por teclado:</strong> ↑↓, Enter, Escape.</li>
       <li><strong>Enter</strong> en el campo abre el primer resultado.</li>
@@ -275,7 +277,7 @@
     <p><code>npm install</code> → <code>npm run dev</code> (localhost:5173). Build: <code>npm run build</code> → <code>npm run preview</code>. Lint: <code>npm run lint</code>. Tests: <code>npm run test</code>.</p>
 
     <h3>17.1 Testing automatizado</h3>
-    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. <strong>49 tests en 9 archivos</strong> (capa de datos + componentes UI):</p>
+    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. <strong>52 tests en 11 archivos</strong> (capa de datos + componentes UI):</p>
     <table>
       <tr><th>Archivo</th><th>Qué valida</th></tr>
       <tr><td><code>datos.test.js</code></td><td>Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como <code>null</code> + cronograma de ingreso (9)</td></tr>
@@ -283,10 +285,12 @@
       <tr><td><code>buscador.test.js</code></td><td>Funcionalidad de búsqueda y resultados agrupados (5)</td></tr>
       <tr><td><code>navbar.test.jsx</code></td><td>Navegación desktop/móvil, enlaces y dropdown Ingreso (6)</td></tr>
       <tr><td><code>hero.test.jsx</code></td><td>Render de slides, CTAs y navegación (5)</td></tr>
-      <tr><td><code>news.test.jsx</code></td><td>Noticia destacada y sin imagen (2)</td></tr>
+      <tr><td><code>news.test.jsx</code></td><td>Noticia destacada (la más reciente) y sin imagen (2)</td></tr>
       <tr><td><code>ingreso.test.jsx</code></td><td>Render de la landing <code>/ingreso</code>: hero, anti-estafa, pasos, cronograma, convocatorias, FAQ, enlaces (7)</td></tr>
       <tr><td><code>audiencia.test.jsx</code></td><td>Sección por audiencia del Home: tres audiencias y sus enlaces (4)</td></tr>
       <tr><td><code>sharebutton.test.jsx</code></td><td>Copiar, Web Share API, feedback "¡Copiado!" (3)</td></tr>
+      <tr><td><code>admin-noticianueva.test.jsx</code></td><td>Herramienta <code>/admin/noticias/nueva</code>: formulario, vista previa y código generado (2)</td></tr>
+      <tr><td><code>noticias-utils.test.js</code></td><td>Orden "más reciente primero": destacada y filtro por escuela (2)</td></tr>
     </table>
 
     <h3>17.2 CI/CD</h3>
@@ -294,7 +298,7 @@
 
     <h2>18. Publicación de noticias — Guía paso a paso</h2>
 
-    <blockquote>¿Querés editar otra sección del sitio (imágenes, hero, escuelas, carreras, convocatorias, cronograma, contadores, testimonios, config, etc.)? Las guías paso a paso de edición están en este mismo documento: §20 (imágenes), §21 (hero) y §22 (todos los componentes).</blockquote>
+    <blockquote>¿Querés editar otra sección del sitio (imágenes, hero, escuelas, carreras, convocatorias, cronograma, contadores, testimonios, config, etc.)? Las guías paso a paso de edición están en este mismo documento: §20 (imágenes), §21 (hero) y §22 (todos los componentes).<br><br>¿Preferís no tocar código? Existe una herramienta interna que publica noticias desde un formulario (WYSIWYG + preview + guardado automático en dev): ver §18.4.</blockquote>
 
     <h3>18.1 Estructura de datos</h3>
     <pre>{
@@ -321,7 +325,7 @@
       <li><strong>Preparar imagen</strong> (4 opciones: local, externa, picsum 800×450, null). Ratio 16:9 (la destacada muestra 900×500).</li>
       <li><strong>Definir categoría:</strong> Institucional | Académica | Escuelas | Eventos | Convenios.</li>
       <li><strong>Colocar adjuntos en <code>public/docs/</code></strong> (si aplica).</li>
-      <li><strong>Agregar en <code>noticias.js</code></strong> con ID único (máximo actual 15 → siguiente 16).</li>
+      <li><strong>Agregar en <code>noticias.js</code></strong> con ID único (máximo actual + 1).</li>
       <li><strong>Buscador:</strong> automático (importa de noticias.js).</li>
       <li><strong>Probar:</strong> <code>npm run dev</code>, verificar home, /noticias y detalle.</li>
       <li><strong>Confirmar:</strong> <code>npm run build</code> + <code>npm run lint</code>.</li>
@@ -338,6 +342,38 @@
       <tr><td>6</td><td><code>npm run dev</code></td><td>Verificar visualmente</td></tr>
       <tr><td>7</td><td><code>npm run build</code></td><td>Confirmar build limpio</td></tr>
     </table>
+
+    <h3>18.4 Publicación con la herramienta administrador (<code>/admin/noticias/nueva</code>)</h3>
+    <div class="note"><strong>Alternativa automatizada</strong> a los pasos manuales de §18.2: en vez de editar <code>noticias.js</code> a mano, un formulario interno arma, previsualiza y guarda la noticia. Detalle técnico en <strong>tecnico.md §12.7</strong>.</div>
+
+    <h4>Acceso</h4>
+    <ul>
+      <li><strong>Desarrollo (<code>npm run dev</code>):</strong> habilitada de fábrica en <code>http://localhost:5173/admin/noticias/nueva</code>.</li>
+      <li><strong>Producción:</strong> depende de la variable <code>VITE_ADMIN_PIN</code> del build: definida → pide un PIN; ausente → redirige al inicio (herramienta inaccesible).</li>
+    </ul>
+
+    <h4>Cómo publicar una noticia (flujo rápido)</h4>
+    <ol>
+      <li>Abrir <code>/admin/noticias/nueva</code>.</li>
+      <li><strong>Título</strong> de la noticia.</li>
+      <li><strong>Categoría</strong>: Institucional, Academica, Escuelas, Eventos o Convenios.</li>
+      <li><strong>Extracto</strong> breve.</li>
+      <li><strong>Escuelas</strong>: elegir la/s escuela/s donde debe aparecer. Si no se elige ninguna, la noticia solo figura en <code>/noticias</code> y <strong>no</strong> en ninguna página de escuela (la herramienta lo advierte antes de guardar).</li>
+      <li><strong>Imagen</strong>: "Subir imagen" la guarda automáticamente en <code>public/img/noticias/</code> (solo dev). En producción se coloca a mano en el servidor y se escribe su URL en el campo.</li>
+      <li><strong>Contenido</strong>: editor WYSIWYG (negrita, cursiva, subrayado, listas, enlaces, imágenes).</li>
+      <li><strong>Vista previa</strong> en vivo (se actualiza al escribir).</li>
+      <li><strong>Guardar en noticias.js</strong> (botón verde, solo dev): inserta el objeto al final de <code>src/data/noticias.js</code> con el ID siguiente automático y confirma el ID. Refrescar <code>/noticias</code> para verla.</li>
+      <li><strong>Alternativa manual</strong>: "Generar código" → "Copiar" → pegar en <code>src/data/noticias.js</code> (útil para revisar antes de guardar o para aplicar a mano en producción).</li>
+    </ol>
+
+    <h4>Criterio de orden (destacadas y escuelas)</h4>
+    <ul>
+      <li>Las noticias se muestran de <strong>más reciente a más antigua</strong> (orden por <code>id</code> descendente).</li>
+      <li>La <strong>última publicada</strong> ocupa el grid grande / destacada del Home y de <code>/noticias</code>; la anterior pasa al segundo lugar, y así sucesivamente.</li>
+      <li>En <strong>cada escuela</strong> el criterio es el mismo: la más nueva de esa escuela es la primera de su página.</li>
+      <li>Implementación: <code>src/utils/noticias.js</code> (<code>sort</code> por <code>id</code> desc), consumido por <code>News.jsx</code> (Home), <code>/noticias</code>, detalle y plantillas de escuela. Ver tecnico.md §12.7.</li>
+    </ul>
+    <div class="note"><strong>Notas:</strong> el guardado directo y la subida de imágenes funcionan solo en <strong>dev</strong> (middleware de Vite). La noticia aparece automáticamente en el <strong>buscador global</strong> (importa de <code>noticias.js</code>).</div>
 
     <h2>19. Infraestructura SEO y Analytics</h2>
 

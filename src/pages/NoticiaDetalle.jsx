@@ -7,7 +7,7 @@
 
 import { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import { noticias } from "../data/noticias";
+import { noticias } from "../utils/noticias";
 import Breadcrumb from "../components/Breadcrumb";
 import ShareButton from "../components/ShareButton";
 import SEO from "../components/SEO";

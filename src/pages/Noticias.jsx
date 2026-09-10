@@ -10,7 +10,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import ShareButton from "../components/ShareButton";
 import SEO from "../components/SEO";
 import { BreadcrumbLd } from "../components/JsonLd";
-import { noticias } from "../data/noticias";
+import { noticias } from "../utils/noticias";
 
 const CATEGORIAS = ["Todas", "Institucional", "Academica", "Escuelas", "Eventos", "Convenios"];
 

@@ -31,11 +31,11 @@ src/
 │                 (escuelas, carreras, cursos, convocatorias, cronograma, FAQ), noticias.js,
 │                 normativa.js, buscador.js (índice de búsqueda)
 ├── services/     api.js (capa mock→backend-ready)
-├── utils/        analytics.js (GA4)
+├── utils/        analytics.js (GA4), noticias.js (noticias ordenadas por id desc)
 ├── pages/        Home, Noticias, Institucional (8), Escuelas (5), Ingreso (6),
-│                 Secretaria (3), NotFound
+│                 Secretaria (3), admin/NoticiaNueva (herramienta interna), NotFound
 └── styles/       variables, base, navbar, hero, news, noticias, schools-cta,
-                  new-features, oferta, pages, footer, responsive
+                  new-features, oferta, pages, admin, footer, responsive
 ```
 
 ## Funcionalidades principales
@@ -50,6 +50,8 @@ src/
 - **Plantilla de escuela reutilizable:** las 5 escuelas usan `EscuelaTemplate`.
 - **Galería de fotos** con categorías, filtros y lightbox.
 - **Mapa del sitio** (`/mapa-del-sitio`) con guía visual de todas las rutas.
+- **Noticias con novedades primero:** la sección "Últimas Noticias" y `/noticias` ordenan de más reciente a más antigua (`utils/noticias.js`); la última publicada es la destacada, y cada escuela muestra sus más nuevas primero.
+- **Herramienta interna de noticias** (`/admin/noticias/nueva`): formulario WYSIWYG con preview en vivo, subida de imágenes y guardado directo en `noticias.js` (solo en dev); genera el código para pegar manualmente. Acceso por PIN en producción vía `VITE_ADMIN_PIN`. Ver funcional.md §18.4.
 - **Compartir noticias** con Web Share API / portapapeles (ShareButton).
 - **Accesibilidad:** SkipToContent, foco visible, `prefers-reduced-motion`, alt text descriptivos.
 - **SEO:** JSON-LD (EducationalOrganization, NewsArticle, BreadcrumbList), Open Graph, canonical dinámico, sitemap.xml.

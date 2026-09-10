@@ -33,39 +33,6 @@
 
 export const noticias = [
   {
-    id: 15,  // siguiente incremental
-    titulo: "Extra Extra Todd apesta",
-    categoria: "Eventos",  // Institucional | Academica | Escuelas | Eventos | Convenios
-    fecha: "7 DE SEPTIEMBRE, 2026",
-    fechaCorta: "7 SEP 2026",
-    excerpt: "Todd apesta y todos lo saben.",
-    img: "/img/noticias/15.png",  // colocar en public/img/noticias/
-    escuelas: ["policia"],  // opcional: policia, superior, especialidades, investigaciones, ead
-    adjuntos: [
-      { nombre: "Protocolo uso de la fuerza PDF", url: "/docs/protocolo-uso-fuerza.pdf" }
-    ],
-    contenido: `
-    <p><strong>Titulo en negrita que se vea.</strong>lorem ipsum dolor sit amet.</p>
-
-    <h2>Sección</h2>
-    <ul>
-      <li>Item 1</li>
-      <li>Item 2</li>
-    </ul>
-
-    <a href="https://forms.google.com/..." class="btn-inscripcion" target="_blank">
-      Boton de inscripción
-    </a>
-
-    <blockquote>Cita destacada</blockquote>
-
-    <div class="info-box">
-      <strong>Info importante</strong>
-    </div>
-  `
-  },
-
-  {
     id: 1,
     titulo: "Jornada Extracurricular: Siniestros Viales — Sedes Rosario, Recreo y Reconquista",
     categoria: "Academica",

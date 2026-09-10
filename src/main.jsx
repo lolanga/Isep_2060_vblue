@@ -15,6 +15,7 @@ import "./styles/noticias.css";
 import "./styles/oferta.css";
 import "./styles/pages.css";
 import "./styles/new-features.css";
+import "./styles/admin.css";
 import "./styles/responsive.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(

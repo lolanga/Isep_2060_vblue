@@ -6,7 +6,7 @@
  */
 
 import { Link } from "react-router-dom";
-import { noticias } from "../data/noticias";
+import { noticias } from "../utils/noticias";
 import ShareButton from "./ShareButton";
 
 /** Sección de noticias del Home con destacada + sidebar. */

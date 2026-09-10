@@ -80,6 +80,9 @@ const Titulos = lazy(() => import("./pages/Secretaria/Titulos"));
 const Biblioteca = lazy(() => import("./pages/Secretaria/Biblioteca"));
 const Cursos = lazy(() => import("./pages/Secretaria/Cursos"));
 
+// ── Admin (herramienta interna) ──
+const NoticiaNueva = lazy(() => import("./pages/admin/NoticiaNueva"));
+
 /** Router principal — define todas las rutas con lazy loading. */
 function App() {
   return (
@@ -118,6 +121,7 @@ function App() {
             <Route path="/secretaria/titulos" element={<Titulos />} />
             <Route path="/secretaria/biblioteca" element={<Biblioteca />} />
             <Route path="/secretaria/cursos" element={<Cursos />} />
+            <Route path="/admin/noticias/nueva" element={<NoticiaNueva />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

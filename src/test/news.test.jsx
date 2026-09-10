@@ -20,7 +20,7 @@ describe("News (Home)", () => {
       </MemoryRouter>
     );
     expect(screen.getByText("ÚLTIMAS NOTICIAS")).toBeInTheDocument();
-    expect(screen.getByText("NOTICIA A")).toBeInTheDocument();
+    expect(screen.getByText("NOTICIA D")).toBeInTheDocument();
   });
 
   it("renderiza placeholder si una noticia no tiene imagen (img: null)", () => {

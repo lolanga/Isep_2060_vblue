@@ -55,14 +55,16 @@ src/
 ├── data/
 │   ├── config.js            # Configuración centralizada (MI_ISEP_URL, teléfonos, emails, GA_ID, redes)
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, cronograma, FAQ
-│   ├── noticias.js          # 15 noticias (compartido, admite img: null)
+│   ├── noticias.js          # Noticias (14 al momento; compartido, admite img: null y escuelas)
 │   ├── normativa.js         # 17 resoluciones (compartido)
-│   └── buscador.js          # 61 entradas + buscar() + buscarAgrupado()
+│   └── buscador.js          # 60 entradas + buscar() + buscarAgrupado()
 ├── pages/
 │   ├── Home.jsx             # 7 secciones (Audiencia con accesos a los sistemas)
 │   ├── Noticias.jsx         # Filtro + paginación + filtro por escuela + links a detalle
 │   ├── NoticiaDetalle.jsx   # Detalle de noticia individual
 │   ├── MapaDelSitio.jsx     # Mapa visual de todas las rutas (27)
+│   ├── admin/
+│   │   └── NoticiaNueva.jsx # Herramienta interna: crear noticias (WYSIWYG + preview + guardado; ruta /admin/noticias/nueva, ver §12.7)
 │   ├── Institucional/
 │   │   ├── ElISeP.jsx       # Contenido completo + SEDES const
 │   │   ├── Autoridades.jsx  # Contenido completo + links a escuelas
@@ -92,7 +94,8 @@ src/
 ├── services/
 │   └── api.js               # Capa de abstracción mock→backend-ready
 ├── utils/
-│   └── analytics.js         # Utilidades de tracking GA4
+│   ├── analytics.js         # Utilidades de tracking GA4
+│   └── noticias.js          # noticias ordenadas por id desc (más reciente primero; ver §12.7)
 └── styles/
     ├── variables.css        # Design tokens + gradiente
     ├── base.css             # Reset, tipografía, fondo global, .chip, prefers-reduced-motion global
@@ -104,6 +107,7 @@ src/
     ├── new-features.css     # contadores + últimas mejoras
     ├── oferta.css           # Cards, chips, filtros, acordeón
     ├── pages.css            # Clases reutilizables de páginas de contenido
+    ├── admin.css            # Panel de administración (/admin/noticias/nueva)
     ├── footer.css           # Footer 3 columnas + bottom
     └── responsive.css       # Mobile-first
 ```
@@ -173,7 +177,7 @@ src/
 
 ---
 
-## 5. Rutas (App.jsx) — 27 rutas
+## 5. Rutas (App.jsx) — 27 rutas (+1 interna)
 
 ```
 <BrowserRouter>
@@ -186,6 +190,8 @@ src/
 ```
 
 Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. Todas las rutas usan lazy loading.
+
+> **Ruta interna de administración:** además existe `/admin/noticias/nueva` (lazy, chunk `NoticiaNueva.*.js`, ~413 KB / 130 KB gzip). No se contabiliza entre las 27 públicas porque es una herramienta interna, no parte de la navegación del sitio (ver §12.7).
 
 ---
 
@@ -205,7 +211,7 @@ Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. Todas las rutas usan l
 
 ### 6.2 noticias.js
 
-15 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img (admite `null`), adjuntos, escuelas, contenido.
+14 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img (admite `null`), adjuntos, escuelas, contenido. Se presentan de más reciente a más antigua vía `utils/noticias.js` (ver §12.7).
 
 ### 6.3 normativa.js
 
@@ -217,7 +223,7 @@ Las fotos están **hardcodeadas** en el componente `src/pages/Institucional/Gale
 
 ### 6.5 buscador.js
 
-61 entradas agrupadas por tipo. Funciones: `buscar()`, `buscarAgrupado()`.
+60 entradas agrupadas por tipo (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 14 noticias + 17 resoluciones + 11 páginas). Funciones: `buscar()`, `buscarAgrupado()`.
 
 ---
 
@@ -302,11 +308,14 @@ interface Noticia {
 }
 ```
 
+> **Orden de presentación:** las noticias se muestran de **más reciente a más antigua** (orden por `id` descendente) vía `src/utils/noticias.js`. La última publicada es la destacada (grid grande) y la primera de cada escuela. Ver §12.7.
+
 ### 12.2 Archivos a modificar
 
 | Archivo | Acción |
 |---|---|
 | `src/data/noticias.js` | Agregar objeto al array `noticias` |
+| `src/utils/noticias.js` | Ordenamiento automático (id desc) — no requiere cambios |
 | `src/data/buscador.js` | Automático (importa de noticias.js) |
 | `public/docs/` | Colocar archivos adjuntos |
 
@@ -392,6 +401,45 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
                                   └── Botón volver
 ```
 
+### 12.7 Herramienta de administración de noticias (`/admin/noticias/nueva`)
+
+Herramienta interna para crear noticias sin tocar código. Detalle operativo (paso a paso y acceso) en **funcional.md §18.4**. Es una **ruta interna**: no está en el mapa de navegación público, se carga con `React.lazy()` (chunk `NoticiaNueva.*.js`, ~413 KB / 130 KB gzip) y consume la variable `VITE_ADMIN_PIN`.
+
+**Archivos**
+
+| Archivo | Rol |
+|---|---|
+| `src/pages/admin/NoticiaNueva.jsx` | Formulario: campos, editor WYSIWYG (TipTap v3), preview, generador de código, PIN gate |
+| `src/styles/admin.css` | Estilos del panel admin |
+| `src/App.jsx` | Ruta lazy `/admin/noticias/nueva` |
+| `src/main.jsx` | Import del CSS admin |
+| `vite.config.js` | Middleware (solo dev) `/api/upload` y `/api/noticias/save` |
+| `src/utils/noticias.js` | Ordenamiento de noticias (id desc) |
+
+**Middleware de desarrollo — solo `npm run dev`** (`configureServer`, no existe en el build de producción):
+
+| Endpoint | Método | Efecto |
+|---|---|---|
+| `/api/upload` | POST (multipart) | Guarda el archivo en `public/img/noticias/{hex}{ext}` y responde `{ url, filename }` |
+| `/api/noticias/save` | POST (JSON `{ code }`) | Inserta `code` al final de `src/data/noticias.js` (antes del `];`) y responde `{ ok }` |
+
+**Acceso en producción (PIN)**
+- Build con `VITE_ADMIN_PIN=<clave>` → la ruta pide un PIN (verificación en frontend) antes de mostrar el formulario.
+- Build sin `VITE_ADMIN_PIN` → `<Navigate to="/" replace />` (herramienta inaccesible).
+- En **dev** el acceso es directo, sin PIN.
+
+**Ordenamiento "más reciente primero"**
+- `src/utils/noticias.js` exporta `noticias` = array original ordenado por `id` **descendente**.
+- Consumidores (`News.jsx`, `Noticias.jsx`, `NoticiaDetalle.jsx`, `EscuelaTemplate.jsx`) importan de `../utils/noticias` en lugar de `../data/noticias`.
+- Consecuencia: la última publicada queda de destacada (grid grande) y primera de cada escuela.
+- Cobertura: `src/test/noticias-utils.test.js`.
+
+**Dependencias** (tipos npm): `@tiptap/react`, `@tiptap/starter-kit`, `@tiptap/extension-image`, `@tiptap/extension-placeholder`, `@tiptap/extension-underline`, `@tiptap/extension-link` (v3.31.3). En TipTap v3 `StarterKit` ya incluye Link y Underline (se configuran vía `StarterKit.configure`, no como extensiones separadas).
+
+**Implicancias de deploy**
+- Los endpoints `/api/upload` y `/api/noticias/save` no existen en producción: el guardado directo y la subida de imágenes son exclusivos de dev.
+- Para publicar en producción: generar el código con la herramienta, aplicar el cambio en `src/data/noticias.js`, colocar los archivos en `public/img/noticias/` y `public/docs/`, luego rebuild. Estrategias de deploy detalladas aparte (hosting estático, GitHub Actions → Pages, etc.).
+
 ---
 
 ## 13. Mejoras de Calidad
@@ -400,7 +448,7 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
 Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. 96 módulos totales. Todas las páginas incluidas (incluyendo Secretaría).
 
 ### 13.2 Testing
-Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **49 tests en 9 archivos**. Configuración en `vitest.config.js` (ambiente `jsdom`, globals, `setup.js` y `css: false`).
+Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **52 tests en 11 archivos**. Configuración en `vitest.config.js` (ambiente `jsdom`, globals, `setup.js` y `css: false`).
 
 | Archivo | Qué valida | Tests |
 |---|---|---|
@@ -409,10 +457,12 @@ Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **49 test
 | `buscador.test.js` | Búsqueda y resultados agrupados | 5 |
 | `navbar.test.jsx` | Navegación desktop/móvil, enlaces, dropdown Ingreso | 6 |
 | `hero.test.jsx` | Render de slides, CTAs, navegación | 5 |
-| `news.test.jsx` | Noticia destacada y sin imagen | 2 |
+| `news.test.jsx` | Noticia destacada (la más reciente) y sin imagen | 2 |
 | `ingreso.test.jsx` | Render de la landing `/ingreso` (hero, anti-estafa, cronograma, enlaces) | 7 |
 | `audiencia.test.jsx` | Sección por audiencia del Home (3 audiencias y enlaces) | 4 |
 | `sharebutton.test.jsx` | Copiar, Web Share API, feedback "¡Copiado!" | 3 |
+| `admin-noticianueva.test.jsx` | Herramienta `/admin/noticias/nueva`: formulario, preview y código generado | 2 |
+| `noticias-utils.test.js` | Orden "más reciente primero" (destacada y filtro por escuela) | 2 |
 
 ### 13.3 GitHub Actions
 CI automatizado: Lint → Build → Test en cada push. Archivo: `.github/workflows/ci.yml`.

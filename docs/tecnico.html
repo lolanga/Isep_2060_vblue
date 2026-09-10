@@ -97,14 +97,16 @@
 ├── data/
 │   ├── config.js            # Config centralizada
 │   ├── institucional.js     # Escuelas, carreras, cursos, convocatorias, cronograma, FAQ
-│   ├── noticias.js          # 15 noticias (admite img: null)
+│   ├── noticias.js          # Noticias (14 al momento; admite img: null y escuelas)
 │   ├── normativa.js         # 17 resoluciones
-│   └── buscador.js          # 61 entradas + buscar/buscarAgrupado
+│   └── buscador.js          # 60 entradas + buscar/buscarAgrupado
 ├── pages/
 │   ├── Home.jsx             # 7 secciones (Audiencia con accesos a los sistemas)
 │   ├── Noticias.jsx         # Filtro + paginación + filtro escuela
 │   ├── NoticiaDetalle.jsx   # Detalle noticia
 │   ├── MapaDelSitio.jsx     # Mapa visual 27 rutas
+│   ├── admin/
+│   │   └── NoticiaNueva.jsx # Herramienta interna: crear noticias (WYSIWYG + preview + guardado; /admin/noticias/nueva)
 │   ├── Institucional/       # ElISeP, Autoridades, Organizacion,
 │   │                        # OfertaEducativa, Carrera, Resoluciones,
 │   │                        # SedesContacto (Maps), Galeria
@@ -116,7 +118,8 @@
 ├── services/
 │   └── api.js               # Mock → backend-ready
 ├── utils/
-│   └── analytics.js         # Tracking GA4
+│   ├── analytics.js         # Tracking GA4
+│   └── noticias.js          # Noticias ordenadas por id desc (más reciente primero)
 └── styles/
     ├── variables.css        # Design tokens
     ├── base.css             # Reset, tipografía, fondo, prefers-reduced-motion global
@@ -128,6 +131,7 @@
     ├── new-features.css     # mejoras recientes
     ├── oferta.css           # Cards, chips, filtros
     ├── pages.css            # Clases reutilizables de contenido
+    ├── admin.css            # Panel de administración (/admin/noticias/nueva)
     ├── footer.css           # Footer
     └── responsive.css       # Mobile-first</pre>
 
@@ -169,17 +173,18 @@
     </table>
     <p><strong>Nav responsive:</strong> desktop con escudo + dropdowns; tablet solo escudo; móvil hamburger. La <strong>sección activa</strong> se resalta con <code>nav-is-active</code> (vía <code>useLocation</code>) en desktop y móvil.</p>
 
-    <h2>5. Rutas (App.jsx) — 27 rutas</h2>
+    <h2>5. Rutas (App.jsx) — 27 rutas (+1 interna)</h2>
     <p>Todas las rutas usan <code>React.lazy()</code> + <code>Suspense</code> para code-splitting. Navbar, Footer, FloatWhatsApp y ScrollToTop son globales.</p>
+    <div class="note"><strong>Ruta interna de administración:</strong> además existe <code>/admin/noticias/nueva</code> (lazy, chunk <code>NoticiaNueva.*.js</code>, ~413 KB / 130 KB gzip). No se contabiliza entre las 27 públicas porque es una herramienta interna, no parte de la navegación del sitio (ver §11).</div>
 
     <h2>6. Datos (mock)</h2>
     <table>
       <tr><th>Archivo</th><th>Contenido</th></tr>
       <tr><td><code>institucional.js</code></td><td>5 escuelas, 4 carreras, 6+ cursos, convocatorias, cronograma, 12 FAQ, helpers</td></tr>
-      <tr><td><code>noticias.js</code></td><td>15 noticias (admite <code>img: null</code>)</td></tr>
+      <tr><td><code>noticias.js</code></td><td>Noticias (14 al momento; admite <code>img: null</code> y <code>escuelas</code>)</td></tr>
       <tr><td><code>normativa.js</code></td><td>17 resoluciones descargables</td></tr>
       <tr><td><code>Galeria.jsx</code></td><td>Fotos hardcodeadas en el componente (categorías Eventos/Formación/Instalaciones/Graduaciones). No existe <code>galeria.js</code></td></tr>
-      <tr><td><code>buscador.js</code></td><td>61 entradas + <code>buscar()</code> + <code>buscarAgrupado()</code></td></tr>
+      <tr><td><code>buscador.js</code></td><td>60 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 14 noticias + 17 resoluciones + 11 páginas) + <code>buscar()</code> + <code>buscarAgrupado()</code></td></tr>
       <tr><td><code>config.js</code></td><td>MI_ISEP_URL, GESTION_URL, CADETES_URL, WEBMAIL_URL, emails, teléfonos, GA_ID, redes</td></tr>
     </table>
 
@@ -241,10 +246,12 @@
             | "investigaciones" | "ead")[];
   contenido?: string;
 }</pre>
+    <div class="note"><strong>Orden de presentación:</strong> las noticias se muestran de <strong>más reciente a más antigua</strong> (por <code>id</code> descendente) vía <code>src/utils/noticias.js</code>. La última publicada es la destacada (grid grande) y la primera de cada escuela.</div>
     <h3>Archivos a modificar</h3>
     <table>
       <tr><th>Archivo</th><th>Acción</th></tr>
       <tr><td><code>src/data/noticias.js</code></td><td>Agregar objeto al array con campos <code>adjuntos</code> y <code>escuelas</code></td></tr>
+      <tr><td><code>src/utils/noticias.js</code></td><td>Ordenamiento automático (id desc) — no requiere cambios</td></tr>
       <tr><td><code>src/data/buscador.js</code></td><td>Automático (importa de noticias.js)</td></tr>
       <tr><td><code>public/docs/</code></td><td>Colocar archivos adjuntos</td></tr>
     </table>
@@ -286,13 +293,50 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
                                   ├── Noticias relacionadas
                                   └── Botón volver</pre>
 
+    <h3>Herramienta de administración de noticias (<code>/admin/noticias/nueva</code>)</h3>
+    <div class="note">Herramienta interna para crear noticias sin tocar código. Detalle operativo (paso a paso y acceso) en <strong>funcional.md §18.4</strong>. Es una <strong>ruta interna</strong>: no está en el mapa de navegación público, se carga con <code>React.lazy()</code> y consume la variable <code>VITE_ADMIN_PIN</code>.</div>
+    <h4>Archivos</h4>
+    <table>
+      <tr><th>Archivo</th><th>Rol</th></tr>
+      <tr><td><code>src/pages/admin/NoticiaNueva.jsx</code></td><td>Formulario: campos, editor WYSIWYG (TipTap v3), preview, generador de código, PIN gate</td></tr>
+      <tr><td><code>src/styles/admin.css</code></td><td>Estilos del panel admin</td></tr>
+      <tr><td><code>src/App.jsx</code></td><td>Ruta lazy <code>/admin/noticias/nueva</code></td></tr>
+      <tr><td><code>src/main.jsx</code></td><td>Import del CSS admin</td></tr>
+      <tr><td><code>vite.config.js</code></td><td>Middleware (solo dev) <code>/api/upload</code> y <code>/api/noticias/save</code></td></tr>
+      <tr><td><code>src/utils/noticias.js</code></td><td>Ordenamiento de noticias (id desc)</td></tr>
+    </table>
+    <h4>Middleware de desarrollo — solo <code>npm run dev</code></h4>
+    <table>
+      <tr><th>Endpoint</th><th>Método</th><th>Efecto</th></tr>
+      <tr><td><code>/api/upload</code></td><td>POST (multipart)</td><td>Guarda el archivo en <code>public/img/noticias/{hex}{ext}</code> y responde <code>{ url, filename }</code></td></tr>
+      <tr><td><code>/api/noticias/save</code></td><td>POST (JSON <code>{ code }</code>)</td><td>Inserta <code>code</code> al final de <code>src/data/noticias.js</code> (antes del <code>];</code>) y responde <code>{ ok }</code></td></tr>
+    </table>
+    <p>Endpoints definidos en <code>configureServer</code>: <strong>no existen</strong> en el build de producción.</p>
+    <h4>Acceso en producción (PIN)</h4>
+    <ul>
+      <li>Build con <code>VITE_ADMIN_PIN=&lt;clave&gt;</code> → la ruta pide un PIN (verificación en frontend) antes del formulario.</li>
+      <li>Build sin <code>VITE_ADMIN_PIN</code> → <code>&lt;Navigate to="/" replace /&gt;</code> (inaccesible).</li>
+      <li>En <strong>dev</strong> el acceso es directo, sin PIN.</li>
+    </ul>
+    <h4>Ordenamiento "más reciente primero"</h4>
+    <ul>
+      <li><code>src/utils/noticias.js</code> exporta <code>noticias</code> = array original ordenado por <code>id</code> <strong>descendente</strong>.</li>
+      <li>Consumidores (<code>News.jsx</code>, <code>Noticias.jsx</code>, <code>NoticiaDetalle.jsx</code>, <code>EscuelaTemplate.jsx</code>) importan de <code>../utils/noticias</code> en lugar de <code>../data/noticias</code>.</li>
+      <li>Consecuencia: la última publicada queda de destacada (grid grande) y primera de cada escuela.</li>
+      <li>Cobertura: <code>src/test/noticias-utils.test.js</code>.</li>
+    </ul>
+    <h4>Dependencias</h4>
+    <p>TipTap v3.31.3: <code>@tiptap/react</code>, <code>@tiptap/starter-kit</code>, <code>@tiptap/extension-image</code>, <code>@tiptap/extension-placeholder</code>, <code>@tiptap/extension-underline</code>, <code>@tiptap/extension-link</code>. En TipTap v3 <code>StarterKit</code> ya incluye Link y Underline (se configuran vía <code>StarterKit.configure</code>).</p>
+    <h4>Implicancias de deploy</h4>
+    <p>Los endpoints <code>/api/upload</code> y <code>/api/noticias/save</code> no existen en producción. Para publicar: generar el código con la herramienta, aplicar el cambio en <code>src/data/noticias.js</code>, colocar los archivos en <code>public/img/noticias/</code> y <code>public/docs/</code>, y re-ejecutar el build (ver explicación de estrategias de deploy de funcional §18.4).</p>
+
     <h2>12. Mejoras de Calidad</h2>
 
     <h3>12.1 Lazy Loading</h3>
     <p>Cada ruta se carga bajo demanda con <code>React.lazy()</code> + <code>Suspense</code>. 96 módulos totales.</p>
 
     <h3>12.2 Testing</h3>
-    <p><strong>49 tests en 9 archivos</strong> con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. Configuración en <code>vitest.config.js</code> (ambiente <code>jsdom</code>, globals, <code>setup.js</code> y <code>css: false</code>):</p>
+    <p><strong>52 tests en 11 archivos</strong> con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. Configuración en <code>vitest.config.js</code> (ambiente <code>jsdom</code>, globals, <code>setup.js</code> y <code>css: false</code>):</p>
     <table>
       <tr><th>Archivo</th><th>Qué valida</th><th>Tests</th></tr>
       <tr><td><code>datos.test.js</code></td><td>IDs únicos, campos requeridos, categorías válidas, imágenes <code>null</code>, cronograma</td><td>9</td></tr>
@@ -300,10 +344,12 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
       <tr><td><code>buscador.test.js</code></td><td>Búsqueda y resultados agrupados</td><td>5</td></tr>
       <tr><td><code>navbar.test.jsx</code></td><td>Navegación desktop/móvil, enlaces, dropdown Ingreso</td><td>6</td></tr>
       <tr><td><code>hero.test.jsx</code></td><td>Render de slides, CTAs, navegación</td><td>5</td></tr>
-      <tr><td><code>news.test.jsx</code></td><td>Noticia destacada y sin imagen</td><td>2</td></tr>
+      <tr><td><code>news.test.jsx</code></td><td>Noticia destacada (la más reciente) y sin imagen</td><td>2</td></tr>
       <tr><td><code>ingreso.test.jsx</code></td><td>Render de la landing <code>/ingreso</code> (hero, anti-estafa, cronograma, enlaces)</td><td>7</td></tr>
       <tr><td><code>audiencia.test.jsx</code></td><td>Sección por audiencia del Home (3 audiencias y enlaces)</td><td>4</td></tr>
       <tr><td><code>sharebutton.test.jsx</code></td><td>Copiar, Web Share API, feedback "¡Copiado!"</td><td>3</td></tr>
+      <tr><td><code>admin-noticianueva.test.jsx</code></td><td>Herramienta <code>/admin/noticias/nueva</code>: formulario, preview y código generado</td><td>2</td></tr>
+      <tr><td><code>noticias-utils.test.js</code></td><td>Orden "más reciente primero" (destacada y filtro por escuela)</td><td>2</td></tr>
     </table>
 
     <h3>12.3 GitHub Actions</h3>

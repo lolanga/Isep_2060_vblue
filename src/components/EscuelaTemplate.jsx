@@ -16,7 +16,7 @@ import {
   carrerasDeEscuela,
   cursosDeEscuela,
 } from "../data/institucional";
-import { noticias } from "../data/noticias";
+import { noticias } from "../utils/noticias";
 import { MI_ISEP_URL } from "../data/config";
 
 /**
