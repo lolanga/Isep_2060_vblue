@@ -44,6 +44,19 @@ describe("Audiencia (Home — sección por audiencia)", () => {
     );
   });
 
+  it('marca SIGEDI y Webmail como "Sólo personal de ISeP"', () => {
+    renderAudiencia();
+    expect(screen.getAllByText("Sólo personal de ISeP")).toHaveLength(2);
+    expect(screen.getByText("SIGEDI").closest("a")).toHaveAttribute(
+      "href",
+      "https://gestion.isepsantafe.edu.ar"
+    );
+    expect(screen.getByText("Webmail").closest("a")).toHaveAttribute(
+      "href",
+      "https://webmail.isepsantafe.net.ar"
+    );
+  });
+
   it("orienta al ciudadano hacia noticias y oferta educativa", () => {
     renderAudiencia();
     expect(screen.getByText("Últimas noticias").closest("a")).toHaveAttribute(

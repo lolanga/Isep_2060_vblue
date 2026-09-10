@@ -31,10 +31,9 @@ src/
 ├── components/
 │   ├── Navbar.jsx           # Navegación global + SearchBox + hamburger + nav-is-active
 │   ├── Hero.jsx             # Slider 3 slides + 2 CTAs + pausa por prefers-reduced-motion
-│   ├── Audiencia.jsx        # Sección Home "¿Qué estás buscando?" (3 audiencias)
+│   ├── Audiencia.jsx        # Sección Home "¿Qué estás buscando?" (3 audiencias; "Soy personal" con accesos a los 4 sistemas)
 │   ├── SearchBox.jsx        # Buscador global agrupado (debounce 300ms)
 │   ├── News.jsx             # Sección noticias Home (datos reales + links)
-│   ├── Tramites.jsx         # 4 apps institucionales (sección "Trámites y Sistemas")
 │   ├── Schools.jsx          # Grid de escuelas con escudos (enlaces a /escuelas/:slug)
 │   ├── CTA.jsx              # Llamado a la acción con countdown (2027-09-30)
 │   ├── Footer.jsx           # Footer 3 columnas + redes sociales
@@ -60,7 +59,7 @@ src/
 │   ├── normativa.js         # 17 resoluciones (compartido)
 │   └── buscador.js          # 61 entradas + buscar() + buscarAgrupado()
 ├── pages/
-│   ├── Home.jsx             # 8 secciones + Trámites y Sistemas + Audiencia
+│   ├── Home.jsx             # 7 secciones (Audiencia con accesos a los sistemas)
 │   ├── Noticias.jsx         # Filtro + paginación + filtro por escuela + links a detalle
 │   ├── NoticiaDetalle.jsx   # Detalle de noticia individual
 │   ├── MapaDelSitio.jsx     # Mapa visual de todas las rutas (27)
@@ -102,7 +101,7 @@ src/
     ├── news.css             # Noticias Home
     ├── noticias.css         # Página /noticias
     ├── schools-cta.css      # Escuelas + CTA
-    ├── new-features.css     # Trámites y Sistemas + contadores + últimas mejoras
+    ├── new-features.css     # contadores + últimas mejoras
     ├── oferta.css           # Cards, chips, filtros, acordeón
     ├── pages.css            # Clases reutilizables de páginas de contenido
     ├── footer.css           # Footer 3 columnas + bottom
@@ -401,7 +400,7 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
 Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. 96 módulos totales. Todas las páginas incluidas (incluyendo Secretaría).
 
 ### 13.2 Testing
-Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **48 tests en 9 archivos**. Configuración en `vitest.config.js` (ambiente `jsdom`, globals, `setup.js` y `css: false`).
+Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **49 tests en 9 archivos**. Configuración en `vitest.config.js` (ambiente `jsdom`, globals, `setup.js` y `css: false`).
 
 | Archivo | Qué valida | Tests |
 |---|---|---|

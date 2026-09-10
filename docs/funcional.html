@@ -84,7 +84,7 @@
     <h3>Rutas existentes (27 rutas)</h3>
     <table>
       <tr><th>Ruta</th><th>Página</th><th>Estado</th></tr>
-      <tr><td><code>/</code></td><td>Home (8 secciones)</td><td><span class="badge ok">Implementada</span></td></tr>
+      <tr><td><code>/</code></td><td>Home (7 secciones)</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/noticias</code></td><td>Listado de noticias con filtro, paginación</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/noticias/:id</code></td><td>Detalle de noticia individual</td><td><span class="badge ok">Implementada</span></td></tr>
       <tr><td><code>/institucional/el-isep</code></td><td>El ISeP</td><td><span class="badge ok">Implementada</span></td></tr>
@@ -116,17 +116,16 @@
     <h2>4. Funcionalidades implementadas (Home)</h2>
     <ol>
       <li><strong>Hero Slider</strong> — Banner principal con slider automático (3 slides), transiciones suaves, flechas y dots. CTAs: "Conoce nuestras propuestas" → <code>/institucional/oferta-educativa</code> y "Inscripciones 2027" → <code>/ingreso/convocatorias</code>.</li>
-      <li><strong>¿Qué estás buscando? (Elegí tu camino)</strong> — sección por audiencia (<code>Audiencia.jsx</code>) con 3 tarjetas: <strong>Quiero ingresar</strong> (→ <code>/ingreso</code>), <strong>Soy personal</strong> (Mi ISeP, SIGEDI, Gestión Cadetes, Webmail) y <strong>Ciudadano</strong> (noticias, oferta educativa, biblioteca, galería).</li>
-      <li><strong>Últimas Noticias</strong> — Noticia destacada + sidebar de noticias recientes con ShareButton y promo "Calendario Académico" (botón DESCARGAR PDF).</li>
-      <li><strong>Trámites y Sistemas</strong> — 4 tarjetas: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail (con audiencia y descripción).</li>
-      <li><strong>CTA Inscripciones</strong> — Título "Inscripciones Abiertas 2027", countdown a 2027-09-30 + botones "Pre-Inscripción Online" (<code>/ingreso/convocatorias</code>) y "Ver Requisitos" (<code>/ingreso/requisitos</code>).</li>
+<li><strong>¿Qué estás buscando? (Elegí tu camino)</strong> — sección por audiencia (<code>Audiencia.jsx</code>) con 3 tarjetas: <strong>Quiero ingresar</strong> (→ <code>/ingreso</code>), <strong>Soy personal</strong> (accesos directos a los 4 sistemas del ISeP: Mi ISeP, SIGEDI, Gestión Cadetes y Webmail; SIGEDI y Webmail indican "Sólo personal de ISeP") y <strong>Ciudadano</strong> (noticias, oferta educativa, biblioteca, galería). Los sistemas de la ex sección "Trámites y Sistemas" quedaron como enlaces en "Soy personal".</li>
+<li><strong>Últimas Noticias</strong> — Noticia destacada + sidebar de noticias recientes con ShareButton y promo "Calendario Académico" (botón DESCARGAR PDF).</li>
+<li><strong>CTA Inscripciones</strong> — Título "Inscripciones Abiertas 2027", countdown a 2027-09-30 + botones "Pre-Inscripción Online" (<code>/ingreso/convocatorias</code>) y "Ver Requisitos" (<code>/ingreso/requisitos</code>).</li>
       <li><strong>Nuestras Escuelas</strong> — Grid de 4 escuelas principales (Policía, Superior, Especialidades, Investigaciones) con escudos, enlaces a <code>/escuelas/:slug</code>. La 5ta escuela (EaD) se accede desde el menú Formación.</li>
       <li><strong>Contadores</strong> — Docentes (2200+), Cadetes (1100+), Personal (800+), Aulas (500+).</li>
       <li><strong>Testimonios</strong> — Carrusel de 3 egresados con flechas y dots.</li>
     </ol>
     <p class="note"><strong>Nota:</strong> Contadores y Testimonios se ocultan en móvil (<code>hide-mobile</code>).</p>
 
-    <h3>Trámites y Sistemas</h3>
+    <h3>Sistemas institucionales del ISeP (accesos en "Soy personal")</h3>
     <table>
       <tr><th>App</th><th>Descripción</th><th>Audiencia</th></tr>
       <tr><td>Mi ISeP</td><td>Aulas virtuales, material de cursado, notas y asistencia</td><td>Docentes, personal policial cursante y postulantes inscriptos</td></tr>
@@ -276,7 +275,7 @@
     <p><code>npm install</code> → <code>npm run dev</code> (localhost:5173). Build: <code>npm run build</code> → <code>npm run preview</code>. Lint: <code>npm run lint</code>. Tests: <code>npm run test</code>.</p>
 
     <h3>17.1 Testing automatizado</h3>
-    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. <strong>48 tests en 9 archivos</strong> (capa de datos + componentes UI):</p>
+    <p>Suite de tests con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. <strong>49 tests en 9 archivos</strong> (capa de datos + componentes UI):</p>
     <table>
       <tr><th>Archivo</th><th>Qué valida</th></tr>
       <tr><td><code>datos.test.js</code></td><td>Estructura de noticias: IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como <code>null</code> + cronograma de ingreso (9)</td></tr>
@@ -510,8 +509,7 @@
       <tr><td><code>src/data/normativa.js</code></td><td>Resoluciones (<code>/institucional/resoluciones</code>)</td></tr>
       <tr><td><code>src/data/buscador.js</code></td><td>Entradas "a mano" del buscador global</td></tr>
       <tr><td><code>src/components/Hero.jsx</code></td><td>Slider de la portada</td></tr>
-      <tr><td><code>src/components/Audiencia.jsx</code></td><td>"¿Qué estás buscando? / Elegí tu camino" (Home)</td></tr>
-      <tr><td><code>src/components/Tramites.jsx</code></td><td>"Trámites y Sistemas" (Home)</td></tr>
+      <tr><td><code>src/components/Audiencia.jsx</code></td><td>"¿Qué estás buscando? / Elegí tu camino" (Home; "Soy personal" con accesos a los 4 sistemas)</td></tr>
       <tr><td><code>src/components/CTA.jsx</code></td><td>Banner "Inscripciones Abiertas" + fecha de cierre (Home)</td></tr>
       <tr><td><code>src/components/Contadores.jsx</code></td><td>Los 4 números grandes del Home</td></tr>
       <tr><td><code>src/components/Testimonios.jsx</code></td><td>Carrusel de testimonios (Home)</td></tr>
@@ -547,21 +545,14 @@
       <tr><td><code>descripcion</code></td><td>texto debajo del título</td><td><code>"¿Querés ser parte de la Policía…?"</code></td></tr>
       <tr><td><code>icon</code></td><td>ícono de la cabecera</td><td><code>"login"</code></td></tr>
       <tr><td><code>className</code></td><td>color de la tarjeta (no tocar)</td><td><code>"audiencia-card--primary"</code></td></tr>
-      <tr><td><code>links</code></td><td>lista de accesos: <code>label</code>, <code>icon</code>, <code>to</code> (ruta interna) y <code>external: true</code> si es URL externa</td><td><code>{ label: "Requisitos de ingreso", icon: "checklist", to: "/ingreso/requisitos" }</code></td></tr>
+      <tr><td><code>links</code></td><td>lista de accesos: <code>label</code>, <code>icon</code>, <code>to</code> (ruta interna) y <code>external: true</code> si es URL externa. <code>soloPersonal: true</code> (opcional) muestra en cursiva "Sólo personal de ISeP"</td><td><code>{ label: "SIGEDI", icon: "folder_open", to: GESTION_URL, external: true, soloPersonal: true }</code></td></tr>
       <tr><td><code>cta</code></td><td>botón inferior: <code>label</code>, <code>to</code>, <code>external</code></td><td><code>{ label: "Empezar mi ingreso", to: "/ingreso", external: false }</code></td></tr>
     </table>
-    <p>Los íconos son nombres del set <strong>Material Symbols</strong> (<code>login</code>, <code>badge</code>, <code>groups</code>, <code>how_to_reg</code>, <code>checklist</code>, <code>event_note</code>, <code>help</code>, <code>newspaper</code>, <code>school</code>, <code>library_books</code>, <code>photo_library</code>).</p>
+    <p>Los íconos son nombres del set <strong>Material Symbols</strong> (<code>login</code>, <code>badge</code>, <code>groups</code>, <code>how_to_reg</code>, <code>checklist</code>, <code>event_note</code>, <code>help</code>, <code>laptop_mac</code>, <code>folder_open</code>, <code>military_tech</code>, <code>mail</code>, <code>newspaper</code>, <code>school</code>, <code>library_books</code>, <code>photo_library</code>).</p>
+    <p>Los links de <strong>Soy personal</strong> (Mi ISeP, SIGEDI, Gestión Cadetes y Webmail) abren en pestaña nueva (<code>external: true</code>). <strong>SIGEDI</strong> y <strong>Webmail</strong> incluyen <code>soloPersonal: true</code> y muestran la nota en cursiva <strong>"Sólo personal de ISeP"</strong> debajo del enlace (visible pero sin resaltar).</p>
 
     <h3>22.6 Trámites y Sistemas</h3>
-    <p><strong>Archivo:</strong> <code>src/components/Tramites.jsx</code> (constante <code>tramites</code>).<br>
-    <strong>Dónde aparece:</strong> Home (sección "Trámites y Sistemas").</p>
-    <ol>
-      <li>Abrí <code>src/components/Tramites.jsx</code>.</li>
-      <li>Buscá <code>const tramites = [</code>.</li>
-      <li>Editá los campos de cada tarjeta: <code>name</code>, <code>icon</code>, <code>paraQuien</code>, <code>queHace</code>. El campo <code>url</code> usa una constante de <code>src/data/config.js</code> (ver 22.20) para que los enlaces estén centralizados.</li>
-      <li>Para <strong>agregar un sistema nuevo</strong>: copiá un bloque existente, pegalo antes de <code>];</code> y definí su URL. Si el sistema tiene URL propia, agregá la constante en <code>config.js</code> y usala acá.</li>
-      <li>Guardá y verificá.</li>
-    </ol>
+    <p>La sección "Trámites y Sistemas" ya no existe como bloque separado en el Home: sus 4 sistemas (<strong>Mi ISeP</strong>, <strong>SIGEDI</strong>, <strong>Gestión Cadetes</strong> y <strong>Webmail</strong>) quedaron en la tarjeta <strong>Soy personal</strong> de la sección "Elegí tu camino" como accesos directos (abren en pestaña nueva). <strong>SIGEDI</strong> y <strong>Webmail</strong> llevan la nota en cursiva "Sólo personal de ISeP" (campo <code>soloPersonal</code>). Para editarlos abrí <code>src/components/Audiencia.jsx</code> y modificá el campo <code>links</code> de esa tarjeta (ver 22.5).</p>
 
     <h3>22.7 Banner "Inscripciones Abiertas" + fecha de cierre (CTA)</h3>
     <p><strong>Archivo:</strong> <code>src/components/CTA.jsx</code>.<br>

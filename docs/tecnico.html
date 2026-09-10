@@ -73,10 +73,9 @@
 ├── components/
 │   ├── Navbar.jsx           # Nav + SearchBox + hamburger + nav-is-active
 │   ├── Hero.jsx             # Slider 3 slides + 2 CTAs + prefers-reduced-motion
-│   ├── Audiencia.jsx        # Sección Home "¿Qué estás buscando?" (3 audiencias)
+│   ├── Audiencia.jsx        # Sección Home "¿Qué estás buscando?" (3 audiencias; "Soy personal" con accesos a los 4 sistemas)
 │   ├── SearchBox.jsx        # Buscador global (debounce 300ms)
 │   ├── News.jsx             # Noticias Home
-│   ├── Tramites.jsx         # 4 apps institucionales (Trámites y Sistemas)
 │   ├── Schools.jsx          # Grid escuelas con escudos
 │   ├── CTA.jsx              # Countdown (2027-09-30)
 │   ├── Footer.jsx           # Footer 3 columnas
@@ -102,7 +101,7 @@
 │   ├── normativa.js         # 17 resoluciones
 │   └── buscador.js          # 61 entradas + buscar/buscarAgrupado
 ├── pages/
-│   ├── Home.jsx             # 8 secciones + Trámites y Sistemas + Audiencia
+│   ├── Home.jsx             # 7 secciones (Audiencia con accesos a los sistemas)
 │   ├── Noticias.jsx         # Filtro + paginación + filtro escuela
 │   ├── NoticiaDetalle.jsx   # Detalle noticia
 │   ├── MapaDelSitio.jsx     # Mapa visual 27 rutas
@@ -126,7 +125,7 @@
     ├── news.css             # Noticias Home
     ├── noticias.css         # Página /noticias
     ├── schools-cta.css      # Escuelas + CTA
-    ├── new-features.css     # Trámites y Sistemas + mejoras recientes
+    ├── new-features.css     # mejoras recientes
     ├── oferta.css           # Cards, chips, filtros
     ├── pages.css            # Clases reutilizables de contenido
     ├── footer.css           # Footer
@@ -293,7 +292,7 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
     <p>Cada ruta se carga bajo demanda con <code>React.lazy()</code> + <code>Suspense</code>. 96 módulos totales.</p>
 
     <h3>12.2 Testing</h3>
-    <p><strong>48 tests en 9 archivos</strong> con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. Configuración en <code>vitest.config.js</code> (ambiente <code>jsdom</code>, globals, <code>setup.js</code> y <code>css: false</code>):</p>
+    <p><strong>49 tests en 9 archivos</strong> con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. Configuración en <code>vitest.config.js</code> (ambiente <code>jsdom</code>, globals, <code>setup.js</code> y <code>css: false</code>):</p>
     <table>
       <tr><th>Archivo</th><th>Qué valida</th><th>Tests</th></tr>
       <tr><td><code>datos.test.js</code></td><td>IDs únicos, campos requeridos, categorías válidas, imágenes <code>null</code>, cronograma</td><td>9</td></tr>

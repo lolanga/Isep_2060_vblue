@@ -64,7 +64,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 
 | Ruta | Página | Estado |
 |---|---|---|
-| `/` | Home (8 secciones) | Implementada |
+| `/` | Home (7 secciones) | Implementada |
 | `/noticias` | Listado de noticias con filtro, paginación y detalle | Implementada |
 | `/noticias/:id` | Detalle de noticia individual (contenido, relacionadas) | Implementada |
 | `/institucional/el-isep` | El ISeP | Implementada |
@@ -99,13 +99,12 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 La página de inicio (`/`) está compuesta por las siguientes secciones, en orden:
 
 1. **Hero Slider** — Banner principal con slider automático (3 slides), transiciones suaves, flechas de navegación y indicadores (dots). Dos CTAs: "Conoce nuestras propuestas" → `/institucional/oferta-educativa` y "Inscripciones 2027" → `/ingreso/convocatorias`.
-2. **¿Qué estás buscando? (Elegí tu camino)** — sección por audiencia (`Audiencia.jsx`) con 3 tarjetas: **Quiero ingresar** (pre-inscripción, requisitos, cronograma, FAQ → `/ingreso`), **Soy personal** (Mi ISeP, SIGEDI, Gestión Cadetes, Webmail) y **Ciudadano** (noticias, oferta educativa, biblioteca, galería).
+2. **¿Qué estás buscando? (Elegí tu camino)** — sección por audiencia (`Audiencia.jsx`) con 3 tarjetas: **Quiero ingresar** (pre-inscripción, requisitos, cronograma, FAQ → `/ingreso`), **Soy personal** (accesos directos a los 4 sistemas del ISeP: Mi ISeP, SIGEDI, Gestión Cadetes y Webmail; SIGEDI y Webmail indican "Sólo personal de ISeP") y **Ciudadano** (noticias, oferta educativa, biblioteca, galería). Los sistemas de la ex sección "Trámites y Sistemas" quedaron como enlaces en "Soy personal".
 3. **Últimas Noticias** — Noticia destacada + sidebar de noticias recientes con ShareButton y promo **"Calendario Académico"** (botón DESCARGAR PDF). Links a `/noticias/:id`.
-4. **Trámites y Sistemas** — 4 tarjetas de acceso a los sistemas del ISeP: Mi ISeP, SIGEDI, Gestión Cadetes, Webmail. Cada una con audiencia y descripción de qué hace.
-5. **CTA Inscripciones** — Bloque con título "Inscripciones Abiertas 2027", countdown configurable (fecha objetivo: 2027-09-30) + botones "Pre-Inscripción Online" (`/ingreso/convocatorias`) y "Ver Requisitos" (`/ingreso/requisitos`).
-6. **Nuestras Escuelas** — Cuadrícula de las 4 escuelas principales (Policía, Superior, Especialidades, Investigaciones) con escudos. Tarjetas enlaces clickeables a `/escuelas/:slug`. La 5ta escuela (EaD) se accede desde el menú Formación.
-7. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
-8. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
+4. **CTA Inscripciones** — Bloque con título "Inscripciones Abiertas 2027", countdown configurable (fecha objetivo: 2027-09-30) + botones "Pre-Inscripción Online" (`/ingreso/convocatorias`) y "Ver Requisitos" (`/ingreso/requisitos`).
+5. **Nuestras Escuelas** — Cuadrícula de las 4 escuelas principales (Policía, Superior, Especialidades, Investigaciones) con escudos. Tarjetas enlaces clickeables a `/escuelas/:slug`. La 5ta escuela (EaD) se accede desde el menú Formación.
+6. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
+7. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
 
 > **Nota:** Contadores y Testimonios se ocultan en móvil (`hide-mobile`).
 
@@ -120,7 +119,7 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 - **CTAs:** botón principal "Conoce nuestras propuestas" (`/institucional/oferta-educativa`) + botón secundario "Inscripciones 2027" (`/ingreso/convocatorias`).
 - **Accesibilidad:** respeta `prefers-reduced-motion` — si el usuario pidió reducir movimiento, el autoplay se pausa (ver tecnico.md §15.1).
 
-### 4.2 Sección Trámites y Sistemas (Home)
+### 4.2 Sistemas institucionales del ISeP (accesos en "Soy personal")
 
 | App | Descripción | Audiencia |
 |---|---|---|
@@ -394,7 +393,7 @@ Carrusel de 3 egresados con foto, nombre, promoción y texto. Flechas y dots.
 ### 17.1 Testing automatizado
 
 Suite de tests con **Vitest** + **React Testing Library** + **jsdom**:
-- 48 tests en 9 archivos, cubriendo tanto la capa de datos como componentes UI:
+- 49 tests en 9 archivos, cubriendo tanto la capa de datos como componentes UI:
 - `datos.test.js` (9): valida estructura de noticias (IDs únicos, campos requeridos, categorías válidas, imágenes admisibles como `null`) + cronograma de ingreso (etapas con estado válido)
 - `institucional.test.js` (7): valida estructura de escuelas, carreras, cursos y convocatorias
 - `buscador.test.js` (5): valida funcionalidad de búsqueda y resultados agrupados
@@ -811,8 +810,7 @@ Todo lo que se ve en la web (textos, números, imágenes, enlaces, fechas) se gu
 | `src/data/normativa.js` | Resoluciones (`/institucional/resoluciones`) |
 | `src/data/buscador.js` | Entradas "a mano" del buscador global |
 | `src/components/Hero.jsx` | Slider de la portada |
-| `src/components/Audiencia.jsx` | "¿Qué estás buscando? / Elegí tu camino" (Home) |
-| `src/components/Tramites.jsx` | "Trámites y Sistemas" (Home) |
+| `src/components/Audiencia.jsx` | "¿Qué estás buscando? / Elegí tu camino" (Home; "Soy personal" con accesos a los 4 sistemas) |
 | `src/components/CTA.jsx` | Banner "Inscripciones Abiertas" + fecha de cierre (Home) |
 | `src/components/Contadores.jsx` | Los 4 números grandes del Home |
 | `src/components/Testimonios.jsx` | Carrusel de testimonios (Home) |
@@ -852,23 +850,16 @@ Campos por tarjeta:
 | `descripcion` | texto debajo del título | `"¿Querés ser parte de la Policía…?"` |
 | `icon` | ícono de la cabecera | `"login"` |
 | `className` | color de la tarjeta (no tocar) | `"audiencia-card--primary"` |
-| `links` | lista de accesos: `label`, `icon`, `to` (ruta interna) y `external: true` si es URL externa | `{ label: "Requisitos de ingreso", icon: "checklist", to: "/ingreso/requisitos" }` |
+| `links` | lista de accesos: `label`, `icon`, `to` (ruta interna) y `external: true` si es URL externa. `soloPersonal: true` (opcional) muestra en cursiva "Sólo personal de ISeP" | `{ label: "SIGEDI", icon: "folder_open", to: GESTION_URL, external: true, soloPersonal: true }` |
 | `cta` | botón inferior: `label`, `to`, `external` | `{ label: "Empezar mi ingreso", to: "/ingreso", external: false }` |
 
-Los íconos son nombres del set **Material Symbols** (`login`, `badge`, `groups`, `how_to_reg`, `checklist`, `event_note`, `help`, `newspaper`, `school`, `library_books`, `photo_library`).
+Los íconos son nombres del set **Material Symbols** (`login`, `badge`, `groups`, `how_to_reg`, `checklist`, `event_note`, `help`, `laptop_mac`, `folder_open`, `military_tech`, `mail`, `newspaper`, `school`, `library_books`, `photo_library`).
+
+Los links de **Soy personal** (Mi ISeP, SIGEDI, Gestión Cadetes y Webmail) abren en pestaña nueva (`external: true`). **SIGEDI** y **Webmail** incluyen `soloPersonal: true` y muestran la nota en cursiva **"Sólo personal de ISeP"** debajo del enlace (visible pero sin resaltar).
 
 ### 22.6 Trámites y Sistemas
 
-- **Archivo:** `src/components/Tramites.jsx` (constante `tramites`).
-- **Dónde aparece:** Home (sección "Trámites y Sistemas").
-
-Pasos:
-
-1. Abrí `src/components/Tramites.jsx`.
-2. Buscá `const tramites = [`.
-3. Editá los campos de cada tarjeta: `name`, `icon`, `paraQuien`, `queHace`. El campo `url` usa una constante de `src/data/config.js` (ver 22.20) para que los enlaces estén centralizados.
-4. Para **agregar un sistema nuevo**: copiá un bloque existente, pegalo antes de `];` y definí su URL. Si el sistema tiene URL propia, agregá la constante en `config.js` y usala acá.
-5. Guardá y verificá.
+La sección "Trámites y Sistemas" ya no existe como bloque separado en el Home: sus 4 sistemas (**Mi ISeP**, **SIGEDI**, **Gestión Cadetes** y **Webmail**) quedaron en la tarjeta **Soy personal** de la sección "Elegí tu camino" como accesos directos (abren en pestaña nueva). **SIGEDI** y **Webmail** llevan la nota en cursiva "Sólo personal de ISeP" (campo `soloPersonal`). Para editarlos abrí `src/components/Audiencia.jsx` y modificá el campo `links` de esa tarjeta (ver 22.5).
 
 ### 22.7 Banner "Inscripciones Abiertas" + fecha de cierre (CTA)
 

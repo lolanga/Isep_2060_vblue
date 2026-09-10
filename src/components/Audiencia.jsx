@@ -4,6 +4,10 @@
  * Sección "¿Qué estás buscando?" — separa el Home por audiencia:
  * Quiero ingresar · Soy personal · Ciudadano.
  * Se ubica inmediatamente después del Hero.
+ *
+ * La tarjeta "Soy personal" lista los sistemas del ISeP como accesos directos;
+ * SIGEDI y Webmail llevan la nota en cursiva "Sólo personal de ISeP"
+ * (campo opcional `soloPersonal`).
  */
 
 import { Link } from "react-router-dom";
@@ -37,9 +41,21 @@ const audiencias = [
     className: "audiencia-card--secondary",
     links: [
       { label: "Mi ISeP", icon: "laptop_mac", to: MI_ISEP_URL, external: true },
-      { label: "SIGEDI", icon: "folder_open", to: GESTION_URL, external: true },
+      {
+        label: "SIGEDI",
+        icon: "folder_open",
+        to: GESTION_URL,
+        external: true,
+        soloPersonal: true,
+      },
       { label: "Gestión Cadetes", icon: "military_tech", to: CADETES_URL, external: true },
-      { label: "Webmail", icon: "mail", to: WEBMAIL_URL, external: true },
+      {
+        label: "Webmail",
+        icon: "mail",
+        to: WEBMAIL_URL,
+        external: true,
+        soloPersonal: true,
+      },
     ],
     cta: { label: "Acceder a Mi ISeP", to: MI_ISEP_URL, external: true },
   },
@@ -98,6 +114,9 @@ export default function Audiencia() {
                           open_in_new
                         </span>
                       </a>
+                      {l.soloPersonal && (
+                        <em className="audiencia-link__solo">Sólo personal de ISeP</em>
+                      )}
                     </li>
                   ) : (
                     <li key={l.label}>

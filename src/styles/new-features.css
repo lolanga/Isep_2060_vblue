@@ -1,5 +1,5 @@
 /* =============================================
-   NEW FEATURES — Galería, Mapa del Sitio, Trámites
+   NEW FEATURES — Galería, Mapa del Sitio, contadores
    ============================================= */
 
 /* ── Footer link ── */
@@ -228,112 +228,6 @@
   color: var(--secondary, #0055c9);
 }
 
-/* ── Trámites ── */
-.tramites-section {
-  padding: 5rem 0;
-  background: #f8fafc;
-}
-
-.tramites-inner {
-  padding: 0 2rem;
-}
-
-.tramites-header {
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-.tramites-title {
-  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
-  font-weight: 800;
-  color: var(--slate-900, #0f172a);
-  margin-top: 0.5rem;
-}
-
-.tramites-subtitle {
-  font-size: 1rem;
-  color: var(--slate-500, #64748b);
-  margin-top: 0.5rem;
-}
-
-.tramites-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  gap: 1.25rem;
-}
-
-.tramites-card {
-  display: flex;
-  flex-direction: column;
-  padding: 1.75rem;
-}
-
-.tramites-card__icon-wrap {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 0.5rem;
-  background: var(--gradient-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-  overflow: hidden;
-}
-
-.tramites-card__icon {
-  font-size: 1.5rem;
-  color: #fff;
-  line-height: 1;
-}
-
-.tramites-card__name {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--slate-900, #0f172a);
-  margin-bottom: 0.75rem;
-}
-
-.tramites-card__detail {
-  margin-bottom: 0.5rem;
-}
-
-.tramites-card__label {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--secondary, #0055c9);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.15rem;
-}
-
-.tramites-card__value {
-  font-size: 0.85rem;
-  color: var(--slate-600, #475569);
-  line-height: 1.5;
-}
-
-.tramites-card__btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-top: auto;
-  padding-top: 0.75rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--secondary, #0055c9);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.tramites-card__btn .material-symbols-outlined {
-  font-size: 1rem;
-}
-
-.tramites-card__btn:hover {
-  color: var(--primary, #00254d);
-}
-
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .galeria-grid {
@@ -352,10 +246,6 @@
 
   .galeria-card__img-wrap {
     height: 200px;
-  }
-
-  .tramites-grid {
-    grid-template-columns: 1fr;
   }
 }
 

@@ -23,7 +23,7 @@ SPA con **React 19 + Vite 8 + React Router 7** y **100% responsive**.
 src/
 ├── main.jsx, App.jsx (router con lazy loading)
 ├── components/   Navbar (con buscador), Hero (slider + 2 CTAs), Audiencia,
-│                 SearchBox, News, Tramites, Schools, CTA, Footer, EscuelaTemplate,
+│                 SearchBox, News, Schools, CTA, Footer, EscuelaTemplate,
 │                 FloatWhatsApp, Breadcrumb, JsonLd, Countdown, Contadores,
 │                 Testimonios, ShareButton, Placeholder, Skeleton, SkipToContent,
 │                 ErrorBoundary, SEO, Analytics
@@ -42,7 +42,7 @@ src/
 
 - **Hero Slider:** banner automático con 3 slides, 2 CTAs ("Conoce nuestras propuestas" y "Inscripciones 2027"), transiciones suaves, flechas y dots. Pausa autoplay con `prefers-reduced-motion`.
 - **Buscador funcional:** indexa escuelas, carreras, cursos, convocatorias, noticias, normativa y páginas institucionales. Resultados dinámicos con navegación por teclado.
-- **Trámites y Sistemas:** accesos a Mi ISeP, SIGEDI, Gestión Cadetes y Webmail.
+- **Elegí tu camino (por audiencia):** tarjeta "Soy personal" con accesos directos a los 4 sistemas (Mi ISeP, SIGEDI, Gestión Cadetes y Webmail); SIGEDI y Webmail indican "Sólo personal de ISeP".
 - **CTA de inscripciones** con countdown al 30 de septiembre de 2027.
 - **Íconos en navegación:** cada sección del menú tiene un ícono de Material Symbols.
 - **Fondo decorativo global:** patrón sutil con `background-attachment: fixed`, color base `#bcd8db` y gradientes radiales tenues.
@@ -75,7 +75,7 @@ npm run test    # tests (Vitest + React Testing Library)
 
 ## Páginas
 
-- `/` — Home (Hero Slider, ¿Qué estás buscando? por audiencia, Últimas Noticias, Trámites y Sistemas, CTA Inscripciones, Nuestras Escuelas, Contadores, Testimonios)
+- `/` — Home (Hero Slider, ¿Qué estás buscando? por audiencia con accesos a los sistemas, Últimas Noticias, CTA Inscripciones, Nuestras Escuelas, Contadores, Testimonios)
 - `/noticias` — listado con filtro, paginación y detalle (`/noticias/:id`)
 - `/institucional/*` — El ISeP, Autoridades, Organización, Oferta Educativa, Carreras, Normativa y Resoluciones (17 docs), Sedes y Contacto, Galería de Fotos
 - `/institucional/oferta-educativa` — Oferta Educativa (tabs: Carreras, Cursos, Convocatorias)

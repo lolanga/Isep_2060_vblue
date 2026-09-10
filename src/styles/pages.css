@@ -3286,6 +3286,16 @@
   color: var(--slate-400, #94a3b8);
 }
 
+.audiencia-link__solo {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  color: var(--slate-400, #94a3b8);
+  padding: 0 0.5rem 0.4rem 2.05rem;
+}
+
 .audiencia-card__cta {
   margin-top: auto;
   display: inline-flex;

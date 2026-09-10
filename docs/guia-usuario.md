@@ -88,34 +88,33 @@ En orden de aparición (en móvil, Contadores y Testimonios se ocultan):
 ### 5.1 ¿Qué estás buscando? (Elegí tu camino)
 Sección que separa el sitio por tu perfil, con 3 tarjetas:
 - **Quiero ingresar** — pre-inscripción, requisitos, cronograma y FAQ (→ `/ingreso`)
-- **Soy personal** — accesos a Mi ISeP, SIGEDI, Gestión Cadetes y Webmail
+- **Soy personal** — accesos directos a los 4 sistemas del ISeP; **SIGEDI** y **Webmail** indican "Sólo personal de ISeP" (ver tabla)
 - **Ciudadano** — noticias, oferta educativa, biblioteca y galería
 
-### 5.2 Últimas Noticias
-Noticia destacada + sidebar con 3 mini-noticias y promo de **Calendario Académico** (botón "DESCARGAR PDF"). **Cada noticia lleva a su página de detalle** (`/noticias/:id`). El enlace "Ver todas las noticias" lleva a `/noticias`.
-
-### 5.3 Trámites y Sistemas
-4 tarjetas de acceso a los sistemas del ISeP:
+Qué hace y para quién es cada sistema:
 
 | App | Para quién | Qué hace |
 |---|---|---|
 | **Mi ISeP** | Docentes, personal policial cursante y postulantes inscriptos | Acceso a aulas virtuales, material de cursado, notas y asistencia |
-| **SIGEDI** | Solo personal interno del ISeP | Sistema de gestión de expedientes internos |
+| **SIGEDI** | Sólo personal de ISeP | Sistema de gestión de expedientes internos |
 | **Gestión Cadetes** | Cadetes de 1° y 2° año | Control y notificaciones del cursado |
-| **Webmail** | Todo el personal del ISeP | Correo electrónico institucional |
+| **Webmail** | Sólo personal de ISeP | Correo electrónico institucional |
 
-### 5.4 Convocatorias (CTA)
+### 5.2 Últimas Noticias
+Noticia destacada + sidebar con 3 mini-noticias y promo de **Calendario Académico** (botón "DESCARGAR PDF"). **Cada noticia lleva a su página de detalle** (`/noticias/:id`). El enlace "Ver todas las noticias" lleva a `/noticias`.
+
+### 5.3 Convocatorias (CTA)
 Cuenta regresiva al 30 de septiembre de 2027 + botones de inscripción:
 - "Pre-Inscripción Online" → `/ingreso/convocatorias`
 - "Ver Requisitos" → `/ingreso/requisitos`
 
-### 5.5 Nuestras Escuelas
+### 5.4 Nuestras Escuelas
 Las 4 escuelas principales con escudos (Policía, Superior, Especialidades, Investigaciones). Las tarjetas son enlaces clickeables a `/escuelas/:slug`. La 5ta escuela (EaD) se accede desde el menú Formación.
 
-### 5.6 Contadores
+### 5.5 Contadores
 Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.
 
-### 5.7 Testimonios
+### 5.6 Testimonios
 Carrusel de 3 egresados con flechas y dots.
 
 ---
