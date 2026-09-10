@@ -188,6 +188,18 @@
       <tr><td><code>config.js</code></td><td>MI_ISEP_URL, GESTION_URL, CADETES_URL, WEBMAIL_URL, emails, teléfonos, GA_ID, redes</td></tr>
     </table>
 
+    <h3>6.6 Migración de noticias (<code>scripts/migrar-noticias.mjs</code>)</h3>
+    <ul>
+      <li><strong>Qué es:</strong> script interno que trae todo el inventario de noticias del sitio actual (<code>https://www.isepsantafe.edu.ar</code>, Joomla) al sitio nuevo. Solo hace lecturas; <strong>no modifica el sitio actual</strong>.</li>
+      <li><strong>Ejecución:</strong> <code>npm run migrar:noticias</code> (Node ≥ 18, requiere internet, ~3-4 min).</li>
+      <li><strong>Qué genera:</strong> reemplaza <code>src/data/noticias.js</code> completo (<strong>325 noticias</strong>; id 1 = la más antigua, el resto se ordena solo por id desc), descarga imágenes a <code>public/img/noticias/</code> y adjuntos (PDF, etc.) a <code>public/docs/</code>, y reescribe las URLs en el contenido.</li>
+      <li><strong>Fuente:</strong> feed RSS paginado <code>.../index.php/noticias?format=feed&amp;type=rss&amp;start=N</code> + la página de detalle de cada noticia (cuerpo, fecha <code>datePublished</code> y miniatura del JSON-LD).</li>
+      <li><strong>Limpieza aplicada:</strong> elimina estilos inline (los enlaces que eran "botones" pasan a clase <code>.btn-inscripcion</code>), corrige <code>tel:</code> malformados, quita imágenes rotas (404 / dominios caídos / miniaturas no descargables) y normaliza las fechas a mayúsculas.</li>
+      <li><strong>Categorías y escuelas:</strong> se infieren del título (categoría: Escuelas/Académica/Institucional/Eventos/Convenios; escuelas: policia/superior/especialidades/investigaciones/ead). Conviene revisar casos dudosos tras re-migrar.</li>
+      <li><strong>Fallos/límites conocidos:</strong> algunos PDFs de resoluciones antiguas están rotos también en el sitio actual (quedan como enlace remoto); las noticias sin imagen usan el placeholder del diseño.</li>
+      <li><strong>Cuándo usarlo:</strong> para re-migrar el inventario si el sitio actual cambia en bloque. Para publicar noticias nuevas se sigue usando la herramienta admin + ajuste manual (ver §12.7).</li>
+    </ul>
+
     <h2>7. Buscador funcional</h2>
     <ul>
       <li>Resultados agrupados por tipo (headers con ícono + label).</li>

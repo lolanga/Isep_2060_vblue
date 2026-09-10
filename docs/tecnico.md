@@ -225,6 +225,18 @@ Las fotos están **hardcodeadas** en el componente `src/pages/Institucional/Gale
 
 371 entradas agrupadas por tipo (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 325 noticias + 17 resoluciones + 11 páginas). Funciones: `buscar()`, `buscarAgrupado()`.
 
+### 6.6 Migración de noticias (`scripts/migrar-noticias.mjs`)
+
+Script interno que trae todo el inventario de noticias del sitio actual (https://www.isepsantafe.edu.ar, Joomla) al sitio nuevo. Solo hace lecturas; **no modifica el sitio actual**.
+
+- **Ejecución:** `npm run migrar:noticias` (Node ≥ 18, requiere internet, ~3-4 min).
+- **Qué genera:** reemplaza `src/data/noticias.js` completo (**325 noticias**; id 1 = la más antigua, el resto se ordena solo por id desc), descarga imágenes a `public/img/noticias/` y adjuntos (PDF, etc.) a `public/docs/`, y reescribe las URLs en el contenido.
+- **Fuente:** feed RSS paginado `.../index.php/noticias?format=feed&type=rss&start=N` + la página de detalle de cada noticia (cuerpo, fecha `datePublished` y miniatura del JSON-LD).
+- **Limpieza aplicada:** elimina estilos inline (los enlaces que eran "botones" pasan a clase `.btn-inscripcion`), corrige `tel:` malformados, quita imágenes rotas (404 / dominios caídos / miniaturas no descargables) y normaliza las fechas a mayúsculas.
+- **Categorías y escuelas:** se infieren del título (categoría: Escuelas/Académica/Institucional/Eventos/Convenios; escuelas: policia/superior/especialidades/investigaciones/ead). Conviene revisar casos dudosos tras re-migrar.
+- **Fallos/límites conocidos:** algunos PDFs de resoluciones antiguas están rotos también en el sitio actual (quedan como enlace remoto); las noticias sin imagen usan el placeholder del diseño.
+- **Cuándo usarlo:** para re-migrar el inventario si el sitio actual cambia en bloque. Para publicar noticias nuevas se sigue usando la herramienta admin + ajuste manual (§12.7).
+
 ---
 
 ## 7. Búsqueda global
