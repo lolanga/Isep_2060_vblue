@@ -43,7 +43,7 @@ Al lado del botón "Mi ISeP" hay un **ícono de lupa**. Al hacer clic se abre un
 | **Carreras** | Todas las carreras disponibles |
 | **Cursos** | Cursos activos y próximos |
 | **Convocatorias** | Inscripciones abiertas y próximas |
-| **Noticias** | 14 noticias institucionales |
+| **Noticias** | 325 noticias (migradas del sitio actual) |
 | **Normativa** | 17 resoluciones, convenios, estatutos |
 | **Páginas** | Accesos directos a secciones |
 
@@ -223,7 +223,7 @@ En páginas interiores: **Inicio** / Sección / Página actual. Clic en cualquie
 - **Historial** con tarjetas → llevan a `/noticias/:id`.
 - **Paginación** (10 por página).
 - **Orden:** las noticias se listan de **más reciente a más antigua** (la última publicada es la principal).
-- **14 noticias** publicadas.
+- **325 noticias** publicadas (migradas del sitio actual).
 
 ### Detalle de noticia (`/noticias/:id`)
 - **Hero de imagen** con overlay gradiente. Si `img: null`, se muestra placeholder con ícono.

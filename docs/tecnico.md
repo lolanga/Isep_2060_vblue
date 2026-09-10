@@ -55,9 +55,9 @@ src/
 ├── data/
 │   ├── config.js            # Configuración centralizada (MI_ISEP_URL, teléfonos, emails, GA_ID, redes)
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, cronograma, FAQ
-│   ├── noticias.js          # Noticias (14 al momento; compartido, admite img: null y escuelas)
+│   ├── noticias.js          # Noticias (325 migradas del sitio Joomla; admite img: null y escuelas)
 │   ├── normativa.js         # 17 resoluciones (compartido)
-│   └── buscador.js          # 60 entradas + buscar() + buscarAgrupado()
+│   └── buscador.js          # 371 entradas + buscar() + buscarAgrupado()
 ├── pages/
 │   ├── Home.jsx             # 7 secciones (Audiencia con accesos a los sistemas)
 │   ├── Noticias.jsx         # Filtro + paginación + filtro por escuela + links a detalle
@@ -211,7 +211,7 @@ Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. Todas las rutas usan l
 
 ### 6.2 noticias.js
 
-14 noticias con: id, titulo, categoria, fecha, fechaCorta, excerpt, img (admite `null`), adjuntos, escuelas, contenido. Se presentan de más reciente a más antigua vía `utils/noticias.js` (ver §12.7).
+325 noticias (migradas del sitio actual https://www.isepsantafe.edu.ar con `scripts/migrar-noticias.mjs`) con: id, titulo, categoria, fecha, fechaCorta, excerpt, img (admite `null`), adjuntos, escuelas, contenido. Se presentan de más reciente a más antigua vía `utils/noticias.js` (ver §12.7).
 
 ### 6.3 normativa.js
 
@@ -223,7 +223,7 @@ Las fotos están **hardcodeadas** en el componente `src/pages/Institucional/Gale
 
 ### 6.5 buscador.js
 
-60 entradas agrupadas por tipo (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 14 noticias + 17 resoluciones + 11 páginas). Funciones: `buscar()`, `buscarAgrupado()`.
+371 entradas agrupadas por tipo (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 325 noticias + 17 resoluciones + 11 páginas). Funciones: `buscar()`, `buscarAgrupado()`.
 
 ---
 

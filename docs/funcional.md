@@ -149,7 +149,7 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 - **Historial:** grid de tarjetas con **links a `/noticias/:id`** y paginación (10 por página).
 - **Orden:** más reciente a más antigua (la última publicada es la principal; igual criterio en el Home y en cada escuela).
 - **Breadcrumb** para navegación.
-- **14 noticias** publicadas.
+- **325 noticias** publicadas (migradas del sitio actual).
 
 ### 4.5 Detalle de Noticia (`/noticias/:id`)
 
@@ -291,7 +291,7 @@ Pasos detallados del proceso de ingreso.
 
 - **Ubicación:** ícono de lupa en el navbar, al lado de "Mi ISeP".
 - **Debounce:** 300ms para evitar búsquedas excesivas.
-- **Índice:** 60 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 14 noticias + 17 normativa + 11 páginas).
+- **Índice:** 371 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 325 noticias + 17 normativa + 11 páginas).
 - **Resultados agrupados por tipo:** Escuelas → Carreras → Cursos → Convocatorias → Noticias → Normativa → Páginas → Misceláneas.
 - **Navegación por teclado:** ↑↓, Enter, Escape.
 - **Contador de resultados** y hints de teclado.

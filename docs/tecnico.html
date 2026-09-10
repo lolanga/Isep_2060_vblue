@@ -97,9 +97,9 @@
 ├── data/
 │   ├── config.js            # Config centralizada
 │   ├── institucional.js     # Escuelas, carreras, cursos, convocatorias, cronograma, FAQ
-│   ├── noticias.js          # Noticias (14 al momento; admite img: null y escuelas)
+│   ├── noticias.js          # Noticias (325 migradas del sitio Joomla; admite img: null y escuelas)
 │   ├── normativa.js         # 17 resoluciones
-│   └── buscador.js          # 60 entradas + buscar/buscarAgrupado
+│   └── buscador.js          # 371 entradas + buscar/buscarAgrupado
 ├── pages/
 │   ├── Home.jsx             # 7 secciones (Audiencia con accesos a los sistemas)
 │   ├── Noticias.jsx         # Filtro + paginación + filtro escuela
@@ -181,10 +181,10 @@
     <table>
       <tr><th>Archivo</th><th>Contenido</th></tr>
       <tr><td><code>institucional.js</code></td><td>5 escuelas, 4 carreras, 6+ cursos, convocatorias, cronograma, 12 FAQ, helpers</td></tr>
-      <tr><td><code>noticias.js</code></td><td>Noticias (14 al momento; admite <code>img: null</code> y <code>escuelas</code>)</td></tr>
+      <tr><td><code>noticias.js</code></td><td>325 noticias (migradas del sitio Joomla con <code>scripts/migrar-noticias.mjs</code>; admite <code>img: null</code> y <code>escuelas</code>)</td></tr>
       <tr><td><code>normativa.js</code></td><td>17 resoluciones descargables</td></tr>
       <tr><td><code>Galeria.jsx</code></td><td>Fotos hardcodeadas en el componente (categorías Eventos/Formación/Instalaciones/Graduaciones). No existe <code>galeria.js</code></td></tr>
-      <tr><td><code>buscador.js</code></td><td>60 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 14 noticias + 17 resoluciones + 11 páginas) + <code>buscar()</code> + <code>buscarAgrupado()</code></td></tr>
+      <tr><td><code>buscador.js</code></td><td>371 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 325 noticias + 17 resoluciones + 11 páginas) + <code>buscar()</code> + <code>buscarAgrupado()</code></td></tr>
       <tr><td><code>config.js</code></td><td>MI_ISEP_URL, GESTION_URL, CADETES_URL, WEBMAIL_URL, emails, teléfonos, GA_ID, redes</td></tr>
     </table>
 
