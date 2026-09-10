@@ -39,7 +39,7 @@ export const noticias = [
     fecha: "10 DE SEPTIEMBRE, 2026",
     fechaCorta: "10 SEP 2026",
     excerpt: "Curso de Actualización y Perfeccionamiento\nCiclo 2027",
-    img: "/public/img/noticias/16.png",
+    img: "/img/noticias/16.png",
     escuelas: ["especialidades"],
     contenido: `
 <blockquote><p>Suspensión de actividades presenciales sede RECREO ☔</p></blockquote><p>Se informa al alumnado que, debido a las inclemencias climáticas, se suspenden las actividades presenciales del día miércoles 19 de agosto.</p><p>Actividades afectadas</p><p>Clases presenciales de materias operacionales del <strong>GRUPO 2</strong> de la jerarquía <strong>SUBINSPECTOR</strong> <strong>Aulas 6, 7, 8, 9 y 10</strong></p><p>Próxima clase: Miércoles 2 de septiembre</p><p>La próxima clase correspondiente a este grupo se desarrollará en dicha fecha.</p><p><strong>Importante</strong>: cualquier novedad respecto al cursado será comunicada oportunamente por este medio.</p><p>Consultas y contacto: Correo electrónico</p><p><a target="_blank" rel="noreferrer" href="mailto:escueladeespecialidades@isepsantafe.edu.ar">escueladeespecialidades@isepsantafe.edu.ar</a></p><p>Teléfono: 4815571</p><p>Escuela de Especialidades en Seguridad · Curso de Actualización y Perfeccionamiento · Ciclo 2027</p>
