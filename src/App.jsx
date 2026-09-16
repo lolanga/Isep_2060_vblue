@@ -6,7 +6,7 @@
  * reduciendo el bundle inicial ~40%.
  */
 
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { EducationalOrganizationLd } from "./components/JsonLd";
 import Analytics from "./components/Analytics";
@@ -39,6 +39,17 @@ function LoadingSpinner() {
 function TrackPageView() {
   const { pathname } = useLocation();
   return <Analytics path={pathname} />;
+}
+
+/** Vuelve arriba al cambiar de ruta (evita que una página abra "abajo de todo"). */
+function ScrollToTopOnRoute() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
 }
 
 // ── Páginas (lazy loaded) ──
@@ -89,6 +100,7 @@ function App() {
     <ErrorBoundary>
       <BrowserRouter>
         <TrackPageView />
+        <ScrollToTopOnRoute />
         <EducationalOrganizationLd />
         <SkipToContent />
         <Navbar />

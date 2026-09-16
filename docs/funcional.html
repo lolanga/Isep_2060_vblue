@@ -375,6 +375,21 @@
     </ul>
     <div class="note"><strong>Notas:</strong> el guardado directo y la subida de imágenes funcionan solo en <strong>dev</strong> (middleware de Vite). La noticia aparece automáticamente en el <strong>buscador global</strong> (importa de <code>noticias.js</code>).</div>
 
+    <h3>18.5 Publicar una noticia desde local hasta el sitio de prueba (<code>lolo.isepsantafe.net.ar</code>)</h3>
+    <ol>
+      <li>En la máquina con el código: <code>npm run dev</code>.</li>
+      <li>Abrir <code>http://localhost:5173/admin/noticias/nueva</code> (en dev no pide PIN).</li>
+      <li>Cargar <strong>título</strong>, <strong>categoría</strong>, <strong>extracto</strong> y <strong>escuelas</strong> (opcional; si no se elige ninguna, la noticia solo aparece en <code>/noticias</code>).</li>
+      <li><strong>Subir imagen</strong> → el PNG/JPG queda en <code>public/img/noticias/&lt;hex&gt;.&lt;ext&gt;</code> (nombre seguro, sin espacios ni tildes) y la URL <code>/img/noticias/&lt;hex&gt;.&lt;ext&gt;</code> se completa sola. Para un nombre propio (por ejemplo el ID de la noticia): copiar el archivo a <code>public/img/noticias/&lt;id&gt;.png</code> y escribir la URL en el campo en lugar de subir.</li>
+      <li>Escribir el contenido en el WYSIWYG y revisar el <strong>preview</strong> en vivo.</li>
+      <li><strong>Guardar en noticias.js</strong> (botón verde) — inserta la noticia con el <code>id</code> siguiente automático (máximo actual + 1) y lo confirma.</li>
+      <li>Verificar en <code>http://localhost:5173/noticias</code> (la nueva es la primera/destacada) y en su detalle.</li>
+      <li><code>npm run build</code> — el <code>dist/</code> resultante ya incluye la nueva imagen (<code>public/img/...</code> se copia a <code>dist/img/...</code>) y la noticia.</li>
+      <li>Subir por FTP el <strong>contenido de <code>dist/</code></strong> al document root del subdominio de prueba <strong><code>public_html/lolo.isepsantafe.net.ar/</code></strong>, <strong>sobrescribiendo</strong> los archivos existentes y <strong>sin borrar nada</strong>; no tocar el resto de <code>public_html</code>.</li>
+      <li>Verificar en <code>https://lolo.isepsantafe.net.ar/noticias</code>: la noticia nueva aparece arriba con su imagen, y entra sola al buscador global y a las escuelas elegidas.</li>
+    </ol>
+    <div class="note"><strong>Notas:</strong> si una subida FTP queda a medias, repetir la subida completa del <code>dist/</code>. La ruta <code>/admin/noticias/nueva</code> en producción no guarda (solo dev). El editor guarda las imágenes con nombre hex aleatorio; para que matchee con el ID hay que colocarla a mano (paso 4). <strong>No re-ejecutar la migración</strong> (<code>npm run migrar:noticias</code>, ver tecnico.md §6.6) después de publicar noticias propias: regenera los IDs. El <code>dist/</code> incluye un <code>.htaccess</code> (desde <code>public/.htaccess</code>) para que refrescar rutas internas (<code>/noticias/:id</code>, etc.) <strong>no dé 404</strong>; tras subir, probar refrescando una página de detalle.</div>
+
     <h2>19. Infraestructura SEO y Analytics</h2>
 
     <h3>19.1 JSON-LD (Structured Data)</h3>

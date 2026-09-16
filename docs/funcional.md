@@ -609,6 +609,28 @@ Al hacer clic en una card de noticia, se abre `/noticias/:id` con:
 > - El **guardado directo** y la **subida de imágenes** funcionan solo en **dev** (middleware de Vite, ver tecnico.md §12.7). En producción se publica generando el código, aplicando el cambio a `noticias.js`, subiendo los archivos y re-ejecutando el build.
 > - La noticia aparece automáticamente en el **buscador global** (importa de `noticias.js`).
 
+### 18.5 Publicar una noticia desde local hasta el sitio de prueba (`lolo.isepsantafe.net.ar`)
+
+Flujo completo usado para publicar una noticia desde el editor (dev) hasta el subdominio de prueba del ISeP:
+
+1. En la máquina con el código: `npm run dev`.
+2. Abrir `http://localhost:5173/admin/noticias/nueva` (en dev no pide PIN).
+3. Cargar **título**, **categoría**, **extracto**, **escuelas** (opcional; si no se elige ninguna, la noticia solo aparece en `/noticias`).
+4. **Subir imagen** → elegir el PNG/JPG → queda en `public/img/noticias/<hex>.<ext>` (nombre seguro, sin espacios ni tildes) y la URL `/img/noticias/<hex>.<ext>` se completa sola. Si se prefiere un nombre propio (por ejemplo el ID de la noticia), copiar el archivo a `public/img/noticias/<id>.png` y escribir `/img/noticias/<id>.png` en el campo en lugar de subir.
+5. Escribir el contenido en el WYSIWYG y revisar el **preview** en vivo (derecha).
+6. **Guardar en noticias.js** (botón verde) — inserta la noticia con el `id` siguiente automático (máximo actual + 1) y lo confirma.
+7. Verificar en `http://localhost:5173/noticias` (la nueva es la primera/destacada) y en su detalle.
+8. `npm run build` — el `dist/` resultante ya incluye la nueva imagen (`public/img/...` se copia a `dist/img/...`) y la noticia.
+9. Subir por FTP el **contenido de `dist/`** al document root del subdominio de prueba **`public_html/lolo.isepsantafe.net.ar/`**, **sobrescribiendo** los archivos existentes y **sin borrar nada**; no tocar el resto de `public_html` (conviven otras cosas).
+10. Verificar en `https://lolo.isepsantafe.net.ar/noticias`: la noticia nueva aparece arriba con su imagen. La noticia entra sola al buscador global y a las escuelas elegidas.
+
+> **Notas**
+> - Si una subida FTP queda a medias, repetir la subida completa del `dist/` para que se corrija.
+> - La ruta `/admin/noticias/nueva` **en producción no guarda** (solo dev); por eso el flujo de publicación siempre parte de la máquina local con `npm run dev`.
+> - El editor deja las imágenes con nombre hex aleatorio; para que el nombre matchee con el ID de la noticia hay que colocarla a mano (paso 4) y no usar "Subir imagen".
+> - **No re-ejecutar el script de migración (`npm run migrar:noticias`, ver tecnico.md §6.6) después de publicar noticias propias**: regenera todos los IDs y las imágenes nombradas por ID dejarían de coincidir.
+> - El `dist/` incluye un `.htaccess` (desde `public/.htaccess`) para que refrescar rutas internas (`/noticias/:id`, etc.) **no dé 404**: reenvía todo lo que no sea un archivo real a `index.html`. Tras subir, probar refrescando una página de detalle para confirmar.
+
 ---
 
 ## 19. Infraestructura SEO y Analytics
