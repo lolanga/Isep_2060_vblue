@@ -572,6 +572,7 @@
 
     <h3>22.3 Noticias</h3>
     <p>La guía paso a paso completa para publicar, editar y borrar noticias está en la §18 de este documento. Resumen: los datos viven en <code>src/data/noticias.js</code> (campos: <code>id</code>, <code>titulo</code>, <code>categoria</code>, <code>fecha</code>, <code>fechaCorta</code>, <code>excerpt</code>, <code>img</code>, <code>escuelas</code> opcional, <code>adjuntos</code>, <code>contenido</code>).</p>
+    <blockquote><p><strong>Atención:</strong> si publicaste noticias propias con el editor, <strong>no</strong> volvés a ejecutar <code>npm run migrar:noticias</code>: ese script regenera todos los <code>id</code> desde cero (ver técnico §6.6). La noticia siguiente se crea sola con <code>id</code> = máximo actual + 1.</p></blockquote>
 
     <h3>22.4 Hero (slider de la portada)</h3>
     <p>El paso a paso para cambiar o agregar slides está en §21 de este documento. Resumen: editá el array <code>SLIDES</code> de <code>src/components/Hero.jsx</code> (campos: <code>id</code>, <code>badge</code>, <code>title</code>, <code>highlight</code>, <code>description</code>, <code>img</code>).</p>
@@ -625,6 +626,7 @@
       <li>Para <strong>agregar una escuela nueva</strong>: copiá un bloque y pegálo antes de <code>];</code>. Para el <code>logo</code> usá un escudo existente o importá una imagen nueva (ver 22.21).</li>
       <li>Guardá y verificá. La escuela nueva aparece sola en el Home, en <code>/institucional/oferta-educativa</code>, en el buscador y en <code>/escuelas/{nuevo-id}</code>.</li>
     </ol>
+    <blockquote><p><strong>Atención:</strong> el email que sale en la sección <strong>Contacto</strong> de las páginas de escuela es <strong>fijo</strong> (<code>contacto@isepsantafe.edu.ar</code>, hardcodeado en <code>src/components/EscuelaTemplate.jsx</code>), no sale de <code>informacion.contacto</code> (ese campo se muestra como teléfono, junto al ícono de teléfono). Si se necesita un email distinto por escuela, hay que tocar el código de la plantilla. Las <strong>noticias</strong> de cada escuela no se editan acá: salen de <code>src/data/noticias.js</code> filtradas por el campo <code>escuelas</code> de cada noticia (ver §18).</p></blockquote>
 
     <h3>22.9 Carreras</h3>
     <p><strong>Archivo:</strong> <code>src/data/institucional.js</code> (array <code>carreras</code>).<br>

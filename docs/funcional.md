@@ -884,6 +884,8 @@ Todo lo que se ve en la web (textos, números, imágenes, enlaces, fechas) se gu
 
 La guía paso a paso completa para publicar, editar y borrar noticias está en la §18 de este documento. Resumen: los datos viven en `src/data/noticias.js` (campos: `id`, `titulo`, `categoria`, `fecha`, `fechaCorta`, `excerpt`, `img`, `escuelas` opcional, `adjuntos`, `contenido`).
 
+> **Atención:** si publicaste noticias propias con el editor, **no** volvés a ejecutar `npm run migrar:noticias`: ese script regenera todos los `id` desde cero (ver técnico §6.6). La noticia siguiente se crea sola con `id` = máximo actual + 1.
+
 ### 22.4 Hero (slider de la portada)
 
 El paso a paso para cambiar o agregar slides está en §21 de este documento. Resumen: editá el array `SLIDES` de `src/components/Hero.jsx` (campos: `id`, `badge`, `title`, `highlight`, `description`, `img`).
@@ -946,6 +948,8 @@ Pasos:
 3. Editá los campos de cada escuela: `id` (no cambiar, se usa en las rutas), `nombre`, `resumen`, `presentacion`, y dentro de `informacion`: `categoria`, `duracion`, `modalidad`, `sede`, `contacto`.
 4. Para **agregar una escuela nueva**: copiá un bloque y pegálo antes de `];`. Para el `logo` usá un escudo existente o importá una imagen nueva (ver 22.21).
 5. Guardá y verificá. La escuela nueva aparece sola en el Home, en `/institucional/oferta-educativa`, en el buscador y en `/escuelas/{nuevo-id}`.
+
+> **Atención:** el email que sale en la sección **Contacto** de las páginas de escuela es **fijo** (`contacto@isepsantafe.edu.ar`, hardcodeado en `src/components/EscuelaTemplate.jsx`), no sale de `informacion.contacto` (ese campo se muestra como teléfono, junto al ícono de teléfono). Si se necesita un email distinto por escuela, hay que tocar el código de la plantilla. Las **noticias** de cada escuela no se editan acá: salen de `src/data/noticias.js` filtradas por el campo `escuelas` de cada noticia (ver §18).
 
 ### 22.9 Carreras
 
