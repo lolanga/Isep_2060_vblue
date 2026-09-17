@@ -53,7 +53,7 @@ export default function News() {
                 <div className="card-body">
                   <div className="card-date-row">
                     <span className="card-date">{destacada.fecha}</span>
-                    <ShareButton noticia={destacada} />
+                    <ShareButton noticia={destacada} className="share-btn--subtle" />
                   </div>
 
                   <h3 className="card-title">
@@ -92,7 +92,7 @@ export default function News() {
                   <div className="mini-content">
                     <div className="mini-header-row">
                       <span className="mini-date">{n.fechaCorta}</span>
-                      <ShareButton noticia={n} />
+                      <ShareButton noticia={n} className="share-btn--subtle" />
                     </div>
                     <h4 className="mini-title">
                       {n.titulo}

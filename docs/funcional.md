@@ -60,12 +60,13 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 
 **Mobile:** hamburguesa a la izquierda, logo al centro, Mi ISeP + buscador a la derecha.
 
-### 3.2 Rutas existentes (27 rutas)
+### 3.2 Rutas existentes (28 rutas)
 
 | Ruta | Página | Estado |
 |---|---|---|
 | `/` | Home (7 secciones) | Implementada |
 | `/noticias` | Listado de noticias con filtro, paginación y detalle | Implementada |
+| `/noticias/archivo` | Histórico por año (``2022–2025)`` | Implementada |
 | `/noticias/:id` | Detalle de noticia individual (contenido, relacionadas) | Implementada |
 | `/institucional/el-isep` | El ISeP | Implementada |
 | `/institucional/autoridades` | Autoridades | Implementada |
@@ -850,7 +851,7 @@ Todo lo que se ve en la web (textos, números, imágenes, enlaces, fechas) se gu
 2. Abrí el archivo que corresponde a la sección que querés cambiar (ver tabla en 22.2).
 3. Hacé el cambio imitando el formato de los ejemplos.
 4. Guardá (**Ctrl+S**). Si `npm run dev` está corriendo, el navegador se actualiza solo.
-5. Verificá en el navegador y, si quedó bien, publicá (ver 22.22).
+5. Verificá en el navegador y, si quedó bien, publicá (ver 22.23).
 
 **Formato (importante para no romper la web):**
 
@@ -946,7 +947,7 @@ Pasos:
 1. Abrí `src/data/institucional.js`.
 2. Buscá `export const escuelas = [`.
 3. Editá los campos de cada escuela: `id` (no cambiar, se usa en las rutas), `nombre`, `resumen`, `presentacion`, y dentro de `informacion`: `categoria`, `duracion`, `modalidad`, `sede`, `contacto`.
-4. Para **agregar una escuela nueva**: copiá un bloque y pegálo antes de `];`. Para el `logo` usá un escudo existente o importá una imagen nueva (ver 22.21).
+4. Para **agregar una escuela nueva**: copiá un bloque y pegálo antes de `];`. Para el `logo` usá un escudo existente o importá una imagen nueva (ver 22.22).
 5. Guardá y verificá. La escuela nueva aparece sola en el Home, en `/institucional/oferta-educativa`, en el buscador y en `/escuelas/{nuevo-id}`.
 
 > **Atención:** el email que sale en la sección **Contacto** de las páginas de escuela es **fijo** (`contacto@isepsantafe.edu.ar`, hardcodeado en `src/components/EscuelaTemplate.jsx`), no sale de `informacion.contacto` (ese campo se muestra como teléfono, junto al ícono de teléfono). Si se necesita un email distinto por escuela, hay que tocar el código de la plantilla. Las **noticias** de cada escuela no se editan acá: salen de `src/data/noticias.js` filtradas por el campo `escuelas` de cada noticia (ver §18).
@@ -995,7 +996,7 @@ Pasos:
 
 1. Abrí `src/components/Testimonios.jsx`.
 2. Buscá `const TESTIMONIOS = [`.
-3. Editá los campos de cada testimonio: `id`, `nombre`, `promocion`, `texto` (y `img` si querés foto del egresado, ver 22.21).
+3. Editá los campos de cada testimonio: `id`, `nombre`, `promocion`, `texto` (y `img` si querés foto del egresado, ver 22.22).
 4. Para **agregar uno**: copiá un bloque, pegálo antes de `];`.
 5. Guardá y verificá.
 
@@ -1108,16 +1109,52 @@ Pasos:
 | `WEBMAIL_URL` | URL del Webmail |
 | `WHATSAPP_URL` | se arma sola con `TELEFONO_LIMPIO` (no tocar salvo excepción) |
 | `REDES_SOCIALES` | URLs de Facebook, YouTube, Instagram y TikTok |
-| `GA_ID` | ID de Google Analytics 4 (reemplazar el placeholder `G-XXXXXXXXXX`) |
+| `GA_ID` | ID de medición de Google Analytics 4 (p. ej. `G-LMY41WSSET`). Se carga automáticamente en producción y registra una vista por ruta (`src/components/Analytics.jsx`) |
 
 3. **Importante:** si cambiás un teléfono, también actualizá `TELEFONO_LIMPIO` (sin espacios/guiones) para que el WhatsApp siga funcionando.
 4. Guardá y verificá (los cambios aplican en todo el sitio).
 
-### 22.21 Imágenes
+### 22.21 Histórico de noticias (archivo por año)
+
+El listado `/noticias` muestra solo las publicaciones de 2026 en adelante. Todo lo anterior vive en un **histórico por año** al que se accede desde `/noticias/archivo`.
+
+#### Cómo funciona
+
+| Concepto | Dónde está | Qué tiene |
+|---|---|---|
+| Noticias recientes | `src/data/noticias.js` | Años ≥ 2026 (las que edita el admin actualmente). Máximo ~6 páginas de paginación. |
+| Histórico | `src/data/noticias-archivo/<anio>.js` | Años 2022–2025. Cada archivo es un `export const noticias = [...]`. |
+| Índice de búsqueda | `public/indice-noticias.json` | JSON liviano (solo metadatos, sin contenido completo) que el buscador descarga una vez y cachea. Incluye recientes + histórico. |
+| Página de archivo | `src/pages/ArchivoNoticias.jsx` | Acordeón por año: al expandir, carga las notas de ese año de forma lazy. |
+| Detalle de noticia | `src/pages/NoticiaDetalle.jsx` | Resuelve recientes al instante (sin fetch); el histórico se carga bajo demanda. |
+
+#### Re-separar después de agregar más noticias
+
+Si en algún momento necesitás volver a correr el split (por ejemplo, después de agregar noticias y que 2026 quede "viejo"):
+
+```bash
+npm run migrar:archivo   # Idempotente: no cambia ids, solo re-agrupa por año.
+```
+
+> **Importante:** antes de publicar propio, corré `npm run migrar:archivo` **una vez** para que el listado de `/noticias` muestre solo las notas nuevas. Si lo corrés después de publicar, solo actualizá el archivo de datos (`noticias.js`).
+
+#### Búsqueda global
+
+El buscador (ícono de lupa en el navbar) ahora consulta el archivo `public/indice-noticias.json` de forma **asíncrona** (`src/utils/buscarNoticias.js`). Eso significa que encuentra notas tanto recientes como históricas sin tener que cargar el contenido completo de todas.
+
+> Si una búsqueda no encuentra resultados de noticias, verificá que `public/indice-noticias.json` exista. Se regenera automáticamente en cada `npm run build` o `npm run dev`.
+
+#### Tests
+
+Los tests del módulo están en `src/test/noticias-utils.test.js` (resolución de recientes, histórico y años) y `src/test/buscador.test.js` (búsqueda en el índice de noticias).
+
+---
+
+### 22.22 Imágenes
 
 Todo el manejo de imágenes (carpetas, formato recomendado y cómo reemplazar una) está en **§20**. No olvides: las imágenes del sitio viven en `public/img/…` y se referencian con ruta `/img/…`.
 
-### 22.22 Verificación final y publicación
+### 22.23 Verificación final y publicación
 
 1. **Revisá en el navegador** cada sección que tocaste (`npm run dev`).
 2. **Corré los chequeos** en la terminal (carpeta `Isep_2060_vblue`):

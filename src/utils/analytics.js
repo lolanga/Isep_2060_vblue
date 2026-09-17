@@ -16,7 +16,7 @@
  * gtag.js automáticamente. Estas funciones solo funcionan si GA ya está cargado.
  */
 
-const GA_ID = "G-XXXXXXXXXX"; // Mismo ID que en Analytics.jsx
+import { GA_ID } from "../data/config";
 
 /**
  * Registra una vista de página en GA4.

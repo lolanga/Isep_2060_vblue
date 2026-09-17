@@ -56,6 +56,7 @@ function ScrollToTopOnRoute() {
 const Home = lazy(() => import("./pages/Home"));
 const Noticias = lazy(() => import("./pages/Noticias"));
 const NoticiaDetalle = lazy(() => import("./pages/NoticiaDetalle"));
+const ArchivoNoticias = lazy(() => import("./pages/ArchivoNoticias"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // ── Institucional ──
@@ -109,6 +110,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/noticias" element={<Noticias />} />
+            <Route path="/noticias/archivo" element={<ArchivoNoticias />} />
             <Route path="/noticias/:id" element={<NoticiaDetalle />} />
             <Route path="/institucional/el-isep" element={<ElIseP />} />
             <Route path="/institucional/autoridades" element={<Autoridades />} />

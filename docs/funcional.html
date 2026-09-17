@@ -539,7 +539,7 @@
       <li>Abrí el archivo que corresponde a la sección que querés cambiar (ver tabla en 22.2).</li>
       <li>Hacé el cambio imitando el formato de los ejemplos.</li>
       <li>Guardá (<strong>Ctrl+S</strong>). Si <code>npm run dev</code> está corriendo, el navegador se actualiza solo.</li>
-      <li>Verificá en el navegador y, si quedó bien, publicá (ver 22.22).</li>
+      <li>Verificá en el navegador y, si quedó bien, publicá (ver 22.23).</li>
     </ol>
     <p><strong>Formato (importante para no romper la web):</strong></p>
     <ul>
@@ -623,7 +623,7 @@
       <li>Abrí <code>src/data/institucional.js</code>.</li>
       <li>Buscá <code>export const escuelas = [</code>.</li>
       <li>Editá los campos de cada escuela: <code>id</code> (no cambiar, se usa en las rutas), <code>nombre</code>, <code>resumen</code>, <code>presentacion</code>, y dentro de <code>informacion</code>: <code>categoria</code>, <code>duracion</code>, <code>modalidad</code>, <code>sede</code>, <code>contacto</code>.</li>
-      <li>Para <strong>agregar una escuela nueva</strong>: copiá un bloque y pegálo antes de <code>];</code>. Para el <code>logo</code> usá un escudo existente o importá una imagen nueva (ver 22.21).</li>
+      <li>Para <strong>agregar una escuela nueva</strong>: copiá un bloque y pegálo antes de <code>];</code>. Para el <code>logo</code> usá un escudo existente o importá una imagen nueva (ver 22.22).</li>
       <li>Guardá y verificá. La escuela nueva aparece sola en el Home, en <code>/institucional/oferta-educativa</code>, en el buscador y en <code>/escuelas/{nuevo-id}</code>.</li>
     </ol>
     <blockquote><p><strong>Atención:</strong> el email que sale en la sección <strong>Contacto</strong> de las páginas de escuela es <strong>fijo</strong> (<code>contacto@isepsantafe.edu.ar</code>, hardcodeado en <code>src/components/EscuelaTemplate.jsx</code>), no sale de <code>informacion.contacto</code> (ese campo se muestra como teléfono, junto al ícono de teléfono). Si se necesita un email distinto por escuela, hay que tocar el código de la plantilla. Las <strong>noticias</strong> de cada escuela no se editan acá: salen de <code>src/data/noticias.js</code> filtradas por el campo <code>escuelas</code> de cada noticia (ver §18).</p></blockquote>
@@ -663,7 +663,7 @@
     <ol>
       <li>Abrí <code>src/components/Testimonios.jsx</code>.</li>
       <li>Buscá <code>const TESTIMONIOS = [</code>.</li>
-      <li>Editá los campos de cada testimonio: <code>id</code>, <code>nombre</code>, <code>promocion</code>, <code>texto</code> (y <code>img</code> si querés foto del egresado, ver 22.21).</li>
+      <li>Editá los campos de cada testimonio: <code>id</code>, <code>nombre</code>, <code>promocion</code>, <code>texto</code> (y <code>img</code> si querés foto del egresado, ver 22.22).</li>
       <li>Para <strong>agregar uno</strong>: copiá un bloque, pegálo antes de <code>];</code>.</li>
       <li>Guardá y verificá.</li>
     </ol>
@@ -759,15 +759,35 @@
       <tr><td><code>WEBMAIL_URL</code></td><td>URL del Webmail</td></tr>
       <tr><td><code>WHATSAPP_URL</code></td><td>se arma sola con <code>TELEFONO_LIMPIO</code> (no tocar salvo excepción)</td></tr>
       <tr><td><code>REDES_SOCIALES</code></td><td>URLs de Facebook, YouTube, Instagram y TikTok</td></tr>
-      <tr><td><code>GA_ID</code></td><td>ID de Google Analytics 4 (reemplazar el placeholder <code>G-XXXXXXXXXX</code>)</td></tr>
+      <tr><td><code>GA_ID</code></td><td>ID de medición de Google Analytics 4 (p. ej. <code>G-LMY41WSSET</code>). Se carga automáticamente en producción y registra una vista por ruta (<code>src/components/Analytics.jsx</code>)</td></tr>
     </table>
     <p><strong>Importante:</strong> si cambiás un teléfono, también actualizá <code>TELEFONO_LIMPIO</code> (sin espacios/guiones) para que el WhatsApp siga funcionando.</p>
     <p>Guardá y verificá (los cambios aplican en todo el sitio).</p>
 
-    <h3>22.21 Imágenes</h3>
+    <h3>22.21 Histórico de noticias (archivo por año)</h3>
+    <p>El listado <code>/noticias</code> muestra solo las publicaciones de 2026 en adelante. Todo lo anterior vive en un <strong>histórico por año</strong> al que se accede desde <code>/noticias/archivo</code>.</p>
+    <h4>Cómo funciona</h4>
+    <table>
+      <tr><th>Concepto</th><th>Dónde está</th><th>Qué tiene</th></tr>
+      <tr><td>Noticias recientes</td><td><code>src/data/noticias.js</code></td><td>Años ≥ 2026. Máximo ~6 páginas de paginación.</td></tr>
+      <tr><td>Histórico</td><td><code>src/data/noticias-archivo/&lt;anio&gt;.js</code></td><td>Años 2022–2025, cada archivo <code>export const noticias = [...]</code>.</td></tr>
+      <tr><td>Índice de búsqueda</td><td><code>public/indice-noticias.json</code></td><td>JSON liviano (metadatos sin contenido completo). Incluye recientes + histórico.</td></tr>
+      <tr><td>Página de archivo</td><td><code>src/pages/ArchivoNoticias.jsx</code></td><td>Acordeón por año: al expandir carga las notas lazy.</td></tr>
+      <tr><td>Detalle de noticia</td><td><code>src/pages/NoticiaDetalle.jsx</code></td><td>Resuelve recientes al instante; el histórico bajo demanda.</td></tr>
+    </table>
+    <h4>Re-separar después de agregar más noticias</h4>
+    <pre><code>npm run migrar:archivo   # Idempotente: re-agrupa por año sin cambiar ids.</code></pre>
+    <p><strong>Importante:</strong> antes de publicar propio, corré <code>npm run migrar:archivo</code> para que el listado muestre solo notas nuevas. Si lo corrés después de publicar, actualizá solo el archivo de datos (<code>noticias.js</code>).</p>
+    <h4>Búsqueda global</h4>
+    <p>El buscador ahora consulta <code>public/indice-noticias.json</code> de forma <strong>asíncrona</strong> (<code>src/utils/buscarNoticias.js</code>) y encuentra notas recientes y históricas sin cargar todo el contenido.</p>
+    <p>Si una búsqueda no encuentra noticias, verificá que exista ese JSON. Se regenera automáticamente en cada <code>npm run build</code> o <code>npm run dev</code>.</p>
+    <h4>Tests</h4>
+    <p>Están en <code>src/test/noticias-utils.test.js</code> y <code>src/test/buscador.test.js</code>.</p>
+
+    <h3>22.22 Imágenes</h3>
     <p>Todo el manejo de imágenes (carpetas, formato recomendado y cómo reemplazar una) está en <strong>§20</strong>. No olvides: las imágenes del sitio viven en <code>public/img/…</code> y se referencian con ruta <code>/img/…</code>.</p>
 
-    <h3>22.22 Verificación final y publicación</h3>
+    <h3>22.23 Verificación final y publicación</h3>
     <ol>
       <li><strong>Revisá en el navegador</strong> cada sección que tocaste (<code>npm run dev</code>).</li>
       <li><strong>Corré los chequeos</strong> en la terminal (carpeta <code>Isep_2060_vblue</code>):

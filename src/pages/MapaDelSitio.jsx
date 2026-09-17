@@ -61,6 +61,7 @@ const SECCIONES = [
     icono: "newspaper",
     items: [
       { label: "Últimas noticias", to: "/noticias" },
+      { label: "Histórico de noticias", to: "/noticias/archivo" },
     ],
   },
 ];

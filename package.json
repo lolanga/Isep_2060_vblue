@@ -4,12 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "npm run indice:noticias && vite",
+    "build": "npm run indice:noticias && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
-    "migrar:noticias": "node scripts/migrar-noticias.mjs"
+    "migrar:noticias": "node scripts/migrar-noticias.mjs",
+    "migrar:archivo": "node scripts/migrar-archivo-noticias.mjs",
+    "indice:noticias": "node scripts/generar-indice-noticias.mjs"
   },
   "dependencies": {
     "@tiptap/extension-image": "^3.31.3",

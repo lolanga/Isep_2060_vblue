@@ -163,7 +163,13 @@ export default function Noticias() {
           <section className="noticias-historial">
             <div className="historial-header">
               <h3 className="historial-titulo">Noticias anteriores</h3>
-              <span className="historial-count">{historico.length} notas</span>
+              <div className="historial-header--right">
+                <span className="historial-count">{historico.length} notas</span>
+                <Link to="/noticias/archivo" className="historial-link">
+                  <span className="material-symbols-outlined">archive</span>
+                  Histórico por año
+                </Link>
+              </div>
             </div>
 
             <div className="historial-grid">

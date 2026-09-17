@@ -10,8 +10,9 @@ import { useState } from "react";
 /**
  * Botón de compartir noticia. Usa Web Share API o copia al portapapeles.
  * @param {{ id: number, titulo: string, excerpt: string }} noticia
+ * @param {string} [className] - Clase extra (ej: "share-btn--subtle" para versión discreta)
  */
-export default function ShareButton({ noticia }) {
+export default function ShareButton({ noticia, className = "" }) {
   const [copiado, setCopiado] = useState(false);
 
   const handleShare = async () => {
@@ -33,12 +34,14 @@ export default function ShareButton({ noticia }) {
       onClick={handleShare}
       aria-label="Compartir noticia"
       title="Compartir noticia"
-      className={`share-btn${copiado ? " share-btn--copied" : ""}`}
+      className={`share-btn${copiado ? " share-btn--copied" : ""} ${className}`}
     >
       <span className="material-symbols-outlined share-btn__icon" aria-hidden="true">
         {copiado ? "check" : "share"}
       </span>
-      {copiado ? <span aria-hidden="true">¡Copiado!</span> : ""}
+      <span className="share-btn__label" aria-hidden="true">
+        {copiado ? "¡Copiado!" : "Compartir"}
+      </span>
     </button>
   );
 }

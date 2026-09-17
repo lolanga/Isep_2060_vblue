@@ -3,11 +3,12 @@
  *
  * Página de detalle de una noticia individual.
  * Muestra imagen, fecha, categoría, título, contenido completo y noticias relacionadas.
+ * Resuelve la noticia de forma async: recientes al instante, histórico bajo demanda.
  */
 
-import { useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { noticias } from "../utils/noticias";
+import { noticias, obtenerNoticia } from "../utils/noticias";
 import Breadcrumb from "../components/Breadcrumb";
 import ShareButton from "../components/ShareButton";
 import SEO from "../components/SEO";
@@ -30,17 +31,30 @@ Para más información, comunicarse con la prensa y difusión del ISeP al correo
 /** Página de detalle de una noticia individual con contenido completo. */
 export default function NoticiaDetalle() {
   const { id } = useParams();
-  const noticia = noticias.find((n) => n.id === Number(id));
-  const relacionadas = useMemo(() =>
-    noticia
-      ? noticias
-          .filter((n) => n.id !== noticia.id && n.categoria === noticia.categoria)
-          .slice(0, 3)
-      : [],
-    [noticia]
-  );
+  const [estado, setEstado] = useState(() => {
+    // Resolución inmediata de noticias recientes para evitar flicker.
+    const encontrada = noticias.find((n) => n.id === Number(id));
+    return encontrada
+      ? { cargando: false, noticia: encontrada, lista: noticias, relacionadas: [], anio: null }
+      : { cargando: true, noticia: null, lista: [], relacionadas: [], anio: null };
+  });
 
-  if (!noticia) {
+  useEffect(() => {
+    let activo = true;
+
+    async function resolver() {
+      setEstado({ cargando: true, noticia: null, lista: [], relacionadas: [], anio: null });
+      const res = await obtenerNoticia(id);
+      if (activo) setEstado({ cargando: false, ...res });
+    }
+
+    resolver();
+    return () => { activo = false; };
+  }, [id]);
+
+  const { noticia, relacionadas } = estado;
+
+  if (!estado.cargando && !noticia) {
     return (
       <main id="main-content" className="noticia-page">
         <SEO title="Noticia no encontrada" />
@@ -50,6 +64,18 @@ export default function NoticiaDetalle() {
           <Link to="/noticias" className="not-found__link">
             ← Volver a noticias
           </Link>
+        </div>
+      </main>
+    );
+  }
+
+  if (!noticia) {
+    return (
+      <main id="main-content" className="noticia-page">
+        <SEO title="Cargando noticia" />
+        <div className="container-max noticia-notfound">
+          <div className="spinner" aria-hidden="true" />
+          <p className="not-found__title">Cargando noticia…</p>
         </div>
       </main>
     );
