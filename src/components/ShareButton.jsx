@@ -7,10 +7,34 @@
 
 import { useState } from "react";
 
+/** Copia al portapapeles con fallback para contextos sin Clipboard API. */
+async function copiarTexto(texto) {
+  try {
+    await navigator.clipboard.writeText(texto);
+    return true;
+  } catch {
+    const ta = document.createElement("textarea");
+    ta.value = texto;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    let ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch {
+      ok = false;
+    }
+    document.body.removeChild(ta);
+    return ok;
+  }
+}
+
 /**
  * Botón de compartir noticia. Usa Web Share API o copia al portapapeles.
  * @param {{ id: number, titulo: string, excerpt: string }} noticia
- * @param {string} [className] - Clase extra (ej: "share-btn--subtle" para versión discreta)
+ * @param {string} [className] - Clase extra opcional
  */
 export default function ShareButton({ noticia, className = "" }) {
   const [copiado, setCopiado] = useState(false);
@@ -22,9 +46,11 @@ export default function ShareButton({ noticia, className = "" }) {
         await navigator.share({ title: noticia.titulo, text: noticia.excerpt, url });
       } catch { /* usuario canceló */ }
     } else {
-      await navigator.clipboard.writeText(`${noticia.titulo}\n${noticia.excerpt}\n${url}`);
-      setCopiado(true);
-      setTimeout(() => setCopiado(false), 2000);
+      const ok = await copiarTexto(`${noticia.titulo}\n${noticia.excerpt}\n${url}`);
+      if (ok) {
+        setCopiado(true);
+        setTimeout(() => setCopiado(false), 2000);
+      }
     }
   };
 

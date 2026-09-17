@@ -6,10 +6,10 @@
  */
 
 import { Link } from "react-router-dom";
-import escudoEP from "../assets/escudo_EP.png";
-import escudoES from "../assets/escudo_ES.png";
-import escudoEE from "../assets/escudo_EE.png";
-import escudoEI from "../assets/escudo_EI.png";
+import escudoEP from "../assets/escudo_EP.webp";
+import escudoES from "../assets/escudo_ES.webp";
+import escudoEE from "../assets/escudo_EE.webp";
+import escudoEI from "../assets/escudo_EI.webp";
 
 const schools = [
   { title: "Escuela de Policía", desc: "Reclutamiento inicial y formación profesional para el personal en actividad.", escudo: escudoEP, slug: "policia" },

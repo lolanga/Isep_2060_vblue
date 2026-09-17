@@ -14,20 +14,6 @@ import ShareButton from "../components/ShareButton";
 import SEO from "../components/SEO";
 import { NewsArticleLd, BreadcrumbLd } from "../components/JsonLd";
 
-const CONTENIDO_EJEMPLO = (titulo, excerpt) => `
-El Instituto de Seguridad Pública de la Provincia de Santa Fe informa a toda la comunidad institucional y al público en general sobre novedades relacionadas con ${titulo.toLowerCase()}.
-
-En el marco del cumplimiento de sus objetivos de formación, capacitación y actualización profesional, el ISeP viene desarrollando diversas actividades orientadas a fortalecer las competencias del personal de seguridad de la provincia.
-
-${excerpt}
-
-Esta iniciativa se enmarca en el plan estratégico institucional que busca garantizar una formación de calidad, accesible y actualizada para todos los integrantes de las fuerzas de seguridad de Santa Fe.
-
-Desde el ISeP se promueve la excelencia académica como pilar fundamental de la seguridad pública, incentivando la actualización permanente y el intercambio de conocimientos entre profesionales del ámbito.
-
-Para más información, comunicarse con la prensa y difusión del ISeP al correo prensaydifusion@isepsantafe.edu.ar o a través de las redes sociales oficiales.
-`;
-
 /** Página de detalle de una noticia individual con contenido completo. */
 export default function NoticiaDetalle() {
   const { id } = useParams();
@@ -53,6 +39,7 @@ export default function NoticiaDetalle() {
   }, [id]);
 
   const { noticia, relacionadas } = estado;
+  const categoria = (noticia?.categoria || "").toLowerCase();
 
   if (!estado.cargando && !noticia) {
     return (
@@ -105,8 +92,8 @@ export default function NoticiaDetalle() {
         <div className="news-hero__content">
           <div className="container-max">
             <div className="news-hero__meta">
-              <span className={`badge-categoria badge-categoria--${noticia.categoria.toLowerCase()}`}>
-                {noticia.categoria.toUpperCase()}
+              <span className={`badge-categoria badge-categoria--${categoria}`}>
+                {(noticia.categoria || "").toUpperCase()}
               </span>
               <span className="news-hero__fecha">{noticia.fecha}</span>
             </div>
@@ -151,7 +138,7 @@ export default function NoticiaDetalle() {
                 ? (noticia.contenido.trim().startsWith("<")
                     ? noticia.contenido
                     : noticia.contenido.split("\n\n").map(p => `<p>${p}</p>`).join(""))
-                : CONTENIDO_EJEMPLO(noticia.titulo, noticia.excerpt).split("\n\n").map(p => `<p>${p}</p>`).join("")
+                : "<p>El contenido completo de esta noticia no está disponible por el momento.</p>"
             }}
           />
         </article>

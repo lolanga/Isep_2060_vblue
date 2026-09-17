@@ -185,7 +185,7 @@
       <tr><td><code>normativa.js</code></td><td>17 resoluciones descargables</td></tr>
       <tr><td><code>Galeria.jsx</code></td><td>Fotos hardcodeadas en el componente (categorías Eventos/Formación/Instalaciones/Graduaciones). No existe <code>galeria.js</code></td></tr>
       <tr><td><code>buscador.js</code></td><td>371 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 325 noticias + 17 resoluciones + 11 páginas) + <code>buscar()</code> + <code>buscarAgrupado()</code></td></tr>
-      <tr><td><code>config.js</code></td><td>MI_ISEP_URL, GESTION_URL, CADETES_URL, WEBMAIL_URL, emails, teléfonos, GA_ID, redes</td></tr>
+      <tr><td><code>config.js</code></td><td>MI_ISEP_URL, GESTION_URL, CADETES_URL, WEBMAIL_URL, emails, teléfonos, redes</td></tr>
     </table>
 
     <h3>6.6 Migración de noticias (<code>scripts/migrar-noticias.mjs</code>)</h3>
@@ -383,11 +383,10 @@ export const CADETES_URL = "https://cadetes.isepsantafe.edu.ar/";
 export const WEBMAIL_URL = "https://webmail.isepsantafe.edu.ar";
 export const TELEFONO_ISR = "+54 342 457-9000";
 export const EMAIL_CONTACTO = "prensaydifusion@isepsantafe.edu.ar";
-export const WHATSAPP_URL = "https://wa.me/5493424579000";
-export const GA_ID = "G-XXXXXXXXXX";  // Placeholder</pre>
+export const WHATSAPP_URL = "https://wa.me/5493424579000";</pre>
 
     <h3>12.6 Analytics</h3>
-    <p>GA4 (<code>gtag.js</code>): carga asíncrona, solo en producción. Archivos: <code>Analytics.jsx</code>, <code>analytics.js</code>.</p>
+    <p>GA4 (<code>gtag.js</code>): snippet en <code>index.html</code> (ID <code>G-LMY41WSSET</code>) y <code>Analytics.jsx</code> registra un <code>page_view</code> por cambio de ruta.</p>
 
     <h3>12.7 CSS Architecture</h3>
     <ul>
@@ -408,7 +407,7 @@ export const GA_ID = "G-XXXXXXXXXX";  // Placeholder</pre>
     <p>ErrorBoundary global + NotFound (404) en <code>App.jsx</code>.</p>
 
     <h3>12.10 API Layer</h3>
-    <p><code>src/services/api.js</code>: mock→backend-ready.</p>
+    <p>No hay capa API: los datos viven en <code>src/data/</code> y se importan directamente.</p>
 
     <h3>12.11 Galería de Fotos</h3>
     <p><code>src/pages/Institucional/Galeria.jsx</code>: fotos hardcodeadas (categorías Eventos/Formación/Instalaciones/Graduaciones). Grid responsive, filtros, lightbox. (No existe <code>src/data/galeria.js</code>.)</p>

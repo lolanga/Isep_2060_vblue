@@ -8,7 +8,7 @@
  * Ruta: /noticias/archivo
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
 import SEO from "../components/SEO";
@@ -22,6 +22,12 @@ export default function ArchivoNoticias() {
   const [abiertos, setAbiertos] = useState({});
   const [cargados, setCargados] = useState({});
   const [cargando, setCargando] = useState({});
+  const montado = useRef(true);
+
+  useEffect(() => {
+    montado.current = true;
+    return () => { montado.current = false; };
+  }, []);
 
   // Conteo por año a partir del índice liviano (sin cargar los contenidos).
   useEffect(() => {
@@ -41,9 +47,17 @@ export default function ArchivoNoticias() {
     setAbiertos((a) => ({ ...a, [anio]: !a[anio] }));
     if (!cargados[anio] && !cargando[anio]) {
       setCargando((s) => ({ ...s, [anio]: true }));
-      const lista = await cargarNoticiasArchivo(anio);
-      setCargados((s) => ({ ...s, [anio]: lista }));
-      setCargando((s) => ({ ...s, [anio]: false }));
+      let lista = [];
+      try {
+        lista = await cargarNoticiasArchivo(anio);
+      } catch {
+        lista = [];
+      } finally {
+        if (montado.current) {
+          setCargados((s) => ({ ...s, [anio]: lista }));
+          setCargando((s) => ({ ...s, [anio]: false }));
+        }
+      }
     }
   };
 
@@ -130,8 +144,8 @@ export default function ArchivoNoticias() {
                           <li key={n.id}>
                             <Link to={`/noticias/${n.id}`} className="archivo-item">
                               <span className="archivo-item__fecha">{n.fechaCorta}</span>
-                              <span className={`badge-categoria badge-categoria--${n.categoria.toLowerCase()} archivo-item__cat`}>
-                                {n.categoria}
+                              <span className={`badge-categoria badge-categoria--${(n.categoria || "institucional").toLowerCase()} archivo-item__cat`}>
+                                {n.categoria || "Noticia"}
                               </span>
                               <span className="archivo-item__titulo">{n.titulo}</span>
                             </Link>

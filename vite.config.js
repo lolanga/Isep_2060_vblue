@@ -1,6 +1,8 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
+import babel from "@rolldown/plugin-babel";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { join, extname } from "node:path";
 import { randomBytes } from "node:crypto";
 
@@ -23,6 +25,7 @@ function readBody(req) {
 function devPlugin() {
   const UPLOAD_DIR = join(process.cwd(), "public", "img", "noticias");
   const NOTICIAS_FILE = join(process.cwd(), "src", "data", "noticias.js");
+  const INDICE_SCRIPT = join(process.cwd(), "scripts", "generar-indice-noticias.mjs");
 
   return {
     name: "dev-middleware",
@@ -117,6 +120,16 @@ function devPlugin() {
             return;
           }
 
+          // Validar que el objeto sea JS válido ANTES de tocar noticias.js
+          // (evita corromper el archivo con código mal formado).
+          try {
+            new Function(`return [\n${code}\n]`);
+          } catch {
+            res.statusCode = 400;
+            res.end(JSON.stringify({ error: "El código generado no es válido" }));
+            return;
+          }
+
           const content = readFileSync(NOTICIAS_FILE, "utf8");
           const lastIndex = content.lastIndexOf("];");
 
@@ -132,6 +145,14 @@ function devPlugin() {
 
           writeFileSync(NOTICIAS_FILE, updated);
 
+          // Regenerar el índice liviano para que la noticia aparezca ya mismo
+          // en el buscador y en el contador del admin (sin esperar al build).
+          try {
+            execFileSync(process.execPath, [INDICE_SCRIPT], { stdio: "pipe" });
+          } catch (err) {
+            console.warn("[dev] No se pudo regenerar indice-noticias.json:", err.message);
+          }
+
           res.setHeader("Content-Type", "application/json");
           res.end(JSON.stringify({ ok: true }));
         } catch (err) {
@@ -144,5 +165,25 @@ function devPlugin() {
 }
 
 export default defineConfig({
-  plugins: [react(), devPlugin()],
+  plugins: [react(), babel({ presets: [reactCompilerPreset()] }), devPlugin()],
+  build: {
+    rollupOptions: {
+      output: {
+        // Rolldown (Vite 8) exige manualChunks como función.
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return undefined;
+          if (id.includes("@tiptap") || id.includes("prosemirror")) return "vendor-editor";
+          if (
+            id.includes("react-dom") ||
+            id.includes("react-router") ||
+            id.includes("scheduler") ||
+            /[\\/]react[\\/]/.test(id)
+          ) {
+            return "vendor-react";
+          }
+          return undefined;
+        },
+      },
+    },
+  },
 });

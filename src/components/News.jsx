@@ -47,13 +47,13 @@ export default function News() {
                       <span className="material-symbols-outlined">article</span>
                     </div>
                   )}
-                  <span className="news-badge">{destacada.categoria.toUpperCase()}</span>
+                  <span className="news-badge">{(destacada.categoria || "Noticia").toUpperCase()}</span>
                 </div>
 
                 <div className="card-body">
                   <div className="card-date-row">
                     <span className="card-date">{destacada.fecha}</span>
-                    <ShareButton noticia={destacada} className="share-btn--subtle" />
+                    <ShareButton noticia={destacada} />
                   </div>
 
                   <h3 className="card-title">
@@ -92,7 +92,7 @@ export default function News() {
                   <div className="mini-content">
                     <div className="mini-header-row">
                       <span className="mini-date">{n.fechaCorta}</span>
-                      <ShareButton noticia={n} className="share-btn--subtle" />
+                      <ShareButton noticia={n} />
                     </div>
                     <h4 className="mini-title">
                       {n.titulo}

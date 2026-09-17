@@ -1402,14 +1402,14 @@
 .share-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   background: var(--surface-container-lowest);
   border: 1px solid var(--outline-variant);
   color: var(--slate-600);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
   font-family: inherit;
-  padding: 0.55rem 1.1rem;
+  padding: 0.35rem 0.55rem;
   border-radius: 999px;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -1429,39 +1429,11 @@
 }
 
 .share-btn__icon {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .share-btn__label {
   white-space: nowrap;
-}
-
-/* Variante discreta para tarjetas (Home, etc.): visible pero sin robar foco */
-.share-btn--subtle {
-  background: transparent;
-  border-color: transparent;
-  box-shadow: none;
-  color: var(--slate-400);
-  font-size: 0.78rem;
-  font-weight: 500;
-  padding: 0.35rem 0.55rem;
-}
-
-.share-btn--subtle:hover {
-  color: var(--secondary);
-  border-color: transparent;
-  background: transparent;
-  transform: none;
-}
-
-.share-btn--subtle .share-btn__icon {
-  font-size: 1rem;
-}
-
-.share-btn--subtle.share-btn--copied {
-  color: var(--color-end, #17be95);
-  background: transparent;
-  border-color: transparent;
 }
 
 /* ── ScrollToTop ── */

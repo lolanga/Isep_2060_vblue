@@ -53,7 +53,7 @@ src/
 │   ├── SEO.jsx              # Meta tags dinámicos (title, og, twitter, canonical)
 │   └── Analytics.jsx        # Google Analytics 4 (gtag.js)
 ├── data/
-│   ├── config.js            # Configuración centralizada (MI_ISEP_URL, teléfonos, emails, GA_ID, redes)
+│   ├── config.js            # Configuración centralizada (MI_ISEP_URL, teléfonos, emails, redes)
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, cronograma, FAQ
 │   ├── noticias.js          # Noticias RECIENTES (año ≥ 2026; 65 notas). El histórico vive en noticias-archivo/<anio>.js
 │   ├── noticias-archivo/    # Histórico por año (2022–2025), generado con npm run migrar:archivo
@@ -521,12 +521,11 @@ export const WEBMAIL_URL = "https://webmail.isepsantafe.edu.ar";
 export const TELEFONO_ISR = "+54 342 457-9000";
 export const EMAIL_CONTACTO = "prensaydifusion@isepsantafe.edu.ar";
 export const WHATSAPP_URL = "https://wa.me/5493424579000";
-export const GA_ID = "G-XXXXXXXXXX";  // Placeholder
 // ... más constantes con JSDoc
 ```
 
 ### 13.6 Analytics
-Google Analytics 4 (`gtag.js`): carga asíncrona, solo en producción. Archivos: `Analytics.jsx`, `analytics.js`. Estado: placeholder.
+Google Analytics 4 (`gtag.js`): el snippet está en `index.html` (ID `G-LMY41WSSET`) y `Analytics.jsx` registra un `page_view` en cada cambio de ruta del React Router.
 
 ### 13.7 CSS Architecture
 - **0 inline styles** en componentes
@@ -546,7 +545,7 @@ Google Analytics 4 (`gtag.js`): carga asíncrona, solo en producción. Archivos:
 - Ambos en `App.jsx` como wrappers del router
 
 ### 13.10 API Layer
-`src/services/api.js`: capa de abstracción mock→backend-ready. Preparada para conectar a API real.
+No hay capa API: los datos del sitio viven en `src/data/` y se importan directamente.
 
 ### 13.11 Galería de Fotos
 `src/pages/Institucional/Galeria.jsx`: fotos hardcodeadas con categorías (Eventos, Formación, Instalaciones, Graduaciones). Grid responsive, filtros, lightbox. (No existe `src/data/galeria.js`.)

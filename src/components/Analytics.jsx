@@ -1,61 +1,36 @@
 /**
  * components/Analytics.jsx
  *
- * Carga Google Analytics 4 (gtag.js) de forma asíncrona y registra una
- * vista de página por cada cambio de ruta. Solo funciona en producción
- * (DEV = sin tracking).
+ * Registra una vista de página (page_view) en Google Analytics 4 cada vez
+ * que cambia la ruta en el SPA.
  *
- * Uso: <Analytics path={pathname} /> en App.jsx
- * El ID de medición se configura UNA sola vez en: src/data/config.js (GA_ID).
+ * El snippet base de gtag.js vive en index.html (código directo de Google)
+ * y ya envía la vista de la primera carga con gtag('config', ...). Por eso
+ * este componente solo reporta las navegaciones POSTERIORES: la ruta inicial
+ * queda registrada por el config y no se vuelve a contar.
+ *
+ * Uso: <Analytics path={pathname} />
  */
 
-import { useEffect } from "react";
-import { GA_ID } from "../data/config";
+import { useEffect, useRef } from "react";
 
-/** GA solo se activa si el ID tiene formato real de GA4 (G-XXXXXXX). */
-const GA_ENABLED = typeof GA_ID === "string" && /^G-[A-Z0-9]+$/i.test(GA_ID);
-
-/** Carga el script de GA4 de forma asíncrona (una sola vez). */
-function loadGA() {
-  if (!GA_ENABLED || typeof window === "undefined" || document.getElementById("ga-script")) return;
-
-  const script = document.createElement("script");
-  script.id = "ga-script";
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-  document.head.appendChild(script);
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { window.dataLayer.push(arguments); }
-  window.gtag = gtag;
-  gtag("js", new Date());
-  gtag("config", GA_ID, { send_page_view: false });
-}
-
-/** Componente que carga GA4 y registra cada ruta. No renderiza nada visible. */
 export default function Analytics({ path }) {
-  const enabled = !import.meta.env.DEV && GA_ENABLED;
+  // Última ruta reportada. Arranca con la ruta inicial (que ya contó gtag).
+  const rutaRef = useRef(path);
 
   useEffect(() => {
-    if (!enabled) return;
-    loadGA();
+    if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+    // Sin cambio real de ruta (incluye el primer render y el doble render de
+    // StrictMode): no reenviar.
+    if (rutaRef.current === path) return;
 
-    const send = () => {
-      if (window.gtag) {
-        window.gtag("event", "page_view", {
-          page_path: path,
-          page_title: typeof document !== "undefined" ? document.title : path,
-        });
-      }
-    };
-
-    // Si el script todavía no terminó de cargar, esperar a que cargue.
-    if (!window.gtag) {
-      document.getElementById("ga-script")?.addEventListener("load", send, { once: true });
-    } else {
-      send();
-    }
-  }, [enabled, path]);
+    rutaRef.current = path;
+    window.gtag("event", "page_view", {
+      page_path: path,
+      page_location: window.location.href,
+      page_title: typeof document !== "undefined" ? document.title : path,
+    });
+  }, [path]);
 
   return null;
 }

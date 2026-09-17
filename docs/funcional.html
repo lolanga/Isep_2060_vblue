@@ -436,11 +436,10 @@
       <tr><td><code>EMAIL_CONTACTO</code></td><td>Correo de contacto</td></tr>
       <tr><td><code>WHATSAPP_URL</code></td><td>Enlace de WhatsApp</td></tr>
       <tr><td><code>REDES_SOCIALES</code></td><td>URLs de redes sociales</td></tr>
-      <tr><td><code>GA_ID</code></td><td>ID de Google Analytics (placeholder)</td></tr>
     </table>
 
     <h3>19.9 API Service Layer</h3>
-    <p><code>src/services/api.js</code>: capa de abstracción mock→backend-ready.</p>
+    <p>No hay capa API: los datos del sitio viven en <code>src/data/</code> y se importan directamente desde los componentes.</p>
 
     <h2>20. Imágenes del sitio (edición paso a paso)</h2>
     <p>Todas las imágenes del sitio se organizan en carpetas dentro de <code>public/img/</code>.</p>
@@ -759,7 +758,7 @@
       <tr><td><code>WEBMAIL_URL</code></td><td>URL del Webmail</td></tr>
       <tr><td><code>WHATSAPP_URL</code></td><td>se arma sola con <code>TELEFONO_LIMPIO</code> (no tocar salvo excepción)</td></tr>
       <tr><td><code>REDES_SOCIALES</code></td><td>URLs de Facebook, YouTube, Instagram y TikTok</td></tr>
-      <tr><td><code>GA_ID</code></td><td>ID de medición de Google Analytics 4 (p. ej. <code>G-LMY41WSSET</code>). Se carga automáticamente en producción y registra una vista por ruta (<code>src/components/Analytics.jsx</code>)</td></tr>
+      <tr><td>Google Analytics</td><td>GA4 se carga con el snippet de <code>index.html</code> (ID <code>G-LMY41WSSET</code>) y registra una vista por ruta vía <code>src/components/Analytics.jsx</code></td></tr>
     </table>
     <p><strong>Importante:</strong> si cambiás un teléfono, también actualizá <code>TELEFONO_LIMPIO</code> (sin espacios/guiones) para que el WhatsApp siga funcionando.</p>
     <p>Guardá y verificá (los cambios aplican en todo el sitio).</p>

@@ -46,6 +46,11 @@ function relacionadasCon(noticia, lista) {
 export async function obtenerNoticia(id) {
   const num = Number(id);
 
+  // Id inválido (NaN, vacío, no entero): no gastar cargando todo el histórico.
+  if (!Number.isInteger(num) || num <= 0) {
+    return { noticia: null, lista: [], relacionadas: [], anio: null };
+  }
+
   const enActual = noticias.find((n) => n.id === num);
   if (enActual) {
     return {

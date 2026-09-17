@@ -18,20 +18,27 @@ function normalizar(s) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-/** Carga (una sola vez) el índice de noticias. */
+/** Carga (una sola vez) el índice de noticias. En caso de error transitorio
+ *  (red/404) NO cachea el fallo: la próxima búsqueda vuelve a intentar. */
 export async function cargarIndiceNoticias() {
-  if (cache) return cache;
+  if (Array.isArray(cache)) return cache;
   if (!promesa) {
     promesa = fetch(RUTA_INDICE)
-      .then((r) => (r.ok ? r.json() : []))
-      .catch(() => [])
-      .finally(() => {
-        // Si falló, permitir reintentar en la próxima búsqueda.
-        if (!cache) promesa = null;
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((data) => {
+        cache = Array.isArray(data) ? data : [];
+        return cache;
+      })
+      .catch(() => {
+        cache = null;
+        promesa = null;
+        return [];
       });
   }
-  cache = await promesa;
-  return cache;
+  return promesa;
 }
 
 /**
@@ -72,8 +79,31 @@ export function rankNoticias(indice, query, max = 3) {
   }));
 }
 
+/**
+ * Fallback: si el índice no está disponible (404/red), arma un índice mínimo
+ * con las noticias recientes que ya viajan en el bundle, para que la búsqueda
+ * nunca quede vacía. Import dinámico: solo se paga si el índice falló.
+ */
+async function indiceDeRespaldo() {
+  try {
+    const { noticias } = await import("./noticias");
+    return noticias.map((n) => ({
+      id: n.id,
+      titulo: n.titulo,
+      categoria: n.categoria,
+      excerpt: n.excerpt,
+      anio: null,
+    }));
+  } catch {
+    return [];
+  }
+}
+
 /** Busca noticias (índice completo: recientes + histórico). */
 export async function buscarNoticias(query, max = 3) {
   const indice = await cargarIndiceNoticias();
-  return rankNoticias(indice, query, max);
+  if (Array.isArray(indice) && indice.length > 0) {
+    return rankNoticias(indice, query, max);
+  }
+  return rankNoticias(await indiceDeRespaldo(), query, max);
 }

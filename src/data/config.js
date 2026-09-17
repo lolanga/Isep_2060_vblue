@@ -43,8 +43,3 @@ export const REDES_SOCIALES = {
   tiktok: "https://tiktok.com/@isepsantafe",
 };
 
-// ── Google Analytics ──
-// ID de medición GA4 (flujo de datos del sitio web).
-// Se carga asíncronamente en src/components/Analytics.jsx; cada cambio de
-// ruta registra page_view. Funciona en cualquier dominio que aloje el sitio.
-export const GA_ID = "G-LMY41WSSET";

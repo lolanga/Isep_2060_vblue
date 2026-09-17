@@ -727,13 +727,12 @@ El archivo `src/data/config.js` centraliza datos usados en múltiples componente
 | `EMAIL_CONTACTO` / `EMAIL_PRENSA` / `EMAIL_TITULOS` | Direcciones de correo electrónico |
 | `WHATSAPP_URL` | Enlace de WhatsApp |
 | `REDES_SOCIALES` | URLs de redes sociales (Facebook, YouTube, Instagram, TikTok) |
-| `GA_ID` | ID de Google Analytics (placeholder actualmente) |
 | `CONTACT_EMAIL` | Email de contacto general |
 | `PHONE` | Teléfono principal |
 
 ### 19.10 API Service Layer
 
-`src/services/api.js`: capa de abstracción mock→backend-ready. Actualmente usa datos mock, preparada para conectar a API real sin cambiar componentes.
+No hay capa API: los datos del sitio viven en `src/data/` y se importan directamente desde los componentes.
 
 ---
 
@@ -1109,7 +1108,7 @@ Pasos:
 | `WEBMAIL_URL` | URL del Webmail |
 | `WHATSAPP_URL` | se arma sola con `TELEFONO_LIMPIO` (no tocar salvo excepción) |
 | `REDES_SOCIALES` | URLs de Facebook, YouTube, Instagram y TikTok |
-| `GA_ID` | ID de medición de Google Analytics 4 (p. ej. `G-LMY41WSSET`). Se carga automáticamente en producción y registra una vista por ruta (`src/components/Analytics.jsx`) |
+| Google Analytics | GA4 se carga con el snippet de `index.html` (ID `G-LMY41WSSET`) y registra una vista por ruta vía `src/components/Analytics.jsx` |
 
 3. **Importante:** si cambiás un teléfono, también actualizá `TELEFONO_LIMPIO` (sin espacios/guiones) para que el WhatsApp siga funcionando.
 4. Guardá y verificá (los cambios aplican en todo el sitio).

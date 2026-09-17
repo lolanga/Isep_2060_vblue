@@ -106,39 +106,42 @@ function App() {
         <SkipToContent />
         <Navbar />
 
-        <Suspense fallback={<LoadingSpinner />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/noticias" element={<Noticias />} />
-            <Route path="/noticias/archivo" element={<ArchivoNoticias />} />
-            <Route path="/noticias/:id" element={<NoticiaDetalle />} />
-            <Route path="/institucional/el-isep" element={<ElIseP />} />
-            <Route path="/institucional/autoridades" element={<Autoridades />} />
-            <Route path="/institucional/organizacion" element={<Organizacion />} />
-            <Route path="/institucional/sedes-contacto" element={<SedesContacto />} />
-            <Route path="/institucional/oferta-educativa" element={<OfertaEducativa />} />
-            <Route path="/institucional/carreras" element={<Carrera />} />
-            <Route path="/institucional/resoluciones" element={<Resoluciones />} />
-            <Route path="/institucional/galeria" element={<Galeria />} />
-            <Route path="/mapa-del-sitio" element={<MapaDelSitio />} />
-            <Route path="/escuelas/policia" element={<EscuelaPolicia />} />
-            <Route path="/escuelas/superior" element={<EscuelaSuperior />} />
-            <Route path="/escuelas/especialidades" element={<EscuelaEspecialidades />} />
-            <Route path="/escuelas/investigaciones" element={<EscuelaInvestigaciones />} />
-            <Route path="/escuelas/educacion-a-distancia" element={<EducacionDistancia />} />
-            <Route path="/ingreso" element={<Ingreso />} />
-            <Route path="/ingreso/convocatorias" element={<Convocatorias />} />
-            <Route path="/ingreso/proximas-convocatorias" element={<ProximasConvocatorias />} />
-            <Route path="/ingreso/requisitos" element={<Requisitos />} />
-            <Route path="/ingreso/proceso" element={<Proceso />} />
-            <Route path="/ingreso/faq" element={<Faq />} />
-            <Route path="/secretaria/titulos" element={<Titulos />} />
-            <Route path="/secretaria/biblioteca" element={<Biblioteca />} />
-            <Route path="/secretaria/cursos" element={<Cursos />} />
-            <Route path="/admin/noticias/nueva" element={<NoticiaNueva />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+        {/* ErrorBoundary interno: si una página falla, Navbar/Footer siguen vivos */}
+        <ErrorBoundary>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/noticias" element={<Noticias />} />
+              <Route path="/noticias/archivo" element={<ArchivoNoticias />} />
+              <Route path="/noticias/:id" element={<NoticiaDetalle />} />
+              <Route path="/institucional/el-isep" element={<ElIseP />} />
+              <Route path="/institucional/autoridades" element={<Autoridades />} />
+              <Route path="/institucional/organizacion" element={<Organizacion />} />
+              <Route path="/institucional/sedes-contacto" element={<SedesContacto />} />
+              <Route path="/institucional/oferta-educativa" element={<OfertaEducativa />} />
+              <Route path="/institucional/carreras" element={<Carrera />} />
+              <Route path="/institucional/resoluciones" element={<Resoluciones />} />
+              <Route path="/institucional/galeria" element={<Galeria />} />
+              <Route path="/mapa-del-sitio" element={<MapaDelSitio />} />
+              <Route path="/escuelas/policia" element={<EscuelaPolicia />} />
+              <Route path="/escuelas/superior" element={<EscuelaSuperior />} />
+              <Route path="/escuelas/especialidades" element={<EscuelaEspecialidades />} />
+              <Route path="/escuelas/investigaciones" element={<EscuelaInvestigaciones />} />
+              <Route path="/escuelas/educacion-a-distancia" element={<EducacionDistancia />} />
+              <Route path="/ingreso" element={<Ingreso />} />
+              <Route path="/ingreso/convocatorias" element={<Convocatorias />} />
+              <Route path="/ingreso/proximas-convocatorias" element={<ProximasConvocatorias />} />
+              <Route path="/ingreso/requisitos" element={<Requisitos />} />
+              <Route path="/ingreso/proceso" element={<Proceso />} />
+              <Route path="/ingreso/faq" element={<Faq />} />
+              <Route path="/secretaria/titulos" element={<Titulos />} />
+              <Route path="/secretaria/biblioteca" element={<Biblioteca />} />
+              <Route path="/secretaria/cursos" element={<Cursos />} />
+              <Route path="/admin/noticias/nueva" element={<NoticiaNueva />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
 
         <Footer />
         <FloatWhatsApp />

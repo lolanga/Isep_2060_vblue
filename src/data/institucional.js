@@ -6,11 +6,11 @@
  * En una futura etapa estos datos serán reemplazados por consultas a un backend.
  */
 
-import escudoEP from "../assets/escudo_EP.png";
-import escudoES from "../assets/escudo_ES.png";
-import escudoEE from "../assets/escudo_EE.png";
-import escudoEI from "../assets/escudo_EI.png";
-import escudoEaD from "../assets/escudo_EaD.png";
+import escudoEP from "../assets/escudo_EP.webp";
+import escudoES from "../assets/escudo_ES.webp";
+import escudoEE from "../assets/escudo_EE.webp";
+import escudoEI from "../assets/escudo_EI.webp";
+import escudoEaD from "../assets/escudo_EaD.webp";
 
 // ── Escuelas ─────────────────────────────────────────────────────────────
 export const escuelas = [

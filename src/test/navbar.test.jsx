@@ -4,7 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 // ── Mocks de assets y react-router deps ──
-vi.mock("../assets/escudo_ISeP.png", () => ({ default: "escudo.png" }));
+vi.mock("../assets/escudo_ISeP.webp", () => ({ default: "escudo.png" }));
 vi.mock("../components/SearchBox", () => ({
   default: () => <div data-testid="searchbox" />,
 }));
