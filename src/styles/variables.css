@@ -34,18 +34,19 @@
 
   /* ── Neutros ── */
   --white:                    #ffffff;
-  --slate-400:                #94a3b8;
+  --slate-400:                #64748b;
   --slate-500:                #64748b;
   --slate-600:                #475569;
   --slate-900:                #0f172a;
   --slate-950:                #020617;
 
   /* ── Gradiente principal ── */
-  --gradient-primary:          linear-gradient(90deg, #227bd1, #17be95);
+  /* Tonos oscurecidos para que el texto blanco cumpla WCAG AA (≥4.5:1) */
+  --gradient-primary:          linear-gradient(90deg, #1a6fc4, #0c8262);
   --gradient-glow:             0 6px 18px #1bb4c373;
   --gradient-hover-lift:       translateY(-1px);
-  --color-start:               #227bd1;
-  --color-end:                 #17be95;
+  --color-start:               #1a6fc4;
+  --color-end:                 #0c8262;
 
   /* ── Layout ── */
   --navbar-height:            72px;

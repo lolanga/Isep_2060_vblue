@@ -7,27 +7,36 @@
 
 import { useState } from "react";
 
-/** Copia texto al portapapeles con fallback para HTTP. */
-async function copyToClipboard(text) {
-  if (navigator.clipboard && window.isSecureContext) {
-    await navigator.clipboard.writeText(text);
-    return;
+/** Copia al portapapeles con fallback para contextos sin Clipboard API. */
+async function copiarTexto(texto) {
+  try {
+    await navigator.clipboard.writeText(texto);
+    return true;
+  } catch {
+    const ta = document.createElement("textarea");
+    ta.value = texto;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    let ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch {
+      ok = false;
+    }
+    document.body.removeChild(ta);
+    return ok;
   }
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  textarea.style.position = "fixed";
-  textarea.style.opacity = "0";
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  document.body.removeChild(textarea);
 }
 
 /**
  * Botón de compartir noticia. Usa Web Share API o copia al portapapeles.
  * @param {{ id: number, titulo: string, excerpt: string }} noticia
+ * @param {string} [className] - Clase extra opcional
  */
-export default function ShareButton({ noticia }) {
+export default function ShareButton({ noticia, className = "" }) {
   const [copiado, setCopiado] = useState(false);
 
   const handleShare = async () => {
@@ -37,11 +46,11 @@ export default function ShareButton({ noticia }) {
         await navigator.share({ title: noticia.titulo, text: noticia.excerpt, url });
       } catch { /* usuario canceló */ }
     } else {
-      try {
-        await copyToClipboard(`${noticia.titulo}\n${noticia.excerpt}\n${url}`);
+      const ok = await copiarTexto(`${noticia.titulo}\n${noticia.excerpt}\n${url}`);
+      if (ok) {
         setCopiado(true);
         setTimeout(() => setCopiado(false), 2000);
-      } catch { /* clipboard no disponible */ }
+      }
     }
   };
 
@@ -51,12 +60,14 @@ export default function ShareButton({ noticia }) {
       onClick={handleShare}
       aria-label="Compartir noticia"
       title="Compartir noticia"
-      className={`share-btn${copiado ? " share-btn--copied" : ""}`}
+      className={`share-btn${copiado ? " share-btn--copied" : ""} ${className}`}
     >
       <span className="material-symbols-outlined share-btn__icon" aria-hidden="true">
         {copiado ? "check" : "share"}
       </span>
-      {copiado ? <span aria-hidden="true">¡Copiado!</span> : ""}
+      <span className="share-btn__label" aria-hidden="true">
+        {copiado ? "¡Copiado!" : "Compartir"}
+      </span>
     </button>
   );
 }

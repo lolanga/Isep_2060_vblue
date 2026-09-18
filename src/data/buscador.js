@@ -2,12 +2,13 @@
  * data/buscador.js
  *
  * Índice de búsqueda construido con los datos simulados actuales.
- * Incluye: escuelas, carreras, cursos, convocatorias, noticias y normativa.
+ * Incluye: escuelas, carreras, cursos, convocatorias y normativa.
+ * Las noticias NO están acá: se buscan en public/indice-noticias.json
+ * (todas, recientes + histórico) vía utils/buscarNoticias.js.
  * Cada entrada tiene: title, subtitle, categoria, tipo, ruta y keywords.
  */
 
 import { escuelas, carreras, cursos, convocatorias } from "./institucional";
-import { noticias } from "./noticias";
 import { resoluciones } from "./normativa";
 
 // Optimización: inicialización lazy del índice de búsqueda
@@ -70,17 +71,6 @@ function getIndiceBusqueda() {
       keywords: [cv.nombre, cv.descripcion, cv.tipo, cv.fecha, escuela ? escuela.nombre : ""],
     };
   }),
-
-  // ── Noticias ──
-  ...noticias.map((n) => ({
-    id: `noticia-${n.id}`,
-    title: n.titulo,
-    subtitle: `${n.categoria} · Noticia`,
-    categoria: "Noticias",
-    tipo: "Noticia",
-    ruta: `/noticias/${n.id}`,
-    keywords: [n.titulo, n.categoria, n.excerpt],
-  })),
 
   // ── Normativa / Resoluciones ──
   ...resoluciones.map((r) => ({

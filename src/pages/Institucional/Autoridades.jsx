@@ -9,11 +9,11 @@ import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
 import { BreadcrumbLd } from "../../components/JsonLd";
-import escudoIsep from "../../assets/escudo_ISeP.png";
-import escudoEP from "../../assets/escudo_EP.png";
-import escudoES from "../../assets/escudo_ES.png";
-import escudoEE from "../../assets/escudo_EE.png";
-import escudoEI from "../../assets/escudo_EI.png";
+import escudoIsep from "../../assets/escudo_ISeP.webp";
+import escudoEP from "../../assets/escudo_EP.webp";
+import escudoES from "../../assets/escudo_ES.webp";
+import escudoEE from "../../assets/escudo_EE.webp";
+import escudoEI from "../../assets/escudo_EI.webp";
 
 const AUTORIDADES_SUPERIORES = [
   {
@@ -177,7 +177,7 @@ export default function Autoridades() {
           </h2>
           <div className="inst-card autoridades-director-card">
             <div className="autoridades-avatar">
-              <img src={DIRECTORGENERAL.escudo} alt="Escudo ISeP" className="autoridades-avatar-img" />
+              <img src={DIRECTORGENERAL.escudo} alt="Escudo ISeP" className="autoridades-avatar-img" width="64" height="64" decoding="async" />
             </div>
             <div>
               <p className="autoridades-label">
@@ -202,7 +202,7 @@ export default function Autoridades() {
                 to={d.href}
                 className="inst-card flex-row-center autoridades-school-link"
               >
-                <img src={d.escudo} alt={`Escudo ${d.escuela}`} className="autoridades-school-img" />
+                <img src={d.escudo} alt={`Escudo ${d.escuela}`} className="autoridades-school-img" width="64" height="64" loading="lazy" decoding="async" />
                 <div>
                   <p className="autoridades-school-label">
                     {d.escuela}

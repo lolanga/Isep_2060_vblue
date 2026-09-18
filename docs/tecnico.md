@@ -53,15 +53,17 @@ src/
 │   ├── SEO.jsx              # Meta tags dinámicos (title, og, twitter, canonical)
 │   └── Analytics.jsx        # Google Analytics 4 (gtag.js)
 ├── data/
-│   ├── config.js            # Configuración centralizada (MI_ISEP_URL, teléfonos, emails, GA_ID, redes)
+│   ├── config.js            # Configuración centralizada (MI_ISEP_URL, teléfonos, emails, redes)
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, cronograma, FAQ
-│   ├── noticias.js          # Noticias (325 migradas del sitio Joomla; admite img: null y escuelas)
+│   ├── noticias.js          # Noticias RECIENTES (año ≥ 2026; 65 notas). El histórico vive en noticias-archivo/<anio>.js
+│   ├── noticias-archivo/    # Histórico por año (2022–2025), generado con npm run migrar:archivo
 │   ├── normativa.js         # 17 resoluciones (compartido)
-│   └── buscador.js          # 371 entradas + buscar() + buscarAgrupado()
+│   └── buscador.js          # Entradas estáticas (escuelas, carreras, cursos, convocatorias, normativa, páginas) + buscar() + buscarAgrupado()
 ├── pages/
 │   ├── Home.jsx             # 7 secciones (Audiencia con accesos a los sistemas)
 │   ├── Noticias.jsx         # Filtro + paginación + filtro por escuela + links a detalle
-│   ├── NoticiaDetalle.jsx   # Detalle de noticia individual
+│   ├── NoticiaDetalle.jsx   # Detalle de noticia (async: recientes + histórico)
+│   ├── ArchivoNoticias.jsx  # Histórico por año (/noticias/archivo, acordeón lazy)
 │   ├── MapaDelSitio.jsx     # Mapa visual de todas las rutas (27)
 │   ├── admin/
 │   │   └── NoticiaNueva.jsx # Herramienta interna: crear noticias (WYSIWYG + preview + guardado; ruta /admin/noticias/nueva, ver §12.7)
@@ -95,7 +97,8 @@ src/
 │   └── api.js               # Capa de abstracción mock→backend-ready
 ├── utils/
 │   ├── analytics.js         # Utilidades de tracking GA4
-│   └── noticias.js          # noticias ordenadas por id desc (más reciente primero; ver §12.7)
+│   ├── noticias.js          # noticias (recientes) + ANIOS_ARCHIVO + cargarNoticiasArchivo() + obtenerNoticia() (ver §6.7)
+│   └── buscarNoticias.js    # Búsqueda de noticias async sobre public/indice-noticias.json + rankNoticias() puro
 └── styles/
     ├── variables.css        # Design tokens + gradiente
     ├── base.css             # Reset, tipografía, fondo global, .chip, prefers-reduced-motion global
@@ -211,7 +214,11 @@ Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. Todas las rutas usan l
 
 ### 6.2 noticias.js
 
-325 noticias (migradas del sitio actual https://www.isepsantafe.edu.ar con `scripts/migrar-noticias.mjs`) con: id, titulo, categoria, fecha, fechaCorta, excerpt, img (admite `null`), adjuntos, escuelas, contenido. Se presentan de más reciente a más antigua vía `utils/noticias.js` (ver §12.7).
+65 noticias **recientes** (año ≥ 2026) con: id, titulo, categoria, fecha, fechaCorta, excerpt, img (admite `null`), adjuntos, escuelas, contenido. Se presentan de más reciente a más antigua vía `utils/noticias.js` (ver §12.7).
+
+### 6.2.1 noticias-archivo/ (histórico)
+
+`src/data/noticias-archivo/<anio>.js` contiene las noticias de 2022–2025 (un archivo por año, 29+74+77+82 = 262 notas). Cada archivo exporta `noticias`. Lo genera `scripts/migrar-archivo-noticias.mjs` (ver §6.7).
 
 ### 6.3 normativa.js
 
@@ -223,7 +230,29 @@ Las fotos están **hardcodeadas** en el componente `src/pages/Institucional/Gale
 
 ### 6.5 buscador.js
 
-371 entradas agrupadas por tipo (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 325 noticias + 17 resoluciones + 11 páginas). Funciones: `buscar()`, `buscarAgrupado()`.
+Entradas **estáticas** agrupadas por tipo (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 17 resoluciones + 11 páginas = 46). Las noticias **no** están acá: se buscan de forma asíncrona en `public/indice-noticias.json` vía `utils/buscarNoticias.js` (ver §6.7). Funciones: `buscar()`, `buscarAgrupado()`.
+
+### 6.6 Migración de noticias (`scripts/migrar-noticias.mjs`)
+
+Script interno que trae todo el inventario de noticias del sitio actual (https://www.isepsantafe.edu.ar, Joomla) al sitio nuevo. Solo hace lecturas; **no modifica el sitio actual**.
+
+- **Ejecución:** `npm run migrar:noticias` (Node ≥ 18, requiere internet, ~3-4 min).
+- **Qué genera:** reemplaza `src/data/noticias.js` completo (id 1 = la más antigua, el resto se ordena solo por id desc), descarga imágenes a `public/img/noticias/` y adjuntos (PDF, etc.) a `public/docs/`, y reescribe las URLs en el contenido.
+- **Fuente:** feed RSS paginado `.../index.php/noticias?format=feed&type=rss&start=N` + la página de detalle de cada noticia (cuerpo, fecha `datePublished` y miniatura del JSON-LD).
+- **Limpieza aplicada:** elimina estilos inline (los enlaces que eran "botones" pasan a clase `.btn-inscripcion`), corrige `tel:` malformados, quita imágenes rotas (404 / dominios caídos / miniaturas no descargables) y normaliza las fechas a mayúsculas.
+- **Categorías y escuelas:** se infieren del título (categoría: Escuelas/Académica/Institucional/Eventos/Convenios; escuelas: policia/superior/especialidades/investigaciones/ead). Conviene revisar casos dudosos tras re-migrar.
+- **Fallos/límites conocidos:** algunos PDFs de resoluciones antiguas están rotos también en el sitio actual (quedan como enlace remoto); las noticias sin imagen usan el placeholder del diseño.
+- **Cuándo usarlo:** para re-migrar el inventario si el sitio actual cambia en bloque. Para publicar noticias nuevas se sigue usando la herramienta admin + ajuste manual (§12.7). Tras re-migrar, conviene re-ejecutar `npm run migrar:archivo` para re-separar recientes/histórico.
+
+### 6.7 Histórico de noticias (archivo por año)
+
+- **`scripts/migrar-archivo-noticias.mjs`** (`npm run migrar:archivo`): separa `noticias.js` (años ≥ 2026) de `noticias-archivo/<anio>.js` (años < 2026). Idempotente, no cambia ids. Juntando todo divide de nuevo.
+- **`scripts/generar-indice-noticias.mjs`** (`npm run indice:noticias`): genera `public/indice-noticias.json` con **todas** las noticias (recientes + histórico) en formato liviano (id, titulo, categoria, fecha, fechaCorta, excerpt, img, anio, escuelas), ordenadas por id desc. Se ejecuta solo en cada `npm run build` y `npm run dev`.
+- **`utils/noticias.js`** exporta: `noticias` (recientes ordenadas id desc), `ANIOS_ARCHIVO`, `cargarNoticiasArchivo(anio)` (lazy vía `import.meta.glob`), `obtenerNoticia(id)` → `{ noticia, lista, relacionadas, anio }`.
+- **`utils/buscarNoticias.js`**: `cargarIndiceNoticias()` (fetch cacheado del JSON), `rankNoticias(indice, query, max)` (pura, normaliza acentos), `buscarNoticias(query, max)`.
+- **`pages/ArchivoNoticias.jsx`**: acordeón por año; el conteo sale del índice, las notas se cargan al expandir.
+- **`NoticiaDetalle.jsx`**: resuelve recientes al instante (sin fetch) y el histórico bajo demanda.
+- **`SearchBox.jsx`**: suma las noticias del índice JSON al grupo "Noticia" de forma async (debounce 300ms).
 
 ---
 
@@ -284,6 +313,9 @@ background-image:
 | `npm run preview` | Previsualiza el build |
 | `npm run lint` | Ejecuta ESLint |
 | `npm run test` | Ejecuta tests con Vitest |
+| `npm run migrar:noticias` | Re-migra noticias del sitio actual (Joomla) |
+| `npm run migrar:archivo` | Re-separa recientes / histórico por año (idempotente) |
+| `npm run indice:noticias` | Regenera `public/indice-noticias.json` (se ejecuta solo en build/dev) |
 
 ---
 
@@ -314,9 +346,11 @@ interface Noticia {
 
 | Archivo | Acción |
 |---|---|
-| `src/data/noticias.js` | Agregar objeto al array `noticias` |
+| `src/data/noticias.js` | Agregar objeto al array `noticias` (año ≥ 2026) |
 | `src/utils/noticias.js` | Ordenamiento automático (id desc) — no requiere cambios |
-| `src/data/buscador.js` | Automático (importa de noticias.js) |
+| `src/data/noticias-archivo/` | Las notas < 2026, por año. Solo vía `npm run migrar:archivo` |
+| `src/data/buscador.js` | Estático — las noticias no están acá (ver §6.7) |
+| `public/indice-noticias.json` | Se regenera solo en cada build/dev (ver §6.7) |
 | `public/docs/` | Colocar archivos adjuntos |
 
 ### 12.3 Imagen alusiva
@@ -429,10 +463,11 @@ Herramienta interna para crear noticias sin tocar código. Detalle operativo (pa
 - En **dev** el acceso es directo, sin PIN.
 
 **Ordenamiento "más reciente primero"**
-- `src/utils/noticias.js` exporta `noticias` = array original ordenado por `id` **descendente**.
-- Consumidores (`News.jsx`, `Noticias.jsx`, `NoticiaDetalle.jsx`, `EscuelaTemplate.jsx`) importan de `../utils/noticias` en lugar de `../data/noticias`.
+- `src/utils/noticias.js` exporta `noticias` = recientes ordenadas por `id` **descendente**; además `ANIOS_ARCHIVO`, `cargarNoticiasArchivo(anio)` y `obtenerNoticia(id)` para el histórico (ver §6.7).
+- Consumidores de `noticias` recientes (`News.jsx`, `Noticias.jsx`, `EscuelaTemplate.jsx`) importan de `../utils/noticias`. `NoticiaDetalle.jsx` resuelve de forma async (recientes al instante, histórico lazy).
 - Consecuencia: la última publicada queda de destacada (grid grande) y primera de cada escuela.
-- Cobertura: `src/test/noticias-utils.test.js`.
+- Cobertura: `src/test/noticias-utils.test.js` (incluye histórico y detalle).
+- Para el edito prepágina: el próximo id se calcula con `Math.max(...noticias.map(n => n.id)) + 1` sobre `src/data/noticias.js` (recientes).
 
 **Dependencias** (tipos npm): `@tiptap/react`, `@tiptap/starter-kit`, `@tiptap/extension-image`, `@tiptap/extension-placeholder`, `@tiptap/extension-underline`, `@tiptap/extension-link` (v3.31.3). En TipTap v3 `StarterKit` ya incluye Link y Underline (se configuran vía `StarterKit.configure`, no como extensiones separadas).
 
@@ -448,13 +483,13 @@ Herramienta interna para crear noticias sin tocar código. Detalle operativo (pa
 Cada ruta se carga bajo demanda con `React.lazy()` + `Suspense`. 96 módulos totales. Todas las páginas incluidas (incluyendo Secretaría).
 
 ### 13.2 Testing
-Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **52 tests en 11 archivos**. Configuración en `vitest.config.js` (ambiente `jsdom`, globals, `setup.js` y `css: false`).
+Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **57 tests en 11 archivos**. Configuración en `vitest.config.js` (ambiente `jsdom`, globals, `setup.js` y `css: false`).
 
 | Archivo | Qué valida | Tests |
 |---|---|---|
 | `datos.test.js` | IDs únicos, campos requeridos, categorías válidas, imágenes `null`, cronograma | 9 |
 | `institucional.test.js` | Escuelas, carreras, cursos, convocatorias | 7 |
-| `buscador.test.js` | Búsqueda y resultados agrupados | 5 |
+| `buscador.test.js` | Búsqueda estática, rankNoticias (índice de noticias) | 7 |
 | `navbar.test.jsx` | Navegación desktop/móvil, enlaces, dropdown Ingreso | 6 |
 | `hero.test.jsx` | Render de slides, CTAs, navegación | 5 |
 | `news.test.jsx` | Noticia destacada (la más reciente) y sin imagen | 2 |
@@ -462,7 +497,7 @@ Suite de tests con **Vitest** + **React Testing Library** + **jsdom**. **52 test
 | `audiencia.test.jsx` | Sección por audiencia del Home (3 audiencias y enlaces) | 4 |
 | `sharebutton.test.jsx` | Copiar, Web Share API, feedback "¡Copiado!" | 3 |
 | `admin-noticianueva.test.jsx` | Herramienta `/admin/noticias/nueva`: formulario, preview y código generado | 2 |
-| `noticias-utils.test.js` | Orden "más reciente primero" (destacada y filtro por escuela) | 2 |
+| `noticias-utils.test.js` | Orden "más reciente primero", histórico, años y resolución de detalle | 6 |
 
 ### 13.3 GitHub Actions
 CI automatizado: Lint → Build → Test en cada push. Archivo: `.github/workflows/ci.yml`.
@@ -486,12 +521,11 @@ export const WEBMAIL_URL = "https://webmail.isepsantafe.edu.ar";
 export const TELEFONO_ISR = "+54 342 457-9000";
 export const EMAIL_CONTACTO = "prensaydifusion@isepsantafe.edu.ar";
 export const WHATSAPP_URL = "https://wa.me/5493424579000";
-export const GA_ID = "G-XXXXXXXXXX";  // Placeholder
 // ... más constantes con JSDoc
 ```
 
 ### 13.6 Analytics
-Google Analytics 4 (`gtag.js`): carga asíncrona, solo en producción. Archivos: `Analytics.jsx`, `analytics.js`. Estado: placeholder.
+Google Analytics 4 (`gtag.js`): el snippet está en `index.html` (ID `G-LMY41WSSET`) y `Analytics.jsx` registra un `page_view` en cada cambio de ruta del React Router.
 
 ### 13.7 CSS Architecture
 - **0 inline styles** en componentes
@@ -511,7 +545,7 @@ Google Analytics 4 (`gtag.js`): carga asíncrona, solo en producción. Archivos:
 - Ambos en `App.jsx` como wrappers del router
 
 ### 13.10 API Layer
-`src/services/api.js`: capa de abstracción mock→backend-ready. Preparada para conectar a API real.
+No hay capa API: los datos del sitio viven en `src/data/` y se importan directamente.
 
 ### 13.11 Galería de Fotos
 `src/pages/Institucional/Galeria.jsx`: fotos hardcodeadas con categorías (Eventos, Formación, Instalaciones, Graduaciones). Grid responsive, filtros, lightbox. (No existe `src/data/galeria.js`.)

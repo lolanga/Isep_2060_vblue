@@ -60,7 +60,15 @@ export default function Noticias() {
       <SEO title="Noticias" description="Últimas noticias del Instituto de Seguridad Pública de Santa Fe" />
       <section className="noticias-hero">
         <div className="noticias-hero__bg">
-          <img src="https://picsum.photos/seed/isephero/1600/600" alt="Noticias ISeP" />
+          <img
+            src="https://picsum.photos/seed/isephero/1600/600"
+            alt="Noticias ISeP"
+            width="1600"
+            height="600"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
           <div className="hero-overlay"></div>
         </div>
         <div className="noticias-hero__content">
@@ -122,8 +130,8 @@ export default function Noticias() {
           <section className="noticias-principal">
             <div className="np-badge-row">
               <span className="badge-categoria badge-categoria--highlight">ÚLTIMA PUBLICACIÓN</span>
-              <span className={`badge-categoria badge-categoria--${principal.categoria.toLowerCase()}`}>
-                {principal.categoria.toUpperCase()}
+              <span className={`badge-categoria badge-categoria--${(principal.categoria || "institucional").toLowerCase()}`}>
+                {(principal.categoria || "Noticia").toUpperCase()}
               </span>
               <ShareButton noticia={principal} />
             </div>
@@ -132,7 +140,7 @@ export default function Noticias() {
               <article className="np-card">
                 <div className="np-img-wrap">
                   {principal.img ? (
-                    <img src={principal.img} alt={principal.titulo} />
+                    <img src={principal.img} alt={principal.titulo} width="1200" height="675" loading="lazy" decoding="async" />
                   ) : (
                     <div className="np-img-placeholder">
                       <span className="material-symbols-outlined">article</span>
@@ -163,7 +171,13 @@ export default function Noticias() {
           <section className="noticias-historial">
             <div className="historial-header">
               <h3 className="historial-titulo">Noticias anteriores</h3>
-              <span className="historial-count">{historico.length} notas</span>
+              <div className="historial-header--right">
+                <span className="historial-count">{historico.length} notas</span>
+                <Link to="/noticias/archivo" className="historial-link">
+                  <span className="material-symbols-outlined">archive</span>
+                  Histórico por año
+                </Link>
+              </div>
             </div>
 
             <div className="historial-grid">
@@ -172,15 +186,15 @@ export default function Noticias() {
                   <article className="hcard">
                     <div className="hcard-img-wrap">
                       {n.img ? (
-                        <img src={n.img} alt={n.titulo} />
+                        <img src={n.img} alt={n.titulo} width="800" height="450" loading="lazy" decoding="async" />
                       ) : (
                         <div className="hcard-img-placeholder">
                           <span className="material-symbols-outlined">article</span>
                         </div>
                       )}
                       <div className="hcard-overlay"></div>
-                      <span className={`hcard-cat badge-categoria badge-categoria--${n.categoria.toLowerCase()}`}>
-                        {n.categoria.toUpperCase()}
+                      <span className={`hcard-cat badge-categoria badge-categoria--${(n.categoria || "institucional").toLowerCase()}`}>
+                        {(n.categoria || "Noticia").toUpperCase()}
                       </span>
                       {n.adjuntos && n.adjuntos.length > 0 && (
                         <span className="hcard-attach-badge">

@@ -3,11 +3,14 @@
  *
  * Buscador global con resultados agrupados por tipo.
  * Soporta navegación por teclado (flechas, Enter, Escape).
+ * Las noticias (recientes + histórico) se buscan de forma async
+ * en public/indice-noticias.json a través de utils/buscarNoticias.js.
  */
 
 import { useState, useRef, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { buscarAgrupado } from "../data/buscador";
+import { buscarNoticias } from "../utils/buscarNoticias";
 
 const ORDEN_GRUPOS = ["Escuela", "Carrera", "Curso", "Convocatoria", "Noticia", "Normativa", "Página"];
 
@@ -28,6 +31,7 @@ const GRUPO_CONFIG = {
 export default function SearchBox({ onClose }) {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [newsState, setNewsState] = useState({ q: "", items: null });
   const [activeIdx, setActiveIdx] = useState(-1);
   const inputRef = useRef(null);
   const boxRef = useRef(null);
@@ -42,26 +46,38 @@ export default function SearchBox({ onClose }) {
     inputRef.current?.focus();
   }, []);
 
-  // Resultados aplanados para navegación por teclado
-  const flatResults = useMemo(() => {
+  // Búsqueda async de noticias (índice liviano con todo el histórico)
+  useEffect(() => {
     const q = (debouncedQuery || "").trim();
-    if (!q) return [];
-    const grupos = buscarAgrupado(q, 3);
-    const flat = [];
-    ORDEN_GRUPOS.forEach((tipo) => {
-      if (grupos[tipo]) {
-        grupos[tipo].forEach((r) => flat.push(r));
-      }
+    if (!q) return;
+    let activo = true;
+    buscarNoticias(q, 3).then((items) => {
+      if (activo) setNewsState({ q, items });
     });
-    return flat;
+    return () => { activo = false; };
   }, [debouncedQuery]);
 
-  // Grupos para render
-  const grupos = useMemo(() => {
+  // Grupos para render (estáticos + noticias async)
+  const { grupos, newsLoading } = useMemo(() => {
     const q = (debouncedQuery || "").trim();
-    if (!q) return {};
-    return buscarAgrupado(q, 3);
-  }, [debouncedQuery]);
+    if (!q) return { grupos: {}, newsLoading: false };
+
+    const base = buscarAgrupado(q, 3);
+    const newsAlDia = newsState.q === q;
+    if (newsAlDia && newsState.items) {
+      base["Noticia"] = newsState.items;
+    }
+    return { grupos: base, newsLoading: !newsAlDia };
+  }, [debouncedQuery, newsState]);
+
+  // Resultados aplanados para navegación por teclado
+  const flatResults = useMemo(() => {
+    const flat = [];
+    ORDEN_GRUPOS.forEach((tipo) => {
+      if (grupos[tipo]) grupos[tipo].forEach((r) => flat.push(r));
+    });
+    return flat;
+  }, [grupos]);
 
   const hayResultados = flatResults.length > 0;
   const hayQuery = query.trim().length > 0;
@@ -177,7 +193,14 @@ export default function SearchBox({ onClose }) {
         </div>
       )}
 
-      {hayQuery && !hayResultados && (
+      {hayQuery && newsLoading && !hayResultados && (
+        <div className="search-results search-results--empty">
+          <div className="spinner" aria-hidden="true" />
+          <p>Buscando…</p>
+        </div>
+      )}
+
+      {hayQuery && !newsLoading && !hayResultados && (
         <div className="search-results search-results--empty">
           <span className="material-symbols-outlined search-empty__icon">
             search_off

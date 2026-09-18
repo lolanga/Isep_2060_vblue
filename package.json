@@ -4,12 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "npm run indice:noticias && vite",
+    "build": "npm run indice:noticias && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
-    "migrar:noticias": "node scripts/migrar-noticias.mjs"
+    "migrar:noticias": "node scripts/migrar-noticias.mjs",
+    "migrar:archivo": "node scripts/migrar-archivo-noticias.mjs",
+    "indice:noticias": "node scripts/generar-indice-noticias.mjs",
+    "img:optimize": "node scripts/optimizar-imagenes.mjs"
   },
   "dependencies": {
     "@tiptap/extension-image": "^3.31.3",
@@ -39,6 +42,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
     "jsdom": "^30.0.1",
+    "sharp": "^0.35.4",
     "vite": "^8.0.8",
     "vitest": "^5.0.0"
   }

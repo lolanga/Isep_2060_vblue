@@ -129,6 +129,21 @@
 .badge-categoria--eventos       { background: rgba(120, 80, 0, 0.08);  color: #7a5200;          }
 .badge-categoria--convenios     { background: rgba(0, 100, 60, 0.08);  color: #006438;          }
 
+/* Badges sobre la imagen de la tarjeta: fondo sólido + texto blanco
+   para que se lean por encima del overlay oscuro. */
+.hcard-cat.badge-categoria {
+  z-index: 3;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background-clip: padding-box;
+}
+.hcard-cat.badge-categoria--institucional { background: #00254d; }
+.hcard-cat.badge-categoria--academica     { background: #0055c9; }
+.hcard-cat.badge-categoria--escuelas      { background: #005f7a; }
+.hcard-cat.badge-categoria--eventos       { background: #7a5200; }
+.hcard-cat.badge-categoria--convenios     { background: #006438; }
+.hcard-cat.badge-categoria--highlight     { background: #00b1ed; color: #fff; }
+
 /* ── Noticia principal (ultima publicada) ── */
 .noticias-principal {
   margin-bottom: 4rem;
@@ -282,7 +297,7 @@
 
 .hcard:hover {
   transform: translateY(-4px);
-  box-shadow: var(--gradient-glow), 0 16px 40px rgba(0, 37, 77, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 37, 77, 0.12);
   border-color: var(--color-start);
 }
 
@@ -530,4 +545,233 @@
   display: block;
   margin-bottom: 0.5rem;
   color: var(--primary);
+}
+
+/* ── Link a histórico en el listado ── */
+.historial-header--right {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-left: auto;
+}
+
+.historial-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--secondary);
+  background: rgba(0, 85, 201, 0.06);
+  border: 1px solid rgba(0, 85, 201, 0.25);
+  border-radius: 9999px;
+  padding: 0.45rem 1rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.historial-link:hover {
+  background: rgba(0, 85, 201, 0.12);
+  border-color: rgba(0, 85, 201, 0.5);
+}
+
+.historial-link .material-symbols-outlined {
+  font-size: 1rem;
+}
+
+/* =============================================
+   HISTÓRICO — /noticias/archivo
+   ============================================= */
+
+.archivo-noticias-page {
+  padding-top: var(--navbar-height);
+  min-height: 100vh;
+}
+
+.archivo-hero {
+  position: relative;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(0, 37, 77, 0.96), rgba(0, 85, 201, 0.7)),
+    var(--primary);
+  overflow: hidden;
+}
+
+.archivo-hero .container-max {
+  position: relative;
+  z-index: 2;
+}
+
+.archivo-hero .badge {
+  background: rgba(0, 177, 237, 0.18);
+  border: 1px solid rgba(0, 177, 237, 0.4);
+  color: var(--on-tertiary-container);
+}
+
+.archivo-hero .hero-description {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.archivo-body {
+  padding: 2.5rem 2rem 5rem;
+  max-width: 860px;
+}
+
+.archivo-intro {
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(0, 37, 77, 0.04), rgba(23, 190, 149, 0.04));
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  color: var(--slate-600);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.archivo-intro a {
+  color: var(--secondary);
+  font-weight: 600;
+  text-underline-offset: 2px;
+}
+
+/* ── Año (acordeón) ── */
+.archivo-anio {
+  border: 1px solid var(--outline-variant);
+  border-radius: 1rem;
+  background-color: var(--surface-container-lowest);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 37, 77, 0.05);
+}
+
+.archivo-anio__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.archivo-anio__header:hover {
+  background: var(--surface-container-low);
+}
+
+.archivo-anio__anio {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.archivo-anio__count {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--slate-500);
+  background: var(--surface-container-low);
+  border-radius: 9999px;
+  padding: 0.25rem 0.85rem;
+}
+
+.archivo-anio__chevron {
+  margin-left: auto;
+  color: var(--slate-400);
+  transition: transform 0.25s ease;
+}
+
+.archivo-anio--open .archivo-anio__chevron {
+  transform: rotate(180deg);
+}
+
+.archivo-anio__cuerpo {
+  padding: 0.25rem 1.5rem 1.5rem;
+  border-top: 1px dashed var(--outline-variant);
+}
+
+.archivo-cargando {
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.archivo-vacio {
+  padding: 1.25rem 0;
+  color: var(--slate-500);
+  font-size: 0.9rem;
+}
+
+/* ── Lista de notas del año ── */
+.archivo-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.archivo-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0.25rem;
+  border-bottom: 1px solid var(--outline-variant);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.archivo-lista li:last-child .archivo-item {
+  border-bottom: none;
+}
+
+.archivo-item__fecha {
+  flex-shrink: 0;
+  width: 4.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--slate-400);
+  letter-spacing: 0.01em;
+}
+
+.archivo-item__cat {
+  flex-shrink: 0;
+  font-size: 0.62rem;
+  padding: 0.22rem 0.7rem;
+}
+
+.archivo-item__titulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--slate-800);
+  line-height: 1.4;
+}
+
+.archivo-item:hover .archivo-item__titulo {
+  color: var(--secondary);
+}
+
+.archivo-volver {
+  margin-top: 2rem;
+}
+
+@media (max-width: 640px) {
+  .archivo-body {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .archivo-anio__header {
+    padding: 1rem 1.1rem;
+  }
+
+  .archivo-anio__cuerpo {
+    padding: 0.25rem 1.1rem 1.25rem;
+  }
+
+  .archivo-item__cat {
+    display: none;
+  }
 }

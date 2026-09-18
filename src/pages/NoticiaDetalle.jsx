@@ -3,45 +3,46 @@
  *
  * Página de detalle de una noticia individual.
  * Muestra imagen, fecha, categoría, título, contenido completo y noticias relacionadas.
+ * Resuelve la noticia de forma async: recientes al instante, histórico bajo demanda.
  */
 
-import { useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import DOMPurify from "dompurify";
-import { noticias } from "../utils/noticias";
+import { noticias, obtenerNoticia } from "../utils/noticias";
 import Breadcrumb from "../components/Breadcrumb";
 import ShareButton from "../components/ShareButton";
 import SEO from "../components/SEO";
 import { NewsArticleLd, BreadcrumbLd } from "../components/JsonLd";
 
-const CONTENIDO_EJEMPLO = (titulo, excerpt) => `
-El Instituto de Seguridad Pública de la Provincia de Santa Fe informa a toda la comunidad institucional y al público en general sobre novedades relacionadas con ${titulo.toLowerCase()}.
-
-En el marco del cumplimiento de sus objetivos de formación, capacitación y actualización profesional, el ISeP viene desarrollando diversas actividades orientadas a fortalecer las competencias del personal de seguridad de la provincia.
-
-${excerpt}
-
-Esta iniciativa se enmarca en el plan estratégico institucional que busca garantizar una formación de calidad, accesible y actualizada para todos los integrantes de las fuerzas de seguridad de Santa Fe.
-
-Desde el ISeP se promueve la excelencia académica como pilar fundamental de la seguridad pública, incentivando la actualización permanente y el intercambio de conocimientos entre profesionales del ámbito.
-
-Para más información, comunicarse con la prensa y difusión del ISeP al correo prensaydifusion@isepsantafe.edu.ar o a través de las redes sociales oficiales.
-`;
-
 /** Página de detalle de una noticia individual con contenido completo. */
 export default function NoticiaDetalle() {
   const { id } = useParams();
-  const noticia = noticias.find((n) => n.id === Number(id));
-  const relacionadas = useMemo(() =>
-    noticia
-      ? noticias
-          .filter((n) => n.id !== noticia.id && n.categoria === noticia.categoria)
-          .slice(0, 3)
-      : [],
-    [noticia]
-  );
+  const [estado, setEstado] = useState(() => {
+    // Resolución inmediata de noticias recientes para evitar flicker.
+    const encontrada = noticias.find((n) => n.id === Number(id));
+    return encontrada
+      ? { cargando: false, noticia: encontrada, lista: noticias, relacionadas: [], anio: null }
+      : { cargando: true, noticia: null, lista: [], relacionadas: [], anio: null };
+  });
 
-  if (!noticia) {
+  useEffect(() => {
+    let activo = true;
+
+    async function resolver() {
+      setEstado({ cargando: true, noticia: null, lista: [], relacionadas: [], anio: null });
+      const res = await obtenerNoticia(id);
+      if (activo) setEstado({ cargando: false, ...res });
+    }
+
+    resolver();
+    return () => { activo = false; };
+  }, [id]);
+
+  const { noticia, relacionadas } = estado;
+  const categoria = (noticia?.categoria || "").toLowerCase();
+
+  if (!estado.cargando && !noticia) {
     return (
       <main id="main-content" className="noticia-page">
         <SEO title="Noticia no encontrada" />
@@ -51,6 +52,18 @@ export default function NoticiaDetalle() {
           <Link to="/noticias" className="not-found__link">
             ← Volver a noticias
           </Link>
+        </div>
+      </main>
+    );
+  }
+
+  if (!noticia) {
+    return (
+      <main id="main-content" className="noticia-page">
+        <SEO title="Cargando noticia" />
+        <div className="container-max noticia-notfound">
+          <div className="spinner" aria-hidden="true" />
+          <p className="not-found__title">Cargando noticia…</p>
         </div>
       </main>
     );
@@ -80,8 +93,8 @@ export default function NoticiaDetalle() {
         <div className="news-hero__content">
           <div className="container-max">
             <div className="news-hero__meta">
-              <span className={`badge-categoria badge-categoria--${noticia.categoria.toLowerCase()}`}>
-                {noticia.categoria.toUpperCase()}
+              <span className={`badge-categoria badge-categoria--${categoria}`}>
+                {(noticia.categoria || "").toUpperCase()}
               </span>
               <span className="news-hero__fecha">{noticia.fecha}</span>
             </div>
@@ -127,7 +140,7 @@ export default function NoticiaDetalle() {
                   ? (noticia.contenido.trim().startsWith("<")
                       ? noticia.contenido
                       : noticia.contenido.split("\n\n").map(p => `<p>${p}</p>`).join(""))
-                  : CONTENIDO_EJEMPLO(noticia.titulo, noticia.excerpt).split("\n\n").map(p => `<p>${p}</p>`).join(""),
+                  : "<p>El contenido completo de esta noticia no está disponible por el momento.</p>",
                 { ADD_ATTR: ["target"] }
               )
             }}

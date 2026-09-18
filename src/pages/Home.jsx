@@ -17,7 +17,7 @@ import SEO from "../components/SEO";
 /** Página principal — landing completa del ISeP. */
 export default function Home() {
   return (
-    <>
+    <main id="main-content">
       <SEO />
       <Hero />
       <Audiencia />
@@ -30,6 +30,6 @@ export default function Home() {
       <div className="hide-mobile">
         <Testimonios />
       </div>
-    </>
+    </main>
   );
 }

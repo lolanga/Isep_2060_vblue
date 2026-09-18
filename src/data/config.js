@@ -43,6 +43,3 @@ export const REDES_SOCIALES = {
   tiktok: "https://tiktok.com/@isepsantafe",
 };
 
-// ── Google Analytics (placeholder) ──
-// Reemplazar con el ID real de GA4 cuando esté configurado
-export const GA_ID = "G-XXXXXXXXXX";

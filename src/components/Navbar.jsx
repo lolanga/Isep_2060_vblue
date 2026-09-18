@@ -11,7 +11,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SearchBox from "./SearchBox";
-import escudoIsep from "../assets/escudo_ISeP.png";
+import escudoIsep from "../assets/escudo_ISeP.webp";
 
 // ── Datos de menús desplegables ──
 const institucional = [
@@ -230,7 +230,7 @@ export default function Navbar() {
 
         {/* ── LOGO — siempre visible (desktop y móvil), linkeable al inicio ── */}
         <Link to="/" className="brand brand--desktop" aria-label="ISeP Santa Fe — Inicio">
-          <img src={escudoIsep} alt="" className="brand__escudo" />
+          <img src={escudoIsep} alt="" className="brand__escudo" width="40" height="40" decoding="async" />
           <span className="brand__text">ISeP Santa Fe</span>
         </Link>
 

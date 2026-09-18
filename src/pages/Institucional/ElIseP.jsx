@@ -8,7 +8,7 @@
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
 import { BreadcrumbLd } from "../../components/JsonLd";
-import escudoIsep from "../../assets/escudo_ISeP.png";
+import escudoIsep from "../../assets/escudo_ISeP.webp";
 
 const SEDES = [
   {

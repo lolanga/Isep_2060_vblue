@@ -60,12 +60,13 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 
 **Mobile:** hamburguesa a la izquierda, logo al centro, Mi ISeP + buscador a la derecha.
 
-### 3.2 Rutas existentes (27 rutas)
+### 3.2 Rutas existentes (28 rutas)
 
 | Ruta | Página | Estado |
 |---|---|---|
 | `/` | Home (7 secciones) | Implementada |
 | `/noticias` | Listado de noticias con filtro, paginación y detalle | Implementada |
+| `/noticias/archivo` | Histórico por año (``2022–2025)`` | Implementada |
 | `/noticias/:id` | Detalle de noticia individual (contenido, relacionadas) | Implementada |
 | `/institucional/el-isep` | El ISeP | Implementada |
 | `/institucional/autoridades` | Autoridades | Implementada |
@@ -609,6 +610,28 @@ Al hacer clic en una card de noticia, se abre `/noticias/:id` con:
 > - El **guardado directo** y la **subida de imágenes** funcionan solo en **dev** (middleware de Vite, ver tecnico.md §12.7). En producción se publica generando el código, aplicando el cambio a `noticias.js`, subiendo los archivos y re-ejecutando el build.
 > - La noticia aparece automáticamente en el **buscador global** (importa de `noticias.js`).
 
+### 18.5 Publicar una noticia desde local hasta el sitio de prueba (`lolo.isepsantafe.net.ar`)
+
+Flujo completo usado para publicar una noticia desde el editor (dev) hasta el subdominio de prueba del ISeP:
+
+1. En la máquina con el código: `npm run dev`.
+2. Abrir `http://localhost:5173/admin/noticias/nueva` (en dev no pide PIN).
+3. Cargar **título**, **categoría**, **extracto**, **escuelas** (opcional; si no se elige ninguna, la noticia solo aparece en `/noticias`).
+4. **Subir imagen** → elegir el PNG/JPG → queda en `public/img/noticias/<hex>.<ext>` (nombre seguro, sin espacios ni tildes) y la URL `/img/noticias/<hex>.<ext>` se completa sola. Si se prefiere un nombre propio (por ejemplo el ID de la noticia), copiar el archivo a `public/img/noticias/<id>.png` y escribir `/img/noticias/<id>.png` en el campo en lugar de subir.
+5. Escribir el contenido en el WYSIWYG y revisar el **preview** en vivo (derecha).
+6. **Guardar en noticias.js** (botón verde) — inserta la noticia con el `id` siguiente automático (máximo actual + 1) y lo confirma.
+7. Verificar en `http://localhost:5173/noticias` (la nueva es la primera/destacada) y en su detalle.
+8. `npm run build` — el `dist/` resultante ya incluye la nueva imagen (`public/img/...` se copia a `dist/img/...`) y la noticia.
+9. Subir por FTP el **contenido de `dist/`** al document root del subdominio de prueba **`public_html/lolo.isepsantafe.net.ar/`**, **sobrescribiendo** los archivos existentes y **sin borrar nada**; no tocar el resto de `public_html` (conviven otras cosas).
+10. Verificar en `https://lolo.isepsantafe.net.ar/noticias`: la noticia nueva aparece arriba con su imagen. La noticia entra sola al buscador global y a las escuelas elegidas.
+
+> **Notas**
+> - Si una subida FTP queda a medias, repetir la subida completa del `dist/` para que se corrija.
+> - La ruta `/admin/noticias/nueva` **en producción no guarda** (solo dev); por eso el flujo de publicación siempre parte de la máquina local con `npm run dev`.
+> - El editor deja las imágenes con nombre hex aleatorio; para que el nombre matchee con el ID de la noticia hay que colocarla a mano (paso 4) y no usar "Subir imagen".
+> - **No re-ejecutar el script de migración (`npm run migrar:noticias`, ver tecnico.md §6.6) después de publicar noticias propias**: regenera todos los IDs y las imágenes nombradas por ID dejarían de coincidir.
+> - El `dist/` incluye un `.htaccess` (desde `public/.htaccess`) para que refrescar rutas internas (`/noticias/:id`, etc.) **no dé 404**: reenvía todo lo que no sea un archivo real a `index.html`. Tras subir, probar refrescando una página de detalle para confirmar.
+
 ---
 
 ## 19. Infraestructura SEO y Analytics
@@ -704,13 +727,12 @@ El archivo `src/data/config.js` centraliza datos usados en múltiples componente
 | `EMAIL_CONTACTO` / `EMAIL_PRENSA` / `EMAIL_TITULOS` | Direcciones de correo electrónico |
 | `WHATSAPP_URL` | Enlace de WhatsApp |
 | `REDES_SOCIALES` | URLs de redes sociales (Facebook, YouTube, Instagram, TikTok) |
-| `GA_ID` | ID de Google Analytics (placeholder actualmente) |
 | `CONTACT_EMAIL` | Email de contacto general |
 | `PHONE` | Teléfono principal |
 
 ### 19.10 API Service Layer
 
-`src/services/api.js`: capa de abstracción mock→backend-ready. Actualmente usa datos mock, preparada para conectar a API real sin cambiar componentes.
+No hay capa API: los datos del sitio viven en `src/data/` y se importan directamente desde los componentes.
 
 ---
 
@@ -828,7 +850,7 @@ Todo lo que se ve en la web (textos, números, imágenes, enlaces, fechas) se gu
 2. Abrí el archivo que corresponde a la sección que querés cambiar (ver tabla en 22.2).
 3. Hacé el cambio imitando el formato de los ejemplos.
 4. Guardá (**Ctrl+S**). Si `npm run dev` está corriendo, el navegador se actualiza solo.
-5. Verificá en el navegador y, si quedó bien, publicá (ver 22.22).
+5. Verificá en el navegador y, si quedó bien, publicá (ver 22.23).
 
 **Formato (importante para no romper la web):**
 
@@ -861,6 +883,8 @@ Todo lo que se ve en la web (textos, números, imágenes, enlaces, fechas) se gu
 ### 22.3 Noticias
 
 La guía paso a paso completa para publicar, editar y borrar noticias está en la §18 de este documento. Resumen: los datos viven en `src/data/noticias.js` (campos: `id`, `titulo`, `categoria`, `fecha`, `fechaCorta`, `excerpt`, `img`, `escuelas` opcional, `adjuntos`, `contenido`).
+
+> **Atención:** si publicaste noticias propias con el editor, **no** volvés a ejecutar `npm run migrar:noticias`: ese script regenera todos los `id` desde cero (ver técnico §6.6). La noticia siguiente se crea sola con `id` = máximo actual + 1.
 
 ### 22.4 Hero (slider de la portada)
 
@@ -922,8 +946,10 @@ Pasos:
 1. Abrí `src/data/institucional.js`.
 2. Buscá `export const escuelas = [`.
 3. Editá los campos de cada escuela: `id` (no cambiar, se usa en las rutas), `nombre`, `resumen`, `presentacion`, y dentro de `informacion`: `categoria`, `duracion`, `modalidad`, `sede`, `contacto`.
-4. Para **agregar una escuela nueva**: copiá un bloque y pegálo antes de `];`. Para el `logo` usá un escudo existente o importá una imagen nueva (ver 22.21).
+4. Para **agregar una escuela nueva**: copiá un bloque y pegálo antes de `];`. Para el `logo` usá un escudo existente o importá una imagen nueva (ver 22.22).
 5. Guardá y verificá. La escuela nueva aparece sola en el Home, en `/institucional/oferta-educativa`, en el buscador y en `/escuelas/{nuevo-id}`.
+
+> **Atención:** el email que sale en la sección **Contacto** de las páginas de escuela es **fijo** (`contacto@isepsantafe.edu.ar`, hardcodeado en `src/components/EscuelaTemplate.jsx`), no sale de `informacion.contacto` (ese campo se muestra como teléfono, junto al ícono de teléfono). Si se necesita un email distinto por escuela, hay que tocar el código de la plantilla. Las **noticias** de cada escuela no se editan acá: salen de `src/data/noticias.js` filtradas por el campo `escuelas` de cada noticia (ver §18).
 
 ### 22.9 Carreras
 
@@ -969,7 +995,7 @@ Pasos:
 
 1. Abrí `src/components/Testimonios.jsx`.
 2. Buscá `const TESTIMONIOS = [`.
-3. Editá los campos de cada testimonio: `id`, `nombre`, `promocion`, `texto` (y `img` si querés foto del egresado, ver 22.21).
+3. Editá los campos de cada testimonio: `id`, `nombre`, `promocion`, `texto` (y `img` si querés foto del egresado, ver 22.22).
 4. Para **agregar uno**: copiá un bloque, pegálo antes de `];`.
 5. Guardá y verificá.
 
@@ -1082,16 +1108,52 @@ Pasos:
 | `WEBMAIL_URL` | URL del Webmail |
 | `WHATSAPP_URL` | se arma sola con `TELEFONO_LIMPIO` (no tocar salvo excepción) |
 | `REDES_SOCIALES` | URLs de Facebook, YouTube, Instagram y TikTok |
-| `GA_ID` | ID de Google Analytics 4 (reemplazar el placeholder `G-XXXXXXXXXX`) |
+| Google Analytics | GA4 se carga con el snippet de `index.html` (ID `G-LMY41WSSET`) y registra una vista por ruta vía `src/components/Analytics.jsx` |
 
 3. **Importante:** si cambiás un teléfono, también actualizá `TELEFONO_LIMPIO` (sin espacios/guiones) para que el WhatsApp siga funcionando.
 4. Guardá y verificá (los cambios aplican en todo el sitio).
 
-### 22.21 Imágenes
+### 22.21 Histórico de noticias (archivo por año)
+
+El listado `/noticias` muestra solo las publicaciones de 2026 en adelante. Todo lo anterior vive en un **histórico por año** al que se accede desde `/noticias/archivo`.
+
+#### Cómo funciona
+
+| Concepto | Dónde está | Qué tiene |
+|---|---|---|
+| Noticias recientes | `src/data/noticias.js` | Años ≥ 2026 (las que edita el admin actualmente). Máximo ~6 páginas de paginación. |
+| Histórico | `src/data/noticias-archivo/<anio>.js` | Años 2022–2025. Cada archivo es un `export const noticias = [...]`. |
+| Índice de búsqueda | `public/indice-noticias.json` | JSON liviano (solo metadatos, sin contenido completo) que el buscador descarga una vez y cachea. Incluye recientes + histórico. |
+| Página de archivo | `src/pages/ArchivoNoticias.jsx` | Acordeón por año: al expandir, carga las notas de ese año de forma lazy. |
+| Detalle de noticia | `src/pages/NoticiaDetalle.jsx` | Resuelve recientes al instante (sin fetch); el histórico se carga bajo demanda. |
+
+#### Re-separar después de agregar más noticias
+
+Si en algún momento necesitás volver a correr el split (por ejemplo, después de agregar noticias y que 2026 quede "viejo"):
+
+```bash
+npm run migrar:archivo   # Idempotente: no cambia ids, solo re-agrupa por año.
+```
+
+> **Importante:** antes de publicar propio, corré `npm run migrar:archivo` **una vez** para que el listado de `/noticias` muestre solo las notas nuevas. Si lo corrés después de publicar, solo actualizá el archivo de datos (`noticias.js`).
+
+#### Búsqueda global
+
+El buscador (ícono de lupa en el navbar) ahora consulta el archivo `public/indice-noticias.json` de forma **asíncrona** (`src/utils/buscarNoticias.js`). Eso significa que encuentra notas tanto recientes como históricas sin tener que cargar el contenido completo de todas.
+
+> Si una búsqueda no encuentra resultados de noticias, verificá que `public/indice-noticias.json` exista. Se regenera automáticamente en cada `npm run build` o `npm run dev`.
+
+#### Tests
+
+Los tests del módulo están en `src/test/noticias-utils.test.js` (resolución de recientes, histórico y años) y `src/test/buscador.test.js` (búsqueda en el índice de noticias).
+
+---
+
+### 22.22 Imágenes
 
 Todo el manejo de imágenes (carpetas, formato recomendado y cómo reemplazar una) está en **§20**. No olvides: las imágenes del sitio viven en `public/img/…` y se referencian con ruta `/img/…`.
 
-### 22.22 Verificación final y publicación
+### 22.23 Verificación final y publicación
 
 1. **Revisá en el navegador** cada sección que tocaste (`npm run dev`).
 2. **Corré los chequeos** en la terminal (carpeta `Isep_2060_vblue`):

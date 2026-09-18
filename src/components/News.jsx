@@ -47,7 +47,7 @@ export default function News() {
                       <span className="material-symbols-outlined">article</span>
                     </div>
                   )}
-                  <span className="news-badge">{destacada.categoria.toUpperCase()}</span>
+                  <span className="news-badge">{(destacada.categoria || "Noticia").toUpperCase()}</span>
                 </div>
 
                 <div className="card-body">

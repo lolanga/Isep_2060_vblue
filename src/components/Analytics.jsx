@@ -1,40 +1,34 @@
 /**
  * components/Analytics.jsx
  *
- * Componente que carga Google Analytics 4 (gtag.js).
- * Se carga de forma asíncrona para no bloquear el render.
- * Solo funciona en producción (DEV = sin tracking).
+ * Registra una vista de página (page_view) en Google Analytics 4 cada vez
+ * que cambia la ruta en el SPA.
  *
- * Uso: <Analytics /> en App.jsx
+ * El snippet base de gtag.js vive en index.html (código directo de Google)
+ * y ya envía la vista de la primera carga con gtag('config', ...). Por eso
+ * este componente solo reporta las navegaciones POSTERIORES: la ruta inicial
+ * queda registrada por el config y no se vuelve a contar.
  *
- * Para tracking manual, ver: src/utils/analytics.js
+ * Uso: <Analytics path={pathname} />
  */
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
-const GA_ID = "G-XXXXXXXXXX"; // Reemplazar con el ID real de GA4
+export default function Analytics({ path }) {
+  // Última ruta reportada. Arranca con la ruta inicial (ya contó gtag).
+  const rutaRef = useRef(path);
 
-/** Carga el script de GA4 de forma asíncrona (solo producción). */
-function loadGA() {
-  if (typeof window === "undefined" || document.getElementById("ga-script")) return;
-
-  const script = document.createElement("script");
-  script.id = "ga-script";
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-  document.head.appendChild(script);
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { window.dataLayer.push(arguments); }
-  window.gtag = gtag;
-  gtag("js", new Date());
-  gtag("config", GA_ID, { send_page_view: false });
-}
-
-/** Componente que carga GA4. No renderiza nada visible. */
-export default function Analytics() {
   useEffect(() => {
-    if (!import.meta.env.DEV) loadGA();
-  }, []);
+    if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+    if (rutaRef.current === path) return;
+
+    rutaRef.current = path;
+    window.gtag("event", "page_view", {
+      page_path: path,
+      page_location: window.location.href,
+      page_title: typeof document !== "undefined" ? document.title : path,
+    });
+  }, [path]);
+
   return null;
 }

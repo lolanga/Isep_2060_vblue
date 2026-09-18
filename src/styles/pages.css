@@ -1400,25 +1400,40 @@
 
 /* ── ShareButton ── */
 .share-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #94a3b8;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
-  font-size: 0.75rem;
-  padding: 0.25rem;
-  border-radius: 0.25rem;
-  transition: color 0.2s;
+  gap: 0.4rem;
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  color: var(--slate-600);
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 0.35rem 0.55rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: border-color 0.2s, color 0.2s, background-color 0.2s, transform 0.2s;
+}
+
+.share-btn:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+  transform: translateY(-1px);
 }
 
 .share-btn--copied {
+  border-color: var(--color-end, #17be95);
   color: var(--color-end, #17be95);
+  background: rgba(23, 190, 149, 0.08);
 }
 
 .share-btn__icon {
   font-size: 1rem;
+}
+
+.share-btn__label {
+  white-space: nowrap;
 }
 
 /* ── ScrollToTop ── */

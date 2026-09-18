@@ -74,7 +74,7 @@ function generateCode(noticia) {
   }
 
   if (noticia.contenido) {
-    fields.push(`    contenido: \`\n${noticia.contenido}\n  \``);
+    fields.push(`    contenido: ${JSON.stringify(noticia.contenido)}`);
   }
 
   return `  {\n${fields.join(",\n")}\n  },`;
@@ -241,7 +241,8 @@ function Toolbar({ editor }) {
 // ── Componente principal ──
 function NoticiaNuevaInner() {
   const now = useMemo(() => new Date(), []);
-  const [nextId, setNextId] = useState(16);
+  const [nextId, setNextId] = useState(null);
+  const [totalNoticias, setTotalNoticias] = useState(0);
 
   const [titulo, setTitulo] = useState("");
   const [categoria, setCategoria] = useState(CATEGORIAS[0]);
@@ -277,20 +278,32 @@ function NoticiaNuevaInner() {
   const fecha = useMemo(() => formatDateLong(now), [now]);
   const fechaCorta = useMemo(() => formatDateShort(now), [now]);
 
-  // Cargar siguiente ID desde noticias.js
-  useEffect(() => {
-    import("../../data/noticias.js").then((mod) => {
-      const maxId = Math.max(...mod.noticias.map((n) => n.id), 0);
-      setNextId(maxId + 1);
-    });
+  // Contador global y siguiente ID incremental a partir del índice liviano
+  // (recientes + histórico). Si el índice no está disponible, cae a las
+  // noticias recientes del bundle. El `?t=` evita el cache tras guardar.
+  const cargarContadorGlobal = useCallback(async () => {
+    try {
+      const res = await fetch(`/indice-noticias.json?t=${Date.now()}`, { cache: "no-store" });
+      if (res.ok) {
+        const indice = await res.json();
+        if (Array.isArray(indice) && indice.length > 0) {
+          setTotalNoticias(indice.length);
+          setNextId(Math.max(...indice.map((n) => n.id), 0) + 1);
+          return;
+        }
+      }
+    } catch { /* se intenta el respaldo */ }
+
+    try {
+      const mod = await import("../../data/noticias.js");
+      setTotalNoticias(mod.noticias.length);
+      setNextId(Math.max(...mod.noticias.map((n) => n.id), 0) + 1);
+    } catch { /* sin datos: se mantiene el estado actual */ }
   }, []);
 
-  const refreshNextId = useCallback(() => {
-    import(`../../data/noticias.js?t=${Date.now()}`).then((mod) => {
-      const maxId = Math.max(...mod.noticias.map((n) => n.id), 0);
-      setNextId(maxId + 1);
-    });
-  }, []);
+  useEffect(() => {
+    cargarContadorGlobal();
+  }, [cargarContadorGlobal]);
 
   const toggleEscuela = useCallback((id) => {
     setEscuelas((prev) => (prev.includes(id) ? prev.filter((e) => e !== id) : [...prev, id]));
@@ -325,7 +338,7 @@ function NoticiaNuevaInner() {
   }, []);
 
   const noticia = useMemo(() => ({
-    id: nextId,
+    id: nextId ?? 0,
     titulo: titulo || "Título de la noticia",
     categoria,
     fecha,
@@ -370,13 +383,13 @@ function NoticiaNuevaInner() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Error al guardar");
       setSaveMsg(`Noticia guardada con ID ${nextId}. Refrescá /noticias para verla.`);
-      refreshNextId();
+      cargarContadorGlobal();
     } catch (err) {
       setSaveError(err.message);
     } finally {
       setSaving(false);
     }
-  }, [code, nextId, escuelas.length, refreshNextId]);
+  }, [code, nextId, escuelas.length, cargarContadorGlobal]);
 
   return (
     <div className="admin-page">
@@ -420,8 +433,12 @@ function NoticiaNuevaInner() {
 
             <div className="admin-field admin-field--readonly">
               <label>ID</label>
-              <input type="text" value={nextId} readOnly />
-              <span className="admin-field__hint">Siguiente ID incremental</span>
+              <input type="text" value={nextId ?? "…"} readOnly />
+              <span className="admin-field__hint">
+                {totalNoticias > 0
+                  ? `Siguiente ID incremental · ${totalNoticias} noticias publicadas`
+                  : "Siguiente ID incremental"}
+              </span>
             </div>
 
             <div className="admin-field">
@@ -528,7 +545,7 @@ function NoticiaNuevaInner() {
                   type="button"
                   className="admin-btn admin-btn--save"
                   onClick={handleSave}
-                  disabled={saving}
+                  disabled={saving || nextId == null}
                 >
                   {saving ? "Guardando..." : "Guardar en noticias.js"}
                 </button>
