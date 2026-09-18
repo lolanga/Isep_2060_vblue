@@ -10,6 +10,8 @@
  * Para tracking manual, ver: src/utils/analytics.js
  */
 
+import { useEffect } from "react";
+
 const GA_ID = "G-XXXXXXXXXX"; // Reemplazar con el ID real de GA4
 
 /** Carga el script de GA4 de forma asíncrona (solo producción). */
@@ -31,7 +33,8 @@ function loadGA() {
 
 /** Componente que carga GA4. No renderiza nada visible. */
 export default function Analytics() {
-  if (import.meta.env.DEV) return null;
-  loadGA();
+  useEffect(() => {
+    if (!import.meta.env.DEV) loadGA();
+  }, []);
   return null;
 }

@@ -7,6 +7,22 @@
 
 import { useState } from "react";
 
+/** Copia texto al portapapeles con fallback para HTTP. */
+async function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textarea);
+}
+
 /**
  * Botón de compartir noticia. Usa Web Share API o copia al portapapeles.
  * @param {{ id: number, titulo: string, excerpt: string }} noticia
@@ -21,9 +37,11 @@ export default function ShareButton({ noticia }) {
         await navigator.share({ title: noticia.titulo, text: noticia.excerpt, url });
       } catch { /* usuario canceló */ }
     } else {
-      await navigator.clipboard.writeText(`${noticia.titulo}\n${noticia.excerpt}\n${url}`);
-      setCopiado(true);
-      setTimeout(() => setCopiado(false), 2000);
+      try {
+        await copyToClipboard(`${noticia.titulo}\n${noticia.excerpt}\n${url}`);
+        setCopiado(true);
+        setTimeout(() => setCopiado(false), 2000);
+      } catch { /* clipboard no disponible */ }
     }
   };
 

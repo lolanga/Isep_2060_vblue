@@ -7,6 +7,7 @@
 
 import { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
+import DOMPurify from "dompurify";
 import { noticias } from "../utils/noticias";
 import Breadcrumb from "../components/Breadcrumb";
 import ShareButton from "../components/ShareButton";
@@ -121,11 +122,14 @@ export default function NoticiaDetalle() {
           <div
             className="noticia-contenido article-content"
             dangerouslySetInnerHTML={{
-              __html: noticia.contenido
-                ? (noticia.contenido.trim().startsWith("<")
-                    ? noticia.contenido
-                    : noticia.contenido.split("\n\n").map(p => `<p>${p}</p>`).join(""))
-                : CONTENIDO_EJEMPLO(noticia.titulo, noticia.excerpt).split("\n\n").map(p => `<p>${p}</p>`).join("")
+              __html: DOMPurify.sanitize(
+                noticia.contenido
+                  ? (noticia.contenido.trim().startsWith("<")
+                      ? noticia.contenido
+                      : noticia.contenido.split("\n\n").map(p => `<p>${p}</p>`).join(""))
+                  : CONTENIDO_EJEMPLO(noticia.titulo, noticia.excerpt).split("\n\n").map(p => `<p>${p}</p>`).join(""),
+                { ADD_ATTR: ["target"] }
+              )
             }}
           />
         </article>

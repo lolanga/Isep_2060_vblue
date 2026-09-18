@@ -12,6 +12,7 @@
 
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { Navigate } from "react-router-dom";
+import DOMPurify from "dompurify";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
@@ -586,7 +587,7 @@ function NoticiaNuevaInner() {
                 {contenidoHtml && (
                   <div
                     className="admin-preview__contenido"
-                    dangerouslySetInnerHTML={{ __html: contenidoHtml }}
+                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(contenidoHtml, { ADD_ATTR: ["target"] }) }}
                   />
                 )}
 

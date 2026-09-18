@@ -120,13 +120,16 @@ export function NewsArticleLd({ noticia }) {
  * @param {{ items: Array<{ label: string, to?: string }> }} props - Array de items del breadcrumb
  */
 export function BreadcrumbLd({ items }) {
+  const itemsKey = JSON.stringify(items);
+
   useEffect(() => {
-    if (!items || items.length === 0) return;
+    const parsed = JSON.parse(itemsKey);
+    if (!parsed || parsed.length === 0) return;
 
     const data = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
-      "itemListElement": items
+      "itemListElement": parsed
         .filter((item) => item.to)
         .map((item, index) => ({
           "@type": "ListItem",
@@ -146,7 +149,7 @@ export function BreadcrumbLd({ items }) {
       const existing = document.getElementById("ld-breadcrumb");
       if (existing) existing.remove();
     };
-  }, [items]);
+  }, [itemsKey]);
 
   return null;
 }
