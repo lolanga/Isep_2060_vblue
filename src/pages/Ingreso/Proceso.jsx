@@ -1,21 +1,21 @@
 /**
  * Proceso.jsx — Página del proceso de ingreso al ISeP
  *
- * Muestra los pasos secuenciales para formar parte del instituto,
- * desde el registro en Mi ISeP hasta la confirmación del ingreso.
+ * Muestra el paso transversal de Mi ISeP y las etapas generales del proceso
+ * para todas las convocatorias y formaciones del ISeP.
  */
 
 import SEO from "../../components/SEO";
 import Breadcrumb from "../../components/Breadcrumb";
 import { BreadcrumbLd } from "../../components/JsonLd";
+import GuiaMiIsep from "../../components/GuiaMiIsep";
 
 export default function Proceso() {
-  const pasos = [
-    { titulo: "Registro en Mi ISeP", texto: "Creá tu cuenta en la plataforma Mi ISeP para poder iniciar la inscripción." },
-    { titulo: "Completar la inscripción", texto: "Elegí la convocatoria vigente y completá el formulario con tus datos." },
-    { titulo: "Adjuntar documentación", texto: "Subí la documentación requerida (DNI, estudios, antecedentes, etc.)." },
-    { titulo: "Evaluaciones", texto: "Participá de las evaluaciones médicas, psicofísicas y de aptitud." },
-    { titulo: "Confirmación del ingreso", texto: "Recibí la confirmación formal y la propuesta de incorporación." },
+  const etapas = [
+    { titulo: "Seleccioná tu convocatoria o formación", texto: "Elegí en Mi ISeP la convocatoria o formación que te corresponda y completá los formularios requeridos." },
+    { titulo: "Adjuntá documentación", texto: "Cargá la documentación solicitada en la plataforma según el trámite o convocatoria." },
+    { titulo: "Superá las instancias de evaluación", texto: "Participá de las instancias y evaluaciones que correspondan a la formación elegida." },
+    { titulo: "Seguimiento y confirmación", texto: "Consultá el estado de tu trámite en “Mis Procesos” y seguí las indicaciones hasta la confirmación." },
   ];
 
   return (
@@ -43,20 +43,30 @@ export default function Proceso() {
           ]}
         />
 
-        <div className="grid-2">
-          {pasos.map((paso, i) => (
-            <div className="card" key={i}>
-              <span
-                className="card__chip proceso-chip"
-                data-type="paso"
-              >
-                Paso {i + 1}
-              </span>
-              <h3 className="card__title proceso-card-title">{paso.titulo}</h3>
-              <p className="card__desc">{paso.texto}</p>
-            </div>
-          ))}
-        </div>
+        <section className="conv-section mi-isep-section">
+          <GuiaMiIsep />
+        </section>
+
+        <section className="conv-section">
+          <h2 className="section-title">Etapas generales del proceso</h2>
+          <p className="section-text mi-isep-guide__intro">
+            Una vez creada tu cuenta en Mi ISeP, el proceso continúa según la convocatoria o formación elegida. Estas etapas resumen el recorrido general.
+          </p>
+          <div className="grid-2 proceso-section">
+            {etapas.map((paso, i) => (
+              <div className="card" key={paso.titulo}>
+                <span
+                  className="card__chip proceso-chip"
+                  data-type="paso"
+                >
+                  Etapa {i + 1}
+                </span>
+                <h3 className="card__title proceso-card-title">{paso.titulo}</h3>
+                <p className="card__desc">{paso.texto}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );

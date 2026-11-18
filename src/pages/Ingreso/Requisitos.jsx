@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
 import { BreadcrumbLd } from "../../components/JsonLd";
+import GuiaMiIsep from "../../components/GuiaMiIsep";
 
 const REQUISITOS = [
   { texto: "Ser argentino", icono: "flag" },
@@ -68,6 +69,11 @@ export default function Requisitos() {
           ]}
         />
 
+        {/* ── Mi ISeP — primer paso para todas las formaciones ── */}
+        <section className="requisitos-section mi-isep-section">
+          <GuiaMiIsep variant="compact" headingTag="h2" />
+        </section>
+
         {/* ── Requisitos para la inscripción ── */}
         <section className="requisitos-section">
           <h2 className="page-section-title">
@@ -109,7 +115,7 @@ export default function Requisitos() {
           </div>
           <p className="requisitos-footnote--sm">
             La documentación será utilizada únicamente para su verificación y posteriormente será devuelta.
-            Debe coincidir con la documentación cargada en MI ISEP.
+            Debe coincidir con la documentación cargada en Mi ISeP.
           </p>
         </section>
 

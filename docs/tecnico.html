@@ -80,6 +80,7 @@
 │   ├── CTA.jsx              # Countdown (2027-09-30)
 │   ├── Footer.jsx           # Footer 3 columnas
 │   ├── EscuelaTemplate.jsx  # Plantilla reutilizable
+│   ├── GuiaMiIsep.jsx       # Bloque transversal Mi ISeP (todas las formaciones)
 │   ├── FloatWhatsApp.jsx    # WhatsApp flotante (z-60)
 │   ├── ScrollToTop.jsx      # Botón ir arriba (z-70)
 │   ├── Breadcrumb.jsx       # Migas de pan
@@ -95,7 +96,8 @@
 │   ├── SEO.jsx              # Meta tags dinámicos + canonical
 │   └── Analytics.jsx        # GA4 (gtag.js)
 ├── data/
-│   ├── config.js            # Config centralizada
+│   ├── config.js            # Config centralizada (MI_ISEP_URL, teléfonos, emails, redes)
+│   ├── miIsep.js            # Información y pasos transversales de Mi ISeP
 │   ├── institucional.js     # Escuelas, carreras, cursos, convocatorias, cronograma, FAQ
 │   ├── noticias.js          # Noticias (325 migradas del sitio Joomla; admite img: null y escuelas)
 │   ├── normativa.js         # 17 resoluciones
@@ -111,7 +113,7 @@
 │   │                        # OfertaEducativa, Carrera, Resoluciones,
 │   │                        # SedesContacto (Maps), Galeria
 │   ├── Escuelas/            # 5 escuelas (EscuelaTemplate)
-│   ├── Ingreso/             # Ingreso (landing), Convocatorias,
+│   ├── Ingreso/             # Ingreso (landing + Mi ISeP transversal), Convocatorias,
 │   │                        # ProximasConvocatorias, Requisitos,
 │   │                        # Proceso, Faq
 │   └── Secretaria/          # Titulos, Biblioteca (22), Cursos
@@ -186,6 +188,7 @@
       <tr><td><code>Galeria.jsx</code></td><td>Fotos hardcodeadas en el componente (categorías Eventos/Formación/Instalaciones/Graduaciones). No existe <code>galeria.js</code></td></tr>
       <tr><td><code>buscador.js</code></td><td>371 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 325 noticias + 17 resoluciones + 11 páginas) + <code>buscar()</code> + <code>buscarAgrupado()</code></td></tr>
       <tr><td><code>config.js</code></td><td>MI_ISEP_URL, GESTION_URL, CADETES_URL, WEBMAIL_URL, emails, teléfonos, redes</td></tr>
+      <tr><td><code>miIsep.js</code></td><td>Información y pasos transversales de Mi ISeP (fuente única para todas las formaciones)</td></tr>
     </table>
 
     <h3>6.6 Migración de noticias (<code>scripts/migrar-noticias.mjs</code>)</h3>
@@ -348,7 +351,7 @@ News.jsx ────────── noticias[0..3] ──── Link a /noti
     <p>Cada ruta se carga bajo demanda con <code>React.lazy()</code> + <code>Suspense</code>. 96 módulos totales.</p>
 
     <h3>12.2 Testing</h3>
-    <p><strong>52 tests en 11 archivos</strong> con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. Configuración en <code>vitest.config.js</code> (ambiente <code>jsdom</code>, globals, <code>setup.js</code> y <code>css: false</code>):</p>
+    <p><strong>60 tests en 12 archivos</strong> con <strong>Vitest</strong> + <strong>React Testing Library</strong> + <strong>jsdom</strong>. Configuración en <code>vitest.config.js</code> (ambiente <code>jsdom</code>, globals, <code>setup.js</code> y <code>css: false</code>):</p>
     <table>
       <tr><th>Archivo</th><th>Qué valida</th><th>Tests</th></tr>
       <tr><td><code>datos.test.js</code></td><td>IDs únicos, campos requeridos, categorías válidas, imágenes <code>null</code>, cronograma</td><td>9</td></tr>

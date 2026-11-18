@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import SEO from "../../components/SEO";
 import Breadcrumb from "../../components/Breadcrumb";
 import { BreadcrumbLd } from "../../components/JsonLd";
+import GuiaMiIsep from "../../components/GuiaMiIsep";
 import { convocatorias, escuelaPorId } from "../../data/institucional";
 
 /** Página de próximas convocatorias anunciadas para futuros ciclos. */
@@ -37,6 +38,10 @@ export default function ProximasConvocatorias() {
             { label: "Próximas Convocatorias" },
           ]}
         />
+
+        <section className="conv-section mi-isep-section">
+          <GuiaMiIsep variant="compact" headingTag="h2" />
+        </section>
 
         <div className="grid-2">
           {proximas.map((cv) => {

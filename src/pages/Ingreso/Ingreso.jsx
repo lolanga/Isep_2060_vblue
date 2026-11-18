@@ -2,22 +2,17 @@
  * pages/Ingreso/Ingreso.jsx
  *
  * Landing del proceso de ingreso al ISeP.
- * Resume en una única pantalla: pasos, cronograma, convocatorias,
- * requisitos, FAQ destacadas y aviso de trámite gratuito.
+ * Resume en una única pantalla: Mi ISeP (paso transversal), cronograma,
+ * convocatorias, requisitos, FAQ destacadas y aviso de trámite gratuito.
  */
 
 import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
 import { BreadcrumbLd } from "../../components/JsonLd";
+import GuiaMiIsep from "../../components/GuiaMiIsep";
+import { MI_ISEP_URL } from "../../data/config";
 import { convocatorias, cronograma, preguntasFrecuentes } from "../../data/institucional";
-
-const PASOS = [
-  { icon: "person_add", titulo: "Creá tu usuario", desc: "Registrate en la plataforma Mi ISeP con un correo al que tengas acceso frecuente." },
-  { icon: "fact_check", titulo: "Completá la inscripción", desc: "Seleccioná la convocatoria y completá los 4 formularios obligatorios." },
-  { icon: "rule", titulo: "Superá las etapas", desc: "Exámenes premédico, psicológico, intelectual, físico y socioambiental." },
-  { icon: "military_tech", titulo: "Incorporación", desc: "Aprobado el período propedéutico, te incorporás como Cadete." },
-];
 
 const ESTADO_LABEL = {
   "vigente": "Vigente",
@@ -35,8 +30,6 @@ const REQUISITOS_RESUMEN = [
 ];
 
 const FAQ_DESTACADAS = preguntasFrecuentes.slice(0, 3);
-
-const MI_ISEP_URL = "https://mi.isepsantafe.edu.ar/";
 
 const CONTACTO_EMAIL = "prensaydifusion@isepsantafe.edu.ar";
 
@@ -101,21 +94,9 @@ export default function Ingreso() {
           </div>
         </div>
 
-        {/* Pasos */}
-        <section className="conv-section">
-          <h2 className="section-title">¿Cómo es el proceso?</h2>
-          <div className="grid-4col">
-            {PASOS.map((p, i) => (
-              <div key={i} className="conv-step-card">
-                <div className="step-circle">
-                  {i + 1}
-                </div>
-                <span className="material-symbols-outlined icon-primary ingreso-step-icon">{p.icon}</span>
-                <h4 className="conv-card-subtitle">{p.titulo}</h4>
-                <p className="conv-card-text">{p.desc}</p>
-              </div>
-            ))}
-          </div>
+        {/* Mi ISeP — paso transversal y más prominente */}
+        <section className="conv-section mi-isep-section">
+          <GuiaMiIsep />
         </section>
 
         {/* Cronograma */}
@@ -234,7 +215,7 @@ export default function Ingreso() {
               rel="noreferrer"
               className="btn-primary"
             >
-              Inscribirme en MI ISEP
+              Crear mi usuario en Mi ISeP
               <span className="material-symbols-outlined conv-arrow-icon">arrow_forward</span>
             </a>
           </div>

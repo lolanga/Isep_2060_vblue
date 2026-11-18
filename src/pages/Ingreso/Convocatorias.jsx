@@ -10,6 +10,8 @@ import Countdown from "../../components/Countdown";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
 import { BreadcrumbLd } from "../../components/JsonLd";
+import GuiaMiIsep from "../../components/GuiaMiIsep";
+import { MI_ISEP_URL } from "../../data/config";
 
 const DOCUMENTACION = [
   {
@@ -62,12 +64,7 @@ const REQUISITOS = [
   "Presentar toda la documentación requerida dentro de los plazos establecidos",
 ];
 
-const INSCRIPCION_PASOS = [
-  { paso: 1, titulo: "Creá tu usuario", desc: "Creá tu usuario en MI ISEP utilizando un correo electrónico al que tengas acceso frecuente." },
-  { paso: 2, titulo: "Confirmá tu cuenta", desc: "Confirmá tu cuenta mediante el correo electrónico recibido." },
-  { paso: 3, titulo: "Inscribite", desc: "Ingresá a MI ISEP y seleccioná Inscripción. Aceptá los términos y condiciones." },
-  { paso: 4, titulo: "Completá los formularios", desc: "Completá el primer formulario. En la pestaña Mis Procesos estarán disponibles los formularios restantes." },
-];
+
 
 const LISTADO_URL = "https://www.isepsantafe.edu.ar/images/Publicaciones/LISTADO_PRESENTACION_PROCESO_SELECCION_2027_2028_0900.pdf";
 
@@ -96,12 +93,12 @@ export default function Convocatorias() {
 
           <div className="conv-hero-actions">
             <a
-              href="https://mi.isepsantafe.edu.ar/"
+              href={MI_ISEP_URL}
               target="_blank"
               rel="noreferrer"
               className="btn-primary"
             >
-              Inscribirme en MI ISEP
+              Crear mi usuario en Mi ISeP
               <span className="material-symbols-outlined conv-arrow-icon">arrow_forward</span>
             </a>
             <a
@@ -165,7 +162,7 @@ export default function Convocatorias() {
             ))}
           </div>
           <p className="conv-footnote">
-            La documentación será utilizada únicamente para su verificación y posteriormente será devuelta. Debe coincidir con la documentación cargada en MI ISEP.
+            La documentación será utilizada únicamente para su verificación y posteriormente será devuelta. Debe coincidir con la documentación cargada en Mi ISeP.
           </p>
         </section>
 
@@ -205,26 +202,9 @@ export default function Convocatorias() {
           </div>
         </section>
 
-        {/* Cómo inscribirte */}
-        <section className="conv-section">
-          <h2 className="section-title">
-            ¿Cómo inscribirte?
-          </h2>
-          <div className="grid-4col">
-            {INSCRIPCION_PASOS.map((p) => (
-              <div key={p.paso} className="conv-step-card">
-                <div className="step-circle">
-                  {p.paso}
-                </div>
-                <h4 className="conv-card-subtitle">
-                  {p.titulo}
-                </h4>
-                <p className="conv-card-text">
-                  {p.desc}
-                </p>
-              </div>
-            ))}
-          </div>
+        {/* Mi ISeP — requisito transversal y primer paso para todas las formaciones */}
+        <section className="conv-section mi-isep-section">
+          <GuiaMiIsep />
         </section>
 
         {/* Formularios obligatorios */}
@@ -339,12 +319,12 @@ export default function Convocatorias() {
               No dejes pasar la oportunidad. Las vacantes son limitadas.
             </p>
             <a
-              href="https://mi.isepsantafe.edu.ar/"
+              href={MI_ISEP_URL}
               target="_blank"
               rel="noreferrer"
               className="btn-primary"
             >
-              Inscribirme en MI ISEP
+              Crear mi usuario en Mi ISeP
               <span className="material-symbols-outlined conv-arrow-icon">arrow_forward</span>
             </a>
           </div>

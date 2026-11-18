@@ -26,12 +26,20 @@ describe("Ingreso landing (/ingreso)", () => {
     expect(screen.getByText(/ningún gestor ni intermediario/i)).toBeInTheDocument();
   });
 
-  it("muestra las 4 etapas resumidas del proceso", () => {
+  it("destaca Mi ISeP como punto de partida transversal para todas las formaciones", () => {
     renderIngreso();
+    expect(screen.getByText("Requisito transversal")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /mi isep: punto de partida para todas las inscripciones/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/todas las convocatorias y formaciones del isep se gestionan a través de mi isep/i)
+    ).toBeInTheDocument();
     expect(screen.getByText("Creá tu usuario")).toBeInTheDocument();
-    expect(screen.getByText("Completá la inscripción")).toBeInTheDocument();
-    expect(screen.getByText("Superá las etapas")).toBeInTheDocument();
-    expect(screen.getByText("Incorporación")).toBeInTheDocument();
+    expect(screen.getByText("Ir a Mi ISeP").closest("a")).toHaveAttribute(
+      "href",
+      "https://mi.isepsantafe.edu.ar"
+    );
   });
 
   it("muestra cada etapa del cronograma con su fecha", () => {

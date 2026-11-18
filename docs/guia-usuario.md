@@ -141,19 +141,18 @@ Cada escuela: escudo, presentación (datos oficiales), información, contacto co
 
 ### 7.1 Inicio de Ingreso (landing `/ingreso`)
 Resumen completo del camino para convertirte en Cadete, en una pantalla:
-- Pasos del proceso (4 tarjetas): crear usuario → completar inscripción → superar etapas → incorporación
-- **Cronograma 2027–2028** con el estado de cada etapa (qué está en curso y qué viene)
+- **Mi ISeP (requisito transversal, lo más destacado):** bloque principal que explica que todas las convocatorias y formaciones requieren cuenta en Mi ISeP, con los pasos para crear tu usuario, confirmar tu cuenta, ingresar y completar tu proceso
+- **Cronograma 2027–2028** con el estado de cada etapa (crear usuario/pre-inscripción en Mi ISeP, listado, exámenes, propedéutico e incorporación)
 - Convocatorias abiertas, requisitos principales y preguntas frecuentes
 - Alerta "trámite gratuito y personal": ningún gestor ni intermediario realiza el trámite
-- Botón para inscribirte en MI ISEP
+- Botón para **crear tu usuario en Mi ISeP**
 
 ### 7.2 Convocatorias — Contenido real
 Landing con **proceso de selección de la Escuela de Policía Ciclo 2027–2028**:
-- Hero con countdown y enlace a MI ISEP
+- Hero con countdown y CTA principal para **crear tu usuario en Mi ISeP**
 - Alerta de presentación (09:00 hs, tolerancia 20 min)
-- Documentación requerida (título + DNI)
-- Vestimenta y elementos
-- Cómo inscribirte en MI ISEP (4 pasos)
+- Documentación requerida (título + DNI), vestimenta y elementos
+- **Mi ISeP (requisito transversal, destacado):** pasos comunes para crear usuario, confirmar cuenta, ingresar y completar el proceso en Mi ISeP (válido para todas las convocatorias y formaciones)
 - Formularios obligatorios (4 DJ)
 - Edad requerida (18-30 años al 02/02/2027)
 - Etapas del proceso (4 etapas)

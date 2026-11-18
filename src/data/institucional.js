@@ -258,8 +258,8 @@ export const convocatorias = [
 export const cronograma = [
   {
     id: 1,
-    etapa: "Pre-inscripción en Mi ISeP",
-    detalle: "Creá tu usuario y completá el formulario de inscripción con los 4 formularios obligatorios.",
+    etapa: "Crear usuario y Pre-inscripción en Mi ISeP",
+    detalle: "Creá tu usuario en Mi ISeP (requisito para todas las convocatorias y formaciones) y completá el formulario de inscripción con los 4 formularios obligatorios.",
     fecha: "Hasta el 30/09/2026",
     estado: "en-curso",
   },
@@ -317,7 +317,7 @@ export const preguntasFrecuentes = [
   {
     pregunta: "¿Cómo realizo la inscripción?",
     respuesta:
-      "A través de la plataforma Mi ISeP, registrando una cuenta y completando el formulario de la convocatoria vigente.",
+      "El primer paso, para todas las convocatorias y formaciones del ISeP, es crear tu usuario en Mi ISeP. Una vez que confirmás tu cuenta, ingresás a la plataforma, seleccionás la convocatoria o formación correspondiente y completás los formularios y la documentación requerida.",
   },
   {
     pregunta: "¿Dónde se realizan las evaluaciones?",
@@ -353,7 +353,7 @@ export const preguntasFrecuentes = [
   },
   {
     pregunta: "¿Qué es Mi ISeP?",
-    respuesta: "Mi ISeP es la plataforma digital institucional donde se gestionan inscripciones, seguimiento de trámites, acceso a materiales de estudio y comunicación con la institución.",
+    respuesta: "Mi ISeP es la plataforma digital institucional del ISeP. Es el punto de partida obligatorio para todas las convocatorias y formaciones: allí creás tu usuario, completás inscripciones y formularios, cargás documentación y realizás el seguimiento de tus trámites.",
   },
   {
     pregunta: "¿Ofrecen becas o ayudas económicas?",

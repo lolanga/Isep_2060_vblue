@@ -38,6 +38,7 @@ src/
 │   ├── CTA.jsx              # Llamado a la acción con countdown (2027-09-30)
 │   ├── Footer.jsx           # Footer 3 columnas + redes sociales
 │   ├── EscuelaTemplate.jsx  # Plantilla reutilizable de escuela
+│   ├── GuiaMiIsep.jsx       # Bloque transversal destacado: crear usuario/acceso en Mi ISeP (todas las formaciones)
 │   ├── FloatWhatsApp.jsx    # WhatsApp flotante (z-60)
 │   ├── ScrollToTop.jsx      # Botón ir arriba (z-70, bottom-left en móvil)
 │   ├── Breadcrumb.jsx       # Migas de pan con home icon
@@ -54,6 +55,7 @@ src/
 │   └── Analytics.jsx        # Google Analytics 4 (gtag.js)
 ├── data/
 │   ├── config.js            # Configuración centralizada (MI_ISEP_URL, teléfonos, emails, redes)
+│   ├── miIsep.js            # Información y pasos transversales de Mi ISeP (fuente única para todas las formaciones)
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, cronograma, FAQ
 │   ├── noticias.js          # Noticias RECIENTES (año ≥ 2026; 65 notas). El histórico vive en noticias-archivo/<anio>.js
 │   ├── noticias-archivo/    # Histórico por año (2022–2025), generado con npm run migrar:archivo
@@ -83,12 +85,12 @@ src/
 │   │   ├── Investigaciones.jsx
 │   │   └── EducacionADistancia.jsx
 │   ├── Ingreso/
-│   │   ├── Ingreso.jsx            # Landing de ingreso: pasos, cronograma, convocatorias, anti-estafa
-│   │   ├── Convocatorias.jsx     # Contenido real Esc. Policía 2027-2028
+│   │   ├── Ingreso.jsx            # Landing de ingreso: Mi ISeP transversal destacado, cronograma, convocatorias, anti-estafa
+│   │   ├── Convocatorias.jsx     # Contenido real Esc. Policía 2027-2028 + Mi ISeP transversal destacado
 │   │   ├── ProximasConvocatorias.jsx # Próximas convocatorias 2027-2028
-│   │   ├── Requisitos.jsx        # 10 requisitos reales + documentación
-│   │   ├── Proceso.jsx           # Proceso de selección
-│   │   └── Faq.jsx               # 12 preguntas en acordeón
+│   │   ├── Requisitos.jsx        # Mi ISeP transversal + 10 requisitos reales + documentación
+│   │   ├── Proceso.jsx           # Mi ISeP transversal + etapas generales del proceso
+│   │   └── Faq.jsx               # 12 preguntas en acordeón (datos desde institucional.js)
 │   └── Secretaria/
 │       ├── Titulos.jsx           # Títulos y Certificaciones (formulario DNI, proceso 3 pasos)
 │       ├── Biblioteca.jsx        # 22 recursos bibliográficos reales + filtros

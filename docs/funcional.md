@@ -81,7 +81,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/escuelas/especialidades` | Escuela de Especialidades (datos oficiales) | Implementada |
 | `/escuelas/investigaciones` | Escuela de Investigaciones (datos oficiales) | Implementada |
 | `/escuelas/educacion-a-distancia` | Educación a Distancia | Implementada |
-| `/ingreso` | Landing de Ingreso (pasos, cronograma 2027-2028, convocatorias, requisitos, FAQ, anti-estafa) | Implementada |
+| `/ingreso` | Landing de Ingreso (Mi ISeP transversal, cronograma 2027-2028, convocatorias, requisitos, FAQ, anti-estafa) | Implementada |
 | `/ingreso/proceso` | Proceso de selección | Implementada |
 | `/ingreso/requisitos` | Requisitos | Implementada |
 | `/ingreso/convocatorias` | Landing Convocatorias (contenido real Esc. Policía 2027–2028) | Implementada |
@@ -223,21 +223,21 @@ Grid de tarjetas mejoradas:
 Punto de entrada único para el postulante. **Resume todo el trayecto en una pantalla:**
 - **Hero** con badge "Ciclo Lectivo 2027–2028" y CTAs a Pre-Inscripción Online (`/ingreso/convocatorias`) y Requisitos (`/ingreso/requisitos`)
 - **Alerta anti-estafa** — "el trámite es gratuito y personal; ningún gestor ni intermediario interviene" con contacto de prensa
-- **Pasos del proceso** (4 tarjetas): crear usuario → completar inscripción → superar etapas → incorporación
-- **Cronograma 2027–2028** (timeline desde `data/institucional.js` → `cronograma`): pre-inscripción (en curso) → listado de presentación → exámenes premédico/psicológico/intelectual/físico/socioambiental → propedéutico → incorporación, cada etapa con estado y fecha
+- **Mi ISeP (requisito transversal, destacado)** — bloque prominente y reutilizable para todas las convocatorias y formaciones: crear usuario, confirmar cuenta, ingresar y completar el proceso en Mi ISeP (`MI_ISEP_URL` centralizada)
+- **Cronograma 2027–2028** (timeline desde `data/institucional.js` → `cronograma`): crear usuario/pre-inscripción en Mi ISeP (en curso) → listado de presentación → exámenes premédico/psicológico/intelectual/físico/socioambiental → propedéutico → incorporación, cada etapa con estado y fecha
 - **Convocatorias abiertas** (cards desde `convocatorias`)
 - **Requisitos principales** (top 5) con enlace al listado completo
 - **FAQ destacadas** (3) con enlace al FAQ completo
-- **CTA final** a MI ISEP y consultas por email
+- **CTA final** a Mi ISeP (“Crear mi usuario en Mi ISeP”) y consultas por email
 
 ### 6.2 Landing de Convocatorias (`/ingreso/convocatorias`)
 
 **Contenido real** del proceso de selección — Escuela de Policía — Ciclo 2027–2028:
-- **Hero con countdown** y enlace directo a MI ISEP
+- **Hero con countdown** y CTA principal a Mi ISeP (“Crear mi usuario en Mi ISeP”)
 - **Alerta de presentación** (09:00 hs, tolerancia 20 min)
-- **Documentación:** título secundario + DNI
+- **Documentación:** título secundario + DNI (debe coincidir con lo cargado en Mi ISeP)
 - **Vestimenta y elementos** a presentar
-- **Cómo inscribirte** en MI ISEP (4 pasos)
+- **Mi ISeP (requisito transversal, destacado)** — bloque reutilizable con los pasos comunes de cuenta/acceso para todas las convocatorias y formaciones
 - **Formularios obligatorios** (4 Declaraciones Juradas)
 - **Edad requerida** (18-30 años al 02/02/2027)
 - **Etapas del proceso** (4 etapas)
@@ -251,11 +251,13 @@ Aperturas para el ciclo 2027-2028.
 
 ### 6.4 Requisitos (`/ingreso/requisitos`)
 
-10 requisitos reales del sitio + documentación requerida + formularios obligatorios.
+- **Mi ISeP (requisito transversal, destacado)** — guía breve reutilizable con acceso a Mi ISeP antes de los requisitos
+- 10 requisitos reales del sitio + documentación requerida + formularios obligatorios (la documentación debe coincidir con lo cargado en Mi ISeP).
 
 ### 6.5 Proceso de Selección (`/ingreso/proceso`)
 
-Pasos detallados del proceso de ingreso.
+- **Mi ISeP (requisito transversal, destacado)** — guía reutilizable de creación de usuario/acceso
+- **Etapas generales del proceso** posteriores a la cuenta en Mi ISeP, aplicables según la convocatoria o formación elegida.
 
 ### 6.6 Preguntas Frecuentes (`/ingreso/faq`)
 

@@ -3342,3 +3342,77 @@
     margin: 0 auto;
   }
 }
+
+/* ── Guía Mi ISeP (requisito transversal) ── */
+.mi-isep-section {
+  scroll-margin-top: 6rem;
+}
+
+.mi-isep-guide {
+  background: linear-gradient(135deg, var(--primary-soft, #e6eef8) 0%, #ffffff 55%);
+  border: 1px solid #cfe0f5;
+  border-left: 5px solid var(--primary, #00254d);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 37, 77, 0.08);
+}
+
+.mi-isep-guide--compact {
+  padding: 1.25rem;
+}
+
+.mi-isep-guide__header {
+  margin-bottom: 1.25rem;
+}
+
+.mi-isep-guide__header .badge {
+  display: inline-flex;
+  margin-bottom: 0.6rem;
+}
+
+.mi-isep-guide__intro {
+  max-width: 60rem;
+  margin-top: 0.35rem;
+}
+
+.mi-isep-guide__steps {
+  margin-top: 0.5rem;
+}
+
+.mi-isep-guide__step {
+  background: #fff;
+  height: 100%;
+}
+
+.mi-isep-guide__step-icon {
+  font-size: 1.6rem;
+  margin: 0.15rem 0 0.35rem;
+}
+
+.mi-isep-guide__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #d9e6f5;
+}
+
+.mi-isep-guide__hint {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--slate-600, #475569);
+  flex: 1 1 16rem;
+}
+
+@media (max-width: 640px) {
+  .mi-isep-guide {
+    padding: 1.1rem;
+  }
+
+  .mi-isep-guide__actions .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+}
