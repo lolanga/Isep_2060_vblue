@@ -48,7 +48,7 @@ const CONCEJO = [
     representacion: "Ministerio de Educación",
   },
   {
-    nombre: "Subdirectora de Policía Dra. Debora V. Noroña",
+    nombre: "Subdirector de Policía Dra. Debora V. Noroña",
     representacion: "Policía de la Provincia de Santa Fe",
   },
 ];
@@ -63,13 +63,13 @@ const DIRECTORGENERAL = {
 const DIRECTORES_ESCUELAS = [
   {
     escuela: "Escuela de Policía",
-    nombre: "Director de Policía Lic. González Iván",
+    nombre: "Director de Policía Lic. Morgans Patricia",
     escudo: escudoEP,
     href: "/escuelas/policia",
   },
   {
     escuela: "Escuela Superior de Seguridad Pública",
-    nombre: "Director de Policía Lic. Néstor Tomassi",
+    nombre: "Director de Policía Lic. González Iván",
     escudo: escudoES,
     href: "/escuelas/superior",
   },
@@ -81,7 +81,7 @@ const DIRECTORES_ESCUELAS = [
   },
   {
     escuela: "Escuela de Investigaciones",
-    nombre: "Directora de Policía Bartolini Cecilia",
+    nombre: "Director de Policía Bartolini Cecilia",
     escudo: escudoEI,
     href: "/escuelas/investigaciones",
   },

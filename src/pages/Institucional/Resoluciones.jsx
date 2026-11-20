@@ -9,7 +9,7 @@ import { useState, useMemo } from "react";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
 import { BreadcrumbLd } from "../../components/JsonLd";
-import { resoluciones } from "../../data/normativa";
+import { resoluciones, RESOLUCIONES_OFICIALES_URL } from "../../data/normativa";
 
 const ANIOS = ["Todos", ...new Set(resoluciones.map((r) => r.anio))].sort((a, b) => {
   if (a === "Todos") return -1;
@@ -94,7 +94,11 @@ export default function Resoluciones() {
               Verificación de firmas digitales
             </p>
             <p className="alert-info__text">
-              Podés verificar la autenticidad de cualquier resolución en el sitio oficial del Estado Nacional.
+              Las resoluciones publicadas son las que figuran en el{" "}
+              <a href={RESOLUCIONES_OFICIALES_URL} target="_blank" rel="noreferrer">
+                sitio oficial del ISeP
+              </a>
+              . Podés verificar la autenticidad de cualquier resolución en el sitio oficial del Estado Nacional.
             </p>
           </div>
           <a

@@ -44,7 +44,6 @@ src/
 │   ├── Breadcrumb.jsx       # Migas de pan con home icon
 │   ├── JsonLd.jsx           # JSON-LD consolidado (EducationalOrganization + NewsArticle + BreadcrumbList)
 │   ├── Countdown.jsx        # Cuenta regresiva
-│   ├── Contadores.jsx       # Estadísticas animadas
 │   ├── Testimonios.jsx      # Carrusel testimonios
 │   ├── ShareButton.jsx      # Compartir noticia (Web Share API / clipboard)
 │   ├── Placeholder.jsx      # Páginas "Próximamente"
@@ -59,7 +58,7 @@ src/
 │   ├── institucional.js     # Escuelas (datos oficiales), carreras, cursos, convocatorias, cronograma, FAQ
 │   ├── noticias.js          # Noticias RECIENTES (año ≥ 2026; 65 notas). El histórico vive en noticias-archivo/<anio>.js
 │   ├── noticias-archivo/    # Histórico por año (2022–2025), generado con npm run migrar:archivo
-│   ├── normativa.js         # 17 resoluciones (compartido)
+│   ├── normativa.js         # 5 resoluciones oficiales (compartido)
 │   └── buscador.js          # Entradas estáticas (escuelas, carreras, cursos, convocatorias, normativa, páginas) + buscar() + buscarAgrupado()
 ├── pages/
 │   ├── Home.jsx             # 7 secciones (Audiencia con accesos a los sistemas)
@@ -85,15 +84,13 @@ src/
 │   │   ├── Investigaciones.jsx
 │   │   └── EducacionADistancia.jsx
 │   ├── Ingreso/
-│   │   ├── Ingreso.jsx            # Landing de ingreso: Mi ISeP transversal destacado, cronograma, convocatorias, anti-estafa
-│   │   ├── Convocatorias.jsx     # Contenido real Esc. Policía 2027-2028 + Mi ISeP transversal destacado
-│   │   ├── ProximasConvocatorias.jsx # Próximas convocatorias 2027-2028
-│   │   ├── Requisitos.jsx        # Mi ISeP transversal + 10 requisitos reales + documentación
-│   │   ├── Proceso.jsx           # Mi ISeP transversal + etapas generales del proceso
-│   │   └── Faq.jsx               # 12 preguntas en acordeón (datos desde institucional.js)
+│   │   ├── Ingreso.jsx            # Procesos en curso: Mi ISeP, cronograma, convocatorias, anti-estafa
+│   │   ├── Convocatorias.jsx     # Esc. Policía 2027-2028: etapas, presentación, vestimenta (requisitos → /ingreso/requisitos)
+│   │   ├── Requisitos.jsx        # Fuente única: 10 requisitos + documentación + formularios
+│   │   └── Faq.jsx               # Preguntas en acordeón (datos desde institucional.js)
 │   └── Secretaria/
 │       ├── Titulos.jsx           # Títulos y Certificaciones (formulario DNI, proceso 3 pasos)
-│       ├── Biblioteca.jsx        # 22 recursos bibliográficos reales + filtros
+│       ├── Biblioteca.jsx        # 21 recursos bibliográficos reales + filtros
 │       └── Cursos.jsx            # Cursos de capacitación + badges
 ├── services/
 │   └── api.js               # Capa de abstracción mock→backend-ready
@@ -109,7 +106,7 @@ src/
     ├── news.css             # Noticias Home
     ├── noticias.css         # Página /noticias
     ├── schools-cta.css      # Escuelas + CTA
-    ├── new-features.css     # contadores + últimas mejoras
+    ├── new-features.css     # galería + mapa del sitio + últimas mejoras
     ├── oferta.css           # Cards, chips, filtros, acordeón
     ├── pages.css            # Clases reutilizables de páginas de contenido
     ├── admin.css            # Panel de administración (/admin/noticias/nueva)
@@ -209,7 +206,7 @@ Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. Todas las rutas usan l
 | `escuelas` | 5 escuelas con datos oficiales + emails de contacto |
 | `carreras` | 4 carreras con inscripciones/fechaInscripcion |
 | `cursos` | 6+ cursos con tipo, período, estado |
-| `convocatorias` | Convocatorias con estado, tipo, fecha |
+| `convocatorias` | Procesos en curso: `estado`, `etiqueta`, `tipo`, `fecha`, `cta: { label, to, external }` |
 | `cronograma` | Etapas del proceso de ingreso con estado y fecha (ciclo 2027-2028) |
 | `preguntasFrecuentes` | 12 preguntas y respuestas |
 | `escuelaPorId` / `carrerasDeEscuela` / `cursosDeEscuela` | Helpers |
@@ -224,7 +221,7 @@ Navbar, Footer, FloatWhatsApp y ScrollToTop son globales. Todas las rutas usan l
 
 ### 6.3 normativa.js
 
-17 resoluciones con: id, titulo, tipo, fecha, tamano, url.
+5 resoluciones oficiales con: id, titulo, tipo, anio, fecha, archivo (PDF), tamaño. Fuente: `/index.php/institucional/resoluciones`.
 
 ### 6.4 Galeria.jsx (fotos de galería)
 
@@ -232,7 +229,7 @@ Las fotos están **hardcodeadas** en el componente `src/pages/Institucional/Gale
 
 ### 6.5 buscador.js
 
-Entradas **estáticas** agrupadas por tipo (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 17 resoluciones + 11 páginas = 46). Las noticias **no** están acá: se buscan de forma asíncrona en `public/indice-noticias.json` vía `utils/buscarNoticias.js` (ver §6.7). Funciones: `buscar()`, `buscarAgrupado()`.
+Entradas **estáticas** agrupadas por tipo (5 escuelas + 4 carreras + 6 cursos + 2 convocatorias + 5 resoluciones + 10 páginas = 32). Las noticias **no** están acá: se buscan de forma asíncrona en `public/indice-noticias.json` vía `utils/buscarNoticias.js` (ver §6.7). Funciones: `buscar()`, `buscarAgrupado()`.
 
 ### 6.6 Migración de noticias (`scripts/migrar-noticias.mjs`)
 
@@ -245,6 +242,15 @@ Script interno que trae todo el inventario de noticias del sitio actual (https:/
 - **Categorías y escuelas:** se infieren del título (categoría: Escuelas/Académica/Institucional/Eventos/Convenios; escuelas: policia/superior/especialidades/investigaciones/ead). Conviene revisar casos dudosos tras re-migrar.
 - **Fallos/límites conocidos:** algunos PDFs de resoluciones antiguas están rotos también en el sitio actual (quedan como enlace remoto); las noticias sin imagen usan el placeholder del diseño.
 - **Cuándo usarlo:** para re-migrar el inventario si el sitio actual cambia en bloque. Para publicar noticias nuevas se sigue usando la herramienta admin + ajuste manual (§12.7). Tras re-migrar, conviene re-ejecutar `npm run migrar:archivo` para re-separar recientes/histórico.
+
+### 6.6b Actualización incremental de noticias (`scripts/actualizar-noticias-recientes.mjs`)
+
+Para traer las últimas noticias publicadas en el sitio oficial **sin re-migrar todo** (no regenera ids ni pisa assets existentes).
+
+- **Ejecución:** `npm run noticias:recientes -- 10` (o `node scripts/actualizar-noticias-recientes.mjs 10`). El default es 10.
+- **Qué hace:** lee el RSS paginado del sitio oficial, saltea títulos ya existentes en `src/data/noticias.js`, limpia el HTML, descarga imágenes/PDFs nuevos a `public/img/noticias/` y `public/docs/`, e inserta las noticias antes del cierre del array con ids correlativos.
+- **Después de ejecutar:** correr `npm run indice:noticias` para actualizar el buscador (`npm run dev` y `npm run build` ya lo hacen solos).
+- **Ventaja sobre `migrar:noticias`:** es incremental e idempotente por título; podés usarlo cada vez que el sitio oficial publica algo nuevo.
 
 ### 6.7 Histórico de noticias (archivo por año)
 
@@ -316,6 +322,7 @@ background-image:
 | `npm run lint` | Ejecuta ESLint |
 | `npm run test` | Ejecuta tests con Vitest |
 | `npm run migrar:noticias` | Re-migra noticias del sitio actual (Joomla) |
+| `npm run noticias:recientes -- 10` | Agrega las últimas N noticias del sitio oficial (incremental) |
 | `npm run migrar:archivo` | Re-separa recientes / histórico por año (idempotente) |
 | `npm run indice:noticias` | Regenera `public/indice-noticias.json` (se ejecuta solo en build/dev) |
 
@@ -518,7 +525,7 @@ CI automatizado: Lint → Build → Test en cada push. Archivo: `.github/workflo
 ```javascript
 export const MI_ISEP_URL = "https://mi.isepsantafe.edu.ar/";
 export const GESTION_URL = "https://gestion.isepsantafe.edu.ar";
-export const CADETES_URL = "https://cadetes.isepsantafe.edu.ar/";
+// CADETES_URL se eliminó: el dominio cadetes.isepsantafe.edu.ar no resuelve.
 export const WEBMAIL_URL = "https://webmail.isepsantafe.edu.ar";
 export const TELEFONO_ISR = "+54 342 457-9000";
 export const EMAIL_CONTACTO = "prensaydifusion@isepsantafe.edu.ar";
@@ -583,7 +590,6 @@ No hay capa API: los datos del sitio viven en `src/data/` y se importan directam
 
 | Hook | Componente | Descripción |
 |---|---|---|
-| `React.memo` | StatCard (Contadores.jsx) | Evita re-renderizado innecesario |
 | `useMemo` | EscuelaTemplate, NoticiaDetalle | cursos/noticiasEscuela, relacionadas |
 | `useCallback` | Testimonios | siguiente/anterior |
 | Hooks rules | EscuelaTemplate, NoticiaDetalle | Corregidos hooks condicionales |

@@ -29,7 +29,8 @@ export const EMAIL_TITULOS = "titulosisep@isepsantafe.edu.ar";
 // ── URLs institucionales ──
 export const MI_ISEP_URL = "https://mi.isepsantafe.edu.ar";
 export const GESTION_URL = "https://gestion.isepsantafe.edu.ar";
-export const CADETES_URL = "https://cadetes.isepsantafe.edu.ar";
+// Ojo: el dominio cadetes.isepsantafe.edu.ar fue dado de baja (no resuelve);
+// el acceso para personal/cadetes es Mi ISeP.
 export const WEBMAIL_URL = "https://webmail.isepsantafe.net.ar";
 
 // ── WhatsApp ──

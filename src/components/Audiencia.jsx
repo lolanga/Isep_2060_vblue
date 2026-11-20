@@ -5,16 +5,15 @@
  * Quiero ingresar · Soy personal · Ciudadano.
  * Se ubica inmediatamente después del Hero.
  *
- * La tarjeta "Soy personal" lista los sistemas del ISeP como accesos directos;
- * SIGEDI y Webmail llevan la nota en cursiva "Sólo personal de ISeP"
- * (campo opcional `soloPersonal`).
+ * La tarjeta "Soy personal" lista accesos directos a los sistemas del ISeP
+ * (Mi ISeP, SIGEDI, Webmail) más la oferta de cursos; SIGEDI y Webmail llevan
+ * la nota en cursiva "Sólo personal de ISeP" (campo opcional `soloPersonal`).
  */
 
 import { Link } from "react-router-dom";
 import {
   MI_ISEP_URL,
   GESTION_URL,
-  CADETES_URL,
   WEBMAIL_URL,
 } from "../data/config";
 
@@ -48,7 +47,7 @@ const audiencias = [
         external: true,
         soloPersonal: true,
       },
-      { label: "Gestión Cadetes", icon: "military_tech", to: CADETES_URL, external: true },
+      { label: "Cursos y perfeccionamiento", icon: "menu_book", to: "/secretaria/cursos" },
       {
         label: "Webmail",
         icon: "mail",

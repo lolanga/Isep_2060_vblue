@@ -1116,92 +1116,6 @@
   font-size: 1rem;
 }
 
-/* ── Contadores ── */
-.contador-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.contador-num {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  font-weight: 900;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.contador-label {
-  font-size: 0.85rem;
-  color: #64748b;
-  margin-top: 0.25rem;
-}
-
-.contadores-section {
-  padding: 3.5rem 0;
-  background: #f8fafc;
-}
-
-.contadores-inner {
-  padding: 0 2rem;
-}
-
-.contadores-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.contadores-title {
-  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
-  font-weight: 800;
-  color: var(--slate-900);
-  margin-top: 0.5rem;
-}
-
-.contadores-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-  gap: 1.25rem;
-}
-
-.contador-card {
-  text-align: center;
-  padding: 1.5rem 1rem;
-  background: #fff;
-  border-radius: 0.75rem;
-  border: 1px solid #eef2f7;
-  box-shadow: 0 1px 3px rgba(15,23,42,0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.contador-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(15,23,42,0.1);
-}
-
-.contador-card-icon {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.contador-card-num {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-weight: 800;
-  line-height: 1;
-  display: block;
-  font-variant-numeric: tabular-nums;
-}
-
-.contador-card-label {
-  font-size: 0.85rem;
-  color: #64748b;
-  margin-top: 0.35rem;
-  display: block;
-}
-
 /* ── Testimonios ── */
 .testimonios-section {
   padding: 4rem 0;
@@ -1496,15 +1410,6 @@
 .loading-spinner-line-xs {
   width: 90%;
   height: 0.9rem;
-}
-
-/* ── Contadores (custom property for color) ── */
-.contador-card-icon {
-  color: var(--stat-color);
-}
-
-.contador-card-num {
-  color: var(--stat-color);
 }
 
 /* ── Biblioteca badge (custom properties) ── */
@@ -3160,6 +3065,206 @@
   font-size: 1.4rem;
 }
 
+/* ── Summarys oficiales de Acceso Postulantes ── */
+.postulantes-sumarios {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.postulante-detail {
+  background: var(--surface, #fff);
+  border: 1px solid var(--primary-soft, #bcd6ea);
+  border-radius: 0.9rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.postulante-detail[open] {
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.09);
+}
+
+.postulante-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  background: linear-gradient(135deg, #003b66 0%, #005b96 100%);
+  color: #fff;
+}
+
+.postulante-summary::-webkit-details-marker {
+  display: none;
+}
+
+.postulante-summary__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.postulante-summary__badge {
+  display: inline-block;
+  background: #ffb300;
+  color: #263238;
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.postulante-summary__nombre {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0 0 0.15rem;
+}
+
+.postulante-summary__titulo {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.postulante-summary__descripcion,
+.postulante-summary__fecha {
+  font-size: 0.85rem;
+  opacity: 0.92;
+  margin: 0.35rem 0 0;
+}
+
+.postulante-summary__cta {
+  flex-shrink: 0;
+  background: #fff;
+  color: #003b66;
+  border-radius: 0.5rem;
+  padding: 0.7rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.postulante-detail[open] .postulante-summary__cta::after {
+  content: " ▲";
+}
+
+.postulante-detail__content {
+  padding: 1.5rem;
+  background: #f8fafb;
+}
+
+.postulante-novedad {
+  background: #e8f5e9;
+  border-left: 5px solid #2e7d32;
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.postulante-novedad__etiqueta {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #1b5e20;
+  text-transform: uppercase;
+}
+
+.postulante-novedad__titulo {
+  color: #1b5e20;
+  font-size: 1.1rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.postulante-novedad__texto {
+  color: #263238;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.postulante-seccion {
+  border-top: 1px solid #e5edf2;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.postulante-seccion__titulo {
+  color: var(--primary, #00254d);
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+}
+
+.postulante-seccion__texto {
+  color: var(--slate-600, #475569);
+  margin: 0 0 0.5rem;
+  line-height: 1.55;
+}
+
+.postulante-lista {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  color: var(--slate-700, #334155);
+  line-height: 1.6;
+}
+
+.postulante-lista li {
+  margin-bottom: 0.25rem;
+}
+
+.postulante-aviso {
+  background: #fff3e0;
+  border-left: 5px solid #ef6c00;
+  border-radius: 0.4rem;
+  padding: 0.85rem 1rem;
+  margin: 0.75rem 0;
+  color: #7c2d12;
+  font-size: 0.9rem;
+}
+
+.postulante-aviso p {
+  margin: 0.35rem 0 0;
+}
+
+.postulante-enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.postulante-enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #fff;
+  border: 1px solid var(--primary-soft, #bcd6ea);
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.75rem;
+  color: var(--primary, #00254d);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.postulante-enlace:hover {
+  background: var(--primary-soft, #bcd6ea);
+}
+
+.postulante-enlace-icon {
+  font-size: 1rem;
+}
+
+.postulante-contacto {
+  margin: 1.25rem 0 0;
+  font-size: 0.85rem;
+  color: var(--slate-600, #475569);
+}
+
 @media (max-width: 768px) {
   .ingreso-conv-card {
     flex-direction: column;
@@ -3168,6 +3273,21 @@
   .ingreso-timeline__head {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .postulante-summary {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .postulante-summary__cta {
+    align-self: flex-start;
+  }
+
+  .postulante-detail__content {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 

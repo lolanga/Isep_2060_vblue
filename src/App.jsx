@@ -7,7 +7,7 @@
  */
 
 import { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { EducationalOrganizationLd } from "./components/JsonLd";
 import Analytics from "./components/Analytics";
 
@@ -82,9 +82,7 @@ const EducacionDistancia = lazy(() => import("./pages/Escuelas/EducacionDistanci
 // ── Ingreso ──
 const Ingreso = lazy(() => import("./pages/Ingreso/Ingreso"));
 const Convocatorias = lazy(() => import("./pages/Ingreso/Convocatorias"));
-const ProximasConvocatorias = lazy(() => import("./pages/Ingreso/ProximasConvocatorias"));
 const Requisitos = lazy(() => import("./pages/Ingreso/Requisitos"));
-const Proceso = lazy(() => import("./pages/Ingreso/Proceso"));
 const Faq = lazy(() => import("./pages/Ingreso/Faq"));
 
 // ── Secretaría Académica ──
@@ -130,10 +128,11 @@ function App() {
               <Route path="/escuelas/educacion-a-distancia" element={<EducacionDistancia />} />
               <Route path="/ingreso" element={<Ingreso />} />
               <Route path="/ingreso/convocatorias" element={<Convocatorias />} />
-              <Route path="/ingreso/proximas-convocatorias" element={<ProximasConvocatorias />} />
               <Route path="/ingreso/requisitos" element={<Requisitos />} />
-              <Route path="/ingreso/proceso" element={<Proceso />} />
               <Route path="/ingreso/faq" element={<Faq />} />
+              {/* Rutas antiguas (menú reorganizado) → se redirigen a la landing */}
+              <Route path="/ingreso/proceso" element={<Navigate to="/ingreso" replace />} />
+              <Route path="/ingreso/proximas-convocatorias" element={<Navigate to="/ingreso" replace />} />
               <Route path="/secretaria/titulos" element={<Titulos />} />
               <Route path="/secretaria/biblioteca" element={<Biblioteca />} />
               <Route path="/secretaria/cursos" element={<Cursos />} />

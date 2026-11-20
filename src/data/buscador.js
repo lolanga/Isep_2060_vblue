@@ -58,17 +58,17 @@ function getIndiceBusqueda() {
     };
   }),
 
-  // ── Convocatorias ──
+  // ── Convocatorias / procesos en curso ──
   ...convocatorias.map((cv) => {
     const escuela = escuelas.find((e) => e.id === cv.escuela);
     return {
       id: `convocatoria-${cv.id}`,
       title: cv.nombre,
-      subtitle: `${cv.estado === "vigente" ? "Vigente" : "Próxima"} · ${cv.fecha}`,
+      subtitle: `${cv.etiqueta ?? (cv.estado === "vigente" ? "Vigente" : "Próxima")} · ${cv.fecha}`,
       categoria: "Ingreso",
       tipo: "Convocatoria",
-      ruta: "/ingreso/convocatorias",
-      keywords: [cv.nombre, cv.descripcion, cv.tipo, cv.fecha, escuela ? escuela.nombre : ""],
+      ruta: cv.cta?.to || "/ingreso/convocatorias",
+      keywords: [cv.nombre, cv.titulo, cv.descripcion, cv.tipo, cv.fecha, escuela ? escuela.nombre : ""],
     };
   }),
 
@@ -158,21 +158,12 @@ function getIndiceBusqueda() {
   },
   {
     id: "ing-ingreso",
-    title: "Ingreso al ISeP",
-    subtitle: "Proceso, cronograma, convocatorias y requisitos",
+    title: "Procesos en curso — Ingreso al ISeP",
+    subtitle: "Procesos abiertos, cronograma, requisitos y pre-inscripción",
     categoria: "Ingreso",
     tipo: "Página",
     ruta: "/ingreso",
-    keywords: ["ingreso", "proceso", "cronograma", "convocatorias", "policía", "cadetes", "inscripción"],
-  },
-  {
-    id: "ing-proceso",
-    title: "Proceso de ingreso",
-    subtitle: "Pasos para formar parte del ISeP",
-    categoria: "Ingreso",
-    tipo: "Página",
-    ruta: "/ingreso/proceso",
-    keywords: ["proceso", "ingreso", "pasos", "inscripción", "evaluaciones"],
+    keywords: ["ingreso", "procesos en curso", "proceso", "cronograma", "convocatorias", "policía", "cadetes", "inscripción"],
   },
   {
     id: "ing-faq",

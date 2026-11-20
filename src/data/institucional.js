@@ -223,34 +223,35 @@ export const cursos = [
   },
 ];
 
-// ── Convocatorias ────────────────────────────────────────────────────────
+// ── Convocatorias / procesos en curso ─────────────────────────────────────
+// Fuente: isepsantafe.edu.ar → Acceso Postulantes → "procesos en curso".
 export const convocatorias = [
   {
     id: 1,
-    nombre: "Convocatoria de Ingreso a la Policía",
+    nombre: "👮 Escuela de Policía",
     estado: "vigente",
     tipo: "Carrera",
-    descripcion: "Inscripción abierta para el ciclo lectivo vigente de la Escuela de Policía.",
-    fecha: "Hasta el 30/09/2026",
+    etiqueta: "PROCESO EN CURSO",
+    titulo: "Proceso de Selección – Ciclo Lectivo 2027-2028",
+    descripcion:
+      "Información, resultados, convocatorias, etapas y recursos",
+    fecha: "Presentación: 01/12/2026",
     escuela: "policia",
+    cta: { label: "VER PROCESO ▼", to: "/ingreso/convocatorias" },
   },
   {
     id: 2,
-    nombre: "Convocatoria Educación a Distancia",
-    estado: "proxima",
-    tipo: "Curso",
-    descripcion: "Próxima apertura de cupos para cursadas en modalidad virtual.",
-    fecha: "Octubre 2026",
-    escuela: "ead",
-  },
-  {
-    id: 3,
-    nombre: "Convocatoria de Especializaciones",
+    nombre: "🔎 Investigación Criminal",
     estado: "vigente",
-    tipo: "Curso",
-    descripcion: "Cursos técnicos disponibles para el agrupamiento Ejecución.",
-    fecha: "Hasta el 20/10/2026",
-    escuela: "especialidades",
+    tipo: "Carrera",
+    etiqueta: "NUEVA INSCRIPCIÓN",
+    titulo: "Tecnicatura Superior en Investigación Criminal",
+    descripcion:
+      "Inscripción abierta del 05/10 al 05/11 con 300 vacantes. Al egresar podés ser designado Suboficial del Escalafón General, Subescalafón Investigación Criminal.",
+    fecha: "📅 Inscripción: 05 de octubre al 05 de noviembre",
+    vacantes: "👥 300 vacantes disponibles",
+    escuela: "investigaciones",
+    cta: { label: "VER INSCRIPCIÓN ▼", to: "/noticias/328" },
   },
 ];
 

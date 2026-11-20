@@ -40,7 +40,7 @@ const FORMULARIOS = [
 export default function Requisitos() {
   return (
     <main id="main-content" className="requisitos-main">
-      <SEO title="Requisitos" description="Requisitos para inscripción al ISeP" />
+      <SEO title="Requisitos y documentación" description="Requisitos, documentación y formularios para inscribirse al ISeP Santa Fe" />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>
@@ -57,14 +57,14 @@ export default function Requisitos() {
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
-            { label: "Ingreso" },
+            { label: "Ingreso", to: "/ingreso" },
             { label: "Requisitos" },
           ]}
         />
         <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
-            { label: "Ingreso" },
+            { label: "Ingreso", to: "/ingreso" },
             { label: "Requisitos" },
           ]}
         />

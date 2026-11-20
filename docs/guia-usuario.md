@@ -14,7 +14,7 @@ La barra de navegación superior (fija al hacer scroll) organiza todo en menús 
 |---|---|
 | **Institucional** | El ISeP, Autoridades, Organización, Oferta Educativa, Resoluciones, Sedes y Contacto, Galería de Fotos |
 | **Formación** | Escuelas (5 con escudos), Cursos de Capacitación |
-| **Ingreso** | Inicio de Ingreso (landing), Proceso de Selección, Requisitos, Próximas Convocatorias, FAQ |
+| **Ingreso** | Procesos en curso (landing), Convocatoria Escuela de Policía, Requisitos y documentación, Preguntas frecuentes |
 | **Secretaría** | Títulos y Certificaciones, Biblioteca Virtual, Cursos |
 | **Noticias** | Acceso directo al listado de noticias |
 | **Mi ISeP** | Botón siempre visible, enlace externo a `mi.isepsantafe.edu.ar` |
@@ -43,8 +43,8 @@ Al lado del botón "Mi ISeP" hay un **ícono de lupa**. Al hacer clic se abre un
 | **Carreras** | Todas las carreras disponibles |
 | **Cursos** | Cursos activos y próximos |
 | **Convocatorias** | Inscripciones abiertas y próximas |
-| **Noticias** | 325 noticias (migradas del sitio actual) |
-| **Normativa** | 17 resoluciones, convenios, estatutos |
+| **Noticias** | 337 noticias (migradas del sitio actual) |
+| **Normativa** | 5 resoluciones oficiales del ISeP |
 | **Páginas** | Accesos directos a secciones |
 
 **Atajos de teclado:**
@@ -83,22 +83,24 @@ El botón **"Mi ISeP"** siempre visible en la barra superior. Lleva a `mi.isepsa
 
 ## 5. Secciones del Home
 
-En orden de aparición (en móvil, Contadores y Testimonios se ocultan):
+En orden de aparición (en móvil, Testimonios se oculta):
 
 ### 5.1 ¿Qué estás buscando? (Elegí tu camino)
 Sección que separa el sitio por tu perfil, con 3 tarjetas:
-- **Quiero ingresar** — pre-inscripción, requisitos, cronograma y FAQ (→ `/ingreso`)
-- **Soy personal** — accesos directos a los 4 sistemas del ISeP; **SIGEDI** y **Webmail** indican "Sólo personal de ISeP" (ver tabla)
+- **Quiero ingresar** — procesos en curso, requisitos, cronograma y FAQ (→ `/ingreso`)
+- **Soy personal** — Mi ISeP, SIGEDI, Webmail y Cursos y perfeccionamiento; **SIGEDI** y **Webmail** indican "Sólo personal de ISeP" (ver tabla)
 - **Ciudadano** — noticias, oferta educativa, biblioteca y galería
 
-Qué hace y para quién es cada sistema:
+Qué hace y para quién es cada acceso:
 
 | App | Para quién | Qué hace |
 |---|---|---|
 | **Mi ISeP** | Docentes, personal policial cursante y postulantes inscriptos | Acceso a aulas virtuales, material de cursado, notas y asistencia |
 | **SIGEDI** | Sólo personal de ISeP | Sistema de gestión de expedientes internos |
-| **Gestión Cadetes** | Cadetes de 1° y 2° año | Control y notificaciones del cursado |
 | **Webmail** | Sólo personal de ISeP | Correo electrónico institucional |
+| **Cursos y perfeccionamiento** | Personal del ISeP | Oferta de cursos internos (link interno a `/secretaria/cursos`) |
+
+> "Gestión Cadetes" se quitó: su dominio (`cadetes.isepsantafe.edu.ar`) ya no funciona.
 
 ### 5.2 Últimas Noticias
 Noticia destacada + sidebar con 3 mini-noticias y promo de **Calendario Académico** (botón "DESCARGAR PDF"). **Cada noticia lleva a su página de detalle** (`/noticias/:id`). El enlace "Ver todas las noticias" lleva a `/noticias`.
@@ -112,7 +114,7 @@ Cuenta regresiva al 30 de septiembre de 2027 + botones de inscripción:
 Las 4 escuelas principales con escudos (Policía, Superior, Especialidades, Investigaciones). Las tarjetas son enlaces clickeables a `/escuelas/:slug`. La 5ta escuela (EaD) se accede desde el menú Formación.
 
 ### 5.5 Contadores
-Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+.
+**Sección quitada:** el Home ya no muestra estadísticas animadas.
 
 ### 5.6 Testimonios
 Carrusel de 3 egresados con flechas y dots.
@@ -139,44 +141,37 @@ Cada escuela: escudo, presentación (datos oficiales), información, contacto co
 
 ## 7. Ingreso (postulantes)
 
-### 7.1 Inicio de Ingreso (landing `/ingreso`)
-Resumen completo del camino para convertirte en Cadete, en una pantalla:
-- **Mi ISeP (requisito transversal, lo más destacado):** bloque principal que explica que todas las convocatorias y formaciones requieren cuenta en Mi ISeP, con los pasos para crear tu usuario, confirmar tu cuenta, ingresar y completar tu proceso
-- **Cronograma 2027–2028** con el estado de cada etapa (crear usuario/pre-inscripción en Mi ISeP, listado, exámenes, propedéutico e incorporación)
-- Convocatorias abiertas, requisitos principales y preguntas frecuentes
-- Alerta "trámite gratuito y personal": ningún gestor ni intermediario realiza el trámite
-- Botón para **crear tu usuario en Mi ISeP**
+El menú Ingreso tiene **4 destinos** (antes eran 6 con información repetida). Si ya tenés usuario, andá directo al botón **Mi ISeP** del navbar.
 
-### 7.2 Convocatorias — Contenido real
-Landing con **proceso de selección de la Escuela de Policía Ciclo 2027–2028**:
-- Hero con countdown y CTA principal para **crear tu usuario en Mi ISeP**
+### 7.1 Procesos en curso (landing `/ingreso`)
+Resumen del camino para convertirte en Cadete, en una pantalla:
+- **Procesos en curso:** tarjetas con cada trámite abierto y su acceso directo (Escuela de Policía 2027-2028 y Tecnicatura en Investigación Criminal)
+- **Mi ISeP (requisito transversal):** todas las convocatorias requieren cuenta; creala, confirmala, ingresá y completá el proceso
+- **Cronograma 2027–2028** con el estado de cada etapa
+- Requisitos principales y preguntas frecuentes (resumen, con link al detalle)
+- Alerta "trámite gratuito y personal": ningún gestor ni intermediario realiza el trámite
+
+### 7.2 Convocatoria Escuela de Policía (`/ingreso/convocatorias`)
+Proceso de selección **Ciclo 2027–2028**:
+- Hero con countdown y CTA a **crear tu usuario en Mi ISeP**
 - Alerta de presentación (09:00 hs, tolerancia 20 min)
-- Documentación requerida (título + DNI), vestimenta y elementos
-- **Mi ISeP (requisito transversal, destacado):** pasos comunes para crear usuario, confirmar cuenta, ingresar y completar el proceso en Mi ISeP (válido para todas las convocatorias y formaciones)
-- Formularios obligatorios (4 DJ)
-- Edad requerida (18-30 años al 02/02/2027)
+- Vestimenta y elementos a presentar
 - Etapas del proceso (4 etapas)
-- Requisitos (10 items)
+- Confirmación de la inscripción (email con formulario y código QR)
+- **Requisitos, documentación y formularios:** están en un solo lugar (`/ingreso/requisitos`)
 - Consultas: prensaydifusion@isepsantafe.edu.ar
 - Link al listado de presentación (PDF)
 
-### 7.3 Próximas convocatorias
-Aperturas para el ciclo 2027-2028.
+### 7.3 Requisitos y documentación (`/ingreso/requisitos`)
+Única fuente de esta información (antes se repetía en Convocatorias):
+- 10 requisitos reales del sitio
+- Documentación a presentar (título + DNI)
+- 4 formularios obligatorios (Declaraciones Juradas)
 
-### 7.4 Requisitos
-10 requisitos reales del sitio + documentación requerida + formularios obligatorios:
-- Ser argentino
-- Tener entre 18 y 30 años
-- Título secundario completo
-- Aptitud psicofísica
-- Antecedentes penales y judiciales
-- Y otros...
+### 7.4 Preguntas frecuentes (`/ingreso/faq`)
+Preguntas y respuestas en acordeón.
 
-### 7.5 Proceso de selección
-Pasos detallados del proceso de ingreso.
-
-### 7.6 Preguntas frecuentes
-12 preguntas en acordeón.
+Las direcciones viejas `/ingreso/proceso` y `/ingreso/proximas-convocatorias` te llevan automáticamente a `/ingreso`.
 
 ---
 
@@ -190,7 +185,7 @@ Pasos detallados del proceso de ingreso.
 - Contacto: titulosisep@isepsantafe.edu.ar, tel 0341-4728526.
 
 ### 8.2 Biblioteca Virtual (`/secretaria/biblioteca`)
-- **22 recursos bibliográficos reales** del ISeP.
+- **21 recursos bibliográficos reales** del ISeP.
 - Filtros por categoría: Normativa, Protocolos, Formación, Institucional.
 - Chips coloreados por tipo.
 - Botón de descarga directa a PDF.
@@ -222,7 +217,7 @@ En páginas interiores: **Inicio** / Sección / Página actual. Clic en cualquie
 - **Historial** con tarjetas → llevan a `/noticias/:id`.
 - **Paginación** (10 por página).
 - **Orden:** las noticias se listan de **más reciente a más antigua** (la última publicada es la principal).
-- **325 noticias** publicadas (migradas del sitio actual).
+- **337 noticias** publicadas (migradas del sitio actual).
 
 ### Detalle de noticia (`/noticias/:id`)
 - **Hero de imagen** con overlay gradiente. Si `img: null`, se muestra placeholder con ícono.
@@ -253,7 +248,7 @@ En páginas interiores: **Inicio** / Sección / Página actual. Clic en cualquie
 
 ## 12. Biblioteca Virtual
 
-22 artículos reales del ISeP con links de descarga directa a PDF. Filtros por categoría: Normativa, Protocolos, Formación, Institucional.
+21 artículos reales del ISeP con links de descarga directa a PDF. Incluye los recursos de `/index.php/institucional/carrera` (Códigos, Leyes y Protocolos, Manuales y modelos de recursos). Filtros por categoría: Normativa, Protocolos, Formación, Institucional.
 
 ---
 

@@ -1,9 +1,10 @@
 /**
  * pages/Ingreso/Ingreso.jsx
  *
- * Landing del proceso de ingreso al ISeP.
- * Resume en una única pantalla: Mi ISeP (paso transversal), cronograma,
- * convocatorias, requisitos, FAQ destacadas y aviso de trámite gratuito.
+ * Landing "Procesos en curso" del ingreso al ISeP (equivalente al
+ * "Acceso Postulantes" del sitio oficial): resume en una única pantalla los
+ * procesos abiertos ahora, Mi ISeP (paso transversal), cronograma,
+ * requisitos, FAQ destacadas y aviso de trámite gratuito.
  */
 
 import { Link } from "react-router-dom";
@@ -11,8 +12,9 @@ import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
 import { BreadcrumbLd } from "../../components/JsonLd";
 import GuiaMiIsep from "../../components/GuiaMiIsep";
+import SumariosPostulantes from "../../components/SumariosPostulantes";
 import { MI_ISEP_URL } from "../../data/config";
-import { convocatorias, cronograma, preguntasFrecuentes } from "../../data/institucional";
+import { cronograma, preguntasFrecuentes } from "../../data/institucional";
 
 const ESTADO_LABEL = {
   "vigente": "Vigente",
@@ -38,8 +40,8 @@ export default function Ingreso() {
   return (
     <main id="main-content" className="conv-main ingreso-main">
       <SEO
-        title="Ingreso al ISeP"
-        description="Todo el proceso de ingreso al ISeP Santa Fe: pasos, cronograma 2027-2028, convocatorias, requisitos y pre-inscripción online."
+        title="Procesos en curso — Ingreso al ISeP"
+        description="Procesos de ingreso abiertos al ISeP Santa Fe: Escuela de Policía Ciclo 2027-2028, Tecnicatura en Investigación Criminal, cronograma, requisitos y pre-inscripción online."
       />
 
       <section className="page-hero">
@@ -94,6 +96,16 @@ export default function Ingreso() {
           </div>
         </div>
 
+        {/* Procesos en curso — summarys oficiales de Acceso Postulantes */}
+        <section className="conv-section">
+          <h2 className="section-title">Procesos en curso</h2>
+          <p className="section-text mi-isep-guide__intro">
+            Estos son los procesos abiertos del ISeP. Desplegá uno para ver las
+            actualizaciones, etapas, documentación y enlaces publicados por el ISeP.
+          </p>
+          <SumariosPostulantes />
+        </section>
+
         {/* Mi ISeP — paso transversal y más prominente */}
         <section className="conv-section mi-isep-section">
           <GuiaMiIsep />
@@ -115,31 +127,6 @@ export default function Ingreso() {
                   <p className="ingreso-timeline__fecha">
                     <span className="material-symbols-outlined ingreso-cal-icon">calendar_month</span>
                     {item.fecha}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Convocatorias vigentes */}
-        <section className="conv-section">
-          <h2 className="section-title">Convocatorias abiertas</h2>
-          <div className="grid-auto">
-            {convocatorias.map((c) => (
-              <div key={c.id} className="inst-card ingreso-conv-card">
-                <div className="icon-box ingreso-conv-icon">
-                  <span className="material-symbols-outlined ingreso-conv-icon__img">campaign</span>
-                </div>
-                <div>
-                  <div className="ingreso-timeline__head">
-                    <h4 className="conv-card-title">{c.nombre}</h4>
-                    <span className="ingreso-badge">{ESTADO_LABEL[c.estado] ?? c.estado}</span>
-                  </div>
-                  <p className="conv-card-text conv-card-text--muted">{c.descripcion}</p>
-                  <p className="ingreso-timeline__fecha">
-                    <span className="material-symbols-outlined ingreso-cal-icon">calendar_month</span>
-                    {c.fecha}
                   </p>
                 </div>
               </div>

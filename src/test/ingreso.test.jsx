@@ -57,6 +57,45 @@ describe("Ingreso landing (/ingreso)", () => {
     });
   });
 
+  it("muestra los procesos en curso con acceso directo a cada uno", () => {
+    renderIngreso();
+    expect(screen.getByRole("heading", { name: "Procesos en curso" })).toBeInTheDocument();
+    convocatorias.forEach((c) => {
+      const link = screen.getByText(c.cta.label).closest("a");
+      expect(link).toHaveAttribute("href", c.cta.to);
+    });
+  });
+
+  it("incluye los dos summarys oficiales de Acceso Postulantes", () => {
+    renderIngreso();
+    expect(screen.getByText("PROCESO EN CURSO")).toBeInTheDocument();
+    expect(screen.getByText("👮 Escuela de Policía")).toBeInTheDocument();
+    expect(screen.getByText("Proceso de Selección – Ciclo Lectivo 2027-2028")).toBeInTheDocument();
+    expect(screen.getByText("VER PROCESO ▼")).toBeInTheDocument();
+
+    expect(screen.getByText("NUEVA INSCRIPCIÓN")).toBeInTheDocument();
+    expect(screen.getByText("🔎 Investigación Criminal")).toBeInTheDocument();
+    expect(screen.getByText("Tecnicatura Superior en Investigación Criminal")).toBeInTheDocument();
+    expect(screen.getByText("📅 Inscripción: 05 de octubre al 05 de noviembre")).toBeInTheDocument();
+    expect(screen.getByText("👥 300 vacantes disponibles")).toBeInTheDocument();
+    expect(screen.getByText("VER INSCRIPCIÓN ▼")).toBeInTheDocument();
+  });
+
+  it("muestra el contenido de los dos summarys dentro de acordeones", () => {
+    const { container } = renderIngreso();
+    const details = container.querySelectorAll("details.postulante-detail");
+    expect(details).toHaveLength(2);
+    expect(details[0]).toHaveAttribute("open");
+    expect(
+      screen.getByText(/pasan a segunda etapa – resultado revertido por recurso/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/segunda convocatoria — investigación criminal/i)
+    ).toBeInTheDocument();
+    expect(screen.getAllByText(/carpeta médica completa/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/300 vacantes disponibles/i).length).toBeGreaterThan(0);
+  });
+
   it("destaca preguntas frecuentes desde los datos y enlaza al FAQ completo", () => {
     renderIngreso();
     preguntasFrecuentes.slice(0, 3).forEach((f) => {

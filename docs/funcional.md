@@ -17,8 +17,8 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 
 | Audiencia | Necesidad principal | Contenido relevante |
 |---|---|---|
-| **Postulantes** | Conocer requisitos, convocatorias, proceso y FAQ | Ingreso (6 páginas) + Landing de Ingreso + Landing Convocatorias con contenido real |
-| **Personal en actividad** | Trámites, correo, sistemas internos | Mi ISeP, SIGEDI, Gestión Cadetes, Webmail |
+| **Postulantes** | Conocer procesos en curso, convocatorias, requisitos y FAQ | Ingreso (4 páginas): Procesos en curso, Convocatoria Escuela de Policía, Requisitos y documentación, FAQ |
+| **Personal en actividad** | Trámites, correo, sistemas internos | Mi ISeP, SIGEDI, Webmail, Cursos y perfeccionamiento |
 | **Público general** | Información institucional y actualidad | Institucional, Noticias (con detalle), Biblioteca, Galería |
 | **Profesionales de la educación** | Oferta académica y cursos | Formación, Carreras, Cursos |
 
@@ -51,7 +51,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 - **Logo ISeP** (SVG escudo) + texto "Instituto de Seguridad Pública" — enlazable al inicio.
 - **Institucional** → dropdown con ícono "account_balance": El ISeP, Autoridades, Organización, Oferta Educativa, Resoluciones, Sedes y Contacto, Galería de Fotos.
 - **Formación** → dropdown con ícono "school": Escuelas (submenú de 5 con escudos: Policía, Especialidades, Superior, Investigaciones, EaD), Cursos.
-- **Ingreso** → dropdown con ícono "login": **Inicio de ingreso** (landing), Proceso de Selección, Requisitos, Próximas Convocatorias, FAQ.
+- **Ingreso** → dropdown con ícono "login": **Procesos en curso** (landing), **Convocatoria Escuela de Policía**, **Requisitos y documentación** y **Preguntas frecuentes**. Cuatro destinos únicos (sin páginas duplicadas). El usuario asiduo accede directo desde el botón **Mi ISeP**, siempre visible.
 - **Secretaría** → dropdown: Títulos y Certificaciones, Biblioteca Virtual, Cursos de Capacitación.
 - **Noticias** → link directo a `/noticias` con ícono "newspaper".
 - **Mi ISeP** → botón siempre visible (desktop y móvil), enlace externo a `mi.isepsantafe.edu.ar`.
@@ -64,7 +64,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 
 | Ruta | Página | Estado |
 |---|---|---|
-| `/` | Home (7 secciones) | Implementada |
+| `/` | Home (6 secciones) | Implementada |
 | `/noticias` | Listado de noticias con filtro, paginación y detalle | Implementada |
 | `/noticias/archivo` | Histórico por año (``2022–2025)`` | Implementada |
 | `/noticias/:id` | Detalle de noticia individual (contenido, relacionadas) | Implementada |
@@ -73,7 +73,7 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/institucional/organizacion` | Organización (placeholder — Próximamente) | Implementada |
 | `/institucional/oferta-educativa` | Oferta Educativa (tabs: Carreras/Cursos/Convocatorias) | Implementada |
 | `/institucional/carreras` | Carreras (grid con estado de inscripción) | Implementada |
-| `/institucional/resoluciones` | Resoluciones (17 documentos descargables) | Implementada |
+| `/institucional/resoluciones` | Resoluciones (5 resoluciones oficiales descargables) | Implementada |
 | `/institucional/sedes-contacto` | Sedes y Contacto (Google Maps embebido) | Implementada |
 | `/institucional/galeria` | Galería de Fotos (categorías, filtros, lightbox) | Implementada |
 | `/escuelas/policia` | Escuela de Policía (datos oficiales) | Implementada |
@@ -81,14 +81,13 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 | `/escuelas/especialidades` | Escuela de Especialidades (datos oficiales) | Implementada |
 | `/escuelas/investigaciones` | Escuela de Investigaciones (datos oficiales) | Implementada |
 | `/escuelas/educacion-a-distancia` | Educación a Distancia | Implementada |
-| `/ingreso` | Landing de Ingreso (Mi ISeP transversal, cronograma 2027-2028, convocatorias, requisitos, FAQ, anti-estafa) | Implementada |
-| `/ingreso/proceso` | Proceso de selección | Implementada |
-| `/ingreso/requisitos` | Requisitos | Implementada |
-| `/ingreso/convocatorias` | Landing Convocatorias (contenido real Esc. Policía 2027–2028) | Implementada |
-| `/ingreso/proximas-convocatorias` | Próximas convocatorias (2027-2028) | Implementada |
-| `/ingreso/faq` | Preguntas frecuentes (12 preguntas) | Implementada |
+| `/ingreso` | Procesos en curso (Mi ISeP, cronograma 2027-2028, convocatorias, requisitos, FAQ, anti-estafa) | Implementada |
+| `/ingreso/convocatorias` | Convocatoria Escuela de Policía 2027-2028 (etapas, presentación, vestimenta; requisitos y documentación se enlazan a `/ingreso/requisitos`) | Implementada |
+| `/ingreso/requisitos` | Requisitos y documentación (fuente única) | Implementada |
+| `/ingreso/faq` | Preguntas frecuentes | Implementada |
+| `/ingreso/proceso`, `/ingreso/proximas-convocatorias` | Rutas antiguas → redirección a `/ingreso` | Redirigidas |
 | `/secretaria/titulos` | Títulos y Certificaciones | Implementada |
-| `/secretaria/biblioteca` | Biblioteca Virtual (22 recursos bibliográficos) | Implementada |
+| `/secretaria/biblioteca` | Biblioteca Virtual (21 recursos bibliográficos) | Implementada |
 | `/secretaria/cursos` | Cursos de Capacitación | Implementada |
 | `/mapa-del-sitio` | Mapa del Sitio (guía visual de todas las rutas) | Implementada |
 | `/404` | Página no encontrada | Implementada |
@@ -102,14 +101,13 @@ SPA construida con React 19 + Vite 8 + React Router 7. 100% responsive (móvil, 
 La página de inicio (`/`) está compuesta por las siguientes secciones, en orden:
 
 1. **Hero Slider** — Banner principal con slider automático (3 slides), transiciones suaves, flechas de navegación y indicadores (dots). Dos CTAs: "Conoce nuestras propuestas" → `/institucional/oferta-educativa` y "Inscripciones 2027" → `/ingreso/convocatorias`.
-2. **¿Qué estás buscando? (Elegí tu camino)** — sección por audiencia (`Audiencia.jsx`) con 3 tarjetas: **Quiero ingresar** (pre-inscripción, requisitos, cronograma, FAQ → `/ingreso`), **Soy personal** (accesos directos a los 4 sistemas del ISeP: Mi ISeP, SIGEDI, Gestión Cadetes y Webmail; SIGEDI y Webmail indican "Sólo personal de ISeP") y **Ciudadano** (noticias, oferta educativa, biblioteca, galería). Los sistemas de la ex sección "Trámites y Sistemas" quedaron como enlaces en "Soy personal".
+2. **¿Qué estás buscando? (Elegí tu camino)** — sección por audiencia (`Audiencia.jsx`) con 3 tarjetas: **Quiero ingresar** (procesos en curso, requisitos, cronograma, FAQ → `/ingreso`), **Soy personal** (Mi ISeP, SIGEDI, Webmail y Cursos y perfeccionamiento; SIGEDI y Webmail indican "Sólo personal de ISeP") y **Ciudadano** (noticias, oferta educativa, biblioteca, galería). "Gestión Cadetes" se quitó porque su dominio está dado de baja.
 3. **Últimas Noticias** — Noticia destacada + sidebar de noticias recientes con ShareButton y promo **"Calendario Académico"** (botón DESCARGAR PDF). Links a `/noticias/:id`.
 4. **CTA Inscripciones** — Bloque con título "Inscripciones Abiertas 2027", countdown configurable (fecha objetivo: 2027-09-30) + botones "Pre-Inscripción Online" (`/ingreso/convocatorias`) y "Ver Requisitos" (`/ingreso/requisitos`).
 5. **Nuestras Escuelas** — Cuadrícula de las 4 escuelas principales (Policía, Superior, Especialidades, Investigaciones) con escudos. Tarjetas enlaces clickeables a `/escuelas/:slug`. La 5ta escuela (EaD) se accede desde el menú Formación.
-6. **Contadores** — Estadísticas animadas: Docentes (2200+), Cadetes activos (1100+), Personal formándose (800+), Aulas virtuales (500+).
-7. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
+6. **Testimonios** — Carrusel de 3 testimonios de egresados con flechas y dots.
 
-> **Nota:** Contadores y Testimonios se ocultan en móvil (`hide-mobile`).
+> **Nota:** Testimonios se oculta en móvil (`hide-mobile`). La sección de Contadores fue quitada del Home.
 
 ### 4.1 Hero Slider
 
@@ -128,8 +126,8 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 |---|---|---|
 | **Mi ISeP** | Acceso a aulas virtuales, material de cursado, notas y asistencia | Docentes, personal policial cursante y postulantes inscriptos |
 | **SIGEDI** | Sistema de gestión de expedientes internos | Solo personal interno del ISeP |
-| **Gestión Cadetes** | Control y notificaciones del cursado | Cadetes de 1° y 2° año |
 | **Webmail** | Correo electrónico institucional | Todo el personal del ISeP |
+| **Cursos y perfeccionamiento** | Oferta de cursos internos | Personal del ISeP |
 
 ### 4.3 Sección Noticias del Home (`News.jsx`)
 
@@ -150,7 +148,7 @@ La página de inicio (`/`) está compuesta por las siguientes secciones, en orde
 - **Historial:** grid de tarjetas con **links a `/noticias/:id`** y paginación (10 por página).
 - **Orden:** más reciente a más antigua (la última publicada es la principal; igual criterio en el Home y en cada escuela).
 - **Breadcrumb** para navegación.
-- **325 noticias** publicadas (migradas del sitio actual).
+- **337 noticias** publicadas (migradas del sitio actual).
 
 ### 4.5 Detalle de Noticia (`/noticias/:id`)
 
@@ -218,50 +216,40 @@ Grid de tarjetas mejoradas:
 
 ## 6. Ingreso
 
-### 6.1 Landing de Ingreso (`/ingreso`)
+### 6.1 Procesos en curso (`/ingreso`)
 
 Punto de entrada único para el postulante. **Resume todo el trayecto en una pantalla:**
 - **Hero** con badge "Ciclo Lectivo 2027–2028" y CTAs a Pre-Inscripción Online (`/ingreso/convocatorias`) y Requisitos (`/ingreso/requisitos`)
 - **Alerta anti-estafa** — "el trámite es gratuito y personal; ningún gestor ni intermediario interviene" con contacto de prensa
-- **Mi ISeP (requisito transversal, destacado)** — bloque prominente y reutilizable para todas las convocatorias y formaciones: crear usuario, confirmar cuenta, ingresar y completar el proceso en Mi ISeP (`MI_ISEP_URL` centralizada)
-- **Cronograma 2027–2028** (timeline desde `data/institucional.js` → `cronograma`): crear usuario/pre-inscripción en Mi ISeP (en curso) → listado de presentación → exámenes premédico/psicológico/intelectual/físico/socioambiental → propedéutico → incorporación, cada etapa con estado y fecha
-- **Convocatorias abiertas** (cards desde `convocatorias`)
+- **Procesos en curso** — dos acordeones (`SumariosPostulantes.jsx`) que reproducen los `<summary>` de Acceso Postulantes: encabezado, actualizaciones, etapas, documentación, enlaces y CTA de cada trámite (Escuela de Policía 2027-2028 y Tecnicatura en Investigación Criminal)
+- **Mi ISeP (requisito transversal, destacado)** — crear usuario, confirmar cuenta, ingresar y completar el proceso en Mi ISeP (`MI_ISEP_URL` centralizada). Es también el acceso rápido del visitante asiduo (botón siempre visible en el navbar)
+- **Cronograma 2027–2028** (timeline desde `data/institucional.js` → `cronograma`)
 - **Requisitos principales** (top 5) con enlace al listado completo
 - **FAQ destacadas** (3) con enlace al FAQ completo
-- **CTA final** a Mi ISeP (“Crear mi usuario en Mi ISeP”) y consultas por email
+- **CTA final** a Mi ISeP y consultas por email
 
-### 6.2 Landing de Convocatorias (`/ingreso/convocatorias`)
+### 6.2 Convocatoria Escuela de Policía (`/ingreso/convocatorias`)
 
 **Contenido real** del proceso de selección — Escuela de Policía — Ciclo 2027–2028:
 - **Hero con countdown** y CTA principal a Mi ISeP (“Crear mi usuario en Mi ISeP”)
 - **Alerta de presentación** (09:00 hs, tolerancia 20 min)
-- **Documentación:** título secundario + DNI (debe coincidir con lo cargado en Mi ISeP)
 - **Vestimenta y elementos** a presentar
-- **Mi ISeP (requisito transversal, destacado)** — bloque reutilizable con los pasos comunes de cuenta/acceso para todas las convocatorias y formaciones
-- **Formularios obligatorios** (4 Declaraciones Juradas)
-- **Edad requerida** (18-30 años al 02/02/2027)
+- **Requisitos, documentación y formularios** → enlace único a `/ingreso/requisitos` (se eliminó la duplicación que había en esta página)
 - **Etapas del proceso** (4 etapas)
-- **Requisitos** (10 items)
+- **Confirmación de la inscripción** (email con formulario y código QR)
 - **Consultas:** prensaydifusion@isepsantafe.edu.ar
 - **Link al listado de presentación** (PDF externo)
 
-### 6.3 Próximas Convocatorias (`/ingreso/proximas-convocatorias`)
+### 6.3 Requisitos y documentación (`/ingreso/requisitos`)
 
-Aperturas para el ciclo 2027-2028.
+- **Mi ISeP (requisito transversal, destacado)** — guía breve de acceso antes de los requisitos
+- 10 requisitos reales del sitio + documentación requerida + formularios obligatorios (la documentación debe coincidir con lo cargado en Mi ISeP). **Fuente única** de esta información.
 
-### 6.4 Requisitos (`/ingreso/requisitos`)
+### 6.4 Preguntas Frecuentes (`/ingreso/faq`)
 
-- **Mi ISeP (requisito transversal, destacado)** — guía breve reutilizable con acceso a Mi ISeP antes de los requisitos
-- 10 requisitos reales del sitio + documentación requerida + formularios obligatorios (la documentación debe coincidir con lo cargado en Mi ISeP).
+Preguntas y respuestas en formato acordeón.
 
-### 6.5 Proceso de Selección (`/ingreso/proceso`)
-
-- **Mi ISeP (requisito transversal, destacado)** — guía reutilizable de creación de usuario/acceso
-- **Etapas generales del proceso** posteriores a la cuenta en Mi ISeP, aplicables según la convocatoria o formación elegida.
-
-### 6.6 Preguntas Frecuentes (`/ingreso/faq`)
-
-12 preguntas y respuestas en formato acordeón.
+Las rutas antiguas `/ingreso/proceso` y `/ingreso/proximas-convocatorias` se redirigen a `/ingreso` para no dejar links rotados.
 
 ---
 
@@ -278,7 +266,8 @@ Aperturas para el ciclo 2027-2028.
 
 ### 7.2 Biblioteca Virtual (`/secretaria/biblioteca`)
 
-- **22 artículos reales del ISeP** con categorías: Normativa, Protocolos, Formación, Institucional
+- **21 artículos reales del ISeP** con categorías: Normativa, Protocolos, Formación, Institucional
+- Incluye todos los recursos de `/index.php/institucional/carrera`: Códigos, Leyes y Protocolos, Manuales y modelos de recursos, y Capacitaciones Gobierno de Santa Fe
 - Chips coloreados por tipo
 - Botón de descarga por recurso (enlaces directos a PDFs de isepsantafe.edu.ar)
 - Filtros por categoría
@@ -294,7 +283,7 @@ Aperturas para el ciclo 2027-2028.
 
 - **Ubicación:** ícono de lupa en el navbar, al lado de "Mi ISeP".
 - **Debounce:** 300ms para evitar búsquedas excesivas.
-- **Índice:** 371 entradas (5 escuelas + 4 carreras + 6 cursos + 3 convocatorias + 325 noticias + 17 normativa + 11 páginas).
+- **Índice:** 369 entradas (5 escuelas + 4 carreras + 6 cursos + 2 convocatorias + 337 noticias + 5 resoluciones + 10 páginas).
 - **Resultados agrupados por tipo:** Escuelas → Carreras → Cursos → Convocatorias → Noticias → Normativa → Páginas → Misceláneas.
 - **Navegación por teclado:** ↑↓, Enter, Escape.
 - **Contador de resultados** y hints de teclado.
@@ -304,9 +293,10 @@ Aperturas para el ciclo 2027-2028.
 
 ## 9. Normativa y Resoluciones (`/institucional/resoluciones`)
 
-- **17 documentos** oficiales descargables
-- **Filtros por año** (Todos, 2026, 2025, 2024, 2023, 2022)
-- **Filtros por tipo** (Resolución, Convenio, Plan Estratégico, Estatuto)
+- **5 resoluciones oficiales** descargables desde el sistema de expedientes del ISeP (2024–2026)
+- **Filtros por año** (Todos, 2026, 2025, 2024)
+- **Filtro por tipo** (Resolución)
+- Enlace al listado oficial y al verificador de firmas del Estado Nacional
 - Chips coloreados por tipo, botón Descargar, Breadcrumb
 
 ---
@@ -365,8 +355,7 @@ Componente `Breadcrumb.jsx`:
 
 ## 14. Contadores
 
-4 estadísticas animadas con `IntersectionObserver`:
-- Docentes 2200+, Cadetes 1100+, Personal 800+, Aulas 500+
+**Sección quitada.** El Home ya no muestra las estadísticas animadas (Docentes, Cadetes, Personal y Aulas). El componente `src/components/Contadores.jsx` y sus estilos fueron eliminados.
 
 ---
 
@@ -406,7 +395,7 @@ Suite de tests con **Vitest** + **React Testing Library** + **jsdom**:
 - `navbar.test.jsx` (6): navegación desktop/móvil, enlaces privados y dropdown Ingreso (primer destino `/ingreso`)
 - `hero.test.jsx` (5): render de slides, CTAs y navegación
 - `news.test.jsx` (2): render de noticias destacadas con y sin imagen
-- `ingreso.test.jsx` (7): render de la landing `/ingreso` (hero, anti-estafa, pasos, cronograma, convocatorias, FAQ, enlaces)
+- `ingreso.test.jsx` (10): render de la landing `/ingreso` (hero, anti-estafa, pasos, cronograma, summarys oficiales con su contenido, FAQ, enlaces)
 - `audiencia.test.jsx` (4): sección por audiencia del Home (tres audiencias y sus enlaces)
 - `sharebutton.test.jsx` (3): copiar al portapapeles, Web Share API y feedback "¡Copiado!"
 - `admin-noticianueva.test.jsx` (2): la herramienta `/admin/noticias/nueva` renderiza formulario, preview y código generado
@@ -424,7 +413,7 @@ GitHub Actions ejecuta en cada push:
 
 ## 18. Publicación de noticias — Guía paso a paso
 
-> **¿Querés editar otra sección del sitio (imágenes, hero, escuelas, carreras, convocatorias, cronograma, contadores, testimonios, config, etc.)?** Las guías paso a paso de edición están en este mismo documento: §20 (imágenes), §21 (hero) y §22 (todos los componentes).
+> **¿Querés editar otra sección del sitio (imágenes, hero, escuelas, carreras, convocatorias, cronograma, testimonios, config, etc.)?** Las guías paso a paso de edición están en este mismo documento: §20 (imágenes), §21 (hero) y §22 (todos los componentes).
 >
 > **¿Preferís no tocar código?** Existe una herramienta interna que publica noticias desde un formulario (WYSIWYG + preview + guardado automático en dev): ver §18.4.
 
@@ -723,8 +712,9 @@ El archivo `src/data/config.js` centraliza datos usados en múltiples componente
 |---|---|
 | `MI_ISEP_URL` | URL del portal Mi ISeP |
 | `GESTION_URL` | URL de SIGEDI |
-| `CADETES_URL` | URL de Gestión Cadetes |
 | `WEBMAIL_URL` | URL del correo institucional |
+
+> `CADETES_URL` se eliminó: el dominio `cadetes.isepsantafe.edu.ar` ya no resuelve. En "Soy personal" se usa el link interno `/secretaria/cursos`.
 | `TELEFONO_ISR` / `TELEFONO_LIMPIO` | Números de teléfono institucionales |
 | `EMAIL_CONTACTO` / `EMAIL_PRENSA` / `EMAIL_TITULOS` | Direcciones de correo electrónico |
 | `WHATSAPP_URL` | Enlace de WhatsApp |
@@ -875,7 +865,6 @@ Todo lo que se ve en la web (textos, números, imágenes, enlaces, fechas) se gu
 | `src/components/Hero.jsx` | Slider de la portada |
 | `src/components/Audiencia.jsx` | "¿Qué estás buscando? / Elegí tu camino" (Home; "Soy personal" con accesos a los 4 sistemas) |
 | `src/components/CTA.jsx` | Banner "Inscripciones Abiertas" + fecha de cierre (Home) |
-| `src/components/Contadores.jsx` | Los 4 números grandes del Home |
 | `src/components/Testimonios.jsx` | Carrusel de testimonios (Home) |
 | `src/pages/Noticias.jsx` | Título/banner de la página `/noticias` |
 | `src/pages/Secretaria/Biblioteca.jsx` | Biblioteca virtual (`/secretaria/biblioteca`) |
@@ -920,11 +909,11 @@ Campos por tarjeta:
 
 Los íconos son nombres del set **Material Symbols** (`login`, `badge`, `groups`, `how_to_reg`, `checklist`, `event_note`, `help`, `laptop_mac`, `folder_open`, `military_tech`, `mail`, `newspaper`, `school`, `library_books`, `photo_library`).
 
-Los links de **Soy personal** (Mi ISeP, SIGEDI, Gestión Cadetes y Webmail) abren en pestaña nueva (`external: true`). **SIGEDI** y **Webmail** incluyen `soloPersonal: true` y muestran la nota en cursiva **"Sólo personal de ISeP"** debajo del enlace (visible pero sin resaltar).
+Los links externos de **Soy personal** (Mi ISeP, SIGEDI y Webmail) abren en pestaña nueva (`external: true`); **Cursos y perfeccionamiento** es interno (`/secretaria/cursos`). **SIGEDI** y **Webmail** incluyen `soloPersonal: true` y muestran la nota en cursiva **"Sólo personal de ISeP"** debajo del enlace (visible pero sin resaltar).
 
 ### 22.6 Trámites y Sistemas
 
-La sección "Trámites y Sistemas" ya no existe como bloque separado en el Home: sus 4 sistemas (**Mi ISeP**, **SIGEDI**, **Gestión Cadetes** y **Webmail**) quedaron en la tarjeta **Soy personal** de la sección "Elegí tu camino" como accesos directos (abren en pestaña nueva). **SIGEDI** y **Webmail** llevan la nota en cursiva "Sólo personal de ISeP" (campo `soloPersonal`). Para editarlos abrí `src/components/Audiencia.jsx` y modificá el campo `links` de esa tarjeta (ver 22.5).
+La sección "Trámites y Sistemas" ya no existe como bloque separado en el Home: sus accesos quedaron en la tarjeta **Soy personal** de la sección "Elegí tu camino" (**Mi ISeP**, **SIGEDI**, **Webmail** y **Cursos y perfeccionamiento**). "Gestión Cadetes" se quitó porque su dominio está dado de baja. **SIGEDI** y **Webmail** llevan la nota en cursiva "Sólo personal de ISeP" (campo `soloPersonal`). Para editarlos abrí `src/components/Audiencia.jsx` y modificá el campo `links` de esa tarjeta (ver 22.5).
 
 ### 22.7 Banner "Inscripciones Abiertas" + fecha de cierre (CTA)
 
@@ -977,16 +966,7 @@ Pasos:
 
 ### 22.11 Contadores (números del Home)
 
-- **Archivo:** `src/components/Contadores.jsx` (constante `STATS`).
-- **Dónde aparece:** Home, sección de los 4 números grandes.
-
-Pasos:
-
-1. Abrí `src/components/Contadores.jsx`.
-2. Buscá `const STATS = [`.
-3. Editá, por cada contador, `label` (texto), `value` (número), `suffix` (`"+"` u otro sufijo, o `""`), `icon` y `color`. No repitas `icon` ni `color` si querés diferenciarlos.
-4. Para **agregar un contador**: copiá un bloque, pegálo antes de `];` con `value` numérico.
-5. Guardá y verificá (la animación de conteo se adapta sola al número).
+**Sección eliminada.** Ya no hay una constante `STATS` ni componente `Contadores.jsx`. Los números animados (Docentes, Cadetes, Personal y Aulas) no se muestran más en el Home.
 
 ### 22.12 Testimonios
 
@@ -1004,7 +984,7 @@ Pasos:
 ### 22.13 Convocatorias
 
 - **Archivo:** `src/data/institucional.js` (array `convocatorias`).
-- **Dónde aparece:** `/ingreso`, `/ingreso/convocatorias`, `/ingreso/proximas-convocatorias` y en la tarjeta de ingreso del Home.
+- **Dónde aparece:** `/ingreso` (Procesos en curso), `/ingreso/convocatorias` y en la tarjeta de ingreso del Home. Cada convocatoria puede definir `etiqueta` y `cta: { label, to, external }` para su acceso directo.
 
 Pasos:
 
@@ -1045,7 +1025,7 @@ Pasos:
 
 1. Abrí `src/data/normativa.js` y buscá `export const resoluciones = [`.
 2. Editá los campos de cada resolución (ej: `numero`, `titulo`, `tipo`, `anio`, `fecha`, `archivo`/URL del PDF).
-3. Guardá y verificá. Se indexa sola en el buscador (17 resoluciones).
+3. Guardá y verificá. Se indexa sola en el buscador (5 resoluciones oficiales).
 
 ### 22.17 Biblioteca virtual
 
@@ -1106,8 +1086,9 @@ Pasos:
 | `EMAIL_TITULOS` | email de títulos y certificaciones |
 | `MI_ISEP_URL` | URL de "Mi ISeP" |
 | `GESTION_URL` | URL de SIGEDI |
-| `CADETES_URL` | URL de Gestión Cadetes |
 | `WEBMAIL_URL` | URL del Webmail |
+
+> `CADETES_URL` se eliminó: el dominio `cadetes.isepsantafe.edu.ar` ya no resuelve. En "Soy personal" se usa el link interno `/secretaria/cursos`.
 | `WHATSAPP_URL` | se arma sola con `TELEFONO_LIMPIO` (no tocar salvo excepción) |
 | `REDES_SOCIALES` | URLs de Facebook, YouTube, Instagram y TikTok |
 | Google Analytics | GA4 se carga con el snippet de `index.html` (ID `G-LMY41WSSET`) y registra una vista por ruta vía `src/components/Analytics.jsx` |

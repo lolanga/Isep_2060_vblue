@@ -2,7 +2,10 @@
  * pages/Secretaria/Biblioteca.jsx
  *
  * Biblioteca virtual del ISeP.
- * Fuente: isepsantafe.edu.ar/index.php/academico/biblioteca
+ * Fuentes:
+ *   - isepsantafe.edu.ar/index.php/academico/biblioteca
+ *   - isepsantafe.edu.ar/index.php/institucional/carrera
+ *     (Códigos, Leyes y Protocolos, Manuales y modelos de recursos)
  */
 
 import { useState } from "react";
@@ -21,12 +24,12 @@ const ARTICULOS = [
   { titulo: "Protocolo de Actuación del Programa de Abordaje Integral de Prevención del Suicidio en la Policía de la Provincia de Santa Fe (Res. Ministerial Nro 151220)", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/PROTOCOLO%20DE%20ACTUACION%20DEL%20PROGRAMA%20DE%20ABORDAJE%20INTEGRAL%20DE%20PREVENCION%20DEL%20SUICIDIO%20EN%20LA%20POLICIA%20DE%20LA%20PROVINCIA%20DE%20SANTA%20FE%20Res.%20Ministerial%20Nro%20151220.pdf", categoria: "Protocolos" },
   { titulo: "Ley N° 14258 - Modifica el Código Procesal Penal de Santa Fe y el Art. 10 Bis de la Ley Orgánica Policial", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/LEY%20N%2014258%20MODIFICA%20EL%20CODIGO%20PROCESAL%20PENAL%20DE%20SANTA%20FE%20Y%20EL%20ART%2010%20BIS%20DE%20LA%20LEY%20ORGANICA%20POLICIAL.pdf", categoria: "Normativa" },
   { titulo: "Constitución Nacional", url: "https://www.argentina.gob.ar/normativa/nacional/ley-24430-804", categoria: "Normativa" },
-  { titulo: "Manual de Apto Psicofísico para Aspirantes", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/REGLAMENTO%20APTITUD%20PSICOFISICA-ISEP-%20ACTUALIZADO%202025.pdf", categoria: "Formación" },
+  { titulo: "Manual de Apt Psicofísica para Aspirantes", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/REGLAMENTO%20APTITUD%20PSICOFISICA-ISEP-%20ACTUALIZADO%202025.pdf", categoria: "Formación" },
   { titulo: "Pruebas de Aptitud Física para Aspirantes", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/EXAMEN%20DE%20INGRESO%20Tec.%20Seg.%20Pub.y%20Ciudadana.pdf", categoria: "Formación" },
   { titulo: "Modelo de Recurso", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/MODELO%20DE%20RECURSO%20%20DE%20REVOCATORIA.pdf", categoria: "Institucional" },
   { titulo: "Ley 14181 - Derechos de la Víctima", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/Ley%2014.181%20-%20%20Derechos%20de%20la%20Victima.pdf", categoria: "Normativa" },
   { titulo: "Código Procesal Penal de Santa Fe", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/CODIGO%20PROCESAL%20CIVIL%20Y%20COMERCIAL%20DE%20SANTA%20FE%20LEY%205531.pdf", categoria: "Normativa" },
-  { titulo: "Código Procesal Civil y Comercial de Santa Fe (Ley 5531)", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/CODIGO%20DE%20CONVIVENCIA%20LEY%2013774.pdf", categoria: "Normativa" },
+  { titulo: "Código Procesal Civil y Comercial de Santa Fe (Ley 5531)", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/CODIGO%20PROCESAL%20CIVIL%20Y%20COMERCIAL%20DE%20SANTA%20FE%20LEY%205531.pdf", categoria: "Normativa" },
   { titulo: "Código Procesal de Menores de Santa Fe (Ley 11452)", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/CODIGO%20PROCESAL%20DE%20MENORES%20DE%20SANTA%20FE%20LEY%2011452.pdf", categoria: "Normativa" },
   { titulo: "Código de Faltas de Santa Fe (Ley 10703)", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/CODIGO%20DE%20FALTAS%20DE%20SANTA%20FE%20LEY%2010703.pdf", categoria: "Normativa" },
   { titulo: "Código de Convivencia (Ley 13774)", url: "https://www.isepsantafe.edu.ar/images/BIBLIOTECA/CODIGO%20DE%20CONVIVENCIA%20LEY%2013774.pdf", categoria: "Normativa" },

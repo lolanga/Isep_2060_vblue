@@ -18,7 +18,7 @@ export default function Faq() {
   return (
     <main id="main-content" className="page-main">
       <SEO title="Preguntas Frecuentes" description="Preguntas frecuentes sobre el ISeP Santa Fe" />
-      <BreadcrumbLd items={[{ label: "Inicio", to: "/" }, { label: "Ingreso" }, { label: "Preguntas Frecuentes" }]} />
+      <BreadcrumbLd items={[{ label: "Inicio", to: "/" }, { label: "Ingreso", to: "/ingreso" }, { label: "Preguntas Frecuentes" }]} />
       <section className="page-hero">
         <div className="page-hero__inner">
           <span className="badge">Ingreso</span>
@@ -35,7 +35,7 @@ export default function Faq() {
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
-            { label: "Ingreso" },
+            { label: "Ingreso", to: "/ingreso" },
             { label: "Preguntas Frecuentes" },
           ]}
         />

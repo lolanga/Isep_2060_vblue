@@ -24,7 +24,7 @@ src/
 ├── main.jsx, App.jsx (router con lazy loading)
 ├── components/   Navbar (con buscador), Hero (slider + 2 CTAs), Audiencia,
 │                 SearchBox, News, Schools, CTA, Footer, EscuelaTemplate,
-│                 FloatWhatsApp, Breadcrumb, JsonLd, Countdown, Contadores,
+│                 FloatWhatsApp, Breadcrumb, JsonLd, Countdown,
 │                 Testimonios, ShareButton, Placeholder, Skeleton, SkipToContent,
 │                 ErrorBoundary, SEO, Analytics
 ├── data/         config.js (configuración centralizada), institucional.js
@@ -42,7 +42,8 @@ src/
 
 - **Hero Slider:** banner automático con 3 slides, 2 CTAs ("Conoce nuestras propuestas" y "Inscripciones 2027"), transiciones suaves, flechas y dots. Pausa autoplay con `prefers-reduced-motion`.
 - **Buscador funcional:** indexa escuelas, carreras, cursos, convocatorias, noticias, normativa y páginas institucionales. Resultados dinámicos con navegación por teclado.
-- **Elegí tu camino (por audiencia):** tarjeta "Soy personal" con accesos directos a los 4 sistemas (Mi ISeP, SIGEDI, Gestión Cadetes y Webmail); SIGEDI y Webmail indican "Sólo personal de ISeP".
+- **Elegí tu camino (por audiencia):** tarjeta "Soy personal" con Mi ISeP, SIGEDI, Webmail y Cursos y perfeccionamiento; SIGEDI y Webmail indican "Sólo personal de ISeP". El link "Gestión Cadetes" se quitó porque su dominio ya no existe.
+- **Menú Ingreso (4 destinos):** Procesos en curso, Convocatoria Escuela de Policía, Requisitos y documentación y Preguntas frecuentes. Mi ISeP es el acceso rápido para quien ya tiene usuario.
 - **CTA de inscripciones** con countdown al 30 de septiembre de 2027.
 - **Íconos en navegación:** cada sección del menú tiene un ícono de Material Symbols.
 - **Fondo decorativo global:** patrón sutil con `background-attachment: fixed`, color base `#bcd8db` y gradientes radiales tenues.
@@ -77,15 +78,15 @@ npm run test    # tests (Vitest + React Testing Library)
 
 ## Páginas
 
-- `/` — Home (Hero Slider, ¿Qué estás buscando? por audiencia con accesos a los sistemas, Últimas Noticias, CTA Inscripciones, Nuestras Escuelas, Contadores, Testimonios)
+- `/` — Home (Hero Slider, ¿Qué estás buscando? por audiencia con accesos a los sistemas, Últimas Noticias, CTA Inscripciones, Nuestras Escuelas, Testimonios)
 - `/noticias` — listado con filtro, paginación y detalle (`/noticias/:id`)
-- `/institucional/*` — El ISeP, Autoridades, Organización, Oferta Educativa, Carreras, Normativa y Resoluciones (17 docs), Sedes y Contacto, Galería de Fotos
+- `/institucional/*` — El ISeP, Autoridades, Organización, Oferta Educativa, Carreras, Normativa y Resoluciones (5 resoluciones oficiales), Sedes y Contacto, Galería de Fotos
 - `/institucional/oferta-educativa` — Oferta Educativa (tabs: Carreras, Cursos, Convocatorias)
 - `/institucional/galeria` — Galería de fotos con filtros y lightbox
 - `/escuelas/*` — 5 páginas de escuela con plantilla común (Logo, Presentación, Información, Carreras, Cursos, Noticias, Contacto)
-- `/ingreso` — Landing de ingreso (pasos, cronograma 2027–2028, convocatorias, requisitos, FAQ, aviso anti-estafa)
-- `/ingreso/*` — Convocatorias vigentes (contenido real Esc. Policía 2027–2028), Próximas, Requisitos (10 items), Proceso y Preguntas frecuentes
+- `/ingreso` — Procesos en curso (cronograma 2027–2028, convocatorias, requisitos, FAQ, aviso anti-estafa)
+- `/ingreso/*` — Convocatoria Escuela de Policía 2027–2028, Requisitos y documentación (10 items, fuente única), Preguntas frecuentes. Las rutas viejas redirigen a `/ingreso`
 - `/secretaria/titulos` — Títulos y Certificaciones (consulta por DNI, proceso 3 pasos, descargas)
-- `/secretaria/biblioteca` — Biblioteca Virtual (22 artículos reales con links PDF)
+- `/secretaria/biblioteca` — Biblioteca Virtual (21 artículos reales con links PDF)
 - `/secretaria/cursos` — Cursos con filtros por Escuela / Tipo / Estado y acceso a Mi ISeP
 - `/mapa-del-sitio` — Mapa visual con todas las rutas

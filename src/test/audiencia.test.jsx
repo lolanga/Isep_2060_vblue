@@ -44,6 +44,15 @@ describe("Audiencia (Home — sección por audiencia)", () => {
     );
   });
 
+  it("reemplaza el link caído de Gestión Cadetes por cursos y perfeccionamiento", () => {
+    renderAudiencia();
+    expect(screen.queryByText("Gestión Cadetes")).not.toBeInTheDocument();
+    expect(screen.getByText("Cursos y perfeccionamiento").closest("a")).toHaveAttribute(
+      "href",
+      "/secretaria/cursos"
+    );
+  });
+
   it('marca SIGEDI y Webmail como "Sólo personal de ISeP"', () => {
     renderAudiencia();
     expect(screen.getAllByText("Sólo personal de ISeP")).toHaveLength(2);

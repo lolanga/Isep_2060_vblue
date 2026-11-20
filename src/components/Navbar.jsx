@@ -41,12 +41,10 @@ const formacion = [
 ];
 
 const ingreso = [
-  { label: "Inicio de ingreso",         href: "/ingreso",                         icon: "login" },
-  { label: "Convocatorias vigentes",  href: "/ingreso/convocatorias",            icon: "campaign" },
-  { label: "Próximas convocatorias",  href: "/ingreso/proximas-convocatorias",   icon: "event_upcoming" },
-  { label: "Requisitos",              href: "/ingreso/requisitos",               icon: "checklist" },
-  { label: "Proceso de ingreso",      href: "/ingreso/proceso",                  icon: "route" },
-  { label: "Preguntas frecuentes",    href: "/ingreso/faq",                      icon: "help" },
+  { label: "Procesos en curso",         href: "/ingreso",                        icon: "assignment" },
+  { label: "Convocatoria Escuela de Policía", href: "/ingreso/convocatorias",    icon: "campaign" },
+  { label: "Requisitos y documentación", href: "/ingreso/requisitos",            icon: "checklist" },
+  { label: "Preguntas frecuentes",       href: "/ingreso/faq",                    icon: "help" },
 ];
 
 /**

@@ -1,8 +1,11 @@
 /**
  * pages/Ingreso/Convocatorias.jsx
  *
- * Proceso de Selección – Escuela de Policía – Ciclo Lectivo 2027–2028
- * Contenido real extraído de isepsantafe.edu.ar/index.php/inscripciones/postulantes
+ * Proceso de Selección – Escuela de Policía – Ciclo Lectivo 2027–2028.
+ * Detalle del proceso: etapas, presentación, vestimenta y elementos.
+ * Requisitos, documentación y formularios viven una sola vez en
+ * pages/Ingreso/Requisitos.jsx (desde acá se enlazan).
+ * Fuente: isepsantafe.edu.ar/index.php/inscripciones/postulantes
  */
 
 import { Link } from "react-router-dom";
@@ -10,21 +13,7 @@ import Countdown from "../../components/Countdown";
 import Breadcrumb from "../../components/Breadcrumb";
 import SEO from "../../components/SEO";
 import { BreadcrumbLd } from "../../components/JsonLd";
-import GuiaMiIsep from "../../components/GuiaMiIsep";
 import { MI_ISEP_URL } from "../../data/config";
-
-const DOCUMENTACION = [
-  {
-    icon: "school",
-    titulo: "Título Secundario",
-    desc: "Título, Constancia de Finalización o Constancia de Alumno Regular (solo cursando último año). Original en papel.",
-  },
-  {
-    icon: "badge",
-    titulo: "DNI",
-    desc: "Formato físico (plástico) o desde la aplicación Mi Argentina.",
-  },
-];
 
 const VESTIMENTA = [
   "Vestimenta de gimnasia y ropa oscura",
@@ -37,33 +26,12 @@ const ELEMENTOS = [
   { icon: "edit", texto: "Birome azul" },
 ];
 
-const FORMULARIOS = [
-  "Declaración Jurada de Inscripción",
-  "Declaración Jurada Médica",
-  "Declaración Jurada Socioambiental",
-  "Declaración Jurada Psicológica",
-];
-
 const ETAPAS = [
   "Examen premédico y examen psicológico",
   "Entrega de carpeta médica, examen intelectual y examen físico",
   "Examen socioambiental",
   "Período propedéutico",
 ];
-
-const REQUISITOS = [
-  "Ser argentino",
-  "Tener entre 18 y 30 años al inicio del curso propedéutico previsto para febrero de 2027",
-  "Poseer título secundario o polimodal completo o constancia de finalización",
-  "Acreditar aptitudes psicofísicas compatibles con la función policial",
-  "Aprobar los exámenes médicos y psicológicos correspondientes",
-  "No registrar condenas por delitos o contravenciones",
-  "No encontrarse procesado judicialmente, salvo sobreseimiento definitivo o absolución",
-  "No desempeñarse como empleado de la administración pública nacional, provincial, municipal o comunal",
-  "No haber sido destituido, cesanteado o exonerado de organismos públicos",
-  "Presentar toda la documentación requerida dentro de los plazos establecidos",
-];
-
 
 
 const LISTADO_URL = "https://www.isepsantafe.edu.ar/images/Publicaciones/LISTADO_PRESENTACION_PROCESO_SELECCION_2027_2028_0900.pdf";
@@ -74,7 +42,10 @@ export default function Convocatorias() {
 
   return (
     <main id="main-content" className="conv-main">
-      <SEO title="Convocatorias" description="Proceso de selección — Escuela de Policía 2027-2028" />
+      <SEO
+        title="Convocatoria Escuela de Policía 2027-2028"
+        description="Proceso de selección de la Escuela de Policía — Ciclo 2027-2028: etapas, presentación, vestimenta e inscripción en Mi ISeP."
+      />
       {/* Hero dedicado */}
       <section className="page-hero">
         <div className="page-hero__bg" />
@@ -118,15 +89,15 @@ export default function Convocatorias() {
         <Breadcrumb
           items={[
             { label: "Inicio", to: "/" },
-            { label: "Ingreso" },
-            { label: "Convocatorias" },
+            { label: "Ingreso", to: "/ingreso" },
+            { label: "Escuela de Policía 2027-2028" },
           ]}
         />
         <BreadcrumbLd
           items={[
             { label: "Inicio", to: "/" },
-            { label: "Ingreso" },
-            { label: "Convocatorias" },
+            { label: "Ingreso", to: "/ingreso" },
+            { label: "Escuela de Policía 2027-2028" },
           ]}
         />
 
@@ -143,27 +114,27 @@ export default function Convocatorias() {
           </div>
         </div>
 
-        {/* Documentación */}
+        {/* Requisitos y documentación → única fuente en /ingreso/requisitos */}
         <section className="conv-section">
-          <h2 className="section-title">
-            Documentación que deberán presentar
-          </h2>
-          <div className="grid-auto">
-            {DOCUMENTACION.map((doc, i) => (
-              <div key={i} className="inst-card conv-doc-row">
-                <div className="icon-box">
-                  <span className="material-symbols-outlined conv-icon-white">{doc.icon}</span>
-                </div>
-                <div>
-                  <h4 className="conv-card-title">{doc.titulo}</h4>
-                  <p className="conv-card-text conv-card-text--muted">{doc.desc}</p>
-                </div>
-              </div>
-            ))}
+          <div className="info-box">
+            <span className="material-symbols-outlined alert-warning__icon">
+              checklist
+            </span>
+            <div>
+              <h2 className="conv-card-heading conv-card-heading--sm">
+                Requisitos, documentación y formularios
+              </h2>
+              <p className="conv-card-text">
+                El listado completo de requisitos, la documentación que tenés que
+                presentar y los cuatro formularios obligatorios están en una sola
+                página, actualizada para este proceso.
+              </p>
+              <Link to="/ingreso/requisitos" className="read-more">
+                Ver requisitos y documentación
+                <span className="material-symbols-outlined">arrow_forward</span>
+              </Link>
+            </div>
           </div>
-          <p className="conv-footnote">
-            La documentación será utilizada únicamente para su verificación y posteriormente será devuelta. Debe coincidir con la documentación cargada en Mi ISeP.
-          </p>
         </section>
 
         {/* Vestimenta y elementos */}
@@ -202,58 +173,6 @@ export default function Convocatorias() {
           </div>
         </section>
 
-        {/* Mi ISeP — requisito transversal y primer paso para todas las formaciones */}
-        <section className="conv-section mi-isep-section">
-          <GuiaMiIsep />
-        </section>
-
-        {/* Formularios obligatorios */}
-        <section className="conv-section">
-          <h2 className="section-title">
-            Formularios obligatorios
-          </h2>
-          <div className="conv-forms-card">
-            <p className="conv-forms-intro">
-              La inscripción solo será válida cuando completes los cuatro formularios:
-            </p>
-            <ul className="check-list">
-              {FORMULARIOS.map((f, i) => (
-                <li key={i} className="check-item check-item--lg check-item--mb">
-                  <span className="material-symbols-outlined conv-check-icon">check_circle</span>
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <p className="conv-footnote conv-footnote--lg">
-              Todas las declaraciones tienen carácter excluyente. Deben completarse con datos reales y verificables. Tiempo estimado de carga: ~40 minutos.
-            </p>
-          </div>
-        </section>
-
-        {/* Edad y confirmación */}
-        <section className="conv-section">
-          <div className="grid-auto">
-            <div className="inst-card">
-              <h3 className="conv-card-heading conv-card-heading--sm">
-                <span className="material-symbols-outlined icon-primary">cake</span>
-                Edad requerida
-              </h3>
-              <p className="conv-card-text">
-                Podrán inscribirse quienes tengan entre <strong>18 y 30 años</strong> al <strong>02/02/2027</strong>. No podrán participar quienes tengan menos de 18 años o más de 30 años en esa fecha.
-              </p>
-            </div>
-            <div className="inst-card">
-              <h3 className="conv-card-heading conv-card-heading--sm">
-                <span className="material-symbols-outlined icon-primary">mail</span>
-                Confirmación
-              </h3>
-              <p className="conv-card-text">
-                Al finalizar correctamente la inscripción recibirás un correo electrónico con la confirmación, el formulario para presentar y un código QR para registrar asistencia.
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* Etapas del proceso */}
         <section className="conv-section">
           <h2 className="section-title">
@@ -276,20 +195,16 @@ export default function Convocatorias() {
           </p>
         </section>
 
-        {/* Requisitos */}
-        <section id="requisitos" className="conv-section">
-          <h2 className="section-title">
-            Requisitos para la inscripción
-          </h2>
+        {/* Confirmación */}
+        <section className="conv-section">
           <div className="inst-card">
-            <ul className="conv-req-list">
-              {REQUISITOS.map((r, i) => (
-                <li key={i} className="conv-req-item">
-                  <span className="material-symbols-outlined conv-req-icon">check_circle</span>
-                  {r}
-                </li>
-              ))}
-            </ul>
+            <h3 className="conv-card-heading conv-card-heading--sm">
+              <span className="material-symbols-outlined icon-primary">mail</span>
+              Confirmación de la inscripción
+            </h3>
+            <p className="conv-card-text">
+              Al finalizar correctamente la inscripción recibirás un correo electrónico con la confirmación, el formulario para presentar y un código QR para registrar asistencia.
+            </p>
           </div>
         </section>
 

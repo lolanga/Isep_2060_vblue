@@ -50,13 +50,19 @@ describe("Navbar", () => {
     expect(hamburguesa).toHaveClass("hamburger--open");
   });
 
-  it("muestra 'Inicio de ingreso' como primer destino del dropdown Ingreso", () => {
+  it("muestra 'Procesos en curso' como primer destino del dropdown Ingreso", () => {
     const { container } = renderNavbar();
     const navLinks = container.querySelector(".nav-links");
     fireEvent.click(within(navLinks).getByRole("button", { name: /ingreso/i }));
-    const firstItem = within(navLinks).getByText("Inicio de ingreso");
+    const firstItem = within(navLinks).getByText("Procesos en curso");
     expect(firstItem).toBeInTheDocument();
     expect(firstItem.closest("a")).toHaveAttribute("href", "/ingreso");
+    expect(within(navLinks).getByText("Requisitos y documentación").closest("a")).toHaveAttribute(
+      "href",
+      "/ingreso/requisitos"
+    );
+    expect(within(navLinks).queryByText("Proceso de ingreso")).not.toBeInTheDocument();
+    expect(within(navLinks).queryByText("Próximas convocatorias")).not.toBeInTheDocument();
   });
 
   it("marca la sección Institucional como activa en /institucional/autoridades", () => {
